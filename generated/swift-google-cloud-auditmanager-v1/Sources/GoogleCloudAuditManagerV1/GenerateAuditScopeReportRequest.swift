@@ -47,6 +47,8 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWK
   /// generated against. For example, `NIST_800_53`.
   public var complianceFramework: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateAuditScopeReportRequest`.
   public init() {}
 
@@ -61,6 +63,58 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
+    static let reportFormat = CodingKeys(stringValue: "reportFormat")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "complianceStandard",
+      "reportFormat",
+      "complianceFramework",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceStandard) {
+      self.complianceStandard = value
+    }
+    if let value = try container.decodeIfPresent(
+      GenerateAuditScopeReportRequest.AuditScopeReportFormat.self, forKey: .reportFormat)
+    {
+      self.reportFormat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.complianceStandard, forKey: .complianceStandard)
+    try container.encode(self.reportFormat, forKey: .reportFormat)
+    try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Format for the audit scope report.

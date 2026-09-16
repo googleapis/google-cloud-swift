@@ -53,6 +53,8 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Source resource_location
   public var sourceResourceLocation: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BDRProtectedResourceLog`.
   public init() {}
 
@@ -67,6 +69,80 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceResourceName = CodingKeys(stringValue: "sourceResourceName")
+    static let sourceResourceId = CodingKeys(stringValue: "sourceResourceId")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let sourceResourceDataSizeGib = CodingKeys(stringValue: "sourceResourceDataSizeGib")
+    static let currentBackupPlanName = CodingKeys(stringValue: "currentBackupPlanName")
+    static let currentBackupRuleDetails = CodingKeys(stringValue: "currentBackupRuleDetails")
+    static let lastProtectedOn = CodingKeys(stringValue: "lastProtectedOn")
+    static let currentBackupVaultName = CodingKeys(stringValue: "currentBackupVaultName")
+    static let sourceResourceLocation = CodingKeys(stringValue: "sourceResourceLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceResourceName",
+      "sourceResourceId",
+      "resourceType",
+      "sourceResourceDataSizeGib",
+      "currentBackupPlanName",
+      "currentBackupRuleDetails",
+      "lastProtectedOn",
+      "currentBackupVaultName",
+      "sourceResourceLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.sourceResourceName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceName)
+    self.sourceResourceId = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceId)
+    self.resourceType = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType)
+    self.sourceResourceDataSizeGib = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .sourceResourceDataSizeGib)
+    self.currentBackupPlanName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .currentBackupPlanName)
+    if let value = try container.decodeIfPresent(
+      [BackupRuleDetail].self, forKey: .currentBackupRuleDetails)
+    {
+      self.currentBackupRuleDetails = value
+    }
+    self.lastProtectedOn = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastProtectedOn)
+    self.currentBackupVaultName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .currentBackupVaultName)
+    self.sourceResourceLocation = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceLocation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.sourceResourceName, forKey: .sourceResourceName)
+    try container.encodeIfPresent(self.sourceResourceId, forKey: .sourceResourceId)
+    try container.encodeIfPresent(self.resourceType, forKey: .resourceType)
+    try container.encodeIfPresent(
+      self.sourceResourceDataSizeGib, forKey: .sourceResourceDataSizeGib)
+    try container.encodeIfPresent(self.currentBackupPlanName, forKey: .currentBackupPlanName)
+    try container.encode(self.currentBackupRuleDetails, forKey: .currentBackupRuleDetails)
+    try container.encodeIfPresent(self.lastProtectedOn, forKey: .lastProtectedOn)
+    try container.encodeIfPresent(self.currentBackupVaultName, forKey: .currentBackupVaultName)
+    try container.encodeIfPresent(self.sourceResourceLocation, forKey: .sourceResourceLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

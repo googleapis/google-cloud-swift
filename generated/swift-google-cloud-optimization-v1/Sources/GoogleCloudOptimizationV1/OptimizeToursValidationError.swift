@@ -294,6 +294,8 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
   /// debugging.
   public var offendingValues: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OptimizeToursValidationError`.
   public init() {}
 
@@ -308,6 +310,64 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let fields = CodingKeys(stringValue: "fields")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let offendingValues = CodingKeys(stringValue: "offendingValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "displayName",
+      "fields",
+      "errorMessage",
+      "offendingValues",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [OptimizeToursValidationError.FieldReference].self, forKey: .fields)
+    {
+      self.fields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offendingValues) {
+      self.offendingValues = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.fields, forKey: .fields)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.offendingValues, forKey: .offendingValues)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies a context for the validation error. A `FieldReference` always
@@ -331,6 +391,8 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
 
     public var indexOrKey: OneOf_IndexOrKey? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FieldReference`.
     public init() {}
 
@@ -347,16 +409,30 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case index = "index"
-      case key = "key"
-      case subField = "subField"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let index = CodingKeys(stringValue: "index")
+      static let key = CodingKeys(stringValue: "key")
+      static let subField = CodingKeys(stringValue: "subField")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "index",
+        "key",
+        "subField",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
       self.subField = try container.decodeIfPresent(
         GoogleCloudWKT.Recursive<OptimizeToursValidationError.FieldReference>.self,
         forKey: .subField)
@@ -378,12 +454,16 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
         try indexOrKeyCheckAndSet(.key(key))
       }
       self.indexOrKey = indexOrKey
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.subField, forKey: .subField)
+      try container.encodeIfPresent(self.subField, forKey: .subField)
 
       if let choice = self.indexOrKey {
         switch choice {
@@ -392,6 +472,9 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._
         case .key(let value):
           try container.encode(value, forKey: .key)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -41,6 +41,8 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The identifier of the tool to mock.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MockedToolCall`.
   public init() {}
 
@@ -57,17 +59,32 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case toolId = "toolId"
-    case toolset = "toolset"
-    case tool = "tool"
-    case expectedArgsPattern = "expectedArgsPattern"
-    case mockResponse = "mockResponse"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let toolId = CodingKeys(stringValue: "toolId")
+    static let toolset = CodingKeys(stringValue: "toolset")
+    static let tool = CodingKeys(stringValue: "tool")
+    static let expectedArgsPattern = CodingKeys(stringValue: "expectedArgsPattern")
+    static let mockResponse = CodingKeys(stringValue: "mockResponse")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "toolId",
+      "toolset",
+      "tool",
+      "expectedArgsPattern",
+      "mockResponse",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.tool = try container.decode(Swift.String.self, forKey: .tool)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tool) {
+      self.tool = value
+    }
     self.expectedArgsPattern = try container.decodeIfPresent(
       GoogleCloudWKT.Struct.self, forKey: .expectedArgsPattern)
     self.mockResponse = try container.decodeIfPresent(
@@ -90,13 +107,17 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try toolIdentifierCheckAndSet(.toolset(toolset))
     }
     self.toolIdentifier = toolIdentifier
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.tool, forKey: .tool)
-    try container.encode(self.expectedArgsPattern, forKey: .expectedArgsPattern)
-    try container.encode(self.mockResponse, forKey: .mockResponse)
+    try container.encodeIfPresent(self.expectedArgsPattern, forKey: .expectedArgsPattern)
+    try container.encodeIfPresent(self.mockResponse, forKey: .mockResponse)
 
     if let choice = self.toolIdentifier {
       switch choice {
@@ -105,6 +126,9 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .toolset(let value):
         try container.encode(value, forKey: .toolset)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

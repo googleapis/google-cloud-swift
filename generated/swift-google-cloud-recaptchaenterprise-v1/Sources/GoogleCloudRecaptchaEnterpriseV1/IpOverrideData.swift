@@ -33,6 +33,8 @@ public struct IpOverrideData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. Describes the type of IP override.
   public var overrideType: IpOverrideData.OverrideType = IpOverrideData.OverrideType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IpOverrideData`.
   public init() {}
 
@@ -47,6 +49,46 @@ public struct IpOverrideData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ip = CodingKeys(stringValue: "ip")
+    static let overrideType = CodingKeys(stringValue: "overrideType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ip",
+      "overrideType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ip) {
+      self.ip = value
+    }
+    if let value = try container.decodeIfPresent(
+      IpOverrideData.OverrideType.self, forKey: .overrideType)
+    {
+      self.overrideType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ip, forKey: .ip)
+    try container.encode(self.overrideType, forKey: .overrideType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum that represents the type of IP override.

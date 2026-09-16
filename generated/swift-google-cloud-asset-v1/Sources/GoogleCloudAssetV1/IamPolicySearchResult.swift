@@ -95,6 +95,8 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// information to explain why the search result matches the query.
   public var explanation: IamPolicySearchResult.Explanation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IamPolicySearchResult`.
   public init() {}
 
@@ -111,6 +113,71 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resource = CodingKeys(stringValue: "resource")
+    static let assetType = CodingKeys(stringValue: "assetType")
+    static let project = CodingKeys(stringValue: "project")
+    static let folders = CodingKeys(stringValue: "folders")
+    static let organization = CodingKeys(stringValue: "organization")
+    static let policy = CodingKeys(stringValue: "policy")
+    static let explanation = CodingKeys(stringValue: "explanation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resource",
+      "assetType",
+      "project",
+      "folders",
+      "organization",
+      "policy",
+      "explanation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetType) {
+      self.assetType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .folders) {
+      self.folders = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)
+    self.explanation = try container.decodeIfPresent(
+      IamPolicySearchResult.Explanation.self, forKey: .explanation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.assetType, forKey: .assetType)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.folders, forKey: .folders)
+    try container.encode(self.organization, forKey: .organization)
+    try container.encodeIfPresent(self.policy, forKey: .policy)
+    try container.encodeIfPresent(self.explanation, forKey: .explanation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Explanation about the IAM policy search result.
   public struct Explanation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -124,6 +191,8 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// map is populated only for requests with permission queries.
     public var matchedPermissions: [Swift.String: IamPolicySearchResult.Explanation.Permissions] =
       [:]
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Explanation`.
     public init() {}
@@ -141,12 +210,49 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPack
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let matchedPermissions = CodingKeys(stringValue: "matchedPermissions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "matchedPermissions"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: IamPolicySearchResult.Explanation.Permissions].self,
+        forKey: .matchedPermissions)
+      {
+        self.matchedPermissions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.matchedPermissions, forKey: .matchedPermissions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// IAM permissions
     public struct Permissions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A list of permissions. A sample permission string: `compute.disk.get`.
       public var permissions: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Permissions`.
       public init() {}
@@ -162,6 +268,38 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPack
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let permissions = CodingKeys(stringValue: "permissions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "permissions"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permissions) {
+          self.permissions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.permissions, forKey: .permissions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

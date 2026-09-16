@@ -51,6 +51,8 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The Goldengate deployment console password.
   public var deploymentPasswordOptions: OneOf_DeploymentPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateOggDeployment`.
   public init() {}
 
@@ -67,29 +69,62 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case adminPassword = "adminPassword"
-    case adminPasswordSecretVersion = "adminPasswordSecretVersion"
-    case deployment = "deployment"
-    case adminUsername = "adminUsername"
-    case oggVersion = "oggVersion"
-    case certificate = "certificate"
-    case credentialStore = "credentialStore"
-    case identityDomainId = "identityDomainId"
-    case passwordSecretId = "passwordSecretId"
-    case groupRolesMapping = "groupRolesMapping"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adminPassword = CodingKeys(stringValue: "adminPassword")
+    static let adminPasswordSecretVersion = CodingKeys(stringValue: "adminPasswordSecretVersion")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let adminUsername = CodingKeys(stringValue: "adminUsername")
+    static let oggVersion = CodingKeys(stringValue: "oggVersion")
+    static let certificate = CodingKeys(stringValue: "certificate")
+    static let credentialStore = CodingKeys(stringValue: "credentialStore")
+    static let identityDomainId = CodingKeys(stringValue: "identityDomainId")
+    static let passwordSecretId = CodingKeys(stringValue: "passwordSecretId")
+    static let groupRolesMapping = CodingKeys(stringValue: "groupRolesMapping")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adminPassword",
+      "adminPasswordSecretVersion",
+      "deployment",
+      "adminUsername",
+      "oggVersion",
+      "certificate",
+      "credentialStore",
+      "identityDomainId",
+      "passwordSecretId",
+      "groupRolesMapping",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.deployment = try container.decode(Swift.String.self, forKey: .deployment)
-    self.adminUsername = try container.decode(Swift.String.self, forKey: .adminUsername)
-    self.oggVersion = try container.decode(Swift.String.self, forKey: .oggVersion)
-    self.certificate = try container.decode(Swift.String.self, forKey: .certificate)
-    self.credentialStore = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+      self.deployment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adminUsername) {
+      self.adminUsername = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oggVersion) {
+      self.oggVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificate) {
+      self.certificate = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateOggDeployment.CredentialStore.self, forKey: .credentialStore)
-    self.identityDomainId = try container.decode(Swift.String.self, forKey: .identityDomainId)
-    self.passwordSecretId = try container.decode(Swift.String.self, forKey: .passwordSecretId)
+    {
+      self.credentialStore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identityDomainId) {
+      self.identityDomainId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .passwordSecretId) {
+      self.passwordSecretId = value
+    }
     self.groupRolesMapping = try container.decodeIfPresent(
       GoldengateGroupToRolesMapping.self, forKey: .groupRolesMapping)
 
@@ -114,6 +149,10 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWKT._AnyPa
         .adminPasswordSecretVersion(adminPasswordSecretVersion))
     }
     self.deploymentPasswordOptions = deploymentPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -125,7 +164,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWKT._AnyPa
     try container.encode(self.credentialStore, forKey: .credentialStore)
     try container.encode(self.identityDomainId, forKey: .identityDomainId)
     try container.encode(self.passwordSecretId, forKey: .passwordSecretId)
-    try container.encode(self.groupRolesMapping, forKey: .groupRolesMapping)
+    try container.encodeIfPresent(self.groupRolesMapping, forKey: .groupRolesMapping)
 
     if let choice = self.deploymentPasswordOptions {
       switch choice {
@@ -134,6 +173,9 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .adminPasswordSecretVersion(let value):
         try container.encode(value, forKey: .adminPasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

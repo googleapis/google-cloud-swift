@@ -55,6 +55,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Specific metadata per RPC.
   public var metadata: OneOf_Metadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
 
@@ -71,29 +73,59 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case resource = "resource"
-    case method = "method"
-    case kmsKeyName = "kmsKeyName"
-    case kmsKeyVersionName = "kmsKeyVersionName"
-    case batchRecognizeRequest = "batchRecognizeRequest"
-    case createRecognizerRequest = "createRecognizerRequest"
-    case updateRecognizerRequest = "updateRecognizerRequest"
-    case deleteRecognizerRequest = "deleteRecognizerRequest"
-    case undeleteRecognizerRequest = "undeleteRecognizerRequest"
-    case createCustomClassRequest = "createCustomClassRequest"
-    case updateCustomClassRequest = "updateCustomClassRequest"
-    case deleteCustomClassRequest = "deleteCustomClassRequest"
-    case undeleteCustomClassRequest = "undeleteCustomClassRequest"
-    case createPhraseSetRequest = "createPhraseSetRequest"
-    case updatePhraseSetRequest = "updatePhraseSetRequest"
-    case deletePhraseSetRequest = "deletePhraseSetRequest"
-    case undeletePhraseSetRequest = "undeletePhraseSetRequest"
-    case updateConfigRequest = "updateConfigRequest"
-    case progressPercent = "progressPercent"
-    case batchRecognizeMetadata = "batchRecognizeMetadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let method = CodingKeys(stringValue: "method")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let kmsKeyVersionName = CodingKeys(stringValue: "kmsKeyVersionName")
+    static let batchRecognizeRequest = CodingKeys(stringValue: "batchRecognizeRequest")
+    static let createRecognizerRequest = CodingKeys(stringValue: "createRecognizerRequest")
+    static let updateRecognizerRequest = CodingKeys(stringValue: "updateRecognizerRequest")
+    static let deleteRecognizerRequest = CodingKeys(stringValue: "deleteRecognizerRequest")
+    static let undeleteRecognizerRequest = CodingKeys(stringValue: "undeleteRecognizerRequest")
+    static let createCustomClassRequest = CodingKeys(stringValue: "createCustomClassRequest")
+    static let updateCustomClassRequest = CodingKeys(stringValue: "updateCustomClassRequest")
+    static let deleteCustomClassRequest = CodingKeys(stringValue: "deleteCustomClassRequest")
+    static let undeleteCustomClassRequest = CodingKeys(stringValue: "undeleteCustomClassRequest")
+    static let createPhraseSetRequest = CodingKeys(stringValue: "createPhraseSetRequest")
+    static let updatePhraseSetRequest = CodingKeys(stringValue: "updatePhraseSetRequest")
+    static let deletePhraseSetRequest = CodingKeys(stringValue: "deletePhraseSetRequest")
+    static let undeletePhraseSetRequest = CodingKeys(stringValue: "undeletePhraseSetRequest")
+    static let updateConfigRequest = CodingKeys(stringValue: "updateConfigRequest")
+    static let progressPercent = CodingKeys(stringValue: "progressPercent")
+    static let batchRecognizeMetadata = CodingKeys(stringValue: "batchRecognizeMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "updateTime",
+      "resource",
+      "method",
+      "kmsKeyName",
+      "kmsKeyVersionName",
+      "batchRecognizeRequest",
+      "createRecognizerRequest",
+      "updateRecognizerRequest",
+      "deleteRecognizerRequest",
+      "undeleteRecognizerRequest",
+      "createCustomClassRequest",
+      "updateCustomClassRequest",
+      "deleteCustomClassRequest",
+      "undeleteCustomClassRequest",
+      "createPhraseSetRequest",
+      "updatePhraseSetRequest",
+      "deletePhraseSetRequest",
+      "undeletePhraseSetRequest",
+      "updateConfigRequest",
+      "progressPercent",
+      "batchRecognizeMetadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -102,11 +134,21 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.resource = try container.decode(Swift.String.self, forKey: .resource)
-    self.method = try container.decode(Swift.String.self, forKey: .method)
-    self.kmsKeyName = try container.decode(Swift.String.self, forKey: .kmsKeyName)
-    self.kmsKeyVersionName = try container.decode(Swift.String.self, forKey: .kmsKeyVersionName)
-    self.progressPercent = try container.decode(Swift.Int32.self, forKey: .progressPercent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .method) {
+      self.method = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersionName) {
+      self.kmsKeyVersionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
+      self.progressPercent = value
+    }
 
     var request: OneOf_Request? = nil
     let requestCheckAndSet = {
@@ -206,12 +248,16 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try metadataCheckAndSet(.batchRecognizeMetadata(batchRecognizeMetadata))
     }
     self.metadata = metadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.method, forKey: .method)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
@@ -256,6 +302,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .batchRecognizeMetadata(let value):
         try container.encode(value, forKey: .batchRecognizeMetadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

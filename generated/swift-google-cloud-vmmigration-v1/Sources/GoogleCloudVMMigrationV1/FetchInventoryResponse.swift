@@ -30,6 +30,8 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
 
   public var sourceVms: OneOf_SourceVms? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchInventoryResponse`.
   public init() {}
 
@@ -46,11 +48,23 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vmwareVms = "vmwareVms"
-    case awsVms = "awsVms"
-    case azureVms = "azureVms"
-    case updateTime = "updateTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmwareVms = CodingKeys(stringValue: "vmwareVms")
+    static let awsVms = CodingKeys(stringValue: "awsVms")
+    static let azureVms = CodingKeys(stringValue: "azureVms")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmwareVms",
+      "awsVms",
+      "azureVms",
+      "updateTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,11 +92,15 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       try sourceVmsCheckAndSet(.azureVms(azureVms))
     }
     self.sourceVms = sourceVms
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.sourceVms {
       switch choice {
@@ -93,6 +111,9 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .azureVms(let value):
         try container.encode(value, forKey: .azureVms)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

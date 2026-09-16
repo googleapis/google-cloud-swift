@@ -46,6 +46,8 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. List of `SummaryDetails`.
   public var summaryDetails: [FindingSummary.SummaryDetails] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FindingSummary`.
   public init() {}
 
@@ -62,6 +64,74 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let category = CodingKeys(stringValue: "category")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let summaryDetails = CodingKeys(stringValue: "summaryDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "category",
+      "targetResource",
+      "createTime",
+      "updateTime",
+      "severity",
+      "summaryDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FindingType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(FindingCategory.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(FindingSeverity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FindingSummary.SummaryDetails].self, forKey: .summaryDetails)
+    {
+      self.summaryDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.summaryDetails, forKey: .summaryDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details about the `FindingSummary` resource.
   public struct SummaryDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -75,6 +145,8 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The value of the summary.
     public var magnitude: OneOf_Magnitude? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SummaryDetails`.
     public init() {}
@@ -92,18 +164,35 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case count = "count"
-      case percentage = "percentage"
-      case resourceType = "resourceType"
-      case description = "description"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let count = CodingKeys(stringValue: "count")
+      static let percentage = CodingKeys(stringValue: "percentage")
+      static let resourceType = CodingKeys(stringValue: "resourceType")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "count",
+        "percentage",
+        "resourceType",
+        "description",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.resourceType = try container.decode(
+      if let value = try container.decodeIfPresent(
         FindingSummary.SummaryDetails.ResourceType.self, forKey: .resourceType)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      {
+        self.resourceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
 
       var magnitude: OneOf_Magnitude? = nil
       let magnitudeCheckAndSet = {
@@ -122,6 +211,10 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try magnitudeCheckAndSet(.percentage(percentage))
       }
       self.magnitude = magnitude
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,6 +229,9 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .percentage(let value):
           try container.encode(value, forKey: .percentage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

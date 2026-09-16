@@ -31,6 +31,8 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
   /// How transformation errors should be handled.
   public var mode: OneOf_Mode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationErrorHandling`.
   public init() {}
 
@@ -47,9 +49,19 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case throwError = "throwError"
-    case leaveUntransformed = "leaveUntransformed"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let throwError = CodingKeys(stringValue: "throwError")
+    static let leaveUntransformed = CodingKeys(stringValue: "leaveUntransformed")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "throwError",
+      "leaveUntransformed",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,6 +88,10 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
       try modeCheckAndSet(.leaveUntransformed(leaveUntransformed))
     }
     self.mode = mode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,12 +105,17 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
         try container.encode(value, forKey: .leaveUntransformed)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Throw an error and fail the request when a transformation error occurs.
   public struct ThrowError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ThrowError`.
     public init() {}
 
@@ -109,6 +130,30 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -129,6 +174,8 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
   public struct LeaveUntransformed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LeaveUntransformed`.
     public init() {}
 
@@ -143,6 +190,30 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

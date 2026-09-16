@@ -46,6 +46,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Timestamp of the last reported inventory for the VM.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Inventory`.
   public init() {}
 
@@ -60,6 +62,55 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let osInfo = CodingKeys(stringValue: "osInfo")
+    static let items = CodingKeys(stringValue: "items")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "osInfo",
+      "items",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.osInfo = try container.decodeIfPresent(Inventory.OsInfo.self, forKey: .osInfo)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Inventory.Item].self, forKey: .items)
+    {
+      self.items = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.osInfo, forKey: .osInfo)
+    try container.encode(self.items, forKey: .items)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Operating system information for the VM.
@@ -93,6 +144,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The current version of the OS Config agent running on the VM.
     public var osconfigAgentVersion: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OsInfo`.
     public init() {}
 
@@ -107,6 +160,81 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hostname = CodingKeys(stringValue: "hostname")
+      static let longName = CodingKeys(stringValue: "longName")
+      static let shortName = CodingKeys(stringValue: "shortName")
+      static let version = CodingKeys(stringValue: "version")
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let kernelVersion = CodingKeys(stringValue: "kernelVersion")
+      static let kernelRelease = CodingKeys(stringValue: "kernelRelease")
+      static let osconfigAgentVersion = CodingKeys(stringValue: "osconfigAgentVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hostname",
+        "longName",
+        "shortName",
+        "version",
+        "architecture",
+        "kernelVersion",
+        "kernelRelease",
+        "osconfigAgentVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+        self.hostname = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .longName) {
+        self.longName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shortName) {
+        self.shortName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .architecture) {
+        self.architecture = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kernelVersion) {
+        self.kernelVersion = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kernelRelease) {
+        self.kernelRelease = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osconfigAgentVersion)
+      {
+        self.osconfigAgentVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.hostname, forKey: .hostname)
+      try container.encode(self.longName, forKey: .longName)
+      try container.encode(self.shortName, forKey: .shortName)
+      try container.encode(self.version, forKey: .version)
+      try container.encode(self.architecture, forKey: .architecture)
+      try container.encode(self.kernelVersion, forKey: .kernelVersion)
+      try container.encode(self.kernelRelease, forKey: .kernelRelease)
+      try container.encode(self.osconfigAgentVersion, forKey: .osconfigAgentVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -142,6 +270,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Specific details of this inventory item based on its type.
     public var details: OneOf_Details? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Item`.
     public init() {}
 
@@ -158,25 +288,48 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case id = "id"
-      case originType = "originType"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case type = "type"
-      case installedPackage = "installedPackage"
-      case availablePackage = "availablePackage"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let originType = CodingKeys(stringValue: "originType")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let type = CodingKeys(stringValue: "type")
+      static let installedPackage = CodingKeys(stringValue: "installedPackage")
+      static let availablePackage = CodingKeys(stringValue: "availablePackage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "originType",
+        "createTime",
+        "updateTime",
+        "type",
+        "installedPackage",
+        "availablePackage",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.id = try container.decode(Swift.String.self, forKey: .id)
-      self.originType = try container.decode(Inventory.Item.OriginType.self, forKey: .originType)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(
+        Inventory.Item.OriginType.self, forKey: .originType)
+      {
+        self.originType = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.type = try container.decode(Inventory.Item.Type_.self, forKey: .type)
+      if let value = try container.decodeIfPresent(Inventory.Item.Type_.self, forKey: .type) {
+        self.type = value
+      }
 
       var details: OneOf_Details? = nil
       let detailsCheckAndSet = {
@@ -199,14 +352,18 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try detailsCheckAndSet(.availablePackage(availablePackage))
       }
       self.details = details
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.originType, forKey: .originType)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.type, forKey: .type)
 
       if let choice = self.details {
@@ -216,6 +373,9 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .availablePackage(let value):
           try container.encode(value, forKey: .availablePackage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -449,6 +609,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Information about the different types of software packages.
     public var details: OneOf_Details? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SoftwarePackage`.
     public init() {}
 
@@ -465,16 +627,33 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case yumPackage = "yumPackage"
-      case aptPackage = "aptPackage"
-      case zypperPackage = "zypperPackage"
-      case googetPackage = "googetPackage"
-      case zypperPatch = "zypperPatch"
-      case wuaPackage = "wuaPackage"
-      case qfePackage = "qfePackage"
-      case cosPackage = "cosPackage"
-      case windowsApplication = "windowsApplication"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let yumPackage = CodingKeys(stringValue: "yumPackage")
+      static let aptPackage = CodingKeys(stringValue: "aptPackage")
+      static let zypperPackage = CodingKeys(stringValue: "zypperPackage")
+      static let googetPackage = CodingKeys(stringValue: "googetPackage")
+      static let zypperPatch = CodingKeys(stringValue: "zypperPatch")
+      static let wuaPackage = CodingKeys(stringValue: "wuaPackage")
+      static let qfePackage = CodingKeys(stringValue: "qfePackage")
+      static let cosPackage = CodingKeys(stringValue: "cosPackage")
+      static let windowsApplication = CodingKeys(stringValue: "windowsApplication")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "yumPackage",
+        "aptPackage",
+        "zypperPackage",
+        "googetPackage",
+        "zypperPatch",
+        "wuaPackage",
+        "qfePackage",
+        "cosPackage",
+        "windowsApplication",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -536,6 +715,10 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try detailsCheckAndSet(.windowsApplication(windowsApplication))
       }
       self.details = details
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -562,6 +745,9 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .windowsApplication(let value):
           try container.encode(value, forKey: .windowsApplication)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -627,6 +813,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The version of the package.
     public var version: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VersionedPackage`.
     public init() {}
 
@@ -641,6 +829,50 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let packageName = CodingKeys(stringValue: "packageName")
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let version = CodingKeys(stringValue: "version")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "packageName",
+        "architecture",
+        "version",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageName) {
+        self.packageName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .architecture) {
+        self.architecture = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.packageName, forKey: .packageName)
+      try container.encode(self.architecture, forKey: .architecture)
+      try container.encode(self.version, forKey: .version)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -670,6 +902,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Any summary information provided about this patch.
     public var summary: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ZypperPatch`.
     public init() {}
 
@@ -684,6 +918,56 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let patchName = CodingKeys(stringValue: "patchName")
+      static let category = CodingKeys(stringValue: "category")
+      static let severity = CodingKeys(stringValue: "severity")
+      static let summary = CodingKeys(stringValue: "summary")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "patchName",
+        "category",
+        "severity",
+        "summary",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .patchName) {
+        self.patchName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+        self.category = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .severity) {
+        self.severity = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .summary) {
+        self.summary = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.patchName, forKey: .patchName)
+      try container.encode(self.category, forKey: .category)
+      try container.encode(self.severity, forKey: .severity)
+      try container.encode(self.summary, forKey: .summary)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -735,6 +1019,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The last published date of the update, in (UTC) date and time.
     public var lastDeploymentChangeTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WindowsUpdatePackage`.
     public init() {}
 
@@ -751,6 +1037,88 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let title = CodingKeys(stringValue: "title")
+      static let description = CodingKeys(stringValue: "description")
+      static let categories = CodingKeys(stringValue: "categories")
+      static let kbArticleIds = CodingKeys(stringValue: "kbArticleIds")
+      static let supportUrl = CodingKeys(stringValue: "supportUrl")
+      static let moreInfoUrls = CodingKeys(stringValue: "moreInfoUrls")
+      static let updateId = CodingKeys(stringValue: "updateId")
+      static let revisionNumber = CodingKeys(stringValue: "revisionNumber")
+      static let lastDeploymentChangeTime = CodingKeys(stringValue: "lastDeploymentChangeTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "title",
+        "description",
+        "categories",
+        "kbArticleIds",
+        "supportUrl",
+        "moreInfoUrls",
+        "updateId",
+        "revisionNumber",
+        "lastDeploymentChangeTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Inventory.WindowsUpdatePackage.WindowsUpdateCategory].self, forKey: .categories)
+      {
+        self.categories = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kbArticleIds) {
+        self.kbArticleIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .supportUrl) {
+        self.supportUrl = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .moreInfoUrls) {
+        self.moreInfoUrls = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .updateId) {
+        self.updateId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .revisionNumber) {
+        self.revisionNumber = value
+      }
+      self.lastDeploymentChangeTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastDeploymentChangeTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.categories, forKey: .categories)
+      try container.encode(self.kbArticleIds, forKey: .kbArticleIds)
+      try container.encode(self.supportUrl, forKey: .supportUrl)
+      try container.encode(self.moreInfoUrls, forKey: .moreInfoUrls)
+      try container.encode(self.updateId, forKey: .updateId)
+      try container.encode(self.revisionNumber, forKey: .revisionNumber)
+      try container.encodeIfPresent(
+        self.lastDeploymentChangeTime, forKey: .lastDeploymentChangeTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Categories specified by the Windows Update.
     public struct WindowsUpdateCategory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -760,6 +1128,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// The name of the windows update category.
       public var name: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `WindowsUpdateCategory`.
       public init() {}
@@ -775,6 +1145,44 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let name = CodingKeys(stringValue: "name")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "name",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.name, forKey: .name)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -819,6 +1227,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Date that the QFE update was installed.  Mapped from installed_on field.
     public var installTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WindowsQuickFixEngineeringPackage`.
     public init() {}
 
@@ -833,6 +1243,55 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caption = CodingKeys(stringValue: "caption")
+      static let description = CodingKeys(stringValue: "description")
+      static let hotFixId = CodingKeys(stringValue: "hotFixId")
+      static let installTime = CodingKeys(stringValue: "installTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caption",
+        "description",
+        "hotFixId",
+        "installTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caption) {
+        self.caption = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hotFixId) {
+        self.hotFixId = value
+      }
+      self.installTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .installTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caption, forKey: .caption)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.hotFixId, forKey: .hotFixId)
+      try container.encodeIfPresent(self.installTime, forKey: .installTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -870,6 +1329,8 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The internet address for technical support.
     public var helpLink: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WindowsApplication`.
     public init() {}
 
@@ -884,6 +1345,60 @@ public struct Inventory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let displayVersion = CodingKeys(stringValue: "displayVersion")
+      static let publisher = CodingKeys(stringValue: "publisher")
+      static let installDate = CodingKeys(stringValue: "installDate")
+      static let helpLink = CodingKeys(stringValue: "helpLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "displayVersion",
+        "publisher",
+        "installDate",
+        "helpLink",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayVersion) {
+        self.displayVersion = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publisher) {
+        self.publisher = value
+      }
+      self.installDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .installDate)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .helpLink) {
+        self.helpLink = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.displayVersion, forKey: .displayVersion)
+      try container.encode(self.publisher, forKey: .publisher)
+      try container.encodeIfPresent(self.installDate, forKey: .installDate)
+      try container.encode(self.helpLink, forKey: .helpLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleCloudWKT._Any
   /// One of the actions must be set.
   public var action: OneOf_Action? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateObjectCustomContext`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case customContextUpdates = "customContextUpdates"
-    case clearAll = "clearAll"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customContextUpdates = CodingKeys(stringValue: "customContextUpdates")
+    static let clearAll = CodingKeys(stringValue: "clearAll")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customContextUpdates",
+      "clearAll",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleCloudWKT._Any
       try actionCheckAndSet(.clearAll(clearAll))
     }
     self.action = action
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleCloudWKT._Any
       case .clearAll(let value):
         try container.encode(value, forKey: .clearAll)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

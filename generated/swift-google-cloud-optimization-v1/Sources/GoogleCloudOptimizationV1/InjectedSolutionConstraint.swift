@@ -36,6 +36,8 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
   /// fully constrained.
   public var constraintRelaxations: [InjectedSolutionConstraint.ConstraintRelaxation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InjectedSolutionConstraint`.
   public init() {}
 
@@ -50,6 +52,53 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let routes = CodingKeys(stringValue: "routes")
+    static let skippedShipments = CodingKeys(stringValue: "skippedShipments")
+    static let constraintRelaxations = CodingKeys(stringValue: "constraintRelaxations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "routes",
+      "skippedShipments",
+      "constraintRelaxations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([ShipmentRoute].self, forKey: .routes) {
+      self.routes = value
+    }
+    if let value = try container.decodeIfPresent([SkippedShipment].self, forKey: .skippedShipments)
+    {
+      self.skippedShipments = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InjectedSolutionConstraint.ConstraintRelaxation].self, forKey: .constraintRelaxations)
+    {
+      self.constraintRelaxations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.routes, forKey: .routes)
+    try container.encode(self.skippedShipments, forKey: .skippedShipments)
+    try container.encode(self.constraintRelaxations, forKey: .constraintRelaxations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// For a group of vehicles, specifies at what threshold(s) constraints on
@@ -79,6 +128,8 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
     /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_index]: <doc:ShipmentRoute/vehicleIndex>
     public var vehicleIndices: [Swift.Int32] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConstraintRelaxation`.
     public init() {}
 
@@ -93,6 +144,46 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let relaxations = CodingKeys(stringValue: "relaxations")
+      static let vehicleIndices = CodingKeys(stringValue: "vehicleIndices")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "relaxations",
+        "vehicleIndices",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [InjectedSolutionConstraint.ConstraintRelaxation.Relaxation].self, forKey: .relaxations)
+      {
+        self.relaxations = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .vehicleIndices) {
+        self.vehicleIndices = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.relaxations, forKey: .relaxations)
+      try container.encode(self.vehicleIndices, forKey: .vehicleIndices)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// If `relaxations` is empty, the start time and sequence of all visits
@@ -151,6 +242,8 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
       /// `level` is not applied at all for that route.
       public var thresholdVisitCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Relaxation`.
       public init() {}
 
@@ -165,6 +258,52 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let level = CodingKeys(stringValue: "level")
+        static let thresholdTime = CodingKeys(stringValue: "thresholdTime")
+        static let thresholdVisitCount = CodingKeys(stringValue: "thresholdVisitCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "level",
+          "thresholdTime",
+          "thresholdVisitCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level.self, forKey: .level)
+        {
+          self.level = value
+        }
+        self.thresholdTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .thresholdTime)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .thresholdVisitCount)
+        {
+          self.thresholdVisitCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.level, forKey: .level)
+        try container.encodeIfPresent(self.thresholdTime, forKey: .thresholdTime)
+        try container.encode(self.thresholdVisitCount, forKey: .thresholdVisitCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Expresses the different constraint relaxation levels, which are

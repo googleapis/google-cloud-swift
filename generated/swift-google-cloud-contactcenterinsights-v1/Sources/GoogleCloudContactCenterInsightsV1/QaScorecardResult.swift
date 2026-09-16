@@ -60,6 +60,8 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// List of all individual score sets.
   public var scoreSources: [QaScorecardResult.ScoreSource] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QaScorecardResult`.
   public init() {}
 
@@ -74,6 +76,96 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let qaScorecardRevision = CodingKeys(stringValue: "qaScorecardRevision")
+    static let conversation = CodingKeys(stringValue: "conversation")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let agentId = CodingKeys(stringValue: "agentId")
+    static let qaAnswers = CodingKeys(stringValue: "qaAnswers")
+    static let score = CodingKeys(stringValue: "score")
+    static let potentialScore = CodingKeys(stringValue: "potentialScore")
+    static let normalizedScore = CodingKeys(stringValue: "normalizedScore")
+    static let qaTagResults = CodingKeys(stringValue: "qaTagResults")
+    static let scoreSources = CodingKeys(stringValue: "scoreSources")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "qaScorecardRevision",
+      "conversation",
+      "createTime",
+      "agentId",
+      "qaAnswers",
+      "score",
+      "potentialScore",
+      "normalizedScore",
+      "qaTagResults",
+      "scoreSources",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaScorecardRevision) {
+      self.qaScorecardRevision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversation) {
+      self.conversation = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
+      self.agentId = value
+    }
+    if let value = try container.decodeIfPresent([QaAnswer].self, forKey: .qaAnswers) {
+      self.qaAnswers = value
+    }
+    self.score = try container.decodeIfPresent(Swift.Double.self, forKey: .score)
+    self.potentialScore = try container.decodeIfPresent(Swift.Double.self, forKey: .potentialScore)
+    self.normalizedScore = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .normalizedScore)
+    if let value = try container.decodeIfPresent(
+      [QaScorecardResult.QaTagResult].self, forKey: .qaTagResults)
+    {
+      self.qaTagResults = value
+    }
+    if let value = try container.decodeIfPresent(
+      [QaScorecardResult.ScoreSource].self, forKey: .scoreSources)
+    {
+      self.scoreSources = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.qaScorecardRevision, forKey: .qaScorecardRevision)
+    try container.encode(self.conversation, forKey: .conversation)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.agentId, forKey: .agentId)
+    try container.encode(self.qaAnswers, forKey: .qaAnswers)
+    try container.encodeIfPresent(self.score, forKey: .score)
+    try container.encodeIfPresent(self.potentialScore, forKey: .potentialScore)
+    try container.encodeIfPresent(self.normalizedScore, forKey: .normalizedScore)
+    try container.encode(self.qaTagResults, forKey: .qaTagResults)
+    try container.encode(self.scoreSources, forKey: .scoreSources)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Tags and their corresponding results.
@@ -92,6 +184,8 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// The normalized score the tag applies to.
     public var normalizedScore: Swift.Double? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaTagResult`.
     public init() {}
 
@@ -106,6 +200,52 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tag = CodingKeys(stringValue: "tag")
+      static let score = CodingKeys(stringValue: "score")
+      static let potentialScore = CodingKeys(stringValue: "potentialScore")
+      static let normalizedScore = CodingKeys(stringValue: "normalizedScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tag",
+        "score",
+        "potentialScore",
+        "normalizedScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+        self.tag = value
+      }
+      self.score = try container.decodeIfPresent(Swift.Double.self, forKey: .score)
+      self.potentialScore = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .potentialScore)
+      self.normalizedScore = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .normalizedScore)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tag, forKey: .tag)
+      try container.encodeIfPresent(self.score, forKey: .score)
+      try container.encodeIfPresent(self.potentialScore, forKey: .potentialScore)
+      try container.encodeIfPresent(self.normalizedScore, forKey: .normalizedScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -143,6 +283,8 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Collection of tags and their scores.
     public var qaTagResults: [QaScorecardResult.QaTagResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ScoreSource`.
     public init() {}
 
@@ -157,6 +299,62 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceType = CodingKeys(stringValue: "sourceType")
+      static let score = CodingKeys(stringValue: "score")
+      static let potentialScore = CodingKeys(stringValue: "potentialScore")
+      static let normalizedScore = CodingKeys(stringValue: "normalizedScore")
+      static let qaTagResults = CodingKeys(stringValue: "qaTagResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceType",
+        "score",
+        "potentialScore",
+        "normalizedScore",
+        "qaTagResults",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        QaScorecardResult.ScoreSource.SourceType.self, forKey: .sourceType)
+      {
+        self.sourceType = value
+      }
+      self.score = try container.decodeIfPresent(Swift.Double.self, forKey: .score)
+      self.potentialScore = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .potentialScore)
+      self.normalizedScore = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .normalizedScore)
+      if let value = try container.decodeIfPresent(
+        [QaScorecardResult.QaTagResult].self, forKey: .qaTagResults)
+      {
+        self.qaTagResults = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceType, forKey: .sourceType)
+      try container.encodeIfPresent(self.score, forKey: .score)
+      try container.encodeIfPresent(self.potentialScore, forKey: .potentialScore)
+      try container.encodeIfPresent(self.normalizedScore, forKey: .normalizedScore)
+      try container.encode(self.qaTagResults, forKey: .qaTagResults)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// What created the score.

@@ -42,6 +42,8 @@
     /// Output only. The error of the evaluation run if any.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluateDatasetRun`.
     public init() {}
 
@@ -56,6 +58,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let operationName = CodingKeys(stringValue: "operationName")
+      static let evaluationRun = CodingKeys(stringValue: "evaluationRun")
+      static let checkpointId = CodingKeys(stringValue: "checkpointId")
+      static let evaluateDatasetResponse = CodingKeys(stringValue: "evaluateDatasetResponse")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "operationName",
+        "evaluationRun",
+        "checkpointId",
+        "evaluateDatasetResponse",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationName) {
+        self.operationName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .evaluationRun) {
+        self.evaluationRun = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .checkpointId) {
+        self.checkpointId = value
+      }
+      self.evaluateDatasetResponse = try container.decodeIfPresent(
+        EvaluateDatasetResponse.self, forKey: .evaluateDatasetResponse)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.operationName, forKey: .operationName)
+      try container.encode(self.evaluationRun, forKey: .evaluationRun)
+      try container.encode(self.checkpointId, forKey: .checkpointId)
+      try container.encodeIfPresent(self.evaluateDatasetResponse, forKey: .evaluateDatasetResponse)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

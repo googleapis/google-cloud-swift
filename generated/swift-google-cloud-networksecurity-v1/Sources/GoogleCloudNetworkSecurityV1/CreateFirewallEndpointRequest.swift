@@ -47,6 +47,8 @@ public struct CreateFirewallEndpointRequest: Codable, Equatable, GoogleCloudWKT.
   /// not supported (00000000-0000-0000-0000-000000000000).
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateFirewallEndpointRequest`.
   public init() {}
 
@@ -61,6 +63,55 @@ public struct CreateFirewallEndpointRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let firewallEndpointId = CodingKeys(stringValue: "firewallEndpointId")
+    static let firewallEndpoint = CodingKeys(stringValue: "firewallEndpoint")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "firewallEndpointId",
+      "firewallEndpoint",
+      "requestId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firewallEndpointId) {
+      self.firewallEndpointId = value
+    }
+    self.firewallEndpoint = try container.decodeIfPresent(
+      FirewallEndpoint.self, forKey: .firewallEndpoint)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.firewallEndpointId, forKey: .firewallEndpointId)
+    try container.encodeIfPresent(self.firewallEndpoint, forKey: .firewallEndpoint)
+    try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

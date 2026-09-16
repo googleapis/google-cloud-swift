@@ -36,6 +36,8 @@ public struct JobQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If true, don't actually run the job. Just check that it would run.
   public var dryRun: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobQueryRequest`.
   public init() {}
 
@@ -50,6 +52,60 @@ public struct JobQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let query = CodingKeys(stringValue: "query")
+    static let maxResults = CodingKeys(stringValue: "maxResults")
+    static let defaultDataset = CodingKeys(stringValue: "defaultDataset")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let dryRun = CodingKeys(stringValue: "dryRun")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "query",
+      "maxResults",
+      "defaultDataset",
+      "projectId",
+      "dryRun",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults) {
+      self.maxResults = value
+    }
+    self.defaultDataset = try container.decodeIfPresent(DatasetName.self, forKey: .defaultDataset)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
+      self.dryRun = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.maxResults, forKey: .maxResults)
+    try container.encodeIfPresent(self.defaultDataset, forKey: .defaultDataset)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.dryRun, forKey: .dryRun)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

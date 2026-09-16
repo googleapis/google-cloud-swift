@@ -68,6 +68,8 @@
     /// This field can not be set for network endpoints of typeGCE_VM_IP.
     public var port: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkEndpoint`.
     public init() {}
 
@@ -82,6 +84,65 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let annotations = CodingKeys(stringValue: "annotations")
+      static let clientDestinationPort = CodingKeys(stringValue: "clientDestinationPort")
+      static let fqdn = CodingKeys(stringValue: "fqdn")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+      static let port = CodingKeys(stringValue: "port")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "annotations",
+        "clientDestinationPort",
+        "fqdn",
+        "instance",
+        "ipAddress",
+        "ipv6Address",
+        "port",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .annotations)
+      {
+        self.annotations = value
+      }
+      self.clientDestinationPort = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .clientDestinationPort)
+      self.fqdn = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
+      self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.annotations, forKey: .annotations)
+      try container.encodeIfPresent(self.clientDestinationPort, forKey: .clientDestinationPort)
+      try container.encodeIfPresent(self.fqdn, forKey: .fqdn)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

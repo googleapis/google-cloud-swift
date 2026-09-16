@@ -28,6 +28,8 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Sets which mode to use for vulnerability scanning.
   public var vulnerabilityMode: SecurityPostureConfig.VulnerabilityMode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityPostureConfig`.
   public init() {}
 
@@ -42,6 +44,41 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+    static let vulnerabilityMode = CodingKeys(stringValue: "vulnerabilityMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode",
+      "vulnerabilityMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.mode = try container.decodeIfPresent(SecurityPostureConfig.Mode.self, forKey: .mode)
+    self.vulnerabilityMode = try container.decodeIfPresent(
+      SecurityPostureConfig.VulnerabilityMode.self, forKey: .vulnerabilityMode)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.mode, forKey: .mode)
+    try container.encodeIfPresent(self.vulnerabilityMode, forKey: .vulnerabilityMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Mode defines enablement mode for GKE Security posture features.

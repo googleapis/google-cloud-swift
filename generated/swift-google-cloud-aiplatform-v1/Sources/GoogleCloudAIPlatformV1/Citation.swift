@@ -41,6 +41,8 @@
     /// Output only. Publication date of the attribution.
     public var publicationDate: GoogleType.Date? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Citation`.
     public init() {}
 
@@ -55,6 +57,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startIndex = CodingKeys(stringValue: "startIndex")
+      static let endIndex = CodingKeys(stringValue: "endIndex")
+      static let uri = CodingKeys(stringValue: "uri")
+      static let title = CodingKeys(stringValue: "title")
+      static let license = CodingKeys(stringValue: "license")
+      static let publicationDate = CodingKeys(stringValue: "publicationDate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startIndex",
+        "endIndex",
+        "uri",
+        "title",
+        "license",
+        "publicationDate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .startIndex) {
+        self.startIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .endIndex) {
+        self.endIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .license) {
+        self.license = value
+      }
+      self.publicationDate = try container.decodeIfPresent(
+        GoogleType.Date.self, forKey: .publicationDate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.startIndex, forKey: .startIndex)
+      try container.encode(self.endIndex, forKey: .endIndex)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.license, forKey: .license)
+      try container.encodeIfPresent(self.publicationDate, forKey: .publicationDate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

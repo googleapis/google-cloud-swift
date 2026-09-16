@@ -28,6 +28,8 @@ public struct MonitoringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only for Attached Clusters.
   public var cloudMonitoringConfig: CloudMonitoringConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MonitoringConfig`.
   public init() {}
 
@@ -42,6 +44,42 @@ public struct MonitoringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let managedPrometheusConfig = CodingKeys(stringValue: "managedPrometheusConfig")
+    static let cloudMonitoringConfig = CodingKeys(stringValue: "cloudMonitoringConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "managedPrometheusConfig",
+      "cloudMonitoringConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.managedPrometheusConfig = try container.decodeIfPresent(
+      ManagedPrometheusConfig.self, forKey: .managedPrometheusConfig)
+    self.cloudMonitoringConfig = try container.decodeIfPresent(
+      CloudMonitoringConfig.self, forKey: .cloudMonitoringConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.managedPrometheusConfig, forKey: .managedPrometheusConfig)
+    try container.encodeIfPresent(self.cloudMonitoringConfig, forKey: .cloudMonitoringConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

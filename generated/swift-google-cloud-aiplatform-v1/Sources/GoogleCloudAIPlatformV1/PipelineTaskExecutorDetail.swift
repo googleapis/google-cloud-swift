@@ -24,6 +24,8 @@
   {
     public var details: OneOf_Details? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PipelineTaskExecutorDetail`.
     public init() {}
 
@@ -40,9 +42,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case containerDetail = "containerDetail"
-      case customJobDetail = "customJobDetail"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let containerDetail = CodingKeys(stringValue: "containerDetail")
+      static let customJobDetail = CodingKeys(stringValue: "customJobDetail")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "containerDetail",
+        "customJobDetail",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@
         try detailsCheckAndSet(.customJobDetail(customJobDetail))
       }
       self.details = details
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@
         case .customJobDetail(let value):
           try container.encode(value, forKey: .customJobDetail)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -124,6 +143,8 @@
       /// [google.cloud.aiplatform.v1.PipelineJob.pipeline_spec]: <doc:PipelineJob/pipelineSpec>
       public var failedPreCachingCheckJobs: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ContainerDetail`.
       public init() {}
 
@@ -138,6 +159,59 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let mainJob = CodingKeys(stringValue: "mainJob")
+        static let preCachingCheckJob = CodingKeys(stringValue: "preCachingCheckJob")
+        static let failedMainJobs = CodingKeys(stringValue: "failedMainJobs")
+        static let failedPreCachingCheckJobs = CodingKeys(stringValue: "failedPreCachingCheckJobs")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "mainJob",
+          "preCachingCheckJob",
+          "failedMainJobs",
+          "failedPreCachingCheckJobs",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mainJob) {
+          self.mainJob = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .preCachingCheckJob)
+        {
+          self.preCachingCheckJob = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedMainJobs) {
+          self.failedMainJobs = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .failedPreCachingCheckJobs)
+        {
+          self.failedPreCachingCheckJobs = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mainJob, forKey: .mainJob)
+        try container.encode(self.preCachingCheckJob, forKey: .preCachingCheckJob)
+        try container.encode(self.failedMainJobs, forKey: .failedMainJobs)
+        try container.encode(self.failedPreCachingCheckJobs, forKey: .failedPreCachingCheckJobs)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -169,6 +243,8 @@
       /// [google.cloud.aiplatform.v1.CustomJob]: <doc:CustomJob>
       public var failedJobs: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CustomJobDetail`.
       public init() {}
 
@@ -183,6 +259,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let job = CodingKeys(stringValue: "job")
+        static let failedJobs = CodingKeys(stringValue: "failedJobs")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "job",
+          "failedJobs",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .job) {
+          self.job = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedJobs) {
+          self.failedJobs = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.job, forKey: .job)
+        try container.encode(self.failedJobs, forKey: .failedJobs)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

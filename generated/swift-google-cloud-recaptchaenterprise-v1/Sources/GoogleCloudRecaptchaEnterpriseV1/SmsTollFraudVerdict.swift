@@ -28,6 +28,8 @@ public struct SmsTollFraudVerdict: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Output only. Reasons contributing to the SMS toll fraud verdict.
   public var reasons: [SmsTollFraudVerdict.SmsTollFraudReason] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SmsTollFraudVerdict`.
   public init() {}
 
@@ -42,6 +44,46 @@ public struct SmsTollFraudVerdict: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let risk = CodingKeys(stringValue: "risk")
+    static let reasons = CodingKeys(stringValue: "reasons")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "risk",
+      "reasons",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .risk) {
+      self.risk = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SmsTollFraudVerdict.SmsTollFraudReason].self, forKey: .reasons)
+    {
+      self.reasons = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.risk, forKey: .risk)
+    try container.encode(self.reasons, forKey: .reasons)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Reasons contributing to the SMS toll fraud verdict.

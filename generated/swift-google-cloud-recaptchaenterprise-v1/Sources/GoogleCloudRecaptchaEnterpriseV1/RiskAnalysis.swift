@@ -48,6 +48,8 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// detected in the event.
   public var verifiedBots: [Bot] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RiskAnalysis`.
   public init() {}
 
@@ -62,6 +64,72 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let score = CodingKeys(stringValue: "score")
+    static let reasons = CodingKeys(stringValue: "reasons")
+    static let extendedVerdictReasons = CodingKeys(stringValue: "extendedVerdictReasons")
+    static let lastChallengeType = CodingKeys(stringValue: "lastChallengeType")
+    static let challenge = CodingKeys(stringValue: "challenge")
+    static let verifiedBots = CodingKeys(stringValue: "verifiedBots")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "score",
+      "reasons",
+      "extendedVerdictReasons",
+      "lastChallengeType",
+      "challenge",
+      "verifiedBots",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+      self.score = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RiskAnalysis.ClassificationReason].self, forKey: .reasons)
+    {
+      self.reasons = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .extendedVerdictReasons)
+    {
+      self.extendedVerdictReasons = value
+    }
+    if let value = try container.decodeIfPresent(ChallengeType.self, forKey: .lastChallengeType) {
+      self.lastChallengeType = value
+    }
+    if let value = try container.decodeIfPresent(RiskAnalysis.Challenge.self, forKey: .challenge) {
+      self.challenge = value
+    }
+    if let value = try container.decodeIfPresent([Bot].self, forKey: .verifiedBots) {
+      self.verifiedBots = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.score, forKey: .score)
+    try container.encode(self.reasons, forKey: .reasons)
+    try container.encode(self.extendedVerdictReasons, forKey: .extendedVerdictReasons)
+    try container.encode(self.lastChallengeType, forKey: .lastChallengeType)
+    try container.encode(self.challenge, forKey: .challenge)
+    try container.encode(self.verifiedBots, forKey: .verifiedBots)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Reasons contributing to the risk analysis verdict.

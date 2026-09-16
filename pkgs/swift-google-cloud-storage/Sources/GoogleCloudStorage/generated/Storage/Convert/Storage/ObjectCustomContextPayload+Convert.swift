@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ObjectCustomContextPayload {
@@ -29,6 +29,7 @@ extension ObjectCustomContextPayload {
     self.value = proto.value
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -36,6 +37,9 @@ extension ObjectCustomContextPayload {
     proto.value = self.value
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

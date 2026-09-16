@@ -69,6 +69,8 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{project_number}/locations/{location}/vmwareEngineNetworks/{vmware_engine_network_id}`
   public var vmwareEngineNetworkCanonical: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkPolicy`.
   public init() {}
 
@@ -83,6 +85,91 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let internetAccess = CodingKeys(stringValue: "internetAccess")
+    static let externalIp = CodingKeys(stringValue: "externalIp")
+    static let edgeServicesCidr = CodingKeys(stringValue: "edgeServicesCidr")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let vmwareEngineNetwork = CodingKeys(stringValue: "vmwareEngineNetwork")
+    static let description = CodingKeys(stringValue: "description")
+    static let vmwareEngineNetworkCanonical = CodingKeys(
+      stringValue: "vmwareEngineNetworkCanonical")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "internetAccess",
+      "externalIp",
+      "edgeServicesCidr",
+      "uid",
+      "vmwareEngineNetwork",
+      "description",
+      "vmwareEngineNetworkCanonical",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.internetAccess = try container.decodeIfPresent(
+      NetworkPolicy.NetworkService.self, forKey: .internetAccess)
+    self.externalIp = try container.decodeIfPresent(
+      NetworkPolicy.NetworkService.self, forKey: .externalIp)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .edgeServicesCidr) {
+      self.edgeServicesCidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmwareEngineNetwork) {
+      self.vmwareEngineNetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .vmwareEngineNetworkCanonical)
+    {
+      self.vmwareEngineNetworkCanonical = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.internetAccess, forKey: .internetAccess)
+    try container.encodeIfPresent(self.externalIp, forKey: .externalIp)
+    try container.encode(self.edgeServicesCidr, forKey: .edgeServicesCidr)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.vmwareEngineNetwork, forKey: .vmwareEngineNetwork)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.vmwareEngineNetworkCanonical, forKey: .vmwareEngineNetworkCanonical)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a network service that is managed by a `NetworkPolicy` resource.
@@ -100,6 +187,8 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// when appropriate.
     public var state: NetworkPolicy.NetworkService.State = NetworkPolicy.NetworkService.State()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkService`.
     public init() {}
 
@@ -114,6 +203,46 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      if let value = try container.decodeIfPresent(
+        NetworkPolicy.NetworkService.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enum State defines possible states of a network policy controlled

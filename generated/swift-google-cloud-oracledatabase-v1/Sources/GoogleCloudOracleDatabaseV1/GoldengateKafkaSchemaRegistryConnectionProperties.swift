@@ -58,6 +58,8 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   /// The password for the cert inside the KeyStore.
   public var sslKeyPasswordOptions: OneOf_SslKeyPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateKafkaSchemaRegistryConnectionProperties`.
   public init() {}
 
@@ -74,33 +76,70 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case trustStorePassword = "trustStorePassword"
-    case trustStorePasswordSecretVersion = "trustStorePasswordSecretVersion"
-    case keyStorePassword = "keyStorePassword"
-    case keyStorePasswordSecretVersion = "keyStorePasswordSecretVersion"
-    case sslKeyPassword = "sslKeyPassword"
-    case sslKeyPasswordSecretVersion = "sslKeyPasswordSecretVersion"
-    case technologyType = "technologyType"
-    case url = "url"
-    case authenticationType = "authenticationType"
-    case username = "username"
-    case trustStoreFile = "trustStoreFile"
-    case keyStoreFile = "keyStoreFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let trustStorePassword = CodingKeys(stringValue: "trustStorePassword")
+    static let trustStorePasswordSecretVersion = CodingKeys(
+      stringValue: "trustStorePasswordSecretVersion")
+    static let keyStorePassword = CodingKeys(stringValue: "keyStorePassword")
+    static let keyStorePasswordSecretVersion = CodingKeys(
+      stringValue: "keyStorePasswordSecretVersion")
+    static let sslKeyPassword = CodingKeys(stringValue: "sslKeyPassword")
+    static let sslKeyPasswordSecretVersion = CodingKeys(stringValue: "sslKeyPasswordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let url = CodingKeys(stringValue: "url")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let username = CodingKeys(stringValue: "username")
+    static let trustStoreFile = CodingKeys(stringValue: "trustStoreFile")
+    static let keyStoreFile = CodingKeys(stringValue: "keyStoreFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "trustStorePassword",
+      "trustStorePasswordSecretVersion",
+      "keyStorePassword",
+      "keyStorePasswordSecretVersion",
+      "sslKeyPassword",
+      "sslKeyPasswordSecretVersion",
+      "technologyType",
+      "url",
+      "authenticationType",
+      "username",
+      "trustStoreFile",
+      "keyStoreFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.url = try container.decode(Swift.String.self, forKey: .url)
-    self.authenticationType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateKafkaSchemaRegistryConnectionProperties.AuthenticationType.self,
       forKey: .authenticationType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.trustStoreFile = try container.decode(Swift.String.self, forKey: .trustStoreFile)
-    self.keyStoreFile = try container.decode(Swift.String.self, forKey: .keyStoreFile)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustStoreFile) {
+      self.trustStoreFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreFile) {
+      self.keyStoreFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -190,6 +229,10 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
         .sslKeyPasswordSecretVersion(sslKeyPasswordSecretVersion))
     }
     self.sslKeyPasswordOptions = sslKeyPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -235,6 +278,9 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
       case .sslKeyPasswordSecretVersion(let value):
         try container.encode(value, forKey: .sslKeyPasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

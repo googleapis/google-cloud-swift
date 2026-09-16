@@ -29,6 +29,8 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// keyed by pin position.
   public var droppedPins: [Swift.Int64: PinControlMetadata.ProductPins] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PinControlMetadata`.
   public init() {}
 
@@ -45,16 +47,26 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case allMatchedPins = "allMatchedPins"
-    case droppedPins = "droppedPins"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allMatchedPins = CodingKeys(stringValue: "allMatchedPins")
+    static let droppedPins = CodingKeys(stringValue: "droppedPins")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allMatchedPins",
+      "droppedPins",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.allMatchedPins = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: PinControlMetadata.ProductPins].self, forKey: .allMatchedPins)
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: PinControlMetadata.ProductPins].self, forKey: .allMatchedPins)
+    {
       let tuples = try stringKeyed.lazy.map {
         (key, value) throws -> (Swift.Int64, PinControlMetadata.ProductPins) in
         guard let newKey = Swift.Int64(key) else {
@@ -66,11 +78,11 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
-    self.droppedPins = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: PinControlMetadata.ProductPins].self, forKey: .droppedPins)
+      self.allMatchedPins = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: PinControlMetadata.ProductPins].self, forKey: .droppedPins)
+    {
       let tuples = try stringKeyed.lazy.map {
         (key, value) throws -> (Swift.Int64, PinControlMetadata.ProductPins) in
         guard let newKey = Swift.Int64(key) else {
@@ -82,8 +94,12 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
+      self.droppedPins = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -100,6 +116,9 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       )
       try container.encode(stringKeyed, forKey: .droppedPins)
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// List of product ids which have associated pins.
@@ -108,6 +127,8 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   {
     /// List of product ids which have associated pins.
     public var productId: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ProductPins`.
     public init() {}
@@ -123,6 +144,38 @@ public struct PinControlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let productId = CodingKeys(stringValue: "productId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "productId"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .productId) {
+        self.productId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.productId, forKey: .productId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

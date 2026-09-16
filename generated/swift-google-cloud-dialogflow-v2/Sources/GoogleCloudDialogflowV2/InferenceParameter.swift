@@ -51,6 +51,8 @@
     /// random responses. Acceptable value is [0.0, 1.0], default to 0.95.
     public var topP: Swift.Double? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InferenceParameter`.
     public init() {}
 
@@ -65,6 +67,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxOutputTokens = CodingKeys(stringValue: "maxOutputTokens")
+      static let temperature = CodingKeys(stringValue: "temperature")
+      static let topK = CodingKeys(stringValue: "topK")
+      static let topP = CodingKeys(stringValue: "topP")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxOutputTokens",
+        "temperature",
+        "topK",
+        "topP",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxOutputTokens = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxOutputTokens)
+      self.temperature = try container.decodeIfPresent(Swift.Double.self, forKey: .temperature)
+      self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
+      self.topP = try container.decodeIfPresent(Swift.Double.self, forKey: .topP)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxOutputTokens, forKey: .maxOutputTokens)
+      try container.encodeIfPresent(self.temperature, forKey: .temperature)
+      try container.encodeIfPresent(self.topK, forKey: .topK)
+      try container.encodeIfPresent(self.topP, forKey: .topP)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

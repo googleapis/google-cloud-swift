@@ -41,6 +41,8 @@ public struct AptArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Contents of the artifact's control metadata file.
   public var controlFile: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AptArtifact`.
   public init() {}
 
@@ -55,6 +57,69 @@ public struct AptArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let packageName = CodingKeys(stringValue: "packageName")
+    static let packageType = CodingKeys(stringValue: "packageType")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let component = CodingKeys(stringValue: "component")
+    static let controlFile = CodingKeys(stringValue: "controlFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "packageName",
+      "packageType",
+      "architecture",
+      "component",
+      "controlFile",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageName) {
+      self.packageName = value
+    }
+    if let value = try container.decodeIfPresent(AptArtifact.PackageType.self, forKey: .packageType)
+    {
+      self.packageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .architecture) {
+      self.architecture = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .component) {
+      self.component = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .controlFile) {
+      self.controlFile = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.packageName, forKey: .packageName)
+    try container.encode(self.packageType, forKey: .packageType)
+    try container.encode(self.architecture, forKey: .architecture)
+    try container.encode(self.component, forKey: .component)
+    try container.encode(self.controlFile, forKey: .controlFile)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Package type is either binary or source.

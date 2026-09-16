@@ -30,6 +30,8 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleCloudW
   /// or greater.
   public var minAge: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryVertexDatasetConditions`.
   public init() {}
 
@@ -44,6 +46,41 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createdAfter = CodingKeys(stringValue: "createdAfter")
+    static let minAge = CodingKeys(stringValue: "minAge")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createdAfter",
+      "minAge",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createdAfter = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createdAfter)
+    self.minAge = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .minAge)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createdAfter, forKey: .createdAfter)
+    try container.encodeIfPresent(self.minAge, forKey: .minAge)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -65,6 +65,8 @@ public struct Rotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field is set by the service and cannot be set by the user.
   public var managedRotationStatus: Rotation.ManagedRotationStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rotation`.
   public init() {}
 
@@ -79,6 +81,47 @@ public struct Rotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nextRotationTime = CodingKeys(stringValue: "nextRotationTime")
+    static let rotationPeriod = CodingKeys(stringValue: "rotationPeriod")
+    static let managedRotationStatus = CodingKeys(stringValue: "managedRotationStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nextRotationTime",
+      "rotationPeriod",
+      "managedRotationStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.nextRotationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextRotationTime)
+    self.rotationPeriod = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .rotationPeriod)
+    self.managedRotationStatus = try container.decodeIfPresent(
+      Rotation.ManagedRotationStatus.self, forKey: .managedRotationStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.nextRotationTime, forKey: .nextRotationTime)
+    try container.encodeIfPresent(self.rotationPeriod, forKey: .rotationPeriod)
+    try container.encodeIfPresent(self.managedRotationStatus, forKey: .managedRotationStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the status of a managed rotation.
@@ -97,6 +140,8 @@ public struct Rotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// errors.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManagedRotationStatus`.
     public init() {}
 
@@ -111,6 +156,44 @@ public struct Rotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Rotation.ManagedRotationStatus.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// This defines the various states in which the managed rotation can be.

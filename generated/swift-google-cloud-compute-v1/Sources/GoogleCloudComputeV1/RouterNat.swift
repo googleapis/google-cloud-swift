@@ -179,6 +179,8 @@
     /// Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
     public var udpIdleTimeoutSec: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterNat`.
     public init() {}
 
@@ -193,6 +195,168 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoNetworkTier = CodingKeys(stringValue: "autoNetworkTier")
+      static let drainNatIps = CodingKeys(stringValue: "drainNatIps")
+      static let effectiveTcpTimeWaitTimeoutSec = CodingKeys(
+        stringValue: "effectiveTcpTimeWaitTimeoutSec")
+      static let enableDynamicPortAllocation = CodingKeys(
+        stringValue: "enableDynamicPortAllocation")
+      static let enableEndpointIndependentMapping = CodingKeys(
+        stringValue: "enableEndpointIndependentMapping")
+      static let endpointTypes = CodingKeys(stringValue: "endpointTypes")
+      static let icmpIdleTimeoutSec = CodingKeys(stringValue: "icmpIdleTimeoutSec")
+      static let logConfig = CodingKeys(stringValue: "logConfig")
+      static let maxPortsPerVm = CodingKeys(stringValue: "maxPortsPerVm")
+      static let minPortsPerVm = CodingKeys(stringValue: "minPortsPerVm")
+      static let name = CodingKeys(stringValue: "name")
+      static let nat64Subnetworks = CodingKeys(stringValue: "nat64Subnetworks")
+      static let natIpAllocateOption = CodingKeys(stringValue: "natIpAllocateOption")
+      static let natIps = CodingKeys(stringValue: "natIps")
+      static let rules = CodingKeys(stringValue: "rules")
+      static let sourceSubnetworkIpRangesToNat = CodingKeys(
+        stringValue: "sourceSubnetworkIpRangesToNat")
+      static let sourceSubnetworkIpRangesToNat64 = CodingKeys(
+        stringValue: "sourceSubnetworkIpRangesToNat64")
+      static let subnetworks = CodingKeys(stringValue: "subnetworks")
+      static let tcpEstablishedIdleTimeoutSec = CodingKeys(
+        stringValue: "tcpEstablishedIdleTimeoutSec")
+      static let tcpTimeWaitTimeoutSec = CodingKeys(stringValue: "tcpTimeWaitTimeoutSec")
+      static let tcpTransitoryIdleTimeoutSec = CodingKeys(
+        stringValue: "tcpTransitoryIdleTimeoutSec")
+      static let type = CodingKeys(stringValue: "type")
+      static let udpIdleTimeoutSec = CodingKeys(stringValue: "udpIdleTimeoutSec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoNetworkTier",
+        "drainNatIps",
+        "effectiveTcpTimeWaitTimeoutSec",
+        "enableDynamicPortAllocation",
+        "enableEndpointIndependentMapping",
+        "endpointTypes",
+        "icmpIdleTimeoutSec",
+        "logConfig",
+        "maxPortsPerVm",
+        "minPortsPerVm",
+        "name",
+        "nat64Subnetworks",
+        "natIpAllocateOption",
+        "natIps",
+        "rules",
+        "sourceSubnetworkIpRangesToNat",
+        "sourceSubnetworkIpRangesToNat64",
+        "subnetworks",
+        "tcpEstablishedIdleTimeoutSec",
+        "tcpTimeWaitTimeoutSec",
+        "tcpTransitoryIdleTimeoutSec",
+        "type",
+        "udpIdleTimeoutSec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoNetworkTier = try container.decodeIfPresent(
+        RouterNat.AutoNetworkTier.self, forKey: .autoNetworkTier)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .drainNatIps) {
+        self.drainNatIps = value
+      }
+      self.effectiveTcpTimeWaitTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .effectiveTcpTimeWaitTimeoutSec)
+      self.enableDynamicPortAllocation = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableDynamicPortAllocation)
+      self.enableEndpointIndependentMapping = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableEndpointIndependentMapping)
+      if let value = try container.decodeIfPresent(
+        [RouterNat.EndpointTypes].self, forKey: .endpointTypes)
+      {
+        self.endpointTypes = value
+      }
+      self.icmpIdleTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .icmpIdleTimeoutSec)
+      self.logConfig = try container.decodeIfPresent(RouterNatLogConfig.self, forKey: .logConfig)
+      self.maxPortsPerVm = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPortsPerVm)
+      self.minPortsPerVm = try container.decodeIfPresent(Swift.Int32.self, forKey: .minPortsPerVm)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(
+        [RouterNatSubnetworkToNat64].self, forKey: .nat64Subnetworks)
+      {
+        self.nat64Subnetworks = value
+      }
+      self.natIpAllocateOption = try container.decodeIfPresent(
+        RouterNat.NatIpAllocateOption.self, forKey: .natIpAllocateOption)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .natIps) {
+        self.natIps = value
+      }
+      if let value = try container.decodeIfPresent([RouterNatRule].self, forKey: .rules) {
+        self.rules = value
+      }
+      self.sourceSubnetworkIpRangesToNat = try container.decodeIfPresent(
+        RouterNat.SourceSubnetworkIpRangesToNat.self, forKey: .sourceSubnetworkIpRangesToNat)
+      self.sourceSubnetworkIpRangesToNat64 = try container.decodeIfPresent(
+        RouterNat.SourceSubnetworkIpRangesToNat64.self, forKey: .sourceSubnetworkIpRangesToNat64)
+      if let value = try container.decodeIfPresent(
+        [RouterNatSubnetworkToNat].self, forKey: .subnetworks)
+      {
+        self.subnetworks = value
+      }
+      self.tcpEstablishedIdleTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .tcpEstablishedIdleTimeoutSec)
+      self.tcpTimeWaitTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .tcpTimeWaitTimeoutSec)
+      self.tcpTransitoryIdleTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .tcpTransitoryIdleTimeoutSec)
+      self.type = try container.decodeIfPresent(RouterNat.Type_.self, forKey: .type)
+      self.udpIdleTimeoutSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .udpIdleTimeoutSec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoNetworkTier, forKey: .autoNetworkTier)
+      try container.encode(self.drainNatIps, forKey: .drainNatIps)
+      try container.encodeIfPresent(
+        self.effectiveTcpTimeWaitTimeoutSec, forKey: .effectiveTcpTimeWaitTimeoutSec)
+      try container.encodeIfPresent(
+        self.enableDynamicPortAllocation, forKey: .enableDynamicPortAllocation)
+      try container.encodeIfPresent(
+        self.enableEndpointIndependentMapping, forKey: .enableEndpointIndependentMapping)
+      try container.encode(self.endpointTypes, forKey: .endpointTypes)
+      try container.encodeIfPresent(self.icmpIdleTimeoutSec, forKey: .icmpIdleTimeoutSec)
+      try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+      try container.encodeIfPresent(self.maxPortsPerVm, forKey: .maxPortsPerVm)
+      try container.encodeIfPresent(self.minPortsPerVm, forKey: .minPortsPerVm)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encode(self.nat64Subnetworks, forKey: .nat64Subnetworks)
+      try container.encodeIfPresent(self.natIpAllocateOption, forKey: .natIpAllocateOption)
+      try container.encode(self.natIps, forKey: .natIps)
+      try container.encode(self.rules, forKey: .rules)
+      try container.encodeIfPresent(
+        self.sourceSubnetworkIpRangesToNat, forKey: .sourceSubnetworkIpRangesToNat)
+      try container.encodeIfPresent(
+        self.sourceSubnetworkIpRangesToNat64, forKey: .sourceSubnetworkIpRangesToNat64)
+      try container.encode(self.subnetworks, forKey: .subnetworks)
+      try container.encodeIfPresent(
+        self.tcpEstablishedIdleTimeoutSec, forKey: .tcpEstablishedIdleTimeoutSec)
+      try container.encodeIfPresent(self.tcpTimeWaitTimeoutSec, forKey: .tcpTimeWaitTimeoutSec)
+      try container.encodeIfPresent(
+        self.tcpTransitoryIdleTimeoutSec, forKey: .tcpTransitoryIdleTimeoutSec)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      try container.encodeIfPresent(self.udpIdleTimeoutSec, forKey: .udpIdleTimeoutSec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [autoNetworkTier][google.cloud.compute.v1.RouterNat.autoNetworkTier] field.

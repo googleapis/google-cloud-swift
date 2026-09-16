@@ -28,6 +28,8 @@
     /// The exported test cases.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportTestCasesResponse`.
     public init() {}
 
@@ -44,9 +46,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsUri = "gcsUri"
-      case content = "content"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+      static let content = CodingKeys(stringValue: "content")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsUri",
+        "content",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@
         try destinationCheckAndSet(.content(content))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@
         case .content(let value):
           try container.encode(value, forKey: .content)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -154,6 +154,8 @@ public struct PubSubSubscription: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   ///   "123/costCenter": "marketing"
   public var tags: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PubSubSubscription`.
   public init() {}
 
@@ -168,6 +170,130 @@ public struct PubSubSubscription: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let pushConfig = CodingKeys(stringValue: "pushConfig")
+    static let bigqueryConfig = CodingKeys(stringValue: "bigqueryConfig")
+    static let cloudStorageConfig = CodingKeys(stringValue: "cloudStorageConfig")
+    static let ackDeadlineSeconds = CodingKeys(stringValue: "ackDeadlineSeconds")
+    static let retainAckedMessages = CodingKeys(stringValue: "retainAckedMessages")
+    static let messageRetentionDuration = CodingKeys(stringValue: "messageRetentionDuration")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let enableMessageOrdering = CodingKeys(stringValue: "enableMessageOrdering")
+    static let expirationPolicy = CodingKeys(stringValue: "expirationPolicy")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let deadLetterPolicy = CodingKeys(stringValue: "deadLetterPolicy")
+    static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
+    static let detached = CodingKeys(stringValue: "detached")
+    static let enableExactlyOnceDelivery = CodingKeys(stringValue: "enableExactlyOnceDelivery")
+    static let messageTransforms = CodingKeys(stringValue: "messageTransforms")
+    static let tags = CodingKeys(stringValue: "tags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "pushConfig",
+      "bigqueryConfig",
+      "cloudStorageConfig",
+      "ackDeadlineSeconds",
+      "retainAckedMessages",
+      "messageRetentionDuration",
+      "labels",
+      "enableMessageOrdering",
+      "expirationPolicy",
+      "filter",
+      "deadLetterPolicy",
+      "retryPolicy",
+      "detached",
+      "enableExactlyOnceDelivery",
+      "messageTransforms",
+      "tags",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.pushConfig = try container.decodeIfPresent(PushConfig.self, forKey: .pushConfig)
+    self.bigqueryConfig = try container.decodeIfPresent(
+      BigQueryConfig.self, forKey: .bigqueryConfig)
+    self.cloudStorageConfig = try container.decodeIfPresent(
+      CloudStorageConfig.self, forKey: .cloudStorageConfig)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ackDeadlineSeconds) {
+      self.ackDeadlineSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .retainAckedMessages) {
+      self.retainAckedMessages = value
+    }
+    self.messageRetentionDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .messageRetentionDuration)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableMessageOrdering) {
+      self.enableMessageOrdering = value
+    }
+    self.expirationPolicy = try container.decodeIfPresent(
+      ExpirationPolicy.self, forKey: .expirationPolicy)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    self.deadLetterPolicy = try container.decodeIfPresent(
+      DeadLetterPolicy.self, forKey: .deadLetterPolicy)
+    self.retryPolicy = try container.decodeIfPresent(RetryPolicy.self, forKey: .retryPolicy)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .detached) {
+      self.detached = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableExactlyOnceDelivery)
+    {
+      self.enableExactlyOnceDelivery = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MessageTransform].self, forKey: .messageTransforms)
+    {
+      self.messageTransforms = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.pushConfig, forKey: .pushConfig)
+    try container.encodeIfPresent(self.bigqueryConfig, forKey: .bigqueryConfig)
+    try container.encodeIfPresent(self.cloudStorageConfig, forKey: .cloudStorageConfig)
+    try container.encode(self.ackDeadlineSeconds, forKey: .ackDeadlineSeconds)
+    try container.encode(self.retainAckedMessages, forKey: .retainAckedMessages)
+    try container.encodeIfPresent(self.messageRetentionDuration, forKey: .messageRetentionDuration)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.enableMessageOrdering, forKey: .enableMessageOrdering)
+    try container.encodeIfPresent(self.expirationPolicy, forKey: .expirationPolicy)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.deadLetterPolicy, forKey: .deadLetterPolicy)
+    try container.encodeIfPresent(self.retryPolicy, forKey: .retryPolicy)
+    try container.encode(self.detached, forKey: .detached)
+    try container.encode(self.enableExactlyOnceDelivery, forKey: .enableExactlyOnceDelivery)
+    try container.encode(self.messageTransforms, forKey: .messageTransforms)
+    try container.encode(self.tags, forKey: .tags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

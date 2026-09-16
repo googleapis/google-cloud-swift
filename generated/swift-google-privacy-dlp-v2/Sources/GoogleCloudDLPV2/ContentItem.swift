@@ -27,6 +27,8 @@ public struct ContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Data of the item either in the byte array or UTF-8 string form, or table.
   public var dataItem: OneOf_DataItem? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContentItem`.
   public init() {}
 
@@ -43,13 +45,27 @@ public struct ContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case value = "value"
-    case table = "table"
-    case byteItem = "byteItem"
-    case conversation = "conversation"
-    case batchContentItem = "batchContentItem"
-    case contentMetadata = "contentMetadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let value = CodingKeys(stringValue: "value")
+    static let table = CodingKeys(stringValue: "table")
+    static let byteItem = CodingKeys(stringValue: "byteItem")
+    static let conversation = CodingKeys(stringValue: "conversation")
+    static let batchContentItem = CodingKeys(stringValue: "batchContentItem")
+    static let contentMetadata = CodingKeys(stringValue: "contentMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "value",
+      "table",
+      "byteItem",
+      "conversation",
+      "batchContentItem",
+      "contentMetadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -85,11 +101,15 @@ public struct ContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataItemCheckAndSet(.batchContentItem(batchContentItem))
     }
     self.dataItem = dataItem
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.contentMetadata, forKey: .contentMetadata)
+    try container.encodeIfPresent(self.contentMetadata, forKey: .contentMetadata)
 
     if let choice = self.dataItem {
       switch choice {
@@ -104,6 +124,9 @@ public struct ContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .batchContentItem(let value):
         try container.encode(value, forKey: .batchContentItem)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

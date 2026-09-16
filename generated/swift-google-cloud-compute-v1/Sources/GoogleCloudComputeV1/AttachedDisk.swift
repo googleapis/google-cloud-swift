@@ -140,6 +140,8 @@
     /// Specifies the type of the disk, either SCRATCH orPERSISTENT. If not specified, the default isPERSISTENT.
     public var type: AttachedDisk.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AttachedDisk`.
     public init() {}
 
@@ -154,6 +156,117 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let architecture = CodingKeys(stringValue: "architecture")
+      static let autoDelete = CodingKeys(stringValue: "autoDelete")
+      static let boot = CodingKeys(stringValue: "boot")
+      static let deviceName = CodingKeys(stringValue: "deviceName")
+      static let diskEncryptionKey = CodingKeys(stringValue: "diskEncryptionKey")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+      static let forceAttach = CodingKeys(stringValue: "forceAttach")
+      static let guestOsFeatures = CodingKeys(stringValue: "guestOsFeatures")
+      static let index = CodingKeys(stringValue: "index")
+      static let initializeParams = CodingKeys(stringValue: "initializeParams")
+      static let interface = CodingKeys(stringValue: "interface")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let licenses = CodingKeys(stringValue: "licenses")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let savedState = CodingKeys(stringValue: "savedState")
+      static let shieldedInstanceInitialState = CodingKeys(
+        stringValue: "shieldedInstanceInitialState")
+      static let source = CodingKeys(stringValue: "source")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "architecture",
+        "autoDelete",
+        "boot",
+        "deviceName",
+        "diskEncryptionKey",
+        "diskSizeGb",
+        "forceAttach",
+        "guestOsFeatures",
+        "index",
+        "initializeParams",
+        "interface",
+        "kind",
+        "licenses",
+        "mode",
+        "savedState",
+        "shieldedInstanceInitialState",
+        "source",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.architecture = try container.decodeIfPresent(
+        AttachedDisk.Architecture.self, forKey: .architecture)
+      self.autoDelete = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoDelete)
+      self.boot = try container.decodeIfPresent(Swift.Bool.self, forKey: .boot)
+      self.deviceName = try container.decodeIfPresent(Swift.String.self, forKey: .deviceName)
+      self.diskEncryptionKey = try container.decodeIfPresent(
+        CustomerEncryptionKey.self, forKey: .diskEncryptionKey)
+      self.diskSizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb)
+      self.forceAttach = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceAttach)
+      if let value = try container.decodeIfPresent([GuestOsFeature].self, forKey: .guestOsFeatures)
+      {
+        self.guestOsFeatures = value
+      }
+      self.index = try container.decodeIfPresent(Swift.Int32.self, forKey: .index)
+      self.initializeParams = try container.decodeIfPresent(
+        AttachedDiskInitializeParams.self, forKey: .initializeParams)
+      self.interface = try container.decodeIfPresent(
+        AttachedDisk.Interface.self, forKey: .interface)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .licenses) {
+        self.licenses = value
+      }
+      self.mode = try container.decodeIfPresent(AttachedDisk.Mode.self, forKey: .mode)
+      self.savedState = try container.decodeIfPresent(
+        AttachedDisk.SavedState.self, forKey: .savedState)
+      self.shieldedInstanceInitialState = try container.decodeIfPresent(
+        InitialStateConfig.self, forKey: .shieldedInstanceInitialState)
+      self.source = try container.decodeIfPresent(Swift.String.self, forKey: .source)
+      self.type = try container.decodeIfPresent(AttachedDisk.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.architecture, forKey: .architecture)
+      try container.encodeIfPresent(self.autoDelete, forKey: .autoDelete)
+      try container.encodeIfPresent(self.boot, forKey: .boot)
+      try container.encodeIfPresent(self.deviceName, forKey: .deviceName)
+      try container.encodeIfPresent(self.diskEncryptionKey, forKey: .diskEncryptionKey)
+      try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+      try container.encodeIfPresent(self.forceAttach, forKey: .forceAttach)
+      try container.encode(self.guestOsFeatures, forKey: .guestOsFeatures)
+      try container.encodeIfPresent(self.index, forKey: .index)
+      try container.encodeIfPresent(self.initializeParams, forKey: .initializeParams)
+      try container.encodeIfPresent(self.interface, forKey: .interface)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encode(self.licenses, forKey: .licenses)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      try container.encodeIfPresent(self.savedState, forKey: .savedState)
+      try container.encodeIfPresent(
+        self.shieldedInstanceInitialState, forKey: .shieldedInstanceInitialState)
+      try container.encodeIfPresent(self.source, forKey: .source)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [architecture][google.cloud.compute.v1.AttachedDisk.architecture] field.

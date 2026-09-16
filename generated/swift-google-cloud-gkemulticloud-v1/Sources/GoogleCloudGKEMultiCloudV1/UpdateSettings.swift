@@ -47,6 +47,8 @@ public struct UpdateSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Settings for surge update.
   public var surgeSettings: SurgeSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateSettings`.
   public init() {}
 
@@ -61,6 +63,36 @@ public struct UpdateSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let surgeSettings = CodingKeys(stringValue: "surgeSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "surgeSettings"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.surgeSettings = try container.decodeIfPresent(SurgeSettings.self, forKey: .surgeSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.surgeSettings, forKey: .surgeSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

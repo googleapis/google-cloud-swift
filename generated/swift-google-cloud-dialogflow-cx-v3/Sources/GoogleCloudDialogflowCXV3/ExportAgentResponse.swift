@@ -28,6 +28,8 @@
     /// The exported agent.
     public var agent: OneOf_Agent? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportAgentResponse`.
     public init() {}
 
@@ -44,10 +46,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case agentUri = "agentUri"
-      case agentContent = "agentContent"
-      case commitSha = "commitSha"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agentUri = CodingKeys(stringValue: "agentUri")
+      static let agentContent = CodingKeys(stringValue: "agentContent")
+      static let commitSha = CodingKeys(stringValue: "commitSha")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agentUri",
+        "agentContent",
+        "commitSha",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -75,6 +88,10 @@
         try agentCheckAndSet(.commitSha(commitSha))
       }
       self.agent = agent
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -89,6 +106,9 @@
         case .commitSha(let value):
           try container.encode(value, forKey: .commitSha)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

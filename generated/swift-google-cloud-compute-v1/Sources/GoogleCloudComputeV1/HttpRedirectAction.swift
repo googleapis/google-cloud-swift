@@ -80,6 +80,8 @@
     /// The default is set to false.
     public var stripQuery: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpRedirectAction`.
     public init() {}
 
@@ -94,6 +96,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hostRedirect = CodingKeys(stringValue: "hostRedirect")
+      static let httpsRedirect = CodingKeys(stringValue: "httpsRedirect")
+      static let pathRedirect = CodingKeys(stringValue: "pathRedirect")
+      static let prefixRedirect = CodingKeys(stringValue: "prefixRedirect")
+      static let redirectResponseCode = CodingKeys(stringValue: "redirectResponseCode")
+      static let stripQuery = CodingKeys(stringValue: "stripQuery")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hostRedirect",
+        "httpsRedirect",
+        "pathRedirect",
+        "prefixRedirect",
+        "redirectResponseCode",
+        "stripQuery",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.hostRedirect = try container.decodeIfPresent(Swift.String.self, forKey: .hostRedirect)
+      self.httpsRedirect = try container.decodeIfPresent(Swift.Bool.self, forKey: .httpsRedirect)
+      self.pathRedirect = try container.decodeIfPresent(Swift.String.self, forKey: .pathRedirect)
+      self.prefixRedirect = try container.decodeIfPresent(
+        Swift.String.self, forKey: .prefixRedirect)
+      self.redirectResponseCode = try container.decodeIfPresent(
+        HttpRedirectAction.RedirectResponseCode.self, forKey: .redirectResponseCode)
+      self.stripQuery = try container.decodeIfPresent(Swift.Bool.self, forKey: .stripQuery)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.hostRedirect, forKey: .hostRedirect)
+      try container.encodeIfPresent(self.httpsRedirect, forKey: .httpsRedirect)
+      try container.encodeIfPresent(self.pathRedirect, forKey: .pathRedirect)
+      try container.encodeIfPresent(self.prefixRedirect, forKey: .prefixRedirect)
+      try container.encodeIfPresent(self.redirectResponseCode, forKey: .redirectResponseCode)
+      try container.encodeIfPresent(self.stripQuery, forKey: .stripQuery)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [redirectResponseCode][google.cloud.compute.v1.HttpRedirectAction.redirectResponseCode] field.

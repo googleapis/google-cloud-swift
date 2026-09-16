@@ -52,6 +52,8 @@ public struct RollbackTargetRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// `projects/{project}/locations/{location}/deployPolicies/{deploy_policy}`.
   public var overrideDeployPolicy: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RollbackTargetRequest`.
   public init() {}
 
@@ -66,6 +68,80 @@ public struct RollbackTargetRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let rolloutId = CodingKeys(stringValue: "rolloutId")
+    static let releaseId = CodingKeys(stringValue: "releaseId")
+    static let rolloutToRollBack = CodingKeys(stringValue: "rolloutToRollBack")
+    static let rollbackConfig = CodingKeys(stringValue: "rollbackConfig")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let overrideDeployPolicy = CodingKeys(stringValue: "overrideDeployPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "targetId",
+      "rolloutId",
+      "releaseId",
+      "rolloutToRollBack",
+      "rollbackConfig",
+      "validateOnly",
+      "overrideDeployPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutId) {
+      self.rolloutId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseId) {
+      self.releaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutToRollBack) {
+      self.rolloutToRollBack = value
+    }
+    self.rollbackConfig = try container.decodeIfPresent(
+      RollbackTargetConfig.self, forKey: .rollbackConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .overrideDeployPolicy)
+    {
+      self.overrideDeployPolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.targetId, forKey: .targetId)
+    try container.encode(self.rolloutId, forKey: .rolloutId)
+    try container.encode(self.releaseId, forKey: .releaseId)
+    try container.encode(self.rolloutToRollBack, forKey: .rolloutToRollBack)
+    try container.encodeIfPresent(self.rollbackConfig, forKey: .rollbackConfig)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.overrideDeployPolicy, forKey: .overrideDeployPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -55,6 +55,8 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Job details.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DlpJob`.
   public init() {}
 
@@ -71,26 +73,52 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case type = "type"
-    case state = "state"
-    case riskDetails = "riskDetails"
-    case inspectDetails = "inspectDetails"
-    case createTime = "createTime"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case lastModified = "lastModified"
-    case jobTriggerName = "jobTriggerName"
-    case errors = "errors"
-    case actionDetails = "actionDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let state = CodingKeys(stringValue: "state")
+    static let riskDetails = CodingKeys(stringValue: "riskDetails")
+    static let inspectDetails = CodingKeys(stringValue: "inspectDetails")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let lastModified = CodingKeys(stringValue: "lastModified")
+    static let jobTriggerName = CodingKeys(stringValue: "jobTriggerName")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let actionDetails = CodingKeys(stringValue: "actionDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "state",
+      "riskDetails",
+      "inspectDetails",
+      "createTime",
+      "startTime",
+      "endTime",
+      "lastModified",
+      "jobTriggerName",
+      "errors",
+      "actionDetails",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.type = try container.decode(DlpJobType.self, forKey: .type)
-    self.state = try container.decode(DlpJob.JobState.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(DlpJobType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(DlpJob.JobState.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
@@ -98,9 +126,15 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.lastModified = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastModified)
-    self.jobTriggerName = try container.decode(Swift.String.self, forKey: .jobTriggerName)
-    self.errors = try container.decode([Error].self, forKey: .errors)
-    self.actionDetails = try container.decode([ActionDetails].self, forKey: .actionDetails)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobTriggerName) {
+      self.jobTriggerName = value
+    }
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
+    if let value = try container.decodeIfPresent([ActionDetails].self, forKey: .actionDetails) {
+      self.actionDetails = value
+    }
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -123,6 +157,10 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailsCheckAndSet(.inspectDetails(inspectDetails))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -130,10 +168,10 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
-    try container.encode(self.lastModified, forKey: .lastModified)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.lastModified, forKey: .lastModified)
     try container.encode(self.jobTriggerName, forKey: .jobTriggerName)
     try container.encode(self.errors, forKey: .errors)
     try container.encode(self.actionDetails, forKey: .actionDetails)
@@ -145,6 +183,9 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .inspectDetails(let value):
         try container.encode(value, forKey: .inspectDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -34,6 +34,8 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Required. Export destination for taxonomies.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportTaxonomiesRequest`.
   public init() {}
 
@@ -50,16 +52,31 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case taxonomies = "taxonomies"
-    case serializedTaxonomies = "serializedTaxonomies"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let taxonomies = CodingKeys(stringValue: "taxonomies")
+    static let serializedTaxonomies = CodingKeys(stringValue: "serializedTaxonomies")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "taxonomies",
+      "serializedTaxonomies",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.taxonomies = try container.decode([Swift.String].self, forKey: .taxonomies)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .taxonomies) {
+      self.taxonomies = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -77,6 +94,10 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       try destinationCheckAndSet(.serializedTaxonomies(serializedTaxonomies))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +110,9 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .serializedTaxonomies(let value):
         try container.encode(value, forKey: .serializedTaxonomies)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

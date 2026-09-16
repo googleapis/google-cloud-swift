@@ -51,6 +51,8 @@ public struct RemoveAssetsFromGroupRequest: Codable, Equatable, GoogleCloudWKT._
   /// Default value is `false`.
   public var allowMissing: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RemoveAssetsFromGroupRequest`.
   public init() {}
 
@@ -65,6 +67,54 @@ public struct RemoveAssetsFromGroupRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let group = CodingKeys(stringValue: "group")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let assets = CodingKeys(stringValue: "assets")
+    static let allowMissing = CodingKeys(stringValue: "allowMissing")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "group",
+      "requestId",
+      "assets",
+      "allowMissing",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
+      self.group = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    self.assets = try container.decodeIfPresent(AssetList.self, forKey: .assets)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
+      self.allowMissing = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.group, forKey: .group)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encodeIfPresent(self.assets, forKey: .assets)
+    try container.encode(self.allowMissing, forKey: .allowMissing)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

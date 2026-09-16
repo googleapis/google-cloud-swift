@@ -31,6 +31,8 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The format of the public key.
   public var format: PublicKey.KeyFormat = PublicKey.KeyFormat()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PublicKey`.
   public init() {}
 
@@ -45,6 +47,44 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let format = CodingKeys(stringValue: "format")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "format",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(PublicKey.KeyFormat.self, forKey: .format) {
+      self.format = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.format, forKey: .format)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of public keys formats that are supported. Currently, only `PEM`

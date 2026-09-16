@@ -132,6 +132,8 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// mechanism.
   public var dataRetentionConfig: DataRetentionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EnvironmentConfig`.
   public init() {}
 
@@ -146,6 +148,141 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gkeCluster = CodingKeys(stringValue: "gkeCluster")
+    static let dagGcsPrefix = CodingKeys(stringValue: "dagGcsPrefix")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let softwareConfig = CodingKeys(stringValue: "softwareConfig")
+    static let nodeConfig = CodingKeys(stringValue: "nodeConfig")
+    static let privateEnvironmentConfig = CodingKeys(stringValue: "privateEnvironmentConfig")
+    static let webServerNetworkAccessControl = CodingKeys(
+      stringValue: "webServerNetworkAccessControl")
+    static let databaseConfig = CodingKeys(stringValue: "databaseConfig")
+    static let webServerConfig = CodingKeys(stringValue: "webServerConfig")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+    static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+    static let workloadsConfig = CodingKeys(stringValue: "workloadsConfig")
+    static let environmentSize = CodingKeys(stringValue: "environmentSize")
+    static let airflowUri = CodingKeys(stringValue: "airflowUri")
+    static let airflowByoidUri = CodingKeys(stringValue: "airflowByoidUri")
+    static let masterAuthorizedNetworksConfig = CodingKeys(
+      stringValue: "masterAuthorizedNetworksConfig")
+    static let recoveryConfig = CodingKeys(stringValue: "recoveryConfig")
+    static let resilienceMode = CodingKeys(stringValue: "resilienceMode")
+    static let dataRetentionConfig = CodingKeys(stringValue: "dataRetentionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gkeCluster",
+      "dagGcsPrefix",
+      "nodeCount",
+      "softwareConfig",
+      "nodeConfig",
+      "privateEnvironmentConfig",
+      "webServerNetworkAccessControl",
+      "databaseConfig",
+      "webServerConfig",
+      "encryptionConfig",
+      "maintenanceWindow",
+      "workloadsConfig",
+      "environmentSize",
+      "airflowUri",
+      "airflowByoidUri",
+      "masterAuthorizedNetworksConfig",
+      "recoveryConfig",
+      "resilienceMode",
+      "dataRetentionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gkeCluster) {
+      self.gkeCluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dagGcsPrefix) {
+      self.dagGcsPrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    self.softwareConfig = try container.decodeIfPresent(
+      SoftwareConfig.self, forKey: .softwareConfig)
+    self.nodeConfig = try container.decodeIfPresent(NodeConfig.self, forKey: .nodeConfig)
+    self.privateEnvironmentConfig = try container.decodeIfPresent(
+      PrivateEnvironmentConfig.self, forKey: .privateEnvironmentConfig)
+    self.webServerNetworkAccessControl = try container.decodeIfPresent(
+      WebServerNetworkAccessControl.self, forKey: .webServerNetworkAccessControl)
+    self.databaseConfig = try container.decodeIfPresent(
+      DatabaseConfig.self, forKey: .databaseConfig)
+    self.webServerConfig = try container.decodeIfPresent(
+      WebServerConfig.self, forKey: .webServerConfig)
+    self.encryptionConfig = try container.decodeIfPresent(
+      EncryptionConfig.self, forKey: .encryptionConfig)
+    self.maintenanceWindow = try container.decodeIfPresent(
+      MaintenanceWindow.self, forKey: .maintenanceWindow)
+    self.workloadsConfig = try container.decodeIfPresent(
+      WorkloadsConfig.self, forKey: .workloadsConfig)
+    if let value = try container.decodeIfPresent(
+      EnvironmentConfig.EnvironmentSize.self, forKey: .environmentSize)
+    {
+      self.environmentSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .airflowUri) {
+      self.airflowUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .airflowByoidUri) {
+      self.airflowByoidUri = value
+    }
+    self.masterAuthorizedNetworksConfig = try container.decodeIfPresent(
+      MasterAuthorizedNetworksConfig.self, forKey: .masterAuthorizedNetworksConfig)
+    self.recoveryConfig = try container.decodeIfPresent(
+      RecoveryConfig.self, forKey: .recoveryConfig)
+    if let value = try container.decodeIfPresent(
+      EnvironmentConfig.ResilienceMode.self, forKey: .resilienceMode)
+    {
+      self.resilienceMode = value
+    }
+    self.dataRetentionConfig = try container.decodeIfPresent(
+      DataRetentionConfig.self, forKey: .dataRetentionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gkeCluster, forKey: .gkeCluster)
+    try container.encode(self.dagGcsPrefix, forKey: .dagGcsPrefix)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encodeIfPresent(self.softwareConfig, forKey: .softwareConfig)
+    try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
+    try container.encodeIfPresent(self.privateEnvironmentConfig, forKey: .privateEnvironmentConfig)
+    try container.encodeIfPresent(
+      self.webServerNetworkAccessControl, forKey: .webServerNetworkAccessControl)
+    try container.encodeIfPresent(self.databaseConfig, forKey: .databaseConfig)
+    try container.encodeIfPresent(self.webServerConfig, forKey: .webServerConfig)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
+    try container.encodeIfPresent(self.workloadsConfig, forKey: .workloadsConfig)
+    try container.encode(self.environmentSize, forKey: .environmentSize)
+    try container.encode(self.airflowUri, forKey: .airflowUri)
+    try container.encode(self.airflowByoidUri, forKey: .airflowByoidUri)
+    try container.encodeIfPresent(
+      self.masterAuthorizedNetworksConfig, forKey: .masterAuthorizedNetworksConfig)
+    try container.encodeIfPresent(self.recoveryConfig, forKey: .recoveryConfig)
+    try container.encode(self.resilienceMode, forKey: .resilienceMode)
+    try container.encodeIfPresent(self.dataRetentionConfig, forKey: .dataRetentionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The size of the Cloud Composer environment.

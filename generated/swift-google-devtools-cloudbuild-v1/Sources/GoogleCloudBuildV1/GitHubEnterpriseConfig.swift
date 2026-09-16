@@ -62,6 +62,8 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Optional. SSL certificate to use for requests to GitHub Enterprise.
   public var sslCa: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubEnterpriseConfig`.
   public init() {}
 
@@ -76,6 +78,83 @@ public struct GitHubEnterpriseConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let hostUrl = CodingKeys(stringValue: "hostUrl")
+    static let appId = CodingKeys(stringValue: "appId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let webhookKey = CodingKeys(stringValue: "webhookKey")
+    static let peeredNetwork = CodingKeys(stringValue: "peeredNetwork")
+    static let secrets = CodingKeys(stringValue: "secrets")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let sslCa = CodingKeys(stringValue: "sslCa")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "hostUrl",
+      "appId",
+      "createTime",
+      "webhookKey",
+      "peeredNetwork",
+      "secrets",
+      "displayName",
+      "sslCa",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostUrl) {
+      self.hostUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .appId) {
+      self.appId = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webhookKey) {
+      self.webhookKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peeredNetwork) {
+      self.peeredNetwork = value
+    }
+    self.secrets = try container.decodeIfPresent(GitHubEnterpriseSecrets.self, forKey: .secrets)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCa) {
+      self.sslCa = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.hostUrl, forKey: .hostUrl)
+    try container.encode(self.appId, forKey: .appId)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.webhookKey, forKey: .webhookKey)
+    try container.encode(self.peeredNetwork, forKey: .peeredNetwork)
+    try container.encodeIfPresent(self.secrets, forKey: .secrets)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.sslCa, forKey: .sslCa)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

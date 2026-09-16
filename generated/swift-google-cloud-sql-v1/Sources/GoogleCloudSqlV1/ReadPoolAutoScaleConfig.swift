@@ -44,6 +44,8 @@
     /// The cooldown period for scale-out operations.
     public var scaleOutCooldownSeconds: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReadPoolAutoScaleConfig`.
     public init() {}
 
@@ -60,6 +62,66 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let minNodeCount = CodingKeys(stringValue: "minNodeCount")
+      static let maxNodeCount = CodingKeys(stringValue: "maxNodeCount")
+      static let targetMetrics = CodingKeys(stringValue: "targetMetrics")
+      static let disableScaleIn = CodingKeys(stringValue: "disableScaleIn")
+      static let scaleInCooldownSeconds = CodingKeys(stringValue: "scaleInCooldownSeconds")
+      static let scaleOutCooldownSeconds = CodingKeys(stringValue: "scaleOutCooldownSeconds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "minNodeCount",
+        "maxNodeCount",
+        "targetMetrics",
+        "disableScaleIn",
+        "scaleInCooldownSeconds",
+        "scaleOutCooldownSeconds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+      self.minNodeCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount)
+      self.maxNodeCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodeCount)
+      if let value = try container.decodeIfPresent(
+        [ReadPoolAutoScaleConfig.TargetMetric].self, forKey: .targetMetrics)
+      {
+        self.targetMetrics = value
+      }
+      self.disableScaleIn = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableScaleIn)
+      self.scaleInCooldownSeconds = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .scaleInCooldownSeconds)
+      self.scaleOutCooldownSeconds = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .scaleOutCooldownSeconds)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.minNodeCount, forKey: .minNodeCount)
+      try container.encodeIfPresent(self.maxNodeCount, forKey: .maxNodeCount)
+      try container.encode(self.targetMetrics, forKey: .targetMetrics)
+      try container.encodeIfPresent(self.disableScaleIn, forKey: .disableScaleIn)
+      try container.encodeIfPresent(self.scaleInCooldownSeconds, forKey: .scaleInCooldownSeconds)
+      try container.encodeIfPresent(self.scaleOutCooldownSeconds, forKey: .scaleOutCooldownSeconds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Target metric for read pool auto scaling.
     public struct TargetMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -69,6 +131,8 @@
 
       /// The target value for the metric.
       public var targetValue: Swift.Float? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `TargetMetric`.
       public init() {}
@@ -84,6 +148,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let metric = CodingKeys(stringValue: "metric")
+        static let targetValue = CodingKeys(stringValue: "targetValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "metric",
+          "targetValue",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.metric = try container.decodeIfPresent(Swift.String.self, forKey: .metric)
+        self.targetValue = try container.decodeIfPresent(Swift.Float.self, forKey: .targetValue)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.metric, forKey: .metric)
+        try container.encodeIfPresent(self.targetValue, forKey: .targetValue)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

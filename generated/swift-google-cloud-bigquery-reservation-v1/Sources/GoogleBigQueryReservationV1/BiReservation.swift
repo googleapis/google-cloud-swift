@@ -35,6 +35,8 @@ public struct BiReservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Preferred tables to use BI capacity for.
   public var preferredTables: [TableReference] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BiReservation`.
   public init() {}
 
@@ -49,6 +51,55 @@ public struct BiReservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let size = CodingKeys(stringValue: "size")
+    static let preferredTables = CodingKeys(stringValue: "preferredTables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "updateTime",
+      "size",
+      "preferredTables",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .size) {
+      self.size = value
+    }
+    if let value = try container.decodeIfPresent([TableReference].self, forKey: .preferredTables) {
+      self.preferredTables = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.size, forKey: .size)
+    try container.encode(self.preferredTables, forKey: .preferredTables)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

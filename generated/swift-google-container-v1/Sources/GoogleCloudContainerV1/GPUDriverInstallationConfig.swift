@@ -25,6 +25,8 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleCloudWKT._A
   /// Mode for how the GPU driver is installed.
   public var gpuDriverVersion: GPUDriverInstallationConfig.GPUDriverVersion? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GPUDriverInstallationConfig`.
   public init() {}
 
@@ -39,6 +41,37 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gpuDriverVersion = CodingKeys(stringValue: "gpuDriverVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gpuDriverVersion"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gpuDriverVersion = try container.decodeIfPresent(
+      GPUDriverInstallationConfig.GPUDriverVersion.self, forKey: .gpuDriverVersion)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.gpuDriverVersion, forKey: .gpuDriverVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The GPU driver version to install.

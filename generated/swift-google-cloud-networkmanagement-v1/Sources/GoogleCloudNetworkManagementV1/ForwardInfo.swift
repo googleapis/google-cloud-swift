@@ -30,6 +30,8 @@ public struct ForwardInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// IP address of the target (if applicable).
   public var ipAddress: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ForwardInfo`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct ForwardInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let target = CodingKeys(stringValue: "target")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "target",
+      "resourceUri",
+      "ipAddress",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ForwardInfo.Target.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Forward target types.

@@ -75,6 +75,8 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// type of the template's deidentify_config is not image_transformations.
   public var deidentifyTemplate: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RedactImageRequest`.
   public init() {}
 
@@ -91,6 +93,78 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let locationId = CodingKeys(stringValue: "locationId")
+    static let inspectConfig = CodingKeys(stringValue: "inspectConfig")
+    static let imageRedactionConfigs = CodingKeys(stringValue: "imageRedactionConfigs")
+    static let includeFindings = CodingKeys(stringValue: "includeFindings")
+    static let byteItem = CodingKeys(stringValue: "byteItem")
+    static let inspectTemplate = CodingKeys(stringValue: "inspectTemplate")
+    static let deidentifyTemplate = CodingKeys(stringValue: "deidentifyTemplate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "locationId",
+      "inspectConfig",
+      "imageRedactionConfigs",
+      "includeFindings",
+      "byteItem",
+      "inspectTemplate",
+      "deidentifyTemplate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    self.inspectConfig = try container.decodeIfPresent(InspectConfig.self, forKey: .inspectConfig)
+    if let value = try container.decodeIfPresent(
+      [RedactImageRequest.ImageRedactionConfig].self, forKey: .imageRedactionConfigs)
+    {
+      self.imageRedactionConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeFindings) {
+      self.includeFindings = value
+    }
+    self.byteItem = try container.decodeIfPresent(ByteContentItem.self, forKey: .byteItem)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inspectTemplate) {
+      self.inspectTemplate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deidentifyTemplate) {
+      self.deidentifyTemplate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.locationId, forKey: .locationId)
+    try container.encodeIfPresent(self.inspectConfig, forKey: .inspectConfig)
+    try container.encode(self.imageRedactionConfigs, forKey: .imageRedactionConfigs)
+    try container.encode(self.includeFindings, forKey: .includeFindings)
+    try container.encodeIfPresent(self.byteItem, forKey: .byteItem)
+    try container.encode(self.inspectTemplate, forKey: .inspectTemplate)
+    try container.encode(self.deidentifyTemplate, forKey: .deidentifyTemplate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration for determining how redaction of images should occur.
   public struct ImageRedactionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -101,6 +175,8 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
     /// Type of information to redact from images.
     public var target: OneOf_Target? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ImageRedactionConfig`.
     public init() {}
@@ -118,10 +194,21 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case infoType = "infoType"
-      case redactAllText = "redactAllText"
-      case redactionColor = "redactionColor"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let infoType = CodingKeys(stringValue: "infoType")
+      static let redactAllText = CodingKeys(stringValue: "redactAllText")
+      static let redactionColor = CodingKeys(stringValue: "redactionColor")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "infoType",
+        "redactAllText",
+        "redactionColor",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -146,11 +233,15 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try targetCheckAndSet(.redactAllText(redactAllText))
       }
       self.target = target
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.redactionColor, forKey: .redactionColor)
+      try container.encodeIfPresent(self.redactionColor, forKey: .redactionColor)
 
       if let choice = self.target {
         switch choice {
@@ -159,6 +250,9 @@ public struct RedactImageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         case .redactAllText(let value):
           try container.encode(value, forKey: .redactAllText)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

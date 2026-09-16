@@ -34,6 +34,8 @@ extension ResponsePolicyRulesClient {
     /// Synthetic request body field for the [create()][.responsePolicyRules.create] method.
     public var body: ResponsePolicyRule? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateRequest`.
     public init() {}
 
@@ -48,6 +50,53 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "project",
+        "responsePolicy",
+        "body",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      self.body = try container.decodeIfPresent(ResponsePolicyRule.self, forKey: .body)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      try container.encodeIfPresent(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -77,6 +126,8 @@ extension ResponsePolicyRulesClient {
     /// User assigned name of the Response Policy Rule addressed by this request.
     public var responsePolicyRule: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeleteRequest`.
     public init() {}
 
@@ -91,6 +142,55 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+      static let responsePolicyRule = CodingKeys(stringValue: "responsePolicyRule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "project",
+        "responsePolicy",
+        "responsePolicyRule",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicyRule) {
+        self.responsePolicyRule = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      try container.encode(self.responsePolicyRule, forKey: .responsePolicyRule)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -120,6 +220,8 @@ extension ResponsePolicyRulesClient {
     /// User assigned name of the Response Policy Rule addressed by this request.
     public var responsePolicyRule: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GetRequest`.
     public init() {}
 
@@ -134,6 +236,55 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+      static let responsePolicyRule = CodingKeys(stringValue: "responsePolicyRule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "project",
+        "responsePolicy",
+        "responsePolicyRule",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicyRule) {
+        self.responsePolicyRule = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      try container.encode(self.responsePolicyRule, forKey: .responsePolicyRule)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -163,6 +314,8 @@ extension ResponsePolicyRulesClient {
     /// User assigned name of the Response Policy to list.
     public var responsePolicy: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ListRequest`.
     public init() {}
 
@@ -177,6 +330,52 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxResults = CodingKeys(stringValue: "maxResults")
+      static let pageToken = CodingKeys(stringValue: "pageToken")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxResults",
+        "pageToken",
+        "project",
+        "responsePolicy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxResults = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults)
+      self.pageToken = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
+      try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -209,6 +408,8 @@ extension ResponsePolicyRulesClient {
     /// Synthetic request body field for the [patch()][.responsePolicyRules.patch] method.
     public var body: ResponsePolicyRule? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PatchRequest`.
     public init() {}
 
@@ -223,6 +424,59 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+      static let responsePolicyRule = CodingKeys(stringValue: "responsePolicyRule")
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "project",
+        "responsePolicy",
+        "responsePolicyRule",
+        "body",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicyRule) {
+        self.responsePolicyRule = value
+      }
+      self.body = try container.decodeIfPresent(ResponsePolicyRule.self, forKey: .body)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      try container.encode(self.responsePolicyRule, forKey: .responsePolicyRule)
+      try container.encodeIfPresent(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -255,6 +509,8 @@ extension ResponsePolicyRulesClient {
     /// Synthetic request body field for the [update()][.responsePolicyRules.update] method.
     public var body: ResponsePolicyRule? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UpdateRequest`.
     public init() {}
 
@@ -269,6 +525,59 @@ extension ResponsePolicyRulesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let project = CodingKeys(stringValue: "project")
+      static let responsePolicy = CodingKeys(stringValue: "responsePolicy")
+      static let responsePolicyRule = CodingKeys(stringValue: "responsePolicyRule")
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "project",
+        "responsePolicy",
+        "responsePolicyRule",
+        "body",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicy) {
+        self.responsePolicy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsePolicyRule) {
+        self.responsePolicyRule = value
+      }
+      self.body = try container.decodeIfPresent(ResponsePolicyRule.self, forKey: .body)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.project, forKey: .project)
+      try container.encode(self.responsePolicy, forKey: .responsePolicy)
+      try container.encode(self.responsePolicyRule, forKey: .responsePolicyRule)
+      try container.encodeIfPresent(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

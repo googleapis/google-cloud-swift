@@ -33,6 +33,8 @@ public struct BatchRunProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. The batch ID.
   public var batchId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRunProcessRequest`.
   public init() {}
 
@@ -49,6 +51,55 @@ public struct BatchRunProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let requests = CodingKeys(stringValue: "requests")
+    static let options = CodingKeys(stringValue: "options")
+    static let batchId = CodingKeys(stringValue: "batchId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "requests",
+      "options",
+      "batchId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent([CreateProcessRequest].self, forKey: .requests) {
+      self.requests = value
+    }
+    self.options = try container.decodeIfPresent(
+      BatchRunProcessRequest.BatchRunProcessOptions.self, forKey: .options)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .batchId) {
+      self.batchId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.requests, forKey: .requests)
+    try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encode(self.batchId, forKey: .batchId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Options for batch processes.
   public struct BatchRunProcessOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -58,6 +109,8 @@ public struct BatchRunProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
 
     /// The batch size. Default: 5, maximum: 100.
     public var batchSize: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BatchRunProcessOptions`.
     public init() {}
@@ -73,6 +126,44 @@ public struct BatchRunProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let retryCount = CodingKeys(stringValue: "retryCount")
+      static let batchSize = CodingKeys(stringValue: "batchSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "retryCount",
+        "batchSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retryCount) {
+        self.retryCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .batchSize) {
+        self.batchSize = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.retryCount, forKey: .retryCount)
+      try container.encode(self.batchSize, forKey: .batchSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

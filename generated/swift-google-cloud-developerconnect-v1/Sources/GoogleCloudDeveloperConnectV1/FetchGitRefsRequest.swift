@@ -34,6 +34,8 @@ public struct FetchGitRefsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. Page start.
   public var pageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchGitRefsRequest`.
   public init() {}
 
@@ -48,6 +50,57 @@ public struct FetchGitRefsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gitRepositoryLink = CodingKeys(stringValue: "gitRepositoryLink")
+    static let refType = CodingKeys(stringValue: "refType")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gitRepositoryLink",
+      "refType",
+      "pageSize",
+      "pageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gitRepositoryLink) {
+      self.gitRepositoryLink = value
+    }
+    if let value = try container.decodeIfPresent(FetchGitRefsRequest.RefType.self, forKey: .refType)
+    {
+      self.refType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gitRepositoryLink, forKey: .gitRepositoryLink)
+    try container.encode(self.refType, forKey: .refType)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of refs.

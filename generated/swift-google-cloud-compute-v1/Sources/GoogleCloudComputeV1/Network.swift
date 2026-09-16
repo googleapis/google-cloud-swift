@@ -133,6 +133,8 @@
     /// in this VPC network.
     public var subnetworks: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Network`.
     public init() {}
 
@@ -149,27 +151,56 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ipv4Range = "IPv4Range"
-      case autoCreateSubnetworks = "autoCreateSubnetworks"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case enableUlaInternalIpv6 = "enableUlaInternalIpv6"
-      case firewallPolicy = "firewallPolicy"
-      case gatewayIpv4 = "gatewayIPv4"
-      case id = "id"
-      case internalIpv6Range = "internalIpv6Range"
-      case kind = "kind"
-      case mtu = "mtu"
-      case name = "name"
-      case networkFirewallPolicyEnforcementOrder = "networkFirewallPolicyEnforcementOrder"
-      case networkProfile = "networkProfile"
-      case params = "params"
-      case peerings = "peerings"
-      case routingConfig = "routingConfig"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case subnetworks = "subnetworks"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipv4Range = CodingKeys(stringValue: "IPv4Range")
+      static let autoCreateSubnetworks = CodingKeys(stringValue: "autoCreateSubnetworks")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let enableUlaInternalIpv6 = CodingKeys(stringValue: "enableUlaInternalIpv6")
+      static let firewallPolicy = CodingKeys(stringValue: "firewallPolicy")
+      static let gatewayIpv4 = CodingKeys(stringValue: "gatewayIPv4")
+      static let id = CodingKeys(stringValue: "id")
+      static let internalIpv6Range = CodingKeys(stringValue: "internalIpv6Range")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let mtu = CodingKeys(stringValue: "mtu")
+      static let name = CodingKeys(stringValue: "name")
+      static let networkFirewallPolicyEnforcementOrder = CodingKeys(
+        stringValue: "networkFirewallPolicyEnforcementOrder")
+      static let networkProfile = CodingKeys(stringValue: "networkProfile")
+      static let params = CodingKeys(stringValue: "params")
+      static let peerings = CodingKeys(stringValue: "peerings")
+      static let routingConfig = CodingKeys(stringValue: "routingConfig")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let subnetworks = CodingKeys(stringValue: "subnetworks")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "IPv4Range",
+        "autoCreateSubnetworks",
+        "creationTimestamp",
+        "description",
+        "enableUlaInternalIpv6",
+        "firewallPolicy",
+        "gatewayIPv4",
+        "id",
+        "internalIpv6Range",
+        "kind",
+        "mtu",
+        "name",
+        "networkFirewallPolicyEnforcementOrder",
+        "networkProfile",
+        "params",
+        "peerings",
+        "routingConfig",
+        "selfLink",
+        "selfLinkWithId",
+        "subnetworks",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -197,38 +228,49 @@
       self.networkProfile = try container.decodeIfPresent(
         Swift.String.self, forKey: .networkProfile)
       self.params = try container.decodeIfPresent(NetworkParams.self, forKey: .params)
-      self.peerings = try container.decode([NetworkPeering].self, forKey: .peerings)
+      if let value = try container.decodeIfPresent([NetworkPeering].self, forKey: .peerings) {
+        self.peerings = value
+      }
       self.routingConfig = try container.decodeIfPresent(
         NetworkRoutingConfig.self, forKey: .routingConfig)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(
         Swift.String.self, forKey: .selfLinkWithId)
-      self.subnetworks = try container.decode([Swift.String].self, forKey: .subnetworks)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subnetworks) {
+        self.subnetworks = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.ipv4Range, forKey: .ipv4Range)
-      try container.encode(self.autoCreateSubnetworks, forKey: .autoCreateSubnetworks)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.enableUlaInternalIpv6, forKey: .enableUlaInternalIpv6)
-      try container.encode(self.firewallPolicy, forKey: .firewallPolicy)
-      try container.encode(self.gatewayIpv4, forKey: .gatewayIpv4)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.internalIpv6Range, forKey: .internalIpv6Range)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.mtu, forKey: .mtu)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(
+      try container.encodeIfPresent(self.ipv4Range, forKey: .ipv4Range)
+      try container.encodeIfPresent(self.autoCreateSubnetworks, forKey: .autoCreateSubnetworks)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.enableUlaInternalIpv6, forKey: .enableUlaInternalIpv6)
+      try container.encodeIfPresent(self.firewallPolicy, forKey: .firewallPolicy)
+      try container.encodeIfPresent(self.gatewayIpv4, forKey: .gatewayIpv4)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.internalIpv6Range, forKey: .internalIpv6Range)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.mtu, forKey: .mtu)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(
         self.networkFirewallPolicyEnforcementOrder, forKey: .networkFirewallPolicyEnforcementOrder)
-      try container.encode(self.networkProfile, forKey: .networkProfile)
-      try container.encode(self.params, forKey: .params)
+      try container.encodeIfPresent(self.networkProfile, forKey: .networkProfile)
+      try container.encodeIfPresent(self.params, forKey: .params)
       try container.encode(self.peerings, forKey: .peerings)
-      try container.encode(self.routingConfig, forKey: .routingConfig)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.routingConfig, forKey: .routingConfig)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
       try container.encode(self.subnetworks, forKey: .subnetworks)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [networkFirewallPolicyEnforcementOrder][google.cloud.compute.v1.Network.networkFirewallPolicyEnforcementOrder] field.

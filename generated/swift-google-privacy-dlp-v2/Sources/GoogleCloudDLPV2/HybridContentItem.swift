@@ -28,6 +28,8 @@ public struct HybridContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Supplementary information that will be added to each finding.
   public var findingDetails: HybridFindingDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HybridContentItem`.
   public init() {}
 
@@ -42,6 +44,41 @@ public struct HybridContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let item = CodingKeys(stringValue: "item")
+    static let findingDetails = CodingKeys(stringValue: "findingDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "item",
+      "findingDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.item = try container.decodeIfPresent(ContentItem.self, forKey: .item)
+    self.findingDetails = try container.decodeIfPresent(
+      HybridFindingDetails.self, forKey: .findingDetails)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.item, forKey: .item)
+    try container.encodeIfPresent(self.findingDetails, forKey: .findingDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

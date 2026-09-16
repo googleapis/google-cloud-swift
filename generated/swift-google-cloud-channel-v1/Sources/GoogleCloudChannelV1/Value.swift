@@ -24,6 +24,8 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The kind of value.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Value`.
   public init() {}
 
@@ -40,12 +42,25 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case int64Value = "int64Value"
-    case stringValue = "stringValue"
-    case doubleValue = "doubleValue"
-    case protoValue = "protoValue"
-    case boolValue = "boolValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let int64Value = CodingKeys(stringValue: "int64Value")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let doubleValue = CodingKeys(stringValue: "doubleValue")
+    static let protoValue = CodingKeys(stringValue: "protoValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "int64Value",
+      "stringValue",
+      "doubleValue",
+      "protoValue",
+      "boolValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -79,6 +94,10 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try kindCheckAndSet(.boolValue(boolValue))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +116,9 @@ public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .boolValue(let value):
         try container.encode(value, forKey: .boolValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -31,6 +31,8 @@
     /// Optional. Sample response for the Agent.
     public var sampleResponses: [AgentCoachingSuggestion.SampleResponse] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AgentCoachingSuggestion`.
     public init() {}
 
@@ -47,6 +49,56 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let applicableInstructions = CodingKeys(stringValue: "applicableInstructions")
+      static let agentActionSuggestions = CodingKeys(stringValue: "agentActionSuggestions")
+      static let sampleResponses = CodingKeys(stringValue: "sampleResponses")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "applicableInstructions",
+        "agentActionSuggestions",
+        "sampleResponses",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AgentCoachingInstruction].self, forKey: .applicableInstructions)
+      {
+        self.applicableInstructions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AgentCoachingSuggestion.AgentActionSuggestion].self, forKey: .agentActionSuggestions)
+      {
+        self.agentActionSuggestions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AgentCoachingSuggestion.SampleResponse].self, forKey: .sampleResponses)
+      {
+        self.sampleResponses = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.applicableInstructions, forKey: .applicableInstructions)
+      try container.encode(self.agentActionSuggestions, forKey: .agentActionSuggestions)
+      try container.encode(self.sampleResponses, forKey: .sampleResponses)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Sources for the suggestion.
     public struct Sources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -54,6 +106,8 @@
       /// Output only. Source instruction indexes for the suggestion. This is the
       /// index of the applicable_instructions field.
       public var instructionIndexes: [Swift.Int32] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Sources`.
       public init() {}
@@ -69,6 +123,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instructionIndexes = CodingKeys(stringValue: "instructionIndexes")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instructionIndexes"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.Int32].self, forKey: .instructionIndexes)
+        {
+          self.instructionIndexes = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instructionIndexes, forKey: .instructionIndexes)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -90,6 +178,8 @@
       public var duplicateSuggestions:
         [AgentCoachingSuggestion.DuplicateCheckResult.DuplicateSuggestion] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DuplicateCheckResult`.
       public init() {}
 
@@ -104,6 +194,41 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let duplicateSuggestions = CodingKeys(stringValue: "duplicateSuggestions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "duplicateSuggestions"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [AgentCoachingSuggestion.DuplicateCheckResult.DuplicateSuggestion].self,
+          forKey: .duplicateSuggestions)
+        {
+          self.duplicateSuggestions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.duplicateSuggestions, forKey: .duplicateSuggestions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The duplicate suggestion details.
@@ -126,6 +251,9 @@
         /// suggestion.
         public var similarityScore: Swift.Float = Swift.Float()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DuplicateSuggestion`.
         public init() {}
 
@@ -140,6 +268,55 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let answerRecord = CodingKeys(stringValue: "answerRecord")
+          static let sources = CodingKeys(stringValue: "sources")
+          static let suggestionIndex = CodingKeys(stringValue: "suggestionIndex")
+          static let similarityScore = CodingKeys(stringValue: "similarityScore")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "answerRecord",
+            "sources",
+            "suggestionIndex",
+            "similarityScore",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
+            self.answerRecord = value
+          }
+          self.sources = try container.decodeIfPresent(
+            AgentCoachingSuggestion.Sources.self, forKey: .sources)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .suggestionIndex) {
+            self.suggestionIndex = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .similarityScore) {
+            self.similarityScore = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.answerRecord, forKey: .answerRecord)
+          try container.encodeIfPresent(self.sources, forKey: .sources)
+          try container.encode(self.suggestionIndex, forKey: .suggestionIndex)
+          try container.encode(self.similarityScore, forKey: .similarityScore)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -179,6 +356,8 @@
       /// Output only. Duplicate check result for the agent action suggestion.
       public var duplicateCheckResult: AgentCoachingSuggestion.DuplicateCheckResult? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AgentActionSuggestion`.
       public init() {}
 
@@ -193,6 +372,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let agentAction = CodingKeys(stringValue: "agentAction")
+        static let sources = CodingKeys(stringValue: "sources")
+        static let duplicateCheckResult = CodingKeys(stringValue: "duplicateCheckResult")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "agentAction",
+          "sources",
+          "duplicateCheckResult",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentAction) {
+          self.agentAction = value
+        }
+        self.sources = try container.decodeIfPresent(
+          AgentCoachingSuggestion.Sources.self, forKey: .sources)
+        self.duplicateCheckResult = try container.decodeIfPresent(
+          AgentCoachingSuggestion.DuplicateCheckResult.self, forKey: .duplicateCheckResult)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.agentAction, forKey: .agentAction)
+        try container.encodeIfPresent(self.sources, forKey: .sources)
+        try container.encodeIfPresent(self.duplicateCheckResult, forKey: .duplicateCheckResult)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -221,6 +442,8 @@
       /// Output only. Duplicate check result for the sample response.
       public var duplicateCheckResult: AgentCoachingSuggestion.DuplicateCheckResult? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SampleResponse`.
       public init() {}
 
@@ -235,6 +458,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let responseText = CodingKeys(stringValue: "responseText")
+        static let sources = CodingKeys(stringValue: "sources")
+        static let duplicateCheckResult = CodingKeys(stringValue: "duplicateCheckResult")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "responseText",
+          "sources",
+          "duplicateCheckResult",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseText) {
+          self.responseText = value
+        }
+        self.sources = try container.decodeIfPresent(
+          AgentCoachingSuggestion.Sources.self, forKey: .sources)
+        self.duplicateCheckResult = try container.decodeIfPresent(
+          AgentCoachingSuggestion.DuplicateCheckResult.self, forKey: .duplicateCheckResult)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.responseText, forKey: .responseText)
+        try container.encodeIfPresent(self.sources, forKey: .sources)
+        try container.encodeIfPresent(self.duplicateCheckResult, forKey: .duplicateCheckResult)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

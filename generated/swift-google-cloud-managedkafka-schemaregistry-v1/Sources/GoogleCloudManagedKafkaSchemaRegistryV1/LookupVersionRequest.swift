@@ -45,6 +45,8 @@ public struct LookupVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// versions will be excluded. The default is false.
   public var deleted: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LookupVersionRequest`.
   public init() {}
 
@@ -59,6 +61,63 @@ public struct LookupVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let schemaType = CodingKeys(stringValue: "schemaType")
+    static let schema = CodingKeys(stringValue: "schema")
+    static let references = CodingKeys(stringValue: "references")
+    static let normalize = CodingKeys(stringValue: "normalize")
+    static let deleted = CodingKeys(stringValue: "deleted")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "schemaType",
+      "schema",
+      "references",
+      "normalize",
+      "deleted",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.schemaType = try container.decodeIfPresent(Schema.SchemaType.self, forKey: .schemaType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+      self.schema = value
+    }
+    if let value = try container.decodeIfPresent([Schema.SchemaReference].self, forKey: .references)
+    {
+      self.references = value
+    }
+    self.normalize = try container.decodeIfPresent(Swift.Bool.self, forKey: .normalize)
+    self.deleted = try container.decodeIfPresent(Swift.Bool.self, forKey: .deleted)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.schemaType, forKey: .schemaType)
+    try container.encode(self.schema, forKey: .schema)
+    try container.encode(self.references, forKey: .references)
+    try container.encodeIfPresent(self.normalize, forKey: .normalize)
+    try container.encodeIfPresent(self.deleted, forKey: .deleted)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -36,6 +36,8 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWKT._Any
   /// Duration of the frame.
   public var duration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GstreamerBufferDescriptor`.
   public init() {}
 
@@ -50,6 +52,56 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let capsString = CodingKeys(stringValue: "capsString")
+    static let isKeyFrame = CodingKeys(stringValue: "isKeyFrame")
+    static let ptsTime = CodingKeys(stringValue: "ptsTime")
+    static let dtsTime = CodingKeys(stringValue: "dtsTime")
+    static let duration = CodingKeys(stringValue: "duration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "capsString",
+      "isKeyFrame",
+      "ptsTime",
+      "dtsTime",
+      "duration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .capsString) {
+      self.capsString = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isKeyFrame) {
+      self.isKeyFrame = value
+    }
+    self.ptsTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .ptsTime)
+    self.dtsTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .dtsTime)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.capsString, forKey: .capsString)
+    try container.encode(self.isKeyFrame, forKey: .isKeyFrame)
+    try container.encodeIfPresent(self.ptsTime, forKey: .ptsTime)
+    try container.encodeIfPresent(self.dtsTime, forKey: .dtsTime)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

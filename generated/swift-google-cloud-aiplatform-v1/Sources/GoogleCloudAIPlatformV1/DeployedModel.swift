@@ -144,6 +144,8 @@
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
     public var predictionResources: OneOf_PredictionResources? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeployedModel`.
     public init() {}
 
@@ -160,51 +162,100 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case dedicatedResources = "dedicatedResources"
-      case automaticResources = "automaticResources"
-      case sharedResources = "sharedResources"
-      case id = "id"
-      case model = "model"
-      case modelVersionId = "modelVersionId"
-      case displayName = "displayName"
-      case createTime = "createTime"
-      case explanationSpec = "explanationSpec"
-      case disableExplanations = "disableExplanations"
-      case serviceAccount = "serviceAccount"
-      case disableContainerLogging = "disableContainerLogging"
-      case enableAccessLogging = "enableAccessLogging"
-      case privateEndpoints = "privateEndpoints"
-      case fasterDeploymentConfig = "fasterDeploymentConfig"
-      case status = "status"
-      case systemLabels = "systemLabels"
-      case checkpointId = "checkpointId"
-      case speculativeDecodingSpec = "speculativeDecodingSpec"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dedicatedResources = CodingKeys(stringValue: "dedicatedResources")
+      static let automaticResources = CodingKeys(stringValue: "automaticResources")
+      static let sharedResources = CodingKeys(stringValue: "sharedResources")
+      static let id = CodingKeys(stringValue: "id")
+      static let model = CodingKeys(stringValue: "model")
+      static let modelVersionId = CodingKeys(stringValue: "modelVersionId")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let explanationSpec = CodingKeys(stringValue: "explanationSpec")
+      static let disableExplanations = CodingKeys(stringValue: "disableExplanations")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let disableContainerLogging = CodingKeys(stringValue: "disableContainerLogging")
+      static let enableAccessLogging = CodingKeys(stringValue: "enableAccessLogging")
+      static let privateEndpoints = CodingKeys(stringValue: "privateEndpoints")
+      static let fasterDeploymentConfig = CodingKeys(stringValue: "fasterDeploymentConfig")
+      static let status = CodingKeys(stringValue: "status")
+      static let systemLabels = CodingKeys(stringValue: "systemLabels")
+      static let checkpointId = CodingKeys(stringValue: "checkpointId")
+      static let speculativeDecodingSpec = CodingKeys(stringValue: "speculativeDecodingSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dedicatedResources",
+        "automaticResources",
+        "sharedResources",
+        "id",
+        "model",
+        "modelVersionId",
+        "displayName",
+        "createTime",
+        "explanationSpec",
+        "disableExplanations",
+        "serviceAccount",
+        "disableContainerLogging",
+        "enableAccessLogging",
+        "privateEndpoints",
+        "fasterDeploymentConfig",
+        "status",
+        "systemLabels",
+        "checkpointId",
+        "speculativeDecodingSpec",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.id = try container.decode(Swift.String.self, forKey: .id)
-      self.model = try container.decode(Swift.String.self, forKey: .model)
-      self.modelVersionId = try container.decode(Swift.String.self, forKey: .modelVersionId)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersionId) {
+        self.modelVersionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.explanationSpec = try container.decodeIfPresent(
         ExplanationSpec.self, forKey: .explanationSpec)
-      self.disableExplanations = try container.decode(Swift.Bool.self, forKey: .disableExplanations)
-      self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-      self.disableContainerLogging = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableExplanations) {
+        self.disableExplanations = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .disableContainerLogging)
-      self.enableAccessLogging = try container.decode(Swift.Bool.self, forKey: .enableAccessLogging)
+      {
+        self.disableContainerLogging = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAccessLogging) {
+        self.enableAccessLogging = value
+      }
       self.privateEndpoints = try container.decodeIfPresent(
         PrivateEndpoints.self, forKey: .privateEndpoints)
       self.fasterDeploymentConfig = try container.decodeIfPresent(
         FasterDeploymentConfig.self, forKey: .fasterDeploymentConfig)
       self.status = try container.decodeIfPresent(DeployedModel.Status.self, forKey: .status)
-      self.systemLabels = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .systemLabels)
-      self.checkpointId = try container.decode(Swift.String.self, forKey: .checkpointId)
+      {
+        self.systemLabels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .checkpointId) {
+        self.checkpointId = value
+      }
       self.speculativeDecodingSpec = try container.decodeIfPresent(
         SpeculativeDecodingSpec.self, forKey: .speculativeDecodingSpec)
 
@@ -234,6 +285,10 @@
         try predictionResourcesCheckAndSet(.sharedResources(sharedResources))
       }
       self.predictionResources = predictionResources
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -242,18 +297,18 @@
       try container.encode(self.model, forKey: .model)
       try container.encode(self.modelVersionId, forKey: .modelVersionId)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.explanationSpec, forKey: .explanationSpec)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.explanationSpec, forKey: .explanationSpec)
       try container.encode(self.disableExplanations, forKey: .disableExplanations)
       try container.encode(self.serviceAccount, forKey: .serviceAccount)
       try container.encode(self.disableContainerLogging, forKey: .disableContainerLogging)
       try container.encode(self.enableAccessLogging, forKey: .enableAccessLogging)
-      try container.encode(self.privateEndpoints, forKey: .privateEndpoints)
-      try container.encode(self.fasterDeploymentConfig, forKey: .fasterDeploymentConfig)
-      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.privateEndpoints, forKey: .privateEndpoints)
+      try container.encodeIfPresent(self.fasterDeploymentConfig, forKey: .fasterDeploymentConfig)
+      try container.encodeIfPresent(self.status, forKey: .status)
       try container.encode(self.systemLabels, forKey: .systemLabels)
       try container.encode(self.checkpointId, forKey: .checkpointId)
-      try container.encode(self.speculativeDecodingSpec, forKey: .speculativeDecodingSpec)
+      try container.encodeIfPresent(self.speculativeDecodingSpec, forKey: .speculativeDecodingSpec)
 
       if let choice = self.predictionResources {
         switch choice {
@@ -264,6 +319,9 @@
         case .sharedResources(let value):
           try container.encode(value, forKey: .sharedResources)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -280,6 +338,8 @@
       /// Output only. The number of available replicas of the deployed model.
       public var availableReplicaCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Status`.
       public init() {}
 
@@ -294,6 +354,51 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let message = CodingKeys(stringValue: "message")
+        static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+        static let availableReplicaCount = CodingKeys(stringValue: "availableReplicaCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "message",
+          "lastUpdateTime",
+          "availableReplicaCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+          self.message = value
+        }
+        self.lastUpdateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .availableReplicaCount)
+        {
+          self.availableReplicaCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.message, forKey: .message)
+        try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
+        try container.encode(self.availableReplicaCount, forKey: .availableReplicaCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

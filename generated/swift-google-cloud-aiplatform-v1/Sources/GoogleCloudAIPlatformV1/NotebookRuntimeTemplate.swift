@@ -117,6 +117,8 @@
     /// Optional. The notebook software configuration of the notebook runtime.
     public var softwareConfig: NotebookSoftwareConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NotebookRuntimeTemplate`.
     public init() {}
 
@@ -131,6 +133,137 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let isDefault = CodingKeys(stringValue: "isDefault")
+      static let machineSpec = CodingKeys(stringValue: "machineSpec")
+      static let dataPersistentDiskSpec = CodingKeys(stringValue: "dataPersistentDiskSpec")
+      static let networkSpec = CodingKeys(stringValue: "networkSpec")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let idleShutdownConfig = CodingKeys(stringValue: "idleShutdownConfig")
+      static let eucConfig = CodingKeys(stringValue: "eucConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let notebookRuntimeType = CodingKeys(stringValue: "notebookRuntimeType")
+      static let shieldedVmConfig = CodingKeys(stringValue: "shieldedVmConfig")
+      static let networkTags = CodingKeys(stringValue: "networkTags")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let softwareConfig = CodingKeys(stringValue: "softwareConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "isDefault",
+        "machineSpec",
+        "dataPersistentDiskSpec",
+        "networkSpec",
+        "serviceAccount",
+        "etag",
+        "labels",
+        "idleShutdownConfig",
+        "eucConfig",
+        "createTime",
+        "updateTime",
+        "notebookRuntimeType",
+        "shieldedVmConfig",
+        "networkTags",
+        "encryptionSpec",
+        "softwareConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isDefault) {
+        self.isDefault = value
+      }
+      self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
+      self.dataPersistentDiskSpec = try container.decodeIfPresent(
+        PersistentDiskSpec.self, forKey: .dataPersistentDiskSpec)
+      self.networkSpec = try container.decodeIfPresent(NetworkSpec.self, forKey: .networkSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.idleShutdownConfig = try container.decodeIfPresent(
+        NotebookIdleShutdownConfig.self, forKey: .idleShutdownConfig)
+      self.eucConfig = try container.decodeIfPresent(NotebookEucConfig.self, forKey: .eucConfig)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        NotebookRuntimeType.self, forKey: .notebookRuntimeType)
+      {
+        self.notebookRuntimeType = value
+      }
+      self.shieldedVmConfig = try container.decodeIfPresent(
+        ShieldedVmConfig.self, forKey: .shieldedVmConfig)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+        self.networkTags = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      self.softwareConfig = try container.decodeIfPresent(
+        NotebookSoftwareConfig.self, forKey: .softwareConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.isDefault, forKey: .isDefault)
+      try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
+      try container.encodeIfPresent(self.dataPersistentDiskSpec, forKey: .dataPersistentDiskSpec)
+      try container.encodeIfPresent(self.networkSpec, forKey: .networkSpec)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.idleShutdownConfig, forKey: .idleShutdownConfig)
+      try container.encodeIfPresent(self.eucConfig, forKey: .eucConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      try container.encodeIfPresent(self.shieldedVmConfig, forKey: .shieldedVmConfig)
+      try container.encode(self.networkTags, forKey: .networkTags)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.softwareConfig, forKey: .softwareConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

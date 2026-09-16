@@ -83,6 +83,8 @@ public struct BDRBackupPlanAssociationJobLog: Codable, Equatable, GoogleCloudWKT
   /// The user readable error message. Only populated in error scenarios.
   public var errorMessage: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BDRBackupPlanAssociationJobLog`.
   public init() {}
 
@@ -97,6 +99,125 @@ public struct BDRBackupPlanAssociationJobLog: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let jobCategory = CodingKeys(stringValue: "jobCategory")
+    static let jobStatus = CodingKeys(stringValue: "jobStatus")
+    static let sourceResourceName = CodingKeys(stringValue: "sourceResourceName")
+    static let sourceResourceId = CodingKeys(stringValue: "sourceResourceId")
+    static let sourceResourceLocation = CodingKeys(stringValue: "sourceResourceLocation")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let backupPlanAssociationName = CodingKeys(stringValue: "backupPlanAssociationName")
+    static let previousBackupPlanName = CodingKeys(stringValue: "previousBackupPlanName")
+    static let previousBackupPlanRevisionId = CodingKeys(
+      stringValue: "previousBackupPlanRevisionId")
+    static let previousBackupPlanRevisionName = CodingKeys(
+      stringValue: "previousBackupPlanRevisionName")
+    static let newBackupPlanName = CodingKeys(stringValue: "newBackupPlanName")
+    static let newBackupPlanRevisionId = CodingKeys(stringValue: "newBackupPlanRevisionId")
+    static let newBackupPlanRevisionName = CodingKeys(stringValue: "newBackupPlanRevisionName")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorType = CodingKeys(stringValue: "errorType")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobId",
+      "jobCategory",
+      "jobStatus",
+      "sourceResourceName",
+      "sourceResourceId",
+      "sourceResourceLocation",
+      "resourceType",
+      "backupPlanAssociationName",
+      "previousBackupPlanName",
+      "previousBackupPlanRevisionId",
+      "previousBackupPlanRevisionName",
+      "newBackupPlanName",
+      "newBackupPlanRevisionId",
+      "newBackupPlanRevisionName",
+      "startTime",
+      "endTime",
+      "errorCode",
+      "errorType",
+      "errorMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.jobId = try container.decodeIfPresent(Swift.String.self, forKey: .jobId)
+    self.jobCategory = try container.decodeIfPresent(Swift.String.self, forKey: .jobCategory)
+    self.jobStatus = try container.decodeIfPresent(Swift.String.self, forKey: .jobStatus)
+    self.sourceResourceName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceName)
+    self.sourceResourceId = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceId)
+    self.sourceResourceLocation = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceLocation)
+    self.resourceType = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType)
+    self.backupPlanAssociationName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanAssociationName)
+    self.previousBackupPlanName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousBackupPlanName)
+    self.previousBackupPlanRevisionId = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousBackupPlanRevisionId)
+    self.previousBackupPlanRevisionName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousBackupPlanRevisionName)
+    self.newBackupPlanName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .newBackupPlanName)
+    self.newBackupPlanRevisionId = try container.decodeIfPresent(
+      Swift.String.self, forKey: .newBackupPlanRevisionId)
+    self.newBackupPlanRevisionName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .newBackupPlanRevisionName)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.errorCode = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCode)
+    self.errorType = try container.decodeIfPresent(Swift.String.self, forKey: .errorType)
+    self.errorMessage = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.jobId, forKey: .jobId)
+    try container.encodeIfPresent(self.jobCategory, forKey: .jobCategory)
+    try container.encodeIfPresent(self.jobStatus, forKey: .jobStatus)
+    try container.encodeIfPresent(self.sourceResourceName, forKey: .sourceResourceName)
+    try container.encodeIfPresent(self.sourceResourceId, forKey: .sourceResourceId)
+    try container.encodeIfPresent(self.sourceResourceLocation, forKey: .sourceResourceLocation)
+    try container.encodeIfPresent(self.resourceType, forKey: .resourceType)
+    try container.encodeIfPresent(
+      self.backupPlanAssociationName, forKey: .backupPlanAssociationName)
+    try container.encodeIfPresent(self.previousBackupPlanName, forKey: .previousBackupPlanName)
+    try container.encodeIfPresent(
+      self.previousBackupPlanRevisionId, forKey: .previousBackupPlanRevisionId)
+    try container.encodeIfPresent(
+      self.previousBackupPlanRevisionName, forKey: .previousBackupPlanRevisionName)
+    try container.encodeIfPresent(self.newBackupPlanName, forKey: .newBackupPlanName)
+    try container.encodeIfPresent(self.newBackupPlanRevisionId, forKey: .newBackupPlanRevisionId)
+    try container.encodeIfPresent(
+      self.newBackupPlanRevisionName, forKey: .newBackupPlanRevisionName)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.errorCode, forKey: .errorCode)
+    try container.encodeIfPresent(self.errorType, forKey: .errorType)
+    try container.encodeIfPresent(self.errorMessage, forKey: .errorMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

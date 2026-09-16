@@ -25,6 +25,8 @@
     /// Required. The Jira queries.
     public var jiraQueries: [JiraSource.JiraQueries] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `JiraSource`.
     public init() {}
 
@@ -39,6 +41,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let jiraQueries = CodingKeys(stringValue: "jiraQueries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "jiraQueries"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [JiraSource.JiraQueries].self, forKey: .jiraQueries)
+      {
+        self.jiraQueries = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.jiraQueries, forKey: .jiraQueries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// JiraQueries contains the Jira queries and corresponding authentication.
@@ -65,6 +101,8 @@
       /// account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
       public var apiKeyConfig: ApiAuth.ApiKeyConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `JiraQueries`.
       public init() {}
 
@@ -79,6 +117,61 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let projects = CodingKeys(stringValue: "projects")
+        static let customQueries = CodingKeys(stringValue: "customQueries")
+        static let email = CodingKeys(stringValue: "email")
+        static let serverUri = CodingKeys(stringValue: "serverUri")
+        static let apiKeyConfig = CodingKeys(stringValue: "apiKeyConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "projects",
+          "customQueries",
+          "email",
+          "serverUri",
+          "apiKeyConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .projects) {
+          self.projects = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .customQueries) {
+          self.customQueries = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+          self.email = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverUri) {
+          self.serverUri = value
+        }
+        self.apiKeyConfig = try container.decodeIfPresent(
+          ApiAuth.ApiKeyConfig.self, forKey: .apiKeyConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.projects, forKey: .projects)
+        try container.encode(self.customQueries, forKey: .customQueries)
+        try container.encode(self.email, forKey: .email)
+        try container.encode(self.serverUri, forKey: .serverUri)
+        try container.encodeIfPresent(self.apiKeyConfig, forKey: .apiKeyConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

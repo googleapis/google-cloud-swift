@@ -40,6 +40,8 @@ public struct NewFlexStartInstancesConfig: Codable, Equatable, GoogleCloudWKT._A
   /// Instances will be terminated at the end of this duration.
   public var maxDuration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NewFlexStartInstancesConfig`.
   public init() {}
 
@@ -54,6 +56,49 @@ public struct NewFlexStartInstancesConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let zone = CodingKeys(stringValue: "zone")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let maxDuration = CodingKeys(stringValue: "maxDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "zone",
+      "machineType",
+      "maxDuration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    self.maxDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxDuration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Oneof for the different logging activities in a pipeline.
   public var activity: OneOf_Activity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PipelineActivity`.
   public init() {}
 
@@ -51,21 +53,43 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case messageUid = "messageUid"
-    case attributes = "attributes"
-    case activityTime = "activityTime"
-    case messageReceived = "messageReceived"
-    case messageTransformed = "messageTransformed"
-    case messageConverted = "messageConverted"
-    case messageRequestDispatched = "messageRequestDispatched"
-    case messageResponseReceived = "messageResponseReceived"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let messageUid = CodingKeys(stringValue: "messageUid")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let activityTime = CodingKeys(stringValue: "activityTime")
+    static let messageReceived = CodingKeys(stringValue: "messageReceived")
+    static let messageTransformed = CodingKeys(stringValue: "messageTransformed")
+    static let messageConverted = CodingKeys(stringValue: "messageConverted")
+    static let messageRequestDispatched = CodingKeys(stringValue: "messageRequestDispatched")
+    static let messageResponseReceived = CodingKeys(stringValue: "messageResponseReceived")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "messageUid",
+      "attributes",
+      "activityTime",
+      "messageReceived",
+      "messageTransformed",
+      "messageConverted",
+      "messageRequestDispatched",
+      "messageResponseReceived",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.messageUid = try container.decode(Swift.String.self, forKey: .messageUid)
-    self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageUid) {
+      self.messageUid = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
     self.activityTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .activityTime)
 
@@ -105,13 +129,17 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try activityCheckAndSet(.messageResponseReceived(messageResponseReceived))
     }
     self.activity = activity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.messageUid, forKey: .messageUid)
     try container.encode(self.attributes, forKey: .attributes)
-    try container.encode(self.activityTime, forKey: .activityTime)
+    try container.encodeIfPresent(self.activityTime, forKey: .activityTime)
 
     if let choice = self.activity {
       switch choice {
@@ -126,6 +154,9 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .messageResponseReceived(let value):
         try container.encode(value, forKey: .messageResponseReceived)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -144,6 +175,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// message is malformed.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageReceived`.
     public init() {}
 
@@ -158,6 +191,50 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let inputPayloadFormat = CodingKeys(stringValue: "inputPayloadFormat")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "inputPayloadFormat",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      if let value = try container.decodeIfPresent(
+        PipelineActivity.PayloadFormat.self, forKey: .inputPayloadFormat)
+      {
+        self.inputPayloadFormat = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encode(self.inputPayloadFormat, forKey: .inputPayloadFormat)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -182,6 +259,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Error encountered when transforming a message.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageTransformed`.
     public init() {}
 
@@ -196,6 +275,42 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -228,6 +343,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Error encountered when converting a message.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageConverted`.
     public init() {}
 
@@ -242,6 +359,58 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let inputPayloadFormat = CodingKeys(stringValue: "inputPayloadFormat")
+      static let outputPayloadFormat = CodingKeys(stringValue: "outputPayloadFormat")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "inputPayloadFormat",
+        "outputPayloadFormat",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      if let value = try container.decodeIfPresent(
+        PipelineActivity.PayloadFormat.self, forKey: .inputPayloadFormat)
+      {
+        self.inputPayloadFormat = value
+      }
+      if let value = try container.decodeIfPresent(
+        PipelineActivity.PayloadFormat.self, forKey: .outputPayloadFormat)
+      {
+        self.outputPayloadFormat = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encode(self.inputPayloadFormat, forKey: .inputPayloadFormat)
+      try container.encode(self.outputPayloadFormat, forKey: .outputPayloadFormat)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -271,6 +440,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// destination.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageRequestDispatched`.
     public init() {}
 
@@ -285,6 +456,48 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let destination = CodingKeys(stringValue: "destination")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "destination",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
+        self.destination = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encode(self.destination, forKey: .destination)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -323,6 +536,8 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Status of the message response received.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MessageResponseReceived`.
     public init() {}
 
@@ -337,6 +552,61 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let details = CodingKeys(stringValue: "details")
+      static let retryStatus = CodingKeys(stringValue: "retryStatus")
+      static let retryTime = CodingKeys(stringValue: "retryTime")
+      static let httpResponseCode = CodingKeys(stringValue: "httpResponseCode")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "details",
+        "retryStatus",
+        "retryTime",
+        "httpResponseCode",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      if let value = try container.decodeIfPresent(
+        PipelineActivity.MessageResponseReceived.RetryStatus.self, forKey: .retryStatus)
+      {
+        self.retryStatus = value
+      }
+      self.retryTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .retryTime)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpResponseCode) {
+        self.httpResponseCode = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.details, forKey: .details)
+      try container.encode(self.retryStatus, forKey: .retryStatus)
+      try container.encodeIfPresent(self.retryTime, forKey: .retryTime)
+      try container.encode(self.httpResponseCode, forKey: .httpResponseCode)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enum to encode the retry decision for the message after the response is

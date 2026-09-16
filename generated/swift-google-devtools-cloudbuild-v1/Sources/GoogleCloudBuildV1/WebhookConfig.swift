@@ -29,6 +29,8 @@ public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Auth method specifies how the webhook authenticates with GCP.
   public var authMethod: OneOf_AuthMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WebhookConfig`.
   public init() {}
 
@@ -45,14 +47,26 @@ public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case secret = "secret"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let secret = CodingKeys(stringValue: "secret")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "secret",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decode(WebhookConfig.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(WebhookConfig.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var authMethod: OneOf_AuthMethod? = nil
     let authMethodCheckAndSet = {
@@ -68,6 +82,10 @@ public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try authMethodCheckAndSet(.secret(secret))
     }
     self.authMethod = authMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +97,9 @@ public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .secret(let value):
         try container.encode(value, forKey: .secret)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

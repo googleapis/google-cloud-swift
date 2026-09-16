@@ -134,6 +134,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Controls the configuration for the disk IO scheduler.
   public var diskIoScheduler: DiskIoScheduler? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LinuxNodeConfig`.
   public init() {}
 
@@ -150,6 +152,99 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sysctls = CodingKeys(stringValue: "sysctls")
+    static let cgroupMode = CodingKeys(stringValue: "cgroupMode")
+    static let hugepages = CodingKeys(stringValue: "hugepages")
+    static let transparentHugepageEnabled = CodingKeys(stringValue: "transparentHugepageEnabled")
+    static let transparentHugepageDefrag = CodingKeys(stringValue: "transparentHugepageDefrag")
+    static let customNodeInit = CodingKeys(stringValue: "customNodeInit")
+    static let swapConfig = CodingKeys(stringValue: "swapConfig")
+    static let nodeKernelModuleLoading = CodingKeys(stringValue: "nodeKernelModuleLoading")
+    static let accurateTimeConfig = CodingKeys(stringValue: "accurateTimeConfig")
+    static let nodeVfioConfig = CodingKeys(stringValue: "nodeVfioConfig")
+    static let diskIoScheduler = CodingKeys(stringValue: "diskIoScheduler")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sysctls",
+      "cgroupMode",
+      "hugepages",
+      "transparentHugepageEnabled",
+      "transparentHugepageDefrag",
+      "customNodeInit",
+      "swapConfig",
+      "nodeKernelModuleLoading",
+      "accurateTimeConfig",
+      "nodeVfioConfig",
+      "diskIoScheduler",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .sysctls)
+    {
+      self.sysctls = value
+    }
+    if let value = try container.decodeIfPresent(
+      LinuxNodeConfig.CgroupMode.self, forKey: .cgroupMode)
+    {
+      self.cgroupMode = value
+    }
+    self.hugepages = try container.decodeIfPresent(
+      LinuxNodeConfig.HugepagesConfig.self, forKey: .hugepages)
+    if let value = try container.decodeIfPresent(
+      LinuxNodeConfig.TransparentHugepageEnabled.self, forKey: .transparentHugepageEnabled)
+    {
+      self.transparentHugepageEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      LinuxNodeConfig.TransparentHugepageDefrag.self, forKey: .transparentHugepageDefrag)
+    {
+      self.transparentHugepageDefrag = value
+    }
+    self.customNodeInit = try container.decodeIfPresent(
+      LinuxNodeConfig.CustomNodeInit.self, forKey: .customNodeInit)
+    self.swapConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.SwapConfig.self, forKey: .swapConfig)
+    self.nodeKernelModuleLoading = try container.decodeIfPresent(
+      LinuxNodeConfig.NodeKernelModuleLoading.self, forKey: .nodeKernelModuleLoading)
+    self.accurateTimeConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.AccurateTimeConfig.self, forKey: .accurateTimeConfig)
+    self.nodeVfioConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.NodeVfioConfig.self, forKey: .nodeVfioConfig)
+    self.diskIoScheduler = try container.decodeIfPresent(
+      DiskIoScheduler.self, forKey: .diskIoScheduler)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sysctls, forKey: .sysctls)
+    try container.encode(self.cgroupMode, forKey: .cgroupMode)
+    try container.encodeIfPresent(self.hugepages, forKey: .hugepages)
+    try container.encode(self.transparentHugepageEnabled, forKey: .transparentHugepageEnabled)
+    try container.encode(self.transparentHugepageDefrag, forKey: .transparentHugepageDefrag)
+    try container.encodeIfPresent(self.customNodeInit, forKey: .customNodeInit)
+    try container.encodeIfPresent(self.swapConfig, forKey: .swapConfig)
+    try container.encodeIfPresent(self.nodeKernelModuleLoading, forKey: .nodeKernelModuleLoading)
+    try container.encodeIfPresent(self.accurateTimeConfig, forKey: .accurateTimeConfig)
+    try container.encodeIfPresent(self.nodeVfioConfig, forKey: .nodeVfioConfig)
+    try container.encodeIfPresent(self.diskIoScheduler, forKey: .diskIoScheduler)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Hugepages amount in both 2m and 1g size
   public struct HugepagesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -159,6 +254,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. Amount of 1G hugepages
     public var hugepageSize1G: Swift.Int32? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `HugepagesConfig`.
     public init() {}
@@ -176,21 +273,38 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case hugepageSize2M = "hugepageSize2m"
-      case hugepageSize1G = "hugepageSize1g"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hugepageSize2M = CodingKeys(stringValue: "hugepageSize2m")
+      static let hugepageSize1G = CodingKeys(stringValue: "hugepageSize1g")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hugepageSize2m",
+        "hugepageSize1g",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hugepageSize2M = try container.decodeIfPresent(Swift.Int32.self, forKey: .hugepageSize2M)
       self.hugepageSize1G = try container.decodeIfPresent(Swift.Int32.self, forKey: .hugepageSize1G)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.hugepageSize2M, forKey: .hugepageSize2M)
-      try container.encode(self.hugepageSize1G, forKey: .hugepageSize1G)
+      try container.encodeIfPresent(self.hugepageSize2M, forKey: .hugepageSize2M)
+      try container.encodeIfPresent(self.hugepageSize1G, forKey: .hugepageSize1G)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -211,6 +325,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The init script to be executed on the node.
     public var initScript: LinuxNodeConfig.CustomNodeInit.InitScript? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomNodeInit`.
     public init() {}
 
@@ -225,6 +341,37 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let initScript = CodingKeys(stringValue: "initScript")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "initScript"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.initScript = try container.decodeIfPresent(
+        LinuxNodeConfig.CustomNodeInit.InitScript.self, forKey: .initScript)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.initScript, forKey: .initScript)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// InitScript provide a simply bash script to be executed on the node.
@@ -260,6 +407,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// User can't configure both gcp_secret_manager_secret_uri and gcs_uri.
       public var gcpSecretManagerSecretUri: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InitScript`.
       public init() {}
 
@@ -274,6 +423,58 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let gcsUri = CodingKeys(stringValue: "gcsUri")
+        static let gcsGeneration = CodingKeys(stringValue: "gcsGeneration")
+        static let args = CodingKeys(stringValue: "args")
+        static let gcpSecretManagerSecretUri = CodingKeys(stringValue: "gcpSecretManagerSecretUri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "gcsUri",
+          "gcsGeneration",
+          "args",
+          "gcpSecretManagerSecretUri",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsUri) {
+          self.gcsUri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .gcsGeneration) {
+          self.gcsGeneration = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+          self.args = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .gcpSecretManagerSecretUri)
+        {
+          self.gcpSecretManagerSecretUri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.gcsUri, forKey: .gcsUri)
+        try container.encode(self.gcsGeneration, forKey: .gcsGeneration)
+        try container.encode(self.args, forKey: .args)
+        try container.encode(self.gcpSecretManagerSecretUri, forKey: .gcpSecretManagerSecretUri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -312,6 +513,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// If omitted, defaults to the 'boot_disk_profile'.
     public var performanceProfile: OneOf_PerformanceProfile? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SwapConfig`.
     public init() {}
 
@@ -328,12 +531,25 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case enabled = "enabled"
-      case encryptionConfig = "encryptionConfig"
-      case bootDiskProfile = "bootDiskProfile"
-      case ephemeralLocalSsdProfile = "ephemeralLocalSsdProfile"
-      case dedicatedLocalSsdProfile = "dedicatedLocalSsdProfile"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+      static let bootDiskProfile = CodingKeys(stringValue: "bootDiskProfile")
+      static let ephemeralLocalSsdProfile = CodingKeys(stringValue: "ephemeralLocalSsdProfile")
+      static let dedicatedLocalSsdProfile = CodingKeys(stringValue: "dedicatedLocalSsdProfile")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "encryptionConfig",
+        "bootDiskProfile",
+        "ephemeralLocalSsdProfile",
+        "dedicatedLocalSsdProfile",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -368,12 +584,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try performanceProfileCheckAndSet(.dedicatedLocalSsdProfile(dedicatedLocalSsdProfile))
       }
       self.performanceProfile = performanceProfile
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.enabled, forKey: .enabled)
-      try container.encode(self.encryptionConfig, forKey: .encryptionConfig)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
 
       if let choice = self.performanceProfile {
         switch choice {
@@ -385,6 +605,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .dedicatedLocalSsdProfile)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines encryption settings for the swap space.
@@ -394,6 +617,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. If true, swap space will not be encrypted.
       /// Defaults to false (encrypted).
       public var disabled: Swift.Bool? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `EncryptionConfig`.
       public init() {}
@@ -409,6 +634,36 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let disabled = CodingKeys(stringValue: "disabled")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "disabled"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.disabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.disabled, forKey: .disabled)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -430,6 +685,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// determines an optimal size based on node memory.
       public var swapSize: OneOf_SwapSize? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BootDiskProfile`.
       public init() {}
 
@@ -446,9 +703,19 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case swapSizeGib = "swapSizeGib"
-        case swapSizePercent = "swapSizePercent"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let swapSizeGib = CodingKeys(stringValue: "swapSizeGib")
+        static let swapSizePercent = CodingKeys(stringValue: "swapSizePercent")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "swapSizeGib",
+          "swapSizePercent",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -473,6 +740,10 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try swapSizeCheckAndSet(.swapSizePercent(swapSizePercent))
         }
         self.swapSize = swapSize
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -485,6 +756,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           case .swapSizePercent(let value):
             try container.encode(value, forKey: .swapSizePercent)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -516,6 +790,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Specifies the size of the swap space to be provisioned.
       public var swapSize: OneOf_SwapSize? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `EphemeralLocalSsdProfile`.
       public init() {}
 
@@ -532,9 +808,19 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case swapSizeGib = "swapSizeGib"
-        case swapSizePercent = "swapSizePercent"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let swapSizeGib = CodingKeys(stringValue: "swapSizeGib")
+        static let swapSizePercent = CodingKeys(stringValue: "swapSizePercent")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "swapSizeGib",
+          "swapSizePercent",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -559,6 +845,10 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try swapSizeCheckAndSet(.swapSizePercent(swapSizePercent))
         }
         self.swapSize = swapSize
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -571,6 +861,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           case .swapSizePercent(let value):
             try container.encode(value, forKey: .swapSizePercent)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -602,6 +895,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The number of physical local NVMe SSD disks to attach.
       public var diskCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DedicatedLocalSsdProfile`.
       public init() {}
 
@@ -616,6 +911,38 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let diskCount = CodingKeys(stringValue: "diskCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "diskCount"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskCount) {
+          self.diskCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.diskCount, forKey: .diskCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -660,6 +987,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var policy: LinuxNodeConfig.NodeKernelModuleLoading.Policy = LinuxNodeConfig
       .NodeKernelModuleLoading.Policy()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeKernelModuleLoading`.
     public init() {}
 
@@ -674,6 +1003,40 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let policy = CodingKeys(stringValue: "policy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "policy"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        LinuxNodeConfig.NodeKernelModuleLoading.Policy.self, forKey: .policy)
+      {
+        self.policy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.policy, forKey: .policy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the kernel module loading policy for nodes in the node pool.
@@ -813,6 +1176,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Enables enhanced time synchronization using PTP-KVM.
     public var enablePtpKvmTimeSync: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccurateTimeConfig`.
     public init() {}
 
@@ -827,6 +1192,37 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enablePtpKvmTimeSync = CodingKeys(stringValue: "enablePtpKvmTimeSync")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enablePtpKvmTimeSync"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enablePtpKvmTimeSync = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePtpKvmTimeSync)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enablePtpKvmTimeSync, forKey: .enablePtpKvmTimeSync)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -856,6 +1252,8 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Supported values are integers between `65535` and `4194304`.
     public var dmaEntryLimit: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeVfioConfig`.
     public init() {}
 
@@ -870,6 +1268,36 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dmaEntryLimit = CodingKeys(stringValue: "dmaEntryLimit")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dmaEntryLimit"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.dmaEntryLimit = try container.decodeIfPresent(Swift.Int32.self, forKey: .dmaEntryLimit)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.dmaEntryLimit, forKey: .dmaEntryLimit)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

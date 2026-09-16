@@ -29,6 +29,8 @@
     /// The start of the range (inclusive) in signed long integer format.
     public var rangeStart: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Int64RangeMatch`.
     public init() {}
 
@@ -43,6 +45,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rangeEnd = CodingKeys(stringValue: "rangeEnd")
+      static let rangeStart = CodingKeys(stringValue: "rangeStart")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rangeEnd",
+        "rangeStart",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.rangeEnd = try container.decodeIfPresent(Swift.Int64.self, forKey: .rangeEnd)
+      self.rangeStart = try container.decodeIfPresent(Swift.Int64.self, forKey: .rangeStart)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.rangeEnd, forKey: .rangeEnd)
+      try container.encodeIfPresent(self.rangeStart, forKey: .rangeStart)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

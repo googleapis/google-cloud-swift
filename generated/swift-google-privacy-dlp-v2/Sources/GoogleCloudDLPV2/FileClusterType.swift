@@ -24,6 +24,8 @@ public struct FileClusterType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// File cluster type.
   public var fileClusterType: OneOf_FileClusterType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileClusterType`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct FileClusterType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cluster = "cluster"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cluster = CodingKeys(stringValue: "cluster")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cluster"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,6 +72,10 @@ public struct FileClusterType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try fileClusterTypeCheckAndSet(.cluster(cluster))
     }
     self.fileClusterType = fileClusterType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -71,6 +86,9 @@ public struct FileClusterType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .cluster(let value):
         try container.encode(value, forKey: .cluster)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

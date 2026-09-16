@@ -41,6 +41,8 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Parameters needed to obtain data for the chart.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeSeriesQuery`.
   public init() {}
 
@@ -57,19 +59,37 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case timeSeriesFilter = "timeSeriesFilter"
-    case timeSeriesFilterRatio = "timeSeriesFilterRatio"
-    case timeSeriesQueryLanguage = "timeSeriesQueryLanguage"
-    case prometheusQuery = "prometheusQuery"
-    case unitOverride = "unitOverride"
-    case outputFullDuration = "outputFullDuration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeSeriesFilter = CodingKeys(stringValue: "timeSeriesFilter")
+    static let timeSeriesFilterRatio = CodingKeys(stringValue: "timeSeriesFilterRatio")
+    static let timeSeriesQueryLanguage = CodingKeys(stringValue: "timeSeriesQueryLanguage")
+    static let prometheusQuery = CodingKeys(stringValue: "prometheusQuery")
+    static let unitOverride = CodingKeys(stringValue: "unitOverride")
+    static let outputFullDuration = CodingKeys(stringValue: "outputFullDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeSeriesFilter",
+      "timeSeriesFilterRatio",
+      "timeSeriesQueryLanguage",
+      "prometheusQuery",
+      "unitOverride",
+      "outputFullDuration",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.unitOverride = try container.decode(Swift.String.self, forKey: .unitOverride)
-    self.outputFullDuration = try container.decode(Swift.Bool.self, forKey: .outputFullDuration)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unitOverride) {
+      self.unitOverride = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .outputFullDuration) {
+      self.outputFullDuration = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -102,6 +122,10 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.prometheusQuery(prometheusQuery))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -120,6 +144,9 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .prometheusQuery(let value):
         try container.encode(value, forKey: .prometheusQuery)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

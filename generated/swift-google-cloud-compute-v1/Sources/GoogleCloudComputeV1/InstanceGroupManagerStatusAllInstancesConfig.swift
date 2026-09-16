@@ -30,6 +30,8 @@
     /// been applied to all managed instances in the group.
     public var effective: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerStatusAllInstancesConfig`.
     public init() {}
 
@@ -44,6 +46,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let currentRevision = CodingKeys(stringValue: "currentRevision")
+      static let effective = CodingKeys(stringValue: "effective")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "currentRevision",
+        "effective",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.currentRevision = try container.decodeIfPresent(
+        Swift.String.self, forKey: .currentRevision)
+      self.effective = try container.decodeIfPresent(Swift.Bool.self, forKey: .effective)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.currentRevision, forKey: .currentRevision)
+      try container.encodeIfPresent(self.effective, forKey: .effective)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

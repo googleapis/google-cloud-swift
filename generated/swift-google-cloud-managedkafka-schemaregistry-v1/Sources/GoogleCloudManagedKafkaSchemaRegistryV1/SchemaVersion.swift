@@ -39,6 +39,8 @@ public struct SchemaVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The schema references used by the schema.
   public var references: [Schema.SchemaReference] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchemaVersion`.
   public init() {}
 
@@ -55,23 +57,54 @@ public struct SchemaVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case subject = "subject"
-    case versionId = "version"
-    case schemaId = "id"
-    case schemaType = "schemaType"
-    case schemaPayload = "schema"
-    case references = "references"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subject = CodingKeys(stringValue: "subject")
+    static let versionId = CodingKeys(stringValue: "version")
+    static let schemaId = CodingKeys(stringValue: "id")
+    static let schemaType = CodingKeys(stringValue: "schemaType")
+    static let schemaPayload = CodingKeys(stringValue: "schema")
+    static let references = CodingKeys(stringValue: "references")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subject",
+      "version",
+      "id",
+      "schemaType",
+      "schema",
+      "references",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.subject = try container.decode(Swift.String.self, forKey: .subject)
-    self.versionId = try container.decode(Swift.Int32.self, forKey: .versionId)
-    self.schemaId = try container.decode(Swift.Int32.self, forKey: .schemaId)
-    self.schemaType = try container.decode(Schema.SchemaType.self, forKey: .schemaType)
-    self.schemaPayload = try container.decode(Swift.String.self, forKey: .schemaPayload)
-    self.references = try container.decode([Schema.SchemaReference].self, forKey: .references)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+      self.subject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .versionId) {
+      self.versionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .schemaId) {
+      self.schemaId = value
+    }
+    if let value = try container.decodeIfPresent(Schema.SchemaType.self, forKey: .schemaType) {
+      self.schemaType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaPayload) {
+      self.schemaPayload = value
+    }
+    if let value = try container.decodeIfPresent([Schema.SchemaReference].self, forKey: .references)
+    {
+      self.references = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +115,9 @@ public struct SchemaVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.schemaType, forKey: .schemaType)
     try container.encode(self.schemaPayload, forKey: .schemaPayload)
     try container.encode(self.references, forKey: .references)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

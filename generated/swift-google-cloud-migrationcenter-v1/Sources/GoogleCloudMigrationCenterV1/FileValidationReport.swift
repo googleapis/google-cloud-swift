@@ -34,6 +34,8 @@ public struct FileValidationReport: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// List of file level errors.
   public var fileErrors: [ImportError] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileValidationReport`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct FileValidationReport: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fileName = CodingKeys(stringValue: "fileName")
+    static let rowErrors = CodingKeys(stringValue: "rowErrors")
+    static let partialReport = CodingKeys(stringValue: "partialReport")
+    static let fileErrors = CodingKeys(stringValue: "fileErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fileName",
+      "rowErrors",
+      "partialReport",
+      "fileErrors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileName) {
+      self.fileName = value
+    }
+    if let value = try container.decodeIfPresent([ImportRowError].self, forKey: .rowErrors) {
+      self.rowErrors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .partialReport) {
+      self.partialReport = value
+    }
+    if let value = try container.decodeIfPresent([ImportError].self, forKey: .fileErrors) {
+      self.fileErrors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.fileName, forKey: .fileName)
+    try container.encode(self.rowErrors, forKey: .rowErrors)
+    try container.encode(self.partialReport, forKey: .partialReport)
+    try container.encode(self.fileErrors, forKey: .fileErrors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

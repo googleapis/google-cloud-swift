@@ -49,6 +49,8 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// gcpServiceAccount.
   public var gcpServiceAccountEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitConfig`.
   public init() {}
 
@@ -63,6 +65,81 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let syncRepo = CodingKeys(stringValue: "syncRepo")
+    static let syncBranch = CodingKeys(stringValue: "syncBranch")
+    static let policyDir = CodingKeys(stringValue: "policyDir")
+    static let syncWaitSecs = CodingKeys(stringValue: "syncWaitSecs")
+    static let syncRev = CodingKeys(stringValue: "syncRev")
+    static let secretType = CodingKeys(stringValue: "secretType")
+    static let httpsProxy = CodingKeys(stringValue: "httpsProxy")
+    static let gcpServiceAccountEmail = CodingKeys(stringValue: "gcpServiceAccountEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "syncRepo",
+      "syncBranch",
+      "policyDir",
+      "syncWaitSecs",
+      "syncRev",
+      "secretType",
+      "httpsProxy",
+      "gcpServiceAccountEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .syncRepo) {
+      self.syncRepo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .syncBranch) {
+      self.syncBranch = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policyDir) {
+      self.policyDir = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .syncWaitSecs) {
+      self.syncWaitSecs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .syncRev) {
+      self.syncRev = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretType) {
+      self.secretType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .httpsProxy) {
+      self.httpsProxy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpServiceAccountEmail)
+    {
+      self.gcpServiceAccountEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.syncRepo, forKey: .syncRepo)
+    try container.encode(self.syncBranch, forKey: .syncBranch)
+    try container.encode(self.policyDir, forKey: .policyDir)
+    try container.encode(self.syncWaitSecs, forKey: .syncWaitSecs)
+    try container.encode(self.syncRev, forKey: .syncRev)
+    try container.encode(self.secretType, forKey: .secretType)
+    try container.encode(self.httpsProxy, forKey: .httpsProxy)
+    try container.encode(self.gcpServiceAccountEmail, forKey: .gcpServiceAccountEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

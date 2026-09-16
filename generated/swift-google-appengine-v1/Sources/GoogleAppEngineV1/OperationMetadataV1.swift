@@ -62,6 +62,8 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// @OutputOnly
   public var methodMetadata: OneOf_MethodMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadataV1`.
   public init() {}
 
@@ -78,27 +80,53 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case method = "method"
-    case insertTime = "insertTime"
-    case endTime = "endTime"
-    case user = "user"
-    case target = "target"
-    case ephemeralMessage = "ephemeralMessage"
-    case warning = "warning"
-    case createVersionMetadata = "createVersionMetadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let method = CodingKeys(stringValue: "method")
+    static let insertTime = CodingKeys(stringValue: "insertTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let user = CodingKeys(stringValue: "user")
+    static let target = CodingKeys(stringValue: "target")
+    static let ephemeralMessage = CodingKeys(stringValue: "ephemeralMessage")
+    static let warning = CodingKeys(stringValue: "warning")
+    static let createVersionMetadata = CodingKeys(stringValue: "createVersionMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "method",
+      "insertTime",
+      "endTime",
+      "user",
+      "target",
+      "ephemeralMessage",
+      "warning",
+      "createVersionMetadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.method = try container.decode(Swift.String.self, forKey: .method)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .method) {
+      self.method = value
+    }
     self.insertTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .insertTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.user = try container.decode(Swift.String.self, forKey: .user)
-    self.target = try container.decode(Swift.String.self, forKey: .target)
-    self.ephemeralMessage = try container.decode(Swift.String.self, forKey: .ephemeralMessage)
-    self.warning = try container.decode([Swift.String].self, forKey: .warning)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+      self.user = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ephemeralMessage) {
+      self.ephemeralMessage = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .warning) {
+      self.warning = value
+    }
 
     var methodMetadata: OneOf_MethodMetadata? = nil
     let methodMetadataCheckAndSet = {
@@ -116,13 +144,17 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try methodMetadataCheckAndSet(.createVersionMetadata(createVersionMetadata))
     }
     self.methodMetadata = methodMetadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.method, forKey: .method)
-    try container.encode(self.insertTime, forKey: .insertTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.insertTime, forKey: .insertTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.user, forKey: .user)
     try container.encode(self.target, forKey: .target)
     try container.encode(self.ephemeralMessage, forKey: .ephemeralMessage)
@@ -133,6 +165,9 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .createVersionMetadata(let value):
         try container.encode(value, forKey: .createVersionMetadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

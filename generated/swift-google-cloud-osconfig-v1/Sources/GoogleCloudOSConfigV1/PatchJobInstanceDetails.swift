@@ -40,6 +40,8 @@ public struct PatchJobInstanceDetails: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The number of times the agent that the agent attempts to apply the patch.
   public var attemptCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchJobInstanceDetails`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct PatchJobInstanceDetails: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let instanceSystemId = CodingKeys(stringValue: "instanceSystemId")
+    static let state = CodingKeys(stringValue: "state")
+    static let failureReason = CodingKeys(stringValue: "failureReason")
+    static let attemptCount = CodingKeys(stringValue: "attemptCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "instanceSystemId",
+      "state",
+      "failureReason",
+      "attemptCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceSystemId) {
+      self.instanceSystemId = value
+    }
+    if let value = try container.decodeIfPresent(Instance.PatchState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureReason) {
+      self.failureReason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .attemptCount) {
+      self.attemptCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.instanceSystemId, forKey: .instanceSystemId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.failureReason, forKey: .failureReason)
+    try container.encode(self.attemptCount, forKey: .attemptCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

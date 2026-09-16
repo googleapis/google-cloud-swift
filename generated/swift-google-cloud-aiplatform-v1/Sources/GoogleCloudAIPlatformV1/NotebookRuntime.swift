@@ -142,6 +142,8 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NotebookRuntime`.
     public init() {}
 
@@ -156,6 +158,188 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let runtimeUser = CodingKeys(stringValue: "runtimeUser")
+      static let notebookRuntimeTemplateRef = CodingKeys(stringValue: "notebookRuntimeTemplateRef")
+      static let proxyUri = CodingKeys(stringValue: "proxyUri")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let healthState = CodingKeys(stringValue: "healthState")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let runtimeState = CodingKeys(stringValue: "runtimeState")
+      static let isUpgradable = CodingKeys(stringValue: "isUpgradable")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let expirationTime = CodingKeys(stringValue: "expirationTime")
+      static let version = CodingKeys(stringValue: "version")
+      static let notebookRuntimeType = CodingKeys(stringValue: "notebookRuntimeType")
+      static let machineSpec = CodingKeys(stringValue: "machineSpec")
+      static let dataPersistentDiskSpec = CodingKeys(stringValue: "dataPersistentDiskSpec")
+      static let networkSpec = CodingKeys(stringValue: "networkSpec")
+      static let idleShutdownConfig = CodingKeys(stringValue: "idleShutdownConfig")
+      static let eucConfig = CodingKeys(stringValue: "eucConfig")
+      static let shieldedVmConfig = CodingKeys(stringValue: "shieldedVmConfig")
+      static let networkTags = CodingKeys(stringValue: "networkTags")
+      static let softwareConfig = CodingKeys(stringValue: "softwareConfig")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "runtimeUser",
+        "notebookRuntimeTemplateRef",
+        "proxyUri",
+        "createTime",
+        "updateTime",
+        "healthState",
+        "displayName",
+        "description",
+        "serviceAccount",
+        "runtimeState",
+        "isUpgradable",
+        "labels",
+        "expirationTime",
+        "version",
+        "notebookRuntimeType",
+        "machineSpec",
+        "dataPersistentDiskSpec",
+        "networkSpec",
+        "idleShutdownConfig",
+        "eucConfig",
+        "shieldedVmConfig",
+        "networkTags",
+        "softwareConfig",
+        "encryptionSpec",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtimeUser) {
+        self.runtimeUser = value
+      }
+      self.notebookRuntimeTemplateRef = try container.decodeIfPresent(
+        NotebookRuntimeTemplateRef.self, forKey: .notebookRuntimeTemplateRef)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .proxyUri) {
+        self.proxyUri = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        NotebookRuntime.HealthState.self, forKey: .healthState)
+      {
+        self.healthState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(
+        NotebookRuntime.RuntimeState.self, forKey: .runtimeState)
+      {
+        self.runtimeState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isUpgradable) {
+        self.isUpgradable = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.expirationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      if let value = try container.decodeIfPresent(
+        NotebookRuntimeType.self, forKey: .notebookRuntimeType)
+      {
+        self.notebookRuntimeType = value
+      }
+      self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
+      self.dataPersistentDiskSpec = try container.decodeIfPresent(
+        PersistentDiskSpec.self, forKey: .dataPersistentDiskSpec)
+      self.networkSpec = try container.decodeIfPresent(NetworkSpec.self, forKey: .networkSpec)
+      self.idleShutdownConfig = try container.decodeIfPresent(
+        NotebookIdleShutdownConfig.self, forKey: .idleShutdownConfig)
+      self.eucConfig = try container.decodeIfPresent(NotebookEucConfig.self, forKey: .eucConfig)
+      self.shieldedVmConfig = try container.decodeIfPresent(
+        ShieldedVmConfig.self, forKey: .shieldedVmConfig)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+        self.networkTags = value
+      }
+      self.softwareConfig = try container.decodeIfPresent(
+        NotebookSoftwareConfig.self, forKey: .softwareConfig)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.runtimeUser, forKey: .runtimeUser)
+      try container.encodeIfPresent(
+        self.notebookRuntimeTemplateRef, forKey: .notebookRuntimeTemplateRef)
+      try container.encode(self.proxyUri, forKey: .proxyUri)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.healthState, forKey: .healthState)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encode(self.runtimeState, forKey: .runtimeState)
+      try container.encode(self.isUpgradable, forKey: .isUpgradable)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+      try container.encode(self.version, forKey: .version)
+      try container.encode(self.notebookRuntimeType, forKey: .notebookRuntimeType)
+      try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
+      try container.encodeIfPresent(self.dataPersistentDiskSpec, forKey: .dataPersistentDiskSpec)
+      try container.encodeIfPresent(self.networkSpec, forKey: .networkSpec)
+      try container.encodeIfPresent(self.idleShutdownConfig, forKey: .idleShutdownConfig)
+      try container.encodeIfPresent(self.eucConfig, forKey: .eucConfig)
+      try container.encodeIfPresent(self.shieldedVmConfig, forKey: .shieldedVmConfig)
+      try container.encode(self.networkTags, forKey: .networkTags)
+      try container.encodeIfPresent(self.softwareConfig, forKey: .softwareConfig)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The substate of the NotebookRuntime to display health information.

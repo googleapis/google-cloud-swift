@@ -37,6 +37,8 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// cluster that is in use for the data underlying this table.
   public var kmsKeyVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptionInfo`.
   public init() {}
 
@@ -51,6 +53,51 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let encryptionType = CodingKeys(stringValue: "encryptionType")
+    static let encryptionStatus = CodingKeys(stringValue: "encryptionStatus")
+    static let kmsKeyVersion = CodingKeys(stringValue: "kmsKeyVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "encryptionType",
+      "encryptionStatus",
+      "kmsKeyVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      EncryptionInfo.EncryptionType.self, forKey: .encryptionType)
+    {
+      self.encryptionType = value
+    }
+    self.encryptionStatus = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .encryptionStatus)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersion) {
+      self.kmsKeyVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.encryptionType, forKey: .encryptionType)
+    try container.encodeIfPresent(self.encryptionStatus, forKey: .encryptionStatus)
+    try container.encode(self.kmsKeyVersion, forKey: .kmsKeyVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible encryption types for a resource.

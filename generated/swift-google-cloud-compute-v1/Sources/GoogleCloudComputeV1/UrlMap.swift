@@ -201,6 +201,8 @@
     /// has validateForProxyless field set to true.
     public var tests: [UrlMapTest] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UrlMap`.
     public init() {}
 
@@ -217,23 +219,48 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case defaultCustomErrorResponsePolicy = "defaultCustomErrorResponsePolicy"
-      case defaultRouteAction = "defaultRouteAction"
-      case defaultService = "defaultService"
-      case defaultUrlRedirect = "defaultUrlRedirect"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case headerAction = "headerAction"
-      case hostRules = "hostRules"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case pathMatchers = "pathMatchers"
-      case region = "region"
-      case selfLink = "selfLink"
-      case tests = "tests"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let defaultCustomErrorResponsePolicy = CodingKeys(
+        stringValue: "defaultCustomErrorResponsePolicy")
+      static let defaultRouteAction = CodingKeys(stringValue: "defaultRouteAction")
+      static let defaultService = CodingKeys(stringValue: "defaultService")
+      static let defaultUrlRedirect = CodingKeys(stringValue: "defaultUrlRedirect")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let headerAction = CodingKeys(stringValue: "headerAction")
+      static let hostRules = CodingKeys(stringValue: "hostRules")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let pathMatchers = CodingKeys(stringValue: "pathMatchers")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let tests = CodingKeys(stringValue: "tests")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "defaultCustomErrorResponsePolicy",
+        "defaultRouteAction",
+        "defaultService",
+        "defaultUrlRedirect",
+        "description",
+        "fingerprint",
+        "headerAction",
+        "hostRules",
+        "id",
+        "kind",
+        "name",
+        "pathMatchers",
+        "region",
+        "selfLink",
+        "tests",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -260,39 +287,52 @@
       }
       self.headerAction = try container.decodeIfPresent(
         HttpHeaderAction.self, forKey: .headerAction)
-      self.hostRules = try container.decode([HostRule].self, forKey: .hostRules)
+      if let value = try container.decodeIfPresent([HostRule].self, forKey: .hostRules) {
+        self.hostRules = value
+      }
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.pathMatchers = try container.decode([PathMatcher].self, forKey: .pathMatchers)
+      if let value = try container.decodeIfPresent([PathMatcher].self, forKey: .pathMatchers) {
+        self.pathMatchers = value
+      }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.tests = try container.decode([UrlMapTest].self, forKey: .tests)
+      if let value = try container.decodeIfPresent([UrlMapTest].self, forKey: .tests) {
+        self.tests = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(
         self.defaultCustomErrorResponsePolicy, forKey: .defaultCustomErrorResponsePolicy)
-      try container.encode(self.defaultRouteAction, forKey: .defaultRouteAction)
-      try container.encode(self.defaultService, forKey: .defaultService)
-      try container.encode(self.defaultUrlRedirect, forKey: .defaultUrlRedirect)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.defaultRouteAction, forKey: .defaultRouteAction)
+      try container.encodeIfPresent(self.defaultService, forKey: .defaultService)
+      try container.encodeIfPresent(self.defaultUrlRedirect, forKey: .defaultUrlRedirect)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.headerAction, forKey: .headerAction)
+      try container.encodeIfPresent(self.headerAction, forKey: .headerAction)
       try container.encode(self.hostRules, forKey: .hostRules)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.pathMatchers, forKey: .pathMatchers)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encode(self.tests, forKey: .tests)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

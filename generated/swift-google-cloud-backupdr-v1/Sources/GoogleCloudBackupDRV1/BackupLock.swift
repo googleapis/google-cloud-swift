@@ -29,6 +29,8 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Metadata about the owner and reason for the lock.
   public var clientLockInfo: OneOf_ClientLockInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupLock`.
   public init() {}
 
@@ -45,10 +47,21 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case lockUntilTime = "lockUntilTime"
-    case backupApplianceLockInfo = "backupApplianceLockInfo"
-    case serviceLockInfo = "serviceLockInfo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lockUntilTime = CodingKeys(stringValue: "lockUntilTime")
+    static let backupApplianceLockInfo = CodingKeys(stringValue: "backupApplianceLockInfo")
+    static let serviceLockInfo = CodingKeys(stringValue: "serviceLockInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lockUntilTime",
+      "backupApplianceLockInfo",
+      "serviceLockInfo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -77,11 +90,15 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try clientLockInfoCheckAndSet(.serviceLockInfo(serviceLockInfo))
     }
     self.clientLockInfo = clientLockInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.lockUntilTime, forKey: .lockUntilTime)
+    try container.encodeIfPresent(self.lockUntilTime, forKey: .lockUntilTime)
 
     if let choice = self.clientLockInfo {
       switch choice {
@@ -90,6 +107,9 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .serviceLockInfo(let value):
         try container.encode(value, forKey: .serviceLockInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

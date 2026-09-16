@@ -107,6 +107,8 @@ public struct CreateCertificateRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// [google.cloud.security.privateca.v1.CreateCertificateRequest.parent]: <doc:CreateCertificateRequest/parent>
   public var issuingCertificateAuthorityId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateCertificateRequest`.
   public init() {}
 
@@ -121,6 +123,69 @@ public struct CreateCertificateRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let certificateId = CodingKeys(stringValue: "certificateId")
+    static let certificate = CodingKeys(stringValue: "certificate")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let issuingCertificateAuthorityId = CodingKeys(
+      stringValue: "issuingCertificateAuthorityId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "certificateId",
+      "certificate",
+      "requestId",
+      "validateOnly",
+      "issuingCertificateAuthorityId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificateId) {
+      self.certificateId = value
+    }
+    self.certificate = try container.decodeIfPresent(Certificate.self, forKey: .certificate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .issuingCertificateAuthorityId)
+    {
+      self.issuingCertificateAuthorityId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.certificateId, forKey: .certificateId)
+    try container.encodeIfPresent(self.certificate, forKey: .certificate)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.issuingCertificateAuthorityId, forKey: .issuingCertificateAuthorityId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

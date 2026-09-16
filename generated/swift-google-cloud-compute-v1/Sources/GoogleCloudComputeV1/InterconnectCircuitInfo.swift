@@ -33,6 +33,8 @@
     /// provided by Google to the customer in the LOA.
     public var googleDemarcId: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectCircuitInfo`.
     public init() {}
 
@@ -47,6 +49,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customerDemarcId = CodingKeys(stringValue: "customerDemarcId")
+      static let googleCircuitId = CodingKeys(stringValue: "googleCircuitId")
+      static let googleDemarcId = CodingKeys(stringValue: "googleDemarcId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customerDemarcId",
+        "googleCircuitId",
+        "googleDemarcId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.customerDemarcId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .customerDemarcId)
+      self.googleCircuitId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .googleCircuitId)
+      self.googleDemarcId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .googleDemarcId)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.customerDemarcId, forKey: .customerDemarcId)
+      try container.encodeIfPresent(self.googleCircuitId, forKey: .googleCircuitId)
+      try container.encodeIfPresent(self.googleDemarcId, forKey: .googleDemarcId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

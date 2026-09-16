@@ -48,6 +48,8 @@ public struct RuntimeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Snapshot of current workload resource usage.
   public var currentUsage: UsageSnapshot? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeInfo`.
   public init() {}
 
@@ -62,6 +64,61 @@ public struct RuntimeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let endpoints = CodingKeys(stringValue: "endpoints")
+    static let outputUri = CodingKeys(stringValue: "outputUri")
+    static let diagnosticOutputUri = CodingKeys(stringValue: "diagnosticOutputUri")
+    static let approximateUsage = CodingKeys(stringValue: "approximateUsage")
+    static let currentUsage = CodingKeys(stringValue: "currentUsage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "endpoints",
+      "outputUri",
+      "diagnosticOutputUri",
+      "approximateUsage",
+      "currentUsage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .endpoints)
+    {
+      self.endpoints = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+      self.outputUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diagnosticOutputUri) {
+      self.diagnosticOutputUri = value
+    }
+    self.approximateUsage = try container.decodeIfPresent(
+      UsageMetrics.self, forKey: .approximateUsage)
+    self.currentUsage = try container.decodeIfPresent(UsageSnapshot.self, forKey: .currentUsage)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.endpoints, forKey: .endpoints)
+    try container.encode(self.outputUri, forKey: .outputUri)
+    try container.encode(self.diagnosticOutputUri, forKey: .diagnosticOutputUri)
+    try container.encodeIfPresent(self.approximateUsage, forKey: .approximateUsage)
+    try container.encodeIfPresent(self.currentUsage, forKey: .currentUsage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

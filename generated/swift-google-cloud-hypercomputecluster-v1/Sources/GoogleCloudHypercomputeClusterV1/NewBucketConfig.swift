@@ -37,6 +37,8 @@ public struct NewBucketConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Storage class of the bucket, which can be set automatically or explicitly.
   public var option: OneOf_Option? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NewBucketConfig`.
   public init() {}
 
@@ -53,16 +55,30 @@ public struct NewBucketConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case autoclass = "autoclass"
-    case storageClass = "storageClass"
-    case bucket = "bucket"
-    case hierarchicalNamespace = "hierarchicalNamespace"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let autoclass = CodingKeys(stringValue: "autoclass")
+    static let storageClass = CodingKeys(stringValue: "storageClass")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let hierarchicalNamespace = CodingKeys(stringValue: "hierarchicalNamespace")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "autoclass",
+      "storageClass",
+      "bucket",
+      "hierarchicalNamespace",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
     self.hierarchicalNamespace = try container.decodeIfPresent(
       GcsHierarchicalNamespaceConfig.self, forKey: .hierarchicalNamespace)
 
@@ -85,12 +101,16 @@ public struct NewBucketConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionCheckAndSet(.storageClass(storageClass))
     }
     self.option = option
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucket, forKey: .bucket)
-    try container.encode(self.hierarchicalNamespace, forKey: .hierarchicalNamespace)
+    try container.encodeIfPresent(self.hierarchicalNamespace, forKey: .hierarchicalNamespace)
 
     if let choice = self.option {
       switch choice {
@@ -99,6 +119,9 @@ public struct NewBucketConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .storageClass(let value):
         try container.encode(value, forKey: .storageClass)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

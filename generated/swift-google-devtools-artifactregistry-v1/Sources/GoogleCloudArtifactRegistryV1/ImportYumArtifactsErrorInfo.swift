@@ -28,6 +28,8 @@ public struct ImportYumArtifactsErrorInfo: Codable, Equatable, GoogleCloudWKT._A
   /// The source that was not imported.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportYumArtifactsErrorInfo`.
   public init() {}
 
@@ -44,9 +46,19 @@ public struct ImportYumArtifactsErrorInfo: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsSource = "gcsSource"
-    case error = "error"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSource",
+      "error",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,17 +81,24 @@ public struct ImportYumArtifactsErrorInfo: Codable, Equatable, GoogleCloudWKT._A
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.source {
       switch choice {
       case .gcsSource(let value):
         try container.encode(value, forKey: .gcsSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

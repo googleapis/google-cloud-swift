@@ -35,6 +35,8 @@
     /// authentication errors occur.
     public var errorDetails: Connection.ErrorDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Connection`.
     public init() {}
 
@@ -51,6 +53,54 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let connectionId = CodingKeys(stringValue: "connectionId")
+      static let state = CodingKeys(stringValue: "state")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let errorDetails = CodingKeys(stringValue: "errorDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "connectionId",
+        "state",
+        "updateTime",
+        "errorDetails",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionId) {
+        self.connectionId = value
+      }
+      if let value = try container.decodeIfPresent(Connection.State.self, forKey: .state) {
+        self.state = value
+      }
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.errorDetails = try container.decodeIfPresent(
+        Connection.ErrorDetails.self, forKey: .errorDetails)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.connectionId, forKey: .connectionId)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.errorDetails, forKey: .errorDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The error details of Sip Trunk connection authentication.
     public struct ErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -60,6 +110,8 @@
 
       /// The error message provided from SIP trunking auth service
       public var errorMessage: Swift.String? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ErrorDetails`.
       public init() {}
@@ -75,6 +127,41 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let certificateState = CodingKeys(stringValue: "certificateState")
+        static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "certificateState",
+          "errorMessage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.certificateState = try container.decodeIfPresent(
+          Connection.CertificateState.self, forKey: .certificateState)
+        self.errorMessage = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.certificateState, forKey: .certificateState)
+        try container.encodeIfPresent(self.errorMessage, forKey: .errorMessage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

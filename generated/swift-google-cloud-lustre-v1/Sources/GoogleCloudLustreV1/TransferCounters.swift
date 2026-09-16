@@ -51,6 +51,8 @@ public struct TransferCounters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Bytes that are failed to write to the data destination.
   public var bytesFailedCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferCounters`.
   public init() {}
 
@@ -65,6 +67,80 @@ public struct TransferCounters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let foundObjectsCount = CodingKeys(stringValue: "foundObjectsCount")
+    static let bytesFoundCount = CodingKeys(stringValue: "bytesFoundCount")
+    static let objectsSkippedCount = CodingKeys(stringValue: "objectsSkippedCount")
+    static let bytesSkippedCount = CodingKeys(stringValue: "bytesSkippedCount")
+    static let objectsCopiedCount = CodingKeys(stringValue: "objectsCopiedCount")
+    static let bytesCopiedCount = CodingKeys(stringValue: "bytesCopiedCount")
+    static let objectsFailedCount = CodingKeys(stringValue: "objectsFailedCount")
+    static let bytesFailedCount = CodingKeys(stringValue: "bytesFailedCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "foundObjectsCount",
+      "bytesFoundCount",
+      "objectsSkippedCount",
+      "bytesSkippedCount",
+      "objectsCopiedCount",
+      "bytesCopiedCount",
+      "objectsFailedCount",
+      "bytesFailedCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .foundObjectsCount) {
+      self.foundObjectsCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesFoundCount) {
+      self.bytesFoundCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsSkippedCount) {
+      self.objectsSkippedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesSkippedCount) {
+      self.bytesSkippedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsCopiedCount) {
+      self.objectsCopiedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesCopiedCount) {
+      self.bytesCopiedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectsFailedCount) {
+      self.objectsFailedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesFailedCount) {
+      self.bytesFailedCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.foundObjectsCount, forKey: .foundObjectsCount)
+    try container.encode(self.bytesFoundCount, forKey: .bytesFoundCount)
+    try container.encode(self.objectsSkippedCount, forKey: .objectsSkippedCount)
+    try container.encode(self.bytesSkippedCount, forKey: .bytesSkippedCount)
+    try container.encode(self.objectsCopiedCount, forKey: .objectsCopiedCount)
+    try container.encode(self.bytesCopiedCount, forKey: .bytesCopiedCount)
+    try container.encode(self.objectsFailedCount, forKey: .objectsFailedCount)
+    try container.encode(self.bytesFailedCount, forKey: .bytesFailedCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

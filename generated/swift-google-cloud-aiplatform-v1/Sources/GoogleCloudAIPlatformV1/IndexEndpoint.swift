@@ -125,6 +125,8 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndexEndpoint`.
     public init() {}
 
@@ -139,6 +141,134 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let deployedIndexes = CodingKeys(stringValue: "deployedIndexes")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let network = CodingKeys(stringValue: "network")
+      static let enablePrivateServiceConnect = CodingKeys(
+        stringValue: "enablePrivateServiceConnect")
+      static let privateServiceConnectConfig = CodingKeys(
+        stringValue: "privateServiceConnectConfig")
+      static let publicEndpointEnabled = CodingKeys(stringValue: "publicEndpointEnabled")
+      static let publicEndpointDomainName = CodingKeys(stringValue: "publicEndpointDomainName")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "deployedIndexes",
+        "etag",
+        "labels",
+        "createTime",
+        "updateTime",
+        "network",
+        "enablePrivateServiceConnect",
+        "privateServiceConnectConfig",
+        "publicEndpointEnabled",
+        "publicEndpointDomainName",
+        "encryptionSpec",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent([DeployedIndex].self, forKey: .deployedIndexes) {
+        self.deployedIndexes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePrivateServiceConnect)
+      {
+        self.enablePrivateServiceConnect = value
+      }
+      self.privateServiceConnectConfig = try container.decodeIfPresent(
+        PrivateServiceConnectConfig.self, forKey: .privateServiceConnectConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .publicEndpointEnabled)
+      {
+        self.publicEndpointEnabled = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .publicEndpointDomainName)
+      {
+        self.publicEndpointDomainName = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.deployedIndexes, forKey: .deployedIndexes)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.enablePrivateServiceConnect, forKey: .enablePrivateServiceConnect)
+      try container.encodeIfPresent(
+        self.privateServiceConnectConfig, forKey: .privateServiceConnectConfig)
+      try container.encode(self.publicEndpointEnabled, forKey: .publicEndpointEnabled)
+      try container.encode(self.publicEndpointDomainName, forKey: .publicEndpointDomainName)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

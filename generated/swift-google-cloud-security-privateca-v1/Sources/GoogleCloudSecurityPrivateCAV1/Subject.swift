@@ -51,6 +51,8 @@ public struct Subject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field can be used in place of the named subject fields.
   public var rdnSequence: [RelativeDistinguishedName] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Subject`.
   public init() {}
 
@@ -65,6 +67,88 @@ public struct Subject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let commonName = CodingKeys(stringValue: "commonName")
+    static let countryCode = CodingKeys(stringValue: "countryCode")
+    static let organization = CodingKeys(stringValue: "organization")
+    static let organizationalUnit = CodingKeys(stringValue: "organizationalUnit")
+    static let locality = CodingKeys(stringValue: "locality")
+    static let province = CodingKeys(stringValue: "province")
+    static let streetAddress = CodingKeys(stringValue: "streetAddress")
+    static let postalCode = CodingKeys(stringValue: "postalCode")
+    static let rdnSequence = CodingKeys(stringValue: "rdnSequence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "commonName",
+      "countryCode",
+      "organization",
+      "organizationalUnit",
+      "locality",
+      "province",
+      "streetAddress",
+      "postalCode",
+      "rdnSequence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commonName) {
+      self.commonName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .countryCode) {
+      self.countryCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organizationalUnit) {
+      self.organizationalUnit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locality) {
+      self.locality = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .province) {
+      self.province = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .streetAddress) {
+      self.streetAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .postalCode) {
+      self.postalCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RelativeDistinguishedName].self, forKey: .rdnSequence)
+    {
+      self.rdnSequence = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.commonName, forKey: .commonName)
+    try container.encode(self.countryCode, forKey: .countryCode)
+    try container.encode(self.organization, forKey: .organization)
+    try container.encode(self.organizationalUnit, forKey: .organizationalUnit)
+    try container.encode(self.locality, forKey: .locality)
+    try container.encode(self.province, forKey: .province)
+    try container.encode(self.streetAddress, forKey: .streetAddress)
+    try container.encode(self.postalCode, forKey: .postalCode)
+    try container.encode(self.rdnSequence, forKey: .rdnSequence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

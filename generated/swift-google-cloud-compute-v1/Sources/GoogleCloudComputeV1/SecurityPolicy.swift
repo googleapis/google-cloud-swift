@@ -156,6 +156,8 @@
     ///    mask: "0x1fff"
     public var userDefinedFields: [SecurityPolicyUserDefinedField] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicy`.
     public init() {}
 
@@ -172,27 +174,55 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case adaptiveProtectionConfig = "adaptiveProtectionConfig"
-      case advancedOptionsConfig = "advancedOptionsConfig"
-      case associations = "associations"
-      case creationTimestamp = "creationTimestamp"
-      case ddosProtectionConfig = "ddosProtectionConfig"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case parent = "parent"
-      case recaptchaOptionsConfig = "recaptchaOptionsConfig"
-      case region = "region"
-      case rules = "rules"
-      case selfLink = "selfLink"
-      case shortName = "shortName"
-      case type = "type"
-      case userDefinedFields = "userDefinedFields"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adaptiveProtectionConfig = CodingKeys(stringValue: "adaptiveProtectionConfig")
+      static let advancedOptionsConfig = CodingKeys(stringValue: "advancedOptionsConfig")
+      static let associations = CodingKeys(stringValue: "associations")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let ddosProtectionConfig = CodingKeys(stringValue: "ddosProtectionConfig")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let recaptchaOptionsConfig = CodingKeys(stringValue: "recaptchaOptionsConfig")
+      static let region = CodingKeys(stringValue: "region")
+      static let rules = CodingKeys(stringValue: "rules")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let shortName = CodingKeys(stringValue: "shortName")
+      static let type = CodingKeys(stringValue: "type")
+      static let userDefinedFields = CodingKeys(stringValue: "userDefinedFields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adaptiveProtectionConfig",
+        "advancedOptionsConfig",
+        "associations",
+        "creationTimestamp",
+        "ddosProtectionConfig",
+        "description",
+        "fingerprint",
+        "id",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "parent",
+        "recaptchaOptionsConfig",
+        "region",
+        "rules",
+        "selfLink",
+        "shortName",
+        "type",
+        "userDefinedFields",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -201,8 +231,11 @@
         SecurityPolicyAdaptiveProtectionConfig.self, forKey: .adaptiveProtectionConfig)
       self.advancedOptionsConfig = try container.decodeIfPresent(
         SecurityPolicyAdvancedOptionsConfig.self, forKey: .advancedOptionsConfig)
-      self.associations = try container.decode(
+      if let value = try container.decodeIfPresent(
         [SecurityPolicyAssociation].self, forKey: .associations)
+      {
+        self.associations = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.ddosProtectionConfig = try container.decodeIfPresent(
@@ -228,50 +261,67 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.parent = try container.decodeIfPresent(Swift.String.self, forKey: .parent)
       self.recaptchaOptionsConfig = try container.decodeIfPresent(
         SecurityPolicyRecaptchaOptionsConfig.self, forKey: .recaptchaOptionsConfig)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
-      self.rules = try container.decode([SecurityPolicyRule].self, forKey: .rules)
+      if let value = try container.decodeIfPresent([SecurityPolicyRule].self, forKey: .rules) {
+        self.rules = value
+      }
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.shortName = try container.decodeIfPresent(Swift.String.self, forKey: .shortName)
       self.type = try container.decodeIfPresent(SecurityPolicy.Type_.self, forKey: .type)
-      self.userDefinedFields = try container.decode(
+      if let value = try container.decodeIfPresent(
         [SecurityPolicyUserDefinedField].self, forKey: .userDefinedFields)
+      {
+        self.userDefinedFields = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.adaptiveProtectionConfig, forKey: .adaptiveProtectionConfig)
-      try container.encode(self.advancedOptionsConfig, forKey: .advancedOptionsConfig)
+      try container.encodeIfPresent(
+        self.adaptiveProtectionConfig, forKey: .adaptiveProtectionConfig)
+      try container.encodeIfPresent(self.advancedOptionsConfig, forKey: .advancedOptionsConfig)
       try container.encode(self.associations, forKey: .associations)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.ddosProtectionConfig, forKey: .ddosProtectionConfig)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.ddosProtectionConfig, forKey: .ddosProtectionConfig)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.recaptchaOptionsConfig, forKey: .recaptchaOptionsConfig)
-      try container.encode(self.region, forKey: .region)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.recaptchaOptionsConfig, forKey: .recaptchaOptionsConfig)
+      try container.encodeIfPresent(self.region, forKey: .region)
       try container.encode(self.rules, forKey: .rules)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.shortName, forKey: .shortName)
-      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.shortName, forKey: .shortName)
+      try container.encodeIfPresent(self.type, forKey: .type)
       try container.encode(self.userDefinedFields, forKey: .userDefinedFields)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.SecurityPolicy.type] field.

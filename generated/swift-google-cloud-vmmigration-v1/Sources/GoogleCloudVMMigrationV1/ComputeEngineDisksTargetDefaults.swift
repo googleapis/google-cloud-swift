@@ -34,6 +34,8 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleCloudW
   /// Details of the VM to attach the disks to as the target of this migration.
   public var vmTarget: OneOf_VmTarget? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeEngineDisksTargetDefaults`.
   public init() {}
 
@@ -50,18 +52,35 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleCloudW
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case zone = "zone"
-    case disksTargetDefaults = "disksTargetDefaults"
-    case vmTargetDefaults = "vmTargetDefaults"
-    case targetProject = "targetProject"
-    case disks = "disks"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let zone = CodingKeys(stringValue: "zone")
+    static let disksTargetDefaults = CodingKeys(stringValue: "disksTargetDefaults")
+    static let vmTargetDefaults = CodingKeys(stringValue: "vmTargetDefaults")
+    static let targetProject = CodingKeys(stringValue: "targetProject")
+    static let disks = CodingKeys(stringValue: "disks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "zone",
+      "disksTargetDefaults",
+      "vmTargetDefaults",
+      "targetProject",
+      "disks",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.targetProject = try container.decode(Swift.String.self, forKey: .targetProject)
-    self.disks = try container.decode([PersistentDiskDefaults].self, forKey: .disks)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+      self.targetProject = value
+    }
+    if let value = try container.decodeIfPresent([PersistentDiskDefaults].self, forKey: .disks) {
+      self.disks = value
+    }
 
     var location: OneOf_Location? = nil
     let locationCheckAndSet = {
@@ -99,6 +118,10 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleCloudW
       try vmTargetCheckAndSet(.vmTargetDefaults(vmTargetDefaults))
     }
     self.vmTarget = vmTarget
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -120,6 +143,9 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleCloudW
       case .vmTargetDefaults(let value):
         try container.encode(value, forKey: .vmTargetDefaults)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

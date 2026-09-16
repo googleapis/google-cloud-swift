@@ -50,6 +50,8 @@ public struct DeleteDeploymentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   public var deletePolicy: DeleteDeploymentRequest.DeletePolicy =
     DeleteDeploymentRequest.DeletePolicy()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeleteDeploymentRequest`.
   public init() {}
 
@@ -64,6 +66,58 @@ public struct DeleteDeploymentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let force = CodingKeys(stringValue: "force")
+    static let deletePolicy = CodingKeys(stringValue: "deletePolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "requestId",
+      "force",
+      "deletePolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .force) {
+      self.force = value
+    }
+    if let value = try container.decodeIfPresent(
+      DeleteDeploymentRequest.DeletePolicy.self, forKey: .deletePolicy)
+    {
+      self.deletePolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.force, forKey: .force)
+    try container.encode(self.deletePolicy, forKey: .deletePolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Policy on how resources actuated by the deployment should be deleted.

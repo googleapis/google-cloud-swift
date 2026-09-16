@@ -29,6 +29,8 @@ public struct CloudDlpDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The resource hierarchy level at which the data profile was generated.
   public var parentType: CloudDlpDataProfile.ParentType = CloudDlpDataProfile.ParentType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudDlpDataProfile`.
   public init() {}
 
@@ -43,6 +45,46 @@ public struct CloudDlpDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataProfile = CodingKeys(stringValue: "dataProfile")
+    static let parentType = CodingKeys(stringValue: "parentType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataProfile",
+      "parentType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataProfile) {
+      self.dataProfile = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudDlpDataProfile.ParentType.self, forKey: .parentType)
+    {
+      self.parentType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dataProfile, forKey: .dataProfile)
+    try container.encode(self.parentType, forKey: .parentType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Parents for configurations that produce data profile findings.

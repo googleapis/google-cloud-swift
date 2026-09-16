@@ -29,6 +29,8 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Information associated with the specific experiment entity being recorded.
   public var experimentMetadata: OneOf_ExperimentMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExperimentInfo`.
   public init() {}
 
@@ -45,14 +47,26 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case servingConfigExperiment = "servingConfigExperiment"
-    case experiment = "experiment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let servingConfigExperiment = CodingKeys(stringValue: "servingConfigExperiment")
+    static let experiment = CodingKeys(stringValue: "experiment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "servingConfigExperiment",
+      "experiment",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.experiment = try container.decode(Swift.String.self, forKey: .experiment)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .experiment) {
+      self.experiment = value
+    }
 
     var experimentMetadata: OneOf_ExperimentMetadata? = nil
     let experimentMetadataCheckAndSet = {
@@ -70,6 +84,10 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try experimentMetadataCheckAndSet(.servingConfigExperiment(servingConfigExperiment))
     }
     self.experimentMetadata = experimentMetadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +99,9 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .servingConfigExperiment(let value):
         try container.encode(value, forKey: .servingConfigExperiment)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -102,6 +123,8 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `projects/*/locations/*/catalogs/*/servingConfigs/*`.
     public var experimentServingConfig: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServingConfigExperiment`.
     public init() {}
 
@@ -116,6 +139,48 @@ public struct ExperimentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let originalServingConfig = CodingKeys(stringValue: "originalServingConfig")
+      static let experimentServingConfig = CodingKeys(stringValue: "experimentServingConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "originalServingConfig",
+        "experimentServingConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .originalServingConfig)
+      {
+        self.originalServingConfig = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .experimentServingConfig)
+      {
+        self.experimentServingConfig = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.originalServingConfig, forKey: .originalServingConfig)
+      try container.encode(self.experimentServingConfig, forKey: .experimentServingConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

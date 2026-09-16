@@ -30,6 +30,8 @@ public struct StatusUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A comma-separated list of "features" that this device supports.
   public var features: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StatusUpdate`.
   public init() {}
 
@@ -44,6 +46,52 @@ public struct StatusUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let features = CodingKeys(stringValue: "features")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "properties",
+      "features",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(StatusUpdate.DeviceState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .features) {
+      self.features = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.properties, forKey: .properties)
+    try container.encode(self.features, forKey: .features)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state displayed with the ADB Device when running "adb devices"

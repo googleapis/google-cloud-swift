@@ -37,6 +37,8 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]: <doc:KeyUsage/ExtendedKeyUsageOptions>
   public var unknownExtendedKeyUsages: [ObjectId] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KeyUsage`.
   public init() {}
 
@@ -51,6 +53,49 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseKeyUsage = CodingKeys(stringValue: "baseKeyUsage")
+    static let extendedKeyUsage = CodingKeys(stringValue: "extendedKeyUsage")
+    static let unknownExtendedKeyUsages = CodingKeys(stringValue: "unknownExtendedKeyUsages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseKeyUsage",
+      "extendedKeyUsage",
+      "unknownExtendedKeyUsages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.baseKeyUsage = try container.decodeIfPresent(
+      KeyUsage.KeyUsageOptions.self, forKey: .baseKeyUsage)
+    self.extendedKeyUsage = try container.decodeIfPresent(
+      KeyUsage.ExtendedKeyUsageOptions.self, forKey: .extendedKeyUsage)
+    if let value = try container.decodeIfPresent([ObjectId].self, forKey: .unknownExtendedKeyUsages)
+    {
+      self.unknownExtendedKeyUsages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.baseKeyUsage, forKey: .baseKeyUsage)
+    try container.encodeIfPresent(self.extendedKeyUsage, forKey: .extendedKeyUsage)
+    try container.encode(self.unknownExtendedKeyUsages, forKey: .unknownExtendedKeyUsages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// [KeyUsage.KeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions]
@@ -89,6 +134,8 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The key may be used to decipher only.
     public var decipherOnly: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KeyUsageOptions`.
     public init() {}
 
@@ -103,6 +150,86 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let digitalSignature = CodingKeys(stringValue: "digitalSignature")
+      static let contentCommitment = CodingKeys(stringValue: "contentCommitment")
+      static let keyEncipherment = CodingKeys(stringValue: "keyEncipherment")
+      static let dataEncipherment = CodingKeys(stringValue: "dataEncipherment")
+      static let keyAgreement = CodingKeys(stringValue: "keyAgreement")
+      static let certSign = CodingKeys(stringValue: "certSign")
+      static let crlSign = CodingKeys(stringValue: "crlSign")
+      static let encipherOnly = CodingKeys(stringValue: "encipherOnly")
+      static let decipherOnly = CodingKeys(stringValue: "decipherOnly")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "digitalSignature",
+        "contentCommitment",
+        "keyEncipherment",
+        "dataEncipherment",
+        "keyAgreement",
+        "certSign",
+        "crlSign",
+        "encipherOnly",
+        "decipherOnly",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .digitalSignature) {
+        self.digitalSignature = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .contentCommitment) {
+        self.contentCommitment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .keyEncipherment) {
+        self.keyEncipherment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dataEncipherment) {
+        self.dataEncipherment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .keyAgreement) {
+        self.keyAgreement = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .certSign) {
+        self.certSign = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .crlSign) {
+        self.crlSign = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .encipherOnly) {
+        self.encipherOnly = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .decipherOnly) {
+        self.decipherOnly = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.digitalSignature, forKey: .digitalSignature)
+      try container.encode(self.contentCommitment, forKey: .contentCommitment)
+      try container.encode(self.keyEncipherment, forKey: .keyEncipherment)
+      try container.encode(self.dataEncipherment, forKey: .dataEncipherment)
+      try container.encode(self.keyAgreement, forKey: .keyAgreement)
+      try container.encode(self.certSign, forKey: .certSign)
+      try container.encode(self.crlSign, forKey: .crlSign)
+      try container.encode(self.encipherOnly, forKey: .encipherOnly)
+      try container.encode(self.decipherOnly, forKey: .decipherOnly)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -148,6 +275,8 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// OCSP responses".
     public var ocspSigning: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExtendedKeyUsageOptions`.
     public init() {}
 
@@ -162,6 +291,68 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let serverAuth = CodingKeys(stringValue: "serverAuth")
+      static let clientAuth = CodingKeys(stringValue: "clientAuth")
+      static let codeSigning = CodingKeys(stringValue: "codeSigning")
+      static let emailProtection = CodingKeys(stringValue: "emailProtection")
+      static let timeStamping = CodingKeys(stringValue: "timeStamping")
+      static let ocspSigning = CodingKeys(stringValue: "ocspSigning")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "serverAuth",
+        "clientAuth",
+        "codeSigning",
+        "emailProtection",
+        "timeStamping",
+        "ocspSigning",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .serverAuth) {
+        self.serverAuth = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clientAuth) {
+        self.clientAuth = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .codeSigning) {
+        self.codeSigning = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .emailProtection) {
+        self.emailProtection = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .timeStamping) {
+        self.timeStamping = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ocspSigning) {
+        self.ocspSigning = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.serverAuth, forKey: .serverAuth)
+      try container.encode(self.clientAuth, forKey: .clientAuth)
+      try container.encode(self.codeSigning, forKey: .codeSigning)
+      try container.encode(self.emailProtection, forKey: .emailProtection)
+      try container.encode(self.timeStamping, forKey: .timeStamping)
+      try container.encode(self.ocspSigning, forKey: .ocspSigning)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

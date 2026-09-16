@@ -148,6 +148,8 @@ public struct StoragePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `SCALE_TYPE_DEFAULT` if not specified.
   public var scaleType: ScaleType = ScaleType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StoragePool`.
   public init() {}
 
@@ -162,6 +164,233 @@ public struct StoragePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let serviceLevel = CodingKeys(stringValue: "serviceLevel")
+    static let capacityGib = CodingKeys(stringValue: "capacityGib")
+    static let volumeCapacityGib = CodingKeys(stringValue: "volumeCapacityGib")
+    static let volumeCount = CodingKeys(stringValue: "volumeCount")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let network = CodingKeys(stringValue: "network")
+    static let activeDirectory = CodingKeys(stringValue: "activeDirectory")
+    static let kmsConfig = CodingKeys(stringValue: "kmsConfig")
+    static let ldapEnabled = CodingKeys(stringValue: "ldapEnabled")
+    static let psaRange = CodingKeys(stringValue: "psaRange")
+    static let encryptionType = CodingKeys(stringValue: "encryptionType")
+    static let globalAccessAllowed = CodingKeys(stringValue: "globalAccessAllowed")
+    static let allowAutoTiering = CodingKeys(stringValue: "allowAutoTiering")
+    static let replicaZone = CodingKeys(stringValue: "replicaZone")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let customPerformanceEnabled = CodingKeys(stringValue: "customPerformanceEnabled")
+    static let totalThroughputMibps = CodingKeys(stringValue: "totalThroughputMibps")
+    static let totalIops = CodingKeys(stringValue: "totalIops")
+    static let hotTierSizeGib = CodingKeys(stringValue: "hotTierSizeGib")
+    static let enableHotTierAutoResize = CodingKeys(stringValue: "enableHotTierAutoResize")
+    static let qosType = CodingKeys(stringValue: "qosType")
+    static let availableThroughputMibps = CodingKeys(stringValue: "availableThroughputMibps")
+    static let coldTierSizeUsedGib = CodingKeys(stringValue: "coldTierSizeUsedGib")
+    static let hotTierSizeUsedGib = CodingKeys(stringValue: "hotTierSizeUsedGib")
+    static let type = CodingKeys(stringValue: "type")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let scaleType = CodingKeys(stringValue: "scaleType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "serviceLevel",
+      "capacityGib",
+      "volumeCapacityGib",
+      "volumeCount",
+      "state",
+      "stateDetails",
+      "createTime",
+      "description",
+      "labels",
+      "network",
+      "activeDirectory",
+      "kmsConfig",
+      "ldapEnabled",
+      "psaRange",
+      "encryptionType",
+      "globalAccessAllowed",
+      "allowAutoTiering",
+      "replicaZone",
+      "zone",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "customPerformanceEnabled",
+      "totalThroughputMibps",
+      "totalIops",
+      "hotTierSizeGib",
+      "enableHotTierAutoResize",
+      "qosType",
+      "availableThroughputMibps",
+      "coldTierSizeUsedGib",
+      "hotTierSizeUsedGib",
+      "type",
+      "mode",
+      "scaleType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(ServiceLevel.self, forKey: .serviceLevel) {
+      self.serviceLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityGib) {
+      self.capacityGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .volumeCapacityGib) {
+      self.volumeCapacityGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .volumeCount) {
+      self.volumeCount = value
+    }
+    if let value = try container.decodeIfPresent(StoragePool.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeDirectory) {
+      self.activeDirectory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsConfig) {
+      self.kmsConfig = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ldapEnabled) {
+      self.ldapEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .psaRange) {
+      self.psaRange = value
+    }
+    if let value = try container.decodeIfPresent(EncryptionType.self, forKey: .encryptionType) {
+      self.encryptionType = value
+    }
+    self.globalAccessAllowed = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .globalAccessAllowed)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAutoTiering) {
+      self.allowAutoTiering = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replicaZone) {
+      self.replicaZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .customPerformanceEnabled)
+    {
+      self.customPerformanceEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalThroughputMibps) {
+      self.totalThroughputMibps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalIops) {
+      self.totalIops = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .hotTierSizeGib) {
+      self.hotTierSizeGib = value
+    }
+    self.enableHotTierAutoResize = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableHotTierAutoResize)
+    if let value = try container.decodeIfPresent(QosType.self, forKey: .qosType) {
+      self.qosType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .availableThroughputMibps)
+    {
+      self.availableThroughputMibps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .coldTierSizeUsedGib) {
+      self.coldTierSizeUsedGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .hotTierSizeUsedGib) {
+      self.hotTierSizeUsedGib = value
+    }
+    self.type = try container.decodeIfPresent(StoragePoolType.self, forKey: .type)
+    self.mode = try container.decodeIfPresent(Mode.self, forKey: .mode)
+    if let value = try container.decodeIfPresent(ScaleType.self, forKey: .scaleType) {
+      self.scaleType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    try container.encode(self.capacityGib, forKey: .capacityGib)
+    try container.encode(self.volumeCapacityGib, forKey: .volumeCapacityGib)
+    try container.encode(self.volumeCount, forKey: .volumeCount)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.activeDirectory, forKey: .activeDirectory)
+    try container.encode(self.kmsConfig, forKey: .kmsConfig)
+    try container.encode(self.ldapEnabled, forKey: .ldapEnabled)
+    try container.encode(self.psaRange, forKey: .psaRange)
+    try container.encode(self.encryptionType, forKey: .encryptionType)
+    try container.encodeIfPresent(self.globalAccessAllowed, forKey: .globalAccessAllowed)
+    try container.encode(self.allowAutoTiering, forKey: .allowAutoTiering)
+    try container.encode(self.replicaZone, forKey: .replicaZone)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encode(self.customPerformanceEnabled, forKey: .customPerformanceEnabled)
+    try container.encode(self.totalThroughputMibps, forKey: .totalThroughputMibps)
+    try container.encode(self.totalIops, forKey: .totalIops)
+    try container.encode(self.hotTierSizeGib, forKey: .hotTierSizeGib)
+    try container.encodeIfPresent(self.enableHotTierAutoResize, forKey: .enableHotTierAutoResize)
+    try container.encode(self.qosType, forKey: .qosType)
+    try container.encode(self.availableThroughputMibps, forKey: .availableThroughputMibps)
+    try container.encode(self.coldTierSizeUsedGib, forKey: .coldTierSizeUsedGib)
+    try container.encode(self.hotTierSizeUsedGib, forKey: .hotTierSizeUsedGib)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encodeIfPresent(self.mode, forKey: .mode)
+    try container.encode(self.scaleType, forKey: .scaleType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Storage Pool States

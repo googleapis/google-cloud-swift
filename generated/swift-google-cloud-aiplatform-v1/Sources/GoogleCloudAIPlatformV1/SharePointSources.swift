@@ -25,6 +25,8 @@
     /// The SharePoint sources.
     public var sharePointSources: [SharePointSources.SharePointSource] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SharePointSources`.
     public init() {}
 
@@ -39,6 +41,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sharePointSources = CodingKeys(stringValue: "sharePointSources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sharePointSources"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [SharePointSources.SharePointSource].self, forKey: .sharePointSources)
+      {
+        self.sharePointSources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sharePointSources, forKey: .sharePointSources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// An individual SharePointSource.
@@ -69,6 +105,8 @@
       /// The SharePoint drive source.
       public var driveSource: OneOf_DriveSource? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SharePointSource`.
       public init() {}
 
@@ -85,27 +123,52 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case sharepointFolderPath = "sharepointFolderPath"
-        case sharepointFolderId = "sharepointFolderId"
-        case driveName = "driveName"
-        case driveId = "driveId"
-        case clientId = "clientId"
-        case clientSecret = "clientSecret"
-        case tenantId = "tenantId"
-        case sharepointSiteName = "sharepointSiteName"
-        case fileId = "fileId"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sharepointFolderPath = CodingKeys(stringValue: "sharepointFolderPath")
+        static let sharepointFolderId = CodingKeys(stringValue: "sharepointFolderId")
+        static let driveName = CodingKeys(stringValue: "driveName")
+        static let driveId = CodingKeys(stringValue: "driveId")
+        static let clientId = CodingKeys(stringValue: "clientId")
+        static let clientSecret = CodingKeys(stringValue: "clientSecret")
+        static let tenantId = CodingKeys(stringValue: "tenantId")
+        static let sharepointSiteName = CodingKeys(stringValue: "sharepointSiteName")
+        static let fileId = CodingKeys(stringValue: "fileId")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sharepointFolderPath",
+          "sharepointFolderId",
+          "driveName",
+          "driveId",
+          "clientId",
+          "clientSecret",
+          "tenantId",
+          "sharepointSiteName",
+          "fileId",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.clientId = try container.decode(Swift.String.self, forKey: .clientId)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+          self.clientId = value
+        }
         self.clientSecret = try container.decodeIfPresent(
           ApiAuth.ApiKeyConfig.self, forKey: .clientSecret)
-        self.tenantId = try container.decode(Swift.String.self, forKey: .tenantId)
-        self.sharepointSiteName = try container.decode(
-          Swift.String.self, forKey: .sharepointSiteName)
-        self.fileId = try container.decode(Swift.String.self, forKey: .fileId)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenantId) {
+          self.tenantId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sharepointSiteName)
+        {
+          self.sharepointSiteName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileId) {
+          self.fileId = value
+        }
 
         var folderSource: OneOf_FolderSource? = nil
         let folderSourceCheckAndSet = {
@@ -146,12 +209,16 @@
           try driveSourceCheckAndSet(.driveId(driveId))
         }
         self.driveSource = driveSource
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.clientId, forKey: .clientId)
-        try container.encode(self.clientSecret, forKey: .clientSecret)
+        try container.encodeIfPresent(self.clientSecret, forKey: .clientSecret)
         try container.encode(self.tenantId, forKey: .tenantId)
         try container.encode(self.sharepointSiteName, forKey: .sharepointSiteName)
         try container.encode(self.fileId, forKey: .fileId)
@@ -172,6 +239,9 @@
           case .driveId(let value):
             try container.encode(value, forKey: .driveId)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

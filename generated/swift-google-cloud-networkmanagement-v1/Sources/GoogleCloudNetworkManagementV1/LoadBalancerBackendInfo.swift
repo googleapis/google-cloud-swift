@@ -62,6 +62,8 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     LoadBalancerBackendInfo.HealthCheckFirewallsConfigState =
       LoadBalancerBackendInfo.HealthCheckFirewallsConfigState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoadBalancerBackendInfo`.
   public init() {}
 
@@ -76,6 +78,101 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let instanceUri = CodingKeys(stringValue: "instanceUri")
+    static let backendServiceUri = CodingKeys(stringValue: "backendServiceUri")
+    static let instanceGroupUri = CodingKeys(stringValue: "instanceGroupUri")
+    static let networkEndpointGroupUri = CodingKeys(stringValue: "networkEndpointGroupUri")
+    static let backendBucketUri = CodingKeys(stringValue: "backendBucketUri")
+    static let pscServiceAttachmentUri = CodingKeys(stringValue: "pscServiceAttachmentUri")
+    static let pscGoogleApiTarget = CodingKeys(stringValue: "pscGoogleApiTarget")
+    static let healthCheckUri = CodingKeys(stringValue: "healthCheckUri")
+    static let healthCheckFirewallsConfigState = CodingKeys(
+      stringValue: "healthCheckFirewallsConfigState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "instanceUri",
+      "backendServiceUri",
+      "instanceGroupUri",
+      "networkEndpointGroupUri",
+      "backendBucketUri",
+      "pscServiceAttachmentUri",
+      "pscGoogleApiTarget",
+      "healthCheckUri",
+      "healthCheckFirewallsConfigState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceUri) {
+      self.instanceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backendServiceUri) {
+      self.backendServiceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceGroupUri) {
+      self.instanceGroupUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .networkEndpointGroupUri)
+    {
+      self.networkEndpointGroupUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backendBucketUri) {
+      self.backendBucketUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .pscServiceAttachmentUri)
+    {
+      self.pscServiceAttachmentUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pscGoogleApiTarget) {
+      self.pscGoogleApiTarget = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .healthCheckUri) {
+      self.healthCheckUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      LoadBalancerBackendInfo.HealthCheckFirewallsConfigState.self,
+      forKey: .healthCheckFirewallsConfigState)
+    {
+      self.healthCheckFirewallsConfigState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.instanceUri, forKey: .instanceUri)
+    try container.encode(self.backendServiceUri, forKey: .backendServiceUri)
+    try container.encode(self.instanceGroupUri, forKey: .instanceGroupUri)
+    try container.encode(self.networkEndpointGroupUri, forKey: .networkEndpointGroupUri)
+    try container.encode(self.backendBucketUri, forKey: .backendBucketUri)
+    try container.encode(self.pscServiceAttachmentUri, forKey: .pscServiceAttachmentUri)
+    try container.encode(self.pscGoogleApiTarget, forKey: .pscGoogleApiTarget)
+    try container.encode(self.healthCheckUri, forKey: .healthCheckUri)
+    try container.encode(
+      self.healthCheckFirewallsConfigState, forKey: .healthCheckFirewallsConfigState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Health check firewalls configuration state enum.

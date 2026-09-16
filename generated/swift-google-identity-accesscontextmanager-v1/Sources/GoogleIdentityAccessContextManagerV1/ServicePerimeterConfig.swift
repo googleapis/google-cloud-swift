@@ -65,6 +65,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// grants it. Must be empty for a perimeter bridge.
   public var egressPolicies: [ServicePerimeterConfig.EgressPolicy] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServicePerimeterConfig`.
   public init() {}
 
@@ -79,6 +81,71 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resources = CodingKeys(stringValue: "resources")
+    static let accessLevels = CodingKeys(stringValue: "accessLevels")
+    static let restrictedServices = CodingKeys(stringValue: "restrictedServices")
+    static let vpcAccessibleServices = CodingKeys(stringValue: "vpcAccessibleServices")
+    static let ingressPolicies = CodingKeys(stringValue: "ingressPolicies")
+    static let egressPolicies = CodingKeys(stringValue: "egressPolicies")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resources",
+      "accessLevels",
+      "restrictedServices",
+      "vpcAccessibleServices",
+      "ingressPolicies",
+      "egressPolicies",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
+      self.resources = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .accessLevels) {
+      self.accessLevels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .restrictedServices) {
+      self.restrictedServices = value
+    }
+    self.vpcAccessibleServices = try container.decodeIfPresent(
+      ServicePerimeterConfig.VpcAccessibleServices.self, forKey: .vpcAccessibleServices)
+    if let value = try container.decodeIfPresent(
+      [ServicePerimeterConfig.IngressPolicy].self, forKey: .ingressPolicies)
+    {
+      self.ingressPolicies = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ServicePerimeterConfig.EgressPolicy].self, forKey: .egressPolicies)
+    {
+      self.egressPolicies = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resources, forKey: .resources)
+    try container.encode(self.accessLevels, forKey: .accessLevels)
+    try container.encode(self.restrictedServices, forKey: .restrictedServices)
+    try container.encodeIfPresent(self.vpcAccessibleServices, forKey: .vpcAccessibleServices)
+    try container.encode(self.ingressPolicies, forKey: .ingressPolicies)
+    try container.encode(self.egressPolicies, forKey: .egressPolicies)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies how APIs are allowed to communicate within the Service
@@ -96,6 +163,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// automatically includes all of the services protected by the perimeter.
     public var allowedServices: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpcAccessibleServices`.
     public init() {}
 
@@ -110,6 +179,44 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enableRestriction = CodingKeys(stringValue: "enableRestriction")
+      static let allowedServices = CodingKeys(stringValue: "allowedServices")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enableRestriction",
+        "allowedServices",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRestriction) {
+        self.enableRestriction = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedServices) {
+        self.allowedServices = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enableRestriction, forKey: .enableRestriction)
+      try container.encode(self.allowedServices, forKey: .allowedServices)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -132,6 +239,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// The API method name or Cloud IAM permission name to allow.
     public var kind: OneOf_Kind? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MethodSelector`.
     public init() {}
 
@@ -148,9 +257,19 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case method = "method"
-      case permission = "permission"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let method = CodingKeys(stringValue: "method")
+      static let permission = CodingKeys(stringValue: "permission")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "method",
+        "permission",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -173,6 +292,10 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try kindCheckAndSet(.permission(permission))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,6 +308,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .permission(let value):
           try container.encode(value, forKey: .permission)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -235,6 +361,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// AND permissions for the service specified in `service_name`.
     public var methodSelectors: [ServicePerimeterConfig.MethodSelector] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ApiOperation`.
     public init() {}
 
@@ -249,6 +377,46 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let serviceName = CodingKeys(stringValue: "serviceName")
+      static let methodSelectors = CodingKeys(stringValue: "methodSelectors")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "serviceName",
+        "methodSelectors",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
+        self.serviceName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ServicePerimeterConfig.MethodSelector].self, forKey: .methodSelectors)
+      {
+        self.methodSelectors = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.serviceName, forKey: .serviceName)
+      try container.encode(self.methodSelectors, forKey: .methodSelectors)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -274,6 +442,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Cloud resource.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngressSource`.
     public init() {}
 
@@ -290,9 +460,19 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case accessLevel = "accessLevel"
-      case resource = "resource"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accessLevel = CodingKeys(stringValue: "accessLevel")
+      static let resource = CodingKeys(stringValue: "resource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accessLevel",
+        "resource",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -315,6 +495,10 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try sourceCheckAndSet(.resource(resource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -327,6 +511,9 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .resource(let value):
           try container.encode(value, forKey: .resource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -399,6 +586,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     public var identityType: ServicePerimeterConfig.IdentityType =
       ServicePerimeterConfig.IdentityType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngressFrom`.
     public init() {}
 
@@ -413,6 +602,54 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sources = CodingKeys(stringValue: "sources")
+      static let identities = CodingKeys(stringValue: "identities")
+      static let identityType = CodingKeys(stringValue: "identityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sources",
+        "identities",
+        "identityType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ServicePerimeterConfig.IngressSource].self, forKey: .sources)
+      {
+        self.sources = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .identities) {
+        self.identities = value
+      }
+      if let value = try container.decodeIfPresent(
+        ServicePerimeterConfig.IdentityType.self, forKey: .identityType)
+      {
+        self.identityType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sources, forKey: .sources)
+      try container.encode(self.identities, forKey: .identities)
+      try container.encode(self.identityType, forKey: .identityType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -457,6 +694,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// perimeter are allowed.
     public var resources: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngressTo`.
     public init() {}
 
@@ -471,6 +710,46 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let operations = CodingKeys(stringValue: "operations")
+      static let resources = CodingKeys(stringValue: "resources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "operations",
+        "resources",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ServicePerimeterConfig.ApiOperation].self, forKey: .operations)
+      {
+        self.operations = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
+        self.resources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.operations, forKey: .operations)
+      try container.encode(self.resources, forKey: .resources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -521,6 +800,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// to apply.
     public var ingressTo: ServicePerimeterConfig.IngressTo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngressPolicy`.
     public init() {}
 
@@ -535,6 +816,42 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ingressFrom = CodingKeys(stringValue: "ingressFrom")
+      static let ingressTo = CodingKeys(stringValue: "ingressTo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ingressFrom",
+        "ingressTo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ingressFrom = try container.decodeIfPresent(
+        ServicePerimeterConfig.IngressFrom.self, forKey: .ingressFrom)
+      self.ingressTo = try container.decodeIfPresent(
+        ServicePerimeterConfig.IngressTo.self, forKey: .ingressTo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ingressFrom, forKey: .ingressFrom)
+      try container.encodeIfPresent(self.ingressTo, forKey: .ingressTo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -574,6 +891,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     public var identityType: ServicePerimeterConfig.IdentityType =
       ServicePerimeterConfig.IdentityType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EgressFrom`.
     public init() {}
 
@@ -588,6 +907,46 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let identities = CodingKeys(stringValue: "identities")
+      static let identityType = CodingKeys(stringValue: "identityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "identities",
+        "identityType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .identities) {
+        self.identities = value
+      }
+      if let value = try container.decodeIfPresent(
+        ServicePerimeterConfig.IdentityType.self, forKey: .identityType)
+      {
+        self.identityType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.identities, forKey: .identities)
+      try container.encode(self.identityType, forKey: .identityType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -646,6 +1005,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// s3://bucket/path). Currently '*' is not allowed.
     public var externalResources: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EgressTo`.
     public init() {}
 
@@ -660,6 +1021,53 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resources = CodingKeys(stringValue: "resources")
+      static let operations = CodingKeys(stringValue: "operations")
+      static let externalResources = CodingKeys(stringValue: "externalResources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resources",
+        "operations",
+        "externalResources",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
+        self.resources = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ServicePerimeterConfig.ApiOperation].self, forKey: .operations)
+      {
+        self.operations = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .externalResources)
+      {
+        self.externalResources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resources, forKey: .resources)
+      try container.encode(self.operations, forKey: .operations)
+      try container.encode(self.externalResources, forKey: .externalResources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -717,6 +1125,8 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// to apply.
     public var egressTo: ServicePerimeterConfig.EgressTo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EgressPolicy`.
     public init() {}
 
@@ -731,6 +1141,42 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let egressFrom = CodingKeys(stringValue: "egressFrom")
+      static let egressTo = CodingKeys(stringValue: "egressTo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "egressFrom",
+        "egressTo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.egressFrom = try container.decodeIfPresent(
+        ServicePerimeterConfig.EgressFrom.self, forKey: .egressFrom)
+      self.egressTo = try container.decodeIfPresent(
+        ServicePerimeterConfig.EgressTo.self, forKey: .egressTo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.egressFrom, forKey: .egressFrom)
+      try container.encodeIfPresent(self.egressTo, forKey: .egressTo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@
     /// The Platform Key (PK).
     public var pk: FileContentBuffer? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InitialStateConfig`.
     public init() {}
 
@@ -49,6 +51,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dbs = CodingKeys(stringValue: "dbs")
+      static let dbxs = CodingKeys(stringValue: "dbxs")
+      static let keks = CodingKeys(stringValue: "keks")
+      static let pk = CodingKeys(stringValue: "pk")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dbs",
+        "dbxs",
+        "keks",
+        "pk",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([FileContentBuffer].self, forKey: .dbs) {
+        self.dbs = value
+      }
+      if let value = try container.decodeIfPresent([FileContentBuffer].self, forKey: .dbxs) {
+        self.dbxs = value
+      }
+      if let value = try container.decodeIfPresent([FileContentBuffer].self, forKey: .keks) {
+        self.keks = value
+      }
+      self.pk = try container.decodeIfPresent(FileContentBuffer.self, forKey: .pk)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dbs, forKey: .dbs)
+      try container.encode(self.dbxs, forKey: .dbxs)
+      try container.encode(self.keks, forKey: .keks)
+      try container.encodeIfPresent(self.pk, forKey: .pk)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

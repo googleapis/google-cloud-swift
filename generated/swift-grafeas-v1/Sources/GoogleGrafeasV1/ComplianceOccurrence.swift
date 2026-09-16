@@ -29,6 +29,8 @@ public struct ComplianceOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The OS and config version the benchmark was run on.
   public var version: ComplianceVersion? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComplianceOccurrence`.
   public init() {}
 
@@ -43,6 +45,50 @@ public struct ComplianceOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nonCompliantFiles = CodingKeys(stringValue: "nonCompliantFiles")
+    static let nonComplianceReason = CodingKeys(stringValue: "nonComplianceReason")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nonCompliantFiles",
+      "nonComplianceReason",
+      "version",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [NonCompliantFile].self, forKey: .nonCompliantFiles)
+    {
+      self.nonCompliantFiles = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nonComplianceReason) {
+      self.nonComplianceReason = value
+    }
+    self.version = try container.decodeIfPresent(ComplianceVersion.self, forKey: .version)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nonCompliantFiles, forKey: .nonCompliantFiles)
+    try container.encode(self.nonComplianceReason, forKey: .nonComplianceReason)
+    try container.encodeIfPresent(self.version, forKey: .version)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

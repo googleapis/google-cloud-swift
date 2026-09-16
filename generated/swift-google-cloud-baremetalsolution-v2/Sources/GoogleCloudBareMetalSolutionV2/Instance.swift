@@ -98,6 +98,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The firmware version for the instance.
   public var firmwareVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -112,6 +114,151 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let state = CodingKeys(stringValue: "state")
+    static let hyperthreadingEnabled = CodingKeys(stringValue: "hyperthreadingEnabled")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let luns = CodingKeys(stringValue: "luns")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let networks = CodingKeys(stringValue: "networks")
+    static let interactiveSerialConsoleEnabled = CodingKeys(
+      stringValue: "interactiveSerialConsoleEnabled")
+    static let osImage = CodingKeys(stringValue: "osImage")
+    static let pod = CodingKeys(stringValue: "pod")
+    static let networkTemplate = CodingKeys(stringValue: "networkTemplate")
+    static let logicalInterfaces = CodingKeys(stringValue: "logicalInterfaces")
+    static let loginInfo = CodingKeys(stringValue: "loginInfo")
+    static let workloadProfile = CodingKeys(stringValue: "workloadProfile")
+    static let firmwareVersion = CodingKeys(stringValue: "firmwareVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "createTime",
+      "updateTime",
+      "machineType",
+      "state",
+      "hyperthreadingEnabled",
+      "labels",
+      "luns",
+      "volumes",
+      "networks",
+      "interactiveSerialConsoleEnabled",
+      "osImage",
+      "pod",
+      "networkTemplate",
+      "logicalInterfaces",
+      "loginInfo",
+      "workloadProfile",
+      "firmwareVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Instance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hyperthreadingEnabled) {
+      self.hyperthreadingEnabled = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Lun].self, forKey: .luns) {
+      self.luns = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    if let value = try container.decodeIfPresent([Network].self, forKey: .networks) {
+      self.networks = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .interactiveSerialConsoleEnabled)
+    {
+      self.interactiveSerialConsoleEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osImage) {
+      self.osImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pod) {
+      self.pod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkTemplate) {
+      self.networkTemplate = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LogicalInterface].self, forKey: .logicalInterfaces)
+    {
+      self.logicalInterfaces = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loginInfo) {
+      self.loginInfo = value
+    }
+    if let value = try container.decodeIfPresent(WorkloadProfile.self, forKey: .workloadProfile) {
+      self.workloadProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firmwareVersion) {
+      self.firmwareVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.hyperthreadingEnabled, forKey: .hyperthreadingEnabled)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.luns, forKey: .luns)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encode(self.networks, forKey: .networks)
+    try container.encode(
+      self.interactiveSerialConsoleEnabled, forKey: .interactiveSerialConsoleEnabled)
+    try container.encode(self.osImage, forKey: .osImage)
+    try container.encode(self.pod, forKey: .pod)
+    try container.encode(self.networkTemplate, forKey: .networkTemplate)
+    try container.encode(self.logicalInterfaces, forKey: .logicalInterfaces)
+    try container.encode(self.loginInfo, forKey: .loginInfo)
+    try container.encode(self.workloadProfile, forKey: .workloadProfile)
+    try container.encode(self.firmwareVersion, forKey: .firmwareVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states for this server.

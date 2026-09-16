@@ -50,6 +50,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Optional. The hypothetical context for IAM conditions evaluation.
   public var conditionContext: IamPolicyAnalysisQuery.ConditionContext? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IamPolicyAnalysisQuery`.
   public init() {}
 
@@ -66,6 +68,63 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let resourceSelector = CodingKeys(stringValue: "resourceSelector")
+    static let identitySelector = CodingKeys(stringValue: "identitySelector")
+    static let accessSelector = CodingKeys(stringValue: "accessSelector")
+    static let options = CodingKeys(stringValue: "options")
+    static let conditionContext = CodingKeys(stringValue: "conditionContext")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "resourceSelector",
+      "identitySelector",
+      "accessSelector",
+      "options",
+      "conditionContext",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    self.resourceSelector = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.ResourceSelector.self, forKey: .resourceSelector)
+    self.identitySelector = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.IdentitySelector.self, forKey: .identitySelector)
+    self.accessSelector = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.AccessSelector.self, forKey: .accessSelector)
+    self.options = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.Options.self, forKey: .options)
+    self.conditionContext = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.ConditionContext.self, forKey: .conditionContext)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encodeIfPresent(self.resourceSelector, forKey: .resourceSelector)
+    try container.encodeIfPresent(self.identitySelector, forKey: .identitySelector)
+    try container.encodeIfPresent(self.accessSelector, forKey: .accessSelector)
+    try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encodeIfPresent(self.conditionContext, forKey: .conditionContext)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Specifies the resource to analyze for access policies, which may be set
   /// directly on the resource, or on ancestors such as organizations, folders or
   /// projects.
@@ -77,6 +136,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// of a resource of [supported resource
     /// types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
     public var fullResourceName: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ResourceSelector`.
     public init() {}
@@ -92,6 +153,38 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fullResourceName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+        self.fullResourceName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fullResourceName, forKey: .fullResourceName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -125,6 +218,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// You must give a specific identity.
     public var identity: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IdentitySelector`.
     public init() {}
 
@@ -139,6 +234,38 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let identity = CodingKeys(stringValue: "identity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "identity"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identity) {
+        self.identity = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.identity, forKey: .identity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -166,6 +293,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Optional. The permissions to appear in result.
     public var permissions: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccessSelector`.
     public init() {}
 
@@ -180,6 +309,44 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let roles = CodingKeys(stringValue: "roles")
+      static let permissions = CodingKeys(stringValue: "permissions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "roles",
+        "permissions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .roles) {
+        self.roles = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permissions) {
+        self.permissions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.roles, forKey: .roles)
+      try container.encode(self.permissions, forKey: .permissions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -306,6 +473,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:options:)>
     public var analyzeServiceAccountImpersonation: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Options`.
     public init() {}
 
@@ -320,6 +489,72 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expandGroups = CodingKeys(stringValue: "expandGroups")
+      static let expandRoles = CodingKeys(stringValue: "expandRoles")
+      static let expandResources = CodingKeys(stringValue: "expandResources")
+      static let outputResourceEdges = CodingKeys(stringValue: "outputResourceEdges")
+      static let outputGroupEdges = CodingKeys(stringValue: "outputGroupEdges")
+      static let analyzeServiceAccountImpersonation = CodingKeys(
+        stringValue: "analyzeServiceAccountImpersonation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expandGroups",
+        "expandRoles",
+        "expandResources",
+        "outputResourceEdges",
+        "outputGroupEdges",
+        "analyzeServiceAccountImpersonation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .expandGroups) {
+        self.expandGroups = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .expandRoles) {
+        self.expandRoles = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .expandResources) {
+        self.expandResources = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .outputResourceEdges) {
+        self.outputResourceEdges = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .outputGroupEdges) {
+        self.outputGroupEdges = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .analyzeServiceAccountImpersonation)
+      {
+        self.analyzeServiceAccountImpersonation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.expandGroups, forKey: .expandGroups)
+      try container.encode(self.expandRoles, forKey: .expandRoles)
+      try container.encode(self.expandResources, forKey: .expandResources)
+      try container.encode(self.outputResourceEdges, forKey: .outputResourceEdges)
+      try container.encode(self.outputGroupEdges, forKey: .outputGroupEdges)
+      try container.encode(
+        self.analyzeServiceAccountImpersonation, forKey: .analyzeServiceAccountImpersonation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -340,6 +575,8 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// The IAM conditions time context.
     public var timeContext: OneOf_TimeContext? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConditionContext`.
     public init() {}
 
@@ -356,8 +593,17 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case accessTime = "accessTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accessTime = CodingKeys(stringValue: "accessTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accessTime"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -379,6 +625,10 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
         try timeContextCheckAndSet(.accessTime(accessTime))
       }
       self.timeContext = timeContext
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -389,6 +639,9 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .accessTime(let value):
           try container.encode(value, forKey: .accessTime)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

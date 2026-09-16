@@ -88,6 +88,8 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// cluster by the customer.
   public var hybridReplicationUserCommands: UserCommands? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Replication`.
   public init() {}
 
@@ -102,6 +104,139 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+    static let role = CodingKeys(stringValue: "role")
+    static let replicationSchedule = CodingKeys(stringValue: "replicationSchedule")
+    static let mirrorState = CodingKeys(stringValue: "mirrorState")
+    static let healthy = CodingKeys(stringValue: "healthy")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let destinationVolume = CodingKeys(stringValue: "destinationVolume")
+    static let transferStats = CodingKeys(stringValue: "transferStats")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let destinationVolumeParameters = CodingKeys(stringValue: "destinationVolumeParameters")
+    static let sourceVolume = CodingKeys(stringValue: "sourceVolume")
+    static let hybridPeeringDetails = CodingKeys(stringValue: "hybridPeeringDetails")
+    static let clusterLocation = CodingKeys(stringValue: "clusterLocation")
+    static let hybridReplicationType = CodingKeys(stringValue: "hybridReplicationType")
+    static let hybridReplicationUserCommands = CodingKeys(
+      stringValue: "hybridReplicationUserCommands")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "stateDetails",
+      "role",
+      "replicationSchedule",
+      "mirrorState",
+      "healthy",
+      "createTime",
+      "destinationVolume",
+      "transferStats",
+      "labels",
+      "description",
+      "destinationVolumeParameters",
+      "sourceVolume",
+      "hybridPeeringDetails",
+      "clusterLocation",
+      "hybridReplicationType",
+      "hybridReplicationUserCommands",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Replication.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    if let value = try container.decodeIfPresent(Replication.ReplicationRole.self, forKey: .role) {
+      self.role = value
+    }
+    if let value = try container.decodeIfPresent(
+      Replication.ReplicationSchedule.self, forKey: .replicationSchedule)
+    {
+      self.replicationSchedule = value
+    }
+    if let value = try container.decodeIfPresent(Replication.MirrorState.self, forKey: .mirrorState)
+    {
+      self.mirrorState = value
+    }
+    self.healthy = try container.decodeIfPresent(Swift.Bool.self, forKey: .healthy)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationVolume) {
+      self.destinationVolume = value
+    }
+    self.transferStats = try container.decodeIfPresent(TransferStats.self, forKey: .transferStats)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.destinationVolumeParameters = try container.decodeIfPresent(
+      DestinationVolumeParameters.self, forKey: .destinationVolumeParameters)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceVolume) {
+      self.sourceVolume = value
+    }
+    self.hybridPeeringDetails = try container.decodeIfPresent(
+      HybridPeeringDetails.self, forKey: .hybridPeeringDetails)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterLocation) {
+      self.clusterLocation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Replication.HybridReplicationType.self, forKey: .hybridReplicationType)
+    {
+      self.hybridReplicationType = value
+    }
+    self.hybridReplicationUserCommands = try container.decodeIfPresent(
+      UserCommands.self, forKey: .hybridReplicationUserCommands)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    try container.encode(self.role, forKey: .role)
+    try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
+    try container.encode(self.mirrorState, forKey: .mirrorState)
+    try container.encodeIfPresent(self.healthy, forKey: .healthy)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.destinationVolume, forKey: .destinationVolume)
+    try container.encodeIfPresent(self.transferStats, forKey: .transferStats)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(
+      self.destinationVolumeParameters, forKey: .destinationVolumeParameters)
+    try container.encode(self.sourceVolume, forKey: .sourceVolume)
+    try container.encodeIfPresent(self.hybridPeeringDetails, forKey: .hybridPeeringDetails)
+    try container.encode(self.clusterLocation, forKey: .clusterLocation)
+    try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    try container.encodeIfPresent(
+      self.hybridReplicationUserCommands, forKey: .hybridReplicationUserCommands)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The replication states

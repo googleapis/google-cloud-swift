@@ -86,6 +86,8 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Optional. Resource manager tags to be bound to the disk.
   public var resourceManagerTags: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskRestoreProperties`.
   public init() {}
 
@@ -100,6 +102,120 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let sizeGb = CodingKeys(stringValue: "sizeGb")
+    static let licenses = CodingKeys(stringValue: "licenses")
+    static let guestOsFeature = CodingKeys(stringValue: "guestOsFeature")
+    static let diskEncryptionKey = CodingKeys(stringValue: "diskEncryptionKey")
+    static let physicalBlockSizeBytes = CodingKeys(stringValue: "physicalBlockSizeBytes")
+    static let provisionedIops = CodingKeys(stringValue: "provisionedIops")
+    static let provisionedThroughput = CodingKeys(stringValue: "provisionedThroughput")
+    static let enableConfidentialCompute = CodingKeys(stringValue: "enableConfidentialCompute")
+    static let storagePool = CodingKeys(stringValue: "storagePool")
+    static let accessMode = CodingKeys(stringValue: "accessMode")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let resourcePolicy = CodingKeys(stringValue: "resourcePolicy")
+    static let type = CodingKeys(stringValue: "type")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "sizeGb",
+      "licenses",
+      "guestOsFeature",
+      "diskEncryptionKey",
+      "physicalBlockSizeBytes",
+      "provisionedIops",
+      "provisionedThroughput",
+      "enableConfidentialCompute",
+      "storagePool",
+      "accessMode",
+      "architecture",
+      "resourcePolicy",
+      "type",
+      "labels",
+      "resourceManagerTags",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.sizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGb)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .licenses) {
+      self.licenses = value
+    }
+    if let value = try container.decodeIfPresent([GuestOsFeature].self, forKey: .guestOsFeature) {
+      self.guestOsFeature = value
+    }
+    self.diskEncryptionKey = try container.decodeIfPresent(
+      CustomerEncryptionKey.self, forKey: .diskEncryptionKey)
+    self.physicalBlockSizeBytes = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .physicalBlockSizeBytes)
+    self.provisionedIops = try container.decodeIfPresent(Swift.Int64.self, forKey: .provisionedIops)
+    self.provisionedThroughput = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .provisionedThroughput)
+    self.enableConfidentialCompute = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableConfidentialCompute)
+    self.storagePool = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool)
+    self.accessMode = try container.decodeIfPresent(
+      DiskRestoreProperties.AccessMode.self, forKey: .accessMode)
+    self.architecture = try container.decodeIfPresent(
+      DiskRestoreProperties.Architecture.self, forKey: .architecture)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicy) {
+      self.resourcePolicy = value
+    }
+    self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
+    {
+      self.resourceManagerTags = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.sizeGb, forKey: .sizeGb)
+    try container.encode(self.licenses, forKey: .licenses)
+    try container.encode(self.guestOsFeature, forKey: .guestOsFeature)
+    try container.encodeIfPresent(self.diskEncryptionKey, forKey: .diskEncryptionKey)
+    try container.encodeIfPresent(self.physicalBlockSizeBytes, forKey: .physicalBlockSizeBytes)
+    try container.encodeIfPresent(self.provisionedIops, forKey: .provisionedIops)
+    try container.encodeIfPresent(self.provisionedThroughput, forKey: .provisionedThroughput)
+    try container.encodeIfPresent(
+      self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
+    try container.encodeIfPresent(self.storagePool, forKey: .storagePool)
+    try container.encodeIfPresent(self.accessMode, forKey: .accessMode)
+    try container.encodeIfPresent(self.architecture, forKey: .architecture)
+    try container.encode(self.resourcePolicy, forKey: .resourcePolicy)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The supported access modes of the disk.

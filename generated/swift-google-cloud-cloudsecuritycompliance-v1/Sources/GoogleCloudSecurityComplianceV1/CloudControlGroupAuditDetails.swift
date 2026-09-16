@@ -60,6 +60,8 @@ public struct CloudControlGroupAuditDetails: Codable, Equatable, GoogleCloudWKT.
   /// Output only. The summary of the report.
   public var reportSummary: ReportSummary? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudControlGroupAuditDetails`.
   public init() {}
 
@@ -74,6 +76,124 @@ public struct CloudControlGroupAuditDetails: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudControlGroupId = CodingKeys(stringValue: "cloudControlGroupId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let responsibilityType = CodingKeys(stringValue: "responsibilityType")
+    static let googleResponsibilityDescription = CodingKeys(
+      stringValue: "googleResponsibilityDescription")
+    static let googleResponsibilityImplementation = CodingKeys(
+      stringValue: "googleResponsibilityImplementation")
+    static let customerResponsibilityDescription = CodingKeys(
+      stringValue: "customerResponsibilityDescription")
+    static let customerResponsibilityImplementation = CodingKeys(
+      stringValue: "customerResponsibilityImplementation")
+    static let complianceState = CodingKeys(stringValue: "complianceState")
+    static let controlId = CodingKeys(stringValue: "controlId")
+    static let controlFamily = CodingKeys(stringValue: "controlFamily")
+    static let cloudControlDetails = CodingKeys(stringValue: "cloudControlDetails")
+    static let reportSummary = CodingKeys(stringValue: "reportSummary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudControlGroupId",
+      "displayName",
+      "description",
+      "responsibilityType",
+      "googleResponsibilityDescription",
+      "googleResponsibilityImplementation",
+      "customerResponsibilityDescription",
+      "customerResponsibilityImplementation",
+      "complianceState",
+      "controlId",
+      "controlFamily",
+      "cloudControlDetails",
+      "reportSummary",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudControlGroupId) {
+      self.cloudControlGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsibilityType) {
+      self.responsibilityType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityDescription)
+    {
+      self.googleResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityImplementation)
+    {
+      self.googleResponsibilityImplementation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityDescription)
+    {
+      self.customerResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityImplementation)
+    {
+      self.customerResponsibilityImplementation = value
+    }
+    if let value = try container.decodeIfPresent(ComplianceState.self, forKey: .complianceState) {
+      self.complianceState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .controlId) {
+      self.controlId = value
+    }
+    self.controlFamily = try container.decodeIfPresent(ControlFamily.self, forKey: .controlFamily)
+    if let value = try container.decodeIfPresent(
+      [CloudControlAuditDetails].self, forKey: .cloudControlDetails)
+    {
+      self.cloudControlDetails = value
+    }
+    self.reportSummary = try container.decodeIfPresent(ReportSummary.self, forKey: .reportSummary)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cloudControlGroupId, forKey: .cloudControlGroupId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.responsibilityType, forKey: .responsibilityType)
+    try container.encode(
+      self.googleResponsibilityDescription, forKey: .googleResponsibilityDescription)
+    try container.encode(
+      self.googleResponsibilityImplementation, forKey: .googleResponsibilityImplementation)
+    try container.encode(
+      self.customerResponsibilityDescription, forKey: .customerResponsibilityDescription)
+    try container.encode(
+      self.customerResponsibilityImplementation, forKey: .customerResponsibilityImplementation)
+    try container.encode(self.complianceState, forKey: .complianceState)
+    try container.encode(self.controlId, forKey: .controlId)
+    try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
+    try container.encode(self.cloudControlDetails, forKey: .cloudControlDetails)
+    try container.encodeIfPresent(self.reportSummary, forKey: .reportSummary)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -59,6 +59,8 @@ public struct Process: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// this will always be 0.
   public var userId: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Process`.
   public init() {}
 
@@ -73,6 +75,95 @@ public struct Process: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let binary = CodingKeys(stringValue: "binary")
+    static let libraries = CodingKeys(stringValue: "libraries")
+    static let script = CodingKeys(stringValue: "script")
+    static let args = CodingKeys(stringValue: "args")
+    static let argumentsTruncated = CodingKeys(stringValue: "argumentsTruncated")
+    static let envVariables = CodingKeys(stringValue: "envVariables")
+    static let envVariablesTruncated = CodingKeys(stringValue: "envVariablesTruncated")
+    static let pid = CodingKeys(stringValue: "pid")
+    static let parentPid = CodingKeys(stringValue: "parentPid")
+    static let userId = CodingKeys(stringValue: "userId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "binary",
+      "libraries",
+      "script",
+      "args",
+      "argumentsTruncated",
+      "envVariables",
+      "envVariablesTruncated",
+      "pid",
+      "parentPid",
+      "userId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.binary = try container.decodeIfPresent(File.self, forKey: .binary)
+    if let value = try container.decodeIfPresent([File].self, forKey: .libraries) {
+      self.libraries = value
+    }
+    self.script = try container.decodeIfPresent(File.self, forKey: .script)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .argumentsTruncated) {
+      self.argumentsTruncated = value
+    }
+    if let value = try container.decodeIfPresent([EnvironmentVariable].self, forKey: .envVariables)
+    {
+      self.envVariables = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .envVariablesTruncated) {
+      self.envVariablesTruncated = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .pid) {
+      self.pid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .parentPid) {
+      self.parentPid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .userId) {
+      self.userId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.binary, forKey: .binary)
+    try container.encode(self.libraries, forKey: .libraries)
+    try container.encodeIfPresent(self.script, forKey: .script)
+    try container.encode(self.args, forKey: .args)
+    try container.encode(self.argumentsTruncated, forKey: .argumentsTruncated)
+    try container.encode(self.envVariables, forKey: .envVariables)
+    try container.encode(self.envVariablesTruncated, forKey: .envVariablesTruncated)
+    try container.encode(self.pid, forKey: .pid)
+    try container.encode(self.parentPid, forKey: .parentPid)
+    try container.encode(self.userId, forKey: .userId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

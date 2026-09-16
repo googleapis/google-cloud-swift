@@ -36,6 +36,8 @@
     /// Specifies the intent of the instance placement in the MIG.
     public var type: ResourcePolicyWorkloadPolicy.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicyWorkloadPolicy`.
     public init() {}
 
@@ -50,6 +52,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let acceleratorTopology = CodingKeys(stringValue: "acceleratorTopology")
+      static let acceleratorTopologyMode = CodingKeys(stringValue: "acceleratorTopologyMode")
+      static let maxTopologyDistance = CodingKeys(stringValue: "maxTopologyDistance")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "acceleratorTopology",
+        "acceleratorTopologyMode",
+        "maxTopologyDistance",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.acceleratorTopology = try container.decodeIfPresent(
+        Swift.String.self, forKey: .acceleratorTopology)
+      self.acceleratorTopologyMode = try container.decodeIfPresent(
+        ResourcePolicyWorkloadPolicy.AcceleratorTopologyMode.self, forKey: .acceleratorTopologyMode)
+      self.maxTopologyDistance = try container.decodeIfPresent(
+        ResourcePolicyWorkloadPolicy.MaxTopologyDistance.self, forKey: .maxTopologyDistance)
+      self.type = try container.decodeIfPresent(
+        ResourcePolicyWorkloadPolicy.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.acceleratorTopology, forKey: .acceleratorTopology)
+      try container.encodeIfPresent(self.acceleratorTopologyMode, forKey: .acceleratorTopologyMode)
+      try container.encodeIfPresent(self.maxTopologyDistance, forKey: .maxTopologyDistance)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [acceleratorTopologyMode][google.cloud.compute.v1.ResourcePolicyWorkloadPolicy.acceleratorTopologyMode] field.

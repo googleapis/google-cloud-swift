@@ -50,6 +50,8 @@ public struct RecurringSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Configurations must match frequency.
   public var scheduleConfig: OneOf_ScheduleConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecurringSchedule`.
   public init() {}
 
@@ -66,16 +68,33 @@ public struct RecurringSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case timeZone = "timeZone"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case timeOfDay = "timeOfDay"
-    case frequency = "frequency"
-    case weekly = "weekly"
-    case monthly = "monthly"
-    case lastExecuteTime = "lastExecuteTime"
-    case nextExecuteTime = "nextExecuteTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let timeOfDay = CodingKeys(stringValue: "timeOfDay")
+    static let frequency = CodingKeys(stringValue: "frequency")
+    static let weekly = CodingKeys(stringValue: "weekly")
+    static let monthly = CodingKeys(stringValue: "monthly")
+    static let lastExecuteTime = CodingKeys(stringValue: "lastExecuteTime")
+    static let nextExecuteTime = CodingKeys(stringValue: "nextExecuteTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeZone",
+      "startTime",
+      "endTime",
+      "timeOfDay",
+      "frequency",
+      "weekly",
+      "monthly",
+      "lastExecuteTime",
+      "nextExecuteTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -85,7 +104,11 @@ public struct RecurringSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.timeOfDay = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .timeOfDay)
-    self.frequency = try container.decode(RecurringSchedule.Frequency.self, forKey: .frequency)
+    if let value = try container.decodeIfPresent(
+      RecurringSchedule.Frequency.self, forKey: .frequency)
+    {
+      self.frequency = value
+    }
     self.lastExecuteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastExecuteTime)
     self.nextExecuteTime = try container.decodeIfPresent(
@@ -108,17 +131,21 @@ public struct RecurringSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try scheduleConfigCheckAndSet(.monthly(monthly))
     }
     self.scheduleConfig = scheduleConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.timeZone, forKey: .timeZone)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
-    try container.encode(self.timeOfDay, forKey: .timeOfDay)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.timeOfDay, forKey: .timeOfDay)
     try container.encode(self.frequency, forKey: .frequency)
-    try container.encode(self.lastExecuteTime, forKey: .lastExecuteTime)
-    try container.encode(self.nextExecuteTime, forKey: .nextExecuteTime)
+    try container.encodeIfPresent(self.lastExecuteTime, forKey: .lastExecuteTime)
+    try container.encodeIfPresent(self.nextExecuteTime, forKey: .nextExecuteTime)
 
     if let choice = self.scheduleConfig {
       switch choice {
@@ -127,6 +154,9 @@ public struct RecurringSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .monthly(let value):
         try container.encode(value, forKey: .monthly)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

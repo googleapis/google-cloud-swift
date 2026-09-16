@@ -72,6 +72,8 @@ public struct ForecastParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.granularity]: <doc:TimeseriesParams/granularity>
   public var horizonDuration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ForecastParams`.
   public init() {}
 
@@ -86,6 +88,49 @@ public struct ForecastParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let noiseThreshold = CodingKeys(stringValue: "noiseThreshold")
+    static let seasonalityHint = CodingKeys(stringValue: "seasonalityHint")
+    static let horizonDuration = CodingKeys(stringValue: "horizonDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "noiseThreshold",
+      "seasonalityHint",
+      "horizonDuration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.noiseThreshold = try container.decodeIfPresent(Swift.Double.self, forKey: .noiseThreshold)
+    if let value = try container.decodeIfPresent(
+      ForecastParams.Period.self, forKey: .seasonalityHint)
+    {
+      self.seasonalityHint = value
+    }
+    self.horizonDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .horizonDuration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.noiseThreshold, forKey: .noiseThreshold)
+    try container.encode(self.seasonalityHint, forKey: .seasonalityHint)
+    try container.encodeIfPresent(self.horizonDuration, forKey: .horizonDuration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A time period of a fixed interval.

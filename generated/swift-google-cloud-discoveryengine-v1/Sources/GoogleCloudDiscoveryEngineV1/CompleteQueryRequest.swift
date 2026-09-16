@@ -81,6 +81,8 @@
     /// tail suggestions are returned.
     public var includeTailSuggestions: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompleteQueryRequest`.
     public init() {}
 
@@ -95,6 +97,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+      static let query = CodingKeys(stringValue: "query")
+      static let queryModel = CodingKeys(stringValue: "queryModel")
+      static let userPseudoId = CodingKeys(stringValue: "userPseudoId")
+      static let includeTailSuggestions = CodingKeys(stringValue: "includeTailSuggestions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataStore",
+        "query",
+        "queryModel",
+        "userPseudoId",
+        "includeTailSuggestions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
+        self.dataStore = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryModel) {
+        self.queryModel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userPseudoId) {
+        self.userPseudoId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeTailSuggestions)
+      {
+        self.includeTailSuggestions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataStore, forKey: .dataStore)
+      try container.encode(self.query, forKey: .query)
+      try container.encode(self.queryModel, forKey: .queryModel)
+      try container.encode(self.userPseudoId, forKey: .userPseudoId)
+      try container.encode(self.includeTailSuggestions, forKey: .includeTailSuggestions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

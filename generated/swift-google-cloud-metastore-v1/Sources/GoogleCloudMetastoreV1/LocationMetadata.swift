@@ -26,6 +26,8 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `HiveMetastoreVersion` in the list will set `is_default`.
   public var supportedHiveMetastoreVersions: [LocationMetadata.HiveMetastoreVersion] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationMetadata`.
   public init() {}
 
@@ -42,6 +44,42 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let supportedHiveMetastoreVersions = CodingKeys(
+      stringValue: "supportedHiveMetastoreVersions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "supportedHiveMetastoreVersions"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [LocationMetadata.HiveMetastoreVersion].self, forKey: .supportedHiveMetastoreVersions)
+    {
+      self.supportedHiveMetastoreVersions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.supportedHiveMetastoreVersions, forKey: .supportedHiveMetastoreVersions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A specification of a supported version of the Hive Metastore software.
   public struct HiveMetastoreVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +90,8 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Whether `version` will be chosen by the server if a metastore service is
     /// created with a `HiveMetastoreConfig` that omits the `version`.
     public var isDefault: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `HiveMetastoreVersion`.
     public init() {}
@@ -67,6 +107,44 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let version = CodingKeys(stringValue: "version")
+      static let isDefault = CodingKeys(stringValue: "isDefault")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "version",
+        "isDefault",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isDefault) {
+        self.isDefault = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.version, forKey: .version)
+      try container.encode(self.isDefault, forKey: .isDefault)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

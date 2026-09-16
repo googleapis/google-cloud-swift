@@ -39,6 +39,8 @@ public struct ExecutionReference: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var completionStatus: ExecutionReference.CompletionStatus =
     ExecutionReference.CompletionStatus()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecutionReference`.
   public init() {}
 
@@ -53,6 +55,61 @@ public struct ExecutionReference: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let completionTime = CodingKeys(stringValue: "completionTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let completionStatus = CodingKeys(stringValue: "completionStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "completionTime",
+      "deleteTime",
+      "completionStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.completionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completionTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent(
+      ExecutionReference.CompletionStatus.self, forKey: .completionStatus)
+    {
+      self.completionStatus = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.completionStatus, forKey: .completionStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible execution completion status.

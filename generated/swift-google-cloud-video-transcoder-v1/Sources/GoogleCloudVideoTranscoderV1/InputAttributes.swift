@@ -24,6 +24,8 @@ public struct InputAttributes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. A list of track definitions for the input asset.
   public var trackDefinitions: [TrackDefinition] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InputAttributes`.
   public init() {}
 
@@ -38,6 +40,39 @@ public struct InputAttributes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let trackDefinitions = CodingKeys(stringValue: "trackDefinitions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "trackDefinitions"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([TrackDefinition].self, forKey: .trackDefinitions)
+    {
+      self.trackDefinitions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.trackDefinitions, forKey: .trackDefinitions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

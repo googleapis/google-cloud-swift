@@ -37,6 +37,8 @@ public struct UpgradeNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required for Windows OS. Represents the metadata about the Windows update.
   public var windowsUpdate: WindowsUpdate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeNote`.
   public init() {}
 
@@ -53,27 +55,51 @@ public struct UpgradeNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `package` = "package"
-    case version = "version"
-    case distributions = "distributions"
-    case windowsUpdate = "windowsUpdate"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `package` = CodingKeys(stringValue: "package")
+    static let version = CodingKeys(stringValue: "version")
+    static let distributions = CodingKeys(stringValue: "distributions")
+    static let windowsUpdate = CodingKeys(stringValue: "windowsUpdate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "package",
+      "version",
+      "distributions",
+      "windowsUpdate",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`package` = try container.decode(Swift.String.self, forKey: .`package`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`package`) {
+      self.`package` = value
+    }
     self.version = try container.decodeIfPresent(Version.self, forKey: .version)
-    self.distributions = try container.decode([UpgradeDistribution].self, forKey: .distributions)
+    if let value = try container.decodeIfPresent([UpgradeDistribution].self, forKey: .distributions)
+    {
+      self.distributions = value
+    }
     self.windowsUpdate = try container.decodeIfPresent(WindowsUpdate.self, forKey: .windowsUpdate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.`package`, forKey: .`package`)
-    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.version, forKey: .version)
     try container.encode(self.distributions, forKey: .distributions)
-    try container.encode(self.windowsUpdate, forKey: .windowsUpdate)
+    try container.encodeIfPresent(self.windowsUpdate, forKey: .windowsUpdate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

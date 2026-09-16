@@ -25,6 +25,8 @@ public struct GcpCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Same as id_tokens, but as a string.
   public var serviceAccountIdTokens: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcpCredentials`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct GcpCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccountIdTokens = CodingKeys(stringValue: "serviceAccountIdTokens")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccountIdTokens"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .serviceAccountIdTokens)
+    {
+      self.serviceAccountIdTokens = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAccountIdTokens, forKey: .serviceAccountIdTokens)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -89,6 +89,8 @@
     /// Output only. [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExternalVpnGateway`.
     public init() {}
 
@@ -105,18 +107,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case id = "id"
-      case interfaces = "interfaces"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case params = "params"
-      case redundancyType = "redundancyType"
-      case selfLink = "selfLink"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let interfaces = CodingKeys(stringValue: "interfaces")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let redundancyType = CodingKeys(stringValue: "redundancyType")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "id",
+        "interfaces",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "params",
+        "redundancyType",
+        "selfLink",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -125,8 +146,11 @@
         Swift.String.self, forKey: .creationTimestamp)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
-      self.interfaces = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ExternalVpnGatewayInterface].self, forKey: .interfaces)
+      {
+        self.interfaces = value
+      }
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
         guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
@@ -137,31 +161,42 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.params = try container.decodeIfPresent(ExternalVpnGatewayParams.self, forKey: .params)
       self.redundancyType = try container.decodeIfPresent(
         ExternalVpnGateway.RedundancyType.self, forKey: .redundancyType)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.id, forKey: .id)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
       try container.encode(self.interfaces, forKey: .interfaces)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.redundancyType, forKey: .redundancyType)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.redundancyType, forKey: .redundancyType)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [redundancyType][google.cloud.compute.v1.ExternalVpnGateway.redundancyType] field.

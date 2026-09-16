@@ -25,6 +25,8 @@
     /// A list of flow version variants.
     public var variants: [VersionVariants.Variant] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VersionVariants`.
     public init() {}
 
@@ -39,6 +41,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let variants = CodingKeys(stringValue: "variants")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "variants"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [VersionVariants.Variant].self, forKey: .variants)
+      {
+        self.variants = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.variants, forKey: .variants)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A single flow version with specified traffic allocation.
@@ -57,6 +93,8 @@
       /// Whether the variant is for the control group.
       public var isControlGroup: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Variant`.
       public init() {}
 
@@ -71,6 +109,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let version = CodingKeys(stringValue: "version")
+        static let trafficAllocation = CodingKeys(stringValue: "trafficAllocation")
+        static let isControlGroup = CodingKeys(stringValue: "isControlGroup")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "version",
+          "trafficAllocation",
+          "isControlGroup",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+          self.version = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .trafficAllocation) {
+          self.trafficAllocation = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isControlGroup) {
+          self.isControlGroup = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.version, forKey: .version)
+        try container.encode(self.trafficAllocation, forKey: .trafficAllocation)
+        try container.encode(self.isControlGroup, forKey: .isControlGroup)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

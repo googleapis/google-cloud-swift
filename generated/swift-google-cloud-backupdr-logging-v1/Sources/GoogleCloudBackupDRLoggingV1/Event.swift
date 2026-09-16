@@ -53,6 +53,8 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The jobname field displays name of the job associated with the event
   public var jobName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Event`.
   public init() {}
 
@@ -67,6 +69,86 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventTime = CodingKeys(stringValue: "eventTime")
+    static let srcid = CodingKeys(stringValue: "srcid")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let eventId = CodingKeys(stringValue: "eventId")
+    static let component = CodingKeys(stringValue: "component")
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let appName = CodingKeys(stringValue: "appName")
+    static let appType = CodingKeys(stringValue: "appType")
+    static let jobName = CodingKeys(stringValue: "jobName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventTime",
+      "srcid",
+      "errorMessage",
+      "eventId",
+      "component",
+      "applianceName",
+      "appName",
+      "appType",
+      "jobName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventTime) {
+      self.eventTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .srcid) {
+      self.srcid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .eventId) {
+      self.eventId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .component) {
+      self.component = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appName) {
+      self.appName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appType) {
+      self.appType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobName) {
+      self.jobName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.eventTime, forKey: .eventTime)
+    try container.encode(self.srcid, forKey: .srcid)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.eventId, forKey: .eventId)
+    try container.encode(self.component, forKey: .component)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.appName, forKey: .appName)
+    try container.encode(self.appType, forKey: .appType)
+    try container.encode(self.jobName, forKey: .jobName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

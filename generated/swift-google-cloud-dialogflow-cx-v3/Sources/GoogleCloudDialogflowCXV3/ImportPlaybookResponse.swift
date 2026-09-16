@@ -35,6 +35,8 @@
     /// is set for all resources in ImportPlaybookRequest.
     public var conflictingResources: ImportPlaybookResponse.ConflictingResources? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportPlaybookResponse`.
     public init() {}
 
@@ -49,6 +51,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let playbook = CodingKeys(stringValue: "playbook")
+      static let conflictingResources = CodingKeys(stringValue: "conflictingResources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "playbook",
+        "conflictingResources",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .playbook) {
+        self.playbook = value
+      }
+      self.conflictingResources = try container.decodeIfPresent(
+        ImportPlaybookResponse.ConflictingResources.self, forKey: .conflictingResources)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.playbook, forKey: .playbook)
+      try container.encodeIfPresent(self.conflictingResources, forKey: .conflictingResources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Conflicting resources detected during the import process. Only filled when
@@ -66,6 +105,8 @@
       /// Display names of conflicting tools.
       public var toolDisplayNames: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ConflictingResources`.
       public init() {}
 
@@ -80,6 +121,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let mainPlaybookDisplayName = CodingKeys(stringValue: "mainPlaybookDisplayName")
+        static let nestedPlaybookDisplayNames = CodingKeys(
+          stringValue: "nestedPlaybookDisplayNames")
+        static let toolDisplayNames = CodingKeys(stringValue: "toolDisplayNames")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "mainPlaybookDisplayName",
+          "nestedPlaybookDisplayNames",
+          "toolDisplayNames",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .mainPlaybookDisplayName)
+        {
+          self.mainPlaybookDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .nestedPlaybookDisplayNames)
+        {
+          self.nestedPlaybookDisplayNames = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .toolDisplayNames)
+        {
+          self.toolDisplayNames = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mainPlaybookDisplayName, forKey: .mainPlaybookDisplayName)
+        try container.encode(self.nestedPlaybookDisplayNames, forKey: .nestedPlaybookDisplayNames)
+        try container.encode(self.toolDisplayNames, forKey: .toolDisplayNames)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

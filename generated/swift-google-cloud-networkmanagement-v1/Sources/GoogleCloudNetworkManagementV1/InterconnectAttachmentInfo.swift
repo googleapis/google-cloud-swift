@@ -44,6 +44,8 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleCloudWKT._An
   /// Appliance IP address that was matched for L2_DEDICATED attachments.
   public var l2AttachmentMatchedIpAddress: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InterconnectAttachmentInfo`.
   public init() {}
 
@@ -58,6 +60,79 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let interconnectUri = CodingKeys(stringValue: "interconnectUri")
+    static let region = CodingKeys(stringValue: "region")
+    static let cloudRouterUri = CodingKeys(stringValue: "cloudRouterUri")
+    static let type = CodingKeys(stringValue: "type")
+    static let l2AttachmentMatchedIpAddress = CodingKeys(
+      stringValue: "l2AttachmentMatchedIpAddress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "interconnectUri",
+      "region",
+      "cloudRouterUri",
+      "type",
+      "l2AttachmentMatchedIpAddress",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interconnectUri) {
+      self.interconnectUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudRouterUri) {
+      self.cloudRouterUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      InterconnectAttachmentInfo.Type_.self, forKey: .type)
+    {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .l2AttachmentMatchedIpAddress)
+    {
+      self.l2AttachmentMatchedIpAddress = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.interconnectUri, forKey: .interconnectUri)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.cloudRouterUri, forKey: .cloudRouterUri)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.l2AttachmentMatchedIpAddress, forKey: .l2AttachmentMatchedIpAddress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// What type of interconnect attachment this is.

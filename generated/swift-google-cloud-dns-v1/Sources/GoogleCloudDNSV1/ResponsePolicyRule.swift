@@ -35,6 +35,8 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// An identifier for this rule. Must be unique with the ResponsePolicy.
   public var ruleName: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResponsePolicyRule`.
   public init() {}
 
@@ -49,6 +51,54 @@ public struct ResponsePolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let behavior = CodingKeys(stringValue: "behavior")
+    static let dnsName = CodingKeys(stringValue: "dnsName")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let localData = CodingKeys(stringValue: "localData")
+    static let ruleName = CodingKeys(stringValue: "ruleName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "behavior",
+      "dnsName",
+      "kind",
+      "localData",
+      "ruleName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.behavior = try container.decodeIfPresent(
+      ResponsePolicyRule.Behavior.self, forKey: .behavior)
+    self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.localData = try container.decodeIfPresent(
+      ResponsePolicyRuleLocalData.self, forKey: .localData)
+    self.ruleName = try container.decodeIfPresent(Swift.String.self, forKey: .ruleName)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.behavior, forKey: .behavior)
+    try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.localData, forKey: .localData)
+    try container.encodeIfPresent(self.ruleName, forKey: .ruleName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [behavior][.ResponsePolicyRule.behavior] field.

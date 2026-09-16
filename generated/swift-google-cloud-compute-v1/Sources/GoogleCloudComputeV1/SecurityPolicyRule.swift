@@ -128,6 +128,8 @@
     /// CLOUD_ARMOR.
     public var redirectOptions: SecurityPolicyRuleRedirectOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRule`.
     public init() {}
 
@@ -142,6 +144,81 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let action = CodingKeys(stringValue: "action")
+      static let description = CodingKeys(stringValue: "description")
+      static let headerAction = CodingKeys(stringValue: "headerAction")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let match = CodingKeys(stringValue: "match")
+      static let networkMatch = CodingKeys(stringValue: "networkMatch")
+      static let preconfiguredWafConfig = CodingKeys(stringValue: "preconfiguredWafConfig")
+      static let preview = CodingKeys(stringValue: "preview")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let rateLimitOptions = CodingKeys(stringValue: "rateLimitOptions")
+      static let redirectOptions = CodingKeys(stringValue: "redirectOptions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "action",
+        "description",
+        "headerAction",
+        "kind",
+        "match",
+        "networkMatch",
+        "preconfiguredWafConfig",
+        "preview",
+        "priority",
+        "rateLimitOptions",
+        "redirectOptions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.action = try container.decodeIfPresent(Swift.String.self, forKey: .action)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.headerAction = try container.decodeIfPresent(
+        SecurityPolicyRuleHttpHeaderAction.self, forKey: .headerAction)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.match = try container.decodeIfPresent(SecurityPolicyRuleMatcher.self, forKey: .match)
+      self.networkMatch = try container.decodeIfPresent(
+        SecurityPolicyRuleNetworkMatcher.self, forKey: .networkMatch)
+      self.preconfiguredWafConfig = try container.decodeIfPresent(
+        SecurityPolicyRulePreconfiguredWafConfig.self, forKey: .preconfiguredWafConfig)
+      self.preview = try container.decodeIfPresent(Swift.Bool.self, forKey: .preview)
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
+      self.rateLimitOptions = try container.decodeIfPresent(
+        SecurityPolicyRuleRateLimitOptions.self, forKey: .rateLimitOptions)
+      self.redirectOptions = try container.decodeIfPresent(
+        SecurityPolicyRuleRedirectOptions.self, forKey: .redirectOptions)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.action, forKey: .action)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.headerAction, forKey: .headerAction)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.match, forKey: .match)
+      try container.encodeIfPresent(self.networkMatch, forKey: .networkMatch)
+      try container.encodeIfPresent(self.preconfiguredWafConfig, forKey: .preconfiguredWafConfig)
+      try container.encodeIfPresent(self.preview, forKey: .preview)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.rateLimitOptions, forKey: .rateLimitOptions)
+      try container.encodeIfPresent(self.redirectOptions, forKey: .redirectOptions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

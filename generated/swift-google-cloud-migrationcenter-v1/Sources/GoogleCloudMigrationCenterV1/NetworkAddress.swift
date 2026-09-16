@@ -36,6 +36,8 @@ public struct NetworkAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether DHCP is used to assign addresses.
   public var assignment: NetworkAddress.AddressAssignment = NetworkAddress.AddressAssignment()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkAddress`.
   public init() {}
 
@@ -50,6 +52,64 @@ public struct NetworkAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let subnetMask = CodingKeys(stringValue: "subnetMask")
+    static let bcast = CodingKeys(stringValue: "bcast")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+    static let assignment = CodingKeys(stringValue: "assignment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipAddress",
+      "subnetMask",
+      "bcast",
+      "fqdn",
+      "assignment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetMask) {
+      self.subnetMask = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bcast) {
+      self.bcast = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    if let value = try container.decodeIfPresent(
+      NetworkAddress.AddressAssignment.self, forKey: .assignment)
+    {
+      self.assignment = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.subnetMask, forKey: .subnetMask)
+    try container.encode(self.bcast, forKey: .bcast)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    try container.encode(self.assignment, forKey: .assignment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Network address assignment.

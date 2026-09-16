@@ -51,6 +51,8 @@ public struct BackupCollection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The last time a backup was created in the backup collection.
   public var lastBackupTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupCollection`.
   public init() {}
 
@@ -65,6 +67,84 @@ public struct BackupCollection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let instanceUid = CodingKeys(stringValue: "instanceUid")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let totalBackupSizeBytes = CodingKeys(stringValue: "totalBackupSizeBytes")
+    static let totalBackupCount = CodingKeys(stringValue: "totalBackupCount")
+    static let lastBackupTime = CodingKeys(stringValue: "lastBackupTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "instanceUid",
+      "instance",
+      "kmsKey",
+      "uid",
+      "createTime",
+      "totalBackupSizeBytes",
+      "totalBackupCount",
+      "lastBackupTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceUid) {
+      self.instanceUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBackupSizeBytes) {
+      self.totalBackupSizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBackupCount) {
+      self.totalBackupCount = value
+    }
+    self.lastBackupTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastBackupTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.instanceUid, forKey: .instanceUid)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.totalBackupSizeBytes, forKey: .totalBackupSizeBytes)
+    try container.encode(self.totalBackupCount, forKey: .totalBackupCount)
+    try container.encodeIfPresent(self.lastBackupTime, forKey: .lastBackupTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -92,6 +92,8 @@ public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The list of fields waiting for hub administration's approval.
   public var fieldPathsPendingUpdate: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Spoke`.
   public init() {}
 
@@ -108,6 +110,140 @@ public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let hub = CodingKeys(stringValue: "hub")
+    static let group = CodingKeys(stringValue: "group")
+    static let linkedVpnTunnels = CodingKeys(stringValue: "linkedVpnTunnels")
+    static let linkedInterconnectAttachments = CodingKeys(
+      stringValue: "linkedInterconnectAttachments")
+    static let linkedRouterApplianceInstances = CodingKeys(
+      stringValue: "linkedRouterApplianceInstances")
+    static let linkedVpcNetwork = CodingKeys(stringValue: "linkedVpcNetwork")
+    static let linkedProducerVpcNetwork = CodingKeys(stringValue: "linkedProducerVpcNetwork")
+    static let uniqueId = CodingKeys(stringValue: "uniqueId")
+    static let state = CodingKeys(stringValue: "state")
+    static let reasons = CodingKeys(stringValue: "reasons")
+    static let spokeType = CodingKeys(stringValue: "spokeType")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let fieldPathsPendingUpdate = CodingKeys(stringValue: "fieldPathsPendingUpdate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "hub",
+      "group",
+      "linkedVpnTunnels",
+      "linkedInterconnectAttachments",
+      "linkedRouterApplianceInstances",
+      "linkedVpcNetwork",
+      "linkedProducerVpcNetwork",
+      "uniqueId",
+      "state",
+      "reasons",
+      "spokeType",
+      "etag",
+      "fieldPathsPendingUpdate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hub) {
+      self.hub = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
+      self.group = value
+    }
+    self.linkedVpnTunnels = try container.decodeIfPresent(
+      LinkedVpnTunnels.self, forKey: .linkedVpnTunnels)
+    self.linkedInterconnectAttachments = try container.decodeIfPresent(
+      LinkedInterconnectAttachments.self, forKey: .linkedInterconnectAttachments)
+    self.linkedRouterApplianceInstances = try container.decodeIfPresent(
+      LinkedRouterApplianceInstances.self, forKey: .linkedRouterApplianceInstances)
+    self.linkedVpcNetwork = try container.decodeIfPresent(
+      LinkedVpcNetwork.self, forKey: .linkedVpcNetwork)
+    self.linkedProducerVpcNetwork = try container.decodeIfPresent(
+      LinkedProducerVpcNetwork.self, forKey: .linkedProducerVpcNetwork)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uniqueId) {
+      self.uniqueId = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Spoke.StateReason].self, forKey: .reasons) {
+      self.reasons = value
+    }
+    if let value = try container.decodeIfPresent(SpokeType.self, forKey: .spokeType) {
+      self.spokeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .fieldPathsPendingUpdate)
+    {
+      self.fieldPathsPendingUpdate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.hub, forKey: .hub)
+    try container.encode(self.group, forKey: .group)
+    try container.encodeIfPresent(self.linkedVpnTunnels, forKey: .linkedVpnTunnels)
+    try container.encodeIfPresent(
+      self.linkedInterconnectAttachments, forKey: .linkedInterconnectAttachments)
+    try container.encodeIfPresent(
+      self.linkedRouterApplianceInstances, forKey: .linkedRouterApplianceInstances)
+    try container.encodeIfPresent(self.linkedVpcNetwork, forKey: .linkedVpcNetwork)
+    try container.encodeIfPresent(self.linkedProducerVpcNetwork, forKey: .linkedProducerVpcNetwork)
+    try container.encode(self.uniqueId, forKey: .uniqueId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.reasons, forKey: .reasons)
+    try container.encode(self.spokeType, forKey: .spokeType)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.fieldPathsPendingUpdate, forKey: .fieldPathsPendingUpdate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The reason a spoke is inactive.
   public struct StateReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -120,6 +256,8 @@ public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Additional information provided by the user in the RejectSpoke call.
     public var userDetails: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StateReason`.
     public init() {}
@@ -135,6 +273,50 @@ public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let code = CodingKeys(stringValue: "code")
+      static let message = CodingKeys(stringValue: "message")
+      static let userDetails = CodingKeys(stringValue: "userDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "code",
+        "message",
+        "userDetails",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Spoke.StateReason.Code.self, forKey: .code) {
+        self.code = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+        self.message = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userDetails) {
+        self.userDetails = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.code, forKey: .code)
+      try container.encode(self.message, forKey: .message)
+      try container.encode(self.userDetails, forKey: .userDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The Code enum represents the various reasons a state can be `INACTIVE`.

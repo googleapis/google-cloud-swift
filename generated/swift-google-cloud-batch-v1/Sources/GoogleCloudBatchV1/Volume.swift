@@ -42,6 +42,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The source for the volume.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Volume`.
   public init() {}
 
@@ -58,18 +60,35 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case nfs = "nfs"
-    case gcs = "gcs"
-    case deviceName = "deviceName"
-    case mountPath = "mountPath"
-    case mountOptions = "mountOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nfs = CodingKeys(stringValue: "nfs")
+    static let gcs = CodingKeys(stringValue: "gcs")
+    static let deviceName = CodingKeys(stringValue: "deviceName")
+    static let mountPath = CodingKeys(stringValue: "mountPath")
+    static let mountOptions = CodingKeys(stringValue: "mountOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nfs",
+      "gcs",
+      "deviceName",
+      "mountPath",
+      "mountOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.mountPath = try container.decode(Swift.String.self, forKey: .mountPath)
-    self.mountOptions = try container.decode([Swift.String].self, forKey: .mountOptions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountPath) {
+      self.mountPath = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mountOptions) {
+      self.mountOptions = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -91,6 +110,10 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.deviceName(deviceName))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -107,6 +130,9 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .deviceName(let value):
         try container.encode(value, forKey: .deviceName)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

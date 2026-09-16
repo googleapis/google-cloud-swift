@@ -30,6 +30,8 @@ public struct TabularRegressionPredictionResult: Codable, Equatable, GoogleCloud
   /// The upper bound of the prediction interval.
   public var upperBound: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TabularRegressionPredictionResult`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct TabularRegressionPredictionResult: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let value = CodingKeys(stringValue: "value")
+    static let lowerBound = CodingKeys(stringValue: "lowerBound")
+    static let upperBound = CodingKeys(stringValue: "upperBound")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "value",
+      "lowerBound",
+      "upperBound",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .value) {
+      self.value = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .lowerBound) {
+      self.lowerBound = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .upperBound) {
+      self.upperBound = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.value, forKey: .value)
+    try container.encode(self.lowerBound, forKey: .lowerBound)
+    try container.encode(self.upperBound, forKey: .upperBound)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

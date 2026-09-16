@@ -38,6 +38,8 @@
     /// The message detail.
     public var detail: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ValidationMessage`.
     public init() {}
 
@@ -52,6 +54,66 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceType = CodingKeys(stringValue: "resourceType")
+      static let resources = CodingKeys(stringValue: "resources")
+      static let resourceNames = CodingKeys(stringValue: "resourceNames")
+      static let severity = CodingKeys(stringValue: "severity")
+      static let detail = CodingKeys(stringValue: "detail")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceType",
+        "resources",
+        "resourceNames",
+        "severity",
+        "detail",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ValidationMessage.ResourceType.self, forKey: .resourceType)
+      {
+        self.resourceType = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
+        self.resources = value
+      }
+      if let value = try container.decodeIfPresent([ResourceName].self, forKey: .resourceNames) {
+        self.resourceNames = value
+      }
+      if let value = try container.decodeIfPresent(
+        ValidationMessage.Severity.self, forKey: .severity)
+      {
+        self.severity = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+        self.detail = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceType, forKey: .resourceType)
+      try container.encode(self.resources, forKey: .resources)
+      try container.encode(self.resourceNames, forKey: .resourceNames)
+      try container.encode(self.severity, forKey: .severity)
+      try container.encode(self.detail, forKey: .detail)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Resource types.

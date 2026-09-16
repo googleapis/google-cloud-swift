@@ -31,6 +31,8 @@ public struct CreateTimeSeriesSummary: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The number of points that failed to be written. Order is not guaranteed.
   public var errors: [CreateTimeSeriesSummary.Error] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateTimeSeriesSummary`.
   public init() {}
 
@@ -47,6 +49,52 @@ public struct CreateTimeSeriesSummary: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalPointCount = CodingKeys(stringValue: "totalPointCount")
+    static let successPointCount = CodingKeys(stringValue: "successPointCount")
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalPointCount",
+      "successPointCount",
+      "errors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalPointCount) {
+      self.totalPointCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successPointCount) {
+      self.successPointCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CreateTimeSeriesSummary.Error].self, forKey: .errors)
+    {
+      self.errors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalPointCount, forKey: .totalPointCount)
+    try container.encode(self.successPointCount, forKey: .successPointCount)
+    try container.encode(self.errors, forKey: .errors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Detailed information about an error category.
   public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -56,6 +104,8 @@ public struct CreateTimeSeriesSummary: Codable, Equatable, GoogleCloudWKT._AnyPa
 
     /// The number of points that couldn't be written because of `status`.
     public var pointCount: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Error`.
     public init() {}
@@ -71,6 +121,42 @@ public struct CreateTimeSeriesSummary: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let status = CodingKeys(stringValue: "status")
+      static let pointCount = CodingKeys(stringValue: "pointCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "status",
+        "pointCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pointCount) {
+        self.pointCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encode(self.pointCount, forKey: .pointCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

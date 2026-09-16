@@ -41,6 +41,8 @@
     /// Required. The destination for the export.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportDocumentRequest`.
     public init() {}
 
@@ -57,19 +59,39 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case gcsDestination = "gcsDestination"
-      case exportFullContent = "exportFullContent"
-      case smartMessagingPartialUpdate = "smartMessagingPartialUpdate"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+      static let exportFullContent = CodingKeys(stringValue: "exportFullContent")
+      static let smartMessagingPartialUpdate = CodingKeys(
+        stringValue: "smartMessagingPartialUpdate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "gcsDestination",
+        "exportFullContent",
+        "smartMessagingPartialUpdate",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.exportFullContent = try container.decode(Swift.Bool.self, forKey: .exportFullContent)
-      self.smartMessagingPartialUpdate = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .exportFullContent) {
+        self.exportFullContent = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .smartMessagingPartialUpdate)
+      {
+        self.smartMessagingPartialUpdate = value
+      }
 
       var destination: OneOf_Destination? = nil
       let destinationCheckAndSet = {
@@ -87,6 +109,10 @@
         try destinationCheckAndSet(.gcsDestination(gcsDestination))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -100,6 +126,9 @@
         case .gcsDestination(let value):
           try container.encode(value, forKey: .gcsDestination)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

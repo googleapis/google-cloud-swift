@@ -32,6 +32,8 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Details about the migration source.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationConfig`.
   public init() {}
 
@@ -48,16 +50,31 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case selfManagedSource = "selfManagedSource"
-    case state = "state"
-    case forceFinishMigration = "forceFinishMigration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selfManagedSource = CodingKeys(stringValue: "selfManagedSource")
+    static let state = CodingKeys(stringValue: "state")
+    static let forceFinishMigration = CodingKeys(stringValue: "forceFinishMigration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selfManagedSource",
+      "state",
+      "forceFinishMigration",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decode(MigrationConfig.State.self, forKey: .state)
-    self.forceFinishMigration = try container.decode(Swift.Bool.self, forKey: .forceFinishMigration)
+    if let value = try container.decodeIfPresent(MigrationConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceFinishMigration) {
+      self.forceFinishMigration = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -75,6 +92,10 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.selfManagedSource(selfManagedSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +108,9 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .selfManagedSource(let value):
         try container.encode(value, forKey: .selfManagedSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

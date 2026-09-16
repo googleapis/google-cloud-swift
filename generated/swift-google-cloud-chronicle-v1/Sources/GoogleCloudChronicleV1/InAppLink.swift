@@ -30,6 +30,8 @@ public struct InAppLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Icon url for the link.
   public var iconUrl: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InAppLink`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct InAppLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let url = CodingKeys(stringValue: "url")
+    static let label = CodingKeys(stringValue: "label")
+    static let iconUrl = CodingKeys(stringValue: "iconUrl")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "url",
+      "label",
+      "iconUrl",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+      self.url = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iconUrl) {
+      self.iconUrl = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.url, forKey: .url)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.iconUrl, forKey: .iconUrl)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

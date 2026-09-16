@@ -117,6 +117,8 @@
     ///      - `ACTIVE` The public delegated prefix is ready to use.
     public var status: PublicDelegatedPrefix.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublicDelegatedPrefix`.
     public init() {}
 
@@ -133,25 +135,52 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case allocatablePrefixLength = "allocatablePrefixLength"
-      case byoipApiVersion = "byoipApiVersion"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case enableEnhancedIpv4Allocation = "enableEnhancedIpv4Allocation"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case ipCidrRange = "ipCidrRange"
-      case ipv6AccessType = "ipv6AccessType"
-      case isLiveMigration = "isLiveMigration"
-      case kind = "kind"
-      case mode = "mode"
-      case name = "name"
-      case parentPrefix = "parentPrefix"
-      case publicDelegatedSubPrefixs = "publicDelegatedSubPrefixs"
-      case region = "region"
-      case selfLink = "selfLink"
-      case status = "status"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allocatablePrefixLength = CodingKeys(stringValue: "allocatablePrefixLength")
+      static let byoipApiVersion = CodingKeys(stringValue: "byoipApiVersion")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let enableEnhancedIpv4Allocation = CodingKeys(
+        stringValue: "enableEnhancedIpv4Allocation")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let isLiveMigration = CodingKeys(stringValue: "isLiveMigration")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let name = CodingKeys(stringValue: "name")
+      static let parentPrefix = CodingKeys(stringValue: "parentPrefix")
+      static let publicDelegatedSubPrefixs = CodingKeys(stringValue: "publicDelegatedSubPrefixs")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allocatablePrefixLength",
+        "byoipApiVersion",
+        "creationTimestamp",
+        "description",
+        "enableEnhancedIpv4Allocation",
+        "fingerprint",
+        "id",
+        "ipCidrRange",
+        "ipv6AccessType",
+        "isLiveMigration",
+        "kind",
+        "mode",
+        "name",
+        "parentPrefix",
+        "publicDelegatedSubPrefixs",
+        "region",
+        "selfLink",
+        "status",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -184,38 +213,49 @@
       self.mode = try container.decodeIfPresent(PublicDelegatedPrefix.Mode.self, forKey: .mode)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.parentPrefix = try container.decodeIfPresent(Swift.String.self, forKey: .parentPrefix)
-      self.publicDelegatedSubPrefixs = try container.decode(
+      if let value = try container.decodeIfPresent(
         [PublicDelegatedPrefixPublicDelegatedSubPrefix].self, forKey: .publicDelegatedSubPrefixs)
+      {
+        self.publicDelegatedSubPrefixs = value
+      }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.status = try container.decodeIfPresent(
         PublicDelegatedPrefix.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.allocatablePrefixLength, forKey: .allocatablePrefixLength)
-      try container.encode(self.byoipApiVersion, forKey: .byoipApiVersion)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.enableEnhancedIpv4Allocation, forKey: .enableEnhancedIpv4Allocation)
+      try container.encodeIfPresent(self.allocatablePrefixLength, forKey: .allocatablePrefixLength)
+      try container.encodeIfPresent(self.byoipApiVersion, forKey: .byoipApiVersion)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
+        self.enableEnhancedIpv4Allocation, forKey: .enableEnhancedIpv4Allocation)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
-      try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
-      try container.encode(self.isLiveMigration, forKey: .isLiveMigration)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.mode, forKey: .mode)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.parentPrefix, forKey: .parentPrefix)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.isLiveMigration, forKey: .isLiveMigration)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.parentPrefix, forKey: .parentPrefix)
       try container.encode(self.publicDelegatedSubPrefixs, forKey: .publicDelegatedSubPrefixs)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [byoipApiVersion][google.cloud.compute.v1.PublicDelegatedPrefix.byoipApiVersion] field.

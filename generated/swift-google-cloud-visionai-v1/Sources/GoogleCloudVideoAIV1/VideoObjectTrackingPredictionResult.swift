@@ -33,6 +33,8 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
   /// All of the objects detected in the specified time range.
   public var objects: [VideoObjectTrackingPredictionResult.DetectedObject] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoObjectTrackingPredictionResult`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let segmentStartTime = CodingKeys(stringValue: "segmentStartTime")
+    static let segmentEndTime = CodingKeys(stringValue: "segmentEndTime")
+    static let objects = CodingKeys(stringValue: "objects")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "segmentStartTime",
+      "segmentEndTime",
+      "objects",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.segmentStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .segmentStartTime)
+    self.segmentEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .segmentEndTime)
+    if let value = try container.decodeIfPresent(
+      [VideoObjectTrackingPredictionResult.DetectedObject].self, forKey: .objects)
+    {
+      self.objects = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.segmentStartTime, forKey: .segmentStartTime)
+    try container.encodeIfPresent(self.segmentEndTime, forKey: .segmentEndTime)
+    try container.encode(self.objects, forKey: .objects)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Boundingbox for detected object. I.e. the rectangle over the video frame
@@ -67,6 +113,8 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
     /// The bottommost coordinate of the bounding box.
     public var yMax: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BoundingBox`.
     public init() {}
 
@@ -81,6 +129,56 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let xMin = CodingKeys(stringValue: "xMin")
+      static let xMax = CodingKeys(stringValue: "xMax")
+      static let yMin = CodingKeys(stringValue: "yMin")
+      static let yMax = CodingKeys(stringValue: "yMax")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "xMin",
+        "xMax",
+        "yMin",
+        "yMax",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xMin) {
+        self.xMin = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xMax) {
+        self.xMax = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .yMin) {
+        self.yMin = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .yMax) {
+        self.yMax = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.xMin, forKey: .xMin)
+      try container.encode(self.xMax, forKey: .xMax)
+      try container.encode(self.yMin, forKey: .yMin)
+      try container.encode(self.yMax, forKey: .yMax)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -120,6 +218,8 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
     /// detected object.
     public var trackId: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DetectedObject`.
     public init() {}
 
@@ -134,6 +234,61 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let boundingBox = CodingKeys(stringValue: "boundingBox")
+      static let confidence = CodingKeys(stringValue: "confidence")
+      static let trackId = CodingKeys(stringValue: "trackId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "displayName",
+        "boundingBox",
+        "confidence",
+        "trackId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.boundingBox = try container.decodeIfPresent(
+        VideoObjectTrackingPredictionResult.BoundingBox.self, forKey: .boundingBox)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+        self.confidence = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .trackId) {
+        self.trackId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.boundingBox, forKey: .boundingBox)
+      try container.encode(self.confidence, forKey: .confidence)
+      try container.encode(self.trackId, forKey: .trackId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

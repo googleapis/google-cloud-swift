@@ -27,6 +27,8 @@ public struct RecommenderGenerationConfig: Codable, Equatable, GoogleCloudWKT._A
   /// by or are applied to all subtypes.
   public var params: GoogleCloudWKT.Struct? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecommenderGenerationConfig`.
   public init() {}
 
@@ -41,6 +43,36 @@ public struct RecommenderGenerationConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let params = CodingKeys(stringValue: "params")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "params"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.params = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .params)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.params, forKey: .params)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -90,6 +90,8 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The key status.
   public var disabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceAccountKey`.
   public init() {}
 
@@ -104,6 +106,96 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let privateKeyType = CodingKeys(stringValue: "privateKeyType")
+    static let keyAlgorithm = CodingKeys(stringValue: "keyAlgorithm")
+    static let privateKeyData = CodingKeys(stringValue: "privateKeyData")
+    static let publicKeyData = CodingKeys(stringValue: "publicKeyData")
+    static let validAfterTime = CodingKeys(stringValue: "validAfterTime")
+    static let validBeforeTime = CodingKeys(stringValue: "validBeforeTime")
+    static let keyOrigin = CodingKeys(stringValue: "keyOrigin")
+    static let keyType = CodingKeys(stringValue: "keyType")
+    static let disabled = CodingKeys(stringValue: "disabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "privateKeyType",
+      "keyAlgorithm",
+      "privateKeyData",
+      "publicKeyData",
+      "validAfterTime",
+      "validBeforeTime",
+      "keyOrigin",
+      "keyType",
+      "disabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceAccountPrivateKeyType.self, forKey: .privateKeyType)
+    {
+      self.privateKeyType = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceAccountKeyAlgorithm.self, forKey: .keyAlgorithm)
+    {
+      self.keyAlgorithm = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .privateKeyData) {
+      self.privateKeyData = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKeyData) {
+      self.publicKeyData = value
+    }
+    self.validAfterTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .validAfterTime)
+    self.validBeforeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .validBeforeTime)
+    if let value = try container.decodeIfPresent(ServiceAccountKeyOrigin.self, forKey: .keyOrigin) {
+      self.keyOrigin = value
+    }
+    if let value = try container.decodeIfPresent(
+      ListServiceAccountKeysRequest.KeyType.self, forKey: .keyType)
+    {
+      self.keyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.privateKeyType, forKey: .privateKeyType)
+    try container.encode(self.keyAlgorithm, forKey: .keyAlgorithm)
+    try container.encode(self.privateKeyData, forKey: .privateKeyData)
+    try container.encode(self.publicKeyData, forKey: .publicKeyData)
+    try container.encodeIfPresent(self.validAfterTime, forKey: .validAfterTime)
+    try container.encodeIfPresent(self.validBeforeTime, forKey: .validBeforeTime)
+    try container.encode(self.keyOrigin, forKey: .keyOrigin)
+    try container.encode(self.keyType, forKey: .keyType)
+    try container.encode(self.disabled, forKey: .disabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

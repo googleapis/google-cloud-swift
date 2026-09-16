@@ -37,6 +37,8 @@
     /// The location into which the partial failures were written.
     public var partialFailureSink: OneOf_PartialFailureSink? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportRagFilesResponse`.
     public init() {}
 
@@ -53,22 +55,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case partialFailuresGcsPath = "partialFailuresGcsPath"
-      case partialFailuresBigqueryTable = "partialFailuresBigqueryTable"
-      case importedRagFilesCount = "importedRagFilesCount"
-      case failedRagFilesCount = "failedRagFilesCount"
-      case skippedRagFilesCount = "skippedRagFilesCount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let partialFailuresGcsPath = CodingKeys(stringValue: "partialFailuresGcsPath")
+      static let partialFailuresBigqueryTable = CodingKeys(
+        stringValue: "partialFailuresBigqueryTable")
+      static let importedRagFilesCount = CodingKeys(stringValue: "importedRagFilesCount")
+      static let failedRagFilesCount = CodingKeys(stringValue: "failedRagFilesCount")
+      static let skippedRagFilesCount = CodingKeys(stringValue: "skippedRagFilesCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "partialFailuresGcsPath",
+        "partialFailuresBigqueryTable",
+        "importedRagFilesCount",
+        "failedRagFilesCount",
+        "skippedRagFilesCount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.importedRagFilesCount = try container.decode(
-        Swift.Int64.self, forKey: .importedRagFilesCount)
-      self.failedRagFilesCount = try container.decode(
-        Swift.Int64.self, forKey: .failedRagFilesCount)
-      self.skippedRagFilesCount = try container.decode(
-        Swift.Int64.self, forKey: .skippedRagFilesCount)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .importedRagFilesCount)
+      {
+        self.importedRagFilesCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedRagFilesCount) {
+        self.failedRagFilesCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .skippedRagFilesCount)
+      {
+        self.skippedRagFilesCount = value
+      }
 
       var partialFailureSink: OneOf_PartialFailureSink? = nil
       let partialFailureSinkCheckAndSet = {
@@ -92,6 +113,10 @@
           .partialFailuresBigqueryTable(partialFailuresBigqueryTable))
       }
       self.partialFailureSink = partialFailureSink
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,6 +132,9 @@
         case .partialFailuresBigqueryTable(let value):
           try container.encode(value, forKey: .partialFailuresBigqueryTable)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

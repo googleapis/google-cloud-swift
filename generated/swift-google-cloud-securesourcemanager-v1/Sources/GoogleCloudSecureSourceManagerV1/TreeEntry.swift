@@ -38,6 +38,8 @@ public struct TreeEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The size of the object in bytes (only for blobs). Output-only.
   public var size: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TreeEntry`.
   public init() {}
 
@@ -52,6 +54,62 @@ public struct TreeEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let sha = CodingKeys(stringValue: "sha")
+    static let path = CodingKeys(stringValue: "path")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let size = CodingKeys(stringValue: "size")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "sha",
+      "path",
+      "mode",
+      "size",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(TreeEntry.ObjectType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha) {
+      self.sha = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mode) {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .size) {
+      self.size = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.sha, forKey: .sha)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encode(self.size, forKey: .size)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the type of object the TreeEntry represents.

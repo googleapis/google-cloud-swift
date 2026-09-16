@@ -49,6 +49,8 @@ public struct FieldPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specifies the resource type for the resource referred to by the field.
   public var resourceType: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FieldPolicy`.
   public init() {}
 
@@ -63,6 +65,50 @@ public struct FieldPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let resourcePermission = CodingKeys(stringValue: "resourcePermission")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "resourcePermission",
+      "resourceType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourcePermission) {
+      self.resourcePermission = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.selector, forKey: .selector)
+    try container.encode(self.resourcePermission, forKey: .resourcePermission)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

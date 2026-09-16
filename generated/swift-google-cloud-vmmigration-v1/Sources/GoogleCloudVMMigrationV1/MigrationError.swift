@@ -40,6 +40,8 @@ public struct MigrationError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time the error occurred.
   public var errorTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationError`.
   public init() {}
 
@@ -54,6 +56,59 @@ public struct MigrationError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let actionItem = CodingKeys(stringValue: "actionItem")
+    static let helpLinks = CodingKeys(stringValue: "helpLinks")
+    static let errorTime = CodingKeys(stringValue: "errorTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "errorMessage",
+      "actionItem",
+      "helpLinks",
+      "errorTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(MigrationError.ErrorCode.self, forKey: .code) {
+      self.code = value
+    }
+    self.errorMessage = try container.decodeIfPresent(
+      GoogleRpc.LocalizedMessage.self, forKey: .errorMessage)
+    self.actionItem = try container.decodeIfPresent(
+      GoogleRpc.LocalizedMessage.self, forKey: .actionItem)
+    if let value = try container.decodeIfPresent([GoogleRpc.Help.Link].self, forKey: .helpLinks) {
+      self.helpLinks = value
+    }
+    self.errorTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .errorTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encodeIfPresent(self.errorMessage, forKey: .errorMessage)
+    try container.encodeIfPresent(self.actionItem, forKey: .actionItem)
+    try container.encode(self.helpLinks, forKey: .helpLinks)
+    try container.encodeIfPresent(self.errorTime, forKey: .errorTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents resource error codes.

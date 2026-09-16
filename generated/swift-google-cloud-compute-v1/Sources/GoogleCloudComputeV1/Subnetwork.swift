@@ -225,6 +225,8 @@
     /// the total number of allocated and free IPs in each range.
     public var utilizationDetails: SubnetworkUtilizationDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Subnetwork`.
     public init() {}
 
@@ -241,40 +243,84 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case allowSubnetCidrRoutesOverlap = "allowSubnetCidrRoutesOverlap"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case enableFlowLogs = "enableFlowLogs"
-      case externalIpv6Prefix = "externalIpv6Prefix"
-      case fingerprint = "fingerprint"
-      case gatewayAddress = "gatewayAddress"
-      case id = "id"
-      case internalIpv6Prefix = "internalIpv6Prefix"
-      case ipCidrRange = "ipCidrRange"
-      case ipCollection = "ipCollection"
-      case ipv6AccessType = "ipv6AccessType"
-      case ipv6CidrRange = "ipv6CidrRange"
-      case ipv6GceEndpoint = "ipv6GceEndpoint"
-      case kind = "kind"
-      case logConfig = "logConfig"
-      case name = "name"
-      case network = "network"
-      case params = "params"
-      case privateIpGoogleAccess = "privateIpGoogleAccess"
-      case privateIpv6GoogleAccess = "privateIpv6GoogleAccess"
-      case purpose = "purpose"
-      case region = "region"
-      case reservedInternalRange = "reservedInternalRange"
-      case resolveSubnetMask = "resolveSubnetMask"
-      case role = "role"
-      case secondaryIpRanges = "secondaryIpRanges"
-      case selfLink = "selfLink"
-      case stackType = "stackType"
-      case state = "state"
-      case systemReservedExternalIpv6Ranges = "systemReservedExternalIpv6Ranges"
-      case systemReservedInternalIpv6Ranges = "systemReservedInternalIpv6Ranges"
-      case utilizationDetails = "utilizationDetails"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowSubnetCidrRoutesOverlap = CodingKeys(
+        stringValue: "allowSubnetCidrRoutesOverlap")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let enableFlowLogs = CodingKeys(stringValue: "enableFlowLogs")
+      static let externalIpv6Prefix = CodingKeys(stringValue: "externalIpv6Prefix")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let gatewayAddress = CodingKeys(stringValue: "gatewayAddress")
+      static let id = CodingKeys(stringValue: "id")
+      static let internalIpv6Prefix = CodingKeys(stringValue: "internalIpv6Prefix")
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipCollection = CodingKeys(stringValue: "ipCollection")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let ipv6CidrRange = CodingKeys(stringValue: "ipv6CidrRange")
+      static let ipv6GceEndpoint = CodingKeys(stringValue: "ipv6GceEndpoint")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let logConfig = CodingKeys(stringValue: "logConfig")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let params = CodingKeys(stringValue: "params")
+      static let privateIpGoogleAccess = CodingKeys(stringValue: "privateIpGoogleAccess")
+      static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+      static let purpose = CodingKeys(stringValue: "purpose")
+      static let region = CodingKeys(stringValue: "region")
+      static let reservedInternalRange = CodingKeys(stringValue: "reservedInternalRange")
+      static let resolveSubnetMask = CodingKeys(stringValue: "resolveSubnetMask")
+      static let role = CodingKeys(stringValue: "role")
+      static let secondaryIpRanges = CodingKeys(stringValue: "secondaryIpRanges")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let state = CodingKeys(stringValue: "state")
+      static let systemReservedExternalIpv6Ranges = CodingKeys(
+        stringValue: "systemReservedExternalIpv6Ranges")
+      static let systemReservedInternalIpv6Ranges = CodingKeys(
+        stringValue: "systemReservedInternalIpv6Ranges")
+      static let utilizationDetails = CodingKeys(stringValue: "utilizationDetails")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowSubnetCidrRoutesOverlap",
+        "creationTimestamp",
+        "description",
+        "enableFlowLogs",
+        "externalIpv6Prefix",
+        "fingerprint",
+        "gatewayAddress",
+        "id",
+        "internalIpv6Prefix",
+        "ipCidrRange",
+        "ipCollection",
+        "ipv6AccessType",
+        "ipv6CidrRange",
+        "ipv6GceEndpoint",
+        "kind",
+        "logConfig",
+        "name",
+        "network",
+        "params",
+        "privateIpGoogleAccess",
+        "privateIpv6GoogleAccess",
+        "purpose",
+        "region",
+        "reservedInternalRange",
+        "resolveSubnetMask",
+        "role",
+        "secondaryIpRanges",
+        "selfLink",
+        "stackType",
+        "state",
+        "systemReservedExternalIpv6Ranges",
+        "systemReservedInternalIpv6Ranges",
+        "utilizationDetails",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -324,60 +370,77 @@
       self.resolveSubnetMask = try container.decodeIfPresent(
         Subnetwork.ResolveSubnetMask.self, forKey: .resolveSubnetMask)
       self.role = try container.decodeIfPresent(Subnetwork.Role.self, forKey: .role)
-      self.secondaryIpRanges = try container.decode(
+      if let value = try container.decodeIfPresent(
         [SubnetworkSecondaryRange].self, forKey: .secondaryIpRanges)
+      {
+        self.secondaryIpRanges = value
+      }
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.stackType = try container.decodeIfPresent(Subnetwork.StackType.self, forKey: .stackType)
       self.state = try container.decodeIfPresent(Subnetwork.State.self, forKey: .state)
-      self.systemReservedExternalIpv6Ranges = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .systemReservedExternalIpv6Ranges)
-      self.systemReservedInternalIpv6Ranges = try container.decode(
+      {
+        self.systemReservedExternalIpv6Ranges = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .systemReservedInternalIpv6Ranges)
+      {
+        self.systemReservedInternalIpv6Ranges = value
+      }
       self.utilizationDetails = try container.decodeIfPresent(
         SubnetworkUtilizationDetails.self, forKey: .utilizationDetails)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.allowSubnetCidrRoutesOverlap, forKey: .allowSubnetCidrRoutesOverlap)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.enableFlowLogs, forKey: .enableFlowLogs)
-      try container.encode(self.externalIpv6Prefix, forKey: .externalIpv6Prefix)
+      try container.encodeIfPresent(
+        self.allowSubnetCidrRoutesOverlap, forKey: .allowSubnetCidrRoutesOverlap)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.enableFlowLogs, forKey: .enableFlowLogs)
+      try container.encodeIfPresent(self.externalIpv6Prefix, forKey: .externalIpv6Prefix)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.gatewayAddress, forKey: .gatewayAddress)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.internalIpv6Prefix, forKey: .internalIpv6Prefix)
-      try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
-      try container.encode(self.ipCollection, forKey: .ipCollection)
-      try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
-      try container.encode(self.ipv6CidrRange, forKey: .ipv6CidrRange)
-      try container.encode(self.ipv6GceEndpoint, forKey: .ipv6GceEndpoint)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.logConfig, forKey: .logConfig)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.privateIpGoogleAccess, forKey: .privateIpGoogleAccess)
-      try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
-      try container.encode(self.purpose, forKey: .purpose)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.reservedInternalRange, forKey: .reservedInternalRange)
-      try container.encode(self.resolveSubnetMask, forKey: .resolveSubnetMask)
-      try container.encode(self.role, forKey: .role)
+      try container.encodeIfPresent(self.gatewayAddress, forKey: .gatewayAddress)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.internalIpv6Prefix, forKey: .internalIpv6Prefix)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipCollection, forKey: .ipCollection)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.ipv6CidrRange, forKey: .ipv6CidrRange)
+      try container.encodeIfPresent(self.ipv6GceEndpoint, forKey: .ipv6GceEndpoint)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.logConfig, forKey: .logConfig)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.privateIpGoogleAccess, forKey: .privateIpGoogleAccess)
+      try container.encodeIfPresent(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+      try container.encodeIfPresent(self.purpose, forKey: .purpose)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.reservedInternalRange, forKey: .reservedInternalRange)
+      try container.encodeIfPresent(self.resolveSubnetMask, forKey: .resolveSubnetMask)
+      try container.encodeIfPresent(self.role, forKey: .role)
       try container.encode(self.secondaryIpRanges, forKey: .secondaryIpRanges)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.stackType, forKey: .stackType)
-      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.state, forKey: .state)
       try container.encode(
         self.systemReservedExternalIpv6Ranges, forKey: .systemReservedExternalIpv6Ranges)
       try container.encode(
         self.systemReservedInternalIpv6Ranges, forKey: .systemReservedInternalIpv6Ranges)
-      try container.encode(self.utilizationDetails, forKey: .utilizationDetails)
+      try container.encodeIfPresent(self.utilizationDetails, forKey: .utilizationDetails)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [ipv6AccessType][google.cloud.compute.v1.Subnetwork.ipv6AccessType] field.

@@ -50,6 +50,8 @@
     /// config.
     public var versionedExpr: SecurityPolicyRuleMatcher.VersionedExpr? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRuleMatcher`.
     public init() {}
 
@@ -64,6 +66,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let config = CodingKeys(stringValue: "config")
+      static let expr = CodingKeys(stringValue: "expr")
+      static let exprOptions = CodingKeys(stringValue: "exprOptions")
+      static let versionedExpr = CodingKeys(stringValue: "versionedExpr")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "config",
+        "expr",
+        "exprOptions",
+        "versionedExpr",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.config = try container.decodeIfPresent(
+        SecurityPolicyRuleMatcherConfig.self, forKey: .config)
+      self.expr = try container.decodeIfPresent(Expr.self, forKey: .expr)
+      self.exprOptions = try container.decodeIfPresent(
+        SecurityPolicyRuleMatcherExprOptions.self, forKey: .exprOptions)
+      self.versionedExpr = try container.decodeIfPresent(
+        SecurityPolicyRuleMatcher.VersionedExpr.self, forKey: .versionedExpr)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.config, forKey: .config)
+      try container.encodeIfPresent(self.expr, forKey: .expr)
+      try container.encodeIfPresent(self.exprOptions, forKey: .exprOptions)
+      try container.encodeIfPresent(self.versionedExpr, forKey: .versionedExpr)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [versionedExpr][google.cloud.compute.v1.SecurityPolicyRuleMatcher.versionedExpr] field.

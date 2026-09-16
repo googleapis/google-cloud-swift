@@ -116,6 +116,8 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The edition of the given Cloud SQL instance.
   public var edition: CloudSqlSettings.Edition = CloudSqlSettings.Edition()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudSqlSettings`.
   public init() {}
 
@@ -130,6 +132,153 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+    static let userLabels = CodingKeys(stringValue: "userLabels")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let storageAutoResizeLimit = CodingKeys(stringValue: "storageAutoResizeLimit")
+    static let activationPolicy = CodingKeys(stringValue: "activationPolicy")
+    static let ipConfig = CodingKeys(stringValue: "ipConfig")
+    static let autoStorageIncrease = CodingKeys(stringValue: "autoStorageIncrease")
+    static let databaseFlags = CodingKeys(stringValue: "databaseFlags")
+    static let dataDiskType = CodingKeys(stringValue: "dataDiskType")
+    static let dataDiskSizeGb = CodingKeys(stringValue: "dataDiskSizeGb")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let secondaryZone = CodingKeys(stringValue: "secondaryZone")
+    static let sourceId = CodingKeys(stringValue: "sourceId")
+    static let rootPassword = CodingKeys(stringValue: "rootPassword")
+    static let rootPasswordSet = CodingKeys(stringValue: "rootPasswordSet")
+    static let collation = CodingKeys(stringValue: "collation")
+    static let cmekKeyName = CodingKeys(stringValue: "cmekKeyName")
+    static let availabilityType = CodingKeys(stringValue: "availabilityType")
+    static let edition = CodingKeys(stringValue: "edition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "databaseVersion",
+      "userLabels",
+      "tier",
+      "storageAutoResizeLimit",
+      "activationPolicy",
+      "ipConfig",
+      "autoStorageIncrease",
+      "databaseFlags",
+      "dataDiskType",
+      "dataDiskSizeGb",
+      "zone",
+      "secondaryZone",
+      "sourceId",
+      "rootPassword",
+      "rootPasswordSet",
+      "collation",
+      "cmekKeyName",
+      "availabilityType",
+      "edition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      CloudSqlSettings.SqlDatabaseVersion.self, forKey: .databaseVersion)
+    {
+      self.databaseVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .userLabels)
+    {
+      self.userLabels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tier) {
+      self.tier = value
+    }
+    self.storageAutoResizeLimit = try container.decodeIfPresent(
+      GoogleCloudWKT.Int64Value.self, forKey: .storageAutoResizeLimit)
+    if let value = try container.decodeIfPresent(
+      CloudSqlSettings.SqlActivationPolicy.self, forKey: .activationPolicy)
+    {
+      self.activationPolicy = value
+    }
+    self.ipConfig = try container.decodeIfPresent(SqlIpConfig.self, forKey: .ipConfig)
+    self.autoStorageIncrease = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .autoStorageIncrease)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .databaseFlags)
+    {
+      self.databaseFlags = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudSqlSettings.SqlDataDiskType.self, forKey: .dataDiskType)
+    {
+      self.dataDiskType = value
+    }
+    self.dataDiskSizeGb = try container.decodeIfPresent(
+      GoogleCloudWKT.Int64Value.self, forKey: .dataDiskSizeGb)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryZone) {
+      self.secondaryZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceId) {
+      self.sourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootPassword) {
+      self.rootPassword = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rootPasswordSet) {
+      self.rootPasswordSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collation) {
+      self.collation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cmekKeyName) {
+      self.cmekKeyName = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudSqlSettings.SqlAvailabilityType.self, forKey: .availabilityType)
+    {
+      self.availabilityType = value
+    }
+    if let value = try container.decodeIfPresent(CloudSqlSettings.Edition.self, forKey: .edition) {
+      self.edition = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.databaseVersion, forKey: .databaseVersion)
+    try container.encode(self.userLabels, forKey: .userLabels)
+    try container.encode(self.tier, forKey: .tier)
+    try container.encodeIfPresent(self.storageAutoResizeLimit, forKey: .storageAutoResizeLimit)
+    try container.encode(self.activationPolicy, forKey: .activationPolicy)
+    try container.encodeIfPresent(self.ipConfig, forKey: .ipConfig)
+    try container.encodeIfPresent(self.autoStorageIncrease, forKey: .autoStorageIncrease)
+    try container.encode(self.databaseFlags, forKey: .databaseFlags)
+    try container.encode(self.dataDiskType, forKey: .dataDiskType)
+    try container.encodeIfPresent(self.dataDiskSizeGb, forKey: .dataDiskSizeGb)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.secondaryZone, forKey: .secondaryZone)
+    try container.encode(self.sourceId, forKey: .sourceId)
+    try container.encode(self.rootPassword, forKey: .rootPassword)
+    try container.encode(self.rootPasswordSet, forKey: .rootPasswordSet)
+    try container.encode(self.collation, forKey: .collation)
+    try container.encode(self.cmekKeyName, forKey: .cmekKeyName)
+    try container.encode(self.availabilityType, forKey: .availabilityType)
+    try container.encode(self.edition, forKey: .edition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies when the instance should be activated.

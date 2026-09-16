@@ -78,6 +78,8 @@ public struct SimpleExportPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// `4294967295`. Required when `squash_mode` is `ROOT_SQUASH` or `ALL_SQUASH`.
   public var anonUid: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SimpleExportPolicyRule`.
   public init() {}
 
@@ -94,20 +96,41 @@ public struct SimpleExportPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case allowedClients = "allowedClients"
-    case hasRootAccess = "hasRootAccess"
-    case accessType = "accessType"
-    case nfsv3 = "nfsv3"
-    case nfsv4 = "nfsv4"
-    case kerberos5ReadOnly = "kerberos5ReadOnly"
-    case kerberos5ReadWrite = "kerberos5ReadWrite"
-    case kerberos5IReadOnly = "kerberos5iReadOnly"
-    case kerberos5IReadWrite = "kerberos5iReadWrite"
-    case kerberos5PReadOnly = "kerberos5pReadOnly"
-    case kerberos5PReadWrite = "kerberos5pReadWrite"
-    case squashMode = "squashMode"
-    case anonUid = "anonUid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowedClients = CodingKeys(stringValue: "allowedClients")
+    static let hasRootAccess = CodingKeys(stringValue: "hasRootAccess")
+    static let accessType = CodingKeys(stringValue: "accessType")
+    static let nfsv3 = CodingKeys(stringValue: "nfsv3")
+    static let nfsv4 = CodingKeys(stringValue: "nfsv4")
+    static let kerberos5ReadOnly = CodingKeys(stringValue: "kerberos5ReadOnly")
+    static let kerberos5ReadWrite = CodingKeys(stringValue: "kerberos5ReadWrite")
+    static let kerberos5IReadOnly = CodingKeys(stringValue: "kerberos5iReadOnly")
+    static let kerberos5IReadWrite = CodingKeys(stringValue: "kerberos5iReadWrite")
+    static let kerberos5PReadOnly = CodingKeys(stringValue: "kerberos5pReadOnly")
+    static let kerberos5PReadWrite = CodingKeys(stringValue: "kerberos5pReadWrite")
+    static let squashMode = CodingKeys(stringValue: "squashMode")
+    static let anonUid = CodingKeys(stringValue: "anonUid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowedClients",
+      "hasRootAccess",
+      "accessType",
+      "nfsv3",
+      "nfsv4",
+      "kerberos5ReadOnly",
+      "kerberos5ReadWrite",
+      "kerberos5iReadOnly",
+      "kerberos5iReadWrite",
+      "kerberos5pReadOnly",
+      "kerberos5pReadWrite",
+      "squashMode",
+      "anonUid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -132,23 +155,30 @@ public struct SimpleExportPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPac
     self.squashMode = try container.decodeIfPresent(
       SimpleExportPolicyRule.SquashMode.self, forKey: .squashMode)
     self.anonUid = try container.decodeIfPresent(Swift.Int64.self, forKey: .anonUid)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.allowedClients, forKey: .allowedClients)
-    try container.encode(self.hasRootAccess, forKey: .hasRootAccess)
-    try container.encode(self.accessType, forKey: .accessType)
-    try container.encode(self.nfsv3, forKey: .nfsv3)
-    try container.encode(self.nfsv4, forKey: .nfsv4)
-    try container.encode(self.kerberos5ReadOnly, forKey: .kerberos5ReadOnly)
-    try container.encode(self.kerberos5ReadWrite, forKey: .kerberos5ReadWrite)
-    try container.encode(self.kerberos5IReadOnly, forKey: .kerberos5IReadOnly)
-    try container.encode(self.kerberos5IReadWrite, forKey: .kerberos5IReadWrite)
-    try container.encode(self.kerberos5PReadOnly, forKey: .kerberos5PReadOnly)
-    try container.encode(self.kerberos5PReadWrite, forKey: .kerberos5PReadWrite)
-    try container.encode(self.squashMode, forKey: .squashMode)
-    try container.encode(self.anonUid, forKey: .anonUid)
+    try container.encodeIfPresent(self.allowedClients, forKey: .allowedClients)
+    try container.encodeIfPresent(self.hasRootAccess, forKey: .hasRootAccess)
+    try container.encodeIfPresent(self.accessType, forKey: .accessType)
+    try container.encodeIfPresent(self.nfsv3, forKey: .nfsv3)
+    try container.encodeIfPresent(self.nfsv4, forKey: .nfsv4)
+    try container.encodeIfPresent(self.kerberos5ReadOnly, forKey: .kerberos5ReadOnly)
+    try container.encodeIfPresent(self.kerberos5ReadWrite, forKey: .kerberos5ReadWrite)
+    try container.encodeIfPresent(self.kerberos5IReadOnly, forKey: .kerberos5IReadOnly)
+    try container.encodeIfPresent(self.kerberos5IReadWrite, forKey: .kerberos5IReadWrite)
+    try container.encodeIfPresent(self.kerberos5PReadOnly, forKey: .kerberos5PReadOnly)
+    try container.encodeIfPresent(self.kerberos5PReadWrite, forKey: .kerberos5PReadWrite)
+    try container.encodeIfPresent(self.squashMode, forKey: .squashMode)
+    try container.encodeIfPresent(self.anonUid, forKey: .anonUid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `SquashMode` defines how remote user privileges are restricted when

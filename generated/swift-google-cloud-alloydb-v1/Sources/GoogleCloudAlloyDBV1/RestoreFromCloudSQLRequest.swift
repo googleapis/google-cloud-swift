@@ -34,6 +34,8 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleCloudWKT._An
   /// The source CloudSQL resource to restore from.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreFromCloudSQLRequest`.
   public init() {}
 
@@ -50,17 +52,33 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudsqlBackupRunSource = "cloudsqlBackupRunSource"
-    case parent = "parent"
-    case clusterId = "clusterId"
-    case cluster = "cluster"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudsqlBackupRunSource = CodingKeys(stringValue: "cloudsqlBackupRunSource")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let clusterId = CodingKeys(stringValue: "clusterId")
+    static let cluster = CodingKeys(stringValue: "cluster")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudsqlBackupRunSource",
+      "parent",
+      "clusterId",
+      "cluster",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.clusterId = try container.decode(Swift.String.self, forKey: .clusterId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterId) {
+      self.clusterId = value
+    }
     self.cluster = try container.decodeIfPresent(Cluster.self, forKey: .cluster)
 
     var source: OneOf_Source? = nil
@@ -79,19 +97,26 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleCloudWKT._An
       try sourceCheckAndSet(.cloudsqlBackupRunSource(cloudsqlBackupRunSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.clusterId, forKey: .clusterId)
-    try container.encode(self.cluster, forKey: .cluster)
+    try container.encodeIfPresent(self.cluster, forKey: .cluster)
 
     if let choice = self.source {
       switch choice {
       case .cloudsqlBackupRunSource(let value):
         try container.encode(value, forKey: .cloudsqlBackupRunSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

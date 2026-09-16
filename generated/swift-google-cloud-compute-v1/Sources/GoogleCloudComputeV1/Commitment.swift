@@ -158,6 +158,8 @@
     /// applies only to eligible resources of general purpose N1 machine series.
     public var type: Commitment.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Commitment`.
     public init() {}
 
@@ -172,6 +174,146 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoRenew = CodingKeys(stringValue: "autoRenew")
+      static let category = CodingKeys(stringValue: "category")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customEndTimestamp = CodingKeys(stringValue: "customEndTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let endTimestamp = CodingKeys(stringValue: "endTimestamp")
+      static let existingReservations = CodingKeys(stringValue: "existingReservations")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let licenseResource = CodingKeys(stringValue: "licenseResource")
+      static let mergeSourceCommitments = CodingKeys(stringValue: "mergeSourceCommitments")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let plan = CodingKeys(stringValue: "plan")
+      static let region = CodingKeys(stringValue: "region")
+      static let reservations = CodingKeys(stringValue: "reservations")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let resources = CodingKeys(stringValue: "resources")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let splitSourceCommitment = CodingKeys(stringValue: "splitSourceCommitment")
+      static let startTimestamp = CodingKeys(stringValue: "startTimestamp")
+      static let status = CodingKeys(stringValue: "status")
+      static let statusMessage = CodingKeys(stringValue: "statusMessage")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoRenew",
+        "category",
+        "creationTimestamp",
+        "customEndTimestamp",
+        "description",
+        "endTimestamp",
+        "existingReservations",
+        "id",
+        "kind",
+        "licenseResource",
+        "mergeSourceCommitments",
+        "name",
+        "params",
+        "plan",
+        "region",
+        "reservations",
+        "resourceStatus",
+        "resources",
+        "selfLink",
+        "splitSourceCommitment",
+        "startTimestamp",
+        "status",
+        "statusMessage",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoRenew = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoRenew)
+      self.category = try container.decodeIfPresent(Commitment.Category.self, forKey: .category)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.customEndTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .customEndTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.endTimestamp = try container.decodeIfPresent(Swift.String.self, forKey: .endTimestamp)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .existingReservations)
+      {
+        self.existingReservations = value
+      }
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.licenseResource = try container.decodeIfPresent(
+        LicenseResourceCommitment.self, forKey: .licenseResource)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .mergeSourceCommitments)
+      {
+        self.mergeSourceCommitments = value
+      }
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.params = try container.decodeIfPresent(CommitmentParams.self, forKey: .params)
+      self.plan = try container.decodeIfPresent(Commitment.Plan.self, forKey: .plan)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      if let value = try container.decodeIfPresent([Reservation].self, forKey: .reservations) {
+        self.reservations = value
+      }
+      self.resourceStatus = try container.decodeIfPresent(
+        CommitmentResourceStatus.self, forKey: .resourceStatus)
+      if let value = try container.decodeIfPresent([ResourceCommitment].self, forKey: .resources) {
+        self.resources = value
+      }
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.splitSourceCommitment = try container.decodeIfPresent(
+        Swift.String.self, forKey: .splitSourceCommitment)
+      self.startTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .startTimestamp)
+      self.status = try container.decodeIfPresent(Commitment.Status.self, forKey: .status)
+      self.statusMessage = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage)
+      self.type = try container.decodeIfPresent(Commitment.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoRenew, forKey: .autoRenew)
+      try container.encodeIfPresent(self.category, forKey: .category)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.customEndTimestamp, forKey: .customEndTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.endTimestamp, forKey: .endTimestamp)
+      try container.encode(self.existingReservations, forKey: .existingReservations)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.licenseResource, forKey: .licenseResource)
+      try container.encode(self.mergeSourceCommitments, forKey: .mergeSourceCommitments)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.plan, forKey: .plan)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encode(self.reservations, forKey: .reservations)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encode(self.resources, forKey: .resources)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.splitSourceCommitment, forKey: .splitSourceCommitment)
+      try container.encodeIfPresent(self.startTimestamp, forKey: .startTimestamp)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.statusMessage, forKey: .statusMessage)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [category][google.cloud.compute.v1.Commitment.category] field.

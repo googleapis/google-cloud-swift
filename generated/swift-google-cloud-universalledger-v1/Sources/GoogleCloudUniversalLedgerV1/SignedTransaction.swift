@@ -74,6 +74,8 @@ public struct SignedTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// [google.cloud.universalledger.v1.SignedTransaction]: <doc:SignedTransaction>
   public var otherSigningKeySlots: [KeySlot] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SignedTransaction`.
   public init() {}
 
@@ -88,6 +90,64 @@ public struct SignedTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serializedClientTransaction = CodingKeys(stringValue: "serializedClientTransaction")
+    static let senderSignature = CodingKeys(stringValue: "senderSignature")
+    static let senderSigningKeySlot = CodingKeys(stringValue: "senderSigningKeySlot")
+    static let otherSignatures = CodingKeys(stringValue: "otherSignatures")
+    static let otherSigningKeySlots = CodingKeys(stringValue: "otherSigningKeySlots")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serializedClientTransaction",
+      "senderSignature",
+      "senderSigningKeySlot",
+      "otherSignatures",
+      "otherSigningKeySlots",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .serializedClientTransaction)
+    {
+      self.serializedClientTransaction = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .senderSignature) {
+      self.senderSignature = value
+    }
+    if let value = try container.decodeIfPresent(KeySlot.self, forKey: .senderSigningKeySlot) {
+      self.senderSigningKeySlot = value
+    }
+    if let value = try container.decodeIfPresent([Foundation.Data].self, forKey: .otherSignatures) {
+      self.otherSignatures = value
+    }
+    if let value = try container.decodeIfPresent([KeySlot].self, forKey: .otherSigningKeySlots) {
+      self.otherSigningKeySlots = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serializedClientTransaction, forKey: .serializedClientTransaction)
+    try container.encode(self.senderSignature, forKey: .senderSignature)
+    try container.encode(self.senderSigningKeySlot, forKey: .senderSigningKeySlot)
+    try container.encode(self.otherSignatures, forKey: .otherSignatures)
+    try container.encode(self.otherSigningKeySlots, forKey: .otherSigningKeySlots)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

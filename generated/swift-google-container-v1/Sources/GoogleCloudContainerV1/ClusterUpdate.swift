@@ -396,6 +396,8 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The desired emulated version for the cluster.
   public var desiredEmulatedVersion: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterUpdate`.
   public init() {}
 
@@ -412,105 +414,242 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case desiredNodeVersion = "desiredNodeVersion"
-    case desiredMonitoringService = "desiredMonitoringService"
-    case desiredAddonsConfig = "desiredAddonsConfig"
-    case desiredNodePoolId = "desiredNodePoolId"
-    case desiredImageType = "desiredImageType"
-    case desiredImage = "desiredImage"
-    case desiredImageProject = "desiredImageProject"
-    case desiredDatabaseEncryption = "desiredDatabaseEncryption"
-    case desiredWorkloadIdentityConfig = "desiredWorkloadIdentityConfig"
-    case desiredMeshCertificates = "desiredMeshCertificates"
-    case desiredShieldedNodes = "desiredShieldedNodes"
-    case desiredCostManagementConfig = "desiredCostManagementConfig"
-    case desiredDnsConfig = "desiredDnsConfig"
-    case desiredNodePoolAutoscaling = "desiredNodePoolAutoscaling"
-    case desiredLocations = "desiredLocations"
-    case desiredMasterAuthorizedNetworksConfig = "desiredMasterAuthorizedNetworksConfig"
-    case desiredClusterAutoscaling = "desiredClusterAutoscaling"
-    case desiredBinaryAuthorization = "desiredBinaryAuthorization"
-    case desiredLoggingService = "desiredLoggingService"
-    case desiredResourceUsageExportConfig = "desiredResourceUsageExportConfig"
-    case desiredVerticalPodAutoscaling = "desiredVerticalPodAutoscaling"
-    case desiredPrivateClusterConfig = "desiredPrivateClusterConfig"
-    case desiredIntraNodeVisibilityConfig = "desiredIntraNodeVisibilityConfig"
-    case desiredDefaultSnatStatus = "desiredDefaultSnatStatus"
-    case desiredReleaseChannel = "desiredReleaseChannel"
-    case desiredL4IlbSubsettingConfig = "desiredL4ilbSubsettingConfig"
-    case desiredDatapathProvider = "desiredDatapathProvider"
-    case desiredPrivateIpv6GoogleAccess = "desiredPrivateIpv6GoogleAccess"
-    case desiredNotificationConfig = "desiredNotificationConfig"
-    case desiredAuthenticatorGroupsConfig = "desiredAuthenticatorGroupsConfig"
-    case desiredLoggingConfig = "desiredLoggingConfig"
-    case desiredMonitoringConfig = "desiredMonitoringConfig"
-    case desiredIdentityServiceConfig = "desiredIdentityServiceConfig"
-    case desiredServiceExternalIpsConfig = "desiredServiceExternalIpsConfig"
-    case desiredEnablePrivateEndpoint = "desiredEnablePrivateEndpoint"
-    case desiredDefaultEnablePrivateNodes = "desiredDefaultEnablePrivateNodes"
-    case desiredControlPlaneEndpointsConfig = "desiredControlPlaneEndpointsConfig"
-    case desiredMasterVersion = "desiredMasterVersion"
-    case desiredGcfsConfig = "desiredGcfsConfig"
-    case desiredNodePoolAutoConfigNetworkTags = "desiredNodePoolAutoConfigNetworkTags"
-    case desiredPodAutoscaling = "desiredPodAutoscaling"
-    case desiredGatewayApiConfig = "desiredGatewayApiConfig"
-    case etag = "etag"
-    case desiredNodePoolLoggingConfig = "desiredNodePoolLoggingConfig"
-    case desiredFleet = "desiredFleet"
-    case desiredStackType = "desiredStackType"
-    case additionalPodRangesConfig = "additionalPodRangesConfig"
-    case removedAdditionalPodRangesConfig = "removedAdditionalPodRangesConfig"
-    case enableK8SBetaApis = "enableK8sBetaApis"
-    case desiredSecurityPostureConfig = "desiredSecurityPostureConfig"
-    case desiredNetworkPerformanceConfig = "desiredNetworkPerformanceConfig"
-    case desiredEnableFqdnNetworkPolicy = "desiredEnableFqdnNetworkPolicy"
-    case desiredAutopilotWorkloadPolicyConfig = "desiredAutopilotWorkloadPolicyConfig"
-    case desiredK8SBetaApis = "desiredK8sBetaApis"
-    case desiredContainerdConfig = "desiredContainerdConfig"
-    case desiredEnableMultiNetworking = "desiredEnableMultiNetworking"
-    case desiredNodePoolAutoConfigResourceManagerTags =
-      "desiredNodePoolAutoConfigResourceManagerTags"
-    case desiredInTransitEncryptionConfig = "desiredInTransitEncryptionConfig"
-    case desiredEnableCiliumClusterwideNetworkPolicy = "desiredEnableCiliumClusterwideNetworkPolicy"
-    case desiredSecretManagerConfig = "desiredSecretManagerConfig"
-    case desiredCompliancePostureConfig = "desiredCompliancePostureConfig"
-    case desiredNodeKubeletConfig = "desiredNodeKubeletConfig"
-    case desiredNodePoolAutoConfigKubeletConfig = "desiredNodePoolAutoConfigKubeletConfig"
-    case userManagedKeysConfig = "userManagedKeysConfig"
-    case desiredRbacBindingConfig = "desiredRbacBindingConfig"
-    case desiredAdditionalIpRangesConfig = "desiredAdditionalIpRangesConfig"
-    case desiredEnterpriseConfig = "desiredEnterpriseConfig"
-    case desiredAutoIpamConfig = "desiredAutoIpamConfig"
-    case desiredDisableL4LbFirewallReconciliation = "desiredDisableL4LbFirewallReconciliation"
-    case desiredNodePoolAutoConfigLinuxNodeConfig = "desiredNodePoolAutoConfigLinuxNodeConfig"
-    case desiredUserManagedKeysConfig = "desiredUserManagedKeysConfig"
-    case desiredAnonymousAuthenticationConfig = "desiredAnonymousAuthenticationConfig"
-    case gkeAutoUpgradeConfig = "gkeAutoUpgradeConfig"
-    case desiredNetworkTierConfig = "desiredNetworkTierConfig"
-    case desiredSecretSyncConfig = "desiredSecretSyncConfig"
-    case desiredPrivilegedAdmissionConfig = "desiredPrivilegedAdmissionConfig"
-    case desiredControlPlaneEgress = "desiredControlPlaneEgress"
-    case desiredRollbackSafeUpgrade = "desiredRollbackSafeUpgrade"
-    case desiredManagedOpentelemetryConfig = "desiredManagedOpentelemetryConfig"
-    case desiredAutopilotClusterPolicyConfig = "desiredAutopilotClusterPolicyConfig"
-    case desiredManagedMachineLearningDiagnosticsConfig =
-      "desiredManagedMachineLearningDiagnosticsConfig"
-    case desiredNodeCreationConfig = "desiredNodeCreationConfig"
-    case desiredEmulatedVersion = "desiredEmulatedVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let desiredNodeVersion = CodingKeys(stringValue: "desiredNodeVersion")
+    static let desiredMonitoringService = CodingKeys(stringValue: "desiredMonitoringService")
+    static let desiredAddonsConfig = CodingKeys(stringValue: "desiredAddonsConfig")
+    static let desiredNodePoolId = CodingKeys(stringValue: "desiredNodePoolId")
+    static let desiredImageType = CodingKeys(stringValue: "desiredImageType")
+    static let desiredImage = CodingKeys(stringValue: "desiredImage")
+    static let desiredImageProject = CodingKeys(stringValue: "desiredImageProject")
+    static let desiredDatabaseEncryption = CodingKeys(stringValue: "desiredDatabaseEncryption")
+    static let desiredWorkloadIdentityConfig = CodingKeys(
+      stringValue: "desiredWorkloadIdentityConfig")
+    static let desiredMeshCertificates = CodingKeys(stringValue: "desiredMeshCertificates")
+    static let desiredShieldedNodes = CodingKeys(stringValue: "desiredShieldedNodes")
+    static let desiredCostManagementConfig = CodingKeys(stringValue: "desiredCostManagementConfig")
+    static let desiredDnsConfig = CodingKeys(stringValue: "desiredDnsConfig")
+    static let desiredNodePoolAutoscaling = CodingKeys(stringValue: "desiredNodePoolAutoscaling")
+    static let desiredLocations = CodingKeys(stringValue: "desiredLocations")
+    static let desiredMasterAuthorizedNetworksConfig = CodingKeys(
+      stringValue: "desiredMasterAuthorizedNetworksConfig")
+    static let desiredClusterAutoscaling = CodingKeys(stringValue: "desiredClusterAutoscaling")
+    static let desiredBinaryAuthorization = CodingKeys(stringValue: "desiredBinaryAuthorization")
+    static let desiredLoggingService = CodingKeys(stringValue: "desiredLoggingService")
+    static let desiredResourceUsageExportConfig = CodingKeys(
+      stringValue: "desiredResourceUsageExportConfig")
+    static let desiredVerticalPodAutoscaling = CodingKeys(
+      stringValue: "desiredVerticalPodAutoscaling")
+    static let desiredPrivateClusterConfig = CodingKeys(stringValue: "desiredPrivateClusterConfig")
+    static let desiredIntraNodeVisibilityConfig = CodingKeys(
+      stringValue: "desiredIntraNodeVisibilityConfig")
+    static let desiredDefaultSnatStatus = CodingKeys(stringValue: "desiredDefaultSnatStatus")
+    static let desiredReleaseChannel = CodingKeys(stringValue: "desiredReleaseChannel")
+    static let desiredL4IlbSubsettingConfig = CodingKeys(
+      stringValue: "desiredL4ilbSubsettingConfig")
+    static let desiredDatapathProvider = CodingKeys(stringValue: "desiredDatapathProvider")
+    static let desiredPrivateIpv6GoogleAccess = CodingKeys(
+      stringValue: "desiredPrivateIpv6GoogleAccess")
+    static let desiredNotificationConfig = CodingKeys(stringValue: "desiredNotificationConfig")
+    static let desiredAuthenticatorGroupsConfig = CodingKeys(
+      stringValue: "desiredAuthenticatorGroupsConfig")
+    static let desiredLoggingConfig = CodingKeys(stringValue: "desiredLoggingConfig")
+    static let desiredMonitoringConfig = CodingKeys(stringValue: "desiredMonitoringConfig")
+    static let desiredIdentityServiceConfig = CodingKeys(
+      stringValue: "desiredIdentityServiceConfig")
+    static let desiredServiceExternalIpsConfig = CodingKeys(
+      stringValue: "desiredServiceExternalIpsConfig")
+    static let desiredEnablePrivateEndpoint = CodingKeys(
+      stringValue: "desiredEnablePrivateEndpoint")
+    static let desiredDefaultEnablePrivateNodes = CodingKeys(
+      stringValue: "desiredDefaultEnablePrivateNodes")
+    static let desiredControlPlaneEndpointsConfig = CodingKeys(
+      stringValue: "desiredControlPlaneEndpointsConfig")
+    static let desiredMasterVersion = CodingKeys(stringValue: "desiredMasterVersion")
+    static let desiredGcfsConfig = CodingKeys(stringValue: "desiredGcfsConfig")
+    static let desiredNodePoolAutoConfigNetworkTags = CodingKeys(
+      stringValue: "desiredNodePoolAutoConfigNetworkTags")
+    static let desiredPodAutoscaling = CodingKeys(stringValue: "desiredPodAutoscaling")
+    static let desiredGatewayApiConfig = CodingKeys(stringValue: "desiredGatewayApiConfig")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let desiredNodePoolLoggingConfig = CodingKeys(
+      stringValue: "desiredNodePoolLoggingConfig")
+    static let desiredFleet = CodingKeys(stringValue: "desiredFleet")
+    static let desiredStackType = CodingKeys(stringValue: "desiredStackType")
+    static let additionalPodRangesConfig = CodingKeys(stringValue: "additionalPodRangesConfig")
+    static let removedAdditionalPodRangesConfig = CodingKeys(
+      stringValue: "removedAdditionalPodRangesConfig")
+    static let enableK8SBetaApis = CodingKeys(stringValue: "enableK8sBetaApis")
+    static let desiredSecurityPostureConfig = CodingKeys(
+      stringValue: "desiredSecurityPostureConfig")
+    static let desiredNetworkPerformanceConfig = CodingKeys(
+      stringValue: "desiredNetworkPerformanceConfig")
+    static let desiredEnableFqdnNetworkPolicy = CodingKeys(
+      stringValue: "desiredEnableFqdnNetworkPolicy")
+    static let desiredAutopilotWorkloadPolicyConfig = CodingKeys(
+      stringValue: "desiredAutopilotWorkloadPolicyConfig")
+    static let desiredK8SBetaApis = CodingKeys(stringValue: "desiredK8sBetaApis")
+    static let desiredContainerdConfig = CodingKeys(stringValue: "desiredContainerdConfig")
+    static let desiredEnableMultiNetworking = CodingKeys(
+      stringValue: "desiredEnableMultiNetworking")
+    static let desiredNodePoolAutoConfigResourceManagerTags = CodingKeys(
+      stringValue: "desiredNodePoolAutoConfigResourceManagerTags")
+    static let desiredInTransitEncryptionConfig = CodingKeys(
+      stringValue: "desiredInTransitEncryptionConfig")
+    static let desiredEnableCiliumClusterwideNetworkPolicy = CodingKeys(
+      stringValue: "desiredEnableCiliumClusterwideNetworkPolicy")
+    static let desiredSecretManagerConfig = CodingKeys(stringValue: "desiredSecretManagerConfig")
+    static let desiredCompliancePostureConfig = CodingKeys(
+      stringValue: "desiredCompliancePostureConfig")
+    static let desiredNodeKubeletConfig = CodingKeys(stringValue: "desiredNodeKubeletConfig")
+    static let desiredNodePoolAutoConfigKubeletConfig = CodingKeys(
+      stringValue: "desiredNodePoolAutoConfigKubeletConfig")
+    static let userManagedKeysConfig = CodingKeys(stringValue: "userManagedKeysConfig")
+    static let desiredRbacBindingConfig = CodingKeys(stringValue: "desiredRbacBindingConfig")
+    static let desiredAdditionalIpRangesConfig = CodingKeys(
+      stringValue: "desiredAdditionalIpRangesConfig")
+    static let desiredEnterpriseConfig = CodingKeys(stringValue: "desiredEnterpriseConfig")
+    static let desiredAutoIpamConfig = CodingKeys(stringValue: "desiredAutoIpamConfig")
+    static let desiredDisableL4LbFirewallReconciliation = CodingKeys(
+      stringValue: "desiredDisableL4LbFirewallReconciliation")
+    static let desiredNodePoolAutoConfigLinuxNodeConfig = CodingKeys(
+      stringValue: "desiredNodePoolAutoConfigLinuxNodeConfig")
+    static let desiredUserManagedKeysConfig = CodingKeys(
+      stringValue: "desiredUserManagedKeysConfig")
+    static let desiredAnonymousAuthenticationConfig = CodingKeys(
+      stringValue: "desiredAnonymousAuthenticationConfig")
+    static let gkeAutoUpgradeConfig = CodingKeys(stringValue: "gkeAutoUpgradeConfig")
+    static let desiredNetworkTierConfig = CodingKeys(stringValue: "desiredNetworkTierConfig")
+    static let desiredSecretSyncConfig = CodingKeys(stringValue: "desiredSecretSyncConfig")
+    static let desiredPrivilegedAdmissionConfig = CodingKeys(
+      stringValue: "desiredPrivilegedAdmissionConfig")
+    static let desiredControlPlaneEgress = CodingKeys(stringValue: "desiredControlPlaneEgress")
+    static let desiredRollbackSafeUpgrade = CodingKeys(stringValue: "desiredRollbackSafeUpgrade")
+    static let desiredManagedOpentelemetryConfig = CodingKeys(
+      stringValue: "desiredManagedOpentelemetryConfig")
+    static let desiredAutopilotClusterPolicyConfig = CodingKeys(
+      stringValue: "desiredAutopilotClusterPolicyConfig")
+    static let desiredManagedMachineLearningDiagnosticsConfig = CodingKeys(
+      stringValue: "desiredManagedMachineLearningDiagnosticsConfig")
+    static let desiredNodeCreationConfig = CodingKeys(stringValue: "desiredNodeCreationConfig")
+    static let desiredEmulatedVersion = CodingKeys(stringValue: "desiredEmulatedVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "desiredNodeVersion",
+      "desiredMonitoringService",
+      "desiredAddonsConfig",
+      "desiredNodePoolId",
+      "desiredImageType",
+      "desiredImage",
+      "desiredImageProject",
+      "desiredDatabaseEncryption",
+      "desiredWorkloadIdentityConfig",
+      "desiredMeshCertificates",
+      "desiredShieldedNodes",
+      "desiredCostManagementConfig",
+      "desiredDnsConfig",
+      "desiredNodePoolAutoscaling",
+      "desiredLocations",
+      "desiredMasterAuthorizedNetworksConfig",
+      "desiredClusterAutoscaling",
+      "desiredBinaryAuthorization",
+      "desiredLoggingService",
+      "desiredResourceUsageExportConfig",
+      "desiredVerticalPodAutoscaling",
+      "desiredPrivateClusterConfig",
+      "desiredIntraNodeVisibilityConfig",
+      "desiredDefaultSnatStatus",
+      "desiredReleaseChannel",
+      "desiredL4ilbSubsettingConfig",
+      "desiredDatapathProvider",
+      "desiredPrivateIpv6GoogleAccess",
+      "desiredNotificationConfig",
+      "desiredAuthenticatorGroupsConfig",
+      "desiredLoggingConfig",
+      "desiredMonitoringConfig",
+      "desiredIdentityServiceConfig",
+      "desiredServiceExternalIpsConfig",
+      "desiredEnablePrivateEndpoint",
+      "desiredDefaultEnablePrivateNodes",
+      "desiredControlPlaneEndpointsConfig",
+      "desiredMasterVersion",
+      "desiredGcfsConfig",
+      "desiredNodePoolAutoConfigNetworkTags",
+      "desiredPodAutoscaling",
+      "desiredGatewayApiConfig",
+      "etag",
+      "desiredNodePoolLoggingConfig",
+      "desiredFleet",
+      "desiredStackType",
+      "additionalPodRangesConfig",
+      "removedAdditionalPodRangesConfig",
+      "enableK8sBetaApis",
+      "desiredSecurityPostureConfig",
+      "desiredNetworkPerformanceConfig",
+      "desiredEnableFqdnNetworkPolicy",
+      "desiredAutopilotWorkloadPolicyConfig",
+      "desiredK8sBetaApis",
+      "desiredContainerdConfig",
+      "desiredEnableMultiNetworking",
+      "desiredNodePoolAutoConfigResourceManagerTags",
+      "desiredInTransitEncryptionConfig",
+      "desiredEnableCiliumClusterwideNetworkPolicy",
+      "desiredSecretManagerConfig",
+      "desiredCompliancePostureConfig",
+      "desiredNodeKubeletConfig",
+      "desiredNodePoolAutoConfigKubeletConfig",
+      "userManagedKeysConfig",
+      "desiredRbacBindingConfig",
+      "desiredAdditionalIpRangesConfig",
+      "desiredEnterpriseConfig",
+      "desiredAutoIpamConfig",
+      "desiredDisableL4LbFirewallReconciliation",
+      "desiredNodePoolAutoConfigLinuxNodeConfig",
+      "desiredUserManagedKeysConfig",
+      "desiredAnonymousAuthenticationConfig",
+      "gkeAutoUpgradeConfig",
+      "desiredNetworkTierConfig",
+      "desiredSecretSyncConfig",
+      "desiredPrivilegedAdmissionConfig",
+      "desiredControlPlaneEgress",
+      "desiredRollbackSafeUpgrade",
+      "desiredManagedOpentelemetryConfig",
+      "desiredAutopilotClusterPolicyConfig",
+      "desiredManagedMachineLearningDiagnosticsConfig",
+      "desiredNodeCreationConfig",
+      "desiredEmulatedVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.desiredNodeVersion = try container.decode(Swift.String.self, forKey: .desiredNodeVersion)
-    self.desiredMonitoringService = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredNodeVersion) {
+      self.desiredNodeVersion = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .desiredMonitoringService)
+    {
+      self.desiredMonitoringService = value
+    }
     self.desiredAddonsConfig = try container.decodeIfPresent(
       AddonsConfig.self, forKey: .desiredAddonsConfig)
-    self.desiredNodePoolId = try container.decode(Swift.String.self, forKey: .desiredNodePoolId)
-    self.desiredImageType = try container.decode(Swift.String.self, forKey: .desiredImageType)
-    self.desiredImage = try container.decode(Swift.String.self, forKey: .desiredImage)
-    self.desiredImageProject = try container.decode(Swift.String.self, forKey: .desiredImageProject)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredNodePoolId) {
+      self.desiredNodePoolId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredImageType) {
+      self.desiredImageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredImage) {
+      self.desiredImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredImageProject) {
+      self.desiredImageProject = value
+    }
     self.desiredDatabaseEncryption = try container.decodeIfPresent(
       DatabaseEncryption.self, forKey: .desiredDatabaseEncryption)
     self.desiredWorkloadIdentityConfig = try container.decodeIfPresent(
@@ -524,15 +663,19 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.desiredDnsConfig = try container.decodeIfPresent(DNSConfig.self, forKey: .desiredDnsConfig)
     self.desiredNodePoolAutoscaling = try container.decodeIfPresent(
       NodePoolAutoscaling.self, forKey: .desiredNodePoolAutoscaling)
-    self.desiredLocations = try container.decode([Swift.String].self, forKey: .desiredLocations)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .desiredLocations) {
+      self.desiredLocations = value
+    }
     self.desiredMasterAuthorizedNetworksConfig = try container.decodeIfPresent(
       MasterAuthorizedNetworksConfig.self, forKey: .desiredMasterAuthorizedNetworksConfig)
     self.desiredClusterAutoscaling = try container.decodeIfPresent(
       ClusterAutoscaling.self, forKey: .desiredClusterAutoscaling)
     self.desiredBinaryAuthorization = try container.decodeIfPresent(
       BinaryAuthorization.self, forKey: .desiredBinaryAuthorization)
-    self.desiredLoggingService = try container.decode(
-      Swift.String.self, forKey: .desiredLoggingService)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredLoggingService)
+    {
+      self.desiredLoggingService = value
+    }
     self.desiredResourceUsageExportConfig = try container.decodeIfPresent(
       ResourceUsageExportConfig.self, forKey: .desiredResourceUsageExportConfig)
     self.desiredVerticalPodAutoscaling = try container.decodeIfPresent(
@@ -547,10 +690,16 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       ReleaseChannel.self, forKey: .desiredReleaseChannel)
     self.desiredL4IlbSubsettingConfig = try container.decodeIfPresent(
       ILBSubsettingConfig.self, forKey: .desiredL4IlbSubsettingConfig)
-    self.desiredDatapathProvider = try container.decode(
+    if let value = try container.decodeIfPresent(
       DatapathProvider.self, forKey: .desiredDatapathProvider)
-    self.desiredPrivateIpv6GoogleAccess = try container.decode(
+    {
+      self.desiredDatapathProvider = value
+    }
+    if let value = try container.decodeIfPresent(
       PrivateIPv6GoogleAccess.self, forKey: .desiredPrivateIpv6GoogleAccess)
+    {
+      self.desiredPrivateIpv6GoogleAccess = value
+    }
     self.desiredNotificationConfig = try container.decodeIfPresent(
       NotificationConfig.self, forKey: .desiredNotificationConfig)
     self.desiredAuthenticatorGroupsConfig = try container.decodeIfPresent(
@@ -569,8 +718,9 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Swift.Bool.self, forKey: .desiredDefaultEnablePrivateNodes)
     self.desiredControlPlaneEndpointsConfig = try container.decodeIfPresent(
       ControlPlaneEndpointsConfig.self, forKey: .desiredControlPlaneEndpointsConfig)
-    self.desiredMasterVersion = try container.decode(
-      Swift.String.self, forKey: .desiredMasterVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredMasterVersion) {
+      self.desiredMasterVersion = value
+    }
     self.desiredGcfsConfig = try container.decodeIfPresent(
       GcfsConfig.self, forKey: .desiredGcfsConfig)
     self.desiredNodePoolAutoConfigNetworkTags = try container.decodeIfPresent(
@@ -579,11 +729,15 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       PodAutoscaling.self, forKey: .desiredPodAutoscaling)
     self.desiredGatewayApiConfig = try container.decodeIfPresent(
       GatewayAPIConfig.self, forKey: .desiredGatewayApiConfig)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
     self.desiredNodePoolLoggingConfig = try container.decodeIfPresent(
       NodePoolLoggingConfig.self, forKey: .desiredNodePoolLoggingConfig)
     self.desiredFleet = try container.decodeIfPresent(Fleet.self, forKey: .desiredFleet)
-    self.desiredStackType = try container.decode(StackType.self, forKey: .desiredStackType)
+    if let value = try container.decodeIfPresent(StackType.self, forKey: .desiredStackType) {
+      self.desiredStackType = value
+    }
     self.additionalPodRangesConfig = try container.decodeIfPresent(
       AdditionalPodRangesConfig.self, forKey: .additionalPodRangesConfig)
     self.removedAdditionalPodRangesConfig = try container.decodeIfPresent(
@@ -659,124 +813,152 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       NodeCreationConfig.self, forKey: .desiredNodeCreationConfig)
     self.desiredEmulatedVersion = try container.decodeIfPresent(
       Swift.String.self, forKey: .desiredEmulatedVersion)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.desiredNodeVersion, forKey: .desiredNodeVersion)
     try container.encode(self.desiredMonitoringService, forKey: .desiredMonitoringService)
-    try container.encode(self.desiredAddonsConfig, forKey: .desiredAddonsConfig)
+    try container.encodeIfPresent(self.desiredAddonsConfig, forKey: .desiredAddonsConfig)
     try container.encode(self.desiredNodePoolId, forKey: .desiredNodePoolId)
     try container.encode(self.desiredImageType, forKey: .desiredImageType)
     try container.encode(self.desiredImage, forKey: .desiredImage)
     try container.encode(self.desiredImageProject, forKey: .desiredImageProject)
-    try container.encode(self.desiredDatabaseEncryption, forKey: .desiredDatabaseEncryption)
-    try container.encode(self.desiredWorkloadIdentityConfig, forKey: .desiredWorkloadIdentityConfig)
-    try container.encode(self.desiredMeshCertificates, forKey: .desiredMeshCertificates)
-    try container.encode(self.desiredShieldedNodes, forKey: .desiredShieldedNodes)
-    try container.encode(self.desiredCostManagementConfig, forKey: .desiredCostManagementConfig)
-    try container.encode(self.desiredDnsConfig, forKey: .desiredDnsConfig)
-    try container.encode(self.desiredNodePoolAutoscaling, forKey: .desiredNodePoolAutoscaling)
+    try container.encodeIfPresent(
+      self.desiredDatabaseEncryption, forKey: .desiredDatabaseEncryption)
+    try container.encodeIfPresent(
+      self.desiredWorkloadIdentityConfig, forKey: .desiredWorkloadIdentityConfig)
+    try container.encodeIfPresent(self.desiredMeshCertificates, forKey: .desiredMeshCertificates)
+    try container.encodeIfPresent(self.desiredShieldedNodes, forKey: .desiredShieldedNodes)
+    try container.encodeIfPresent(
+      self.desiredCostManagementConfig, forKey: .desiredCostManagementConfig)
+    try container.encodeIfPresent(self.desiredDnsConfig, forKey: .desiredDnsConfig)
+    try container.encodeIfPresent(
+      self.desiredNodePoolAutoscaling, forKey: .desiredNodePoolAutoscaling)
     try container.encode(self.desiredLocations, forKey: .desiredLocations)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredMasterAuthorizedNetworksConfig, forKey: .desiredMasterAuthorizedNetworksConfig)
-    try container.encode(self.desiredClusterAutoscaling, forKey: .desiredClusterAutoscaling)
-    try container.encode(self.desiredBinaryAuthorization, forKey: .desiredBinaryAuthorization)
+    try container.encodeIfPresent(
+      self.desiredClusterAutoscaling, forKey: .desiredClusterAutoscaling)
+    try container.encodeIfPresent(
+      self.desiredBinaryAuthorization, forKey: .desiredBinaryAuthorization)
     try container.encode(self.desiredLoggingService, forKey: .desiredLoggingService)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredResourceUsageExportConfig, forKey: .desiredResourceUsageExportConfig)
-    try container.encode(self.desiredVerticalPodAutoscaling, forKey: .desiredVerticalPodAutoscaling)
-    try container.encode(self.desiredPrivateClusterConfig, forKey: .desiredPrivateClusterConfig)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredVerticalPodAutoscaling, forKey: .desiredVerticalPodAutoscaling)
+    try container.encodeIfPresent(
+      self.desiredPrivateClusterConfig, forKey: .desiredPrivateClusterConfig)
+    try container.encodeIfPresent(
       self.desiredIntraNodeVisibilityConfig, forKey: .desiredIntraNodeVisibilityConfig)
-    try container.encode(self.desiredDefaultSnatStatus, forKey: .desiredDefaultSnatStatus)
-    try container.encode(self.desiredReleaseChannel, forKey: .desiredReleaseChannel)
-    try container.encode(self.desiredL4IlbSubsettingConfig, forKey: .desiredL4IlbSubsettingConfig)
+    try container.encodeIfPresent(self.desiredDefaultSnatStatus, forKey: .desiredDefaultSnatStatus)
+    try container.encodeIfPresent(self.desiredReleaseChannel, forKey: .desiredReleaseChannel)
+    try container.encodeIfPresent(
+      self.desiredL4IlbSubsettingConfig, forKey: .desiredL4IlbSubsettingConfig)
     try container.encode(self.desiredDatapathProvider, forKey: .desiredDatapathProvider)
     try container.encode(
       self.desiredPrivateIpv6GoogleAccess, forKey: .desiredPrivateIpv6GoogleAccess)
-    try container.encode(self.desiredNotificationConfig, forKey: .desiredNotificationConfig)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredNotificationConfig, forKey: .desiredNotificationConfig)
+    try container.encodeIfPresent(
       self.desiredAuthenticatorGroupsConfig, forKey: .desiredAuthenticatorGroupsConfig)
-    try container.encode(self.desiredLoggingConfig, forKey: .desiredLoggingConfig)
-    try container.encode(self.desiredMonitoringConfig, forKey: .desiredMonitoringConfig)
-    try container.encode(self.desiredIdentityServiceConfig, forKey: .desiredIdentityServiceConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.desiredLoggingConfig, forKey: .desiredLoggingConfig)
+    try container.encodeIfPresent(self.desiredMonitoringConfig, forKey: .desiredMonitoringConfig)
+    try container.encodeIfPresent(
+      self.desiredIdentityServiceConfig, forKey: .desiredIdentityServiceConfig)
+    try container.encodeIfPresent(
       self.desiredServiceExternalIpsConfig, forKey: .desiredServiceExternalIpsConfig)
-    try container.encode(self.desiredEnablePrivateEndpoint, forKey: .desiredEnablePrivateEndpoint)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredEnablePrivateEndpoint, forKey: .desiredEnablePrivateEndpoint)
+    try container.encodeIfPresent(
       self.desiredDefaultEnablePrivateNodes, forKey: .desiredDefaultEnablePrivateNodes)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredControlPlaneEndpointsConfig, forKey: .desiredControlPlaneEndpointsConfig)
     try container.encode(self.desiredMasterVersion, forKey: .desiredMasterVersion)
-    try container.encode(self.desiredGcfsConfig, forKey: .desiredGcfsConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.desiredGcfsConfig, forKey: .desiredGcfsConfig)
+    try container.encodeIfPresent(
       self.desiredNodePoolAutoConfigNetworkTags, forKey: .desiredNodePoolAutoConfigNetworkTags)
-    try container.encode(self.desiredPodAutoscaling, forKey: .desiredPodAutoscaling)
-    try container.encode(self.desiredGatewayApiConfig, forKey: .desiredGatewayApiConfig)
+    try container.encodeIfPresent(self.desiredPodAutoscaling, forKey: .desiredPodAutoscaling)
+    try container.encodeIfPresent(self.desiredGatewayApiConfig, forKey: .desiredGatewayApiConfig)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.desiredNodePoolLoggingConfig, forKey: .desiredNodePoolLoggingConfig)
-    try container.encode(self.desiredFleet, forKey: .desiredFleet)
+    try container.encodeIfPresent(
+      self.desiredNodePoolLoggingConfig, forKey: .desiredNodePoolLoggingConfig)
+    try container.encodeIfPresent(self.desiredFleet, forKey: .desiredFleet)
     try container.encode(self.desiredStackType, forKey: .desiredStackType)
-    try container.encode(self.additionalPodRangesConfig, forKey: .additionalPodRangesConfig)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.additionalPodRangesConfig, forKey: .additionalPodRangesConfig)
+    try container.encodeIfPresent(
       self.removedAdditionalPodRangesConfig, forKey: .removedAdditionalPodRangesConfig)
-    try container.encode(self.enableK8SBetaApis, forKey: .enableK8SBetaApis)
-    try container.encode(self.desiredSecurityPostureConfig, forKey: .desiredSecurityPostureConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.enableK8SBetaApis, forKey: .enableK8SBetaApis)
+    try container.encodeIfPresent(
+      self.desiredSecurityPostureConfig, forKey: .desiredSecurityPostureConfig)
+    try container.encodeIfPresent(
       self.desiredNetworkPerformanceConfig, forKey: .desiredNetworkPerformanceConfig)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredEnableFqdnNetworkPolicy, forKey: .desiredEnableFqdnNetworkPolicy)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredAutopilotWorkloadPolicyConfig, forKey: .desiredAutopilotWorkloadPolicyConfig)
-    try container.encode(self.desiredK8SBetaApis, forKey: .desiredK8SBetaApis)
-    try container.encode(self.desiredContainerdConfig, forKey: .desiredContainerdConfig)
-    try container.encode(self.desiredEnableMultiNetworking, forKey: .desiredEnableMultiNetworking)
-    try container.encode(
+    try container.encodeIfPresent(self.desiredK8SBetaApis, forKey: .desiredK8SBetaApis)
+    try container.encodeIfPresent(self.desiredContainerdConfig, forKey: .desiredContainerdConfig)
+    try container.encodeIfPresent(
+      self.desiredEnableMultiNetworking, forKey: .desiredEnableMultiNetworking)
+    try container.encodeIfPresent(
       self.desiredNodePoolAutoConfigResourceManagerTags,
       forKey: .desiredNodePoolAutoConfigResourceManagerTags)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredInTransitEncryptionConfig, forKey: .desiredInTransitEncryptionConfig)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredEnableCiliumClusterwideNetworkPolicy,
       forKey: .desiredEnableCiliumClusterwideNetworkPolicy)
-    try container.encode(self.desiredSecretManagerConfig, forKey: .desiredSecretManagerConfig)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredSecretManagerConfig, forKey: .desiredSecretManagerConfig)
+    try container.encodeIfPresent(
       self.desiredCompliancePostureConfig, forKey: .desiredCompliancePostureConfig)
-    try container.encode(self.desiredNodeKubeletConfig, forKey: .desiredNodeKubeletConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.desiredNodeKubeletConfig, forKey: .desiredNodeKubeletConfig)
+    try container.encodeIfPresent(
       self.desiredNodePoolAutoConfigKubeletConfig, forKey: .desiredNodePoolAutoConfigKubeletConfig)
-    try container.encode(self.userManagedKeysConfig, forKey: .userManagedKeysConfig)
-    try container.encode(self.desiredRbacBindingConfig, forKey: .desiredRbacBindingConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.userManagedKeysConfig, forKey: .userManagedKeysConfig)
+    try container.encodeIfPresent(self.desiredRbacBindingConfig, forKey: .desiredRbacBindingConfig)
+    try container.encodeIfPresent(
       self.desiredAdditionalIpRangesConfig, forKey: .desiredAdditionalIpRangesConfig)
-    try container.encode(self.desiredEnterpriseConfig, forKey: .desiredEnterpriseConfig)
-    try container.encode(self.desiredAutoIpamConfig, forKey: .desiredAutoIpamConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.desiredEnterpriseConfig, forKey: .desiredEnterpriseConfig)
+    try container.encodeIfPresent(self.desiredAutoIpamConfig, forKey: .desiredAutoIpamConfig)
+    try container.encodeIfPresent(
       self.desiredDisableL4LbFirewallReconciliation,
       forKey: .desiredDisableL4LbFirewallReconciliation)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredNodePoolAutoConfigLinuxNodeConfig,
       forKey: .desiredNodePoolAutoConfigLinuxNodeConfig)
-    try container.encode(self.desiredUserManagedKeysConfig, forKey: .desiredUserManagedKeysConfig)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredUserManagedKeysConfig, forKey: .desiredUserManagedKeysConfig)
+    try container.encodeIfPresent(
       self.desiredAnonymousAuthenticationConfig, forKey: .desiredAnonymousAuthenticationConfig)
-    try container.encode(self.gkeAutoUpgradeConfig, forKey: .gkeAutoUpgradeConfig)
-    try container.encode(self.desiredNetworkTierConfig, forKey: .desiredNetworkTierConfig)
-    try container.encode(self.desiredSecretSyncConfig, forKey: .desiredSecretSyncConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.gkeAutoUpgradeConfig, forKey: .gkeAutoUpgradeConfig)
+    try container.encodeIfPresent(self.desiredNetworkTierConfig, forKey: .desiredNetworkTierConfig)
+    try container.encodeIfPresent(self.desiredSecretSyncConfig, forKey: .desiredSecretSyncConfig)
+    try container.encodeIfPresent(
       self.desiredPrivilegedAdmissionConfig, forKey: .desiredPrivilegedAdmissionConfig)
-    try container.encode(self.desiredControlPlaneEgress, forKey: .desiredControlPlaneEgress)
-    try container.encode(self.desiredRollbackSafeUpgrade, forKey: .desiredRollbackSafeUpgrade)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.desiredControlPlaneEgress, forKey: .desiredControlPlaneEgress)
+    try container.encodeIfPresent(
+      self.desiredRollbackSafeUpgrade, forKey: .desiredRollbackSafeUpgrade)
+    try container.encodeIfPresent(
       self.desiredManagedOpentelemetryConfig, forKey: .desiredManagedOpentelemetryConfig)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredAutopilotClusterPolicyConfig, forKey: .desiredAutopilotClusterPolicyConfig)
-    try container.encode(
+    try container.encodeIfPresent(
       self.desiredManagedMachineLearningDiagnosticsConfig,
       forKey: .desiredManagedMachineLearningDiagnosticsConfig)
-    try container.encode(self.desiredNodeCreationConfig, forKey: .desiredNodeCreationConfig)
-    try container.encode(self.desiredEmulatedVersion, forKey: .desiredEmulatedVersion)
+    try container.encodeIfPresent(
+      self.desiredNodeCreationConfig, forKey: .desiredNodeCreationConfig)
+    try container.encodeIfPresent(self.desiredEmulatedVersion, forKey: .desiredEmulatedVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

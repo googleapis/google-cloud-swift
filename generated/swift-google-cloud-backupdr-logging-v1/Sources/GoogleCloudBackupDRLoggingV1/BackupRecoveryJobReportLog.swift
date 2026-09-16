@@ -157,6 +157,8 @@ public struct BackupRecoveryJobReportLog: Codable, Equatable, GoogleCloudWKT._An
   /// The target_appliance_id field displays the target appliance id.
   public var targetApplianceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupRecoveryJobReportLog`.
   public init() {}
 
@@ -171,6 +173,282 @@ public struct BackupRecoveryJobReportLog: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobName = CodingKeys(stringValue: "jobName")
+    static let jobCategory = CodingKeys(stringValue: "jobCategory")
+    static let jobType = CodingKeys(stringValue: "jobType")
+    static let logBackup = CodingKeys(stringValue: "logBackup")
+    static let jobStatus = CodingKeys(stringValue: "jobStatus")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let jobInitiationFailureReason = CodingKeys(stringValue: "jobInitiationFailureReason")
+    static let jobStartTime = CodingKeys(stringValue: "jobStartTime")
+    static let jobEndTime = CodingKeys(stringValue: "jobEndTime")
+    static let jobQueuedTime = CodingKeys(stringValue: "jobQueuedTime")
+    static let jobDurationInHours = CodingKeys(stringValue: "jobDurationInHours")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let backupRulePolicyName = CodingKeys(stringValue: "backupRulePolicyName")
+    static let backupPlanPolicyTemplate = CodingKeys(stringValue: "backupPlanPolicyTemplate")
+    static let backupType = CodingKeys(stringValue: "backupType")
+    static let recoveryPoint = CodingKeys(stringValue: "recoveryPoint")
+    static let backupConsistency = CodingKeys(stringValue: "backupConsistency")
+    static let targetHostName = CodingKeys(stringValue: "targetHostName")
+    static let targetApplianceName = CodingKeys(stringValue: "targetApplianceName")
+    static let targetPoolName = CodingKeys(stringValue: "targetPoolName")
+    static let resourceDataSizeInGib = CodingKeys(stringValue: "resourceDataSizeInGib")
+    static let dataCopiedInGib = CodingKeys(stringValue: "dataCopiedInGib")
+    static let onvaultPoolStorageConsumedInGib = CodingKeys(
+      stringValue: "onvaultPoolStorageConsumedInGib")
+    static let preCompressInGib = CodingKeys(stringValue: "preCompressInGib")
+    static let compressionRatio = CodingKeys(stringValue: "compressionRatio")
+    static let dataChangeRate = CodingKeys(stringValue: "dataChangeRate")
+    static let snapshotDiskSizeInGib = CodingKeys(stringValue: "snapshotDiskSizeInGib")
+    static let dataWrittenInGib = CodingKeys(stringValue: "dataWrittenInGib")
+    static let dataSentInGib = CodingKeys(stringValue: "dataSentInGib")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let hostId = CodingKeys(stringValue: "hostId")
+    static let backupRulePolicyId = CodingKeys(stringValue: "backupRulePolicyId")
+    static let resourceId = CodingKeys(stringValue: "resourceId")
+    static let targetPoolId = CodingKeys(stringValue: "targetPoolId")
+    static let targetHostId = CodingKeys(stringValue: "targetHostId")
+    static let targetApplianceId = CodingKeys(stringValue: "targetApplianceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobName",
+      "jobCategory",
+      "jobType",
+      "logBackup",
+      "jobStatus",
+      "resourceName",
+      "resourceType",
+      "errorCode",
+      "errorMessage",
+      "jobInitiationFailureReason",
+      "jobStartTime",
+      "jobEndTime",
+      "jobQueuedTime",
+      "jobDurationInHours",
+      "hostname",
+      "applianceName",
+      "backupRulePolicyName",
+      "backupPlanPolicyTemplate",
+      "backupType",
+      "recoveryPoint",
+      "backupConsistency",
+      "targetHostName",
+      "targetApplianceName",
+      "targetPoolName",
+      "resourceDataSizeInGib",
+      "dataCopiedInGib",
+      "onvaultPoolStorageConsumedInGib",
+      "preCompressInGib",
+      "compressionRatio",
+      "dataChangeRate",
+      "snapshotDiskSizeInGib",
+      "dataWrittenInGib",
+      "dataSentInGib",
+      "jobId",
+      "hostId",
+      "backupRulePolicyId",
+      "resourceId",
+      "targetPoolId",
+      "targetHostId",
+      "targetApplianceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobName) {
+      self.jobName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobCategory) {
+      self.jobCategory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobType) {
+      self.jobType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logBackup) {
+      self.logBackup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobStatus) {
+      self.jobStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCode) {
+      self.errorCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .jobInitiationFailureReason)
+    {
+      self.jobInitiationFailureReason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobStartTime) {
+      self.jobStartTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobEndTime) {
+      self.jobEndTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobQueuedTime) {
+      self.jobQueuedTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .jobDurationInHours) {
+      self.jobDurationInHours = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRulePolicyName) {
+      self.backupRulePolicyName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanPolicyTemplate)
+    {
+      self.backupPlanPolicyTemplate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupType) {
+      self.backupType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recoveryPoint) {
+      self.recoveryPoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupConsistency) {
+      self.backupConsistency = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetHostName) {
+      self.targetHostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetApplianceName) {
+      self.targetApplianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetPoolName) {
+      self.targetPoolName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .resourceDataSizeInGib)
+    {
+      self.resourceDataSizeInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataCopiedInGib) {
+      self.dataCopiedInGib = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .onvaultPoolStorageConsumedInGib)
+    {
+      self.onvaultPoolStorageConsumedInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .preCompressInGib) {
+      self.preCompressInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .compressionRatio) {
+      self.compressionRatio = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataChangeRate) {
+      self.dataChangeRate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .snapshotDiskSizeInGib)
+    {
+      self.snapshotDiskSizeInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataWrittenInGib) {
+      self.dataWrittenInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .dataSentInGib) {
+      self.dataSentInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostId) {
+      self.hostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRulePolicyId) {
+      self.backupRulePolicyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceId) {
+      self.resourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetPoolId) {
+      self.targetPoolId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetHostId) {
+      self.targetHostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetApplianceId) {
+      self.targetApplianceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.jobName, forKey: .jobName)
+    try container.encode(self.jobCategory, forKey: .jobCategory)
+    try container.encode(self.jobType, forKey: .jobType)
+    try container.encode(self.logBackup, forKey: .logBackup)
+    try container.encode(self.jobStatus, forKey: .jobStatus)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.errorCode, forKey: .errorCode)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.jobInitiationFailureReason, forKey: .jobInitiationFailureReason)
+    try container.encode(self.jobStartTime, forKey: .jobStartTime)
+    try container.encode(self.jobEndTime, forKey: .jobEndTime)
+    try container.encode(self.jobQueuedTime, forKey: .jobQueuedTime)
+    try container.encode(self.jobDurationInHours, forKey: .jobDurationInHours)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.backupRulePolicyName, forKey: .backupRulePolicyName)
+    try container.encode(self.backupPlanPolicyTemplate, forKey: .backupPlanPolicyTemplate)
+    try container.encode(self.backupType, forKey: .backupType)
+    try container.encode(self.recoveryPoint, forKey: .recoveryPoint)
+    try container.encode(self.backupConsistency, forKey: .backupConsistency)
+    try container.encode(self.targetHostName, forKey: .targetHostName)
+    try container.encode(self.targetApplianceName, forKey: .targetApplianceName)
+    try container.encode(self.targetPoolName, forKey: .targetPoolName)
+    try container.encode(self.resourceDataSizeInGib, forKey: .resourceDataSizeInGib)
+    try container.encode(self.dataCopiedInGib, forKey: .dataCopiedInGib)
+    try container.encode(
+      self.onvaultPoolStorageConsumedInGib, forKey: .onvaultPoolStorageConsumedInGib)
+    try container.encode(self.preCompressInGib, forKey: .preCompressInGib)
+    try container.encode(self.compressionRatio, forKey: .compressionRatio)
+    try container.encode(self.dataChangeRate, forKey: .dataChangeRate)
+    try container.encode(self.snapshotDiskSizeInGib, forKey: .snapshotDiskSizeInGib)
+    try container.encode(self.dataWrittenInGib, forKey: .dataWrittenInGib)
+    try container.encode(self.dataSentInGib, forKey: .dataSentInGib)
+    try container.encode(self.jobId, forKey: .jobId)
+    try container.encode(self.hostId, forKey: .hostId)
+    try container.encode(self.backupRulePolicyId, forKey: .backupRulePolicyId)
+    try container.encode(self.resourceId, forKey: .resourceId)
+    try container.encode(self.targetPoolId, forKey: .targetPoolId)
+    try container.encode(self.targetHostId, forKey: .targetHostId)
+    try container.encode(self.targetApplianceId, forKey: .targetApplianceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -33,6 +33,8 @@ public struct AppEngineVersionInfo: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// App Engine execution environment for a version.
   public var environment: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppEngineVersionInfo`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct AppEngineVersionInfo: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let runtime = CodingKeys(stringValue: "runtime")
+    static let environment = CodingKeys(stringValue: "environment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "runtime",
+      "environment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runtime) {
+      self.runtime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environment) {
+      self.environment = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.runtime, forKey: .runtime)
+    try container.encode(self.environment, forKey: .environment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

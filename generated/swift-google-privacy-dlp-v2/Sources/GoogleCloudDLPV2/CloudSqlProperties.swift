@@ -44,6 +44,8 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// How to authenticate to the instance.
   public var credential: OneOf_Credential? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudSqlProperties`.
   public init() {}
 
@@ -60,20 +62,40 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case connectionName = "connectionName"
-    case usernamePassword = "usernamePassword"
-    case cloudSqlIam = "cloudSqlIam"
-    case maxConnections = "maxConnections"
-    case databaseEngine = "databaseEngine"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectionName = CodingKeys(stringValue: "connectionName")
+    static let usernamePassword = CodingKeys(stringValue: "usernamePassword")
+    static let cloudSqlIam = CodingKeys(stringValue: "cloudSqlIam")
+    static let maxConnections = CodingKeys(stringValue: "maxConnections")
+    static let databaseEngine = CodingKeys(stringValue: "databaseEngine")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectionName",
+      "usernamePassword",
+      "cloudSqlIam",
+      "maxConnections",
+      "databaseEngine",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.connectionName = try container.decode(Swift.String.self, forKey: .connectionName)
-    self.maxConnections = try container.decode(Swift.Int32.self, forKey: .maxConnections)
-    self.databaseEngine = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionName) {
+      self.connectionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConnections) {
+      self.maxConnections = value
+    }
+    if let value = try container.decodeIfPresent(
       CloudSqlProperties.DatabaseEngine.self, forKey: .databaseEngine)
+    {
+      self.databaseEngine = value
+    }
 
     var credential: OneOf_Credential? = nil
     let credentialCheckAndSet = {
@@ -96,6 +118,10 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try credentialCheckAndSet(.cloudSqlIam(cloudSqlIam))
     }
     self.credential = credential
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -111,6 +137,9 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .cloudSqlIam(let value):
         try container.encode(value, forKey: .cloudSqlIam)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

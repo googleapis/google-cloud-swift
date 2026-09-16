@@ -78,6 +78,8 @@
     /// "parent_task_2.parent_task_1.child_task".
     public var taskUniqueName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PipelineTaskDetail`.
     public init() {}
 
@@ -92,6 +94,113 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let taskId = CodingKeys(stringValue: "taskId")
+      static let parentTaskId = CodingKeys(stringValue: "parentTaskId")
+      static let taskName = CodingKeys(stringValue: "taskName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let executorDetail = CodingKeys(stringValue: "executorDetail")
+      static let state = CodingKeys(stringValue: "state")
+      static let execution = CodingKeys(stringValue: "execution")
+      static let error = CodingKeys(stringValue: "error")
+      static let pipelineTaskStatus = CodingKeys(stringValue: "pipelineTaskStatus")
+      static let inputs = CodingKeys(stringValue: "inputs")
+      static let outputs = CodingKeys(stringValue: "outputs")
+      static let taskUniqueName = CodingKeys(stringValue: "taskUniqueName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "taskId",
+        "parentTaskId",
+        "taskName",
+        "createTime",
+        "startTime",
+        "endTime",
+        "executorDetail",
+        "state",
+        "execution",
+        "error",
+        "pipelineTaskStatus",
+        "inputs",
+        "outputs",
+        "taskUniqueName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .taskId) {
+        self.taskId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .parentTaskId) {
+        self.parentTaskId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .taskName) {
+        self.taskName = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.executorDetail = try container.decodeIfPresent(
+        PipelineTaskExecutorDetail.self, forKey: .executorDetail)
+      if let value = try container.decodeIfPresent(PipelineTaskDetail.State.self, forKey: .state) {
+        self.state = value
+      }
+      self.execution = try container.decodeIfPresent(Execution.self, forKey: .execution)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      if let value = try container.decodeIfPresent(
+        [PipelineTaskDetail.PipelineTaskStatus].self, forKey: .pipelineTaskStatus)
+      {
+        self.pipelineTaskStatus = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: PipelineTaskDetail.ArtifactList].self, forKey: .inputs)
+      {
+        self.inputs = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: PipelineTaskDetail.ArtifactList].self, forKey: .outputs)
+      {
+        self.outputs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .taskUniqueName) {
+        self.taskUniqueName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.taskId, forKey: .taskId)
+      try container.encode(self.parentTaskId, forKey: .parentTaskId)
+      try container.encode(self.taskName, forKey: .taskName)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.executorDetail, forKey: .executorDetail)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.execution, forKey: .execution)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encode(self.pipelineTaskStatus, forKey: .pipelineTaskStatus)
+      try container.encode(self.inputs, forKey: .inputs)
+      try container.encode(self.outputs, forKey: .outputs)
+      try container.encode(self.taskUniqueName, forKey: .taskUniqueName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A single record of the task status.
@@ -111,6 +220,8 @@
       /// indicates a system-error being retried.
       public var error: GoogleRpc.Status? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PipelineTaskStatus`.
       public init() {}
 
@@ -125,6 +236,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let updateTime = CodingKeys(stringValue: "updateTime")
+        static let state = CodingKeys(stringValue: "state")
+        static let error = CodingKeys(stringValue: "error")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "updateTime",
+          "state",
+          "error",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.updateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+        if let value = try container.decodeIfPresent(PipelineTaskDetail.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+        try container.encode(self.state, forKey: .state)
+        try container.encodeIfPresent(self.error, forKey: .error)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -146,6 +299,8 @@
       /// Output only. A list of artifact metadata.
       public var artifacts: [Artifact] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ArtifactList`.
       public init() {}
 
@@ -160,6 +315,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let artifacts = CodingKeys(stringValue: "artifacts")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "artifacts"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Artifact].self, forKey: .artifacts) {
+          self.artifacts = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.artifacts, forKey: .artifacts)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

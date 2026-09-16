@@ -53,6 +53,8 @@ public struct DnsKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// One of "KEY_SIGNING" or "ZONE_SIGNING". Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, are used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag is cleared, and this key is used to sign only resource record sets of other types. Immutable after creation time.
   public var type: DnsKey.Type_? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DnsKey`.
   public init() {}
 
@@ -67,6 +69,78 @@ public struct DnsKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let digests = CodingKeys(stringValue: "digests")
+    static let id = CodingKeys(stringValue: "id")
+    static let isActive = CodingKeys(stringValue: "isActive")
+    static let keyLength = CodingKeys(stringValue: "keyLength")
+    static let keyTag = CodingKeys(stringValue: "keyTag")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "algorithm",
+      "creationTime",
+      "description",
+      "digests",
+      "id",
+      "isActive",
+      "keyLength",
+      "keyTag",
+      "kind",
+      "publicKey",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.algorithm = try container.decodeIfPresent(DnsKey.Algorithm.self, forKey: .algorithm)
+    self.creationTime = try container.decodeIfPresent(Swift.String.self, forKey: .creationTime)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([DnsKeyDigest].self, forKey: .digests) {
+      self.digests = value
+    }
+    self.id = try container.decodeIfPresent(Swift.String.self, forKey: .id)
+    self.isActive = try container.decodeIfPresent(Swift.Bool.self, forKey: .isActive)
+    self.keyLength = try container.decodeIfPresent(Swift.UInt32.self, forKey: .keyLength)
+    self.keyTag = try container.decodeIfPresent(Swift.Int32.self, forKey: .keyTag)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.publicKey = try container.decodeIfPresent(Swift.String.self, forKey: .publicKey)
+    self.type = try container.decodeIfPresent(DnsKey.Type_.self, forKey: .type)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.algorithm, forKey: .algorithm)
+    try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encode(self.digests, forKey: .digests)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.isActive, forKey: .isActive)
+    try container.encodeIfPresent(self.keyLength, forKey: .keyLength)
+    try container.encodeIfPresent(self.keyTag, forKey: .keyTag)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [algorithm][.DnsKey.algorithm] field.

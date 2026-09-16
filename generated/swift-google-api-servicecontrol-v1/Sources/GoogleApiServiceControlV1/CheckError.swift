@@ -44,6 +44,8 @@ public struct CheckError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// error.
   public var status: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckError`.
   public init() {}
 
@@ -58,6 +60,54 @@ public struct CheckError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let subject = CodingKeys(stringValue: "subject")
+    static let detail = CodingKeys(stringValue: "detail")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "subject",
+      "detail",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(CheckError.Code.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+      self.subject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+      self.detail = value
+    }
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.subject, forKey: .subject)
+    try container.encode(self.detail, forKey: .detail)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Error codes for Check responses.

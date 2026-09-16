@@ -37,6 +37,8 @@ public struct DirectVpcEgressConnectionInfo: Codable, Equatable, GoogleCloudWKT.
   /// Region in which the Direct VPC egress is deployed.
   public var region: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DirectVpcEgressConnectionInfo`.
   public init() {}
 
@@ -51,6 +53,62 @@ public struct DirectVpcEgressConnectionInfo: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let subnetworkUri = CodingKeys(stringValue: "subnetworkUri")
+    static let selectedIpRange = CodingKeys(stringValue: "selectedIpRange")
+    static let selectedIpAddress = CodingKeys(stringValue: "selectedIpAddress")
+    static let region = CodingKeys(stringValue: "region")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "networkUri",
+      "subnetworkUri",
+      "selectedIpRange",
+      "selectedIpAddress",
+      "region",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetworkUri) {
+      self.subnetworkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectedIpRange) {
+      self.selectedIpRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectedIpAddress) {
+      self.selectedIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.subnetworkUri, forKey: .subnetworkUri)
+    try container.encode(self.selectedIpRange, forKey: .selectedIpRange)
+    try container.encode(self.selectedIpAddress, forKey: .selectedIpAddress)
+    try container.encode(self.region, forKey: .region)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

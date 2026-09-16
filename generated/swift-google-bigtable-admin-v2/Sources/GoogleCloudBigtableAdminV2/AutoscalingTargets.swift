@@ -35,6 +35,8 @@ public struct AutoscalingTargets: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// 8192 for HDD.
   public var storageUtilizationGibPerNode: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoscalingTargets`.
   public init() {}
 
@@ -49,6 +51,47 @@ public struct AutoscalingTargets: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuUtilizationPercent = CodingKeys(stringValue: "cpuUtilizationPercent")
+    static let storageUtilizationGibPerNode = CodingKeys(
+      stringValue: "storageUtilizationGibPerNode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuUtilizationPercent",
+      "storageUtilizationGibPerNode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuUtilizationPercent) {
+      self.cpuUtilizationPercent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .storageUtilizationGibPerNode)
+    {
+      self.storageUtilizationGibPerNode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuUtilizationPercent, forKey: .cpuUtilizationPercent)
+    try container.encode(self.storageUtilizationGibPerNode, forKey: .storageUtilizationGibPerNode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

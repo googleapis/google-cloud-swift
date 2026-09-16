@@ -57,6 +57,8 @@ public struct DescribeDatabaseEntitiesRequest: Codable, Equatable, GoogleCloudWK
   /// Optional. Results view based on AIP-157
   public var view: DatabaseEntityView = DatabaseEntityView()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DescribeDatabaseEntitiesRequest`.
   public init() {}
 
@@ -71,6 +73,82 @@ public struct DescribeDatabaseEntitiesRequest: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let conversionWorkspace = CodingKeys(stringValue: "conversionWorkspace")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let tree = CodingKeys(stringValue: "tree")
+    static let uncommitted = CodingKeys(stringValue: "uncommitted")
+    static let commitId = CodingKeys(stringValue: "commitId")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let view = CodingKeys(stringValue: "view")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "conversionWorkspace",
+      "pageSize",
+      "pageToken",
+      "tree",
+      "uncommitted",
+      "commitId",
+      "filter",
+      "view",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversionWorkspace) {
+      self.conversionWorkspace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(
+      DescribeDatabaseEntitiesRequest.DBTreeType.self, forKey: .tree)
+    {
+      self.tree = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .uncommitted) {
+      self.uncommitted = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commitId) {
+      self.commitId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntityView.self, forKey: .view) {
+      self.view = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.conversionWorkspace, forKey: .conversionWorkspace)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.tree, forKey: .tree)
+    try container.encode(self.uncommitted, forKey: .uncommitted)
+    try container.encode(self.commitId, forKey: .commitId)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.view, forKey: .view)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of a tree to return

@@ -28,6 +28,8 @@
     /// One AggregationResult per metric.
     public var aggregationResults: [AggregationResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AggregationOutput`.
     public init() {}
 
@@ -42,6 +44,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataset = CodingKeys(stringValue: "dataset")
+      static let aggregationResults = CodingKeys(stringValue: "aggregationResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataset",
+        "aggregationResults",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.dataset = try container.decodeIfPresent(EvaluationDataset.self, forKey: .dataset)
+      if let value = try container.decodeIfPresent(
+        [AggregationResult].self, forKey: .aggregationResults)
+      {
+        self.aggregationResults = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.dataset, forKey: .dataset)
+      try container.encode(self.aggregationResults, forKey: .aggregationResults)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

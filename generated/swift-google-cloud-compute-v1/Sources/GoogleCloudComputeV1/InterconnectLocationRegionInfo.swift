@@ -38,6 +38,8 @@
     /// Output only. URL for the region of this location.
     public var region: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectLocationRegionInfo`.
     public init() {}
 
@@ -52,6 +54,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expectedRttMs = CodingKeys(stringValue: "expectedRttMs")
+      static let l2ForwardingEnabled = CodingKeys(stringValue: "l2ForwardingEnabled")
+      static let locationPresence = CodingKeys(stringValue: "locationPresence")
+      static let region = CodingKeys(stringValue: "region")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expectedRttMs",
+        "l2ForwardingEnabled",
+        "locationPresence",
+        "region",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.expectedRttMs = try container.decodeIfPresent(Swift.Int64.self, forKey: .expectedRttMs)
+      self.l2ForwardingEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .l2ForwardingEnabled)
+      self.locationPresence = try container.decodeIfPresent(
+        InterconnectLocationRegionInfo.LocationPresence.self, forKey: .locationPresence)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.expectedRttMs, forKey: .expectedRttMs)
+      try container.encodeIfPresent(self.l2ForwardingEnabled, forKey: .l2ForwardingEnabled)
+      try container.encodeIfPresent(self.locationPresence, forKey: .locationPresence)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [locationPresence][google.cloud.compute.v1.InterconnectLocationRegionInfo.locationPresence] field.

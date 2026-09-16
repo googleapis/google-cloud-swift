@@ -70,6 +70,8 @@ public struct ManagedZone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
   public var visibility: ManagedZone.Visibility? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZone`.
   public init() {}
 
@@ -84,6 +86,113 @@ public struct ManagedZone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudLoggingConfig = CodingKeys(stringValue: "cloudLoggingConfig")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let dnsName = CodingKeys(stringValue: "dnsName")
+    static let dnssecConfig = CodingKeys(stringValue: "dnssecConfig")
+    static let forwardingConfig = CodingKeys(stringValue: "forwardingConfig")
+    static let id = CodingKeys(stringValue: "id")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let name = CodingKeys(stringValue: "name")
+    static let nameServerSet = CodingKeys(stringValue: "nameServerSet")
+    static let nameServers = CodingKeys(stringValue: "nameServers")
+    static let peeringConfig = CodingKeys(stringValue: "peeringConfig")
+    static let privateVisibilityConfig = CodingKeys(stringValue: "privateVisibilityConfig")
+    static let reverseLookupConfig = CodingKeys(stringValue: "reverseLookupConfig")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+    static let visibility = CodingKeys(stringValue: "visibility")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudLoggingConfig",
+      "creationTime",
+      "description",
+      "dnsName",
+      "dnssecConfig",
+      "forwardingConfig",
+      "id",
+      "kind",
+      "labels",
+      "name",
+      "nameServerSet",
+      "nameServers",
+      "peeringConfig",
+      "privateVisibilityConfig",
+      "reverseLookupConfig",
+      "serviceDirectoryConfig",
+      "visibility",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.cloudLoggingConfig = try container.decodeIfPresent(
+      ManagedZoneCloudLoggingConfig.self, forKey: .cloudLoggingConfig)
+    self.creationTime = try container.decodeIfPresent(Swift.String.self, forKey: .creationTime)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
+    self.dnssecConfig = try container.decodeIfPresent(
+      ManagedZoneDnsSecConfig.self, forKey: .dnssecConfig)
+    self.forwardingConfig = try container.decodeIfPresent(
+      ManagedZoneForwardingConfig.self, forKey: .forwardingConfig)
+    self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+    self.nameServerSet = try container.decodeIfPresent(Swift.String.self, forKey: .nameServerSet)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nameServers) {
+      self.nameServers = value
+    }
+    self.peeringConfig = try container.decodeIfPresent(
+      ManagedZonePeeringConfig.self, forKey: .peeringConfig)
+    self.privateVisibilityConfig = try container.decodeIfPresent(
+      ManagedZonePrivateVisibilityConfig.self, forKey: .privateVisibilityConfig)
+    self.reverseLookupConfig = try container.decodeIfPresent(
+      ManagedZoneReverseLookupConfig.self, forKey: .reverseLookupConfig)
+    self.serviceDirectoryConfig = try container.decodeIfPresent(
+      ManagedZoneServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
+    self.visibility = try container.decodeIfPresent(
+      ManagedZone.Visibility.self, forKey: .visibility)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.cloudLoggingConfig, forKey: .cloudLoggingConfig)
+    try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
+    try container.encodeIfPresent(self.dnssecConfig, forKey: .dnssecConfig)
+    try container.encodeIfPresent(self.forwardingConfig, forKey: .forwardingConfig)
+    try container.encodeIfPresent(self.id, forKey: .id)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.nameServerSet, forKey: .nameServerSet)
+    try container.encode(self.nameServers, forKey: .nameServers)
+    try container.encodeIfPresent(self.peeringConfig, forKey: .peeringConfig)
+    try container.encodeIfPresent(self.privateVisibilityConfig, forKey: .privateVisibilityConfig)
+    try container.encodeIfPresent(self.reverseLookupConfig, forKey: .reverseLookupConfig)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    try container.encodeIfPresent(self.visibility, forKey: .visibility)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [visibility][.ManagedZone.visibility] field.

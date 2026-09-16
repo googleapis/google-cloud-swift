@@ -43,6 +43,8 @@
     /// `1K`, `2K`, `4K`. If not specified, the model will use default value `1K`.
     public var imageSize: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImageConfig`.
     public init() {}
 
@@ -59,6 +61,50 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let imageOutputOptions = CodingKeys(stringValue: "imageOutputOptions")
+      static let aspectRatio = CodingKeys(stringValue: "aspectRatio")
+      static let personGeneration = CodingKeys(stringValue: "personGeneration")
+      static let imageSize = CodingKeys(stringValue: "imageSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "imageOutputOptions",
+        "aspectRatio",
+        "personGeneration",
+        "imageSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.imageOutputOptions = try container.decodeIfPresent(
+        ImageConfig.ImageOutputOptions.self, forKey: .imageOutputOptions)
+      self.aspectRatio = try container.decodeIfPresent(Swift.String.self, forKey: .aspectRatio)
+      self.personGeneration = try container.decodeIfPresent(
+        ImageConfig.PersonGeneration.self, forKey: .personGeneration)
+      self.imageSize = try container.decodeIfPresent(Swift.String.self, forKey: .imageSize)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.imageOutputOptions, forKey: .imageOutputOptions)
+      try container.encodeIfPresent(self.aspectRatio, forKey: .aspectRatio)
+      try container.encodeIfPresent(self.personGeneration, forKey: .personGeneration)
+      try container.encodeIfPresent(self.imageSize, forKey: .imageSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The image output format for generated images.
     public struct ImageOutputOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -68,6 +114,8 @@
 
       /// Optional. The compression quality of the output image.
       public var compressionQuality: Swift.Int32? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ImageOutputOptions`.
       public init() {}
@@ -83,6 +131,41 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let mimeType = CodingKeys(stringValue: "mimeType")
+        static let compressionQuality = CodingKeys(stringValue: "compressionQuality")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "mimeType",
+          "compressionQuality",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.mimeType = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType)
+        self.compressionQuality = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .compressionQuality)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.mimeType, forKey: .mimeType)
+        try container.encodeIfPresent(self.compressionQuality, forKey: .compressionQuality)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

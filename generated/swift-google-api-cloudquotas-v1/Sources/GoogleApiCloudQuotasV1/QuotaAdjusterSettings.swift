@@ -57,6 +57,8 @@ public struct QuotaAdjusterSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// this container.
   public var inheritedFrom: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaAdjusterSettings`.
   public init() {}
 
@@ -71,6 +73,69 @@ public struct QuotaAdjusterSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let enablement = CodingKeys(stringValue: "enablement")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let inherited = CodingKeys(stringValue: "inherited")
+    static let inheritedFrom = CodingKeys(stringValue: "inheritedFrom")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "enablement",
+      "updateTime",
+      "etag",
+      "inherited",
+      "inheritedFrom",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      QuotaAdjusterSettings.Enablement.self, forKey: .enablement)
+    {
+      self.enablement = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inherited) {
+      self.inherited = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inheritedFrom) {
+      self.inheritedFrom = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.enablement, forKey: .enablement)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.inherited, forKey: .inherited)
+    try container.encode(self.inheritedFrom, forKey: .inheritedFrom)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enablement status of the quota adjuster.

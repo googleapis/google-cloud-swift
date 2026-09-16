@@ -57,6 +57,8 @@ public struct ConversionWorkspace: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. The display name for the workspace.
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversionWorkspace`.
   public init() {}
 
@@ -71,6 +73,87 @@ public struct ConversionWorkspace: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let source = CodingKeys(stringValue: "source")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let globalSettings = CodingKeys(stringValue: "globalSettings")
+    static let hasUncommittedChanges = CodingKeys(stringValue: "hasUncommittedChanges")
+    static let latestCommitId = CodingKeys(stringValue: "latestCommitId")
+    static let latestCommitTime = CodingKeys(stringValue: "latestCommitTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "source",
+      "destination",
+      "globalSettings",
+      "hasUncommittedChanges",
+      "latestCommitId",
+      "latestCommitTime",
+      "createTime",
+      "updateTime",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.source = try container.decodeIfPresent(DatabaseEngineInfo.self, forKey: .source)
+    self.destination = try container.decodeIfPresent(DatabaseEngineInfo.self, forKey: .destination)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .globalSettings)
+    {
+      self.globalSettings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasUncommittedChanges) {
+      self.hasUncommittedChanges = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestCommitId) {
+      self.latestCommitId = value
+    }
+    self.latestCommitTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .latestCommitTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encodeIfPresent(self.destination, forKey: .destination)
+    try container.encode(self.globalSettings, forKey: .globalSettings)
+    try container.encode(self.hasUncommittedChanges, forKey: .hasUncommittedChanges)
+    try container.encode(self.latestCommitId, forKey: .latestCommitId)
+    try container.encodeIfPresent(self.latestCommitTime, forKey: .latestCommitTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

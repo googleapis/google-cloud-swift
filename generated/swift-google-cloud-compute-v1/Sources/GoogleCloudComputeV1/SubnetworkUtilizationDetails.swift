@@ -36,6 +36,8 @@
     /// will be empty.
     public var ipv4Utilizations: [SubnetworkUtilizationDetailsIPV4Utilization] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubnetworkUtilizationDetails`.
     public init() {}
 
@@ -50,6 +52,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let externalIpv6InstanceUtilization = CodingKeys(
+        stringValue: "externalIpv6InstanceUtilization")
+      static let externalIpv6LbUtilization = CodingKeys(stringValue: "externalIpv6LbUtilization")
+      static let internalIpv6Utilization = CodingKeys(stringValue: "internalIpv6Utilization")
+      static let ipv4Utilizations = CodingKeys(stringValue: "ipv4Utilizations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "externalIpv6InstanceUtilization",
+        "externalIpv6LbUtilization",
+        "internalIpv6Utilization",
+        "ipv4Utilizations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.externalIpv6InstanceUtilization = try container.decodeIfPresent(
+        SubnetworkUtilizationDetailsIPV6Utilization.self, forKey: .externalIpv6InstanceUtilization)
+      self.externalIpv6LbUtilization = try container.decodeIfPresent(
+        SubnetworkUtilizationDetailsIPV6Utilization.self, forKey: .externalIpv6LbUtilization)
+      self.internalIpv6Utilization = try container.decodeIfPresent(
+        SubnetworkUtilizationDetailsIPV6Utilization.self, forKey: .internalIpv6Utilization)
+      if let value = try container.decodeIfPresent(
+        [SubnetworkUtilizationDetailsIPV4Utilization].self, forKey: .ipv4Utilizations)
+      {
+        self.ipv4Utilizations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.externalIpv6InstanceUtilization, forKey: .externalIpv6InstanceUtilization)
+      try container.encodeIfPresent(
+        self.externalIpv6LbUtilization, forKey: .externalIpv6LbUtilization)
+      try container.encodeIfPresent(self.internalIpv6Utilization, forKey: .internalIpv6Utilization)
+      try container.encode(self.ipv4Utilizations, forKey: .ipv4Utilizations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

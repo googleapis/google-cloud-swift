@@ -48,6 +48,8 @@
     /// This timestamp value is in RFC3339 text format.
     public var windowStartTime: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UpcomingMaintenance`.
     public init() {}
 
@@ -62,6 +64,72 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let canReschedule = CodingKeys(stringValue: "canReschedule")
+      static let latestWindowStartTime = CodingKeys(stringValue: "latestWindowStartTime")
+      static let maintenanceOnShutdown = CodingKeys(stringValue: "maintenanceOnShutdown")
+      static let maintenanceReasons = CodingKeys(stringValue: "maintenanceReasons")
+      static let maintenanceStatus = CodingKeys(stringValue: "maintenanceStatus")
+      static let type = CodingKeys(stringValue: "type")
+      static let windowEndTime = CodingKeys(stringValue: "windowEndTime")
+      static let windowStartTime = CodingKeys(stringValue: "windowStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "canReschedule",
+        "latestWindowStartTime",
+        "maintenanceOnShutdown",
+        "maintenanceReasons",
+        "maintenanceStatus",
+        "type",
+        "windowEndTime",
+        "windowStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.canReschedule = try container.decodeIfPresent(Swift.Bool.self, forKey: .canReschedule)
+      self.latestWindowStartTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .latestWindowStartTime)
+      self.maintenanceOnShutdown = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .maintenanceOnShutdown)
+      if let value = try container.decodeIfPresent(
+        [UpcomingMaintenance.MaintenanceReasons].self, forKey: .maintenanceReasons)
+      {
+        self.maintenanceReasons = value
+      }
+      self.maintenanceStatus = try container.decodeIfPresent(
+        UpcomingMaintenance.MaintenanceStatus.self, forKey: .maintenanceStatus)
+      self.type = try container.decodeIfPresent(UpcomingMaintenance.Type_.self, forKey: .type)
+      self.windowEndTime = try container.decodeIfPresent(Swift.String.self, forKey: .windowEndTime)
+      self.windowStartTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .windowStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.canReschedule, forKey: .canReschedule)
+      try container.encodeIfPresent(self.latestWindowStartTime, forKey: .latestWindowStartTime)
+      try container.encodeIfPresent(self.maintenanceOnShutdown, forKey: .maintenanceOnShutdown)
+      try container.encode(self.maintenanceReasons, forKey: .maintenanceReasons)
+      try container.encodeIfPresent(self.maintenanceStatus, forKey: .maintenanceStatus)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      try container.encodeIfPresent(self.windowEndTime, forKey: .windowEndTime)
+      try container.encodeIfPresent(self.windowStartTime, forKey: .windowStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [maintenanceReasons][google.cloud.compute.v1.UpcomingMaintenance.maintenanceReasons] field.

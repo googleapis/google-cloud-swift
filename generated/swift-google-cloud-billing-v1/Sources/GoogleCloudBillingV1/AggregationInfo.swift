@@ -31,6 +31,8 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// aggregation will be over 14 days.
   public var aggregationCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AggregationInfo`.
   public init() {}
 
@@ -45,6 +47,54 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let aggregationLevel = CodingKeys(stringValue: "aggregationLevel")
+    static let aggregationInterval = CodingKeys(stringValue: "aggregationInterval")
+    static let aggregationCount = CodingKeys(stringValue: "aggregationCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "aggregationLevel",
+      "aggregationInterval",
+      "aggregationCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      AggregationInfo.AggregationLevel.self, forKey: .aggregationLevel)
+    {
+      self.aggregationLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      AggregationInfo.AggregationInterval.self, forKey: .aggregationInterval)
+    {
+      self.aggregationInterval = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .aggregationCount) {
+      self.aggregationCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.aggregationLevel, forKey: .aggregationLevel)
+    try container.encode(self.aggregationInterval, forKey: .aggregationInterval)
+    try container.encode(self.aggregationCount, forKey: .aggregationCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The level at which usage is aggregated to compute cost.

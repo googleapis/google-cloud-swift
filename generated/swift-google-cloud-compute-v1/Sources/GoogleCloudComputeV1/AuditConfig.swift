@@ -80,6 +80,8 @@
     /// `allServices` is a special value that covers all services.
     public var service: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AuditConfig`.
     public init() {}
 
@@ -94,6 +96,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let auditLogConfigs = CodingKeys(stringValue: "auditLogConfigs")
+      static let service = CodingKeys(stringValue: "service")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "auditLogConfigs",
+        "service",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AuditLogConfig].self, forKey: .auditLogConfigs)
+      {
+        self.auditLogConfigs = value
+      }
+      self.service = try container.decodeIfPresent(Swift.String.self, forKey: .service)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.auditLogConfigs, forKey: .auditLogConfigs)
+      try container.encodeIfPresent(self.service, forKey: .service)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

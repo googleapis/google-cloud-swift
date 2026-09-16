@@ -43,6 +43,8 @@ public struct DetectionExclusionApplication: Codable, Equatable, GoogleCloudWKT.
   /// projects/{project}/locations/{location}/instances/{instance}/curatedRuleSetCategories/{category}/curatedRuleSets/{rule_set}
   public var deletedCuratedRuleSets: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DetectionExclusionApplication`.
   public init() {}
 
@@ -57,6 +59,58 @@ public struct DetectionExclusionApplication: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let curatedRuleSets = CodingKeys(stringValue: "curatedRuleSets")
+    static let curatedRules = CodingKeys(stringValue: "curatedRules")
+    static let rules = CodingKeys(stringValue: "rules")
+    static let deletedCuratedRuleSets = CodingKeys(stringValue: "deletedCuratedRuleSets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "curatedRuleSets",
+      "curatedRules",
+      "rules",
+      "deletedCuratedRuleSets",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .curatedRuleSets) {
+      self.curatedRuleSets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .curatedRules) {
+      self.curatedRules = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rules) {
+      self.rules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .deletedCuratedRuleSets)
+    {
+      self.deletedCuratedRuleSets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.curatedRuleSets, forKey: .curatedRuleSets)
+    try container.encode(self.curatedRules, forKey: .curatedRules)
+    try container.encode(self.rules, forKey: .rules)
+    try container.encode(self.deletedCuratedRuleSets, forKey: .deletedCuratedRuleSets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

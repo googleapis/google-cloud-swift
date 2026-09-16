@@ -40,6 +40,8 @@ public struct PostgresqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// used.
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostgresqlSourceConfig`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct PostgresqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeObjects = CodingKeys(stringValue: "includeObjects")
+    static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
+    static let replicationSlot = CodingKeys(stringValue: "replicationSlot")
+    static let publication = CodingKeys(stringValue: "publication")
+    static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeObjects",
+      "excludeObjects",
+      "replicationSlot",
+      "publication",
+      "maxConcurrentBackfillTasks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.includeObjects = try container.decodeIfPresent(
+      PostgresqlRdbms.self, forKey: .includeObjects)
+    self.excludeObjects = try container.decodeIfPresent(
+      PostgresqlRdbms.self, forKey: .excludeObjects)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replicationSlot) {
+      self.replicationSlot = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publication) {
+      self.publication = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .maxConcurrentBackfillTasks)
+    {
+      self.maxConcurrentBackfillTasks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
+    try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
+    try container.encode(self.replicationSlot, forKey: .replicationSlot)
+    try container.encode(self.publication, forKey: .publication)
+    try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@ public struct FetchStorageInventoryRequest: Codable, Equatable, GoogleCloudWKT._
   /// that provided the page token.
   public var pageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchStorageInventoryRequest`.
   public init() {}
 
@@ -59,6 +61,64 @@ public struct FetchStorageInventoryRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let source = CodingKeys(stringValue: "source")
+    static let type = CodingKeys(stringValue: "type")
+    static let forceRefresh = CodingKeys(stringValue: "forceRefresh")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "source",
+      "type",
+      "forceRefresh",
+      "pageSize",
+      "pageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+      self.source = value
+    }
+    if let value = try container.decodeIfPresent(
+      FetchStorageInventoryRequest.StorageType.self, forKey: .type)
+    {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceRefresh) {
+      self.forceRefresh = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.source, forKey: .source)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.forceRefresh, forKey: .forceRefresh)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the storage inventory to fetch.

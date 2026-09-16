@@ -56,6 +56,8 @@
     /// Output only. [Output Only] Amount of disk space used.
     public var usedBytes: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StoragePoolDisk`.
     public init() {}
 
@@ -70,6 +72,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attachedInstances = CodingKeys(stringValue: "attachedInstances")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let disk = CodingKeys(stringValue: "disk")
+      static let name = CodingKeys(stringValue: "name")
+      static let provisionedIops = CodingKeys(stringValue: "provisionedIops")
+      static let provisionedThroughput = CodingKeys(stringValue: "provisionedThroughput")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let sizeGb = CodingKeys(stringValue: "sizeGb")
+      static let status = CodingKeys(stringValue: "status")
+      static let type = CodingKeys(stringValue: "type")
+      static let usedBytes = CodingKeys(stringValue: "usedBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attachedInstances",
+        "creationTimestamp",
+        "disk",
+        "name",
+        "provisionedIops",
+        "provisionedThroughput",
+        "resourcePolicies",
+        "sizeGb",
+        "status",
+        "type",
+        "usedBytes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .attachedInstances)
+      {
+        self.attachedInstances = value
+      }
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.disk = try container.decodeIfPresent(Swift.String.self, forKey: .disk)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.provisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .provisionedIops)
+      self.provisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .provisionedThroughput)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+        self.resourcePolicies = value
+      }
+      self.sizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGb)
+      self.status = try container.decodeIfPresent(StoragePoolDisk.Status.self, forKey: .status)
+      self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
+      self.usedBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .usedBytes)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.attachedInstances, forKey: .attachedInstances)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.disk, forKey: .disk)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.provisionedIops, forKey: .provisionedIops)
+      try container.encodeIfPresent(self.provisionedThroughput, forKey: .provisionedThroughput)
+      try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
+      try container.encodeIfPresent(self.sizeGb, forKey: .sizeGb)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      try container.encodeIfPresent(self.usedBytes, forKey: .usedBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.StoragePoolDisk.status] field.

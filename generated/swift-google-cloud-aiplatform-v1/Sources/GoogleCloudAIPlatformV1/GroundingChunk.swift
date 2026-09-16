@@ -25,6 +25,8 @@
     /// Chunk type.
     public var chunkType: OneOf_ChunkType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroundingChunk`.
     public init() {}
 
@@ -41,10 +43,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case web = "web"
-      case retrievedContext = "retrievedContext"
-      case maps = "maps"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let web = CodingKeys(stringValue: "web")
+      static let retrievedContext = CodingKeys(stringValue: "retrievedContext")
+      static let maps = CodingKeys(stringValue: "maps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "web",
+        "retrievedContext",
+        "maps",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -72,6 +85,10 @@
         try chunkTypeCheckAndSet(.maps(maps))
       }
       self.chunkType = chunkType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -87,6 +104,9 @@
           try container.encode(value, forKey: .maps)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Chunk from the web.
@@ -98,6 +118,8 @@
 
       /// Title of the chunk.
       public var title: Swift.String? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Web`.
       public init() {}
@@ -113,6 +135,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+        static let title = CodingKeys(stringValue: "title")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri",
+          "title",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
+        self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.uri, forKey: .uri)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -146,6 +202,8 @@
       /// Tool-specific details about the retrieved context.
       public var contextDetails: OneOf_ContextDetails? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RetrievedContext`.
       public init() {}
 
@@ -162,12 +220,25 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case ragChunk = "ragChunk"
-        case uri = "uri"
-        case title = "title"
-        case text = "text"
-        case documentName = "documentName"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ragChunk = CodingKeys(stringValue: "ragChunk")
+        static let uri = CodingKeys(stringValue: "uri")
+        static let title = CodingKeys(stringValue: "title")
+        static let text = CodingKeys(stringValue: "text")
+        static let documentName = CodingKeys(stringValue: "documentName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "ragChunk",
+          "uri",
+          "title",
+          "text",
+          "documentName",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -191,20 +262,27 @@
           try contextDetailsCheckAndSet(.ragChunk(ragChunk))
         }
         self.contextDetails = contextDetails
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.uri, forKey: .uri)
-        try container.encode(self.title, forKey: .title)
-        try container.encode(self.text, forKey: .text)
-        try container.encode(self.documentName, forKey: .documentName)
+        try container.encodeIfPresent(self.uri, forKey: .uri)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.documentName, forKey: .documentName)
 
         if let choice = self.contextDetails {
           switch choice {
           case .ragChunk(let value):
             try container.encode(value, forKey: .ragChunk)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -253,6 +331,8 @@
       /// Output only. Route information.
       public var route: GroundingChunk.Maps.Route? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Maps`.
       public init() {}
 
@@ -269,11 +349,65 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+        static let title = CodingKeys(stringValue: "title")
+        static let text = CodingKeys(stringValue: "text")
+        static let placeId = CodingKeys(stringValue: "placeId")
+        static let placeAnswerSources = CodingKeys(stringValue: "placeAnswerSources")
+        static let route = CodingKeys(stringValue: "route")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri",
+          "title",
+          "text",
+          "placeId",
+          "placeAnswerSources",
+          "route",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
+        self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
+        self.text = try container.decodeIfPresent(Swift.String.self, forKey: .text)
+        self.placeId = try container.decodeIfPresent(Swift.String.self, forKey: .placeId)
+        self.placeAnswerSources = try container.decodeIfPresent(
+          GroundingChunk.Maps.PlaceAnswerSources.self, forKey: .placeAnswerSources)
+        self.route = try container.decodeIfPresent(GroundingChunk.Maps.Route.self, forKey: .route)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.uri, forKey: .uri)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.placeId, forKey: .placeId)
+        try container.encodeIfPresent(self.placeAnswerSources, forKey: .placeAnswerSources)
+        try container.encodeIfPresent(self.route, forKey: .route)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       public struct PlaceAnswerSources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Snippets of reviews that are used to generate the answer.
         public var reviewSnippets: [GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `PlaceAnswerSources`.
         public init() {}
@@ -291,6 +425,40 @@
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let reviewSnippets = CodingKeys(stringValue: "reviewSnippets")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "reviewSnippets"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet].self, forKey: .reviewSnippets)
+          {
+            self.reviewSnippets = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.reviewSnippets, forKey: .reviewSnippets)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Encapsulates a review snippet.
         public struct ReviewSnippet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -303,6 +471,9 @@
 
           /// Title of the review.
           public var title: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `ReviewSnippet`.
           public init() {}
@@ -318,6 +489,51 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let reviewId = CodingKeys(stringValue: "reviewId")
+            static let googleMapsUri = CodingKeys(stringValue: "googleMapsUri")
+            static let title = CodingKeys(stringValue: "title")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "reviewId",
+              "googleMapsUri",
+              "title",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reviewId) {
+              self.reviewId = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .googleMapsUri)
+            {
+              self.googleMapsUri = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+              self.title = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.reviewId, forKey: .reviewId)
+            try container.encode(self.googleMapsUri, forKey: .googleMapsUri)
+            try container.encode(self.title, forKey: .title)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -358,6 +574,9 @@
         /// https://developers.google.com/maps/documentation/utilities/polylinealgorithm
         public var encodedPolyline: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Route`.
         public init() {}
 
@@ -372,6 +591,50 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let distanceMeters = CodingKeys(stringValue: "distanceMeters")
+          static let duration = CodingKeys(stringValue: "duration")
+          static let encodedPolyline = CodingKeys(stringValue: "encodedPolyline")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "distanceMeters",
+            "duration",
+            "encodedPolyline",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .distanceMeters) {
+            self.distanceMeters = value
+          }
+          self.duration = try container.decodeIfPresent(
+            GoogleCloudWKT.Duration.self, forKey: .duration)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encodedPolyline)
+          {
+            self.encodedPolyline = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.distanceMeters, forKey: .distanceMeters)
+          try container.encodeIfPresent(self.duration, forKey: .duration)
+          try container.encode(self.encodedPolyline, forKey: .encodedPolyline)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

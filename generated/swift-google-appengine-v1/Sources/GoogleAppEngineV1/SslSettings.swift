@@ -48,6 +48,8 @@ public struct SslSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// @OutputOnly
   public var pendingManagedCertificateId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SslSettings`.
   public init() {}
 
@@ -62,6 +64,54 @@ public struct SslSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let certificateId = CodingKeys(stringValue: "certificateId")
+    static let sslManagementType = CodingKeys(stringValue: "sslManagementType")
+    static let pendingManagedCertificateId = CodingKeys(stringValue: "pendingManagedCertificateId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "certificateId",
+      "sslManagementType",
+      "pendingManagedCertificateId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificateId) {
+      self.certificateId = value
+    }
+    if let value = try container.decodeIfPresent(
+      SslSettings.SslManagementType.self, forKey: .sslManagementType)
+    {
+      self.sslManagementType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .pendingManagedCertificateId)
+    {
+      self.pendingManagedCertificateId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.certificateId, forKey: .certificateId)
+    try container.encode(self.sslManagementType, forKey: .sslManagementType)
+    try container.encode(self.pendingManagedCertificateId, forKey: .pendingManagedCertificateId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The SSL management type for this domain.

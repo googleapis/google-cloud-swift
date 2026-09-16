@@ -41,6 +41,8 @@ public struct SparkSqlJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// either an HCFS file URI or as a list of queries.
   public var queries: OneOf_Queries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SparkSqlJob`.
   public init() {}
 
@@ -57,21 +59,44 @@ public struct SparkSqlJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case queryFileUri = "queryFileUri"
-    case queryList = "queryList"
-    case scriptVariables = "scriptVariables"
-    case properties = "properties"
-    case jarFileUris = "jarFileUris"
-    case loggingConfig = "loggingConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queryFileUri = CodingKeys(stringValue: "queryFileUri")
+    static let queryList = CodingKeys(stringValue: "queryList")
+    static let scriptVariables = CodingKeys(stringValue: "scriptVariables")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queryFileUri",
+      "queryList",
+      "scriptVariables",
+      "properties",
+      "jarFileUris",
+      "loggingConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.scriptVariables = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .scriptVariables)
-    self.properties = try container.decode([Swift.String: Swift.String].self, forKey: .properties)
-    self.jarFileUris = try container.decode([Swift.String].self, forKey: .jarFileUris)
+    {
+      self.scriptVariables = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
     var queries: OneOf_Queries? = nil
@@ -91,6 +116,10 @@ public struct SparkSqlJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try queriesCheckAndSet(.queryList(queryList))
     }
     self.queries = queries
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,7 +127,7 @@ public struct SparkSqlJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.scriptVariables, forKey: .scriptVariables)
     try container.encode(self.properties, forKey: .properties)
     try container.encode(self.jarFileUris, forKey: .jarFileUris)
-    try container.encode(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
 
     if let choice = self.queries {
       switch choice {
@@ -107,6 +136,9 @@ public struct SparkSqlJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .queryList(let value):
         try container.encode(value, forKey: .queryList)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

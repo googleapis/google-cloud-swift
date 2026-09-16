@@ -72,6 +72,8 @@ public struct TaskSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Environment variables to set before running the Task.
   public var environment: Environment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskSpec`.
   public init() {}
 
@@ -86,6 +88,79 @@ public struct TaskSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let runnables = CodingKeys(stringValue: "runnables")
+    static let computeResource = CodingKeys(stringValue: "computeResource")
+    static let maxRunDuration = CodingKeys(stringValue: "maxRunDuration")
+    static let maxRetryCount = CodingKeys(stringValue: "maxRetryCount")
+    static let lifecyclePolicies = CodingKeys(stringValue: "lifecyclePolicies")
+    static let environments = CodingKeys(stringValue: "environments")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let environment = CodingKeys(stringValue: "environment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "runnables",
+      "computeResource",
+      "maxRunDuration",
+      "maxRetryCount",
+      "lifecyclePolicies",
+      "environments",
+      "volumes",
+      "environment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Runnable].self, forKey: .runnables) {
+      self.runnables = value
+    }
+    self.computeResource = try container.decodeIfPresent(
+      ComputeResource.self, forKey: .computeResource)
+    self.maxRunDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxRunDuration)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRetryCount) {
+      self.maxRetryCount = value
+    }
+    if let value = try container.decodeIfPresent([LifecyclePolicy].self, forKey: .lifecyclePolicies)
+    {
+      self.lifecyclePolicies = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .environments)
+    {
+      self.environments = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    self.environment = try container.decodeIfPresent(Environment.self, forKey: .environment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.runnables, forKey: .runnables)
+    try container.encodeIfPresent(self.computeResource, forKey: .computeResource)
+    try container.encodeIfPresent(self.maxRunDuration, forKey: .maxRunDuration)
+    try container.encode(self.maxRetryCount, forKey: .maxRetryCount)
+    try container.encode(self.lifecyclePolicies, forKey: .lifecyclePolicies)
+    try container.encode(self.environments, forKey: .environments)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encodeIfPresent(self.environment, forKey: .environment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

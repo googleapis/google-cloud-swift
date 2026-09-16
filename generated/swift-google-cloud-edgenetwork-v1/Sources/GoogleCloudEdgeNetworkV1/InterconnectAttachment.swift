@@ -61,6 +61,8 @@ public struct InterconnectAttachment: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// It is required when peering separation is enabled.
   public var peeringType: RemotePeeringNetworkType = RemotePeeringNetworkType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InterconnectAttachment`.
   public init() {}
 
@@ -75,6 +77,99 @@ public struct InterconnectAttachment: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let interconnect = CodingKeys(stringValue: "interconnect")
+    static let network = CodingKeys(stringValue: "network")
+    static let vlanId = CodingKeys(stringValue: "vlanId")
+    static let mtu = CodingKeys(stringValue: "mtu")
+    static let state = CodingKeys(stringValue: "state")
+    static let peeringType = CodingKeys(stringValue: "peeringType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "interconnect",
+      "network",
+      "vlanId",
+      "mtu",
+      "state",
+      "peeringType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interconnect) {
+      self.interconnect = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vlanId) {
+      self.vlanId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .mtu) {
+      self.mtu = value
+    }
+    if let value = try container.decodeIfPresent(ResourceState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      RemotePeeringNetworkType.self, forKey: .peeringType)
+    {
+      self.peeringType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.interconnect, forKey: .interconnect)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.vlanId, forKey: .vlanId)
+    try container.encode(self.mtu, forKey: .mtu)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.peeringType, forKey: .peeringType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

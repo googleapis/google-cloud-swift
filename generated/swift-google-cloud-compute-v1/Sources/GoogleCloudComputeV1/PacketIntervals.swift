@@ -40,6 +40,8 @@
     /// The type of packets for which inter-packet intervals were computed.
     public var type: PacketIntervals.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PacketIntervals`.
     public init() {}
 
@@ -54,6 +56,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let avgMs = CodingKeys(stringValue: "avgMs")
+      static let duration = CodingKeys(stringValue: "duration")
+      static let maxMs = CodingKeys(stringValue: "maxMs")
+      static let minMs = CodingKeys(stringValue: "minMs")
+      static let numIntervals = CodingKeys(stringValue: "numIntervals")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "avgMs",
+        "duration",
+        "maxMs",
+        "minMs",
+        "numIntervals",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.avgMs = try container.decodeIfPresent(Swift.Int64.self, forKey: .avgMs)
+      self.duration = try container.decodeIfPresent(
+        PacketIntervals.Duration.self, forKey: .duration)
+      self.maxMs = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxMs)
+      self.minMs = try container.decodeIfPresent(Swift.Int64.self, forKey: .minMs)
+      self.numIntervals = try container.decodeIfPresent(Swift.Int64.self, forKey: .numIntervals)
+      self.type = try container.decodeIfPresent(PacketIntervals.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.avgMs, forKey: .avgMs)
+      try container.encodeIfPresent(self.duration, forKey: .duration)
+      try container.encodeIfPresent(self.maxMs, forKey: .maxMs)
+      try container.encodeIfPresent(self.minMs, forKey: .minMs)
+      try container.encodeIfPresent(self.numIntervals, forKey: .numIntervals)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [duration][google.cloud.compute.v1.PacketIntervals.duration] field.

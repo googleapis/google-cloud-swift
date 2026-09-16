@@ -41,6 +41,8 @@ public struct CreateEntryGroupRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The entry group to create. Defaults to empty.
   public var entryGroup: EntryGroup? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateEntryGroupRequest`.
   public init() {}
 
@@ -55,6 +57,48 @@ public struct CreateEntryGroupRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let entryGroupId = CodingKeys(stringValue: "entryGroupId")
+    static let entryGroup = CodingKeys(stringValue: "entryGroup")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "entryGroupId",
+      "entryGroup",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entryGroupId) {
+      self.entryGroupId = value
+    }
+    self.entryGroup = try container.decodeIfPresent(EntryGroup.self, forKey: .entryGroup)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.entryGroupId, forKey: .entryGroupId)
+    try container.encodeIfPresent(self.entryGroup, forKey: .entryGroup)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The configuration of the phrase match rule.
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PhraseMatchRuleConfig`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case exactMatchConfig = "exactMatchConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exactMatchConfig = CodingKeys(stringValue: "exactMatchConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exactMatchConfig"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       try configCheckAndSet(.exactMatchConfig(exactMatchConfig))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .exactMatchConfig(let value):
         try container.encode(value, forKey: .exactMatchConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

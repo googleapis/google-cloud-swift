@@ -58,6 +58,8 @@
     /// type will be dependent upon the model implementation.
     public var metadata: GoogleCloudWKT.Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PredictResponse`.
     public init() {}
 
@@ -72,6 +74,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let predictions = CodingKeys(stringValue: "predictions")
+      static let deployedModelId = CodingKeys(stringValue: "deployedModelId")
+      static let model = CodingKeys(stringValue: "model")
+      static let modelVersionId = CodingKeys(stringValue: "modelVersionId")
+      static let modelDisplayName = CodingKeys(stringValue: "modelDisplayName")
+      static let metadata = CodingKeys(stringValue: "metadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "predictions",
+        "deployedModelId",
+        "model",
+        "modelVersionId",
+        "modelDisplayName",
+        "metadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Value].self, forKey: .predictions)
+      {
+        self.predictions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {
+        self.deployedModelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersionId) {
+        self.modelVersionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelDisplayName) {
+        self.modelDisplayName = value
+      }
+      self.metadata = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .metadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.predictions, forKey: .predictions)
+      try container.encode(self.deployedModelId, forKey: .deployedModelId)
+      try container.encode(self.model, forKey: .model)
+      try container.encode(self.modelVersionId, forKey: .modelVersionId)
+      try container.encode(self.modelDisplayName, forKey: .modelDisplayName)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

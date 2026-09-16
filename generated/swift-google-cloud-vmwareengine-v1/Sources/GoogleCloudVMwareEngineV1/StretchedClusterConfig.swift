@@ -35,6 +35,8 @@ public struct StretchedClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// be a project number or a project ID.
   public var secondaryLocation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StretchedClusterConfig`.
   public init() {}
 
@@ -49,6 +51,44 @@ public struct StretchedClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let preferredLocation = CodingKeys(stringValue: "preferredLocation")
+    static let secondaryLocation = CodingKeys(stringValue: "secondaryLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "preferredLocation",
+      "secondaryLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .preferredLocation) {
+      self.preferredLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryLocation) {
+      self.secondaryLocation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.preferredLocation, forKey: .preferredLocation)
+    try container.encode(self.secondaryLocation, forKey: .secondaryLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

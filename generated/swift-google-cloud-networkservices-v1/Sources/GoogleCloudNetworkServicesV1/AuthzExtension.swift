@@ -122,6 +122,8 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
   public var wireFormat: WireFormat = WireFormat()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthzExtension`.
   public init() {}
 
@@ -136,6 +138,113 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let loadBalancingScheme = CodingKeys(stringValue: "loadBalancingScheme")
+    static let authority = CodingKeys(stringValue: "authority")
+    static let service = CodingKeys(stringValue: "service")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let failOpen = CodingKeys(stringValue: "failOpen")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let forwardHeaders = CodingKeys(stringValue: "forwardHeaders")
+    static let forwardAttributes = CodingKeys(stringValue: "forwardAttributes")
+    static let wireFormat = CodingKeys(stringValue: "wireFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "description",
+      "labels",
+      "loadBalancingScheme",
+      "authority",
+      "service",
+      "timeout",
+      "failOpen",
+      "metadata",
+      "forwardHeaders",
+      "forwardAttributes",
+      "wireFormat",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      LoadBalancingScheme.self, forKey: .loadBalancingScheme)
+    {
+      self.loadBalancingScheme = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authority) {
+      self.authority = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .failOpen) {
+      self.failOpen = value
+    }
+    self.metadata = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .forwardHeaders) {
+      self.forwardHeaders = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .forwardAttributes) {
+      self.forwardAttributes = value
+    }
+    if let value = try container.decodeIfPresent(WireFormat.self, forKey: .wireFormat) {
+      self.wireFormat = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+    try container.encode(self.authority, forKey: .authority)
+    try container.encode(self.service, forKey: .service)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encode(self.failOpen, forKey: .failOpen)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.forwardHeaders, forKey: .forwardHeaders)
+    try container.encode(self.forwardAttributes, forKey: .forwardAttributes)
+    try container.encode(self.wireFormat, forKey: .wireFormat)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

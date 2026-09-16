@@ -40,6 +40,8 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The timestamp of when the backup was scheduled.
   public var backupScheduledTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateBackupSchedule`.
   public init() {}
 
@@ -54,6 +56,69 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let compartmentId = CodingKeys(stringValue: "compartmentId")
+    static let frequencyBackupScheduled = CodingKeys(stringValue: "frequencyBackupScheduled")
+    static let metadataOnly = CodingKeys(stringValue: "metadataOnly")
+    static let namespace = CodingKeys(stringValue: "namespace")
+    static let backupScheduledTime = CodingKeys(stringValue: "backupScheduledTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucket",
+      "compartmentId",
+      "frequencyBackupScheduled",
+      "metadataOnly",
+      "namespace",
+      "backupScheduledTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .compartmentId) {
+      self.compartmentId = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateBackupSchedule.FrequencyBackupScheduled.self, forKey: .frequencyBackupScheduled)
+    {
+      self.frequencyBackupScheduled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .metadataOnly) {
+      self.metadataOnly = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+      self.namespace = value
+    }
+    self.backupScheduledTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .backupScheduledTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.compartmentId, forKey: .compartmentId)
+    try container.encode(self.frequencyBackupScheduled, forKey: .frequencyBackupScheduled)
+    try container.encode(self.metadataOnly, forKey: .metadataOnly)
+    try container.encode(self.namespace, forKey: .namespace)
+    try container.encodeIfPresent(self.backupScheduledTime, forKey: .backupScheduledTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for frequency backup scheduled.

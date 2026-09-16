@@ -223,6 +223,8 @@
     /// metrics during high load situations.
     public var performanceCaptureConfig: PerformanceCaptureConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Settings`.
     public init() {}
 
@@ -237,6 +239,302 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let settingsVersion = CodingKeys(stringValue: "settingsVersion")
+      static let authorizedGaeApplications = CodingKeys(stringValue: "authorizedGaeApplications")
+      static let tier = CodingKeys(stringValue: "tier")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let userLabels = CodingKeys(stringValue: "userLabels")
+      static let availabilityType = CodingKeys(stringValue: "availabilityType")
+      static let pricingPlan = CodingKeys(stringValue: "pricingPlan")
+      static let replicationType = CodingKeys(stringValue: "replicationType")
+      static let storageAutoResizeLimit = CodingKeys(stringValue: "storageAutoResizeLimit")
+      static let activationPolicy = CodingKeys(stringValue: "activationPolicy")
+      static let ipConfiguration = CodingKeys(stringValue: "ipConfiguration")
+      static let storageAutoResize = CodingKeys(stringValue: "storageAutoResize")
+      static let locationPreference = CodingKeys(stringValue: "locationPreference")
+      static let databaseFlags = CodingKeys(stringValue: "databaseFlags")
+      static let dataDiskType = CodingKeys(stringValue: "dataDiskType")
+      static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+      static let backupConfiguration = CodingKeys(stringValue: "backupConfiguration")
+      static let databaseReplicationEnabled = CodingKeys(stringValue: "databaseReplicationEnabled")
+      static let crashSafeReplicationEnabled = CodingKeys(
+        stringValue: "crashSafeReplicationEnabled")
+      static let dataDiskSizeGb = CodingKeys(stringValue: "dataDiskSizeGb")
+      static let activeDirectoryConfig = CodingKeys(stringValue: "activeDirectoryConfig")
+      static let collation = CodingKeys(stringValue: "collation")
+      static let denyMaintenancePeriods = CodingKeys(stringValue: "denyMaintenancePeriods")
+      static let insightsConfig = CodingKeys(stringValue: "insightsConfig")
+      static let passwordValidationPolicy = CodingKeys(stringValue: "passwordValidationPolicy")
+      static let sqlServerAuditConfig = CodingKeys(stringValue: "sqlServerAuditConfig")
+      static let edition = CodingKeys(stringValue: "edition")
+      static let connectorEnforcement = CodingKeys(stringValue: "connectorEnforcement")
+      static let deletionProtectionEnabled = CodingKeys(stringValue: "deletionProtectionEnabled")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let advancedMachineFeatures = CodingKeys(stringValue: "advancedMachineFeatures")
+      static let dataCacheConfig = CodingKeys(stringValue: "dataCacheConfig")
+      static let replicationLagMaxSeconds = CodingKeys(stringValue: "replicationLagMaxSeconds")
+      static let enableGoogleMlIntegration = CodingKeys(stringValue: "enableGoogleMlIntegration")
+      static let enableDataplexIntegration = CodingKeys(stringValue: "enableDataplexIntegration")
+      static let retainBackupsOnDelete = CodingKeys(stringValue: "retainBackupsOnDelete")
+      static let dataDiskProvisionedIops = CodingKeys(stringValue: "dataDiskProvisionedIops")
+      static let dataDiskProvisionedThroughput = CodingKeys(
+        stringValue: "dataDiskProvisionedThroughput")
+      static let connectionPoolConfig = CodingKeys(stringValue: "connectionPoolConfig")
+      static let finalBackupConfig = CodingKeys(stringValue: "finalBackupConfig")
+      static let readPoolAutoScaleConfig = CodingKeys(stringValue: "readPoolAutoScaleConfig")
+      static let acceleratedReplicaMode = CodingKeys(stringValue: "acceleratedReplicaMode")
+      static let autoUpgradeEnabled = CodingKeys(stringValue: "autoUpgradeEnabled")
+      static let entraidConfig = CodingKeys(stringValue: "entraidConfig")
+      static let dataApiAccess = CodingKeys(stringValue: "dataApiAccess")
+      static let performanceCaptureConfig = CodingKeys(stringValue: "performanceCaptureConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "settingsVersion",
+        "authorizedGaeApplications",
+        "tier",
+        "kind",
+        "userLabels",
+        "availabilityType",
+        "pricingPlan",
+        "replicationType",
+        "storageAutoResizeLimit",
+        "activationPolicy",
+        "ipConfiguration",
+        "storageAutoResize",
+        "locationPreference",
+        "databaseFlags",
+        "dataDiskType",
+        "maintenanceWindow",
+        "backupConfiguration",
+        "databaseReplicationEnabled",
+        "crashSafeReplicationEnabled",
+        "dataDiskSizeGb",
+        "activeDirectoryConfig",
+        "collation",
+        "denyMaintenancePeriods",
+        "insightsConfig",
+        "passwordValidationPolicy",
+        "sqlServerAuditConfig",
+        "edition",
+        "connectorEnforcement",
+        "deletionProtectionEnabled",
+        "timeZone",
+        "advancedMachineFeatures",
+        "dataCacheConfig",
+        "replicationLagMaxSeconds",
+        "enableGoogleMlIntegration",
+        "enableDataplexIntegration",
+        "retainBackupsOnDelete",
+        "dataDiskProvisionedIops",
+        "dataDiskProvisionedThroughput",
+        "connectionPoolConfig",
+        "finalBackupConfig",
+        "readPoolAutoScaleConfig",
+        "acceleratedReplicaMode",
+        "autoUpgradeEnabled",
+        "entraidConfig",
+        "dataApiAccess",
+        "performanceCaptureConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.settingsVersion = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .settingsVersion)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .authorizedGaeApplications)
+      {
+        self.authorizedGaeApplications = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tier) {
+        self.tier = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .userLabels)
+      {
+        self.userLabels = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlAvailabilityType.self, forKey: .availabilityType)
+      {
+        self.availabilityType = value
+      }
+      if let value = try container.decodeIfPresent(SqlPricingPlan.self, forKey: .pricingPlan) {
+        self.pricingPlan = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlReplicationType.self, forKey: .replicationType)
+      {
+        self.replicationType = value
+      }
+      self.storageAutoResizeLimit = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .storageAutoResizeLimit)
+      if let value = try container.decodeIfPresent(
+        Settings.SqlActivationPolicy.self, forKey: .activationPolicy)
+      {
+        self.activationPolicy = value
+      }
+      self.ipConfiguration = try container.decodeIfPresent(
+        IpConfiguration.self, forKey: .ipConfiguration)
+      self.storageAutoResize = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .storageAutoResize)
+      self.locationPreference = try container.decodeIfPresent(
+        LocationPreference.self, forKey: .locationPreference)
+      if let value = try container.decodeIfPresent([DatabaseFlags].self, forKey: .databaseFlags) {
+        self.databaseFlags = value
+      }
+      if let value = try container.decodeIfPresent(SqlDataDiskType.self, forKey: .dataDiskType) {
+        self.dataDiskType = value
+      }
+      self.maintenanceWindow = try container.decodeIfPresent(
+        MaintenanceWindow.self, forKey: .maintenanceWindow)
+      self.backupConfiguration = try container.decodeIfPresent(
+        BackupConfiguration.self, forKey: .backupConfiguration)
+      self.databaseReplicationEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .databaseReplicationEnabled)
+      self.crashSafeReplicationEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .crashSafeReplicationEnabled)
+      self.dataDiskSizeGb = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .dataDiskSizeGb)
+      self.activeDirectoryConfig = try container.decodeIfPresent(
+        SqlActiveDirectoryConfig.self, forKey: .activeDirectoryConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .collation) {
+        self.collation = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DenyMaintenancePeriod].self, forKey: .denyMaintenancePeriods)
+      {
+        self.denyMaintenancePeriods = value
+      }
+      self.insightsConfig = try container.decodeIfPresent(
+        InsightsConfig.self, forKey: .insightsConfig)
+      self.passwordValidationPolicy = try container.decodeIfPresent(
+        PasswordValidationPolicy.self, forKey: .passwordValidationPolicy)
+      self.sqlServerAuditConfig = try container.decodeIfPresent(
+        SqlServerAuditConfig.self, forKey: .sqlServerAuditConfig)
+      if let value = try container.decodeIfPresent(Settings.Edition.self, forKey: .edition) {
+        self.edition = value
+      }
+      if let value = try container.decodeIfPresent(
+        Settings.ConnectorEnforcement.self, forKey: .connectorEnforcement)
+      {
+        self.connectorEnforcement = value
+      }
+      self.deletionProtectionEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .deletionProtectionEnabled)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      self.advancedMachineFeatures = try container.decodeIfPresent(
+        AdvancedMachineFeatures.self, forKey: .advancedMachineFeatures)
+      self.dataCacheConfig = try container.decodeIfPresent(
+        DataCacheConfig.self, forKey: .dataCacheConfig)
+      self.replicationLagMaxSeconds = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .replicationLagMaxSeconds)
+      self.enableGoogleMlIntegration = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .enableGoogleMlIntegration)
+      self.enableDataplexIntegration = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .enableDataplexIntegration)
+      self.retainBackupsOnDelete = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .retainBackupsOnDelete)
+      self.dataDiskProvisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .dataDiskProvisionedIops)
+      self.dataDiskProvisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .dataDiskProvisionedThroughput)
+      self.connectionPoolConfig = try container.decodeIfPresent(
+        ConnectionPoolConfig.self, forKey: .connectionPoolConfig)
+      self.finalBackupConfig = try container.decodeIfPresent(
+        FinalBackupConfig.self, forKey: .finalBackupConfig)
+      self.readPoolAutoScaleConfig = try container.decodeIfPresent(
+        ReadPoolAutoScaleConfig.self, forKey: .readPoolAutoScaleConfig)
+      self.acceleratedReplicaMode = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .acceleratedReplicaMode)
+      self.autoUpgradeEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .autoUpgradeEnabled)
+      self.entraidConfig = try container.decodeIfPresent(
+        SqlServerEntraIdConfig.self, forKey: .entraidConfig)
+      self.dataApiAccess = try container.decodeIfPresent(
+        Settings.DataApiAccess.self, forKey: .dataApiAccess)
+      self.performanceCaptureConfig = try container.decodeIfPresent(
+        PerformanceCaptureConfig.self, forKey: .performanceCaptureConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.settingsVersion, forKey: .settingsVersion)
+      try container.encode(self.authorizedGaeApplications, forKey: .authorizedGaeApplications)
+      try container.encode(self.tier, forKey: .tier)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.userLabels, forKey: .userLabels)
+      try container.encode(self.availabilityType, forKey: .availabilityType)
+      try container.encode(self.pricingPlan, forKey: .pricingPlan)
+      try container.encode(self.replicationType, forKey: .replicationType)
+      try container.encodeIfPresent(self.storageAutoResizeLimit, forKey: .storageAutoResizeLimit)
+      try container.encode(self.activationPolicy, forKey: .activationPolicy)
+      try container.encodeIfPresent(self.ipConfiguration, forKey: .ipConfiguration)
+      try container.encodeIfPresent(self.storageAutoResize, forKey: .storageAutoResize)
+      try container.encodeIfPresent(self.locationPreference, forKey: .locationPreference)
+      try container.encode(self.databaseFlags, forKey: .databaseFlags)
+      try container.encode(self.dataDiskType, forKey: .dataDiskType)
+      try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
+      try container.encodeIfPresent(self.backupConfiguration, forKey: .backupConfiguration)
+      try container.encodeIfPresent(
+        self.databaseReplicationEnabled, forKey: .databaseReplicationEnabled)
+      try container.encodeIfPresent(
+        self.crashSafeReplicationEnabled, forKey: .crashSafeReplicationEnabled)
+      try container.encodeIfPresent(self.dataDiskSizeGb, forKey: .dataDiskSizeGb)
+      try container.encodeIfPresent(self.activeDirectoryConfig, forKey: .activeDirectoryConfig)
+      try container.encode(self.collation, forKey: .collation)
+      try container.encode(self.denyMaintenancePeriods, forKey: .denyMaintenancePeriods)
+      try container.encodeIfPresent(self.insightsConfig, forKey: .insightsConfig)
+      try container.encodeIfPresent(
+        self.passwordValidationPolicy, forKey: .passwordValidationPolicy)
+      try container.encodeIfPresent(self.sqlServerAuditConfig, forKey: .sqlServerAuditConfig)
+      try container.encode(self.edition, forKey: .edition)
+      try container.encode(self.connectorEnforcement, forKey: .connectorEnforcement)
+      try container.encodeIfPresent(
+        self.deletionProtectionEnabled, forKey: .deletionProtectionEnabled)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
+      try container.encodeIfPresent(self.dataCacheConfig, forKey: .dataCacheConfig)
+      try container.encodeIfPresent(
+        self.replicationLagMaxSeconds, forKey: .replicationLagMaxSeconds)
+      try container.encodeIfPresent(
+        self.enableGoogleMlIntegration, forKey: .enableGoogleMlIntegration)
+      try container.encodeIfPresent(
+        self.enableDataplexIntegration, forKey: .enableDataplexIntegration)
+      try container.encodeIfPresent(self.retainBackupsOnDelete, forKey: .retainBackupsOnDelete)
+      try container.encodeIfPresent(self.dataDiskProvisionedIops, forKey: .dataDiskProvisionedIops)
+      try container.encodeIfPresent(
+        self.dataDiskProvisionedThroughput, forKey: .dataDiskProvisionedThroughput)
+      try container.encodeIfPresent(self.connectionPoolConfig, forKey: .connectionPoolConfig)
+      try container.encodeIfPresent(self.finalBackupConfig, forKey: .finalBackupConfig)
+      try container.encodeIfPresent(self.readPoolAutoScaleConfig, forKey: .readPoolAutoScaleConfig)
+      try container.encodeIfPresent(self.acceleratedReplicaMode, forKey: .acceleratedReplicaMode)
+      try container.encodeIfPresent(self.autoUpgradeEnabled, forKey: .autoUpgradeEnabled)
+      try container.encodeIfPresent(self.entraidConfig, forKey: .entraidConfig)
+      try container.encodeIfPresent(self.dataApiAccess, forKey: .dataApiAccess)
+      try container.encodeIfPresent(
+        self.performanceCaptureConfig, forKey: .performanceCaptureConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Specifies when the instance is activated.

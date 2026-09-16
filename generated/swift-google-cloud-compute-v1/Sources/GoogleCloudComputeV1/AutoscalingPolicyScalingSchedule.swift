@@ -58,6 +58,8 @@
     /// default value of "UTC" if left empty.
     public var timeZone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscalingPolicyScalingSchedule`.
     public init() {}
 
@@ -72,6 +74,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let durationSec = CodingKeys(stringValue: "durationSec")
+      static let minRequiredReplicas = CodingKeys(stringValue: "minRequiredReplicas")
+      static let schedule = CodingKeys(stringValue: "schedule")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "disabled",
+        "durationSec",
+        "minRequiredReplicas",
+        "schedule",
+        "timeZone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.disabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled)
+      self.durationSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .durationSec)
+      self.minRequiredReplicas = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .minRequiredReplicas)
+      self.schedule = try container.decodeIfPresent(Swift.String.self, forKey: .schedule)
+      self.timeZone = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.disabled, forKey: .disabled)
+      try container.encodeIfPresent(self.durationSec, forKey: .durationSec)
+      try container.encodeIfPresent(self.minRequiredReplicas, forKey: .minRequiredReplicas)
+      try container.encodeIfPresent(self.schedule, forKey: .schedule)
+      try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

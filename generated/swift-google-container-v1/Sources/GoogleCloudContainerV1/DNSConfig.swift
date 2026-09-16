@@ -33,6 +33,8 @@ public struct DNSConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The domain used in Additive VPC scope.
   public var additiveVpcScopeDnsDomain: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DNSConfig`.
   public init() {}
 
@@ -47,6 +49,59 @@ public struct DNSConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterDns = CodingKeys(stringValue: "clusterDns")
+    static let clusterDnsScope = CodingKeys(stringValue: "clusterDnsScope")
+    static let clusterDnsDomain = CodingKeys(stringValue: "clusterDnsDomain")
+    static let additiveVpcScopeDnsDomain = CodingKeys(stringValue: "additiveVpcScopeDnsDomain")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterDns",
+      "clusterDnsScope",
+      "clusterDnsDomain",
+      "additiveVpcScopeDnsDomain",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DNSConfig.Provider.self, forKey: .clusterDns) {
+      self.clusterDns = value
+    }
+    if let value = try container.decodeIfPresent(DNSConfig.DNSScope.self, forKey: .clusterDnsScope)
+    {
+      self.clusterDnsScope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterDnsDomain) {
+      self.clusterDnsDomain = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .additiveVpcScopeDnsDomain)
+    {
+      self.additiveVpcScopeDnsDomain = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterDns, forKey: .clusterDns)
+    try container.encode(self.clusterDnsScope, forKey: .clusterDnsScope)
+    try container.encode(self.clusterDnsDomain, forKey: .clusterDnsDomain)
+    try container.encode(self.additiveVpcScopeDnsDomain, forKey: .additiveVpcScopeDnsDomain)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Provider lists the various in-cluster DNS providers.

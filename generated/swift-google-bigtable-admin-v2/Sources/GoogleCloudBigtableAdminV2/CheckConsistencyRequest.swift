@@ -36,6 +36,8 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Default: `standard_read_remote_writes`
   public var mode: OneOf_Mode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckConsistencyRequest`.
   public init() {}
 
@@ -52,17 +54,33 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case consistencyToken = "consistencyToken"
-    case standardReadRemoteWrites = "standardReadRemoteWrites"
-    case dataBoostReadLocalWrites = "dataBoostReadLocalWrites"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let consistencyToken = CodingKeys(stringValue: "consistencyToken")
+    static let standardReadRemoteWrites = CodingKeys(stringValue: "standardReadRemoteWrites")
+    static let dataBoostReadLocalWrites = CodingKeys(stringValue: "dataBoostReadLocalWrites")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "consistencyToken",
+      "standardReadRemoteWrites",
+      "dataBoostReadLocalWrites",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.consistencyToken = try container.decode(Swift.String.self, forKey: .consistencyToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consistencyToken) {
+      self.consistencyToken = value
+    }
 
     var mode: OneOf_Mode? = nil
     let modeCheckAndSet = {
@@ -85,6 +103,10 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       try modeCheckAndSet(.dataBoostReadLocalWrites(dataBoostReadLocalWrites))
     }
     self.mode = mode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -99,6 +121,9 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .dataBoostReadLocalWrites(let value):
         try container.encode(value, forKey: .dataBoostReadLocalWrites)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

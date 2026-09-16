@@ -119,6 +119,8 @@ public struct ComputeInstanceRestoreProperties: Codable, Equatable, GoogleCloudW
   /// during instance creation.
   public var tags: Tags? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeInstanceRestoreProperties`.
   public init() {}
 
@@ -135,32 +137,65 @@ public struct ComputeInstanceRestoreProperties: Codable, Equatable, GoogleCloudW
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case advancedMachineFeatures = "advancedMachineFeatures"
-    case canIpForward = "canIpForward"
-    case confidentialInstanceConfig = "confidentialInstanceConfig"
-    case deletionProtection = "deletionProtection"
-    case description = "description"
-    case disks = "disks"
-    case displayDevice = "displayDevice"
-    case guestAccelerators = "guestAccelerators"
-    case hostname = "hostname"
-    case instanceEncryptionKey = "instanceEncryptionKey"
-    case keyRevocationActionType = "keyRevocationActionType"
-    case labels = "labels"
-    case machineType = "machineType"
-    case metadata = "metadata"
-    case minCpuPlatform = "minCpuPlatform"
-    case networkInterfaces = "networkInterfaces"
-    case networkPerformanceConfig = "networkPerformanceConfig"
-    case params = "params"
-    case privateIpv6GoogleAccess = "privateIpv6GoogleAccess"
-    case allocationAffinity = "reservationAffinity"
-    case resourcePolicies = "resourcePolicies"
-    case scheduling = "scheduling"
-    case serviceAccounts = "serviceAccounts"
-    case tags = "tags"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let advancedMachineFeatures = CodingKeys(stringValue: "advancedMachineFeatures")
+    static let canIpForward = CodingKeys(stringValue: "canIpForward")
+    static let confidentialInstanceConfig = CodingKeys(stringValue: "confidentialInstanceConfig")
+    static let deletionProtection = CodingKeys(stringValue: "deletionProtection")
+    static let description = CodingKeys(stringValue: "description")
+    static let disks = CodingKeys(stringValue: "disks")
+    static let displayDevice = CodingKeys(stringValue: "displayDevice")
+    static let guestAccelerators = CodingKeys(stringValue: "guestAccelerators")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let instanceEncryptionKey = CodingKeys(stringValue: "instanceEncryptionKey")
+    static let keyRevocationActionType = CodingKeys(stringValue: "keyRevocationActionType")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+    static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+    static let networkPerformanceConfig = CodingKeys(stringValue: "networkPerformanceConfig")
+    static let params = CodingKeys(stringValue: "params")
+    static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+    static let allocationAffinity = CodingKeys(stringValue: "reservationAffinity")
+    static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+    static let scheduling = CodingKeys(stringValue: "scheduling")
+    static let serviceAccounts = CodingKeys(stringValue: "serviceAccounts")
+    static let tags = CodingKeys(stringValue: "tags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "advancedMachineFeatures",
+      "canIpForward",
+      "confidentialInstanceConfig",
+      "deletionProtection",
+      "description",
+      "disks",
+      "displayDevice",
+      "guestAccelerators",
+      "hostname",
+      "instanceEncryptionKey",
+      "keyRevocationActionType",
+      "labels",
+      "machineType",
+      "metadata",
+      "minCpuPlatform",
+      "networkInterfaces",
+      "networkPerformanceConfig",
+      "params",
+      "privateIpv6GoogleAccess",
+      "reservationAffinity",
+      "resourcePolicies",
+      "scheduling",
+      "serviceAccounts",
+      "tags",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -174,21 +209,32 @@ public struct ComputeInstanceRestoreProperties: Codable, Equatable, GoogleCloudW
     self.deletionProtection = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .deletionProtection)
     self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-    self.disks = try container.decode([AttachedDisk].self, forKey: .disks)
+    if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disks) {
+      self.disks = value
+    }
     self.displayDevice = try container.decodeIfPresent(DisplayDevice.self, forKey: .displayDevice)
-    self.guestAccelerators = try container.decode(
+    if let value = try container.decodeIfPresent(
       [AcceleratorConfig].self, forKey: .guestAccelerators)
+    {
+      self.guestAccelerators = value
+    }
     self.hostname = try container.decodeIfPresent(Swift.String.self, forKey: .hostname)
     self.instanceEncryptionKey = try container.decodeIfPresent(
       CustomerEncryptionKey.self, forKey: .instanceEncryptionKey)
     self.keyRevocationActionType = try container.decodeIfPresent(
       KeyRevocationActionType.self, forKey: .keyRevocationActionType)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
     self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
     self.minCpuPlatform = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform)
-    self.networkInterfaces = try container.decode(
+    if let value = try container.decodeIfPresent(
       [NetworkInterface].self, forKey: .networkInterfaces)
+    {
+      self.networkInterfaces = value
+    }
     self.networkPerformanceConfig = try container.decodeIfPresent(
       NetworkPerformanceConfig.self, forKey: .networkPerformanceConfig)
     self.params = try container.decodeIfPresent(InstanceParams.self, forKey: .params)
@@ -197,39 +243,51 @@ public struct ComputeInstanceRestoreProperties: Codable, Equatable, GoogleCloudW
       forKey: .privateIpv6GoogleAccess)
     self.allocationAffinity = try container.decodeIfPresent(
       AllocationAffinity.self, forKey: .allocationAffinity)
-    self.resourcePolicies = try container.decode([Swift.String].self, forKey: .resourcePolicies)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+      self.resourcePolicies = value
+    }
     self.scheduling = try container.decodeIfPresent(Scheduling.self, forKey: .scheduling)
-    self.serviceAccounts = try container.decode([ServiceAccount].self, forKey: .serviceAccounts)
+    if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .serviceAccounts) {
+      self.serviceAccounts = value
+    }
     self.tags = try container.decodeIfPresent(Tags.self, forKey: .tags)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.name, forKey: .name)
-    try container.encode(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
-    try container.encode(self.canIpForward, forKey: .canIpForward)
-    try container.encode(self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
-    try container.encode(self.deletionProtection, forKey: .deletionProtection)
-    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
+    try container.encodeIfPresent(self.canIpForward, forKey: .canIpForward)
+    try container.encodeIfPresent(
+      self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
+    try container.encodeIfPresent(self.deletionProtection, forKey: .deletionProtection)
+    try container.encodeIfPresent(self.description, forKey: .description)
     try container.encode(self.disks, forKey: .disks)
-    try container.encode(self.displayDevice, forKey: .displayDevice)
+    try container.encodeIfPresent(self.displayDevice, forKey: .displayDevice)
     try container.encode(self.guestAccelerators, forKey: .guestAccelerators)
-    try container.encode(self.hostname, forKey: .hostname)
-    try container.encode(self.instanceEncryptionKey, forKey: .instanceEncryptionKey)
-    try container.encode(self.keyRevocationActionType, forKey: .keyRevocationActionType)
+    try container.encodeIfPresent(self.hostname, forKey: .hostname)
+    try container.encodeIfPresent(self.instanceEncryptionKey, forKey: .instanceEncryptionKey)
+    try container.encodeIfPresent(self.keyRevocationActionType, forKey: .keyRevocationActionType)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.machineType, forKey: .machineType)
-    try container.encode(self.metadata, forKey: .metadata)
-    try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
+    try container.encodeIfPresent(self.machineType, forKey: .machineType)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
     try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
-    try container.encode(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
-    try container.encode(self.params, forKey: .params)
-    try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
-    try container.encode(self.allocationAffinity, forKey: .allocationAffinity)
+    try container.encodeIfPresent(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
+    try container.encodeIfPresent(self.params, forKey: .params)
+    try container.encodeIfPresent(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    try container.encodeIfPresent(self.allocationAffinity, forKey: .allocationAffinity)
     try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
-    try container.encode(self.scheduling, forKey: .scheduling)
+    try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
     try container.encode(self.serviceAccounts, forKey: .serviceAccounts)
-    try container.encode(self.tags, forKey: .tags)
+    try container.encodeIfPresent(self.tags, forKey: .tags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The private IPv6 google access type for the VMs.

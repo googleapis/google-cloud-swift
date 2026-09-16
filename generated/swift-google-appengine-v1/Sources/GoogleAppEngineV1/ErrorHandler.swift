@@ -30,6 +30,8 @@ public struct ErrorHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// MIME type of file. Defaults to `text/html`.
   public var mimeType: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ErrorHandler`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct ErrorHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let staticFile = CodingKeys(stringValue: "staticFile")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errorCode",
+      "staticFile",
+      "mimeType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ErrorHandler.ErrorCode.self, forKey: .errorCode) {
+      self.errorCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .staticFile) {
+      self.staticFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errorCode, forKey: .errorCode)
+    try container.encode(self.staticFile, forKey: .staticFile)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Error codes.

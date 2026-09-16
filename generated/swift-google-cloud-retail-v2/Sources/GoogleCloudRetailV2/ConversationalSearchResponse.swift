@@ -70,6 +70,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
   /// Output only. The state of the response generation.
   public var state: ConversationalSearchResponse.State = ConversationalSearchResponse.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationalSearchResponse`.
   public init() {}
 
@@ -86,6 +88,81 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userQueryTypes = CodingKeys(stringValue: "userQueryTypes")
+    static let conversationalTextResponse = CodingKeys(stringValue: "conversationalTextResponse")
+    static let followupQuestion = CodingKeys(stringValue: "followupQuestion")
+    static let conversationId = CodingKeys(stringValue: "conversationId")
+    static let refinedSearch = CodingKeys(stringValue: "refinedSearch")
+    static let conversationalFilteringResult = CodingKeys(
+      stringValue: "conversationalFilteringResult")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userQueryTypes",
+      "conversationalTextResponse",
+      "followupQuestion",
+      "conversationId",
+      "refinedSearch",
+      "conversationalFilteringResult",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .userQueryTypes) {
+      self.userQueryTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .conversationalTextResponse)
+    {
+      self.conversationalTextResponse = value
+    }
+    self.followupQuestion = try container.decodeIfPresent(
+      ConversationalSearchResponse.FollowupQuestion.self, forKey: .followupQuestion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationId) {
+      self.conversationId = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ConversationalSearchResponse.RefinedSearch].self, forKey: .refinedSearch)
+    {
+      self.refinedSearch = value
+    }
+    self.conversationalFilteringResult = try container.decodeIfPresent(
+      ConversationalSearchResponse.ConversationalFilteringResult.self,
+      forKey: .conversationalFilteringResult)
+    if let value = try container.decodeIfPresent(
+      ConversationalSearchResponse.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.userQueryTypes, forKey: .userQueryTypes)
+    try container.encode(self.conversationalTextResponse, forKey: .conversationalTextResponse)
+    try container.encodeIfPresent(self.followupQuestion, forKey: .followupQuestion)
+    try container.encode(self.conversationId, forKey: .conversationId)
+    try container.encode(self.refinedSearch, forKey: .refinedSearch)
+    try container.encodeIfPresent(
+      self.conversationalFilteringResult, forKey: .conversationalFilteringResult)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The conversational followup question generated for Intent refinement.
   public struct FollowupQuestion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -96,6 +173,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
     /// The answer options provided to client for the follow-up question.
     public var suggestedAnswers: [ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer] =
       []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `FollowupQuestion`.
     public init() {}
@@ -113,6 +192,47 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let followupQuestion = CodingKeys(stringValue: "followupQuestion")
+      static let suggestedAnswers = CodingKeys(stringValue: "suggestedAnswers")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "followupQuestion",
+        "suggestedAnswers",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .followupQuestion) {
+        self.followupQuestion = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer].self,
+        forKey: .suggestedAnswers)
+      {
+        self.suggestedAnswers = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.followupQuestion, forKey: .followupQuestion)
+      try container.encode(self.suggestedAnswers, forKey: .suggestedAnswers)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Suggested answers to the follow-up question.
     /// If it's numerical attribute, only ProductAttributeInterval will be set.
     /// If it's textual attribute, only productAttributeValue will be set.
@@ -122,6 +242,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
       /// Product attribute value, including an attribute key and an
       /// attribute value. Other types can be added here in the future.
       public var productAttributeValue: ProductAttributeValue? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SuggestedAnswer`.
       public init() {}
@@ -137,6 +259,37 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let productAttributeValue = CodingKeys(stringValue: "productAttributeValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "productAttributeValue"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.productAttributeValue = try container.decodeIfPresent(
+          ProductAttributeValue.self, forKey: .productAttributeValue)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -172,6 +325,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
     /// The query to be used for search.
     public var query: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RefinedSearch`.
     public init() {}
 
@@ -186,6 +341,38 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let query = CodingKeys(stringValue: "query")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "query"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.query, forKey: .query)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -215,6 +402,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
     public var additionalFilter:
       ConversationalSearchResponse.ConversationalFilteringResult.AdditionalFilter? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationalFilteringResult`.
     public init() {}
 
@@ -231,6 +420,43 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let followupQuestion = CodingKeys(stringValue: "followupQuestion")
+      static let additionalFilter = CodingKeys(stringValue: "additionalFilter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "followupQuestion",
+        "additionalFilter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.followupQuestion = try container.decodeIfPresent(
+        ConversationalSearchResponse.FollowupQuestion.self, forKey: .followupQuestion)
+      self.additionalFilter = try container.decodeIfPresent(
+        ConversationalSearchResponse.ConversationalFilteringResult.AdditionalFilter.self,
+        forKey: .additionalFilter)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.followupQuestion, forKey: .followupQuestion)
+      try container.encodeIfPresent(self.additionalFilter, forKey: .additionalFilter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Additional filter that client side need to apply.
     public struct AdditionalFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -238,6 +464,8 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
       /// Product attribute value, including an attribute key and an
       /// attribute value. Other types can be added here in the future.
       public var productAttributeValue: ProductAttributeValue? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `AdditionalFilter`.
       public init() {}
@@ -253,6 +481,37 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let productAttributeValue = CodingKeys(stringValue: "productAttributeValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "productAttributeValue"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.productAttributeValue = try container.decodeIfPresent(
+          ProductAttributeValue.self, forKey: .productAttributeValue)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -46,6 +46,8 @@ public struct ProcessorType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A set of Cloud Storage URIs of sample documents for this processor.
   public var sampleDocumentUris: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessorType`.
   public init() {}
 
@@ -62,6 +64,76 @@ public struct ProcessorType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let category = CodingKeys(stringValue: "category")
+    static let availableLocations = CodingKeys(stringValue: "availableLocations")
+    static let allowCreation = CodingKeys(stringValue: "allowCreation")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let sampleDocumentUris = CodingKeys(stringValue: "sampleDocumentUris")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "category",
+      "availableLocations",
+      "allowCreation",
+      "launchStage",
+      "sampleDocumentUris",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ProcessorType.LocationInfo].self, forKey: .availableLocations)
+    {
+      self.availableLocations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowCreation) {
+      self.allowCreation = value
+    }
+    if let value = try container.decodeIfPresent(GoogleApi.LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sampleDocumentUris) {
+      self.sampleDocumentUris = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.availableLocations, forKey: .availableLocations)
+    try container.encode(self.allowCreation, forKey: .allowCreation)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    try container.encode(self.sampleDocumentUris, forKey: .sampleDocumentUris)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The location information about where the processor is available.
   public struct LocationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -69,6 +141,8 @@ public struct ProcessorType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The location ID. For supported locations, refer to [regional and
     /// multi-regional support](/document-ai/docs/regions).
     public var locationId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LocationInfo`.
     public init() {}
@@ -84,6 +158,38 @@ public struct ProcessorType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locationId = CodingKeys(stringValue: "locationId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locationId"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+        self.locationId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.locationId, forKey: .locationId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// A oneof that represents the different types for this adjustment.
   public var adjustment: OneOf_Adjustment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepricingAdjustment`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case percentageAdjustment = "percentageAdjustment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let percentageAdjustment = CodingKeys(stringValue: "percentageAdjustment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "percentageAdjustment"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try adjustmentCheckAndSet(.percentageAdjustment(percentageAdjustment))
     }
     self.adjustment = adjustment
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .percentageAdjustment(let value):
         try container.encode(value, forKey: .percentageAdjustment)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

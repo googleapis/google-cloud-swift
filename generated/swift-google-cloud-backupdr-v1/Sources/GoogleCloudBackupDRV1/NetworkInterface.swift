@@ -84,6 +84,8 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
   public var networkAttachment: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkInterface`.
   public init() {}
 
@@ -100,21 +102,43 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case network = "network"
-    case subnetwork = "subnetwork"
-    case ipAddress = "networkIP"
-    case ipv6Address = "ipv6Address"
-    case internalIpv6PrefixLength = "internalIpv6PrefixLength"
-    case name = "name"
-    case accessConfigs = "accessConfigs"
-    case ipv6AccessConfigs = "ipv6AccessConfigs"
-    case aliasIpRanges = "aliasIpRanges"
-    case stackType = "stackType"
-    case ipv6AccessType = "ipv6AccessType"
-    case queueCount = "queueCount"
-    case nicType = "nicType"
-    case networkAttachment = "networkAttachment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let ipAddress = CodingKeys(stringValue: "networkIP")
+    static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+    static let internalIpv6PrefixLength = CodingKeys(stringValue: "internalIpv6PrefixLength")
+    static let name = CodingKeys(stringValue: "name")
+    static let accessConfigs = CodingKeys(stringValue: "accessConfigs")
+    static let ipv6AccessConfigs = CodingKeys(stringValue: "ipv6AccessConfigs")
+    static let aliasIpRanges = CodingKeys(stringValue: "aliasIpRanges")
+    static let stackType = CodingKeys(stringValue: "stackType")
+    static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+    static let queueCount = CodingKeys(stringValue: "queueCount")
+    static let nicType = CodingKeys(stringValue: "nicType")
+    static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "subnetwork",
+      "networkIP",
+      "ipv6Address",
+      "internalIpv6PrefixLength",
+      "name",
+      "accessConfigs",
+      "ipv6AccessConfigs",
+      "aliasIpRanges",
+      "stackType",
+      "ipv6AccessType",
+      "queueCount",
+      "nicType",
+      "networkAttachment",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -126,9 +150,15 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.internalIpv6PrefixLength = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .internalIpv6PrefixLength)
     self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-    self.accessConfigs = try container.decode([AccessConfig].self, forKey: .accessConfigs)
-    self.ipv6AccessConfigs = try container.decode([AccessConfig].self, forKey: .ipv6AccessConfigs)
-    self.aliasIpRanges = try container.decode([AliasIpRange].self, forKey: .aliasIpRanges)
+    if let value = try container.decodeIfPresent([AccessConfig].self, forKey: .accessConfigs) {
+      self.accessConfigs = value
+    }
+    if let value = try container.decodeIfPresent([AccessConfig].self, forKey: .ipv6AccessConfigs) {
+      self.ipv6AccessConfigs = value
+    }
+    if let value = try container.decodeIfPresent([AliasIpRange].self, forKey: .aliasIpRanges) {
+      self.aliasIpRanges = value
+    }
     self.stackType = try container.decodeIfPresent(
       NetworkInterface.StackType.self, forKey: .stackType)
     self.ipv6AccessType = try container.decodeIfPresent(
@@ -137,24 +167,31 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.nicType = try container.decodeIfPresent(NetworkInterface.NicType.self, forKey: .nicType)
     self.networkAttachment = try container.decodeIfPresent(
       Swift.String.self, forKey: .networkAttachment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.network, forKey: .network)
-    try container.encode(self.subnetwork, forKey: .subnetwork)
-    try container.encode(self.ipAddress, forKey: .ipAddress)
-    try container.encode(self.ipv6Address, forKey: .ipv6Address)
-    try container.encode(self.internalIpv6PrefixLength, forKey: .internalIpv6PrefixLength)
-    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.network, forKey: .network)
+    try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+    try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+    try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+    try container.encodeIfPresent(self.internalIpv6PrefixLength, forKey: .internalIpv6PrefixLength)
+    try container.encodeIfPresent(self.name, forKey: .name)
     try container.encode(self.accessConfigs, forKey: .accessConfigs)
     try container.encode(self.ipv6AccessConfigs, forKey: .ipv6AccessConfigs)
     try container.encode(self.aliasIpRanges, forKey: .aliasIpRanges)
-    try container.encode(self.stackType, forKey: .stackType)
-    try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
-    try container.encode(self.queueCount, forKey: .queueCount)
-    try container.encode(self.nicType, forKey: .nicType)
-    try container.encode(self.networkAttachment, forKey: .networkAttachment)
+    try container.encodeIfPresent(self.stackType, forKey: .stackType)
+    try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+    try container.encodeIfPresent(self.queueCount, forKey: .queueCount)
+    try container.encodeIfPresent(self.nicType, forKey: .nicType)
+    try container.encodeIfPresent(self.networkAttachment, forKey: .networkAttachment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Stack type for this network interface.

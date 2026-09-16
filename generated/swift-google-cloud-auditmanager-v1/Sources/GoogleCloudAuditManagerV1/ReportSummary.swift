@@ -37,6 +37,8 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Number of checks that can't be performed due to errors.
   public var errorCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportSummary`.
   public init() {}
 
@@ -51,6 +53,63 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalCount = CodingKeys(stringValue: "totalCount")
+    static let compliantCount = CodingKeys(stringValue: "compliantCount")
+    static let violationCount = CodingKeys(stringValue: "violationCount")
+    static let manualReviewNeededCount = CodingKeys(stringValue: "manualReviewNeededCount")
+    static let errorCount = CodingKeys(stringValue: "errorCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalCount",
+      "compliantCount",
+      "violationCount",
+      "manualReviewNeededCount",
+      "errorCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCount) {
+      self.totalCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .compliantCount) {
+      self.compliantCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .violationCount) {
+      self.violationCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .manualReviewNeededCount)
+    {
+      self.manualReviewNeededCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCount) {
+      self.errorCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalCount, forKey: .totalCount)
+    try container.encode(self.compliantCount, forKey: .compliantCount)
+    try container.encode(self.violationCount, forKey: .violationCount)
+    try container.encode(self.manualReviewNeededCount, forKey: .manualReviewNeededCount)
+    try container.encode(self.errorCount, forKey: .errorCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

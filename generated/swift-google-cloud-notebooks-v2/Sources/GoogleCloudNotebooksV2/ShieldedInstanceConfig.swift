@@ -43,6 +43,8 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// boot image when the VM instance is created. Enabled by default.
   public var enableIntegrityMonitoring: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ShieldedInstanceConfig`.
   public init() {}
 
@@ -57,6 +59,52 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableSecureBoot = CodingKeys(stringValue: "enableSecureBoot")
+    static let enableVtpm = CodingKeys(stringValue: "enableVtpm")
+    static let enableIntegrityMonitoring = CodingKeys(stringValue: "enableIntegrityMonitoring")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableSecureBoot",
+      "enableVtpm",
+      "enableIntegrityMonitoring",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSecureBoot) {
+      self.enableSecureBoot = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableVtpm) {
+      self.enableVtpm = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableIntegrityMonitoring)
+    {
+      self.enableIntegrityMonitoring = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableSecureBoot, forKey: .enableSecureBoot)
+    try container.encode(self.enableVtpm, forKey: .enableVtpm)
+    try container.encode(self.enableIntegrityMonitoring, forKey: .enableIntegrityMonitoring)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

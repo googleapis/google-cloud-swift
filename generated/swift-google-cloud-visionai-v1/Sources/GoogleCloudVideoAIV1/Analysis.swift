@@ -54,6 +54,8 @@ public struct Analysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to be set to true.
   public var disableEventWatch: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Analysis`.
   public init() {}
 
@@ -68,6 +70,82 @@ public struct Analysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let analysisDefinition = CodingKeys(stringValue: "analysisDefinition")
+    static let inputStreamsMapping = CodingKeys(stringValue: "inputStreamsMapping")
+    static let outputStreamsMapping = CodingKeys(stringValue: "outputStreamsMapping")
+    static let disableEventWatch = CodingKeys(stringValue: "disableEventWatch")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "analysisDefinition",
+      "inputStreamsMapping",
+      "outputStreamsMapping",
+      "disableEventWatch",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.analysisDefinition = try container.decodeIfPresent(
+      AnalysisDefinition.self, forKey: .analysisDefinition)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .inputStreamsMapping)
+    {
+      self.inputStreamsMapping = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .outputStreamsMapping)
+    {
+      self.outputStreamsMapping = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableEventWatch) {
+      self.disableEventWatch = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.analysisDefinition, forKey: .analysisDefinition)
+    try container.encode(self.inputStreamsMapping, forKey: .inputStreamsMapping)
+    try container.encode(self.outputStreamsMapping, forKey: .outputStreamsMapping)
+    try container.encode(self.disableEventWatch, forKey: .disableEventWatch)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

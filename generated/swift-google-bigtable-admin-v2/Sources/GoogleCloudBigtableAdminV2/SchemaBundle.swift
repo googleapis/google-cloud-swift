@@ -36,6 +36,8 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// creation.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchemaBundle`.
   public init() {}
 
@@ -52,16 +54,31 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case protoSchema = "protoSchema"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let protoSchema = CodingKeys(stringValue: "protoSchema")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "protoSchema",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -77,6 +94,10 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.protoSchema(protoSchema))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +110,9 @@ public struct SchemaBundle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .protoSchema(let value):
         try container.encode(value, forKey: .protoSchema)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -37,6 +37,8 @@
     /// Human-readable description of the parameter. Limited to 300 characters.
     public var description: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ParameterDefinition`.
     public init() {}
 
@@ -51,6 +53,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+      static let typeSchema = CodingKeys(stringValue: "typeSchema")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "type",
+        "typeSchema",
+        "description",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
+        ParameterDefinition.ParameterType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      self.typeSchema = try container.decodeIfPresent(TypeSchema.self, forKey: .typeSchema)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.typeSchema, forKey: .typeSchema)
+      try container.encode(self.description, forKey: .description)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Parameter types are used for validation.

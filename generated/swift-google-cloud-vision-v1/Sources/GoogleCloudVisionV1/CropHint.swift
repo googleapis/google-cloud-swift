@@ -32,6 +32,8 @@ public struct CropHint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// image.
   public var importanceFraction: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CropHint`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct CropHint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let boundingPoly = CodingKeys(stringValue: "boundingPoly")
+    static let confidence = CodingKeys(stringValue: "confidence")
+    static let importanceFraction = CodingKeys(stringValue: "importanceFraction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "boundingPoly",
+      "confidence",
+      "importanceFraction",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.boundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingPoly)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .importanceFraction) {
+      self.importanceFraction = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
+    try container.encode(self.confidence, forKey: .confidence)
+    try container.encode(self.importanceFraction, forKey: .importanceFraction)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

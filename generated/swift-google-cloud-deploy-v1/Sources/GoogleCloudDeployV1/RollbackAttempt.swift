@@ -36,6 +36,8 @@ public struct RollbackAttempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. If active rollout exists on the target, abort this rollback.
   public var disableRollbackIfRolloutPending: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RollbackAttempt`.
   public init() {}
 
@@ -50,6 +52,66 @@ public struct RollbackAttempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationPhase = CodingKeys(stringValue: "destinationPhase")
+    static let rolloutId = CodingKeys(stringValue: "rolloutId")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDesc = CodingKeys(stringValue: "stateDesc")
+    static let disableRollbackIfRolloutPending = CodingKeys(
+      stringValue: "disableRollbackIfRolloutPending")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationPhase",
+      "rolloutId",
+      "state",
+      "stateDesc",
+      "disableRollbackIfRolloutPending",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationPhase) {
+      self.destinationPhase = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutId) {
+      self.rolloutId = value
+    }
+    if let value = try container.decodeIfPresent(RepairState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDesc) {
+      self.stateDesc = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .disableRollbackIfRolloutPending)
+    {
+      self.disableRollbackIfRolloutPending = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.destinationPhase, forKey: .destinationPhase)
+    try container.encode(self.rolloutId, forKey: .rolloutId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDesc, forKey: .stateDesc)
+    try container.encode(
+      self.disableRollbackIfRolloutPending, forKey: .disableRollbackIfRolloutPending)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

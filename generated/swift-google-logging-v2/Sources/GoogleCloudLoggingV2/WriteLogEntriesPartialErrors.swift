@@ -30,6 +30,8 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleCloudWKT._
   /// per-entry errors.
   public var logEntryErrors: [Swift.Int32: GoogleRpc.Status] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WriteLogEntriesPartialErrors`.
   public init() {}
 
@@ -46,15 +48,24 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case logEntryErrors = "logEntryErrors"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let logEntryErrors = CodingKeys(stringValue: "logEntryErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "logEntryErrors"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.logEntryErrors = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: GoogleRpc.Status].self, forKey: .logEntryErrors)
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: GoogleRpc.Status].self, forKey: .logEntryErrors)
+    {
       let tuples = try stringKeyed.lazy.map {
         (key, value) throws -> (Swift.Int32, GoogleRpc.Status) in
         guard let newKey = Swift.Int32(key) else {
@@ -66,8 +77,12 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleCloudWKT._
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
+      self.logEntryErrors = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +92,9 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleCloudWKT._
         uniqueKeysWithValues: self.logEntryErrors.lazy.map { (Swift.String($0), $1) }
       )
       try container.encode(stringKeyed, forKey: .logEntryErrors)
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

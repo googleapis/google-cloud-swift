@@ -59,6 +59,8 @@ public struct ListFoldersRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// format, but other formats are still accepted.
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListFoldersRequest`.
   public init() {}
 
@@ -75,27 +77,63 @@ public struct ListFoldersRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case `prefix` = "prefix"
-    case delimiter = "delimiter"
-    case lexicographicStart = "lexicographicStart"
-    case lexicographicEnd = "lexicographicEnd"
-    case requestId = "requestId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let `prefix` = CodingKeys(stringValue: "prefix")
+    static let delimiter = CodingKeys(stringValue: "delimiter")
+    static let lexicographicStart = CodingKeys(stringValue: "lexicographicStart")
+    static let lexicographicEnd = CodingKeys(stringValue: "lexicographicEnd")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "pageSize",
+      "pageToken",
+      "prefix",
+      "delimiter",
+      "lexicographicStart",
+      "lexicographicEnd",
+      "requestId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
-    self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-    self.delimiter = try container.decode(Swift.String.self, forKey: .delimiter)
-    self.lexicographicStart = try container.decode(Swift.String.self, forKey: .lexicographicStart)
-    self.lexicographicEnd = try container.decode(Swift.String.self, forKey: .lexicographicEnd)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+      self.`prefix` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .delimiter) {
+      self.delimiter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lexicographicStart) {
+      self.lexicographicStart = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lexicographicEnd) {
+      self.lexicographicEnd = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,6 +146,9 @@ public struct ListFoldersRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.lexicographicStart, forKey: .lexicographicStart)
     try container.encode(self.lexicographicEnd, forKey: .lexicographicEnd)
     try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

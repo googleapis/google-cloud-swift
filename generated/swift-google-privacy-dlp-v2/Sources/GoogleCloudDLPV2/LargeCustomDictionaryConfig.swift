@@ -35,6 +35,8 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleCloudWKT._A
   /// Source of the dictionary.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LargeCustomDictionaryConfig`.
   public init() {}
 
@@ -51,10 +53,21 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case outputPath = "outputPath"
-    case cloudStorageFileSet = "cloudStorageFileSet"
-    case bigQueryField = "bigQueryField"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let outputPath = CodingKeys(stringValue: "outputPath")
+    static let cloudStorageFileSet = CodingKeys(stringValue: "cloudStorageFileSet")
+    static let bigQueryField = CodingKeys(stringValue: "bigQueryField")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "outputPath",
+      "cloudStorageFileSet",
+      "bigQueryField",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -82,11 +95,15 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleCloudWKT._A
       try sourceCheckAndSet(.bigQueryField(bigQueryField))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.outputPath, forKey: .outputPath)
+    try container.encodeIfPresent(self.outputPath, forKey: .outputPath)
 
     if let choice = self.source {
       switch choice {
@@ -95,6 +112,9 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleCloudWKT._A
       case .bigQueryField(let value):
         try container.encode(value, forKey: .bigQueryField)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -41,6 +41,8 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// specified group. If no filter is specified, all groups are returned.
   public var filter: OneOf_Filter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListGroupsRequest`.
   public init() {}
 
@@ -57,20 +59,40 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case childrenOfGroup = "childrenOfGroup"
-    case ancestorsOfGroup = "ancestorsOfGroup"
-    case descendantsOfGroup = "descendantsOfGroup"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let childrenOfGroup = CodingKeys(stringValue: "childrenOfGroup")
+    static let ancestorsOfGroup = CodingKeys(stringValue: "ancestorsOfGroup")
+    static let descendantsOfGroup = CodingKeys(stringValue: "descendantsOfGroup")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "childrenOfGroup",
+      "ancestorsOfGroup",
+      "descendantsOfGroup",
+      "pageSize",
+      "pageToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
 
     var filter: OneOf_Filter? = nil
     let filterCheckAndSet = {
@@ -98,6 +120,10 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try filterCheckAndSet(.descendantsOfGroup(descendantsOfGroup))
     }
     self.filter = filter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +141,9 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .descendantsOfGroup(let value):
         try container.encode(value, forKey: .descendantsOfGroup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

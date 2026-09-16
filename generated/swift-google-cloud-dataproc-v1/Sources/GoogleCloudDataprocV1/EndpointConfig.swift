@@ -29,6 +29,8 @@ public struct EndpointConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// from external sources. Defaults to false.
   public var enableHttpPortAccess: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndpointConfig`.
   public init() {}
 
@@ -43,6 +45,46 @@ public struct EndpointConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let httpPorts = CodingKeys(stringValue: "httpPorts")
+    static let enableHttpPortAccess = CodingKeys(stringValue: "enableHttpPortAccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "httpPorts",
+      "enableHttpPortAccess",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .httpPorts)
+    {
+      self.httpPorts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableHttpPortAccess) {
+      self.enableHttpPortAccess = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.httpPorts, forKey: .httpPorts)
+    try container.encode(self.enableHttpPortAccess, forKey: .enableHttpPortAccess)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

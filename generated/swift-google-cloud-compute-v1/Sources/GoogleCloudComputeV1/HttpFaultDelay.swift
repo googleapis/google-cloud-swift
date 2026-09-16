@@ -32,6 +32,8 @@
     /// The value must be from 0.0 to 100.0 inclusive.
     public var percentage: Swift.Double? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpFaultDelay`.
     public init() {}
 
@@ -46,6 +48,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fixedDelay = CodingKeys(stringValue: "fixedDelay")
+      static let percentage = CodingKeys(stringValue: "percentage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fixedDelay",
+        "percentage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.fixedDelay = try container.decodeIfPresent(Duration.self, forKey: .fixedDelay)
+      self.percentage = try container.decodeIfPresent(Swift.Double.self, forKey: .percentage)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.fixedDelay, forKey: .fixedDelay)
+      try container.encodeIfPresent(self.percentage, forKey: .percentage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

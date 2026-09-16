@@ -30,6 +30,8 @@ public struct AudioFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A list of channel names specifying the layout of the audio channels.
   public var channelLayout: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AudioFormat`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct AudioFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let codec = CodingKeys(stringValue: "codec")
+    static let channelCount = CodingKeys(stringValue: "channelCount")
+    static let channelLayout = CodingKeys(stringValue: "channelLayout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "codec",
+      "channelCount",
+      "channelLayout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codec) {
+      self.codec = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelCount) {
+      self.channelCount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .channelLayout) {
+      self.channelLayout = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.codec, forKey: .codec)
+    try container.encode(self.channelCount, forKey: .channelCount)
+    try container.encode(self.channelLayout, forKey: .channelLayout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

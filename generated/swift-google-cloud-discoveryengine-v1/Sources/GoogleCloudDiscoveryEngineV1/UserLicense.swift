@@ -53,6 +53,8 @@
     /// If the user has not logged in yet, this field will be empty.
     public var lastLoginTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UserLicense`.
     public init() {}
 
@@ -67,6 +69,73 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let userPrincipal = CodingKeys(stringValue: "userPrincipal")
+      static let userProfile = CodingKeys(stringValue: "userProfile")
+      static let licenseAssignmentState = CodingKeys(stringValue: "licenseAssignmentState")
+      static let licenseConfig = CodingKeys(stringValue: "licenseConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let lastLoginTime = CodingKeys(stringValue: "lastLoginTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "userPrincipal",
+        "userProfile",
+        "licenseAssignmentState",
+        "licenseConfig",
+        "createTime",
+        "updateTime",
+        "lastLoginTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userPrincipal) {
+        self.userPrincipal = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userProfile) {
+        self.userProfile = value
+      }
+      if let value = try container.decodeIfPresent(
+        UserLicense.LicenseAssignmentState.self, forKey: .licenseAssignmentState)
+      {
+        self.licenseAssignmentState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .licenseConfig) {
+        self.licenseConfig = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.lastLoginTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastLoginTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.userPrincipal, forKey: .userPrincipal)
+      try container.encode(self.userProfile, forKey: .userProfile)
+      try container.encode(self.licenseAssignmentState, forKey: .licenseAssignmentState)
+      try container.encode(self.licenseConfig, forKey: .licenseConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.lastLoginTime, forKey: .lastLoginTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// License assignment state enumeration.

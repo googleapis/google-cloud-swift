@@ -27,6 +27,8 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
   /// IP endpoints configuration.
   public var ipEndpointsConfig: ControlPlaneEndpointsConfig.IPEndpointsConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ControlPlaneEndpointsConfig`.
   public init() {}
 
@@ -41,6 +43,42 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dnsEndpointConfig = CodingKeys(stringValue: "dnsEndpointConfig")
+    static let ipEndpointsConfig = CodingKeys(stringValue: "ipEndpointsConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dnsEndpointConfig",
+      "ipEndpointsConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.dnsEndpointConfig = try container.decodeIfPresent(
+      ControlPlaneEndpointsConfig.DNSEndpointConfig.self, forKey: .dnsEndpointConfig)
+    self.ipEndpointsConfig = try container.decodeIfPresent(
+      ControlPlaneEndpointsConfig.IPEndpointsConfig.self, forKey: .ipEndpointsConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.dnsEndpointConfig, forKey: .dnsEndpointConfig)
+    try container.encodeIfPresent(self.ipEndpointsConfig, forKey: .ipEndpointsConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes the configuration of a DNS endpoint.
@@ -66,6 +104,8 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
     /// Controls whether the k8s certs auth is allowed via DNS.
     public var enableK8SCertsViaDns: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DNSEndpointConfig`.
     public init() {}
 
@@ -82,30 +122,51 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case endpoint = "endpoint"
-      case allowExternalTraffic = "allowExternalTraffic"
-      case enableK8STokensViaDns = "enableK8sTokensViaDns"
-      case enableK8SCertsViaDns = "enableK8sCertsViaDns"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let endpoint = CodingKeys(stringValue: "endpoint")
+      static let allowExternalTraffic = CodingKeys(stringValue: "allowExternalTraffic")
+      static let enableK8STokensViaDns = CodingKeys(stringValue: "enableK8sTokensViaDns")
+      static let enableK8SCertsViaDns = CodingKeys(stringValue: "enableK8sCertsViaDns")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "endpoint",
+        "allowExternalTraffic",
+        "enableK8sTokensViaDns",
+        "enableK8sCertsViaDns",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.endpoint = try container.decode(Swift.String.self, forKey: .endpoint)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+        self.endpoint = value
+      }
       self.allowExternalTraffic = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .allowExternalTraffic)
       self.enableK8STokensViaDns = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableK8STokensViaDns)
       self.enableK8SCertsViaDns = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableK8SCertsViaDns)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.endpoint, forKey: .endpoint)
-      try container.encode(self.allowExternalTraffic, forKey: .allowExternalTraffic)
-      try container.encode(self.enableK8STokensViaDns, forKey: .enableK8STokensViaDns)
-      try container.encode(self.enableK8SCertsViaDns, forKey: .enableK8SCertsViaDns)
+      try container.encodeIfPresent(self.allowExternalTraffic, forKey: .allowExternalTraffic)
+      try container.encodeIfPresent(self.enableK8STokensViaDns, forKey: .enableK8STokensViaDns)
+      try container.encodeIfPresent(self.enableK8SCertsViaDns, forKey: .enableK8SCertsViaDns)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -163,6 +224,8 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
     /// same time.
     public var privateEndpointSubnetwork: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IPEndpointsConfig`.
     public init() {}
 
@@ -177,6 +240,71 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let enablePublicEndpoint = CodingKeys(stringValue: "enablePublicEndpoint")
+      static let globalAccess = CodingKeys(stringValue: "globalAccess")
+      static let authorizedNetworksConfig = CodingKeys(stringValue: "authorizedNetworksConfig")
+      static let publicEndpoint = CodingKeys(stringValue: "publicEndpoint")
+      static let privateEndpoint = CodingKeys(stringValue: "privateEndpoint")
+      static let privateEndpointSubnetwork = CodingKeys(stringValue: "privateEndpointSubnetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "enablePublicEndpoint",
+        "globalAccess",
+        "authorizedNetworksConfig",
+        "publicEndpoint",
+        "privateEndpoint",
+        "privateEndpointSubnetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+      self.enablePublicEndpoint = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePublicEndpoint)
+      self.globalAccess = try container.decodeIfPresent(Swift.Bool.self, forKey: .globalAccess)
+      self.authorizedNetworksConfig = try container.decodeIfPresent(
+        MasterAuthorizedNetworksConfig.self, forKey: .authorizedNetworksConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicEndpoint) {
+        self.publicEndpoint = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateEndpoint) {
+        self.privateEndpoint = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .privateEndpointSubnetwork)
+      {
+        self.privateEndpointSubnetwork = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.enablePublicEndpoint, forKey: .enablePublicEndpoint)
+      try container.encodeIfPresent(self.globalAccess, forKey: .globalAccess)
+      try container.encodeIfPresent(
+        self.authorizedNetworksConfig, forKey: .authorizedNetworksConfig)
+      try container.encode(self.publicEndpoint, forKey: .publicEndpoint)
+      try container.encode(self.privateEndpoint, forKey: .privateEndpoint)
+      try container.encode(self.privateEndpointSubnetwork, forKey: .privateEndpointSubnetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

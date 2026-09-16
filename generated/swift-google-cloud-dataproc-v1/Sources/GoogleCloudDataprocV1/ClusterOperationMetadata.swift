@@ -48,6 +48,8 @@ public struct ClusterOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. Child operation ids
   public var childOperationIds: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterOperationMetadata`.
   public init() {}
 
@@ -62,6 +64,87 @@ public struct ClusterOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let clusterUuid = CodingKeys(stringValue: "clusterUuid")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusHistory = CodingKeys(stringValue: "statusHistory")
+    static let operationType = CodingKeys(stringValue: "operationType")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let warnings = CodingKeys(stringValue: "warnings")
+    static let childOperationIds = CodingKeys(stringValue: "childOperationIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterName",
+      "clusterUuid",
+      "status",
+      "statusHistory",
+      "operationType",
+      "description",
+      "labels",
+      "warnings",
+      "childOperationIds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUuid) {
+      self.clusterUuid = value
+    }
+    self.status = try container.decodeIfPresent(ClusterOperationStatus.self, forKey: .status)
+    if let value = try container.decodeIfPresent(
+      [ClusterOperationStatus].self, forKey: .statusHistory)
+    {
+      self.statusHistory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationType) {
+      self.operationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .childOperationIds) {
+      self.childOperationIds = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.clusterUuid, forKey: .clusterUuid)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.statusHistory, forKey: .statusHistory)
+    try container.encode(self.operationType, forKey: .operationType)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.warnings, forKey: .warnings)
+    try container.encode(self.childOperationIds, forKey: .childOperationIds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

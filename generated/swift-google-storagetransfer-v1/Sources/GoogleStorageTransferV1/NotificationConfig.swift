@@ -64,6 +64,8 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Required. The desired format of the notification message payloads.
   public var payloadFormat: NotificationConfig.PayloadFormat = NotificationConfig.PayloadFormat()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NotificationConfig`.
   public init() {}
 
@@ -78,6 +80,54 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pubsubTopic = CodingKeys(stringValue: "pubsubTopic")
+    static let eventTypes = CodingKeys(stringValue: "eventTypes")
+    static let payloadFormat = CodingKeys(stringValue: "payloadFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pubsubTopic",
+      "eventTypes",
+      "payloadFormat",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pubsubTopic) {
+      self.pubsubTopic = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NotificationConfig.EventType].self, forKey: .eventTypes)
+    {
+      self.eventTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      NotificationConfig.PayloadFormat.self, forKey: .payloadFormat)
+    {
+      self.payloadFormat = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
+    try container.encode(self.eventTypes, forKey: .eventTypes)
+    try container.encode(self.payloadFormat, forKey: .payloadFormat)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for specifying event types for which notifications are to be

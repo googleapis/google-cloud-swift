@@ -38,6 +38,8 @@ public struct VmwareSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The hostname of the vcenter.
   public var resolvedVcenterHost: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmwareSourceDetails`.
   public init() {}
 
@@ -52,6 +54,62 @@ public struct VmwareSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let vcenterIp = CodingKeys(stringValue: "vcenterIp")
+    static let thumbprint = CodingKeys(stringValue: "thumbprint")
+    static let resolvedVcenterHost = CodingKeys(stringValue: "resolvedVcenterHost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "username",
+      "password",
+      "vcenterIp",
+      "thumbprint",
+      "resolvedVcenterHost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vcenterIp) {
+      self.vcenterIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .thumbprint) {
+      self.thumbprint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resolvedVcenterHost) {
+      self.resolvedVcenterHost = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.username, forKey: .username)
+    try container.encode(self.password, forKey: .password)
+    try container.encode(self.vcenterIp, forKey: .vcenterIp)
+    try container.encode(self.thumbprint, forKey: .thumbprint)
+    try container.encode(self.resolvedVcenterHost, forKey: .resolvedVcenterHost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

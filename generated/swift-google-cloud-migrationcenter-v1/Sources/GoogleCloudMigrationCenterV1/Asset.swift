@@ -53,6 +53,8 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// with different attributes based on the type of the asset.
   public var assetDetails: OneOf_AssetDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Asset`.
   public init() {}
 
@@ -69,33 +71,64 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case attributes = "attributes"
-    case machineDetails = "machineDetails"
-    case insightList = "insightList"
-    case performanceData = "performanceData"
-    case sources = "sources"
-    case assignedGroups = "assignedGroups"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let machineDetails = CodingKeys(stringValue: "machineDetails")
+    static let insightList = CodingKeys(stringValue: "insightList")
+    static let performanceData = CodingKeys(stringValue: "performanceData")
+    static let sources = CodingKeys(stringValue: "sources")
+    static let assignedGroups = CodingKeys(stringValue: "assignedGroups")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "attributes",
+      "machineDetails",
+      "insightList",
+      "performanceData",
+      "sources",
+      "assignedGroups",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
     self.insightList = try container.decodeIfPresent(InsightList.self, forKey: .insightList)
     self.performanceData = try container.decodeIfPresent(
       AssetPerformanceData.self, forKey: .performanceData)
-    self.sources = try container.decode([Swift.String].self, forKey: .sources)
-    self.assignedGroups = try container.decode([Swift.String].self, forKey: .assignedGroups)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sources) {
+      self.sources = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assignedGroups) {
+      self.assignedGroups = value
+    }
 
     var assetDetails: OneOf_AssetDetails? = nil
     let assetDetailsCheckAndSet = {
@@ -113,17 +146,21 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try assetDetailsCheckAndSet(.machineDetails(machineDetails))
     }
     self.assetDetails = assetDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.attributes, forKey: .attributes)
-    try container.encode(self.insightList, forKey: .insightList)
-    try container.encode(self.performanceData, forKey: .performanceData)
+    try container.encodeIfPresent(self.insightList, forKey: .insightList)
+    try container.encodeIfPresent(self.performanceData, forKey: .performanceData)
     try container.encode(self.sources, forKey: .sources)
     try container.encode(self.assignedGroups, forKey: .assignedGroups)
 
@@ -132,6 +169,9 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .machineDetails(let value):
         try container.encode(value, forKey: .machineDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -35,6 +35,8 @@ public struct PerformanceRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// output tokens, measured as request_latency / total_output_tokens.
   public var ntpotRange: MillisecondRange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PerformanceRange`.
   public init() {}
 
@@ -49,6 +51,45 @@ public struct PerformanceRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let throughputOutputRange = CodingKeys(stringValue: "throughputOutputRange")
+    static let ttftRange = CodingKeys(stringValue: "ttftRange")
+    static let ntpotRange = CodingKeys(stringValue: "ntpotRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "throughputOutputRange",
+      "ttftRange",
+      "ntpotRange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.throughputOutputRange = try container.decodeIfPresent(
+      TokensPerSecondRange.self, forKey: .throughputOutputRange)
+    self.ttftRange = try container.decodeIfPresent(MillisecondRange.self, forKey: .ttftRange)
+    self.ntpotRange = try container.decodeIfPresent(MillisecondRange.self, forKey: .ntpotRange)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.throughputOutputRange, forKey: .throughputOutputRange)
+    try container.encodeIfPresent(self.ttftRange, forKey: .ttftRange)
+    try container.encodeIfPresent(self.ntpotRange, forKey: .ntpotRange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

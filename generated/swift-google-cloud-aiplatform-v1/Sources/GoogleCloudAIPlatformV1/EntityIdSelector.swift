@@ -30,6 +30,8 @@
     /// the format.
     public var entityIdsSource: OneOf_EntityIdsSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EntityIdSelector`.
     public init() {}
 
@@ -46,14 +48,26 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case csvSource = "csvSource"
-      case entityIdField = "entityIdField"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let csvSource = CodingKeys(stringValue: "csvSource")
+      static let entityIdField = CodingKeys(stringValue: "entityIdField")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "csvSource",
+        "entityIdField",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.entityIdField = try container.decode(Swift.String.self, forKey: .entityIdField)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityIdField) {
+        self.entityIdField = value
+      }
 
       var entityIdsSource: OneOf_EntityIdsSource? = nil
       let entityIdsSourceCheckAndSet = {
@@ -69,6 +83,10 @@
         try entityIdsSourceCheckAndSet(.csvSource(csvSource))
       }
       self.entityIdsSource = entityIdsSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,9 @@
         case .csvSource(let value):
           try container.encode(value, forKey: .csvSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

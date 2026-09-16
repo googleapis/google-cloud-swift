@@ -26,6 +26,8 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// strategy represents result of applying one of the rollout strategies.
   public var strategy: OneOf_Strategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RolloutStrategyInfo`.
   public init() {}
 
@@ -42,9 +44,19 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case allAtOnceStrategyInfo = "allAtOnceStrategyInfo"
-    case rollingStrategyInfo = "rollingStrategyInfo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allAtOnceStrategyInfo = CodingKeys(stringValue: "allAtOnceStrategyInfo")
+    static let rollingStrategyInfo = CodingKeys(stringValue: "rollingStrategyInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allAtOnceStrategyInfo",
+      "rollingStrategyInfo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +83,10 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try strategyCheckAndSet(.rollingStrategyInfo(rollingStrategyInfo))
     }
     self.strategy = strategy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +99,9 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .rollingStrategyInfo(let value):
         try container.encode(value, forKey: .rollingStrategyInfo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

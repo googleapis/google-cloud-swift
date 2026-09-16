@@ -33,6 +33,8 @@ public struct GoldengateGroupToRolesMapping: Codable, Equatable, GoogleCloudWKT.
   /// Output only. The user group id.
   public var userGroupId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateGroupToRolesMapping`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct GoldengateGroupToRolesMapping: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let securityGroupId = CodingKeys(stringValue: "securityGroupId")
+    static let administratorGroupId = CodingKeys(stringValue: "administratorGroupId")
+    static let operatorGroupId = CodingKeys(stringValue: "operatorGroupId")
+    static let userGroupId = CodingKeys(stringValue: "userGroupId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "securityGroupId",
+      "administratorGroupId",
+      "operatorGroupId",
+      "userGroupId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityGroupId) {
+      self.securityGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .administratorGroupId) {
+      self.administratorGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operatorGroupId) {
+      self.operatorGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userGroupId) {
+      self.userGroupId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.securityGroupId, forKey: .securityGroupId)
+    try container.encode(self.administratorGroupId, forKey: .administratorGroupId)
+    try container.encode(self.operatorGroupId, forKey: .operatorGroupId)
+    try container.encode(self.userGroupId, forKey: .userGroupId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

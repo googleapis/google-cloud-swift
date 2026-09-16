@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ManagedFolder {
@@ -32,6 +32,7 @@ extension ManagedFolder {
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.rapidCacheConfig =
       proto.hasRapidCacheConfig ? try .init(proto: proto.rapidCacheConfig) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -42,6 +43,9 @@ extension ManagedFolder {
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     if let rapidCacheConfig = self.rapidCacheConfig {
       proto.rapidCacheConfig = try rapidCacheConfig.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }
@@ -54,11 +58,15 @@ extension ManagedFolder.RapidCacheConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.policies = try proto.policies.mapValues { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.policies = try self.policies.mapValues { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -71,12 +79,16 @@ extension ManagedFolder.RapidCacheConfig.RapidCachePolicy {
     self.init()
     self.rapidCacheId = proto.rapidCacheID
     self.ingestOnWrite = .init(proto: proto.ingestOnWrite)
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.rapidCacheID = self.rapidCacheId
     proto.ingestOnWrite = try self.ingestOnWrite.toProto()
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

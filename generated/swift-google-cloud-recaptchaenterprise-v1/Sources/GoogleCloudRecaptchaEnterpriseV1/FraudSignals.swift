@@ -28,6 +28,8 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// transaction.
   public var cardSignals: FraudSignals.CardSignals? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FraudSignals`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userSignals = CodingKeys(stringValue: "userSignals")
+    static let cardSignals = CodingKeys(stringValue: "cardSignals")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userSignals",
+      "cardSignals",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.userSignals = try container.decodeIfPresent(
+      FraudSignals.UserSignals.self, forKey: .userSignals)
+    self.cardSignals = try container.decodeIfPresent(
+      FraudSignals.CardSignals.self, forKey: .cardSignals)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.userSignals, forKey: .userSignals)
+    try container.encodeIfPresent(self.cardSignals, forKey: .cardSignals)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Signals describing the user involved in this transaction.
   public struct UserSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -56,6 +94,8 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// components in their identity, such as a randomly generated email address,
     /// temporary phone number, or fake shipping address.
     public var syntheticRisk: Swift.Float = Swift.Float()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UserSignals`.
     public init() {}
@@ -71,6 +111,45 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let activeDaysLowerBound = CodingKeys(stringValue: "activeDaysLowerBound")
+      static let syntheticRisk = CodingKeys(stringValue: "syntheticRisk")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "activeDaysLowerBound",
+        "syntheticRisk",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .activeDaysLowerBound)
+      {
+        self.activeDaysLowerBound = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .syntheticRisk) {
+        self.syntheticRisk = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.activeDaysLowerBound, forKey: .activeDaysLowerBound)
+      try container.encode(self.syntheticRisk, forKey: .syntheticRisk)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -91,6 +170,8 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The labels for the payment card in this transaction.
     public var cardLabels: [FraudSignals.CardSignals.CardLabel] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CardSignals`.
     public init() {}
 
@@ -105,6 +186,40 @@ public struct FraudSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cardLabels = CodingKeys(stringValue: "cardLabels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cardLabels"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [FraudSignals.CardSignals.CardLabel].self, forKey: .cardLabels)
+      {
+        self.cardLabels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cardLabels, forKey: .cardLabels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Risk labels describing the card being assessed, such as its funding

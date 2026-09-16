@@ -44,6 +44,8 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.retail.v2.UserEvent.page_categories]: <doc:UserEvent/pageCategories>
   public var pageCategories: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Condition`.
   public init() {}
 
@@ -58,6 +60,52 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queryTerms = CodingKeys(stringValue: "queryTerms")
+    static let activeTimeRange = CodingKeys(stringValue: "activeTimeRange")
+    static let pageCategories = CodingKeys(stringValue: "pageCategories")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queryTerms",
+      "activeTimeRange",
+      "pageCategories",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Condition.QueryTerm].self, forKey: .queryTerms) {
+      self.queryTerms = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Condition.TimeRange].self, forKey: .activeTimeRange)
+    {
+      self.activeTimeRange = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pageCategories) {
+      self.pageCategories = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.queryTerms, forKey: .queryTerms)
+    try container.encode(self.activeTimeRange, forKey: .activeTimeRange)
+    try container.encode(self.pageCategories, forKey: .pageCategories)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Query terms that we want to match on.
@@ -75,6 +123,8 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Whether this is supposed to be a full or partial match.
     public var fullMatch: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryTerm`.
     public init() {}
 
@@ -89,6 +139,44 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let value = CodingKeys(stringValue: "value")
+      static let fullMatch = CodingKeys(stringValue: "fullMatch")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "value",
+        "fullMatch",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fullMatch) {
+        self.fullMatch = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.value, forKey: .value)
+      try container.encode(self.fullMatch, forKey: .fullMatch)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -113,6 +201,8 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// End of time range. Range is inclusive.
     public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimeRange`.
     public init() {}
 
@@ -127,6 +217,41 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTime",
+        "endTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

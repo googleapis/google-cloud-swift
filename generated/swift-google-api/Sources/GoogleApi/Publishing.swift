@@ -67,6 +67,8 @@ public struct Publishing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// https://cloud.google.com/pubsub/lite/docs/reference/rest
   public var restReferenceDocumentationUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Publishing`.
   public init() {}
 
@@ -81,6 +83,110 @@ public struct Publishing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let methodSettings = CodingKeys(stringValue: "methodSettings")
+    static let newIssueUri = CodingKeys(stringValue: "newIssueUri")
+    static let documentationUri = CodingKeys(stringValue: "documentationUri")
+    static let apiShortName = CodingKeys(stringValue: "apiShortName")
+    static let githubLabel = CodingKeys(stringValue: "githubLabel")
+    static let codeownerGithubTeams = CodingKeys(stringValue: "codeownerGithubTeams")
+    static let docTagPrefix = CodingKeys(stringValue: "docTagPrefix")
+    static let organization = CodingKeys(stringValue: "organization")
+    static let librarySettings = CodingKeys(stringValue: "librarySettings")
+    static let protoReferenceDocumentationUri = CodingKeys(
+      stringValue: "protoReferenceDocumentationUri")
+    static let restReferenceDocumentationUri = CodingKeys(
+      stringValue: "restReferenceDocumentationUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "methodSettings",
+      "newIssueUri",
+      "documentationUri",
+      "apiShortName",
+      "githubLabel",
+      "codeownerGithubTeams",
+      "docTagPrefix",
+      "organization",
+      "librarySettings",
+      "protoReferenceDocumentationUri",
+      "restReferenceDocumentationUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MethodSettings].self, forKey: .methodSettings) {
+      self.methodSettings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newIssueUri) {
+      self.newIssueUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentationUri) {
+      self.documentationUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiShortName) {
+      self.apiShortName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .githubLabel) {
+      self.githubLabel = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .codeownerGithubTeams)
+    {
+      self.codeownerGithubTeams = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .docTagPrefix) {
+      self.docTagPrefix = value
+    }
+    if let value = try container.decodeIfPresent(
+      ClientLibraryOrganization.self, forKey: .organization)
+    {
+      self.organization = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ClientLibrarySettings].self, forKey: .librarySettings)
+    {
+      self.librarySettings = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .protoReferenceDocumentationUri)
+    {
+      self.protoReferenceDocumentationUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .restReferenceDocumentationUri)
+    {
+      self.restReferenceDocumentationUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.methodSettings, forKey: .methodSettings)
+    try container.encode(self.newIssueUri, forKey: .newIssueUri)
+    try container.encode(self.documentationUri, forKey: .documentationUri)
+    try container.encode(self.apiShortName, forKey: .apiShortName)
+    try container.encode(self.githubLabel, forKey: .githubLabel)
+    try container.encode(self.codeownerGithubTeams, forKey: .codeownerGithubTeams)
+    try container.encode(self.docTagPrefix, forKey: .docTagPrefix)
+    try container.encode(self.organization, forKey: .organization)
+    try container.encode(self.librarySettings, forKey: .librarySettings)
+    try container.encode(
+      self.protoReferenceDocumentationUri, forKey: .protoReferenceDocumentationUri)
+    try container.encode(self.restReferenceDocumentationUri, forKey: .restReferenceDocumentationUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

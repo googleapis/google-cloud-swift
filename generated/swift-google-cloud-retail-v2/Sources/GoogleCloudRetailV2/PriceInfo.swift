@@ -127,6 +127,8 @@ public struct PriceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
   public var priceRange: PriceInfo.PriceRange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PriceInfo`.
   public init() {}
 
@@ -141,6 +143,70 @@ public struct PriceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let currencyCode = CodingKeys(stringValue: "currencyCode")
+    static let price = CodingKeys(stringValue: "price")
+    static let originalPrice = CodingKeys(stringValue: "originalPrice")
+    static let cost = CodingKeys(stringValue: "cost")
+    static let priceEffectiveTime = CodingKeys(stringValue: "priceEffectiveTime")
+    static let priceExpireTime = CodingKeys(stringValue: "priceExpireTime")
+    static let priceRange = CodingKeys(stringValue: "priceRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "currencyCode",
+      "price",
+      "originalPrice",
+      "cost",
+      "priceEffectiveTime",
+      "priceExpireTime",
+      "priceRange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
+      self.currencyCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .price) {
+      self.price = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .originalPrice) {
+      self.originalPrice = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cost) {
+      self.cost = value
+    }
+    self.priceEffectiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .priceEffectiveTime)
+    self.priceExpireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .priceExpireTime)
+    self.priceRange = try container.decodeIfPresent(PriceInfo.PriceRange.self, forKey: .priceRange)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.currencyCode, forKey: .currencyCode)
+    try container.encode(self.price, forKey: .price)
+    try container.encode(self.originalPrice, forKey: .originalPrice)
+    try container.encode(self.cost, forKey: .cost)
+    try container.encodeIfPresent(self.priceEffectiveTime, forKey: .priceEffectiveTime)
+    try container.encodeIfPresent(self.priceExpireTime, forKey: .priceExpireTime)
+    try container.encodeIfPresent(self.priceRange, forKey: .priceRange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The price range of all
@@ -178,6 +244,8 @@ public struct PriceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.retail.v2.Product.primary_product_id]: <doc:Product/primaryProductId>
     public var originalPrice: Interval? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PriceRange`.
     public init() {}
 
@@ -192,6 +260,40 @@ public struct PriceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let price = CodingKeys(stringValue: "price")
+      static let originalPrice = CodingKeys(stringValue: "originalPrice")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "price",
+        "originalPrice",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.price = try container.decodeIfPresent(Interval.self, forKey: .price)
+      self.originalPrice = try container.decodeIfPresent(Interval.self, forKey: .originalPrice)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.price, forKey: .price)
+      try container.encodeIfPresent(self.originalPrice, forKey: .originalPrice)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

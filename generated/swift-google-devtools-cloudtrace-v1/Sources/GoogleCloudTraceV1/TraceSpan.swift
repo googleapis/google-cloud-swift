@@ -89,6 +89,8 @@ public struct TraceSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// *   `/tid`
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TraceSpan`.
   public init() {}
 
@@ -103,6 +105,72 @@ public struct TraceSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let spanId = CodingKeys(stringValue: "spanId")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let name = CodingKeys(stringValue: "name")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let parentSpanId = CodingKeys(stringValue: "parentSpanId")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "spanId",
+      "kind",
+      "name",
+      "startTime",
+      "endTime",
+      "parentSpanId",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .spanId) {
+      self.spanId = value
+    }
+    if let value = try container.decodeIfPresent(TraceSpan.SpanKind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .parentSpanId) {
+      self.parentSpanId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.spanId, forKey: .spanId)
+    try container.encode(self.kind, forKey: .kind)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.parentSpanId, forKey: .parentSpanId)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of span. Can be used to specify additional relationships between spans

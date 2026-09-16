@@ -38,6 +38,8 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// defined.
   public var nodeAnnotations: [StreamWithAnnotation.NodeAnnotation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamWithAnnotation`.
   public init() {}
 
@@ -54,6 +56,54 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stream = CodingKeys(stringValue: "stream")
+    static let applicationAnnotations = CodingKeys(stringValue: "applicationAnnotations")
+    static let nodeAnnotations = CodingKeys(stringValue: "nodeAnnotations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stream",
+      "applicationAnnotations",
+      "nodeAnnotations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stream) {
+      self.stream = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StreamAnnotation].self, forKey: .applicationAnnotations)
+    {
+      self.applicationAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StreamWithAnnotation.NodeAnnotation].self, forKey: .nodeAnnotations)
+    {
+      self.nodeAnnotations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.stream, forKey: .stream)
+    try container.encode(self.applicationAnnotations, forKey: .applicationAnnotations)
+    try container.encode(self.nodeAnnotations, forKey: .nodeAnnotations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Message describing annotations specific to application node.
   public struct NodeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -63,6 +113,8 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
     /// The node specific stream annotations.
     public var annotations: [StreamAnnotation] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NodeAnnotation`.
     public init() {}
@@ -78,6 +130,44 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let node = CodingKeys(stringValue: "node")
+      static let annotations = CodingKeys(stringValue: "annotations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "node",
+        "annotations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .node) {
+        self.node = value
+      }
+      if let value = try container.decodeIfPresent([StreamAnnotation].self, forKey: .annotations) {
+        self.annotations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.node, forKey: .node)
+      try container.encode(self.annotations, forKey: .annotations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

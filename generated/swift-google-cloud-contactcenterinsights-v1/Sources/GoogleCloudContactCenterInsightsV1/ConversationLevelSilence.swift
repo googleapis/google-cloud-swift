@@ -27,6 +27,8 @@ public struct ConversationLevelSilence: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Percentage of the total conversation spent in silence.
   public var silencePercentage: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationLevelSilence`.
   public init() {}
 
@@ -41,6 +43,43 @@ public struct ConversationLevelSilence: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let silenceDuration = CodingKeys(stringValue: "silenceDuration")
+    static let silencePercentage = CodingKeys(stringValue: "silencePercentage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "silenceDuration",
+      "silencePercentage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.silenceDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .silenceDuration)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .silencePercentage) {
+      self.silencePercentage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.silenceDuration, forKey: .silenceDuration)
+    try container.encode(self.silencePercentage, forKey: .silencePercentage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

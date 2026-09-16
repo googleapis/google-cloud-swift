@@ -25,6 +25,8 @@ public struct RowLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The rows of content to display.
   public var rows: [RowLayout.Row] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RowLayout`.
   public init() {}
 
@@ -41,6 +43,38 @@ public struct RowLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rows = CodingKeys(stringValue: "rows")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rows"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([RowLayout.Row].self, forKey: .rows) {
+      self.rows = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rows, forKey: .rows)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Defines the layout properties and content for a row.
   public struct Row: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +87,8 @@ public struct RowLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The display widgets arranged horizontally in this row.
     public var widgets: [Widget] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Row`.
     public init() {}
@@ -68,6 +104,44 @@ public struct RowLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let weight = CodingKeys(stringValue: "weight")
+      static let widgets = CodingKeys(stringValue: "widgets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "weight",
+        "widgets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .weight) {
+        self.weight = value
+      }
+      if let value = try container.decodeIfPresent([Widget].self, forKey: .widgets) {
+        self.widgets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.weight, forKey: .weight)
+      try container.encode(self.widgets, forKey: .widgets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

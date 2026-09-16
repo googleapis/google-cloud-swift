@@ -57,6 +57,8 @@ public struct ClientLibrarySettings: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Settings for Go client libraries.
   public var goSettings: GoSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClientLibrarySettings`.
   public init() {}
 
@@ -71,6 +73,84 @@ public struct ClientLibrarySettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let restNumericEnums = CodingKeys(stringValue: "restNumericEnums")
+    static let javaSettings = CodingKeys(stringValue: "javaSettings")
+    static let cppSettings = CodingKeys(stringValue: "cppSettings")
+    static let phpSettings = CodingKeys(stringValue: "phpSettings")
+    static let pythonSettings = CodingKeys(stringValue: "pythonSettings")
+    static let nodeSettings = CodingKeys(stringValue: "nodeSettings")
+    static let dotnetSettings = CodingKeys(stringValue: "dotnetSettings")
+    static let rubySettings = CodingKeys(stringValue: "rubySettings")
+    static let goSettings = CodingKeys(stringValue: "goSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "launchStage",
+      "restNumericEnums",
+      "javaSettings",
+      "cppSettings",
+      "phpSettings",
+      "pythonSettings",
+      "nodeSettings",
+      "dotnetSettings",
+      "rubySettings",
+      "goSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .restNumericEnums) {
+      self.restNumericEnums = value
+    }
+    self.javaSettings = try container.decodeIfPresent(JavaSettings.self, forKey: .javaSettings)
+    self.cppSettings = try container.decodeIfPresent(CppSettings.self, forKey: .cppSettings)
+    self.phpSettings = try container.decodeIfPresent(PhpSettings.self, forKey: .phpSettings)
+    self.pythonSettings = try container.decodeIfPresent(
+      PythonSettings.self, forKey: .pythonSettings)
+    self.nodeSettings = try container.decodeIfPresent(NodeSettings.self, forKey: .nodeSettings)
+    self.dotnetSettings = try container.decodeIfPresent(
+      DotnetSettings.self, forKey: .dotnetSettings)
+    self.rubySettings = try container.decodeIfPresent(RubySettings.self, forKey: .rubySettings)
+    self.goSettings = try container.decodeIfPresent(GoSettings.self, forKey: .goSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    try container.encode(self.restNumericEnums, forKey: .restNumericEnums)
+    try container.encodeIfPresent(self.javaSettings, forKey: .javaSettings)
+    try container.encodeIfPresent(self.cppSettings, forKey: .cppSettings)
+    try container.encodeIfPresent(self.phpSettings, forKey: .phpSettings)
+    try container.encodeIfPresent(self.pythonSettings, forKey: .pythonSettings)
+    try container.encodeIfPresent(self.nodeSettings, forKey: .nodeSettings)
+    try container.encodeIfPresent(self.dotnetSettings, forKey: .dotnetSettings)
+    try container.encodeIfPresent(self.rubySettings, forKey: .rubySettings)
+    try container.encodeIfPresent(self.goSettings, forKey: .goSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

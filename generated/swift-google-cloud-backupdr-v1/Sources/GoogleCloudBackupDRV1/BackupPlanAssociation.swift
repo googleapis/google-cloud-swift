@@ -76,6 +76,8 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Properties of the protected GCP resource.
   public var resourceProperties: OneOf_ResourceProperties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupPlanAssociation`.
   public init() {}
 
@@ -92,41 +94,79 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case resourceType = "resourceType"
-    case resource = "resource"
-    case backupPlan = "backupPlan"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case state = "state"
-    case rulesConfigInfo = "rulesConfigInfo"
-    case dataSource = "dataSource"
-    case cloudSqlInstanceBackupPlanAssociationProperties =
-      "cloudSqlInstanceBackupPlanAssociationProperties"
-    case alloydbClusterBackupPlanAssociationProperties =
-      "alloydbClusterBackupPlanAssociationProperties"
-    case backupPlanRevisionId = "backupPlanRevisionId"
-    case backupPlanRevisionName = "backupPlanRevisionName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let backupPlan = CodingKeys(stringValue: "backupPlan")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let rulesConfigInfo = CodingKeys(stringValue: "rulesConfigInfo")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let cloudSqlInstanceBackupPlanAssociationProperties = CodingKeys(
+      stringValue: "cloudSqlInstanceBackupPlanAssociationProperties")
+    static let alloydbClusterBackupPlanAssociationProperties = CodingKeys(
+      stringValue: "alloydbClusterBackupPlanAssociationProperties")
+    static let backupPlanRevisionId = CodingKeys(stringValue: "backupPlanRevisionId")
+    static let backupPlanRevisionName = CodingKeys(stringValue: "backupPlanRevisionName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resourceType",
+      "resource",
+      "backupPlan",
+      "createTime",
+      "updateTime",
+      "state",
+      "rulesConfigInfo",
+      "dataSource",
+      "cloudSqlInstanceBackupPlanAssociationProperties",
+      "alloydbClusterBackupPlanAssociationProperties",
+      "backupPlanRevisionId",
+      "backupPlanRevisionName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.resourceType = try container.decode(Swift.String.self, forKey: .resourceType)
-    self.resource = try container.decode(Swift.String.self, forKey: .resource)
-    self.backupPlan = try container.decode(Swift.String.self, forKey: .backupPlan)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlan) {
+      self.backupPlan = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.state = try container.decode(BackupPlanAssociation.State.self, forKey: .state)
-    self.rulesConfigInfo = try container.decode([RuleConfigInfo].self, forKey: .rulesConfigInfo)
-    self.dataSource = try container.decode(Swift.String.self, forKey: .dataSource)
-    self.backupPlanRevisionId = try container.decode(
-      Swift.String.self, forKey: .backupPlanRevisionId)
-    self.backupPlanRevisionName = try container.decode(
-      Swift.String.self, forKey: .backupPlanRevisionName)
+    if let value = try container.decodeIfPresent(BackupPlanAssociation.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([RuleConfigInfo].self, forKey: .rulesConfigInfo) {
+      self.rulesConfigInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionId) {
+      self.backupPlanRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionName)
+    {
+      self.backupPlanRevisionName = value
+    }
 
     var resourceProperties: OneOf_ResourceProperties? = nil
     let resourcePropertiesCheckAndSet = {
@@ -155,6 +195,10 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPack
           alloydbClusterBackupPlanAssociationProperties))
     }
     self.resourceProperties = resourceProperties
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -163,8 +207,8 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPack
     try container.encode(self.resourceType, forKey: .resourceType)
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.backupPlan, forKey: .backupPlan)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.rulesConfigInfo, forKey: .rulesConfigInfo)
     try container.encode(self.dataSource, forKey: .dataSource)
@@ -178,6 +222,9 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .alloydbClusterBackupPlanAssociationProperties(let value):
         try container.encode(value, forKey: .alloydbClusterBackupPlanAssociationProperties)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

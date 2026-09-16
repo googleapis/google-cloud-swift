@@ -46,6 +46,8 @@
     /// [google.cloud.aiplatform.v1.Feature.ValueType]: <doc:Feature/ValueType>
     public var categoricalThresholdConfig: FeaturestoreMonitoringConfig.ThresholdConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeaturestoreMonitoringConfig`.
     public init() {}
 
@@ -60,6 +62,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let snapshotAnalysis = CodingKeys(stringValue: "snapshotAnalysis")
+      static let importFeaturesAnalysis = CodingKeys(stringValue: "importFeaturesAnalysis")
+      static let numericalThresholdConfig = CodingKeys(stringValue: "numericalThresholdConfig")
+      static let categoricalThresholdConfig = CodingKeys(stringValue: "categoricalThresholdConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "snapshotAnalysis",
+        "importFeaturesAnalysis",
+        "numericalThresholdConfig",
+        "categoricalThresholdConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.snapshotAnalysis = try container.decodeIfPresent(
+        FeaturestoreMonitoringConfig.SnapshotAnalysis.self, forKey: .snapshotAnalysis)
+      self.importFeaturesAnalysis = try container.decodeIfPresent(
+        FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.self, forKey: .importFeaturesAnalysis)
+      self.numericalThresholdConfig = try container.decodeIfPresent(
+        FeaturestoreMonitoringConfig.ThresholdConfig.self, forKey: .numericalThresholdConfig)
+      self.categoricalThresholdConfig = try container.decodeIfPresent(
+        FeaturestoreMonitoringConfig.ThresholdConfig.self, forKey: .categoricalThresholdConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.snapshotAnalysis, forKey: .snapshotAnalysis)
+      try container.encodeIfPresent(self.importFeaturesAnalysis, forKey: .importFeaturesAnalysis)
+      try container.encodeIfPresent(
+        self.numericalThresholdConfig, forKey: .numericalThresholdConfig)
+      try container.encodeIfPresent(
+        self.categoricalThresholdConfig, forKey: .categoricalThresholdConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration of the Featurestore's Snapshot Analysis Based Monitoring.
@@ -91,6 +141,8 @@
       /// 4000 days.
       public var stalenessDays: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SnapshotAnalysis`.
       public init() {}
 
@@ -105,6 +157,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let disabled = CodingKeys(stringValue: "disabled")
+        static let monitoringIntervalDays = CodingKeys(stringValue: "monitoringIntervalDays")
+        static let stalenessDays = CodingKeys(stringValue: "stalenessDays")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "disabled",
+          "monitoringIntervalDays",
+          "stalenessDays",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+          self.disabled = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .monitoringIntervalDays)
+        {
+          self.monitoringIntervalDays = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .stalenessDays) {
+          self.stalenessDays = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.disabled, forKey: .disabled)
+        try container.encode(self.monitoringIntervalDays, forKey: .monitoringIntervalDays)
+        try container.encode(self.stalenessDays, forKey: .stalenessDays)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -140,6 +238,8 @@
         FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline = FeaturestoreMonitoringConfig
           .ImportFeaturesAnalysis.Baseline()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ImportFeaturesAnalysis`.
       public init() {}
 
@@ -154,6 +254,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let state = CodingKeys(stringValue: "state")
+        static let anomalyDetectionBaseline = CodingKeys(stringValue: "anomalyDetectionBaseline")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "state",
+          "anomalyDetectionBaseline",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        if let value = try container.decodeIfPresent(
+          FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.Baseline.self,
+          forKey: .anomalyDetectionBaseline)
+        {
+          self.anomalyDetectionBaseline = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.state, forKey: .state)
+        try container.encode(self.anomalyDetectionBaseline, forKey: .anomalyDetectionBaseline)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The state defines whether to enable ImportFeature analysis.
@@ -417,6 +560,8 @@
     {
       public var threshold: OneOf_Threshold? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ThresholdConfig`.
       public init() {}
 
@@ -433,8 +578,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case value = "value"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let value = CodingKeys(stringValue: "value")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "value"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -454,6 +608,10 @@
           try thresholdCheckAndSet(.value(value))
         }
         self.threshold = threshold
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -464,6 +622,9 @@
           case .value(let value):
             try container.encode(value, forKey: .value)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

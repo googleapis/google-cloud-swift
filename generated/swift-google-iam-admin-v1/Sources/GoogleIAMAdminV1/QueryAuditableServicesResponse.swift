@@ -24,6 +24,8 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleCloudWKT
   /// The auditable services for a resource.
   public var services: [QueryAuditableServicesResponse.AuditableService] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryAuditableServicesResponse`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let services = CodingKeys(stringValue: "services")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "services"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [QueryAuditableServicesResponse.AuditableService].self, forKey: .services)
+    {
+      self.services = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.services, forKey: .services)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Contains information about an auditable service.
   public struct AuditableService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -47,6 +83,8 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleCloudWKT
     /// Public name of the service.
     /// For example, the service name for Cloud IAM is 'iam.googleapis.com'.
     public var name: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AuditableService`.
     public init() {}
@@ -62,6 +100,38 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleCloudWKT
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct ConfigData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// list of available v6 ip pools for external loadbalancer
   public var availableExternalLbPoolsIpv6: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigData`.
   public init() {}
 
@@ -41,6 +43,50 @@ public struct ConfigData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let availableExternalLbPoolsIpv4 = CodingKeys(
+      stringValue: "availableExternalLbPoolsIpv4")
+    static let availableExternalLbPoolsIpv6 = CodingKeys(
+      stringValue: "availableExternalLbPoolsIpv6")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "availableExternalLbPoolsIpv4",
+      "availableExternalLbPoolsIpv6",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .availableExternalLbPoolsIpv4)
+    {
+      self.availableExternalLbPoolsIpv4 = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .availableExternalLbPoolsIpv6)
+    {
+      self.availableExternalLbPoolsIpv6 = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.availableExternalLbPoolsIpv4, forKey: .availableExternalLbPoolsIpv4)
+    try container.encode(self.availableExternalLbPoolsIpv6, forKey: .availableExternalLbPoolsIpv6)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

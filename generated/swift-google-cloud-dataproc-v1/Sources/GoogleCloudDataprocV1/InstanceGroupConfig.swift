@@ -127,6 +127,8 @@ public struct InstanceGroupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// create and update process.
   public var startupConfig: StartupConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InstanceGroupConfig`.
   public init() {}
 
@@ -141,6 +143,115 @@ public struct InstanceGroupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let numInstances = CodingKeys(stringValue: "numInstances")
+    static let instanceNames = CodingKeys(stringValue: "instanceNames")
+    static let instanceReferences = CodingKeys(stringValue: "instanceReferences")
+    static let imageUri = CodingKeys(stringValue: "imageUri")
+    static let machineTypeUri = CodingKeys(stringValue: "machineTypeUri")
+    static let diskConfig = CodingKeys(stringValue: "diskConfig")
+    static let isPreemptible = CodingKeys(stringValue: "isPreemptible")
+    static let preemptibility = CodingKeys(stringValue: "preemptibility")
+    static let managedGroupConfig = CodingKeys(stringValue: "managedGroupConfig")
+    static let accelerators = CodingKeys(stringValue: "accelerators")
+    static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+    static let minNumInstances = CodingKeys(stringValue: "minNumInstances")
+    static let instanceFlexibilityPolicy = CodingKeys(stringValue: "instanceFlexibilityPolicy")
+    static let startupConfig = CodingKeys(stringValue: "startupConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "numInstances",
+      "instanceNames",
+      "instanceReferences",
+      "imageUri",
+      "machineTypeUri",
+      "diskConfig",
+      "isPreemptible",
+      "preemptibility",
+      "managedGroupConfig",
+      "accelerators",
+      "minCpuPlatform",
+      "minNumInstances",
+      "instanceFlexibilityPolicy",
+      "startupConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numInstances) {
+      self.numInstances = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instanceNames) {
+      self.instanceNames = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InstanceReference].self, forKey: .instanceReferences)
+    {
+      self.instanceReferences = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+      self.imageUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineTypeUri) {
+      self.machineTypeUri = value
+    }
+    self.diskConfig = try container.decodeIfPresent(DiskConfig.self, forKey: .diskConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPreemptible) {
+      self.isPreemptible = value
+    }
+    if let value = try container.decodeIfPresent(
+      InstanceGroupConfig.Preemptibility.self, forKey: .preemptibility)
+    {
+      self.preemptibility = value
+    }
+    self.managedGroupConfig = try container.decodeIfPresent(
+      ManagedGroupConfig.self, forKey: .managedGroupConfig)
+    if let value = try container.decodeIfPresent([AcceleratorConfig].self, forKey: .accelerators) {
+      self.accelerators = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform) {
+      self.minCpuPlatform = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNumInstances) {
+      self.minNumInstances = value
+    }
+    self.instanceFlexibilityPolicy = try container.decodeIfPresent(
+      InstanceFlexibilityPolicy.self, forKey: .instanceFlexibilityPolicy)
+    self.startupConfig = try container.decodeIfPresent(StartupConfig.self, forKey: .startupConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.numInstances, forKey: .numInstances)
+    try container.encode(self.instanceNames, forKey: .instanceNames)
+    try container.encode(self.instanceReferences, forKey: .instanceReferences)
+    try container.encode(self.imageUri, forKey: .imageUri)
+    try container.encode(self.machineTypeUri, forKey: .machineTypeUri)
+    try container.encodeIfPresent(self.diskConfig, forKey: .diskConfig)
+    try container.encode(self.isPreemptible, forKey: .isPreemptible)
+    try container.encode(self.preemptibility, forKey: .preemptibility)
+    try container.encodeIfPresent(self.managedGroupConfig, forKey: .managedGroupConfig)
+    try container.encode(self.accelerators, forKey: .accelerators)
+    try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
+    try container.encode(self.minNumInstances, forKey: .minNumInstances)
+    try container.encodeIfPresent(
+      self.instanceFlexibilityPolicy, forKey: .instanceFlexibilityPolicy)
+    try container.encodeIfPresent(self.startupConfig, forKey: .startupConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Controls the use of preemptible instances within the group.

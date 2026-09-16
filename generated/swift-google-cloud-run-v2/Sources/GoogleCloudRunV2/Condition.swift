@@ -45,6 +45,8 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Successful conditions cannot have a reason.
   public var reasons: OneOf_Reasons? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Condition`.
   public init() {}
 
@@ -61,25 +63,49 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case state = "state"
-    case message = "message"
-    case lastTransitionTime = "lastTransitionTime"
-    case severity = "severity"
-    case reason = "reason"
-    case revisionReason = "revisionReason"
-    case executionReason = "executionReason"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let state = CodingKeys(stringValue: "state")
+    static let message = CodingKeys(stringValue: "message")
+    static let lastTransitionTime = CodingKeys(stringValue: "lastTransitionTime")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let reason = CodingKeys(stringValue: "reason")
+    static let revisionReason = CodingKeys(stringValue: "revisionReason")
+    static let executionReason = CodingKeys(stringValue: "executionReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "state",
+      "message",
+      "lastTransitionTime",
+      "severity",
+      "reason",
+      "revisionReason",
+      "executionReason",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.state = try container.decode(Condition.State.self, forKey: .state)
-    self.message = try container.decode(Swift.String.self, forKey: .message)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Condition.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
     self.lastTransitionTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastTransitionTime)
-    self.severity = try container.decode(Condition.Severity.self, forKey: .severity)
+    if let value = try container.decodeIfPresent(Condition.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
 
     var reasons: OneOf_Reasons? = nil
     let reasonsCheckAndSet = {
@@ -105,6 +131,10 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try reasonsCheckAndSet(.executionReason(executionReason))
     }
     self.reasons = reasons
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -112,7 +142,7 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.type, forKey: .type)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.message, forKey: .message)
-    try container.encode(self.lastTransitionTime, forKey: .lastTransitionTime)
+    try container.encodeIfPresent(self.lastTransitionTime, forKey: .lastTransitionTime)
     try container.encode(self.severity, forKey: .severity)
 
     if let choice = self.reasons {
@@ -124,6 +154,9 @@ public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .executionReason(let value):
         try container.encode(value, forKey: .executionReason)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

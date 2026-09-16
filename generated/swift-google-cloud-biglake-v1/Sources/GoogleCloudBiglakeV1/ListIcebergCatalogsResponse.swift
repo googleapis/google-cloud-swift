@@ -31,6 +31,8 @@ public struct ListIcebergCatalogsResponse: Codable, Equatable, GoogleCloudWKT._A
   /// result set might be incomplete.
   public var unreachable: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListIcebergCatalogsResponse`.
   public init() {}
 
@@ -47,17 +49,38 @@ public struct ListIcebergCatalogsResponse: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case icebergCatalogs = "iceberg-catalogs"
-    case nextPageToken = "next-page-token"
-    case unreachable = "unreachable"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let icebergCatalogs = CodingKeys(stringValue: "iceberg-catalogs")
+    static let nextPageToken = CodingKeys(stringValue: "next-page-token")
+    static let unreachable = CodingKeys(stringValue: "unreachable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "iceberg-catalogs",
+      "next-page-token",
+      "unreachable",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.icebergCatalogs = try container.decode([IcebergCatalog].self, forKey: .icebergCatalogs)
-    self.nextPageToken = try container.decode(Swift.String.self, forKey: .nextPageToken)
-    self.unreachable = try container.decode([Swift.String].self, forKey: .unreachable)
+    if let value = try container.decodeIfPresent([IcebergCatalog].self, forKey: .icebergCatalogs) {
+      self.icebergCatalogs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachable) {
+      self.unreachable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -65,6 +88,9 @@ public struct ListIcebergCatalogsResponse: Codable, Equatable, GoogleCloudWKT._A
     try container.encode(self.icebergCatalogs, forKey: .icebergCatalogs)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
     try container.encode(self.unreachable, forKey: .unreachable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

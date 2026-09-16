@@ -34,6 +34,8 @@ public struct AwsProxyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// HTTP(S) proxy configuration.
   public var secretVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsProxyConfig`.
   public init() {}
 
@@ -48,6 +50,44 @@ public struct AwsProxyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let secretArn = CodingKeys(stringValue: "secretArn")
+    static let secretVersion = CodingKeys(stringValue: "secretVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "secretArn",
+      "secretVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretArn) {
+      self.secretArn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretVersion) {
+      self.secretVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.secretArn, forKey: .secretArn)
+    try container.encode(self.secretVersion, forKey: .secretVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

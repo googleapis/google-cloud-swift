@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension GetStorageLayoutRequest {
@@ -30,6 +30,7 @@ extension GetStorageLayoutRequest {
     self.name = proto.name
     self.`prefix` = proto.`prefix`
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension GetStorageLayoutRequest {
     proto.name = self.name
     proto.`prefix` = self.`prefix`
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

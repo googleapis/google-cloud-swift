@@ -37,6 +37,8 @@
     /// Optional. The tools to use for AskContexts.
     public var tools: [Tool] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AsyncRetrieveContextsRequest`.
     public init() {}
 
@@ -51,6 +53,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let query = CodingKeys(stringValue: "query")
+      static let tools = CodingKeys(stringValue: "tools")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "query",
+        "tools",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.query = try container.decodeIfPresent(RagQuery.self, forKey: .query)
+      if let value = try container.decodeIfPresent([Tool].self, forKey: .tools) {
+        self.tools = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.tools, forKey: .tools)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension RenameFolderMetadata {
@@ -29,6 +29,7 @@ extension RenameFolderMetadata {
     self.commonMetadata = proto.hasCommonMetadata ? try .init(proto: proto.commonMetadata) : nil
     self.sourceFolderId = proto.sourceFolderID
     self.destinationFolderId = proto.destinationFolderID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -38,6 +39,9 @@ extension RenameFolderMetadata {
     }
     proto.sourceFolderID = self.sourceFolderId
     proto.destinationFolderID = self.destinationFolderId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

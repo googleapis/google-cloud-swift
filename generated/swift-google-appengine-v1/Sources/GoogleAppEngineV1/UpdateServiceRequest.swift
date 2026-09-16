@@ -45,6 +45,8 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [Migrating and Splitting Traffic](https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
   public var migrateTraffic: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateServiceRequest`.
   public init() {}
 
@@ -59,6 +61,53 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let service = CodingKeys(stringValue: "service")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let migrateTraffic = CodingKeys(stringValue: "migrateTraffic")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "service",
+      "updateMask",
+      "migrateTraffic",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.service = try container.decodeIfPresent(Service.self, forKey: .service)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .migrateTraffic) {
+      self.migrateTraffic = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.service, forKey: .service)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encode(self.migrateTraffic, forKey: .migrateTraffic)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

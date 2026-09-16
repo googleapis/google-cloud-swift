@@ -27,6 +27,8 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The network status of a specific network.
   public var result: DiagnoseNetworkResponse.NetworkStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiagnoseNetworkResponse`.
   public init() {}
 
@@ -43,6 +45,42 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let result = CodingKeys(stringValue: "result")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateTime",
+      "result",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.result = try container.decodeIfPresent(
+      DiagnoseNetworkResponse.NetworkStatus.self, forKey: .result)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.result, forKey: .result)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// NetworkStatus has a list of status for the subnets under the current
   /// network.
   public struct NetworkStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -54,6 +92,8 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// The MACsec status of internal links.
     public var macsecStatusInternalLinks: DiagnoseNetworkResponse.NetworkStatus.MacsecStatus =
       DiagnoseNetworkResponse.NetworkStatus.MacsecStatus()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NetworkStatus`.
     public init() {}
@@ -69,6 +109,46 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subnetStatus = CodingKeys(stringValue: "subnetStatus")
+      static let macsecStatusInternalLinks = CodingKeys(stringValue: "macsecStatusInternalLinks")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subnetStatus",
+        "macsecStatusInternalLinks",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([SubnetStatus].self, forKey: .subnetStatus) {
+        self.subnetStatus = value
+      }
+      if let value = try container.decodeIfPresent(
+        DiagnoseNetworkResponse.NetworkStatus.MacsecStatus.self, forKey: .macsecStatusInternalLinks)
+      {
+        self.macsecStatusInternalLinks = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.subnetStatus, forKey: .subnetStatus)
+      try container.encode(self.macsecStatusInternalLinks, forKey: .macsecStatusInternalLinks)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Denotes the status of MACsec sessions for the links of a zone.

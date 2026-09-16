@@ -51,6 +51,8 @@ public struct DateRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the last day of the given month.
   public var invoiceEndDate: GoogleType.Date? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DateRange`.
   public init() {}
 
@@ -65,6 +67,52 @@ public struct DateRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let usageStartDateTime = CodingKeys(stringValue: "usageStartDateTime")
+    static let usageEndDateTime = CodingKeys(stringValue: "usageEndDateTime")
+    static let invoiceStartDate = CodingKeys(stringValue: "invoiceStartDate")
+    static let invoiceEndDate = CodingKeys(stringValue: "invoiceEndDate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "usageStartDateTime",
+      "usageEndDateTime",
+      "invoiceStartDate",
+      "invoiceEndDate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.usageStartDateTime = try container.decodeIfPresent(
+      GoogleType.DateTime.self, forKey: .usageStartDateTime)
+    self.usageEndDateTime = try container.decodeIfPresent(
+      GoogleType.DateTime.self, forKey: .usageEndDateTime)
+    self.invoiceStartDate = try container.decodeIfPresent(
+      GoogleType.Date.self, forKey: .invoiceStartDate)
+    self.invoiceEndDate = try container.decodeIfPresent(
+      GoogleType.Date.self, forKey: .invoiceEndDate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.usageStartDateTime, forKey: .usageStartDateTime)
+    try container.encodeIfPresent(self.usageEndDateTime, forKey: .usageEndDateTime)
+    try container.encodeIfPresent(self.invoiceStartDate, forKey: .invoiceStartDate)
+    try container.encodeIfPresent(self.invoiceEndDate, forKey: .invoiceEndDate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

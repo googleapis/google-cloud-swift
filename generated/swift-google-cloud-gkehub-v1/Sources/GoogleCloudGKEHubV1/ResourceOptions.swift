@@ -42,6 +42,8 @@ public struct ResourceOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// above.
   public var k8SGitVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceOptions`.
   public init() {}
 
@@ -58,19 +60,43 @@ public struct ResourceOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case connectVersion = "connectVersion"
-    case v1Beta1Crd = "v1beta1Crd"
-    case k8SVersion = "k8sVersion"
-    case k8SGitVersion = "k8sGitVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectVersion = CodingKeys(stringValue: "connectVersion")
+    static let v1Beta1Crd = CodingKeys(stringValue: "v1beta1Crd")
+    static let k8SVersion = CodingKeys(stringValue: "k8sVersion")
+    static let k8SGitVersion = CodingKeys(stringValue: "k8sGitVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectVersion",
+      "v1beta1Crd",
+      "k8sVersion",
+      "k8sGitVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.connectVersion = try container.decode(Swift.String.self, forKey: .connectVersion)
-    self.v1Beta1Crd = try container.decode(Swift.Bool.self, forKey: .v1Beta1Crd)
-    self.k8SVersion = try container.decode(Swift.String.self, forKey: .k8SVersion)
-    self.k8SGitVersion = try container.decode(Swift.String.self, forKey: .k8SGitVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectVersion) {
+      self.connectVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .v1Beta1Crd) {
+      self.v1Beta1Crd = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .k8SVersion) {
+      self.k8SVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .k8SGitVersion) {
+      self.k8SGitVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +105,9 @@ public struct ResourceOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.v1Beta1Crd, forKey: .v1Beta1Crd)
     try container.encode(self.k8SVersion, forKey: .k8SVersion)
     try container.encode(self.k8SGitVersion, forKey: .k8SGitVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

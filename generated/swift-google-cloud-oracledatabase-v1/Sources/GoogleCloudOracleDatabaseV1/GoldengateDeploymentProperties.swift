@@ -160,6 +160,8 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
   /// Output only. The placements of the GoldengateDeployment.
   public var placements: [GoldengatePlacement] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDeploymentProperties`.
   public init() {}
 
@@ -174,6 +176,293 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let licenseModel = CodingKeys(stringValue: "licenseModel")
+    static let environmentType = CodingKeys(stringValue: "environmentType")
+    static let cpuCoreCount = CodingKeys(stringValue: "cpuCoreCount")
+    static let isAutoScalingEnabled = CodingKeys(stringValue: "isAutoScalingEnabled")
+    static let description = CodingKeys(stringValue: "description")
+    static let deploymentType = CodingKeys(stringValue: "deploymentType")
+    static let oggData = CodingKeys(stringValue: "oggData")
+    static let maintenanceWindow = CodingKeys(stringValue: "maintenanceWindow")
+    static let maintenanceConfig = CodingKeys(stringValue: "maintenanceConfig")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+    static let lifecycleSubState = CodingKeys(stringValue: "lifecycleSubState")
+    static let category = CodingKeys(stringValue: "category")
+    static let deploymentBackupId = CodingKeys(stringValue: "deploymentBackupId")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let healthy = CodingKeys(stringValue: "healthy")
+    static let loadBalancerSubnetId = CodingKeys(stringValue: "loadBalancerSubnetId")
+    static let loadBalancerId = CodingKeys(stringValue: "loadBalancerId")
+    static let nsgIds = CodingKeys(stringValue: "nsgIds")
+    static let isPublic = CodingKeys(stringValue: "isPublic")
+    static let publicIpAddress = CodingKeys(stringValue: "publicIpAddress")
+    static let privateIpAddress = CodingKeys(stringValue: "privateIpAddress")
+    static let deploymentUrl = CodingKeys(stringValue: "deploymentUrl")
+    static let isLatestVersion = CodingKeys(stringValue: "isLatestVersion")
+    static let upgradeRequiredTime = CodingKeys(stringValue: "upgradeRequiredTime")
+    static let storageUtilizationBytes = CodingKeys(stringValue: "storageUtilizationBytes")
+    static let isStorageUtilizationLimitExceeded = CodingKeys(
+      stringValue: "isStorageUtilizationLimitExceeded")
+    static let deploymentDiagnosticData = CodingKeys(stringValue: "deploymentDiagnosticData")
+    static let backupSchedule = CodingKeys(stringValue: "backupSchedule")
+    static let nextMaintenanceTime = CodingKeys(stringValue: "nextMaintenanceTime")
+    static let nextMaintenanceActionType = CodingKeys(stringValue: "nextMaintenanceActionType")
+    static let nextMaintenanceDescription = CodingKeys(stringValue: "nextMaintenanceDescription")
+    static let oggVersionSupportEndTime = CodingKeys(stringValue: "oggVersionSupportEndTime")
+    static let ingressIps = CodingKeys(stringValue: "ingressIps")
+    static let deploymentRole = CodingKeys(stringValue: "deploymentRole")
+    static let lastBackupScheduleTime = CodingKeys(stringValue: "lastBackupScheduleTime")
+    static let nextBackupScheduleTime = CodingKeys(stringValue: "nextBackupScheduleTime")
+    static let roleChangeTime = CodingKeys(stringValue: "roleChangeTime")
+    static let locks = CodingKeys(stringValue: "locks")
+    static let placements = CodingKeys(stringValue: "placements")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "lifecycleState",
+      "licenseModel",
+      "environmentType",
+      "cpuCoreCount",
+      "isAutoScalingEnabled",
+      "description",
+      "deploymentType",
+      "oggData",
+      "maintenanceWindow",
+      "maintenanceConfig",
+      "fqdn",
+      "lifecycleSubState",
+      "category",
+      "deploymentBackupId",
+      "updateTime",
+      "lifecycleDetails",
+      "healthy",
+      "loadBalancerSubnetId",
+      "loadBalancerId",
+      "nsgIds",
+      "isPublic",
+      "publicIpAddress",
+      "privateIpAddress",
+      "deploymentUrl",
+      "isLatestVersion",
+      "upgradeRequiredTime",
+      "storageUtilizationBytes",
+      "isStorageUtilizationLimitExceeded",
+      "deploymentDiagnosticData",
+      "backupSchedule",
+      "nextMaintenanceTime",
+      "nextMaintenanceActionType",
+      "nextMaintenanceDescription",
+      "oggVersionSupportEndTime",
+      "ingressIps",
+      "deploymentRole",
+      "lastBackupScheduleTime",
+      "nextBackupScheduleTime",
+      "roleChangeTime",
+      "locks",
+      "placements",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.GoldengateDeploymentLifecycleState.self,
+      forKey: .lifecycleState)
+    {
+      self.lifecycleState = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.LicenseModel.self, forKey: .licenseModel)
+    {
+      self.licenseModel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environmentType) {
+      self.environmentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCoreCount) {
+      self.cpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isAutoScalingEnabled) {
+      self.isAutoScalingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentType) {
+      self.deploymentType = value
+    }
+    self.oggData = try container.decodeIfPresent(GoldengateOggDeployment.self, forKey: .oggData)
+    self.maintenanceWindow = try container.decodeIfPresent(
+      GoldengateMaintenanceWindow.self, forKey: .maintenanceWindow)
+    self.maintenanceConfig = try container.decodeIfPresent(
+      GoldengateMaintenanceConfig.self, forKey: .maintenanceConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.GoldengateDeploymentLifecycleSubState.self,
+      forKey: .lifecycleSubState)
+    {
+      self.lifecycleSubState = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.GoldengateDeploymentCategory.self, forKey: .category)
+    {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentBackupId) {
+      self.deploymentBackupId = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .healthy) {
+      self.healthy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancerSubnetId) {
+      self.loadBalancerSubnetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancerId) {
+      self.loadBalancerId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nsgIds) {
+      self.nsgIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPublic) {
+      self.isPublic = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicIpAddress) {
+      self.publicIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateIpAddress) {
+      self.privateIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentUrl) {
+      self.deploymentUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isLatestVersion) {
+      self.isLatestVersion = value
+    }
+    self.upgradeRequiredTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .upgradeRequiredTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .storageUtilizationBytes)
+    {
+      self.storageUtilizationBytes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isStorageUtilizationLimitExceeded)
+    {
+      self.isStorageUtilizationLimitExceeded = value
+    }
+    self.deploymentDiagnosticData = try container.decodeIfPresent(
+      DeploymentDiagnosticData.self, forKey: .deploymentDiagnosticData)
+    self.backupSchedule = try container.decodeIfPresent(
+      GoldengateBackupSchedule.self, forKey: .backupSchedule)
+    self.nextMaintenanceTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextMaintenanceTime)
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.NextMaintenanceActionType.self,
+      forKey: .nextMaintenanceActionType)
+    {
+      self.nextMaintenanceActionType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .nextMaintenanceDescription)
+    {
+      self.nextMaintenanceDescription = value
+    }
+    self.oggVersionSupportEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .oggVersionSupportEndTime)
+    if let value = try container.decodeIfPresent([IngressIp].self, forKey: .ingressIps) {
+      self.ingressIps = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentProperties.GoldengateDeploymentRoleType.self, forKey: .deploymentRole)
+    {
+      self.deploymentRole = value
+    }
+    self.lastBackupScheduleTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastBackupScheduleTime)
+    self.nextBackupScheduleTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextBackupScheduleTime)
+    self.roleChangeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .roleChangeTime)
+    if let value = try container.decodeIfPresent([GoldengateDeploymentLock].self, forKey: .locks) {
+      self.locks = value
+    }
+    if let value = try container.decodeIfPresent([GoldengatePlacement].self, forKey: .placements) {
+      self.placements = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    try container.encode(self.licenseModel, forKey: .licenseModel)
+    try container.encode(self.environmentType, forKey: .environmentType)
+    try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
+    try container.encode(self.isAutoScalingEnabled, forKey: .isAutoScalingEnabled)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.deploymentType, forKey: .deploymentType)
+    try container.encodeIfPresent(self.oggData, forKey: .oggData)
+    try container.encodeIfPresent(self.maintenanceWindow, forKey: .maintenanceWindow)
+    try container.encodeIfPresent(self.maintenanceConfig, forKey: .maintenanceConfig)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    try container.encode(self.lifecycleSubState, forKey: .lifecycleSubState)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.deploymentBackupId, forKey: .deploymentBackupId)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
+    try container.encode(self.healthy, forKey: .healthy)
+    try container.encode(self.loadBalancerSubnetId, forKey: .loadBalancerSubnetId)
+    try container.encode(self.loadBalancerId, forKey: .loadBalancerId)
+    try container.encode(self.nsgIds, forKey: .nsgIds)
+    try container.encode(self.isPublic, forKey: .isPublic)
+    try container.encode(self.publicIpAddress, forKey: .publicIpAddress)
+    try container.encode(self.privateIpAddress, forKey: .privateIpAddress)
+    try container.encode(self.deploymentUrl, forKey: .deploymentUrl)
+    try container.encode(self.isLatestVersion, forKey: .isLatestVersion)
+    try container.encodeIfPresent(self.upgradeRequiredTime, forKey: .upgradeRequiredTime)
+    try container.encode(self.storageUtilizationBytes, forKey: .storageUtilizationBytes)
+    try container.encode(
+      self.isStorageUtilizationLimitExceeded, forKey: .isStorageUtilizationLimitExceeded)
+    try container.encodeIfPresent(self.deploymentDiagnosticData, forKey: .deploymentDiagnosticData)
+    try container.encodeIfPresent(self.backupSchedule, forKey: .backupSchedule)
+    try container.encodeIfPresent(self.nextMaintenanceTime, forKey: .nextMaintenanceTime)
+    try container.encode(self.nextMaintenanceActionType, forKey: .nextMaintenanceActionType)
+    try container.encode(self.nextMaintenanceDescription, forKey: .nextMaintenanceDescription)
+    try container.encodeIfPresent(self.oggVersionSupportEndTime, forKey: .oggVersionSupportEndTime)
+    try container.encode(self.ingressIps, forKey: .ingressIps)
+    try container.encode(self.deploymentRole, forKey: .deploymentRole)
+    try container.encodeIfPresent(self.lastBackupScheduleTime, forKey: .lastBackupScheduleTime)
+    try container.encodeIfPresent(self.nextBackupScheduleTime, forKey: .nextBackupScheduleTime)
+    try container.encodeIfPresent(self.roleChangeTime, forKey: .roleChangeTime)
+    try container.encode(self.locks, forKey: .locks)
+    try container.encode(self.placements, forKey: .placements)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the GoldengateDeployment.

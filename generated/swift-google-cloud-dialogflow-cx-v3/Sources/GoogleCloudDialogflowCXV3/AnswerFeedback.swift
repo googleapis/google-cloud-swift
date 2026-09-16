@@ -34,6 +34,8 @@
     /// customized JSON object to indicate the rating.
     public var customRating: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnswerFeedback`.
     public init() {}
 
@@ -50,6 +52,49 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rating = CodingKeys(stringValue: "rating")
+      static let ratingReason = CodingKeys(stringValue: "ratingReason")
+      static let customRating = CodingKeys(stringValue: "customRating")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rating",
+        "ratingReason",
+        "customRating",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(AnswerFeedback.Rating.self, forKey: .rating) {
+        self.rating = value
+      }
+      self.ratingReason = try container.decodeIfPresent(
+        AnswerFeedback.RatingReason.self, forKey: .ratingReason)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customRating) {
+        self.customRating = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rating, forKey: .rating)
+      try container.encodeIfPresent(self.ratingReason, forKey: .ratingReason)
+      try container.encode(self.customRating, forKey: .customRating)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Stores extra information about why users provided thumbs down rating.
     public struct RatingReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -62,6 +107,8 @@
       /// Optional. Additional feedback about the rating.
       /// This field can be populated without choosing a predefined `reason`.
       public var feedback: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RatingReason`.
       public init() {}
@@ -77,6 +124,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let reasonLabels = CodingKeys(stringValue: "reasonLabels")
+        static let feedback = CodingKeys(stringValue: "feedback")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "reasonLabels",
+          "feedback",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reasonLabels) {
+          self.reasonLabels = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .feedback) {
+          self.feedback = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.reasonLabels, forKey: .reasonLabels)
+        try container.encode(self.feedback, forKey: .feedback)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

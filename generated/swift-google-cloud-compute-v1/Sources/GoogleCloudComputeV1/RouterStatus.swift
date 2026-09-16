@@ -49,6 +49,8 @@
     /// URI of the network to which this router belongs.
     public var network: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterStatus`.
     public init() {}
 
@@ -63,6 +65,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bestRoutes = CodingKeys(stringValue: "bestRoutes")
+      static let bestRoutesForRouter = CodingKeys(stringValue: "bestRoutesForRouter")
+      static let bgpPeerStatus = CodingKeys(stringValue: "bgpPeerStatus")
+      static let natStatus = CodingKeys(stringValue: "natStatus")
+      static let nccGateway = CodingKeys(stringValue: "nccGateway")
+      static let network = CodingKeys(stringValue: "network")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bestRoutes",
+        "bestRoutesForRouter",
+        "bgpPeerStatus",
+        "natStatus",
+        "nccGateway",
+        "network",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Route].self, forKey: .bestRoutes) {
+        self.bestRoutes = value
+      }
+      if let value = try container.decodeIfPresent([Route].self, forKey: .bestRoutesForRouter) {
+        self.bestRoutesForRouter = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RouterStatusBgpPeerStatus].self, forKey: .bgpPeerStatus)
+      {
+        self.bgpPeerStatus = value
+      }
+      if let value = try container.decodeIfPresent([RouterStatusNatStatus].self, forKey: .natStatus)
+      {
+        self.natStatus = value
+      }
+      self.nccGateway = try container.decodeIfPresent(Swift.String.self, forKey: .nccGateway)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.bestRoutes, forKey: .bestRoutes)
+      try container.encode(self.bestRoutesForRouter, forKey: .bestRoutesForRouter)
+      try container.encode(self.bgpPeerStatus, forKey: .bgpPeerStatus)
+      try container.encode(self.natStatus, forKey: .natStatus)
+      try container.encodeIfPresent(self.nccGateway, forKey: .nccGateway)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

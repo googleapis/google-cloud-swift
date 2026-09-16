@@ -53,6 +53,8 @@ public struct FileClusterSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// were seen and file_extensions_seen is empty.
   public var noFilesExist: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileClusterSummary`.
   public init() {}
 
@@ -67,6 +69,82 @@ public struct FileClusterSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fileClusterType = CodingKeys(stringValue: "fileClusterType")
+    static let fileStoreInfoTypeSummaries = CodingKeys(stringValue: "fileStoreInfoTypeSummaries")
+    static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+    static let dataRiskLevel = CodingKeys(stringValue: "dataRiskLevel")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let fileExtensionsScanned = CodingKeys(stringValue: "fileExtensionsScanned")
+    static let fileExtensionsSeen = CodingKeys(stringValue: "fileExtensionsSeen")
+    static let noFilesExist = CodingKeys(stringValue: "noFilesExist")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fileClusterType",
+      "fileStoreInfoTypeSummaries",
+      "sensitivityScore",
+      "dataRiskLevel",
+      "errors",
+      "fileExtensionsScanned",
+      "fileExtensionsSeen",
+      "noFilesExist",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.fileClusterType = try container.decodeIfPresent(
+      FileClusterType.self, forKey: .fileClusterType)
+    if let value = try container.decodeIfPresent(
+      [FileStoreInfoTypeSummary].self, forKey: .fileStoreInfoTypeSummaries)
+    {
+      self.fileStoreInfoTypeSummaries = value
+    }
+    self.sensitivityScore = try container.decodeIfPresent(
+      SensitivityScore.self, forKey: .sensitivityScore)
+    self.dataRiskLevel = try container.decodeIfPresent(DataRiskLevel.self, forKey: .dataRiskLevel)
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FileExtensionInfo].self, forKey: .fileExtensionsScanned)
+    {
+      self.fileExtensionsScanned = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FileExtensionInfo].self, forKey: .fileExtensionsSeen)
+    {
+      self.fileExtensionsSeen = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noFilesExist) {
+      self.noFilesExist = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.fileClusterType, forKey: .fileClusterType)
+    try container.encode(self.fileStoreInfoTypeSummaries, forKey: .fileStoreInfoTypeSummaries)
+    try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
+    try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encode(self.fileExtensionsScanned, forKey: .fileExtensionsScanned)
+    try container.encode(self.fileExtensionsSeen, forKey: .fileExtensionsSeen)
+    try container.encode(self.noFilesExist, forKey: .noFilesExist)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

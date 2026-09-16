@@ -31,6 +31,8 @@ public struct ClusterNetworking: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// changed after creation.
   public var servicesIpv4CidrBlocks: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterNetworking`.
   public init() {}
 
@@ -45,6 +47,48 @@ public struct ClusterNetworking: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterIpv4CidrBlocks = CodingKeys(stringValue: "clusterIpv4CidrBlocks")
+    static let servicesIpv4CidrBlocks = CodingKeys(stringValue: "servicesIpv4CidrBlocks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterIpv4CidrBlocks",
+      "servicesIpv4CidrBlocks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .clusterIpv4CidrBlocks)
+    {
+      self.clusterIpv4CidrBlocks = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .servicesIpv4CidrBlocks)
+    {
+      self.servicesIpv4CidrBlocks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterIpv4CidrBlocks, forKey: .clusterIpv4CidrBlocks)
+    try container.encode(self.servicesIpv4CidrBlocks, forKey: .servicesIpv4CidrBlocks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

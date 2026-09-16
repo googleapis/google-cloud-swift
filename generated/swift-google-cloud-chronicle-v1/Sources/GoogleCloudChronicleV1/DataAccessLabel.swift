@@ -48,6 +48,8 @@ public struct DataAccessLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// data gets tagged with this label.
   public var definition: OneOf_Definition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataAccessLabel`.
   public init() {}
 
@@ -64,28 +66,54 @@ public struct DataAccessLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case udmQuery = "udmQuery"
-    case name = "name"
-    case displayName = "displayName"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case author = "author"
-    case lastEditor = "lastEditor"
-    case description = "description"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let udmQuery = CodingKeys(stringValue: "udmQuery")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let author = CodingKeys(stringValue: "author")
+    static let lastEditor = CodingKeys(stringValue: "lastEditor")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "udmQuery",
+      "name",
+      "displayName",
+      "createTime",
+      "updateTime",
+      "author",
+      "lastEditor",
+      "description",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.author = try container.decode(Swift.String.self, forKey: .author)
-    self.lastEditor = try container.decode(Swift.String.self, forKey: .lastEditor)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
+      self.author = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastEditor) {
+      self.lastEditor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var definition: OneOf_Definition? = nil
     let definitionCheckAndSet = {
@@ -101,14 +129,18 @@ public struct DataAccessLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try definitionCheckAndSet(.udmQuery(udmQuery))
     }
     self.definition = definition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.author, forKey: .author)
     try container.encode(self.lastEditor, forKey: .lastEditor)
     try container.encode(self.description, forKey: .description)
@@ -118,6 +150,9 @@ public struct DataAccessLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .udmQuery(let value):
         try container.encode(value, forKey: .udmQuery)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

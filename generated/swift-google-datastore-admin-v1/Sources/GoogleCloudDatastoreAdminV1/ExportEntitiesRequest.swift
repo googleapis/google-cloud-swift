@@ -55,6 +55,8 @@ public struct ExportEntitiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// [google.datastore.admin.v1.ExportEntitiesResponse.output_url]: <doc:ExportEntitiesResponse/outputUrl>
   public var outputUrlPrefix: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportEntitiesRequest`.
   public init() {}
 
@@ -69,6 +71,55 @@ public struct ExportEntitiesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let entityFilter = CodingKeys(stringValue: "entityFilter")
+    static let outputUrlPrefix = CodingKeys(stringValue: "outputUrlPrefix")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "labels",
+      "entityFilter",
+      "outputUrlPrefix",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.entityFilter = try container.decodeIfPresent(EntityFilter.self, forKey: .entityFilter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUrlPrefix) {
+      self.outputUrlPrefix = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.entityFilter, forKey: .entityFilter)
+    try container.encode(self.outputUrlPrefix, forKey: .outputUrlPrefix)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

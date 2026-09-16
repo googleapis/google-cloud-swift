@@ -47,6 +47,8 @@ public struct SparkBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// name in `main_class`.
   public var driver: OneOf_Driver? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SparkBatch`.
   public init() {}
 
@@ -63,21 +65,43 @@ public struct SparkBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mainJarFileUri = "mainJarFileUri"
-    case mainClass = "mainClass"
-    case args = "args"
-    case jarFileUris = "jarFileUris"
-    case fileUris = "fileUris"
-    case archiveUris = "archiveUris"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mainJarFileUri = CodingKeys(stringValue: "mainJarFileUri")
+    static let mainClass = CodingKeys(stringValue: "mainClass")
+    static let args = CodingKeys(stringValue: "args")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+    static let fileUris = CodingKeys(stringValue: "fileUris")
+    static let archiveUris = CodingKeys(stringValue: "archiveUris")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mainJarFileUri",
+      "mainClass",
+      "args",
+      "jarFileUris",
+      "fileUris",
+      "archiveUris",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.args = try container.decode([Swift.String].self, forKey: .args)
-    self.jarFileUris = try container.decode([Swift.String].self, forKey: .jarFileUris)
-    self.fileUris = try container.decode([Swift.String].self, forKey: .fileUris)
-    self.archiveUris = try container.decode([Swift.String].self, forKey: .archiveUris)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fileUris) {
+      self.fileUris = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .archiveUris) {
+      self.archiveUris = value
+    }
 
     var driver: OneOf_Driver? = nil
     let driverCheckAndSet = {
@@ -98,6 +122,10 @@ public struct SparkBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try driverCheckAndSet(.mainClass(mainClass))
     }
     self.driver = driver
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,6 +142,9 @@ public struct SparkBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .mainClass(let value):
         try container.encode(value, forKey: .mainClass)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

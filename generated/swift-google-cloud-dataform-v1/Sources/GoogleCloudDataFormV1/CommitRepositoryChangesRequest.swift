@@ -36,6 +36,8 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
   /// full file path including filename, from repository root.
   public var fileOperations: [Swift.String: CommitRepositoryChangesRequest.FileOperation] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommitRepositoryChangesRequest`.
   public init() {}
 
@@ -52,12 +54,66 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let commitMetadata = CodingKeys(stringValue: "commitMetadata")
+    static let requiredHeadCommitSha = CodingKeys(stringValue: "requiredHeadCommitSha")
+    static let fileOperations = CodingKeys(stringValue: "fileOperations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "commitMetadata",
+      "requiredHeadCommitSha",
+      "fileOperations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.commitMetadata = try container.decodeIfPresent(
+      CommitMetadata.self, forKey: .commitMetadata)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requiredHeadCommitSha)
+    {
+      self.requiredHeadCommitSha = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CommitRepositoryChangesRequest.FileOperation].self, forKey: .fileOperations)
+    {
+      self.fileOperations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.commitMetadata, forKey: .commitMetadata)
+    try container.encode(self.requiredHeadCommitSha, forKey: .requiredHeadCommitSha)
+    try container.encode(self.fileOperations, forKey: .fileOperations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents a single file operation to the repository.
   public struct FileOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The operation to perform on the file.
     public var operation: OneOf_Operation? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `FileOperation`.
     public init() {}
@@ -75,9 +131,19 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case writeFile = "writeFile"
-      case deleteFile = "deleteFile"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let writeFile = CodingKeys(stringValue: "writeFile")
+      static let deleteFile = CodingKeys(stringValue: "deleteFile")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "writeFile",
+        "deleteFile",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -104,6 +170,10 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
         try operationCheckAndSet(.deleteFile(deleteFile))
       }
       self.operation = operation
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,6 +187,9 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
           try container.encode(value, forKey: .deleteFile)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents the write file operation (for files added or modified).
@@ -125,6 +198,8 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
     {
       /// The file's contents.
       public var contents: Foundation.Data = Foundation.Data()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `WriteFile`.
       public init() {}
@@ -140,6 +215,38 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let contents = CodingKeys(stringValue: "contents")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "contents"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .contents) {
+          self.contents = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.contents, forKey: .contents)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -158,6 +265,8 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
     public struct DeleteFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DeleteFile`.
       public init() {}
 
@@ -172,6 +281,30 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let _knownKeys: Set<Swift.String> = []
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -102,6 +102,8 @@
     /// synthesization options as well, agent settings overrides the option here.
     public var ttsConfig: SynthesizeSpeechConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationProfile`.
     public init() {}
 
@@ -116,6 +118,125 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let automatedAgentConfig = CodingKeys(stringValue: "automatedAgentConfig")
+      static let humanAgentAssistantConfig = CodingKeys(stringValue: "humanAgentAssistantConfig")
+      static let humanAgentHandoffConfig = CodingKeys(stringValue: "humanAgentHandoffConfig")
+      static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+      static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+      static let newMessageEventNotificationConfig = CodingKeys(
+        stringValue: "newMessageEventNotificationConfig")
+      static let newRecognitionResultNotificationConfig = CodingKeys(
+        stringValue: "newRecognitionResultNotificationConfig")
+      static let sttConfig = CodingKeys(stringValue: "sttConfig")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let sipConfig = CodingKeys(stringValue: "sipConfig")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let securitySettings = CodingKeys(stringValue: "securitySettings")
+      static let ttsConfig = CodingKeys(stringValue: "ttsConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "createTime",
+        "updateTime",
+        "automatedAgentConfig",
+        "humanAgentAssistantConfig",
+        "humanAgentHandoffConfig",
+        "notificationConfig",
+        "loggingConfig",
+        "newMessageEventNotificationConfig",
+        "newRecognitionResultNotificationConfig",
+        "sttConfig",
+        "languageCode",
+        "sipConfig",
+        "timeZone",
+        "securitySettings",
+        "ttsConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.automatedAgentConfig = try container.decodeIfPresent(
+        AutomatedAgentConfig.self, forKey: .automatedAgentConfig)
+      self.humanAgentAssistantConfig = try container.decodeIfPresent(
+        HumanAgentAssistantConfig.self, forKey: .humanAgentAssistantConfig)
+      self.humanAgentHandoffConfig = try container.decodeIfPresent(
+        HumanAgentHandoffConfig.self, forKey: .humanAgentHandoffConfig)
+      self.notificationConfig = try container.decodeIfPresent(
+        NotificationConfig.self, forKey: .notificationConfig)
+      self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+      self.newMessageEventNotificationConfig = try container.decodeIfPresent(
+        NotificationConfig.self, forKey: .newMessageEventNotificationConfig)
+      self.newRecognitionResultNotificationConfig = try container.decodeIfPresent(
+        NotificationConfig.self, forKey: .newRecognitionResultNotificationConfig)
+      self.sttConfig = try container.decodeIfPresent(SpeechToTextConfig.self, forKey: .sttConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      self.sipConfig = try container.decodeIfPresent(SipConfig.self, forKey: .sipConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securitySettings) {
+        self.securitySettings = value
+      }
+      self.ttsConfig = try container.decodeIfPresent(
+        SynthesizeSpeechConfig.self, forKey: .ttsConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.automatedAgentConfig, forKey: .automatedAgentConfig)
+      try container.encodeIfPresent(
+        self.humanAgentAssistantConfig, forKey: .humanAgentAssistantConfig)
+      try container.encodeIfPresent(self.humanAgentHandoffConfig, forKey: .humanAgentHandoffConfig)
+      try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+      try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+      try container.encodeIfPresent(
+        self.newMessageEventNotificationConfig, forKey: .newMessageEventNotificationConfig)
+      try container.encodeIfPresent(
+        self.newRecognitionResultNotificationConfig, forKey: .newRecognitionResultNotificationConfig
+      )
+      try container.encodeIfPresent(self.sttConfig, forKey: .sttConfig)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encodeIfPresent(self.sipConfig, forKey: .sipConfig)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encode(self.securitySettings, forKey: .securitySettings)
+      try container.encodeIfPresent(self.ttsConfig, forKey: .ttsConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

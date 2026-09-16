@@ -120,6 +120,8 @@
     /// (regional scope) or INTERNAL_MANAGED.
     public var regexMatch: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpRouteRuleMatch`.
     public init() {}
 
@@ -134,6 +136,74 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fullPathMatch = CodingKeys(stringValue: "fullPathMatch")
+      static let headerMatches = CodingKeys(stringValue: "headerMatches")
+      static let ignoreCase = CodingKeys(stringValue: "ignoreCase")
+      static let metadataFilters = CodingKeys(stringValue: "metadataFilters")
+      static let pathTemplateMatch = CodingKeys(stringValue: "pathTemplateMatch")
+      static let prefixMatch = CodingKeys(stringValue: "prefixMatch")
+      static let queryParameterMatches = CodingKeys(stringValue: "queryParameterMatches")
+      static let regexMatch = CodingKeys(stringValue: "regexMatch")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fullPathMatch",
+        "headerMatches",
+        "ignoreCase",
+        "metadataFilters",
+        "pathTemplateMatch",
+        "prefixMatch",
+        "queryParameterMatches",
+        "regexMatch",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.fullPathMatch = try container.decodeIfPresent(Swift.String.self, forKey: .fullPathMatch)
+      if let value = try container.decodeIfPresent([HttpHeaderMatch].self, forKey: .headerMatches) {
+        self.headerMatches = value
+      }
+      self.ignoreCase = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreCase)
+      if let value = try container.decodeIfPresent([MetadataFilter].self, forKey: .metadataFilters)
+      {
+        self.metadataFilters = value
+      }
+      self.pathTemplateMatch = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pathTemplateMatch)
+      self.prefixMatch = try container.decodeIfPresent(Swift.String.self, forKey: .prefixMatch)
+      if let value = try container.decodeIfPresent(
+        [HttpQueryParameterMatch].self, forKey: .queryParameterMatches)
+      {
+        self.queryParameterMatches = value
+      }
+      self.regexMatch = try container.decodeIfPresent(Swift.String.self, forKey: .regexMatch)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.fullPathMatch, forKey: .fullPathMatch)
+      try container.encode(self.headerMatches, forKey: .headerMatches)
+      try container.encodeIfPresent(self.ignoreCase, forKey: .ignoreCase)
+      try container.encode(self.metadataFilters, forKey: .metadataFilters)
+      try container.encodeIfPresent(self.pathTemplateMatch, forKey: .pathTemplateMatch)
+      try container.encodeIfPresent(self.prefixMatch, forKey: .prefixMatch)
+      try container.encode(self.queryParameterMatches, forKey: .queryParameterMatches)
+      try container.encodeIfPresent(self.regexMatch, forKey: .regexMatch)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

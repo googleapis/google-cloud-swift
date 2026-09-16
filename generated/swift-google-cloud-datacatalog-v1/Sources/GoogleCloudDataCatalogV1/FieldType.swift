@@ -23,6 +23,8 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required.
   public var typeDecl: OneOf_TypeDecl? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FieldType`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case primitiveType = "primitiveType"
-    case enumType = "enumType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let primitiveType = CodingKeys(stringValue: "primitiveType")
+    static let enumType = CodingKeys(stringValue: "enumType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "primitiveType",
+      "enumType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +78,10 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeDeclCheckAndSet(.enumType(enumType))
     }
     self.typeDecl = typeDecl
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +94,9 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .enumType(let value):
         try container.encode(value, forKey: .enumType)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -95,6 +114,8 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `RenameTagTemplateFieldEnumValue` method.
     public var allowedValues: [FieldType.EnumType.EnumValue] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EnumType`.
     public init() {}
 
@@ -111,6 +132,40 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedValues = CodingKeys(stringValue: "allowedValues")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedValues"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [FieldType.EnumType.EnumValue].self, forKey: .allowedValues)
+      {
+        self.allowedValues = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedValues, forKey: .allowedValues)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     public struct EnumValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
@@ -121,6 +176,8 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// (_), dashes (-), spaces ( ), and can't start or end with spaces. The
       /// maximum length is 200 characters.
       public var displayName: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `EnumValue`.
       public init() {}
@@ -136,6 +193,38 @@ public struct FieldType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let displayName = CodingKeys(stringValue: "displayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "displayName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.displayName, forKey: .displayName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

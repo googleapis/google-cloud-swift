@@ -105,6 +105,8 @@ public struct Company: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// abusive, or spammy.
   public var suspended: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Company`.
   public init() {}
 
@@ -121,6 +123,112 @@ public struct Company: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let externalId = CodingKeys(stringValue: "externalId")
+    static let size = CodingKeys(stringValue: "size")
+    static let headquartersAddress = CodingKeys(stringValue: "headquartersAddress")
+    static let hiringAgency = CodingKeys(stringValue: "hiringAgency")
+    static let eeoText = CodingKeys(stringValue: "eeoText")
+    static let websiteUri = CodingKeys(stringValue: "websiteUri")
+    static let careerSiteUri = CodingKeys(stringValue: "careerSiteUri")
+    static let imageUri = CodingKeys(stringValue: "imageUri")
+    static let keywordSearchableJobCustomAttributes = CodingKeys(
+      stringValue: "keywordSearchableJobCustomAttributes")
+    static let derivedInfo = CodingKeys(stringValue: "derivedInfo")
+    static let suspended = CodingKeys(stringValue: "suspended")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "externalId",
+      "size",
+      "headquartersAddress",
+      "hiringAgency",
+      "eeoText",
+      "websiteUri",
+      "careerSiteUri",
+      "imageUri",
+      "keywordSearchableJobCustomAttributes",
+      "derivedInfo",
+      "suspended",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalId) {
+      self.externalId = value
+    }
+    if let value = try container.decodeIfPresent(CompanySize.self, forKey: .size) {
+      self.size = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .headquartersAddress) {
+      self.headquartersAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hiringAgency) {
+      self.hiringAgency = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eeoText) {
+      self.eeoText = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .websiteUri) {
+      self.websiteUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .careerSiteUri) {
+      self.careerSiteUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+      self.imageUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .keywordSearchableJobCustomAttributes)
+    {
+      self.keywordSearchableJobCustomAttributes = value
+    }
+    self.derivedInfo = try container.decodeIfPresent(Company.DerivedInfo.self, forKey: .derivedInfo)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .suspended) {
+      self.suspended = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.externalId, forKey: .externalId)
+    try container.encode(self.size, forKey: .size)
+    try container.encode(self.headquartersAddress, forKey: .headquartersAddress)
+    try container.encode(self.hiringAgency, forKey: .hiringAgency)
+    try container.encode(self.eeoText, forKey: .eeoText)
+    try container.encode(self.websiteUri, forKey: .websiteUri)
+    try container.encode(self.careerSiteUri, forKey: .careerSiteUri)
+    try container.encode(self.imageUri, forKey: .imageUri)
+    try container.encode(
+      self.keywordSearchableJobCustomAttributes, forKey: .keywordSearchableJobCustomAttributes)
+    try container.encodeIfPresent(self.derivedInfo, forKey: .derivedInfo)
+    try container.encode(self.suspended, forKey: .suspended)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Derived details about the company.
   public struct DerivedInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -131,6 +239,8 @@ public struct Company: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///
     /// [google.cloud.talent.v4.Company.headquarters_address]: <doc:Company/headquartersAddress>
     public var headquartersLocation: Location? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DerivedInfo`.
     public init() {}
@@ -146,6 +256,37 @@ public struct Company: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let headquartersLocation = CodingKeys(stringValue: "headquartersLocation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "headquartersLocation"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.headquartersLocation = try container.decodeIfPresent(
+        Location.self, forKey: .headquartersLocation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.headquartersLocation, forKey: .headquartersLocation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

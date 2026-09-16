@@ -93,6 +93,8 @@ public struct MountedImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Image Expiration Date
   public var imageExpirationDate: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MountedImage`.
   public init() {}
 
@@ -107,6 +109,178 @@ public struct MountedImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceResourceName = CodingKeys(stringValue: "sourceResourceName")
+    static let sourceResourceId = CodingKeys(stringValue: "sourceResourceId")
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+    static let mountedImageName = CodingKeys(stringValue: "mountedImageName")
+    static let sourceImageName = CodingKeys(stringValue: "sourceImageName")
+    static let sourceImageType = CodingKeys(stringValue: "sourceImageType")
+    static let recoveryPointDate = CodingKeys(stringValue: "recoveryPointDate")
+    static let lastMountDate = CodingKeys(stringValue: "lastMountDate")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let sourceHostName = CodingKeys(stringValue: "sourceHostName")
+    static let sourceHostId = CodingKeys(stringValue: "sourceHostId")
+    static let mountedHostName = CodingKeys(stringValue: "mountedHostName")
+    static let mountedHostId = CodingKeys(stringValue: "mountedHostId")
+    static let mountedResourceName = CodingKeys(stringValue: "mountedResourceName")
+    static let resourceVirtualSizeInGib = CodingKeys(stringValue: "resourceVirtualSizeInGib")
+    static let storageConsumedInGib = CodingKeys(stringValue: "storageConsumedInGib")
+    static let mountedResourceLabel = CodingKeys(stringValue: "mountedResourceLabel")
+    static let restorableObject = CodingKeys(stringValue: "restorableObject")
+    static let mountedImageAgeInDays = CodingKeys(stringValue: "mountedImageAgeInDays")
+    static let userName = CodingKeys(stringValue: "userName")
+    static let readMode = CodingKeys(stringValue: "readMode")
+    static let resourceSizeInGib = CodingKeys(stringValue: "resourceSizeInGib")
+    static let imageExpirationDate = CodingKeys(stringValue: "imageExpirationDate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceResourceName",
+      "sourceResourceId",
+      "applianceName",
+      "applianceId",
+      "mountedImageName",
+      "sourceImageName",
+      "sourceImageType",
+      "recoveryPointDate",
+      "lastMountDate",
+      "resourceType",
+      "sourceHostName",
+      "sourceHostId",
+      "mountedHostName",
+      "mountedHostId",
+      "mountedResourceName",
+      "resourceVirtualSizeInGib",
+      "storageConsumedInGib",
+      "mountedResourceLabel",
+      "restorableObject",
+      "mountedImageAgeInDays",
+      "userName",
+      "readMode",
+      "resourceSizeInGib",
+      "imageExpirationDate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceResourceName) {
+      self.sourceResourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceResourceId) {
+      self.sourceResourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountedImageName) {
+      self.mountedImageName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImageName) {
+      self.sourceImageName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImageType) {
+      self.sourceImageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recoveryPointDate) {
+      self.recoveryPointDate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastMountDate) {
+      self.lastMountDate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceHostName) {
+      self.sourceHostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceHostId) {
+      self.sourceHostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountedHostName) {
+      self.mountedHostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountedHostId) {
+      self.mountedHostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountedResourceName) {
+      self.mountedResourceName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .resourceVirtualSizeInGib)
+    {
+      self.resourceVirtualSizeInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .storageConsumedInGib) {
+      self.storageConsumedInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mountedResourceLabel) {
+      self.mountedResourceLabel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .restorableObject) {
+      self.restorableObject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .mountedImageAgeInDays) {
+      self.mountedImageAgeInDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userName) {
+      self.userName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .readMode) {
+      self.readMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .resourceSizeInGib) {
+      self.resourceSizeInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageExpirationDate) {
+      self.imageExpirationDate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceResourceName, forKey: .sourceResourceName)
+    try container.encode(self.sourceResourceId, forKey: .sourceResourceId)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    try container.encode(self.mountedImageName, forKey: .mountedImageName)
+    try container.encode(self.sourceImageName, forKey: .sourceImageName)
+    try container.encode(self.sourceImageType, forKey: .sourceImageType)
+    try container.encode(self.recoveryPointDate, forKey: .recoveryPointDate)
+    try container.encode(self.lastMountDate, forKey: .lastMountDate)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.sourceHostName, forKey: .sourceHostName)
+    try container.encode(self.sourceHostId, forKey: .sourceHostId)
+    try container.encode(self.mountedHostName, forKey: .mountedHostName)
+    try container.encode(self.mountedHostId, forKey: .mountedHostId)
+    try container.encode(self.mountedResourceName, forKey: .mountedResourceName)
+    try container.encode(self.resourceVirtualSizeInGib, forKey: .resourceVirtualSizeInGib)
+    try container.encode(self.storageConsumedInGib, forKey: .storageConsumedInGib)
+    try container.encode(self.mountedResourceLabel, forKey: .mountedResourceLabel)
+    try container.encode(self.restorableObject, forKey: .restorableObject)
+    try container.encode(self.mountedImageAgeInDays, forKey: .mountedImageAgeInDays)
+    try container.encode(self.userName, forKey: .userName)
+    try container.encode(self.readMode, forKey: .readMode)
+    try container.encode(self.resourceSizeInGib, forKey: .resourceSizeInGib)
+    try container.encode(self.imageExpirationDate, forKey: .imageExpirationDate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

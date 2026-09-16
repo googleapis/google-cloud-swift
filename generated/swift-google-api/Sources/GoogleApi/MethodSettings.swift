@@ -74,6 +74,8 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///           delay_threshold_millis: 10
   public var batching: BatchingConfigProto? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MethodSettings`.
   public init() {}
 
@@ -88,6 +90,54 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let longRunning = CodingKeys(stringValue: "longRunning")
+    static let autoPopulatedFields = CodingKeys(stringValue: "autoPopulatedFields")
+    static let batching = CodingKeys(stringValue: "batching")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "longRunning",
+      "autoPopulatedFields",
+      "batching",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    self.longRunning = try container.decodeIfPresent(
+      MethodSettings.LongRunning.self, forKey: .longRunning)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .autoPopulatedFields)
+    {
+      self.autoPopulatedFields = value
+    }
+    self.batching = try container.decodeIfPresent(BatchingConfigProto.self, forKey: .batching)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.selector, forKey: .selector)
+    try container.encodeIfPresent(self.longRunning, forKey: .longRunning)
+    try container.encode(self.autoPopulatedFields, forKey: .autoPopulatedFields)
+    try container.encodeIfPresent(self.batching, forKey: .batching)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes settings to use when generating API methods that use the
@@ -115,6 +165,8 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Default value: 5 minutes.
     public var totalPollTimeout: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LongRunning`.
     public init() {}
 
@@ -129,6 +181,53 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let initialPollDelay = CodingKeys(stringValue: "initialPollDelay")
+      static let pollDelayMultiplier = CodingKeys(stringValue: "pollDelayMultiplier")
+      static let maxPollDelay = CodingKeys(stringValue: "maxPollDelay")
+      static let totalPollTimeout = CodingKeys(stringValue: "totalPollTimeout")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "initialPollDelay",
+        "pollDelayMultiplier",
+        "maxPollDelay",
+        "totalPollTimeout",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.initialPollDelay = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .initialPollDelay)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .pollDelayMultiplier) {
+        self.pollDelayMultiplier = value
+      }
+      self.maxPollDelay = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxPollDelay)
+      self.totalPollTimeout = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .totalPollTimeout)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.initialPollDelay, forKey: .initialPollDelay)
+      try container.encode(self.pollDelayMultiplier, forKey: .pollDelayMultiplier)
+      try container.encodeIfPresent(self.maxPollDelay, forKey: .maxPollDelay)
+      try container.encodeIfPresent(self.totalPollTimeout, forKey: .totalPollTimeout)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

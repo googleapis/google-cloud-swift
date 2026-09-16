@@ -54,6 +54,8 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
 
   public var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskImageTargetDetails`.
   public init() {}
 
@@ -70,28 +72,61 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case osAdaptationParameters = "osAdaptationParameters"
-    case dataDiskImageImport = "dataDiskImageImport"
-    case imageName = "imageName"
-    case targetProject = "targetProject"
-    case description = "description"
-    case familyName = "familyName"
-    case labels = "labels"
-    case additionalLicenses = "additionalLicenses"
-    case singleRegionStorage = "singleRegionStorage"
-    case encryption = "encryption"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let osAdaptationParameters = CodingKeys(stringValue: "osAdaptationParameters")
+    static let dataDiskImageImport = CodingKeys(stringValue: "dataDiskImageImport")
+    static let imageName = CodingKeys(stringValue: "imageName")
+    static let targetProject = CodingKeys(stringValue: "targetProject")
+    static let description = CodingKeys(stringValue: "description")
+    static let familyName = CodingKeys(stringValue: "familyName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let additionalLicenses = CodingKeys(stringValue: "additionalLicenses")
+    static let singleRegionStorage = CodingKeys(stringValue: "singleRegionStorage")
+    static let encryption = CodingKeys(stringValue: "encryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "osAdaptationParameters",
+      "dataDiskImageImport",
+      "imageName",
+      "targetProject",
+      "description",
+      "familyName",
+      "labels",
+      "additionalLicenses",
+      "singleRegionStorage",
+      "encryption",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.imageName = try container.decode(Swift.String.self, forKey: .imageName)
-    self.targetProject = try container.decode(Swift.String.self, forKey: .targetProject)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.familyName = try container.decode(Swift.String.self, forKey: .familyName)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.additionalLicenses = try container.decode([Swift.String].self, forKey: .additionalLicenses)
-    self.singleRegionStorage = try container.decode(Swift.Bool.self, forKey: .singleRegionStorage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageName) {
+      self.imageName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+      self.targetProject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .familyName) {
+      self.familyName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .additionalLicenses) {
+      self.additionalLicenses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .singleRegionStorage) {
+      self.singleRegionStorage = value
+    }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
     var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
@@ -115,6 +150,10 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
       try osAdaptationConfigCheckAndSet(.dataDiskImageImport(dataDiskImageImport))
     }
     self.osAdaptationConfig = osAdaptationConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,7 +165,7 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.additionalLicenses, forKey: .additionalLicenses)
     try container.encode(self.singleRegionStorage, forKey: .singleRegionStorage)
-    try container.encode(self.encryption, forKey: .encryption)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
 
     if let choice = self.osAdaptationConfig {
       switch choice {
@@ -135,6 +174,9 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .dataDiskImageImport(let value):
         try container.encode(value, forKey: .dataDiskImageImport)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

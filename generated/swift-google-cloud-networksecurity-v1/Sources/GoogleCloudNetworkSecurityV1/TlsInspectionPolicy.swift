@@ -85,6 +85,8 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Note that Secure Web Proxy does not yet honor this field.
   public var customTlsFeatures: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TlsInspectionPolicy`.
   public init() {}
 
@@ -99,6 +101,93 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let caPool = CodingKeys(stringValue: "caPool")
+    static let trustConfig = CodingKeys(stringValue: "trustConfig")
+    static let excludePublicCaSet = CodingKeys(stringValue: "excludePublicCaSet")
+    static let minTlsVersion = CodingKeys(stringValue: "minTlsVersion")
+    static let tlsFeatureProfile = CodingKeys(stringValue: "tlsFeatureProfile")
+    static let customTlsFeatures = CodingKeys(stringValue: "customTlsFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "caPool",
+      "trustConfig",
+      "excludePublicCaSet",
+      "minTlsVersion",
+      "tlsFeatureProfile",
+      "customTlsFeatures",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caPool) {
+      self.caPool = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustConfig) {
+      self.trustConfig = value
+    }
+    self.excludePublicCaSet = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .excludePublicCaSet)
+    if let value = try container.decodeIfPresent(
+      TlsInspectionPolicy.TlsVersion.self, forKey: .minTlsVersion)
+    {
+      self.minTlsVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      TlsInspectionPolicy.Profile.self, forKey: .tlsFeatureProfile)
+    {
+      self.tlsFeatureProfile = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .customTlsFeatures) {
+      self.customTlsFeatures = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.caPool, forKey: .caPool)
+    try container.encode(self.trustConfig, forKey: .trustConfig)
+    try container.encodeIfPresent(self.excludePublicCaSet, forKey: .excludePublicCaSet)
+    try container.encode(self.minTlsVersion, forKey: .minTlsVersion)
+    try container.encode(self.tlsFeatureProfile, forKey: .tlsFeatureProfile)
+    try container.encode(self.customTlsFeatures, forKey: .customTlsFeatures)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The minimum version of TLS protocol that can be used by clients or servers

@@ -27,6 +27,8 @@ public struct WorkforceIdentityBasedOAuth2ClientID: Codable, Equatable, GoogleCl
   /// Output only. Third party OAuth Client ID for External Identity Providers.
   public var thirdPartyOauth2ClientId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkforceIdentityBasedOAuth2ClientID`.
   public init() {}
 
@@ -41,6 +43,48 @@ public struct WorkforceIdentityBasedOAuth2ClientID: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let firstPartyOauth2ClientId = CodingKeys(stringValue: "firstPartyOauth2ClientId")
+    static let thirdPartyOauth2ClientId = CodingKeys(stringValue: "thirdPartyOauth2ClientId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "firstPartyOauth2ClientId",
+      "thirdPartyOauth2ClientId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .firstPartyOauth2ClientId)
+    {
+      self.firstPartyOauth2ClientId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .thirdPartyOauth2ClientId)
+    {
+      self.thirdPartyOauth2ClientId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.firstPartyOauth2ClientId, forKey: .firstPartyOauth2ClientId)
+    try container.encode(self.thirdPartyOauth2ClientId, forKey: .thirdPartyOauth2ClientId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

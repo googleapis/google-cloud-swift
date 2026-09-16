@@ -67,6 +67,8 @@
     /// type (and version when applicable) will be used.
     public var foundationModel: OneOf_FoundationModel? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Generator`.
     public init() {}
 
@@ -83,41 +85,78 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case description = "description"
-      case freeFormContext = "freeFormContext"
-      case agentCoachingContext = "agentCoachingContext"
-      case summarizationContext = "summarizationContext"
-      case inferenceParameter = "inferenceParameter"
-      case triggerEvent = "triggerEvent"
-      case publishedModel = "publishedModel"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case tools = "tools"
-      case suggestionDedupingConfig = "suggestionDedupingConfig"
-      case toolsetTools = "toolsetTools"
-      case cesToolSpecs = "cesToolSpecs"
-      case cesAppSpecs = "cesAppSpecs"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let freeFormContext = CodingKeys(stringValue: "freeFormContext")
+      static let agentCoachingContext = CodingKeys(stringValue: "agentCoachingContext")
+      static let summarizationContext = CodingKeys(stringValue: "summarizationContext")
+      static let inferenceParameter = CodingKeys(stringValue: "inferenceParameter")
+      static let triggerEvent = CodingKeys(stringValue: "triggerEvent")
+      static let publishedModel = CodingKeys(stringValue: "publishedModel")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let tools = CodingKeys(stringValue: "tools")
+      static let suggestionDedupingConfig = CodingKeys(stringValue: "suggestionDedupingConfig")
+      static let toolsetTools = CodingKeys(stringValue: "toolsetTools")
+      static let cesToolSpecs = CodingKeys(stringValue: "cesToolSpecs")
+      static let cesAppSpecs = CodingKeys(stringValue: "cesAppSpecs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "freeFormContext",
+        "agentCoachingContext",
+        "summarizationContext",
+        "inferenceParameter",
+        "triggerEvent",
+        "publishedModel",
+        "createTime",
+        "updateTime",
+        "tools",
+        "suggestionDedupingConfig",
+        "toolsetTools",
+        "cesToolSpecs",
+        "cesAppSpecs",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
       self.inferenceParameter = try container.decodeIfPresent(
         InferenceParameter.self, forKey: .inferenceParameter)
-      self.triggerEvent = try container.decode(TriggerEvent.self, forKey: .triggerEvent)
+      if let value = try container.decodeIfPresent(TriggerEvent.self, forKey: .triggerEvent) {
+        self.triggerEvent = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.tools = try container.decode([Swift.String].self, forKey: .tools)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tools) {
+        self.tools = value
+      }
       self.suggestionDedupingConfig = try container.decodeIfPresent(
         SuggestionDedupingConfig.self, forKey: .suggestionDedupingConfig)
-      self.toolsetTools = try container.decode([ToolsetTool].self, forKey: .toolsetTools)
-      self.cesToolSpecs = try container.decode([CesToolSpec].self, forKey: .cesToolSpecs)
-      self.cesAppSpecs = try container.decode([CesAppSpec].self, forKey: .cesAppSpecs)
+      if let value = try container.decodeIfPresent([ToolsetTool].self, forKey: .toolsetTools) {
+        self.toolsetTools = value
+      }
+      if let value = try container.decodeIfPresent([CesToolSpec].self, forKey: .cesToolSpecs) {
+        self.cesToolSpecs = value
+      }
+      if let value = try container.decodeIfPresent([CesAppSpec].self, forKey: .cesAppSpecs) {
+        self.cesAppSpecs = value
+      }
 
       var context: OneOf_Context? = nil
       let contextCheckAndSet = {
@@ -162,18 +201,23 @@
         try foundationModelCheckAndSet(.publishedModel(publishedModel))
       }
       self.foundationModel = foundationModel
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.inferenceParameter, forKey: .inferenceParameter)
+      try container.encodeIfPresent(self.inferenceParameter, forKey: .inferenceParameter)
       try container.encode(self.triggerEvent, forKey: .triggerEvent)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.tools, forKey: .tools)
-      try container.encode(self.suggestionDedupingConfig, forKey: .suggestionDedupingConfig)
+      try container.encodeIfPresent(
+        self.suggestionDedupingConfig, forKey: .suggestionDedupingConfig)
       try container.encode(self.toolsetTools, forKey: .toolsetTools)
       try container.encode(self.cesToolSpecs, forKey: .cesToolSpecs)
       try container.encode(self.cesAppSpecs, forKey: .cesAppSpecs)
@@ -194,6 +238,9 @@
         case .publishedModel(let value):
           try container.encode(value, forKey: .publishedModel)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

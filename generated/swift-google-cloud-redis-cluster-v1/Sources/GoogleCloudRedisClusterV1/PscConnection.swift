@@ -56,6 +56,8 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Type of the PSC connection.
   public var connectionType: ConnectionType = ConnectionType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PscConnection`.
   public init() {}
 
@@ -70,6 +72,82 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pscConnectionId = CodingKeys(stringValue: "pscConnectionId")
+    static let address = CodingKeys(stringValue: "address")
+    static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let network = CodingKeys(stringValue: "network")
+    static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+    static let pscConnectionStatus = CodingKeys(stringValue: "pscConnectionStatus")
+    static let connectionType = CodingKeys(stringValue: "connectionType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pscConnectionId",
+      "address",
+      "forwardingRule",
+      "projectId",
+      "network",
+      "serviceAttachment",
+      "pscConnectionStatus",
+      "connectionType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pscConnectionId) {
+      self.pscConnectionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+      self.address = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .forwardingRule) {
+      self.forwardingRule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+      self.serviceAttachment = value
+    }
+    if let value = try container.decodeIfPresent(
+      PscConnectionStatus.self, forKey: .pscConnectionStatus)
+    {
+      self.pscConnectionStatus = value
+    }
+    if let value = try container.decodeIfPresent(ConnectionType.self, forKey: .connectionType) {
+      self.connectionType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.pscConnectionId, forKey: .pscConnectionId)
+    try container.encode(self.address, forKey: .address)
+    try container.encode(self.forwardingRule, forKey: .forwardingRule)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
+    try container.encode(self.pscConnectionStatus, forKey: .pscConnectionStatus)
+    try container.encode(self.connectionType, forKey: .connectionType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -131,6 +131,8 @@
 
     public var workloadIdentityConfig: WorkloadIdentityConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceProperties`.
     public init() {}
 
@@ -145,6 +147,159 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advancedMachineFeatures = CodingKeys(stringValue: "advancedMachineFeatures")
+      static let canIpForward = CodingKeys(stringValue: "canIpForward")
+      static let confidentialInstanceConfig = CodingKeys(stringValue: "confidentialInstanceConfig")
+      static let description = CodingKeys(stringValue: "description")
+      static let disks = CodingKeys(stringValue: "disks")
+      static let guestAccelerators = CodingKeys(stringValue: "guestAccelerators")
+      static let keyRevocationActionType = CodingKeys(stringValue: "keyRevocationActionType")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let localSsdEncryptionMode = CodingKeys(stringValue: "localSsdEncryptionMode")
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+      static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+      static let networkPerformanceConfig = CodingKeys(stringValue: "networkPerformanceConfig")
+      static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+      static let reservationAffinity = CodingKeys(stringValue: "reservationAffinity")
+      static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let scheduling = CodingKeys(stringValue: "scheduling")
+      static let serviceAccounts = CodingKeys(stringValue: "serviceAccounts")
+      static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advancedMachineFeatures",
+        "canIpForward",
+        "confidentialInstanceConfig",
+        "description",
+        "disks",
+        "guestAccelerators",
+        "keyRevocationActionType",
+        "labels",
+        "localSsdEncryptionMode",
+        "machineType",
+        "metadata",
+        "minCpuPlatform",
+        "networkInterfaces",
+        "networkPerformanceConfig",
+        "privateIpv6GoogleAccess",
+        "reservationAffinity",
+        "resourceManagerTags",
+        "resourcePolicies",
+        "scheduling",
+        "serviceAccounts",
+        "shieldedInstanceConfig",
+        "tags",
+        "workloadIdentityConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.advancedMachineFeatures = try container.decodeIfPresent(
+        AdvancedMachineFeatures.self, forKey: .advancedMachineFeatures)
+      self.canIpForward = try container.decodeIfPresent(Swift.Bool.self, forKey: .canIpForward)
+      self.confidentialInstanceConfig = try container.decodeIfPresent(
+        ConfidentialInstanceConfig.self, forKey: .confidentialInstanceConfig)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disks) {
+        self.disks = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AcceleratorConfig].self, forKey: .guestAccelerators)
+      {
+        self.guestAccelerators = value
+      }
+      self.keyRevocationActionType = try container.decodeIfPresent(
+        InstanceProperties.KeyRevocationActionType.self, forKey: .keyRevocationActionType)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.localSsdEncryptionMode = try container.decodeIfPresent(
+        InstanceProperties.LocalSsdEncryptionMode.self, forKey: .localSsdEncryptionMode)
+      self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
+      self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+      self.minCpuPlatform = try container.decodeIfPresent(
+        Swift.String.self, forKey: .minCpuPlatform)
+      if let value = try container.decodeIfPresent(
+        [NetworkInterface].self, forKey: .networkInterfaces)
+      {
+        self.networkInterfaces = value
+      }
+      self.networkPerformanceConfig = try container.decodeIfPresent(
+        NetworkPerformanceConfig.self, forKey: .networkPerformanceConfig)
+      self.privateIpv6GoogleAccess = try container.decodeIfPresent(
+        InstanceProperties.PrivateIpv6GoogleAccess.self, forKey: .privateIpv6GoogleAccess)
+      self.reservationAffinity = try container.decodeIfPresent(
+        ReservationAffinity.self, forKey: .reservationAffinity)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
+      {
+        self.resourceManagerTags = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourcePolicies) {
+        self.resourcePolicies = value
+      }
+      self.scheduling = try container.decodeIfPresent(Scheduling.self, forKey: .scheduling)
+      if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .serviceAccounts)
+      {
+        self.serviceAccounts = value
+      }
+      self.shieldedInstanceConfig = try container.decodeIfPresent(
+        ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
+      self.tags = try container.decodeIfPresent(Tags.self, forKey: .tags)
+      self.workloadIdentityConfig = try container.decodeIfPresent(
+        WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
+      try container.encodeIfPresent(self.canIpForward, forKey: .canIpForward)
+      try container.encodeIfPresent(
+        self.confidentialInstanceConfig, forKey: .confidentialInstanceConfig)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.disks, forKey: .disks)
+      try container.encode(self.guestAccelerators, forKey: .guestAccelerators)
+      try container.encodeIfPresent(self.keyRevocationActionType, forKey: .keyRevocationActionType)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.localSsdEncryptionMode, forKey: .localSsdEncryptionMode)
+      try container.encodeIfPresent(self.machineType, forKey: .machineType)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
+      try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
+      try container.encodeIfPresent(
+        self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
+      try container.encodeIfPresent(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+      try container.encodeIfPresent(self.reservationAffinity, forKey: .reservationAffinity)
+      try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
+      try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
+      try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+      try container.encode(self.serviceAccounts, forKey: .serviceAccounts)
+      try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+      try container.encodeIfPresent(self.tags, forKey: .tags)
+      try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [keyRevocationActionType][google.cloud.compute.v1.InstanceProperties.keyRevocationActionType] field.

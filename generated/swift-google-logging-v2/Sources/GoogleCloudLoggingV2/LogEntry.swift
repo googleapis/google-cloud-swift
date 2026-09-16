@@ -176,6 +176,8 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The log entry payload, which can be one of multiple types.
   public var payload: OneOf_Payload? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogEntry`.
   public init() {}
 
@@ -192,44 +194,86 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case logName = "logName"
-    case resource = "resource"
-    case protoPayload = "protoPayload"
-    case textPayload = "textPayload"
-    case jsonPayload = "jsonPayload"
-    case timestamp = "timestamp"
-    case receiveTimestamp = "receiveTimestamp"
-    case severity = "severity"
-    case insertId = "insertId"
-    case httpRequest = "httpRequest"
-    case labels = "labels"
-    case operation = "operation"
-    case trace = "trace"
-    case spanId = "spanId"
-    case traceSampled = "traceSampled"
-    case sourceLocation = "sourceLocation"
-    case split = "split"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let logName = CodingKeys(stringValue: "logName")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let protoPayload = CodingKeys(stringValue: "protoPayload")
+    static let textPayload = CodingKeys(stringValue: "textPayload")
+    static let jsonPayload = CodingKeys(stringValue: "jsonPayload")
+    static let timestamp = CodingKeys(stringValue: "timestamp")
+    static let receiveTimestamp = CodingKeys(stringValue: "receiveTimestamp")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let insertId = CodingKeys(stringValue: "insertId")
+    static let httpRequest = CodingKeys(stringValue: "httpRequest")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let trace = CodingKeys(stringValue: "trace")
+    static let spanId = CodingKeys(stringValue: "spanId")
+    static let traceSampled = CodingKeys(stringValue: "traceSampled")
+    static let sourceLocation = CodingKeys(stringValue: "sourceLocation")
+    static let split = CodingKeys(stringValue: "split")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "logName",
+      "resource",
+      "protoPayload",
+      "textPayload",
+      "jsonPayload",
+      "timestamp",
+      "receiveTimestamp",
+      "severity",
+      "insertId",
+      "httpRequest",
+      "labels",
+      "operation",
+      "trace",
+      "spanId",
+      "traceSampled",
+      "sourceLocation",
+      "split",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.logName = try container.decode(Swift.String.self, forKey: .logName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logName) {
+      self.logName = value
+    }
     self.resource = try container.decodeIfPresent(
       GoogleApi.MonitoredResource.self, forKey: .resource)
     self.timestamp = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .timestamp)
     self.receiveTimestamp = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .receiveTimestamp)
-    self.severity = try container.decode(GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
-    self.insertId = try container.decode(Swift.String.self, forKey: .insertId)
+    if let value = try container.decodeIfPresent(
+      GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
+    {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .insertId) {
+      self.insertId = value
+    }
     self.httpRequest = try container.decodeIfPresent(
       GoogleCloudLoggingType.HttpRequest.self, forKey: .httpRequest)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.operation = try container.decodeIfPresent(LogEntryOperation.self, forKey: .operation)
-    self.trace = try container.decode(Swift.String.self, forKey: .trace)
-    self.spanId = try container.decode(Swift.String.self, forKey: .spanId)
-    self.traceSampled = try container.decode(Swift.Bool.self, forKey: .traceSampled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trace) {
+      self.trace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .spanId) {
+      self.spanId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .traceSampled) {
+      self.traceSampled = value
+    }
     self.sourceLocation = try container.decodeIfPresent(
       LogEntrySourceLocation.self, forKey: .sourceLocation)
     self.split = try container.decodeIfPresent(LogSplit.self, forKey: .split)
@@ -258,24 +302,28 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try payloadCheckAndSet(.jsonPayload(jsonPayload))
     }
     self.payload = payload
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.logName, forKey: .logName)
-    try container.encode(self.resource, forKey: .resource)
-    try container.encode(self.timestamp, forKey: .timestamp)
-    try container.encode(self.receiveTimestamp, forKey: .receiveTimestamp)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+    try container.encodeIfPresent(self.receiveTimestamp, forKey: .receiveTimestamp)
     try container.encode(self.severity, forKey: .severity)
     try container.encode(self.insertId, forKey: .insertId)
-    try container.encode(self.httpRequest, forKey: .httpRequest)
+    try container.encodeIfPresent(self.httpRequest, forKey: .httpRequest)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.operation, forKey: .operation)
+    try container.encodeIfPresent(self.operation, forKey: .operation)
     try container.encode(self.trace, forKey: .trace)
     try container.encode(self.spanId, forKey: .spanId)
     try container.encode(self.traceSampled, forKey: .traceSampled)
-    try container.encode(self.sourceLocation, forKey: .sourceLocation)
-    try container.encode(self.split, forKey: .split)
+    try container.encodeIfPresent(self.sourceLocation, forKey: .sourceLocation)
+    try container.encodeIfPresent(self.split, forKey: .split)
 
     if let choice = self.payload {
       switch choice {
@@ -286,6 +334,9 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .jsonPayload(let value):
         try container.encode(value, forKey: .jsonPayload)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

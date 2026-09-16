@@ -55,6 +55,8 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// this control.
   public var customerResponsibilityImplementation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Control`.
   public init() {}
 
@@ -69,6 +71,106 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let family = CodingKeys(stringValue: "family")
+    static let controlFamily = CodingKeys(stringValue: "controlFamily")
+    static let description = CodingKeys(stringValue: "description")
+    static let responsibilityType = CodingKeys(stringValue: "responsibilityType")
+    static let googleResponsibilityDescription = CodingKeys(
+      stringValue: "googleResponsibilityDescription")
+    static let googleResponsibilityImplementation = CodingKeys(
+      stringValue: "googleResponsibilityImplementation")
+    static let customerResponsibilityDescription = CodingKeys(
+      stringValue: "customerResponsibilityDescription")
+    static let customerResponsibilityImplementation = CodingKeys(
+      stringValue: "customerResponsibilityImplementation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "displayName",
+      "family",
+      "controlFamily",
+      "description",
+      "responsibilityType",
+      "googleResponsibilityDescription",
+      "googleResponsibilityImplementation",
+      "customerResponsibilityDescription",
+      "customerResponsibilityImplementation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Control.Family.self, forKey: .family) {
+      self.family = value
+    }
+    self.controlFamily = try container.decodeIfPresent(ControlFamily.self, forKey: .controlFamily)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsibilityType) {
+      self.responsibilityType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityDescription)
+    {
+      self.googleResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityImplementation)
+    {
+      self.googleResponsibilityImplementation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityDescription)
+    {
+      self.customerResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityImplementation)
+    {
+      self.customerResponsibilityImplementation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.family, forKey: .family)
+    try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.responsibilityType, forKey: .responsibilityType)
+    try container.encode(
+      self.googleResponsibilityDescription, forKey: .googleResponsibilityDescription)
+    try container.encode(
+      self.googleResponsibilityImplementation, forKey: .googleResponsibilityImplementation)
+    try container.encode(
+      self.customerResponsibilityDescription, forKey: .customerResponsibilityDescription)
+    try container.encode(
+      self.customerResponsibilityImplementation, forKey: .customerResponsibilityImplementation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Category of the control.

@@ -61,6 +61,8 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This should not include the 'producer_destinations' field.
   public var monitoring: GoogleApi.Monitoring? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceConfig`.
   public init() {}
 
@@ -75,6 +77,86 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let title = CodingKeys(stringValue: "title")
+    static let apis = CodingKeys(stringValue: "apis")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let quota = CodingKeys(stringValue: "quota")
+    static let authentication = CodingKeys(stringValue: "authentication")
+    static let usage = CodingKeys(stringValue: "usage")
+    static let endpoints = CodingKeys(stringValue: "endpoints")
+    static let monitoredResources = CodingKeys(stringValue: "monitoredResources")
+    static let monitoring = CodingKeys(stringValue: "monitoring")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "title",
+      "apis",
+      "documentation",
+      "quota",
+      "authentication",
+      "usage",
+      "endpoints",
+      "monitoredResources",
+      "monitoring",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Api].self, forKey: .apis) {
+      self.apis = value
+    }
+    self.documentation = try container.decodeIfPresent(
+      GoogleApi.Documentation.self, forKey: .documentation)
+    self.quota = try container.decodeIfPresent(GoogleApi.Quota.self, forKey: .quota)
+    self.authentication = try container.decodeIfPresent(
+      GoogleApi.Authentication.self, forKey: .authentication)
+    self.usage = try container.decodeIfPresent(GoogleApi.Usage.self, forKey: .usage)
+    if let value = try container.decodeIfPresent([GoogleApi.Endpoint].self, forKey: .endpoints) {
+      self.endpoints = value
+    }
+    if let value = try container.decodeIfPresent(
+      [GoogleApi.MonitoredResourceDescriptor].self, forKey: .monitoredResources)
+    {
+      self.monitoredResources = value
+    }
+    self.monitoring = try container.decodeIfPresent(GoogleApi.Monitoring.self, forKey: .monitoring)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.apis, forKey: .apis)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
+    try container.encodeIfPresent(self.quota, forKey: .quota)
+    try container.encodeIfPresent(self.authentication, forKey: .authentication)
+    try container.encodeIfPresent(self.usage, forKey: .usage)
+    try container.encode(self.endpoints, forKey: .endpoints)
+    try container.encode(self.monitoredResources, forKey: .monitoredResources)
+    try container.encodeIfPresent(self.monitoring, forKey: .monitoring)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

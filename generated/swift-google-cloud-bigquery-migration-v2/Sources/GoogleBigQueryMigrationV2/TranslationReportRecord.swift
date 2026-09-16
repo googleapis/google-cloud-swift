@@ -38,6 +38,8 @@ public struct TranslationReportRecord: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Detailed message of the record.
   public var message: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslationReportRecord`.
   public init() {}
 
@@ -52,6 +54,64 @@ public struct TranslationReportRecord: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let severity = CodingKeys(stringValue: "severity")
+    static let scriptLine = CodingKeys(stringValue: "scriptLine")
+    static let scriptColumn = CodingKeys(stringValue: "scriptColumn")
+    static let category = CodingKeys(stringValue: "category")
+    static let message = CodingKeys(stringValue: "message")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "severity",
+      "scriptLine",
+      "scriptColumn",
+      "category",
+      "message",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      TranslationReportRecord.Severity.self, forKey: .severity)
+    {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scriptLine) {
+      self.scriptLine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scriptColumn) {
+      self.scriptColumn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.scriptLine, forKey: .scriptLine)
+    try container.encode(self.scriptColumn, forKey: .scriptColumn)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.message, forKey: .message)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The severity type of the record.

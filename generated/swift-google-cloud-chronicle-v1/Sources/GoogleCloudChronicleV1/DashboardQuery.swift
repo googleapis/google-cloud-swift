@@ -39,6 +39,8 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// client has an up-to-date value before proceeding.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DashboardQuery`.
   public init() {}
 
@@ -55,11 +57,67 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let query = CodingKeys(stringValue: "query")
+    static let input = CodingKeys(stringValue: "input")
+    static let dashboardChart = CodingKeys(stringValue: "dashboardChart")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "query",
+      "input",
+      "dashboardChart",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    self.input = try container.decodeIfPresent(DashboardQuery.Input.self, forKey: .input)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardChart) {
+      self.dashboardChart = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.query, forKey: .query)
+    try container.encodeIfPresent(self.input, forKey: .input)
+    try container.encode(self.dashboardChart, forKey: .dashboardChart)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Input to the query like time window.
   public struct Input: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var timeInput: OneOf_TimeInput? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Input`.
     public init() {}
@@ -77,9 +135,19 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case timeWindow = "timeWindow"
-      case relativeTime = "relativeTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeWindow = CodingKeys(stringValue: "timeWindow")
+      static let relativeTime = CodingKeys(stringValue: "relativeTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeWindow",
+        "relativeTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -106,6 +174,10 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try timeInputCheckAndSet(.relativeTime(relativeTime))
       }
       self.timeInput = timeInput
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -119,6 +191,9 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .relativeTime)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// time representation for last x units.
@@ -128,6 +203,8 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public var timeUnit: TimeUnit = TimeUnit()
 
       public var startTimeVal: Swift.Int64 = Swift.Int64()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RelativeTime`.
       public init() {}
@@ -143,6 +220,44 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let timeUnit = CodingKeys(stringValue: "timeUnit")
+        static let startTimeVal = CodingKeys(stringValue: "startTimeVal")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "timeUnit",
+          "startTimeVal",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(TimeUnit.self, forKey: .timeUnit) {
+          self.timeUnit = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .startTimeVal) {
+          self.startTimeVal = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.timeUnit, forKey: .timeUnit)
+        try container.encode(self.startTimeVal, forKey: .startTimeVal)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

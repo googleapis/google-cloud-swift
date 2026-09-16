@@ -45,6 +45,8 @@
     /// Maximum limit is 100.
     public var env: [EnvVar] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PythonPackageSpec`.
     public init() {}
 
@@ -59,6 +61,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let executorImageUri = CodingKeys(stringValue: "executorImageUri")
+      static let packageUris = CodingKeys(stringValue: "packageUris")
+      static let pythonModule = CodingKeys(stringValue: "pythonModule")
+      static let args = CodingKeys(stringValue: "args")
+      static let env = CodingKeys(stringValue: "env")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "executorImageUri",
+        "packageUris",
+        "pythonModule",
+        "args",
+        "env",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .executorImageUri) {
+        self.executorImageUri = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .packageUris) {
+        self.packageUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pythonModule) {
+        self.pythonModule = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+        self.args = value
+      }
+      if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+        self.env = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.executorImageUri, forKey: .executorImageUri)
+      try container.encode(self.packageUris, forKey: .packageUris)
+      try container.encode(self.pythonModule, forKey: .pythonModule)
+      try container.encode(self.args, forKey: .args)
+      try container.encode(self.env, forKey: .env)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

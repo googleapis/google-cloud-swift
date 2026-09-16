@@ -83,6 +83,8 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CaPool`.
   public init() {}
 
@@ -97,6 +99,66 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let issuancePolicy = CodingKeys(stringValue: "issuancePolicy")
+    static let publishingOptions = CodingKeys(stringValue: "publishingOptions")
+    static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "tier",
+      "issuancePolicy",
+      "publishingOptions",
+      "encryptionSpec",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(CaPool.Tier.self, forKey: .tier) {
+      self.tier = value
+    }
+    self.issuancePolicy = try container.decodeIfPresent(
+      CaPool.IssuancePolicy.self, forKey: .issuancePolicy)
+    self.publishingOptions = try container.decodeIfPresent(
+      CaPool.PublishingOptions.self, forKey: .publishingOptions)
+    self.encryptionSpec = try container.decodeIfPresent(
+      EncryptionSpec.self, forKey: .encryptionSpec)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.tier, forKey: .tier)
+    try container.encodeIfPresent(self.issuancePolicy, forKey: .issuancePolicy)
+    try container.encodeIfPresent(self.publishingOptions, forKey: .publishingOptions)
+    try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Options relating to the publication of each
@@ -148,6 +210,8 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var encodingFormat: CaPool.PublishingOptions.EncodingFormat = CaPool.PublishingOptions
       .EncodingFormat()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublishingOptions`.
     public init() {}
 
@@ -162,6 +226,52 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publishCaCert = CodingKeys(stringValue: "publishCaCert")
+      static let publishCrl = CodingKeys(stringValue: "publishCrl")
+      static let encodingFormat = CodingKeys(stringValue: "encodingFormat")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publishCaCert",
+        "publishCrl",
+        "encodingFormat",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .publishCaCert) {
+        self.publishCaCert = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .publishCrl) {
+        self.publishCrl = value
+      }
+      if let value = try container.decodeIfPresent(
+        CaPool.PublishingOptions.EncodingFormat.self, forKey: .encodingFormat)
+      {
+        self.encodingFormat = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.publishCaCert, forKey: .publishCaCert)
+      try container.encode(self.publishCrl, forKey: .publishCrl)
+      try container.encode(self.encodingFormat, forKey: .encodingFormat)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Supported encoding formats for publishing.
@@ -408,6 +518,8 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.security.privateca.v1.CertificateTemplate.predefined_values]: <doc:CertificateTemplate/predefinedValues>
     public var passthroughExtensions: CertificateExtensionConstraints? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IssuancePolicy`.
     public init() {}
 
@@ -422,6 +534,80 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedKeyTypes = CodingKeys(stringValue: "allowedKeyTypes")
+      static let backdateDuration = CodingKeys(stringValue: "backdateDuration")
+      static let allowRequesterSpecifiedNotBeforeTime = CodingKeys(
+        stringValue: "allowRequesterSpecifiedNotBeforeTime")
+      static let maximumLifetime = CodingKeys(stringValue: "maximumLifetime")
+      static let allowedIssuanceModes = CodingKeys(stringValue: "allowedIssuanceModes")
+      static let baselineValues = CodingKeys(stringValue: "baselineValues")
+      static let identityConstraints = CodingKeys(stringValue: "identityConstraints")
+      static let passthroughExtensions = CodingKeys(stringValue: "passthroughExtensions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedKeyTypes",
+        "backdateDuration",
+        "allowRequesterSpecifiedNotBeforeTime",
+        "maximumLifetime",
+        "allowedIssuanceModes",
+        "baselineValues",
+        "identityConstraints",
+        "passthroughExtensions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [CaPool.IssuancePolicy.AllowedKeyType].self, forKey: .allowedKeyTypes)
+      {
+        self.allowedKeyTypes = value
+      }
+      self.backdateDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .backdateDuration)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allowRequesterSpecifiedNotBeforeTime)
+      {
+        self.allowRequesterSpecifiedNotBeforeTime = value
+      }
+      self.maximumLifetime = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maximumLifetime)
+      self.allowedIssuanceModes = try container.decodeIfPresent(
+        CaPool.IssuancePolicy.IssuanceModes.self, forKey: .allowedIssuanceModes)
+      self.baselineValues = try container.decodeIfPresent(
+        X509Parameters.self, forKey: .baselineValues)
+      self.identityConstraints = try container.decodeIfPresent(
+        CertificateIdentityConstraints.self, forKey: .identityConstraints)
+      self.passthroughExtensions = try container.decodeIfPresent(
+        CertificateExtensionConstraints.self, forKey: .passthroughExtensions)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedKeyTypes, forKey: .allowedKeyTypes)
+      try container.encodeIfPresent(self.backdateDuration, forKey: .backdateDuration)
+      try container.encode(
+        self.allowRequesterSpecifiedNotBeforeTime, forKey: .allowRequesterSpecifiedNotBeforeTime)
+      try container.encodeIfPresent(self.maximumLifetime, forKey: .maximumLifetime)
+      try container.encodeIfPresent(self.allowedIssuanceModes, forKey: .allowedIssuanceModes)
+      try container.encodeIfPresent(self.baselineValues, forKey: .baselineValues)
+      try container.encodeIfPresent(self.identityConstraints, forKey: .identityConstraints)
+      try container.encodeIfPresent(self.passthroughExtensions, forKey: .passthroughExtensions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes a "type" of key that may be used in a
@@ -439,6 +625,8 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     {
       public var keyType: OneOf_KeyType? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AllowedKeyType`.
       public init() {}
 
@@ -455,9 +643,19 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case rsa = "rsa"
-        case ellipticCurve = "ellipticCurve"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rsa = CodingKeys(stringValue: "rsa")
+        static let ellipticCurve = CodingKeys(stringValue: "ellipticCurve")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rsa",
+          "ellipticCurve",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -484,6 +682,10 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try keyTypeCheckAndSet(.ellipticCurve(ellipticCurve))
         }
         self.keyType = keyType
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -496,6 +698,9 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           case .ellipticCurve(let value):
             try container.encode(value, forKey: .ellipticCurve)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -518,6 +723,9 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// an explicit upper bound on RSA modulus sizes.
         public var maxModulusSize: Swift.Int64 = Swift.Int64()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `RsaKeyType`.
         public init() {}
 
@@ -532,6 +740,44 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let minModulusSize = CodingKeys(stringValue: "minModulusSize")
+          static let maxModulusSize = CodingKeys(stringValue: "maxModulusSize")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "minModulusSize",
+            "maxModulusSize",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minModulusSize) {
+            self.minModulusSize = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxModulusSize) {
+            self.maxModulusSize = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.minModulusSize, forKey: .minModulusSize)
+          try container.encode(self.maxModulusSize, forKey: .maxModulusSize)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -561,6 +807,9 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm = CaPool
             .IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `EcKeyType`.
         public init() {}
 
@@ -575,6 +824,41 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let signatureAlgorithm = CodingKeys(stringValue: "signatureAlgorithm")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "signatureAlgorithm"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm.self,
+            forKey: .signatureAlgorithm)
+          {
+            self.signatureAlgorithm = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.signatureAlgorithm, forKey: .signatureAlgorithm)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Describes an elliptic curve-based signature algorithm that may be
@@ -756,6 +1040,8 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// [google.cloud.security.privateca.v1.CertificateConfig]: <doc:CertificateConfig>
       public var allowConfigBasedIssuance: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `IssuanceModes`.
       public init() {}
 
@@ -770,6 +1056,48 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let allowCsrBasedIssuance = CodingKeys(stringValue: "allowCsrBasedIssuance")
+        static let allowConfigBasedIssuance = CodingKeys(stringValue: "allowConfigBasedIssuance")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "allowCsrBasedIssuance",
+          "allowConfigBasedIssuance",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .allowCsrBasedIssuance)
+        {
+          self.allowCsrBasedIssuance = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .allowConfigBasedIssuance)
+        {
+          self.allowConfigBasedIssuance = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.allowCsrBasedIssuance, forKey: .allowCsrBasedIssuance)
+        try container.encode(self.allowConfigBasedIssuance, forKey: .allowConfigBasedIssuance)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

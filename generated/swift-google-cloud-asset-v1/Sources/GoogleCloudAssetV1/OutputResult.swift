@@ -24,6 +24,8 @@ public struct OutputResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Asset export result.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OutputResult`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct OutputResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsResult = "gcsResult"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsResult = CodingKeys(stringValue: "gcsResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsResult"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,6 +72,10 @@ public struct OutputResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.gcsResult(gcsResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -71,6 +86,9 @@ public struct OutputResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsResult(let value):
         try container.encode(value, forKey: .gcsResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

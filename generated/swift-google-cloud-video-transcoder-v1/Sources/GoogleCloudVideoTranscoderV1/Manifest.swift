@@ -47,6 +47,8 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specifies the manifest configuration.
   public var manifestConfig: OneOf_ManifestConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Manifest`.
   public init() {}
 
@@ -63,18 +65,36 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fileName = "fileName"
-    case type = "type"
-    case muxStreams = "muxStreams"
-    case dash = "dash"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fileName = CodingKeys(stringValue: "fileName")
+    static let type = CodingKeys(stringValue: "type")
+    static let muxStreams = CodingKeys(stringValue: "muxStreams")
+    static let dash = CodingKeys(stringValue: "dash")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fileName",
+      "type",
+      "muxStreams",
+      "dash",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.fileName = try container.decode(Swift.String.self, forKey: .fileName)
-    self.type = try container.decode(Manifest.ManifestType.self, forKey: .type)
-    self.muxStreams = try container.decode([Swift.String].self, forKey: .muxStreams)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileName) {
+      self.fileName = value
+    }
+    if let value = try container.decodeIfPresent(Manifest.ManifestType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .muxStreams) {
+      self.muxStreams = value
+    }
 
     var manifestConfig: OneOf_ManifestConfig? = nil
     let manifestConfigCheckAndSet = {
@@ -90,6 +110,10 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try manifestConfigCheckAndSet(.dash(dash))
     }
     self.manifestConfig = manifestConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +128,9 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .dash)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `DASH` manifest configuration.
@@ -114,6 +141,8 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `SEGMENT_LIST`.
     public var segmentReferenceScheme: Manifest.DashConfig.SegmentReferenceScheme = Manifest
       .DashConfig.SegmentReferenceScheme()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DashConfig`.
     public init() {}
@@ -129,6 +158,40 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let segmentReferenceScheme = CodingKeys(stringValue: "segmentReferenceScheme")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "segmentReferenceScheme"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Manifest.DashConfig.SegmentReferenceScheme.self, forKey: .segmentReferenceScheme)
+      {
+        self.segmentReferenceScheme = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.segmentReferenceScheme, forKey: .segmentReferenceScheme)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The segment reference scheme for a `DASH` manifest.

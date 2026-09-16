@@ -29,6 +29,8 @@
     /// It would be either a pre-defined metric, or a inline metric spec.
     public var metricSpec: OneOf_MetricSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Metric`.
     public init() {}
 
@@ -45,22 +47,42 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case predefinedMetricSpec = "predefinedMetricSpec"
-      case computationBasedMetricSpec = "computationBasedMetricSpec"
-      case llmBasedMetricSpec = "llmBasedMetricSpec"
-      case pointwiseMetricSpec = "pointwiseMetricSpec"
-      case pairwiseMetricSpec = "pairwiseMetricSpec"
-      case exactMatchSpec = "exactMatchSpec"
-      case bleuSpec = "bleuSpec"
-      case rougeSpec = "rougeSpec"
-      case aggregationMetrics = "aggregationMetrics"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let predefinedMetricSpec = CodingKeys(stringValue: "predefinedMetricSpec")
+      static let computationBasedMetricSpec = CodingKeys(stringValue: "computationBasedMetricSpec")
+      static let llmBasedMetricSpec = CodingKeys(stringValue: "llmBasedMetricSpec")
+      static let pointwiseMetricSpec = CodingKeys(stringValue: "pointwiseMetricSpec")
+      static let pairwiseMetricSpec = CodingKeys(stringValue: "pairwiseMetricSpec")
+      static let exactMatchSpec = CodingKeys(stringValue: "exactMatchSpec")
+      static let bleuSpec = CodingKeys(stringValue: "bleuSpec")
+      static let rougeSpec = CodingKeys(stringValue: "rougeSpec")
+      static let aggregationMetrics = CodingKeys(stringValue: "aggregationMetrics")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "predefinedMetricSpec",
+        "computationBasedMetricSpec",
+        "llmBasedMetricSpec",
+        "pointwiseMetricSpec",
+        "pairwiseMetricSpec",
+        "exactMatchSpec",
+        "bleuSpec",
+        "rougeSpec",
+        "aggregationMetrics",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.aggregationMetrics = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Metric.AggregationMetric].self, forKey: .aggregationMetrics)
+      {
+        self.aggregationMetrics = value
+      }
 
       var metricSpec: OneOf_MetricSpec? = nil
       let metricSpecCheckAndSet = {
@@ -109,6 +131,10 @@
         try metricSpecCheckAndSet(.rougeSpec(rougeSpec))
       }
       self.metricSpec = metricSpec
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,6 +160,9 @@
         case .rougeSpec(let value):
           try container.encode(value, forKey: .rougeSpec)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

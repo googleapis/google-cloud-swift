@@ -24,6 +24,8 @@ public struct Payload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The kind of payload.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Payload`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct Payload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case httpRequest = "httpRequest"
-    case streamInfo = "streamInfo"
-    case action = "action"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let httpRequest = CodingKeys(stringValue: "httpRequest")
+    static let streamInfo = CodingKeys(stringValue: "streamInfo")
+    static let action = CodingKeys(stringValue: "action")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "httpRequest",
+      "streamInfo",
+      "action",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +82,10 @@ public struct Payload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try kindCheckAndSet(.action(action))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +100,9 @@ public struct Payload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .action(let value):
         try container.encode(value, forKey: .action)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

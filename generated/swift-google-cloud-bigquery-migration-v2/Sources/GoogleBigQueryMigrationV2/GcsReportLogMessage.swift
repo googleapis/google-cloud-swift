@@ -56,6 +56,8 @@ public struct GcsReportLogMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Name of the affected object in the log message.
   public var objectName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsReportLogMessage`.
   public init() {}
 
@@ -70,6 +72,98 @@ public struct GcsReportLogMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let severity = CodingKeys(stringValue: "severity")
+    static let category = CodingKeys(stringValue: "category")
+    static let filePath = CodingKeys(stringValue: "filePath")
+    static let filename = CodingKeys(stringValue: "filename")
+    static let sourceScriptLine = CodingKeys(stringValue: "sourceScriptLine")
+    static let sourceScriptColumn = CodingKeys(stringValue: "sourceScriptColumn")
+    static let message = CodingKeys(stringValue: "message")
+    static let scriptContext = CodingKeys(stringValue: "scriptContext")
+    static let action = CodingKeys(stringValue: "action")
+    static let effect = CodingKeys(stringValue: "effect")
+    static let objectName = CodingKeys(stringValue: "objectName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "severity",
+      "category",
+      "filePath",
+      "filename",
+      "sourceScriptLine",
+      "sourceScriptColumn",
+      "message",
+      "scriptContext",
+      "action",
+      "effect",
+      "objectName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filePath) {
+      self.filePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filename) {
+      self.filename = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourceScriptLine) {
+      self.sourceScriptLine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourceScriptColumn) {
+      self.sourceScriptColumn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scriptContext) {
+      self.scriptContext = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .effect) {
+      self.effect = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .objectName) {
+      self.objectName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.filePath, forKey: .filePath)
+    try container.encode(self.filename, forKey: .filename)
+    try container.encode(self.sourceScriptLine, forKey: .sourceScriptLine)
+    try container.encode(self.sourceScriptColumn, forKey: .sourceScriptColumn)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.scriptContext, forKey: .scriptContext)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.effect, forKey: .effect)
+    try container.encode(self.objectName, forKey: .objectName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

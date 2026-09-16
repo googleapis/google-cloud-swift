@@ -72,6 +72,8 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.Certificate.parsed]: <doc:Certificate/parsed>
   public var sha256Fingerprint: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Certificate`.
   public init() {}
 
@@ -86,6 +88,86 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rawDer = CodingKeys(stringValue: "rawDer")
+    static let parsed = CodingKeys(stringValue: "parsed")
+    static let issuer = CodingKeys(stringValue: "issuer")
+    static let subject = CodingKeys(stringValue: "subject")
+    static let subjectAlternativeDnsNames = CodingKeys(stringValue: "subjectAlternativeDnsNames")
+    static let notBeforeTime = CodingKeys(stringValue: "notBeforeTime")
+    static let notAfterTime = CodingKeys(stringValue: "notAfterTime")
+    static let serialNumber = CodingKeys(stringValue: "serialNumber")
+    static let sha256Fingerprint = CodingKeys(stringValue: "sha256Fingerprint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rawDer",
+      "parsed",
+      "issuer",
+      "subject",
+      "subjectAlternativeDnsNames",
+      "notBeforeTime",
+      "notAfterTime",
+      "serialNumber",
+      "sha256Fingerprint",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .rawDer) {
+      self.rawDer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .parsed) {
+      self.parsed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
+      self.issuer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+      self.subject = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .subjectAlternativeDnsNames)
+    {
+      self.subjectAlternativeDnsNames = value
+    }
+    self.notBeforeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .notBeforeTime)
+    self.notAfterTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .notAfterTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serialNumber) {
+      self.serialNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha256Fingerprint) {
+      self.sha256Fingerprint = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rawDer, forKey: .rawDer)
+    try container.encode(self.parsed, forKey: .parsed)
+    try container.encode(self.issuer, forKey: .issuer)
+    try container.encode(self.subject, forKey: .subject)
+    try container.encode(self.subjectAlternativeDnsNames, forKey: .subjectAlternativeDnsNames)
+    try container.encodeIfPresent(self.notBeforeTime, forKey: .notBeforeTime)
+    try container.encodeIfPresent(self.notAfterTime, forKey: .notAfterTime)
+    try container.encode(self.serialNumber, forKey: .serialNumber)
+    try container.encode(self.sha256Fingerprint, forKey: .sha256Fingerprint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

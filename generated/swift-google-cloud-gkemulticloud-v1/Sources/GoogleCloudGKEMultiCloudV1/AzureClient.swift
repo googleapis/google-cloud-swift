@@ -76,6 +76,8 @@ public struct AzureClient: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time at which this client was last updated.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureClient`.
   public init() {}
 
@@ -90,6 +92,86 @@ public struct AzureClient: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let tenantId = CodingKeys(stringValue: "tenantId")
+    static let applicationId = CodingKeys(stringValue: "applicationId")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let pemCertificate = CodingKeys(stringValue: "pemCertificate")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "tenantId",
+      "applicationId",
+      "reconciling",
+      "annotations",
+      "pemCertificate",
+      "uid",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenantId) {
+      self.tenantId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applicationId) {
+      self.applicationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pemCertificate) {
+      self.pemCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.tenantId, forKey: .tenantId)
+    try container.encode(self.applicationId, forKey: .applicationId)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.pemCertificate, forKey: .pemCertificate)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

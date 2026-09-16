@@ -36,6 +36,8 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Status of all upgrade stages.
   public var stages: [UpgradeClusterStatus.StageStatus] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeClusterStatus`.
   public init() {}
 
@@ -50,6 +52,65 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let cancellable = CodingKeys(stringValue: "cancellable")
+    static let sourceVersion = CodingKeys(stringValue: "sourceVersion")
+    static let targetVersion = CodingKeys(stringValue: "targetVersion")
+    static let stages = CodingKeys(stringValue: "stages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "cancellable",
+      "sourceVersion",
+      "targetVersion",
+      "stages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(UpgradeClusterResponse.Status.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cancellable) {
+      self.cancellable = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseVersion.self, forKey: .sourceVersion) {
+      self.sourceVersion = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseVersion.self, forKey: .targetVersion) {
+      self.targetVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [UpgradeClusterStatus.StageStatus].self, forKey: .stages)
+    {
+      self.stages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.cancellable, forKey: .cancellable)
+    try container.encode(self.sourceVersion, forKey: .sourceVersion)
+    try container.encode(self.targetVersion, forKey: .targetVersion)
+    try container.encode(self.stages, forKey: .stages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Status of an upgrade stage.
@@ -68,6 +129,8 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Stage specific status information, if any.
     public var stageSpecificStatus: OneOf_StageSpecificStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StageStatus`.
     public init() {}
 
@@ -84,17 +147,37 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case readPoolInstancesUpgrade = "readPoolInstancesUpgrade"
-      case stage = "stage"
-      case state = "state"
-      case schedule = "schedule"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let readPoolInstancesUpgrade = CodingKeys(stringValue: "readPoolInstancesUpgrade")
+      static let stage = CodingKeys(stringValue: "stage")
+      static let state = CodingKeys(stringValue: "state")
+      static let schedule = CodingKeys(stringValue: "schedule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "readPoolInstancesUpgrade",
+        "stage",
+        "state",
+        "schedule",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.stage = try container.decode(UpgradeClusterResponse.Stage.self, forKey: .stage)
-      self.state = try container.decode(UpgradeClusterResponse.Status.self, forKey: .state)
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Stage.self, forKey: .stage)
+      {
+        self.stage = value
+      }
+      if let value = try container.decodeIfPresent(
+        UpgradeClusterResponse.Status.self, forKey: .state)
+      {
+        self.state = value
+      }
       self.schedule = try container.decodeIfPresent(
         UpgradeClusterStatus.StageStatus.StageSchedule.self, forKey: .schedule)
 
@@ -115,19 +198,26 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
         try stageSpecificStatusCheckAndSet(.readPoolInstancesUpgrade(readPoolInstancesUpgrade))
       }
       self.stageSpecificStatus = stageSpecificStatus
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.stage, forKey: .stage)
       try container.encode(self.state, forKey: .state)
-      try container.encode(self.schedule, forKey: .schedule)
+      try container.encodeIfPresent(self.schedule, forKey: .schedule)
 
       if let choice = self.stageSpecificStatus {
         switch choice {
         case .readPoolInstancesUpgrade(let value):
           try container.encode(value, forKey: .readPoolInstancesUpgrade)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -149,6 +239,8 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
       /// Actual end time of the stage. Set only if the stage has completed.
       public var actualEndTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `StageSchedule`.
       public init() {}
 
@@ -163,6 +255,52 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let estimatedStartTime = CodingKeys(stringValue: "estimatedStartTime")
+        static let actualStartTime = CodingKeys(stringValue: "actualStartTime")
+        static let estimatedEndTime = CodingKeys(stringValue: "estimatedEndTime")
+        static let actualEndTime = CodingKeys(stringValue: "actualEndTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "estimatedStartTime",
+          "actualStartTime",
+          "estimatedEndTime",
+          "actualEndTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.estimatedStartTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .estimatedStartTime)
+        self.actualStartTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .actualStartTime)
+        self.estimatedEndTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .estimatedEndTime)
+        self.actualEndTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .actualEndTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.estimatedStartTime, forKey: .estimatedStartTime)
+        try container.encodeIfPresent(self.actualStartTime, forKey: .actualStartTime)
+        try container.encodeIfPresent(self.estimatedEndTime, forKey: .estimatedEndTime)
+        try container.encodeIfPresent(self.actualEndTime, forKey: .actualEndTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -203,6 +341,8 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Read pool instances upgrade statistics.
     public var upgradeStats: UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.Stats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReadPoolInstancesUpgradeStageStatus`.
     public init() {}
 
@@ -217,6 +357,37 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let upgradeStats = CodingKeys(stringValue: "upgradeStats")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "upgradeStats"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.upgradeStats = try container.decodeIfPresent(
+        UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.Stats.self, forKey: .upgradeStats)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.upgradeStats, forKey: .upgradeStats)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Upgrade stats for read pool instances.
@@ -235,6 +406,8 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
       /// Number of read pool instances which failed to upgrade.
       public var failed: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Stats`.
       public init() {}
 
@@ -249,6 +422,56 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let notStarted = CodingKeys(stringValue: "notStarted")
+        static let ongoing = CodingKeys(stringValue: "ongoing")
+        static let success = CodingKeys(stringValue: "success")
+        static let failed = CodingKeys(stringValue: "failed")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "notStarted",
+          "ongoing",
+          "success",
+          "failed",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .notStarted) {
+          self.notStarted = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ongoing) {
+          self.ongoing = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .success) {
+          self.success = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failed) {
+          self.failed = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.notStarted, forKey: .notStarted)
+        try container.encode(self.ongoing, forKey: .ongoing)
+        try container.encode(self.success, forKey: .success)
+        try container.encode(self.failed, forKey: .failed)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -82,6 +82,8 @@ public struct FaceAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Headwear likelihood.
   public var headwearLikelihood: Likelihood = Likelihood()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FaceAnnotation`.
   public init() {}
 
@@ -98,6 +100,119 @@ public struct FaceAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let boundingPoly = CodingKeys(stringValue: "boundingPoly")
+    static let fdBoundingPoly = CodingKeys(stringValue: "fdBoundingPoly")
+    static let landmarks = CodingKeys(stringValue: "landmarks")
+    static let rollAngle = CodingKeys(stringValue: "rollAngle")
+    static let panAngle = CodingKeys(stringValue: "panAngle")
+    static let tiltAngle = CodingKeys(stringValue: "tiltAngle")
+    static let detectionConfidence = CodingKeys(stringValue: "detectionConfidence")
+    static let landmarkingConfidence = CodingKeys(stringValue: "landmarkingConfidence")
+    static let joyLikelihood = CodingKeys(stringValue: "joyLikelihood")
+    static let sorrowLikelihood = CodingKeys(stringValue: "sorrowLikelihood")
+    static let angerLikelihood = CodingKeys(stringValue: "angerLikelihood")
+    static let surpriseLikelihood = CodingKeys(stringValue: "surpriseLikelihood")
+    static let underExposedLikelihood = CodingKeys(stringValue: "underExposedLikelihood")
+    static let blurredLikelihood = CodingKeys(stringValue: "blurredLikelihood")
+    static let headwearLikelihood = CodingKeys(stringValue: "headwearLikelihood")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "boundingPoly",
+      "fdBoundingPoly",
+      "landmarks",
+      "rollAngle",
+      "panAngle",
+      "tiltAngle",
+      "detectionConfidence",
+      "landmarkingConfidence",
+      "joyLikelihood",
+      "sorrowLikelihood",
+      "angerLikelihood",
+      "surpriseLikelihood",
+      "underExposedLikelihood",
+      "blurredLikelihood",
+      "headwearLikelihood",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.boundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingPoly)
+    self.fdBoundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .fdBoundingPoly)
+    if let value = try container.decodeIfPresent([FaceAnnotation.Landmark].self, forKey: .landmarks)
+    {
+      self.landmarks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .rollAngle) {
+      self.rollAngle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .panAngle) {
+      self.panAngle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .tiltAngle) {
+      self.tiltAngle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .detectionConfidence) {
+      self.detectionConfidence = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .landmarkingConfidence) {
+      self.landmarkingConfidence = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .joyLikelihood) {
+      self.joyLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .sorrowLikelihood) {
+      self.sorrowLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .angerLikelihood) {
+      self.angerLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .surpriseLikelihood) {
+      self.surpriseLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .underExposedLikelihood) {
+      self.underExposedLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .blurredLikelihood) {
+      self.blurredLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .headwearLikelihood) {
+      self.headwearLikelihood = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
+    try container.encodeIfPresent(self.fdBoundingPoly, forKey: .fdBoundingPoly)
+    try container.encode(self.landmarks, forKey: .landmarks)
+    try container.encode(self.rollAngle, forKey: .rollAngle)
+    try container.encode(self.panAngle, forKey: .panAngle)
+    try container.encode(self.tiltAngle, forKey: .tiltAngle)
+    try container.encode(self.detectionConfidence, forKey: .detectionConfidence)
+    try container.encode(self.landmarkingConfidence, forKey: .landmarkingConfidence)
+    try container.encode(self.joyLikelihood, forKey: .joyLikelihood)
+    try container.encode(self.sorrowLikelihood, forKey: .sorrowLikelihood)
+    try container.encode(self.angerLikelihood, forKey: .angerLikelihood)
+    try container.encode(self.surpriseLikelihood, forKey: .surpriseLikelihood)
+    try container.encode(self.underExposedLikelihood, forKey: .underExposedLikelihood)
+    try container.encode(self.blurredLikelihood, forKey: .blurredLikelihood)
+    try container.encode(self.headwearLikelihood, forKey: .headwearLikelihood)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A face-specific landmark (for example, a face feature).
   public struct Landmark: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -107,6 +222,8 @@ public struct FaceAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Face landmark position.
     public var position: Position? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Landmark`.
     public init() {}
@@ -122,6 +239,44 @@ public struct FaceAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let position = CodingKeys(stringValue: "position")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "position",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        FaceAnnotation.Landmark.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      self.position = try container.decodeIfPresent(Position.self, forKey: .position)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.position, forKey: .position)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Face landmark (feature) type.

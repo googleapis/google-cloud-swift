@@ -61,6 +61,8 @@ public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The last heartbeat time when the trust was known to be connected.
   public var lastTrustHeartbeatTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Trust`.
   public init() {}
 
@@ -75,6 +77,98 @@ public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetDomainName = CodingKeys(stringValue: "targetDomainName")
+    static let trustType = CodingKeys(stringValue: "trustType")
+    static let trustDirection = CodingKeys(stringValue: "trustDirection")
+    static let selectiveAuthentication = CodingKeys(stringValue: "selectiveAuthentication")
+    static let targetDnsIpAddresses = CodingKeys(stringValue: "targetDnsIpAddresses")
+    static let trustHandshakeSecret = CodingKeys(stringValue: "trustHandshakeSecret")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDescription = CodingKeys(stringValue: "stateDescription")
+    static let lastTrustHeartbeatTime = CodingKeys(stringValue: "lastTrustHeartbeatTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetDomainName",
+      "trustType",
+      "trustDirection",
+      "selectiveAuthentication",
+      "targetDnsIpAddresses",
+      "trustHandshakeSecret",
+      "createTime",
+      "updateTime",
+      "state",
+      "stateDescription",
+      "lastTrustHeartbeatTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetDomainName) {
+      self.targetDomainName = value
+    }
+    if let value = try container.decodeIfPresent(Trust.TrustType.self, forKey: .trustType) {
+      self.trustType = value
+    }
+    if let value = try container.decodeIfPresent(Trust.TrustDirection.self, forKey: .trustDirection)
+    {
+      self.trustDirection = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .selectiveAuthentication)
+    {
+      self.selectiveAuthentication = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetDnsIpAddresses)
+    {
+      self.targetDnsIpAddresses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustHandshakeSecret) {
+      self.trustHandshakeSecret = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Trust.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDescription) {
+      self.stateDescription = value
+    }
+    self.lastTrustHeartbeatTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastTrustHeartbeatTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.targetDomainName, forKey: .targetDomainName)
+    try container.encode(self.trustType, forKey: .trustType)
+    try container.encode(self.trustDirection, forKey: .trustDirection)
+    try container.encode(self.selectiveAuthentication, forKey: .selectiveAuthentication)
+    try container.encode(self.targetDnsIpAddresses, forKey: .targetDnsIpAddresses)
+    try container.encode(self.trustHandshakeSecret, forKey: .trustHandshakeSecret)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDescription, forKey: .stateDescription)
+    try container.encodeIfPresent(self.lastTrustHeartbeatTime, forKey: .lastTrustHeartbeatTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the different states of a domain trust.

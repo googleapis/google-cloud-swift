@@ -50,6 +50,8 @@
     /// [google.cloud.aiplatform.v1.FeatureView.sync_config]: <doc:FeatureView/syncConfig>
     public var runSyncImmediately: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateFeatureViewRequest`.
     public init() {}
 
@@ -64,6 +66,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let featureView = CodingKeys(stringValue: "featureView")
+      static let featureViewId = CodingKeys(stringValue: "featureViewId")
+      static let runSyncImmediately = CodingKeys(stringValue: "runSyncImmediately")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "featureView",
+        "featureViewId",
+        "runSyncImmediately",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.featureView = try container.decodeIfPresent(FeatureView.self, forKey: .featureView)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureViewId) {
+        self.featureViewId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runSyncImmediately) {
+        self.runSyncImmediately = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.featureView, forKey: .featureView)
+      try container.encode(self.featureViewId, forKey: .featureViewId)
+      try container.encode(self.runSyncImmediately, forKey: .runSyncImmediately)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

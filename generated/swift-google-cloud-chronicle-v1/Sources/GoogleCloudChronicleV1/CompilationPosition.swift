@@ -34,6 +34,8 @@ public struct CompilationPosition: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Output only. End column number, beginning at 1.
   public var endColumn: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompilationPosition`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct CompilationPosition: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startLine = CodingKeys(stringValue: "startLine")
+    static let startColumn = CodingKeys(stringValue: "startColumn")
+    static let endLine = CodingKeys(stringValue: "endLine")
+    static let endColumn = CodingKeys(stringValue: "endColumn")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startLine",
+      "startColumn",
+      "endLine",
+      "endColumn",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .startLine) {
+      self.startLine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .startColumn) {
+      self.startColumn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .endLine) {
+      self.endLine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .endColumn) {
+      self.endColumn = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.startLine, forKey: .startLine)
+    try container.encode(self.startColumn, forKey: .startColumn)
+    try container.encode(self.endLine, forKey: .endLine)
+    try container.encode(self.endColumn, forKey: .endColumn)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

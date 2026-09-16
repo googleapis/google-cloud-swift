@@ -38,6 +38,8 @@ public struct UpgradeStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The version from which we upgraded.
   public var previousVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeStatus`.
   public init() {}
 
@@ -52,6 +54,59 @@ public struct UpgradeStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let previousVersion = CodingKeys(stringValue: "previousVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "state",
+      "error",
+      "startTime",
+      "previousVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(UpgradeStatus.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .previousVersion) {
+      self.previousVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encode(self.previousVersion, forKey: .previousVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible values of the state.

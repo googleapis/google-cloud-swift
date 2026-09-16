@@ -120,6 +120,8 @@
     /// be set for other actions.
     public var tlsInspect: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FirewallPolicyRule`.
     public init() {}
 
@@ -134,6 +136,117 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let action = CodingKeys(stringValue: "action")
+      static let description = CodingKeys(stringValue: "description")
+      static let direction = CodingKeys(stringValue: "direction")
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let enableLogging = CodingKeys(stringValue: "enableLogging")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let match = CodingKeys(stringValue: "match")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let ruleName = CodingKeys(stringValue: "ruleName")
+      static let ruleTupleCount = CodingKeys(stringValue: "ruleTupleCount")
+      static let securityProfileGroup = CodingKeys(stringValue: "securityProfileGroup")
+      static let targetForwardingRules = CodingKeys(stringValue: "targetForwardingRules")
+      static let targetResources = CodingKeys(stringValue: "targetResources")
+      static let targetSecureTags = CodingKeys(stringValue: "targetSecureTags")
+      static let targetServiceAccounts = CodingKeys(stringValue: "targetServiceAccounts")
+      static let targetType = CodingKeys(stringValue: "targetType")
+      static let tlsInspect = CodingKeys(stringValue: "tlsInspect")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "action",
+        "description",
+        "direction",
+        "disabled",
+        "enableLogging",
+        "kind",
+        "match",
+        "priority",
+        "ruleName",
+        "ruleTupleCount",
+        "securityProfileGroup",
+        "targetForwardingRules",
+        "targetResources",
+        "targetSecureTags",
+        "targetServiceAccounts",
+        "targetType",
+        "tlsInspect",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.action = try container.decodeIfPresent(Swift.String.self, forKey: .action)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.direction = try container.decodeIfPresent(
+        FirewallPolicyRule.Direction.self, forKey: .direction)
+      self.disabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled)
+      self.enableLogging = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableLogging)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.match = try container.decodeIfPresent(FirewallPolicyRuleMatcher.self, forKey: .match)
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
+      self.ruleName = try container.decodeIfPresent(Swift.String.self, forKey: .ruleName)
+      self.ruleTupleCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .ruleTupleCount)
+      self.securityProfileGroup = try container.decodeIfPresent(
+        Swift.String.self, forKey: .securityProfileGroup)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .targetForwardingRules)
+      {
+        self.targetForwardingRules = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetResources) {
+        self.targetResources = value
+      }
+      if let value = try container.decodeIfPresent(
+        [FirewallPolicyRuleSecureTag].self, forKey: .targetSecureTags)
+      {
+        self.targetSecureTags = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .targetServiceAccounts)
+      {
+        self.targetServiceAccounts = value
+      }
+      self.targetType = try container.decodeIfPresent(
+        FirewallPolicyRule.TargetType.self, forKey: .targetType)
+      self.tlsInspect = try container.decodeIfPresent(Swift.Bool.self, forKey: .tlsInspect)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.action, forKey: .action)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.direction, forKey: .direction)
+      try container.encodeIfPresent(self.disabled, forKey: .disabled)
+      try container.encodeIfPresent(self.enableLogging, forKey: .enableLogging)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.match, forKey: .match)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.ruleName, forKey: .ruleName)
+      try container.encodeIfPresent(self.ruleTupleCount, forKey: .ruleTupleCount)
+      try container.encodeIfPresent(self.securityProfileGroup, forKey: .securityProfileGroup)
+      try container.encode(self.targetForwardingRules, forKey: .targetForwardingRules)
+      try container.encode(self.targetResources, forKey: .targetResources)
+      try container.encode(self.targetSecureTags, forKey: .targetSecureTags)
+      try container.encode(self.targetServiceAccounts, forKey: .targetServiceAccounts)
+      try container.encodeIfPresent(self.targetType, forKey: .targetType)
+      try container.encodeIfPresent(self.tlsInspect, forKey: .tlsInspect)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [direction][google.cloud.compute.v1.FirewallPolicyRule.direction] field.

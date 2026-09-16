@@ -28,6 +28,8 @@ public struct ProtectedEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// endpoint, the first one in the list is used.
   public var protectedEndpoints: [ProtectedEndpoint] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProtectedEndpointGroup`.
   public init() {}
 
@@ -42,6 +44,40 @@ public struct ProtectedEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let protectedEndpoints = CodingKeys(stringValue: "protectedEndpoints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "protectedEndpoints"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ProtectedEndpoint].self, forKey: .protectedEndpoints)
+    {
+      self.protectedEndpoints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.protectedEndpoints, forKey: .protectedEndpoints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

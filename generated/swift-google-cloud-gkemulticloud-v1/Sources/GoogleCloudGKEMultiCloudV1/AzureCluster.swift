@@ -140,6 +140,8 @@ public struct AzureCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Monitoring configuration for this cluster.
   public var monitoringConfig: MonitoringConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureCluster`.
   public init() {}
 
@@ -154,6 +156,165 @@ public struct AzureCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let azureRegion = CodingKeys(stringValue: "azureRegion")
+    static let resourceGroupId = CodingKeys(stringValue: "resourceGroupId")
+    static let azureClient = CodingKeys(stringValue: "azureClient")
+    static let networking = CodingKeys(stringValue: "networking")
+    static let controlPlane = CodingKeys(stringValue: "controlPlane")
+    static let authorization = CodingKeys(stringValue: "authorization")
+    static let azureServicesAuthentication = CodingKeys(stringValue: "azureServicesAuthentication")
+    static let state = CodingKeys(stringValue: "state")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
+    static let clusterCaCertificate = CodingKeys(stringValue: "clusterCaCertificate")
+    static let fleet = CodingKeys(stringValue: "fleet")
+    static let managedResources = CodingKeys(stringValue: "managedResources")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let monitoringConfig = CodingKeys(stringValue: "monitoringConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "azureRegion",
+      "resourceGroupId",
+      "azureClient",
+      "networking",
+      "controlPlane",
+      "authorization",
+      "azureServicesAuthentication",
+      "state",
+      "endpoint",
+      "uid",
+      "reconciling",
+      "createTime",
+      "updateTime",
+      "etag",
+      "annotations",
+      "workloadIdentityConfig",
+      "clusterCaCertificate",
+      "fleet",
+      "managedResources",
+      "loggingConfig",
+      "errors",
+      "monitoringConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .azureRegion) {
+      self.azureRegion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceGroupId) {
+      self.resourceGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .azureClient) {
+      self.azureClient = value
+    }
+    self.networking = try container.decodeIfPresent(
+      AzureClusterNetworking.self, forKey: .networking)
+    self.controlPlane = try container.decodeIfPresent(AzureControlPlane.self, forKey: .controlPlane)
+    self.authorization = try container.decodeIfPresent(
+      AzureAuthorization.self, forKey: .authorization)
+    self.azureServicesAuthentication = try container.decodeIfPresent(
+      AzureServicesAuthentication.self, forKey: .azureServicesAuthentication)
+    if let value = try container.decodeIfPresent(AzureCluster.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterCaCertificate) {
+      self.clusterCaCertificate = value
+    }
+    self.fleet = try container.decodeIfPresent(Fleet.self, forKey: .fleet)
+    self.managedResources = try container.decodeIfPresent(
+      AzureClusterResources.self, forKey: .managedResources)
+    self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+    if let value = try container.decodeIfPresent([AzureClusterError].self, forKey: .errors) {
+      self.errors = value
+    }
+    self.monitoringConfig = try container.decodeIfPresent(
+      MonitoringConfig.self, forKey: .monitoringConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.azureRegion, forKey: .azureRegion)
+    try container.encode(self.resourceGroupId, forKey: .resourceGroupId)
+    try container.encode(self.azureClient, forKey: .azureClient)
+    try container.encodeIfPresent(self.networking, forKey: .networking)
+    try container.encodeIfPresent(self.controlPlane, forKey: .controlPlane)
+    try container.encodeIfPresent(self.authorization, forKey: .authorization)
+    try container.encodeIfPresent(
+      self.azureServicesAuthentication, forKey: .azureServicesAuthentication)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.endpoint, forKey: .endpoint)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
+    try container.encode(self.clusterCaCertificate, forKey: .clusterCaCertificate)
+    try container.encodeIfPresent(self.fleet, forKey: .fleet)
+    try container.encodeIfPresent(self.managedResources, forKey: .managedResources)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encodeIfPresent(self.monitoringConfig, forKey: .monitoringConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The lifecycle state of the cluster.

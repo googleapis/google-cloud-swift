@@ -62,6 +62,8 @@
     /// This is always `sql#mysqlReplicaConfiguration`.
     public var kind: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MySqlReplicaConfiguration`.
     public init() {}
 
@@ -76,6 +78,95 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dumpFilePath = CodingKeys(stringValue: "dumpFilePath")
+      static let username = CodingKeys(stringValue: "username")
+      static let password = CodingKeys(stringValue: "password")
+      static let connectRetryInterval = CodingKeys(stringValue: "connectRetryInterval")
+      static let masterHeartbeatPeriod = CodingKeys(stringValue: "masterHeartbeatPeriod")
+      static let caCertificate = CodingKeys(stringValue: "caCertificate")
+      static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+      static let sslCipher = CodingKeys(stringValue: "sslCipher")
+      static let verifyServerCertificate = CodingKeys(stringValue: "verifyServerCertificate")
+      static let kind = CodingKeys(stringValue: "kind")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dumpFilePath",
+        "username",
+        "password",
+        "connectRetryInterval",
+        "masterHeartbeatPeriod",
+        "caCertificate",
+        "clientCertificate",
+        "clientKey",
+        "sslCipher",
+        "verifyServerCertificate",
+        "kind",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dumpFilePath) {
+        self.dumpFilePath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      self.connectRetryInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .connectRetryInterval)
+      self.masterHeartbeatPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Int64Value.self, forKey: .masterHeartbeatPeriod)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+        self.caCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+        self.clientCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+        self.clientKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslCipher) {
+        self.sslCipher = value
+      }
+      self.verifyServerCertificate = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .verifyServerCertificate)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dumpFilePath, forKey: .dumpFilePath)
+      try container.encode(self.username, forKey: .username)
+      try container.encode(self.password, forKey: .password)
+      try container.encodeIfPresent(self.connectRetryInterval, forKey: .connectRetryInterval)
+      try container.encodeIfPresent(self.masterHeartbeatPeriod, forKey: .masterHeartbeatPeriod)
+      try container.encode(self.caCertificate, forKey: .caCertificate)
+      try container.encode(self.clientCertificate, forKey: .clientCertificate)
+      try container.encode(self.clientKey, forKey: .clientKey)
+      try container.encode(self.sslCipher, forKey: .sslCipher)
+      try container.encodeIfPresent(self.verifyServerCertificate, forKey: .verifyServerCertificate)
+      try container.encode(self.kind, forKey: .kind)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

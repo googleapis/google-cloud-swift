@@ -32,6 +32,8 @@ public struct ProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `COMPLETE`, `PROGRESS`.
   public var events: [Event] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProgressEvent`.
   public init() {}
 
@@ -46,6 +48,43 @@ public struct ProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeOffset = CodingKeys(stringValue: "timeOffset")
+    static let events = CodingKeys(stringValue: "events")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeOffset",
+      "events",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.timeOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .timeOffset)
+    if let value = try container.decodeIfPresent([Event].self, forKey: .events) {
+      self.events = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.timeOffset, forKey: .timeOffset)
+    try container.encode(self.events, forKey: .events)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -30,6 +30,8 @@ public struct ImageClassificationPredictionParams: Codable, Equatable, GoogleClo
   /// fewer predictions. Default value is 10.
   public var maxPredictions: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageClassificationPredictionParams`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct ImageClassificationPredictionParams: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let confidenceThreshold = CodingKeys(stringValue: "confidenceThreshold")
+    static let maxPredictions = CodingKeys(stringValue: "maxPredictions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "confidenceThreshold",
+      "maxPredictions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceThreshold) {
+      self.confidenceThreshold = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPredictions) {
+      self.maxPredictions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.confidenceThreshold, forKey: .confidenceThreshold)
+    try container.encode(self.maxPredictions, forKey: .maxPredictions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

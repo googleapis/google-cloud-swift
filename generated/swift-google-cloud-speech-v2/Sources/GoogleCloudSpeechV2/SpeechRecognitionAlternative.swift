@@ -44,6 +44,8 @@ public struct SpeechRecognitionAlternative: Codable, Equatable, GoogleCloudWKT._
   /// [google.cloud.speech.v2.SpeakerDiarizationConfig]: <doc:SpeakerDiarizationConfig>
   public var words: [WordInfo] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpeechRecognitionAlternative`.
   public init() {}
 
@@ -58,6 +60,50 @@ public struct SpeechRecognitionAlternative: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transcript = CodingKeys(stringValue: "transcript")
+    static let confidence = CodingKeys(stringValue: "confidence")
+    static let words = CodingKeys(stringValue: "words")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transcript",
+      "confidence",
+      "words",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transcript) {
+      self.transcript = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    if let value = try container.decodeIfPresent([WordInfo].self, forKey: .words) {
+      self.words = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transcript, forKey: .transcript)
+    try container.encode(self.confidence, forKey: .confidence)
+    try container.encode(self.words, forKey: .words)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

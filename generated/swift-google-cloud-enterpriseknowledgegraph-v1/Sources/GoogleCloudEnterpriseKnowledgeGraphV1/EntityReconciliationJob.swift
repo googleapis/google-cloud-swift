@@ -53,6 +53,8 @@ public struct EntityReconciliationJob: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Recon configs to adjust the clustering behavior.
   public var reconConfig: ReconConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntityReconciliationJob`.
   public init() {}
 
@@ -67,6 +69,74 @@ public struct EntityReconciliationJob: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let inputConfig = CodingKeys(stringValue: "inputConfig")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let reconConfig = CodingKeys(stringValue: "reconConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "inputConfig",
+      "outputConfig",
+      "state",
+      "error",
+      "createTime",
+      "endTime",
+      "updateTime",
+      "reconConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.inputConfig = try container.decodeIfPresent(InputConfig.self, forKey: .inputConfig)
+    self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+    if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
+      self.state = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.reconConfig = try container.decodeIfPresent(ReconConfig.self, forKey: .reconConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.reconConfig, forKey: .reconConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

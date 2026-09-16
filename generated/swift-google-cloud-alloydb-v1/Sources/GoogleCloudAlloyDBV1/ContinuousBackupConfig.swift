@@ -35,6 +35,8 @@ public struct ContinuousBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// not specified, the backup will use the cluster's encryption config.
   public var encryptionConfig: EncryptionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContinuousBackupConfig`.
   public init() {}
 
@@ -49,6 +51,47 @@ public struct ContinuousBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let recoveryWindowDays = CodingKeys(stringValue: "recoveryWindowDays")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "recoveryWindowDays",
+      "encryptionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .recoveryWindowDays) {
+      self.recoveryWindowDays = value
+    }
+    self.encryptionConfig = try container.decodeIfPresent(
+      EncryptionConfig.self, forKey: .encryptionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encode(self.recoveryWindowDays, forKey: .recoveryWindowDays)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@ public struct DataQualityColumnResult: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Output only. The dimension-level results for this column.
   public var dimensions: [DataQualityDimensionResult] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataQualityColumnResult`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct DataQualityColumnResult: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let column = CodingKeys(stringValue: "column")
+    static let score = CodingKeys(stringValue: "score")
+    static let passed = CodingKeys(stringValue: "passed")
+    static let dimensions = CodingKeys(stringValue: "dimensions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "column",
+      "score",
+      "passed",
+      "dimensions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+      self.column = value
+    }
+    self.score = try container.decodeIfPresent(Swift.Float.self, forKey: .score)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passed) {
+      self.passed = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DataQualityDimensionResult].self, forKey: .dimensions)
+    {
+      self.dimensions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.column, forKey: .column)
+    try container.encodeIfPresent(self.score, forKey: .score)
+    try container.encode(self.passed, forKey: .passed)
+    try container.encode(self.dimensions, forKey: .dimensions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

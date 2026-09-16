@@ -79,6 +79,8 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Featurestore`.
     public init() {}
 
@@ -93,6 +95,97 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let onlineServingConfig = CodingKeys(stringValue: "onlineServingConfig")
+      static let state = CodingKeys(stringValue: "state")
+      static let onlineStorageTtlDays = CodingKeys(stringValue: "onlineStorageTtlDays")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "createTime",
+        "updateTime",
+        "etag",
+        "labels",
+        "onlineServingConfig",
+        "state",
+        "onlineStorageTtlDays",
+        "encryptionSpec",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.onlineServingConfig = try container.decodeIfPresent(
+        Featurestore.OnlineServingConfig.self, forKey: .onlineServingConfig)
+      if let value = try container.decodeIfPresent(Featurestore.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .onlineStorageTtlDays)
+      {
+        self.onlineStorageTtlDays = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.onlineServingConfig, forKey: .onlineServingConfig)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.onlineStorageTtlDays, forKey: .onlineStorageTtlDays)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// OnlineServingConfig specifies the details for provisioning online serving
@@ -111,6 +204,8 @@
       /// reset the other.
       public var scaling: Featurestore.OnlineServingConfig.Scaling? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OnlineServingConfig`.
       public init() {}
 
@@ -125,6 +220,43 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let fixedNodeCount = CodingKeys(stringValue: "fixedNodeCount")
+        static let scaling = CodingKeys(stringValue: "scaling")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "fixedNodeCount",
+          "scaling",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fixedNodeCount) {
+          self.fixedNodeCount = value
+        }
+        self.scaling = try container.decodeIfPresent(
+          Featurestore.OnlineServingConfig.Scaling.self, forKey: .scaling)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.fixedNodeCount, forKey: .fixedNodeCount)
+        try container.encodeIfPresent(self.scaling, forKey: .scaling)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Online serving scaling configuration. If min_node_count and
@@ -150,6 +282,9 @@
         /// or set to 0, default to 50.
         public var cpuUtilizationTarget: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Scaling`.
         public init() {}
 
@@ -164,6 +299,52 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let minNodeCount = CodingKeys(stringValue: "minNodeCount")
+          static let maxNodeCount = CodingKeys(stringValue: "maxNodeCount")
+          static let cpuUtilizationTarget = CodingKeys(stringValue: "cpuUtilizationTarget")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "minNodeCount",
+            "maxNodeCount",
+            "cpuUtilizationTarget",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount) {
+            self.minNodeCount = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodeCount) {
+            self.maxNodeCount = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Int32.self, forKey: .cpuUtilizationTarget)
+          {
+            self.cpuUtilizationTarget = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.minNodeCount, forKey: .minNodeCount)
+          try container.encode(self.maxNodeCount, forKey: .maxNodeCount)
+          try container.encode(self.cpuUtilizationTarget, forKey: .cpuUtilizationTarget)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

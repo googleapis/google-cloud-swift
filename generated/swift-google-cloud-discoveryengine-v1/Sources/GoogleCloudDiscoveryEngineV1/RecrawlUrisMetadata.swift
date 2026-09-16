@@ -68,6 +68,8 @@
     /// resources.
     public var quotaExceededCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RecrawlUrisMetadata`.
     public init() {}
 
@@ -82,6 +84,108 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let invalidUris = CodingKeys(stringValue: "invalidUris")
+      static let invalidUrisCount = CodingKeys(stringValue: "invalidUrisCount")
+      static let noindexUris = CodingKeys(stringValue: "noindexUris")
+      static let noindexUrisCount = CodingKeys(stringValue: "noindexUrisCount")
+      static let urisNotMatchingTargetSites = CodingKeys(stringValue: "urisNotMatchingTargetSites")
+      static let urisNotMatchingTargetSitesCount = CodingKeys(
+        stringValue: "urisNotMatchingTargetSitesCount")
+      static let validUrisCount = CodingKeys(stringValue: "validUrisCount")
+      static let successCount = CodingKeys(stringValue: "successCount")
+      static let pendingCount = CodingKeys(stringValue: "pendingCount")
+      static let quotaExceededCount = CodingKeys(stringValue: "quotaExceededCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "createTime",
+        "updateTime",
+        "invalidUris",
+        "invalidUrisCount",
+        "noindexUris",
+        "noindexUrisCount",
+        "urisNotMatchingTargetSites",
+        "urisNotMatchingTargetSitesCount",
+        "validUrisCount",
+        "successCount",
+        "pendingCount",
+        "quotaExceededCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .invalidUris) {
+        self.invalidUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .invalidUrisCount) {
+        self.invalidUrisCount = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .noindexUris) {
+        self.noindexUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .noindexUrisCount) {
+        self.noindexUrisCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .urisNotMatchingTargetSites)
+      {
+        self.urisNotMatchingTargetSites = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .urisNotMatchingTargetSitesCount)
+      {
+        self.urisNotMatchingTargetSitesCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .validUrisCount) {
+        self.validUrisCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successCount) {
+        self.successCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pendingCount) {
+        self.pendingCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quotaExceededCount) {
+        self.quotaExceededCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.invalidUris, forKey: .invalidUris)
+      try container.encode(self.invalidUrisCount, forKey: .invalidUrisCount)
+      try container.encode(self.noindexUris, forKey: .noindexUris)
+      try container.encode(self.noindexUrisCount, forKey: .noindexUrisCount)
+      try container.encode(self.urisNotMatchingTargetSites, forKey: .urisNotMatchingTargetSites)
+      try container.encode(
+        self.urisNotMatchingTargetSitesCount, forKey: .urisNotMatchingTargetSitesCount)
+      try container.encode(self.validUrisCount, forKey: .validUrisCount)
+      try container.encode(self.successCount, forKey: .successCount)
+      try container.encode(self.pendingCount, forKey: .pendingCount)
+      try container.encode(self.quotaExceededCount, forKey: .quotaExceededCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

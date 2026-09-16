@@ -33,6 +33,8 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
 
   public var config: OneOf_Config? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KubernetesClusterConfig`.
   public init() {}
 
@@ -49,15 +51,28 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case kubernetesNamespace = "kubernetesNamespace"
-    case gkeClusterConfig = "gkeClusterConfig"
-    case kubernetesSoftwareConfig = "kubernetesSoftwareConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kubernetesNamespace = CodingKeys(stringValue: "kubernetesNamespace")
+    static let gkeClusterConfig = CodingKeys(stringValue: "gkeClusterConfig")
+    static let kubernetesSoftwareConfig = CodingKeys(stringValue: "kubernetesSoftwareConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kubernetesNamespace",
+      "gkeClusterConfig",
+      "kubernetesSoftwareConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.kubernetesNamespace = try container.decode(Swift.String.self, forKey: .kubernetesNamespace)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kubernetesNamespace) {
+      self.kubernetesNamespace = value
+    }
     self.kubernetesSoftwareConfig = try container.decodeIfPresent(
       KubernetesSoftwareConfig.self, forKey: .kubernetesSoftwareConfig)
 
@@ -77,18 +92,25 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       try configCheckAndSet(.gkeClusterConfig(gkeClusterConfig))
     }
     self.config = config
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.kubernetesNamespace, forKey: .kubernetesNamespace)
-    try container.encode(self.kubernetesSoftwareConfig, forKey: .kubernetesSoftwareConfig)
+    try container.encodeIfPresent(self.kubernetesSoftwareConfig, forKey: .kubernetesSoftwareConfig)
 
     if let choice = self.config {
       switch choice {
       case .gkeClusterConfig(let value):
         try container.encode(value, forKey: .gkeClusterConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -40,6 +40,8 @@ public struct CreateClusterMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// newly-created cluster so far.
   public var tables: [Swift.String: CreateClusterMetadata.TableProgress] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateClusterMetadata`.
   public init() {}
 
@@ -54,6 +56,55 @@ public struct CreateClusterMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let originalRequest = CodingKeys(stringValue: "originalRequest")
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let finishTime = CodingKeys(stringValue: "finishTime")
+    static let tables = CodingKeys(stringValue: "tables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "originalRequest",
+      "requestTime",
+      "finishTime",
+      "tables",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.originalRequest = try container.decodeIfPresent(
+      CreateClusterRequest.self, forKey: .originalRequest)
+    self.requestTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .requestTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finishTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CreateClusterMetadata.TableProgress].self, forKey: .tables)
+    {
+      self.tables = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.originalRequest, forKey: .originalRequest)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
+    try container.encode(self.tables, forKey: .tables)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Progress info for copying a table's data to the new cluster.
@@ -71,6 +122,8 @@ public struct CreateClusterMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
     public var state: CreateClusterMetadata.TableProgress.State = CreateClusterMetadata
       .TableProgress.State()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TableProgress`.
     public init() {}
 
@@ -85,6 +138,53 @@ public struct CreateClusterMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let estimatedSizeBytes = CodingKeys(stringValue: "estimatedSizeBytes")
+      static let estimatedCopiedBytes = CodingKeys(stringValue: "estimatedCopiedBytes")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "estimatedSizeBytes",
+        "estimatedCopiedBytes",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .estimatedSizeBytes) {
+        self.estimatedSizeBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .estimatedCopiedBytes)
+      {
+        self.estimatedCopiedBytes = value
+      }
+      if let value = try container.decodeIfPresent(
+        CreateClusterMetadata.TableProgress.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.estimatedSizeBytes, forKey: .estimatedSizeBytes)
+      try container.encode(self.estimatedCopiedBytes, forKey: .estimatedCopiedBytes)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public enum State: Codable, Equatable, Sendable {

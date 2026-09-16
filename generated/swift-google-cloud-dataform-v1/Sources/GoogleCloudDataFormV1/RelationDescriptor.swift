@@ -30,6 +30,8 @@ public struct RelationDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// A set of BigQuery labels that should be applied to the relation.
   public var bigqueryLabels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RelationDescriptor`.
   public init() {}
 
@@ -46,6 +48,54 @@ public struct RelationDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let columns = CodingKeys(stringValue: "columns")
+    static let bigqueryLabels = CodingKeys(stringValue: "bigqueryLabels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "columns",
+      "bigqueryLabels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RelationDescriptor.ColumnDescriptor].self, forKey: .columns)
+    {
+      self.columns = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .bigqueryLabels)
+    {
+      self.bigqueryLabels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.columns, forKey: .columns)
+    try container.encode(self.bigqueryLabels, forKey: .bigqueryLabels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Describes a column.
   public struct ColumnDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +109,8 @@ public struct RelationDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
     /// A list of BigQuery policy tags that will be applied to the column.
     public var bigqueryPolicyTags: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ColumnDescriptor`.
     public init() {}
@@ -74,6 +126,51 @@ public struct RelationDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let path = CodingKeys(stringValue: "path")
+      static let description = CodingKeys(stringValue: "description")
+      static let bigqueryPolicyTags = CodingKeys(stringValue: "bigqueryPolicyTags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "path",
+        "description",
+        "bigqueryPolicyTags",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .bigqueryPolicyTags)
+      {
+        self.bigqueryPolicyTags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.bigqueryPolicyTags, forKey: .bigqueryPolicyTags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

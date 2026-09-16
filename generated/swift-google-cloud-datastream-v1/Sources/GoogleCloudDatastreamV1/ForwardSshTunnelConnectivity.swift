@@ -32,6 +32,8 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleCloudWKT._
 
   public var authenticationMethod: OneOf_AuthenticationMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ForwardSshTunnelConnectivity`.
   public init() {}
 
@@ -48,19 +50,38 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hostname = "hostname"
-    case username = "username"
-    case port = "port"
-    case password = "password"
-    case privateKey = "privateKey"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let username = CodingKeys(stringValue: "username")
+    static let port = CodingKeys(stringValue: "port")
+    static let password = CodingKeys(stringValue: "password")
+    static let privateKey = CodingKeys(stringValue: "privateKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostname",
+      "username",
+      "port",
+      "password",
+      "privateKey",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.hostname = try container.decode(Swift.String.self, forKey: .hostname)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
 
     var authenticationMethod: OneOf_AuthenticationMethod? = nil
     let authenticationMethodCheckAndSet = {
@@ -79,6 +100,10 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleCloudWKT._
       try authenticationMethodCheckAndSet(.privateKey(privateKey))
     }
     self.authenticationMethod = authenticationMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +119,9 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleCloudWKT._
       case .privateKey(let value):
         try container.encode(value, forKey: .privateKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

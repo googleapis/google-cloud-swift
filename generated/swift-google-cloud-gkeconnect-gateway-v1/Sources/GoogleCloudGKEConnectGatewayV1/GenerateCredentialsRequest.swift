@@ -48,6 +48,8 @@ public struct GenerateCredentialsRequest: Codable, Equatable, GoogleCloudWKT._An
   public var operatingSystem: GenerateCredentialsRequest.OperatingSystem =
     GenerateCredentialsRequest.OperatingSystem()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateCredentialsRequest`.
   public init() {}
 
@@ -62,6 +64,64 @@ public struct GenerateCredentialsRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let forceUseAgent = CodingKeys(stringValue: "forceUseAgent")
+    static let version = CodingKeys(stringValue: "version")
+    static let kubernetesNamespace = CodingKeys(stringValue: "kubernetesNamespace")
+    static let operatingSystem = CodingKeys(stringValue: "operatingSystem")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "forceUseAgent",
+      "version",
+      "kubernetesNamespace",
+      "operatingSystem",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceUseAgent) {
+      self.forceUseAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kubernetesNamespace) {
+      self.kubernetesNamespace = value
+    }
+    if let value = try container.decodeIfPresent(
+      GenerateCredentialsRequest.OperatingSystem.self, forKey: .operatingSystem)
+    {
+      self.operatingSystem = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.forceUseAgent, forKey: .forceUseAgent)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.kubernetesNamespace, forKey: .kubernetesNamespace)
+    try container.encode(self.operatingSystem, forKey: .operatingSystem)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Operating systems requiring specialized kubeconfigs.

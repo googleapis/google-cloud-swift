@@ -27,6 +27,8 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The set of RPC attempts received by the server for a Sequence.
   public var attempts: [SequenceReport.Attempt] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SequenceReport`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let attempts = CodingKeys(stringValue: "attempts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "attempts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([SequenceReport.Attempt].self, forKey: .attempts) {
+      self.attempts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.attempts, forKey: .attempts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains metrics on individual RPC Attempts in a sequence.
@@ -64,6 +104,8 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The status returned to the attempt.
     public var status: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Attempt`.
     public init() {}
 
@@ -78,6 +120,57 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attemptNumber = CodingKeys(stringValue: "attemptNumber")
+      static let attemptDeadline = CodingKeys(stringValue: "attemptDeadline")
+      static let responseTime = CodingKeys(stringValue: "responseTime")
+      static let attemptDelay = CodingKeys(stringValue: "attemptDelay")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attemptNumber",
+        "attemptDeadline",
+        "responseTime",
+        "attemptDelay",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .attemptNumber) {
+        self.attemptNumber = value
+      }
+      self.attemptDeadline = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .attemptDeadline)
+      self.responseTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .responseTime)
+      self.attemptDelay = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .attemptDelay)
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.attemptNumber, forKey: .attemptNumber)
+      try container.encodeIfPresent(self.attemptDeadline, forKey: .attemptDeadline)
+      try container.encodeIfPresent(self.responseTime, forKey: .responseTime)
+      try container.encodeIfPresent(self.attemptDelay, forKey: .attemptDelay)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// overlap.
   public var animations: [Overlay.Animation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Overlay`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let image = CodingKeys(stringValue: "image")
+    static let animations = CodingKeys(stringValue: "animations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "image",
+      "animations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.image = try container.decodeIfPresent(Overlay.Image.self, forKey: .image)
+    if let value = try container.decodeIfPresent([Overlay.Animation].self, forKey: .animations) {
+      self.animations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.image, forKey: .image)
+    try container.encode(self.animations, forKey: .animations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// 2D normalized coordinates. Default: `{0.0, 0.0}`
   public struct NormalizedCoordinate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +91,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Normalized y coordinate.
     public var y: Swift.Double = Swift.Double()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NormalizedCoordinate`.
     public init() {}
@@ -68,6 +108,44 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let x = CodingKeys(stringValue: "x")
+      static let y = CodingKeys(stringValue: "y")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "x",
+        "y",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .x) {
+        self.x = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .y) {
+        self.y = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.x, forKey: .x)
+      try container.encode(self.y, forKey: .y)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -99,6 +177,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
     public var alpha: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Image`.
     public init() {}
 
@@ -113,6 +193,49 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let resolution = CodingKeys(stringValue: "resolution")
+      static let alpha = CodingKeys(stringValue: "alpha")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "resolution",
+        "alpha",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      self.resolution = try container.decodeIfPresent(
+        Overlay.NormalizedCoordinate.self, forKey: .resolution)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .alpha) {
+        self.alpha = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encodeIfPresent(self.resolution, forKey: .resolution)
+      try container.encode(self.alpha, forKey: .alpha)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -140,6 +263,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The time to start displaying the overlay object, in seconds. Default: 0
     public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnimationStatic`.
     public init() {}
 
@@ -154,6 +279,41 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let xy = CodingKeys(stringValue: "xy")
+      static let startTimeOffset = CodingKeys(stringValue: "startTimeOffset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "xy",
+        "startTimeOffset",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.xy = try container.decodeIfPresent(Overlay.NormalizedCoordinate.self, forKey: .xy)
+      self.startTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.xy, forKey: .xy)
+      try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -188,6 +348,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `start_time_offset` + 1s
     public var endTimeOffset: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnimationFade`.
     public init() {}
 
@@ -202,6 +364,52 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fadeType = CodingKeys(stringValue: "fadeType")
+      static let xy = CodingKeys(stringValue: "xy")
+      static let startTimeOffset = CodingKeys(stringValue: "startTimeOffset")
+      static let endTimeOffset = CodingKeys(stringValue: "endTimeOffset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fadeType",
+        "xy",
+        "startTimeOffset",
+        "endTimeOffset",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Overlay.FadeType.self, forKey: .fadeType) {
+        self.fadeType = value
+      }
+      self.xy = try container.decodeIfPresent(Overlay.NormalizedCoordinate.self, forKey: .xy)
+      self.startTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
+      self.endTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .endTimeOffset)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fadeType, forKey: .fadeType)
+      try container.encodeIfPresent(self.xy, forKey: .xy)
+      try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
+      try container.encodeIfPresent(self.endTimeOffset, forKey: .endTimeOffset)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -224,6 +432,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The time to end overlay object, in seconds. Default: 0
     public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnimationEnd`.
     public init() {}
 
@@ -238,6 +448,37 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTimeOffset = CodingKeys(stringValue: "startTimeOffset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTimeOffset"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startTimeOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -258,6 +499,8 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Animations can be static or fade, or they can end the previous animation.
     public var animationType: OneOf_AnimationType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Animation`.
     public init() {}
 
@@ -274,10 +517,21 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case animationStatic = "animationStatic"
-      case animationFade = "animationFade"
-      case animationEnd = "animationEnd"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let animationStatic = CodingKeys(stringValue: "animationStatic")
+      static let animationFade = CodingKeys(stringValue: "animationFade")
+      static let animationEnd = CodingKeys(stringValue: "animationEnd")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "animationStatic",
+        "animationFade",
+        "animationEnd",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -309,6 +563,10 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try animationTypeCheckAndSet(.animationEnd(animationEnd))
       }
       self.animationType = animationType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -323,6 +581,9 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .animationEnd(let value):
           try container.encode(value, forKey: .animationEnd)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

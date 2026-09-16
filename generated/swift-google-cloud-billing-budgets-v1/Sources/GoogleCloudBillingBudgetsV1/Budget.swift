@@ -59,6 +59,8 @@ public struct Budget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// An empty etag causes an update to overwrite other changes.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Budget`.
   public init() {}
 
@@ -73,6 +75,69 @@ public struct Budget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let budgetFilter = CodingKeys(stringValue: "budgetFilter")
+    static let amount = CodingKeys(stringValue: "amount")
+    static let thresholdRules = CodingKeys(stringValue: "thresholdRules")
+    static let notificationsRule = CodingKeys(stringValue: "notificationsRule")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "budgetFilter",
+      "amount",
+      "thresholdRules",
+      "notificationsRule",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.budgetFilter = try container.decodeIfPresent(Filter.self, forKey: .budgetFilter)
+    self.amount = try container.decodeIfPresent(BudgetAmount.self, forKey: .amount)
+    if let value = try container.decodeIfPresent([ThresholdRule].self, forKey: .thresholdRules) {
+      self.thresholdRules = value
+    }
+    self.notificationsRule = try container.decodeIfPresent(
+      NotificationsRule.self, forKey: .notificationsRule)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.budgetFilter, forKey: .budgetFilter)
+    try container.encodeIfPresent(self.amount, forKey: .amount)
+    try container.encode(self.thresholdRules, forKey: .thresholdRules)
+    try container.encodeIfPresent(self.notificationsRule, forKey: .notificationsRule)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

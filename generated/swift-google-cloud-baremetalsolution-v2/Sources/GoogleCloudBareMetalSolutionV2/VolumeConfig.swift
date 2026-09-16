@@ -62,6 +62,8 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Default is SHARED.
   public var performanceTier: VolumePerformanceTier = VolumePerformanceTier()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VolumeConfig`.
   public init() {}
 
@@ -78,36 +80,86 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case id = "id"
-    case snapshotsEnabled = "snapshotsEnabled"
-    case type = "type"
-    case `protocol` = "protocol"
-    case sizeGb = "sizeGb"
-    case lunRanges = "lunRanges"
-    case machineIds = "machineIds"
-    case nfsExports = "nfsExports"
-    case userNote = "userNote"
-    case gcpService = "gcpService"
-    case performanceTier = "performanceTier"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let snapshotsEnabled = CodingKeys(stringValue: "snapshotsEnabled")
+    static let type = CodingKeys(stringValue: "type")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let sizeGb = CodingKeys(stringValue: "sizeGb")
+    static let lunRanges = CodingKeys(stringValue: "lunRanges")
+    static let machineIds = CodingKeys(stringValue: "machineIds")
+    static let nfsExports = CodingKeys(stringValue: "nfsExports")
+    static let userNote = CodingKeys(stringValue: "userNote")
+    static let gcpService = CodingKeys(stringValue: "gcpService")
+    static let performanceTier = CodingKeys(stringValue: "performanceTier")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "snapshotsEnabled",
+      "type",
+      "protocol",
+      "sizeGb",
+      "lunRanges",
+      "machineIds",
+      "nfsExports",
+      "userNote",
+      "gcpService",
+      "performanceTier",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.snapshotsEnabled = try container.decode(Swift.Bool.self, forKey: .snapshotsEnabled)
-    self.type = try container.decode(VolumeConfig.Type_.self, forKey: .type)
-    self.`protocol` = try container.decode(VolumeConfig.Protocol_.self, forKey: .`protocol`)
-    self.sizeGb = try container.decode(Swift.Int32.self, forKey: .sizeGb)
-    self.lunRanges = try container.decode([VolumeConfig.LunRange].self, forKey: .lunRanges)
-    self.machineIds = try container.decode([Swift.String].self, forKey: .machineIds)
-    self.nfsExports = try container.decode([VolumeConfig.NfsExport].self, forKey: .nfsExports)
-    self.userNote = try container.decode(Swift.String.self, forKey: .userNote)
-    self.gcpService = try container.decode(Swift.String.self, forKey: .gcpService)
-    self.performanceTier = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .snapshotsEnabled) {
+      self.snapshotsEnabled = value
+    }
+    if let value = try container.decodeIfPresent(VolumeConfig.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(VolumeConfig.Protocol_.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+      self.sizeGb = value
+    }
+    if let value = try container.decodeIfPresent([VolumeConfig.LunRange].self, forKey: .lunRanges) {
+      self.lunRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .machineIds) {
+      self.machineIds = value
+    }
+    if let value = try container.decodeIfPresent([VolumeConfig.NfsExport].self, forKey: .nfsExports)
+    {
+      self.nfsExports = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userNote) {
+      self.userNote = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpService) {
+      self.gcpService = value
+    }
+    if let value = try container.decodeIfPresent(
       VolumePerformanceTier.self, forKey: .performanceTier)
+    {
+      self.performanceTier = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -124,6 +176,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.userNote, forKey: .userNote)
     try container.encode(self.gcpService, forKey: .gcpService)
     try container.encode(self.performanceTier, forKey: .performanceTier)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A LUN(Logical Unit Number) range.
@@ -135,6 +190,8 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The requested size of each LUN, in GB.
     public var sizeGb: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LunRange`.
     public init() {}
@@ -150,6 +207,44 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quantity = CodingKeys(stringValue: "quantity")
+      static let sizeGb = CodingKeys(stringValue: "sizeGb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quantity",
+        "sizeGb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quantity) {
+        self.quantity = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+        self.sizeGb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.quantity, forKey: .quantity)
+      try container.encode(self.sizeGb, forKey: .sizeGb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -188,6 +283,8 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A client object.
     public var client: OneOf_Client? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NfsExport`.
     public init() {}
 
@@ -204,24 +301,50 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case networkId = "networkId"
-      case machineId = "machineId"
-      case cidr = "cidr"
-      case permissions = "permissions"
-      case noRootSquash = "noRootSquash"
-      case allowSuid = "allowSuid"
-      case allowDev = "allowDev"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let networkId = CodingKeys(stringValue: "networkId")
+      static let machineId = CodingKeys(stringValue: "machineId")
+      static let cidr = CodingKeys(stringValue: "cidr")
+      static let permissions = CodingKeys(stringValue: "permissions")
+      static let noRootSquash = CodingKeys(stringValue: "noRootSquash")
+      static let allowSuid = CodingKeys(stringValue: "allowSuid")
+      static let allowDev = CodingKeys(stringValue: "allowDev")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "networkId",
+        "machineId",
+        "cidr",
+        "permissions",
+        "noRootSquash",
+        "allowSuid",
+        "allowDev",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.networkId = try container.decode(Swift.String.self, forKey: .networkId)
-      self.permissions = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkId) {
+        self.networkId = value
+      }
+      if let value = try container.decodeIfPresent(
         VolumeConfig.NfsExport.Permissions.self, forKey: .permissions)
-      self.noRootSquash = try container.decode(Swift.Bool.self, forKey: .noRootSquash)
-      self.allowSuid = try container.decode(Swift.Bool.self, forKey: .allowSuid)
-      self.allowDev = try container.decode(Swift.Bool.self, forKey: .allowDev)
+      {
+        self.permissions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noRootSquash) {
+        self.noRootSquash = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowSuid) {
+        self.allowSuid = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowDev) {
+        self.allowDev = value
+      }
 
       var client: OneOf_Client? = nil
       let clientCheckAndSet = {
@@ -240,6 +363,10 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try clientCheckAndSet(.cidr(cidr))
       }
       self.client = client
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -257,6 +384,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .cidr(let value):
           try container.encode(value, forKey: .cidr)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

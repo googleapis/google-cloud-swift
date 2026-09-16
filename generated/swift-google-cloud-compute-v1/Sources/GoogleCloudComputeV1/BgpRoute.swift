@@ -37,6 +37,8 @@
     /// Output only. [Output only] BGP origin (EGP, IGP or INCOMPLETE)
     public var origin: BgpRoute.Origin? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BgpRoute`.
     public init() {}
 
@@ -51,6 +53,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let asPaths = CodingKeys(stringValue: "asPaths")
+      static let communities = CodingKeys(stringValue: "communities")
+      static let destination = CodingKeys(stringValue: "destination")
+      static let med = CodingKeys(stringValue: "med")
+      static let origin = CodingKeys(stringValue: "origin")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "asPaths",
+        "communities",
+        "destination",
+        "med",
+        "origin",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([BgpRouteAsPath].self, forKey: .asPaths) {
+        self.asPaths = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .communities) {
+        self.communities = value
+      }
+      self.destination = try container.decodeIfPresent(
+        BgpRouteNetworkLayerReachabilityInformation.self, forKey: .destination)
+      self.med = try container.decodeIfPresent(Swift.UInt32.self, forKey: .med)
+      self.origin = try container.decodeIfPresent(BgpRoute.Origin.self, forKey: .origin)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.asPaths, forKey: .asPaths)
+      try container.encode(self.communities, forKey: .communities)
+      try container.encodeIfPresent(self.destination, forKey: .destination)
+      try container.encodeIfPresent(self.med, forKey: .med)
+      try container.encodeIfPresent(self.origin, forKey: .origin)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [origin][google.cloud.compute.v1.BgpRoute.origin] field.

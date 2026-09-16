@@ -92,6 +92,8 @@ public struct Hub: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// hub. The default value is false.
   public var exportPsc: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Hub`.
   public init() {}
 
@@ -106,6 +108,105 @@ public struct Hub: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let uniqueId = CodingKeys(stringValue: "uniqueId")
+    static let state = CodingKeys(stringValue: "state")
+    static let routingVpcs = CodingKeys(stringValue: "routingVpcs")
+    static let routeTables = CodingKeys(stringValue: "routeTables")
+    static let spokeSummary = CodingKeys(stringValue: "spokeSummary")
+    static let policyMode = CodingKeys(stringValue: "policyMode")
+    static let presetTopology = CodingKeys(stringValue: "presetTopology")
+    static let exportPsc = CodingKeys(stringValue: "exportPsc")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "uniqueId",
+      "state",
+      "routingVpcs",
+      "routeTables",
+      "spokeSummary",
+      "policyMode",
+      "presetTopology",
+      "exportPsc",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uniqueId) {
+      self.uniqueId = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([RoutingVPC].self, forKey: .routingVpcs) {
+      self.routingVpcs = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .routeTables) {
+      self.routeTables = value
+    }
+    self.spokeSummary = try container.decodeIfPresent(SpokeSummary.self, forKey: .spokeSummary)
+    if let value = try container.decodeIfPresent(PolicyMode.self, forKey: .policyMode) {
+      self.policyMode = value
+    }
+    if let value = try container.decodeIfPresent(PresetTopology.self, forKey: .presetTopology) {
+      self.presetTopology = value
+    }
+    self.exportPsc = try container.decodeIfPresent(Swift.Bool.self, forKey: .exportPsc)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.uniqueId, forKey: .uniqueId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.routingVpcs, forKey: .routingVpcs)
+    try container.encode(self.routeTables, forKey: .routeTables)
+    try container.encodeIfPresent(self.spokeSummary, forKey: .spokeSummary)
+    try container.encode(self.policyMode, forKey: .policyMode)
+    try container.encode(self.presetTopology, forKey: .presetTopology)
+    try container.encodeIfPresent(self.exportPsc, forKey: .exportPsc)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

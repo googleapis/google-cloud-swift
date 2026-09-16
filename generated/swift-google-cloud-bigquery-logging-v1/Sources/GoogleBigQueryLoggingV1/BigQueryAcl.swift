@@ -24,6 +24,8 @@ public struct BigQueryAcl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Access control entry list.
   public var entries: [BigQueryAcl.Entry] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryAcl`.
   public init() {}
 
@@ -38,6 +40,38 @@ public struct BigQueryAcl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entries = CodingKeys(stringValue: "entries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entries"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([BigQueryAcl.Entry].self, forKey: .entries) {
+      self.entries = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entries, forKey: .entries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Access control entry.
@@ -63,6 +97,8 @@ public struct BigQueryAcl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Grants access to a BigQuery View.
     public var viewName: TableName? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Entry`.
     public init() {}
 
@@ -77,6 +113,66 @@ public struct BigQueryAcl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let role = CodingKeys(stringValue: "role")
+      static let groupEmail = CodingKeys(stringValue: "groupEmail")
+      static let userEmail = CodingKeys(stringValue: "userEmail")
+      static let domain = CodingKeys(stringValue: "domain")
+      static let specialGroup = CodingKeys(stringValue: "specialGroup")
+      static let viewName = CodingKeys(stringValue: "viewName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "role",
+        "groupEmail",
+        "userEmail",
+        "domain",
+        "specialGroup",
+        "viewName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+        self.role = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupEmail) {
+        self.groupEmail = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEmail) {
+        self.userEmail = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+        self.domain = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .specialGroup) {
+        self.specialGroup = value
+      }
+      self.viewName = try container.decodeIfPresent(TableName.self, forKey: .viewName)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.role, forKey: .role)
+      try container.encode(self.groupEmail, forKey: .groupEmail)
+      try container.encode(self.userEmail, forKey: .userEmail)
+      try container.encode(self.domain, forKey: .domain)
+      try container.encode(self.specialGroup, forKey: .specialGroup)
+      try container.encodeIfPresent(self.viewName, forKey: .viewName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

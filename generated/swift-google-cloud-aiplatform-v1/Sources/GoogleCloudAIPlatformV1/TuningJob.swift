@@ -132,6 +132,8 @@
 
     public var tuningSpec: OneOf_TuningSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TuningJob`.
     public init() {}
 
@@ -148,35 +150,71 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case baseModel = "baseModel"
-      case preTunedModel = "preTunedModel"
-      case supervisedTuningSpec = "supervisedTuningSpec"
-      case name = "name"
-      case tunedModelDisplayName = "tunedModelDisplayName"
-      case description = "description"
-      case state = "state"
-      case createTime = "createTime"
-      case startTime = "startTime"
-      case endTime = "endTime"
-      case updateTime = "updateTime"
-      case error = "error"
-      case labels = "labels"
-      case experiment = "experiment"
-      case tunedModel = "tunedModel"
-      case tuningDataStats = "tuningDataStats"
-      case encryptionSpec = "encryptionSpec"
-      case serviceAccount = "serviceAccount"
-      case evaluateDatasetRuns = "evaluateDatasetRuns"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let baseModel = CodingKeys(stringValue: "baseModel")
+      static let preTunedModel = CodingKeys(stringValue: "preTunedModel")
+      static let supervisedTuningSpec = CodingKeys(stringValue: "supervisedTuningSpec")
+      static let name = CodingKeys(stringValue: "name")
+      static let tunedModelDisplayName = CodingKeys(stringValue: "tunedModelDisplayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let state = CodingKeys(stringValue: "state")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let error = CodingKeys(stringValue: "error")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let experiment = CodingKeys(stringValue: "experiment")
+      static let tunedModel = CodingKeys(stringValue: "tunedModel")
+      static let tuningDataStats = CodingKeys(stringValue: "tuningDataStats")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let evaluateDatasetRuns = CodingKeys(stringValue: "evaluateDatasetRuns")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "baseModel",
+        "preTunedModel",
+        "supervisedTuningSpec",
+        "name",
+        "tunedModelDisplayName",
+        "description",
+        "state",
+        "createTime",
+        "startTime",
+        "endTime",
+        "updateTime",
+        "error",
+        "labels",
+        "experiment",
+        "tunedModel",
+        "tuningDataStats",
+        "encryptionSpec",
+        "serviceAccount",
+        "evaluateDatasetRuns",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.tunedModelDisplayName = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .tunedModelDisplayName)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.state = try container.decode(JobState.self, forKey: .state)
+      {
+        self.tunedModelDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
+        self.state = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.startTime = try container.decodeIfPresent(
@@ -185,16 +223,27 @@
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-      self.experiment = try container.decode(Swift.String.self, forKey: .experiment)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .experiment) {
+        self.experiment = value
+      }
       self.tunedModel = try container.decodeIfPresent(TunedModel.self, forKey: .tunedModel)
       self.tuningDataStats = try container.decodeIfPresent(
         TuningDataStats.self, forKey: .tuningDataStats)
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
-      self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-      self.evaluateDatasetRuns = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(
         [EvaluateDatasetRun].self, forKey: .evaluateDatasetRuns)
+      {
+        self.evaluateDatasetRuns = value
+      }
 
       var sourceModel: OneOf_SourceModel? = nil
       let sourceModelCheckAndSet = {
@@ -232,6 +281,10 @@
         try tuningSpecCheckAndSet(.supervisedTuningSpec(supervisedTuningSpec))
       }
       self.tuningSpec = tuningSpec
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -240,16 +293,16 @@
       try container.encode(self.tunedModelDisplayName, forKey: .tunedModelDisplayName)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.state, forKey: .state)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.startTime, forKey: .startTime)
-      try container.encode(self.endTime, forKey: .endTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
-      try container.encode(self.error, forKey: .error)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.labels, forKey: .labels)
       try container.encode(self.experiment, forKey: .experiment)
-      try container.encode(self.tunedModel, forKey: .tunedModel)
-      try container.encode(self.tuningDataStats, forKey: .tuningDataStats)
-      try container.encode(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.tunedModel, forKey: .tunedModel)
+      try container.encodeIfPresent(self.tuningDataStats, forKey: .tuningDataStats)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
       try container.encode(self.serviceAccount, forKey: .serviceAccount)
       try container.encode(self.evaluateDatasetRuns, forKey: .evaluateDatasetRuns)
 
@@ -267,6 +320,9 @@
         case .supervisedTuningSpec(let value):
           try container.encode(value, forKey: .supervisedTuningSpec)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

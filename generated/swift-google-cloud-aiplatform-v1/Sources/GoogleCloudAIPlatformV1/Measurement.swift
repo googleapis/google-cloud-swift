@@ -36,6 +36,8 @@
     /// using suggested Parameter values.
     public var metrics: [Measurement.Metric] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Measurement`.
     public init() {}
 
@@ -52,6 +54,49 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let elapsedDuration = CodingKeys(stringValue: "elapsedDuration")
+      static let stepCount = CodingKeys(stringValue: "stepCount")
+      static let metrics = CodingKeys(stringValue: "metrics")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "elapsedDuration",
+        "stepCount",
+        "metrics",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.elapsedDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .elapsedDuration)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .stepCount) {
+        self.stepCount = value
+      }
+      if let value = try container.decodeIfPresent([Measurement.Metric].self, forKey: .metrics) {
+        self.metrics = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.elapsedDuration, forKey: .elapsedDuration)
+      try container.encode(self.stepCount, forKey: .stepCount)
+      try container.encode(self.metrics, forKey: .metrics)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A message representing a metric in the measurement.
     public struct Metric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -64,6 +109,8 @@
 
       /// Output only. The value for this metric.
       public var value: Swift.Double = Swift.Double()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Metric`.
       public init() {}
@@ -79,6 +126,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let metricId = CodingKeys(stringValue: "metricId")
+        static let value = CodingKeys(stringValue: "value")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "metricId",
+          "value",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricId) {
+          self.metricId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .value) {
+          self.value = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.metricId, forKey: .metricId)
+        try container.encode(self.value, forKey: .value)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

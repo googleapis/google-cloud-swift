@@ -36,6 +36,8 @@
     /// Target instance state.
     public var targetState: ResourceStatusShutdownDetails.TargetState? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceStatusShutdownDetails`.
     public init() {}
 
@@ -50,6 +52,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDuration = CodingKeys(stringValue: "maxDuration")
+      static let requestTimestamp = CodingKeys(stringValue: "requestTimestamp")
+      static let stopState = CodingKeys(stringValue: "stopState")
+      static let targetState = CodingKeys(stringValue: "targetState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDuration",
+        "requestTimestamp",
+        "stopState",
+        "targetState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxDuration = try container.decodeIfPresent(Duration.self, forKey: .maxDuration)
+      self.requestTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .requestTimestamp)
+      self.stopState = try container.decodeIfPresent(
+        ResourceStatusShutdownDetails.StopState.self, forKey: .stopState)
+      self.targetState = try container.decodeIfPresent(
+        ResourceStatusShutdownDetails.TargetState.self, forKey: .targetState)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
+      try container.encodeIfPresent(self.requestTimestamp, forKey: .requestTimestamp)
+      try container.encodeIfPresent(self.stopState, forKey: .stopState)
+      try container.encodeIfPresent(self.targetState, forKey: .targetState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [stopState][google.cloud.compute.v1.ResourceStatusShutdownDetails.stopState] field.

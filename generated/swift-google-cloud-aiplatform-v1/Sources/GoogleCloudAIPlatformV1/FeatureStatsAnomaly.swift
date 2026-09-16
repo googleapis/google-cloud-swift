@@ -84,6 +84,8 @@
     /// generate stats (e.g. timestamp we take snapshots for feature values).
     public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureStatsAnomaly`.
     public init() {}
 
@@ -98,6 +100,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let score = CodingKeys(stringValue: "score")
+      static let statsUri = CodingKeys(stringValue: "statsUri")
+      static let anomalyUri = CodingKeys(stringValue: "anomalyUri")
+      static let distributionDeviation = CodingKeys(stringValue: "distributionDeviation")
+      static let anomalyDetectionThreshold = CodingKeys(stringValue: "anomalyDetectionThreshold")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "score",
+        "statsUri",
+        "anomalyUri",
+        "distributionDeviation",
+        "anomalyDetectionThreshold",
+        "startTime",
+        "endTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .score) {
+        self.score = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statsUri) {
+        self.statsUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .anomalyUri) {
+        self.anomalyUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .distributionDeviation)
+      {
+        self.distributionDeviation = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .anomalyDetectionThreshold)
+      {
+        self.anomalyDetectionThreshold = value
+      }
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.score, forKey: .score)
+      try container.encode(self.statsUri, forKey: .statsUri)
+      try container.encode(self.anomalyUri, forKey: .anomalyUri)
+      try container.encode(self.distributionDeviation, forKey: .distributionDeviation)
+      try container.encode(self.anomalyDetectionThreshold, forKey: .anomalyDetectionThreshold)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

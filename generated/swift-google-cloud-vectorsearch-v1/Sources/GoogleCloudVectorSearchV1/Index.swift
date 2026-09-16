@@ -60,6 +60,8 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the index.
   public var indexType: OneOf_IndexType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Index`.
   public init() {}
 
@@ -76,35 +78,72 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dedicatedInfrastructure = "dedicatedInfrastructure"
-    case denseScann = "denseScann"
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case labels = "labels"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case distanceMetric = "distanceMetric"
-    case indexField = "indexField"
-    case filterFields = "filterFields"
-    case storeFields = "storeFields"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dedicatedInfrastructure = CodingKeys(stringValue: "dedicatedInfrastructure")
+    static let denseScann = CodingKeys(stringValue: "denseScann")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let distanceMetric = CodingKeys(stringValue: "distanceMetric")
+    static let indexField = CodingKeys(stringValue: "indexField")
+    static let filterFields = CodingKeys(stringValue: "filterFields")
+    static let storeFields = CodingKeys(stringValue: "storeFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dedicatedInfrastructure",
+      "denseScann",
+      "name",
+      "displayName",
+      "description",
+      "labels",
+      "createTime",
+      "updateTime",
+      "distanceMetric",
+      "indexField",
+      "filterFields",
+      "storeFields",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.distanceMetric = try container.decode(DistanceMetric.self, forKey: .distanceMetric)
-    self.indexField = try container.decode(Swift.String.self, forKey: .indexField)
-    self.filterFields = try container.decode([Swift.String].self, forKey: .filterFields)
-    self.storeFields = try container.decode([Swift.String].self, forKey: .storeFields)
+    if let value = try container.decodeIfPresent(DistanceMetric.self, forKey: .distanceMetric) {
+      self.distanceMetric = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexField) {
+      self.indexField = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .filterFields) {
+      self.filterFields = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .storeFields) {
+      self.storeFields = value
+    }
 
     var infraType: OneOf_InfraType? = nil
     let infraTypeCheckAndSet = {
@@ -137,6 +176,10 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try indexTypeCheckAndSet(.denseScann(denseScann))
     }
     self.indexType = indexType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -145,8 +188,8 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.distanceMetric, forKey: .distanceMetric)
     try container.encode(self.indexField, forKey: .indexField)
     try container.encode(self.filterFields, forKey: .filterFields)
@@ -164,6 +207,9 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .denseScann(let value):
         try container.encode(value, forKey: .denseScann)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

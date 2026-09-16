@@ -42,6 +42,8 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Identifier. The name of the finding summary.
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FindingSummary`.
   public init() {}
 
@@ -56,6 +58,73 @@ public struct FindingSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let findingCategory = CodingKeys(stringValue: "findingCategory")
+    static let findingClass = CodingKeys(stringValue: "findingClass")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let findingCount = CodingKeys(stringValue: "findingCount")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let relatedFrameworks = CodingKeys(stringValue: "relatedFrameworks")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "findingCategory",
+      "findingClass",
+      "severity",
+      "findingCount",
+      "updateTime",
+      "relatedFrameworks",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingCategory) {
+      self.findingCategory = value
+    }
+    if let value = try container.decodeIfPresent(FindingClass.self, forKey: .findingClass) {
+      self.findingClass = value
+    }
+    if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .findingCount) {
+      self.findingCount = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedFrameworks) {
+      self.relatedFrameworks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.findingCategory, forKey: .findingCategory)
+    try container.encode(self.findingClass, forKey: .findingClass)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.findingCount, forKey: .findingCount)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.relatedFrameworks, forKey: .relatedFrameworks)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -88,6 +88,8 @@ public struct ComplianceData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var pChild: ComplianceDataChild? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComplianceData`.
   public init() {}
 
@@ -102,6 +104,198 @@ public struct ComplianceData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fString = CodingKeys(stringValue: "fString")
+    static let fInt32 = CodingKeys(stringValue: "fInt32")
+    static let fSint32 = CodingKeys(stringValue: "fSint32")
+    static let fSfixed32 = CodingKeys(stringValue: "fSfixed32")
+    static let fUint32 = CodingKeys(stringValue: "fUint32")
+    static let fFixed32 = CodingKeys(stringValue: "fFixed32")
+    static let fInt64 = CodingKeys(stringValue: "fInt64")
+    static let fSint64 = CodingKeys(stringValue: "fSint64")
+    static let fSfixed64 = CodingKeys(stringValue: "fSfixed64")
+    static let fUint64 = CodingKeys(stringValue: "fUint64")
+    static let fFixed64 = CodingKeys(stringValue: "fFixed64")
+    static let fDouble = CodingKeys(stringValue: "fDouble")
+    static let fFloat = CodingKeys(stringValue: "fFloat")
+    static let fBool = CodingKeys(stringValue: "fBool")
+    static let fBytes = CodingKeys(stringValue: "fBytes")
+    static let fKingdom = CodingKeys(stringValue: "fKingdom")
+    static let fChild = CodingKeys(stringValue: "fChild")
+    static let pString = CodingKeys(stringValue: "pString")
+    static let pInt32 = CodingKeys(stringValue: "pInt32")
+    static let pSint32 = CodingKeys(stringValue: "pSint32")
+    static let pSfixed32 = CodingKeys(stringValue: "pSfixed32")
+    static let pUint32 = CodingKeys(stringValue: "pUint32")
+    static let pFixed32 = CodingKeys(stringValue: "pFixed32")
+    static let pInt64 = CodingKeys(stringValue: "pInt64")
+    static let pSint64 = CodingKeys(stringValue: "pSint64")
+    static let pSfixed64 = CodingKeys(stringValue: "pSfixed64")
+    static let pUint64 = CodingKeys(stringValue: "pUint64")
+    static let pFixed64 = CodingKeys(stringValue: "pFixed64")
+    static let pFloat = CodingKeys(stringValue: "pFloat")
+    static let pDouble = CodingKeys(stringValue: "pDouble")
+    static let pBool = CodingKeys(stringValue: "pBool")
+    static let pKingdom = CodingKeys(stringValue: "pKingdom")
+    static let pChild = CodingKeys(stringValue: "pChild")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fString",
+      "fInt32",
+      "fSint32",
+      "fSfixed32",
+      "fUint32",
+      "fFixed32",
+      "fInt64",
+      "fSint64",
+      "fSfixed64",
+      "fUint64",
+      "fFixed64",
+      "fDouble",
+      "fFloat",
+      "fBool",
+      "fBytes",
+      "fKingdom",
+      "fChild",
+      "pString",
+      "pInt32",
+      "pSint32",
+      "pSfixed32",
+      "pUint32",
+      "pFixed32",
+      "pInt64",
+      "pSint64",
+      "pSfixed64",
+      "pUint64",
+      "pFixed64",
+      "pFloat",
+      "pDouble",
+      "pBool",
+      "pKingdom",
+      "pChild",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fString) {
+      self.fString = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fInt32) {
+      self.fInt32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fSint32) {
+      self.fSint32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fSfixed32) {
+      self.fSfixed32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .fUint32) {
+      self.fUint32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .fFixed32) {
+      self.fFixed32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .fInt64) {
+      self.fInt64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .fSint64) {
+      self.fSint64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .fSfixed64) {
+      self.fSfixed64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .fUint64) {
+      self.fUint64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .fFixed64) {
+      self.fFixed64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .fDouble) {
+      self.fDouble = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .fFloat) {
+      self.fFloat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fBool) {
+      self.fBool = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .fBytes) {
+      self.fBytes = value
+    }
+    if let value = try container.decodeIfPresent(ComplianceData.LifeKingdom.self, forKey: .fKingdom)
+    {
+      self.fKingdom = value
+    }
+    self.fChild = try container.decodeIfPresent(ComplianceDataChild.self, forKey: .fChild)
+    self.pString = try container.decodeIfPresent(Swift.String.self, forKey: .pString)
+    self.pInt32 = try container.decodeIfPresent(Swift.Int32.self, forKey: .pInt32)
+    self.pSint32 = try container.decodeIfPresent(Swift.Int32.self, forKey: .pSint32)
+    self.pSfixed32 = try container.decodeIfPresent(Swift.Int32.self, forKey: .pSfixed32)
+    self.pUint32 = try container.decodeIfPresent(Swift.UInt32.self, forKey: .pUint32)
+    self.pFixed32 = try container.decodeIfPresent(Swift.UInt32.self, forKey: .pFixed32)
+    self.pInt64 = try container.decodeIfPresent(Swift.Int64.self, forKey: .pInt64)
+    self.pSint64 = try container.decodeIfPresent(Swift.Int64.self, forKey: .pSint64)
+    self.pSfixed64 = try container.decodeIfPresent(Swift.Int64.self, forKey: .pSfixed64)
+    self.pUint64 = try container.decodeIfPresent(Swift.UInt64.self, forKey: .pUint64)
+    self.pFixed64 = try container.decodeIfPresent(Swift.UInt64.self, forKey: .pFixed64)
+    self.pFloat = try container.decodeIfPresent(Swift.Float.self, forKey: .pFloat)
+    self.pDouble = try container.decodeIfPresent(Swift.Double.self, forKey: .pDouble)
+    self.pBool = try container.decodeIfPresent(Swift.Bool.self, forKey: .pBool)
+    self.pKingdom = try container.decodeIfPresent(
+      ComplianceData.LifeKingdom.self, forKey: .pKingdom)
+    self.pChild = try container.decodeIfPresent(ComplianceDataChild.self, forKey: .pChild)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.fString, forKey: .fString)
+    try container.encode(self.fInt32, forKey: .fInt32)
+    try container.encode(self.fSint32, forKey: .fSint32)
+    try container.encode(self.fSfixed32, forKey: .fSfixed32)
+    try container.encode(self.fUint32, forKey: .fUint32)
+    try container.encode(self.fFixed32, forKey: .fFixed32)
+    try container.encode(self.fInt64, forKey: .fInt64)
+    try container.encode(self.fSint64, forKey: .fSint64)
+    try container.encode(self.fSfixed64, forKey: .fSfixed64)
+    try container.encode(self.fUint64, forKey: .fUint64)
+    try container.encode(self.fFixed64, forKey: .fFixed64)
+    try container.encode(self.fDouble, forKey: .fDouble)
+    try container.encode(self.fFloat, forKey: .fFloat)
+    try container.encode(self.fBool, forKey: .fBool)
+    try container.encode(self.fBytes, forKey: .fBytes)
+    try container.encode(self.fKingdom, forKey: .fKingdom)
+    try container.encodeIfPresent(self.fChild, forKey: .fChild)
+    try container.encodeIfPresent(self.pString, forKey: .pString)
+    try container.encodeIfPresent(self.pInt32, forKey: .pInt32)
+    try container.encodeIfPresent(self.pSint32, forKey: .pSint32)
+    try container.encodeIfPresent(self.pSfixed32, forKey: .pSfixed32)
+    try container.encodeIfPresent(self.pUint32, forKey: .pUint32)
+    try container.encodeIfPresent(self.pFixed32, forKey: .pFixed32)
+    try container.encodeIfPresent(self.pInt64, forKey: .pInt64)
+    try container.encodeIfPresent(self.pSint64, forKey: .pSint64)
+    try container.encodeIfPresent(self.pSfixed64, forKey: .pSfixed64)
+    try container.encodeIfPresent(self.pUint64, forKey: .pUint64)
+    try container.encodeIfPresent(self.pFixed64, forKey: .pFixed64)
+    try container.encodeIfPresent(self.pFloat, forKey: .pFloat)
+    try container.encodeIfPresent(self.pDouble, forKey: .pDouble)
+    try container.encodeIfPresent(self.pBool, forKey: .pBool)
+    try container.encodeIfPresent(self.pKingdom, forKey: .pKingdom)
+    try container.encodeIfPresent(self.pChild, forKey: .pChild)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public enum LifeKingdom: Codable, Equatable, Sendable {

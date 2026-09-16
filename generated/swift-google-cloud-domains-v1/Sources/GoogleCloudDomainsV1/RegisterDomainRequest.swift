@@ -48,6 +48,8 @@ public struct RegisterDomainRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// https://cloud.google.com/apis/design/design_patterns#request_validation
   public var validateOnly: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RegisterDomainRequest`.
   public init() {}
 
@@ -62,6 +64,64 @@ public struct RegisterDomainRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let registration = CodingKeys(stringValue: "registration")
+    static let domainNotices = CodingKeys(stringValue: "domainNotices")
+    static let contactNotices = CodingKeys(stringValue: "contactNotices")
+    static let yearlyPrice = CodingKeys(stringValue: "yearlyPrice")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "registration",
+      "domainNotices",
+      "contactNotices",
+      "yearlyPrice",
+      "validateOnly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.registration = try container.decodeIfPresent(Registration.self, forKey: .registration)
+    if let value = try container.decodeIfPresent([DomainNotice].self, forKey: .domainNotices) {
+      self.domainNotices = value
+    }
+    if let value = try container.decodeIfPresent([ContactNotice].self, forKey: .contactNotices) {
+      self.contactNotices = value
+    }
+    self.yearlyPrice = try container.decodeIfPresent(GoogleType.Money.self, forKey: .yearlyPrice)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.registration, forKey: .registration)
+    try container.encode(self.domainNotices, forKey: .domainNotices)
+    try container.encode(self.contactNotices, forKey: .contactNotices)
+    try container.encodeIfPresent(self.yearlyPrice, forKey: .yearlyPrice)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

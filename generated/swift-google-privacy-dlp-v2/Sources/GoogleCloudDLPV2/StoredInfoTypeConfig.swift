@@ -32,6 +32,8 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Stored infotype types.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StoredInfoTypeConfig`.
   public init() {}
 
@@ -48,18 +50,35 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case displayName = "displayName"
-    case description = "description"
-    case largeCustomDictionary = "largeCustomDictionary"
-    case dictionary = "dictionary"
-    case regex = "regex"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let largeCustomDictionary = CodingKeys(stringValue: "largeCustomDictionary")
+    static let dictionary = CodingKeys(stringValue: "dictionary")
+    static let regex = CodingKeys(stringValue: "regex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "description",
+      "largeCustomDictionary",
+      "dictionary",
+      "regex",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -85,6 +104,10 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try typeCheckAndSet(.regex(regex))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +124,9 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .regex(let value):
         try container.encode(value, forKey: .regex)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

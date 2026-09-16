@@ -27,6 +27,8 @@ public struct PublishRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var format: OneOf_Format? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PublishRequest`.
   public init() {}
 
@@ -43,16 +45,30 @@ public struct PublishRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case messageBus = "messageBus"
-    case protoMessage = "protoMessage"
-    case jsonMessage = "jsonMessage"
-    case avroMessage = "avroMessage"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let messageBus = CodingKeys(stringValue: "messageBus")
+    static let protoMessage = CodingKeys(stringValue: "protoMessage")
+    static let jsonMessage = CodingKeys(stringValue: "jsonMessage")
+    static let avroMessage = CodingKeys(stringValue: "avroMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "messageBus",
+      "protoMessage",
+      "jsonMessage",
+      "avroMessage",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.messageBus = try container.decode(Swift.String.self, forKey: .messageBus)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageBus) {
+      self.messageBus = value
+    }
 
     var format: OneOf_Format? = nil
     let formatCheckAndSet = {
@@ -74,6 +90,10 @@ public struct PublishRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try formatCheckAndSet(.avroMessage(avroMessage))
     }
     self.format = format
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +109,9 @@ public struct PublishRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .avroMessage(let value):
         try container.encode(value, forKey: .avroMessage)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

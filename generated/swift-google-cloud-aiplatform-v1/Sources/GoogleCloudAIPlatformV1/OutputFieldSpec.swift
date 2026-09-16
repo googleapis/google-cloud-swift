@@ -34,6 +34,8 @@
     /// Optional. The data type of the field. Defaults to CONTENT if not set.
     public var fieldType: OutputFieldSpec.FieldType = OutputFieldSpec.FieldType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OutputFieldSpec`.
     public init() {}
 
@@ -48,6 +50,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fieldName = CodingKeys(stringValue: "fieldName")
+      static let guidance = CodingKeys(stringValue: "guidance")
+      static let fieldType = CodingKeys(stringValue: "fieldType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fieldName",
+        "guidance",
+        "fieldType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
+        self.fieldName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .guidance) {
+        self.guidance = value
+      }
+      if let value = try container.decodeIfPresent(
+        OutputFieldSpec.FieldType.self, forKey: .fieldType)
+      {
+        self.fieldType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fieldName, forKey: .fieldName)
+      try container.encode(self.guidance, forKey: .guidance)
+      try container.encode(self.fieldType, forKey: .fieldType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The data type of the field.

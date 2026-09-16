@@ -26,6 +26,8 @@ public struct ManagedZonePrivateVisibilityConfigGKECluster: Codable, Equatable, 
 
   public var kind: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedZonePrivateVisibilityConfigGKECluster`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct ManagedZonePrivateVisibilityConfigGKECluster: Codable, Equatable, 
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gkeClusterName = CodingKeys(stringValue: "gkeClusterName")
+    static let kind = CodingKeys(stringValue: "kind")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gkeClusterName",
+      "kind",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gkeClusterName = try container.decodeIfPresent(Swift.String.self, forKey: .gkeClusterName)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.gkeClusterName, forKey: .gkeClusterName)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

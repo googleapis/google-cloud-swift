@@ -68,6 +68,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The applied configs in the data scan job.
   public var appliedConfigs: OneOf_AppliedConfigs? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataScanEvent`.
   public init() {}
 
@@ -84,41 +86,82 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dataSource = "dataSource"
-    case jobId = "jobId"
-    case createTime = "createTime"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case type = "type"
-    case state = "state"
-    case message = "message"
-    case specVersion = "specVersion"
-    case trigger = "trigger"
-    case scope = "scope"
-    case dataProfile = "dataProfile"
-    case dataQuality = "dataQuality"
-    case dataProfileConfigs = "dataProfileConfigs"
-    case dataQualityConfigs = "dataQualityConfigs"
-    case postScanActionsResult = "postScanActionsResult"
-    case catalogPublishingStatus = "catalogPublishingStatus"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let type = CodingKeys(stringValue: "type")
+    static let state = CodingKeys(stringValue: "state")
+    static let message = CodingKeys(stringValue: "message")
+    static let specVersion = CodingKeys(stringValue: "specVersion")
+    static let trigger = CodingKeys(stringValue: "trigger")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let dataProfile = CodingKeys(stringValue: "dataProfile")
+    static let dataQuality = CodingKeys(stringValue: "dataQuality")
+    static let dataProfileConfigs = CodingKeys(stringValue: "dataProfileConfigs")
+    static let dataQualityConfigs = CodingKeys(stringValue: "dataQualityConfigs")
+    static let postScanActionsResult = CodingKeys(stringValue: "postScanActionsResult")
+    static let catalogPublishingStatus = CodingKeys(stringValue: "catalogPublishingStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataSource",
+      "jobId",
+      "createTime",
+      "startTime",
+      "endTime",
+      "type",
+      "state",
+      "message",
+      "specVersion",
+      "trigger",
+      "scope",
+      "dataProfile",
+      "dataQuality",
+      "dataProfileConfigs",
+      "dataQualityConfigs",
+      "postScanActionsResult",
+      "catalogPublishingStatus",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.dataSource = try container.decode(Swift.String.self, forKey: .dataSource)
-    self.jobId = try container.decode(Swift.String.self, forKey: .jobId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.type = try container.decode(DataScanEvent.ScanType.self, forKey: .type)
-    self.state = try container.decode(DataScanEvent.State.self, forKey: .state)
-    self.message = try container.decode(Swift.String.self, forKey: .message)
-    self.specVersion = try container.decode(Swift.String.self, forKey: .specVersion)
-    self.trigger = try container.decode(DataScanEvent.Trigger.self, forKey: .trigger)
-    self.scope = try container.decode(DataScanEvent.Scope.self, forKey: .scope)
+    if let value = try container.decodeIfPresent(DataScanEvent.ScanType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(DataScanEvent.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .specVersion) {
+      self.specVersion = value
+    }
+    if let value = try container.decodeIfPresent(DataScanEvent.Trigger.self, forKey: .trigger) {
+      self.trigger = value
+    }
+    if let value = try container.decodeIfPresent(DataScanEvent.Scope.self, forKey: .scope) {
+      self.scope = value
+    }
     self.postScanActionsResult = try container.decodeIfPresent(
       DataScanEvent.PostScanActionsResult.self, forKey: .postScanActionsResult)
     self.catalogPublishingStatus = try container.decodeIfPresent(
@@ -167,23 +210,27 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try appliedConfigsCheckAndSet(.dataQualityConfigs(dataQualityConfigs))
     }
     self.appliedConfigs = appliedConfigs
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataSource, forKey: .dataSource)
     try container.encode(self.jobId, forKey: .jobId)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.message, forKey: .message)
     try container.encode(self.specVersion, forKey: .specVersion)
     try container.encode(self.trigger, forKey: .trigger)
     try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.postScanActionsResult, forKey: .postScanActionsResult)
-    try container.encode(self.catalogPublishingStatus, forKey: .catalogPublishingStatus)
+    try container.encodeIfPresent(self.postScanActionsResult, forKey: .postScanActionsResult)
+    try container.encodeIfPresent(self.catalogPublishingStatus, forKey: .catalogPublishingStatus)
 
     if let choice = self.result {
       switch choice {
@@ -202,6 +249,9 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .dataQualityConfigs)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Data profile result for data scan job.
@@ -210,6 +260,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// The count of rows processed in the data scan job.
     public var rowCount: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DataProfileResult`.
     public init() {}
@@ -225,6 +277,38 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rowCount = CodingKeys(stringValue: "rowCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rowCount"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
+        self.rowCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rowCount, forKey: .rowCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -276,6 +360,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// points).
     public var columnScore: [Swift.String: Swift.Float] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataQualityResult`.
     public init() {}
 
@@ -290,6 +376,74 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rowCount = CodingKeys(stringValue: "rowCount")
+      static let passed = CodingKeys(stringValue: "passed")
+      static let dimensionPassed = CodingKeys(stringValue: "dimensionPassed")
+      static let score = CodingKeys(stringValue: "score")
+      static let dimensionScore = CodingKeys(stringValue: "dimensionScore")
+      static let columnScore = CodingKeys(stringValue: "columnScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rowCount",
+        "passed",
+        "dimensionPassed",
+        "score",
+        "dimensionScore",
+        "columnScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
+        self.rowCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passed) {
+        self.passed = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Bool].self, forKey: .dimensionPassed)
+      {
+        self.dimensionPassed = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+        self.score = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Float].self, forKey: .dimensionScore)
+      {
+        self.dimensionScore = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Float].self, forKey: .columnScore)
+      {
+        self.columnScore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.rowCount, forKey: .rowCount)
+      try container.encode(self.passed, forKey: .passed)
+      try container.encode(self.dimensionPassed, forKey: .dimensionPassed)
+      try container.encode(self.score, forKey: .score)
+      try container.encode(self.dimensionScore, forKey: .dimensionScore)
+      try container.encode(self.columnScore, forKey: .columnScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -320,6 +474,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// job.
     public var columnFilterApplied: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataProfileAppliedConfigs`.
     public init() {}
 
@@ -334,6 +490,50 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let samplingPercent = CodingKeys(stringValue: "samplingPercent")
+      static let rowFilterApplied = CodingKeys(stringValue: "rowFilterApplied")
+      static let columnFilterApplied = CodingKeys(stringValue: "columnFilterApplied")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "samplingPercent",
+        "rowFilterApplied",
+        "columnFilterApplied",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .samplingPercent) {
+        self.samplingPercent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rowFilterApplied) {
+        self.rowFilterApplied = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .columnFilterApplied) {
+        self.columnFilterApplied = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.samplingPercent, forKey: .samplingPercent)
+      try container.encode(self.rowFilterApplied, forKey: .rowFilterApplied)
+      try container.encode(self.columnFilterApplied, forKey: .columnFilterApplied)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -360,6 +560,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Boolean indicating whether a row filter was applied in the DataScan job.
     public var rowFilterApplied: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataQualityAppliedConfigs`.
     public init() {}
 
@@ -374,6 +576,44 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let samplingPercent = CodingKeys(stringValue: "samplingPercent")
+      static let rowFilterApplied = CodingKeys(stringValue: "rowFilterApplied")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "samplingPercent",
+        "rowFilterApplied",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .samplingPercent) {
+        self.samplingPercent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rowFilterApplied) {
+        self.rowFilterApplied = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.samplingPercent, forKey: .samplingPercent)
+      try container.encode(self.rowFilterApplied, forKey: .rowFilterApplied)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -394,6 +634,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The result of BigQuery export post scan action.
     public var bigqueryExportResult: DataScanEvent.PostScanActionsResult.BigQueryExportResult? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PostScanActionsResult`.
     public init() {}
 
@@ -410,6 +652,38 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bigqueryExportResult = CodingKeys(stringValue: "bigqueryExportResult")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bigqueryExportResult"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bigqueryExportResult = try container.decodeIfPresent(
+        DataScanEvent.PostScanActionsResult.BigQueryExportResult.self, forKey: .bigqueryExportResult
+      )
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.bigqueryExportResult, forKey: .bigqueryExportResult)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The result of BigQuery export post scan action.
     public struct BigQueryExportResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -420,6 +694,8 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Additional information about the BigQuery exporting.
       public var message: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `BigQueryExportResult`.
       public init() {}
@@ -435,6 +711,46 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let state = CodingKeys(stringValue: "state")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "state",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          DataScanEvent.PostScanActionsResult.BigQueryExportResult.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+          self.message = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.state, forKey: .state)
+        try container.encode(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Execution state for the exporting.

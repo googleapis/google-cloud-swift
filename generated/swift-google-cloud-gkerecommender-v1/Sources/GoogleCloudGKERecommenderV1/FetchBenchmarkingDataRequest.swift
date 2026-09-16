@@ -44,6 +44,8 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleCloudWKT._
   /// `spot`.
   public var pricingModel: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchBenchmarkingDataRequest`.
   public init() {}
 
@@ -58,6 +60,49 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let modelServerInfo = CodingKeys(stringValue: "modelServerInfo")
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let pricingModel = CodingKeys(stringValue: "pricingModel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "modelServerInfo",
+      "instanceType",
+      "pricingModel",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.modelServerInfo = try container.decodeIfPresent(
+      ModelServerInfo.self, forKey: .modelServerInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pricingModel) {
+      self.pricingModel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.modelServerInfo, forKey: .modelServerInfo)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encode(self.pricingModel, forKey: .pricingModel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct RangeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The utilization of the range.
   public var utilization: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RangeInfo`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct RangeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rangeName = CodingKeys(stringValue: "rangeName")
+    static let utilization = CodingKeys(stringValue: "utilization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rangeName",
+      "utilization",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rangeName) {
+      self.rangeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .utilization) {
+      self.utilization = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rangeName, forKey: .rangeName)
+    try container.encode(self.utilization, forKey: .utilization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

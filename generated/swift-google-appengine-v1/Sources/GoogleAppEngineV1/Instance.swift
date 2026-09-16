@@ -84,6 +84,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// in App Engine flexible environment.
   public var vmLiveness: Instance.Liveness.LivenessState = Instance.Liveness.LivenessState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -100,10 +102,142 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let appEngineRelease = CodingKeys(stringValue: "appEngineRelease")
+    static let availability = CodingKeys(stringValue: "availability")
+    static let vmName = CodingKeys(stringValue: "vmName")
+    static let vmZoneName = CodingKeys(stringValue: "vmZoneName")
+    static let vmId = CodingKeys(stringValue: "vmId")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let requests = CodingKeys(stringValue: "requests")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let qps = CodingKeys(stringValue: "qps")
+    static let averageLatency = CodingKeys(stringValue: "averageLatency")
+    static let memoryUsage = CodingKeys(stringValue: "memoryUsage")
+    static let vmStatus = CodingKeys(stringValue: "vmStatus")
+    static let vmDebugEnabled = CodingKeys(stringValue: "vmDebugEnabled")
+    static let vmIp = CodingKeys(stringValue: "vmIp")
+    static let vmLiveness = CodingKeys(stringValue: "vmLiveness")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "appEngineRelease",
+      "availability",
+      "vmName",
+      "vmZoneName",
+      "vmId",
+      "startTime",
+      "requests",
+      "errors",
+      "qps",
+      "averageLatency",
+      "memoryUsage",
+      "vmStatus",
+      "vmDebugEnabled",
+      "vmIp",
+      "vmLiveness",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appEngineRelease) {
+      self.appEngineRelease = value
+    }
+    if let value = try container.decodeIfPresent(Instance.Availability.self, forKey: .availability)
+    {
+      self.availability = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmName) {
+      self.vmName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmZoneName) {
+      self.vmZoneName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmId) {
+      self.vmId = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requests) {
+      self.requests = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .errors) {
+      self.errors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .qps) {
+      self.qps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .averageLatency) {
+      self.averageLatency = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .memoryUsage) {
+      self.memoryUsage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmStatus) {
+      self.vmStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .vmDebugEnabled) {
+      self.vmDebugEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmIp) {
+      self.vmIp = value
+    }
+    if let value = try container.decodeIfPresent(
+      Instance.Liveness.LivenessState.self, forKey: .vmLiveness)
+    {
+      self.vmLiveness = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.appEngineRelease, forKey: .appEngineRelease)
+    try container.encode(self.availability, forKey: .availability)
+    try container.encode(self.vmName, forKey: .vmName)
+    try container.encode(self.vmZoneName, forKey: .vmZoneName)
+    try container.encode(self.vmId, forKey: .vmId)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encode(self.requests, forKey: .requests)
+    try container.encode(self.errors, forKey: .errors)
+    try container.encode(self.qps, forKey: .qps)
+    try container.encode(self.averageLatency, forKey: .averageLatency)
+    try container.encode(self.memoryUsage, forKey: .memoryUsage)
+    try container.encode(self.vmStatus, forKey: .vmStatus)
+    try container.encode(self.vmDebugEnabled, forKey: .vmDebugEnabled)
+    try container.encode(self.vmIp, forKey: .vmIp)
+    try container.encode(self.vmLiveness, forKey: .vmLiveness)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Wrapper for LivenessState enum.
   public struct Liveness: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Liveness`.
     public init() {}
 
@@ -118,6 +252,30 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Liveness health check status for Flex instances.

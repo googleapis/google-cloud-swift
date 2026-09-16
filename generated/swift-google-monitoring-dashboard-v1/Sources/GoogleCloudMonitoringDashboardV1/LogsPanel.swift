@@ -31,6 +31,8 @@ public struct LogsPanel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// are supported. If empty, the widget will default to the host project.
   public var resourceNames: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogsPanel`.
   public init() {}
 
@@ -45,6 +47,44 @@ public struct LogsPanel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filter = CodingKeys(stringValue: "filter")
+    static let resourceNames = CodingKeys(stringValue: "resourceNames")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filter",
+      "resourceNames",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceNames) {
+      self.resourceNames = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.resourceNames, forKey: .resourceNames)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -30,6 +30,8 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// How the text is styled
   public var style: Text.TextStyle? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Text`.
   public init() {}
 
@@ -44,6 +46,48 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let format = CodingKeys(stringValue: "format")
+    static let style = CodingKeys(stringValue: "style")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "format",
+      "style",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(Text.Format.self, forKey: .format) {
+      self.format = value
+    }
+    self.style = try container.decodeIfPresent(Text.TextStyle.self, forKey: .style)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.format, forKey: .format)
+    try container.encodeIfPresent(self.style, forKey: .style)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Properties that determine how the title and content are styled
@@ -74,6 +118,8 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The pointer location for this widget (also sometimes called a "tail")
     public var pointerLocation: Text.TextStyle.PointerLocation = Text.TextStyle.PointerLocation()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextStyle`.
     public init() {}
 
@@ -88,6 +134,83 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let backgroundColor = CodingKeys(stringValue: "backgroundColor")
+      static let textColor = CodingKeys(stringValue: "textColor")
+      static let horizontalAlignment = CodingKeys(stringValue: "horizontalAlignment")
+      static let verticalAlignment = CodingKeys(stringValue: "verticalAlignment")
+      static let padding = CodingKeys(stringValue: "padding")
+      static let fontSize = CodingKeys(stringValue: "fontSize")
+      static let pointerLocation = CodingKeys(stringValue: "pointerLocation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "backgroundColor",
+        "textColor",
+        "horizontalAlignment",
+        "verticalAlignment",
+        "padding",
+        "fontSize",
+        "pointerLocation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backgroundColor) {
+        self.backgroundColor = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .textColor) {
+        self.textColor = value
+      }
+      if let value = try container.decodeIfPresent(
+        Text.TextStyle.HorizontalAlignment.self, forKey: .horizontalAlignment)
+      {
+        self.horizontalAlignment = value
+      }
+      if let value = try container.decodeIfPresent(
+        Text.TextStyle.VerticalAlignment.self, forKey: .verticalAlignment)
+      {
+        self.verticalAlignment = value
+      }
+      if let value = try container.decodeIfPresent(
+        Text.TextStyle.PaddingSize.self, forKey: .padding)
+      {
+        self.padding = value
+      }
+      if let value = try container.decodeIfPresent(Text.TextStyle.FontSize.self, forKey: .fontSize)
+      {
+        self.fontSize = value
+      }
+      if let value = try container.decodeIfPresent(
+        Text.TextStyle.PointerLocation.self, forKey: .pointerLocation)
+      {
+        self.pointerLocation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.backgroundColor, forKey: .backgroundColor)
+      try container.encode(self.textColor, forKey: .textColor)
+      try container.encode(self.horizontalAlignment, forKey: .horizontalAlignment)
+      try container.encode(self.verticalAlignment, forKey: .verticalAlignment)
+      try container.encode(self.padding, forKey: .padding)
+      try container.encode(self.fontSize, forKey: .fontSize)
+      try container.encode(self.pointerLocation, forKey: .pointerLocation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The horizontal alignment of both the title and content on a text widget

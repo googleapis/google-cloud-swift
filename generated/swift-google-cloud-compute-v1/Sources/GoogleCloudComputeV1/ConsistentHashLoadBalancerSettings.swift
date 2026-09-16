@@ -41,6 +41,8 @@
     /// each host will be assigned a single virtual node.
     public var minimumRingSize: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConsistentHashLoadBalancerSettings`.
     public init() {}
 
@@ -55,6 +57,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let httpCookie = CodingKeys(stringValue: "httpCookie")
+      static let httpHeaderName = CodingKeys(stringValue: "httpHeaderName")
+      static let minimumRingSize = CodingKeys(stringValue: "minimumRingSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "httpCookie",
+        "httpHeaderName",
+        "minimumRingSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.httpCookie = try container.decodeIfPresent(
+        ConsistentHashLoadBalancerSettingsHttpCookie.self, forKey: .httpCookie)
+      self.httpHeaderName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .httpHeaderName)
+      self.minimumRingSize = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .minimumRingSize)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.httpCookie, forKey: .httpCookie)
+      try container.encodeIfPresent(self.httpHeaderName, forKey: .httpHeaderName)
+      try container.encodeIfPresent(self.minimumRingSize, forKey: .minimumRingSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

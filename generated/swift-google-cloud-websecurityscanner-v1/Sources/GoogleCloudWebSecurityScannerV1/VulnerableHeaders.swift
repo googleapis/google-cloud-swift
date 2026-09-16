@@ -27,6 +27,8 @@ public struct VulnerableHeaders: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// List of missing headers.
   public var missingHeaders: [VulnerableHeaders.Header] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VulnerableHeaders`.
   public init() {}
 
@@ -43,6 +45,47 @@ public struct VulnerableHeaders: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let headers = CodingKeys(stringValue: "headers")
+    static let missingHeaders = CodingKeys(stringValue: "missingHeaders")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "headers",
+      "missingHeaders",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([VulnerableHeaders.Header].self, forKey: .headers)
+    {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent(
+      [VulnerableHeaders.Header].self, forKey: .missingHeaders)
+    {
+      self.missingHeaders = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.headers, forKey: .headers)
+    try container.encode(self.missingHeaders, forKey: .missingHeaders)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Describes a HTTP Header.
   public struct Header: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +95,8 @@ public struct VulnerableHeaders: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Header value.
     public var value: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Header`.
     public init() {}
@@ -67,6 +112,44 @@ public struct VulnerableHeaders: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

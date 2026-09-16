@@ -62,6 +62,8 @@
     /// [google.cloud.discoveryengine.v1.UserEvent]: <doc:UserEvent>
     public var dataSchema: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsSource`.
     public init() {}
 
@@ -76,6 +78,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputUris = CodingKeys(stringValue: "inputUris")
+      static let dataSchema = CodingKeys(stringValue: "dataSchema")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputUris",
+        "dataSchema",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputUris) {
+        self.inputUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSchema) {
+        self.dataSchema = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputUris, forKey: .inputUris)
+      try container.encode(self.dataSchema, forKey: .dataSchema)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

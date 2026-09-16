@@ -35,6 +35,8 @@ public struct Autopilot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the cluster.
   public var clusterPolicyConfig: ClusterPolicyConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Autopilot`.
   public init() {}
 
@@ -49,6 +51,54 @@ public struct Autopilot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let workloadPolicyConfig = CodingKeys(stringValue: "workloadPolicyConfig")
+    static let privilegedAdmissionConfig = CodingKeys(stringValue: "privilegedAdmissionConfig")
+    static let clusterPolicyConfig = CodingKeys(stringValue: "clusterPolicyConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "workloadPolicyConfig",
+      "privilegedAdmissionConfig",
+      "clusterPolicyConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    self.workloadPolicyConfig = try container.decodeIfPresent(
+      WorkloadPolicyConfig.self, forKey: .workloadPolicyConfig)
+    self.privilegedAdmissionConfig = try container.decodeIfPresent(
+      PrivilegedAdmissionConfig.self, forKey: .privilegedAdmissionConfig)
+    self.clusterPolicyConfig = try container.decodeIfPresent(
+      ClusterPolicyConfig.self, forKey: .clusterPolicyConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encodeIfPresent(self.workloadPolicyConfig, forKey: .workloadPolicyConfig)
+    try container.encodeIfPresent(
+      self.privilegedAdmissionConfig, forKey: .privilegedAdmissionConfig)
+    try container.encodeIfPresent(self.clusterPolicyConfig, forKey: .clusterPolicyConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

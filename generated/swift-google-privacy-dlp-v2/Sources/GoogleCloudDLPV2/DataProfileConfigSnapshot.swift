@@ -42,6 +42,8 @@ public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWKT._Any
   /// Timestamp when the template was modified
   public var inspectTemplateModifiedTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProfileConfigSnapshot`.
   public init() {}
 
@@ -56,6 +58,58 @@ public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inspectConfig = CodingKeys(stringValue: "inspectConfig")
+    static let dataProfileJob = CodingKeys(stringValue: "dataProfileJob")
+    static let discoveryConfig = CodingKeys(stringValue: "discoveryConfig")
+    static let inspectTemplateName = CodingKeys(stringValue: "inspectTemplateName")
+    static let inspectTemplateModifiedTime = CodingKeys(stringValue: "inspectTemplateModifiedTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inspectConfig",
+      "dataProfileJob",
+      "discoveryConfig",
+      "inspectTemplateName",
+      "inspectTemplateModifiedTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.inspectConfig = try container.decodeIfPresent(InspectConfig.self, forKey: .inspectConfig)
+    self.dataProfileJob = try container.decodeIfPresent(
+      DataProfileJobConfig.self, forKey: .dataProfileJob)
+    self.discoveryConfig = try container.decodeIfPresent(
+      DiscoveryConfig.self, forKey: .discoveryConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inspectTemplateName) {
+      self.inspectTemplateName = value
+    }
+    self.inspectTemplateModifiedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .inspectTemplateModifiedTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.inspectConfig, forKey: .inspectConfig)
+    try container.encodeIfPresent(self.dataProfileJob, forKey: .dataProfileJob)
+    try container.encodeIfPresent(self.discoveryConfig, forKey: .discoveryConfig)
+    try container.encode(self.inspectTemplateName, forKey: .inspectTemplateName)
+    try container.encodeIfPresent(
+      self.inspectTemplateModifiedTime, forKey: .inspectTemplateModifiedTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

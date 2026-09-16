@@ -36,6 +36,8 @@ public struct BackupApplianceBackupProperties: Codable, Equatable, GoogleCloudWK
   /// Optional. The latest timestamp of data available in this Backup.
   public var recoveryRangeEndTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupApplianceBackupProperties`.
   public init() {}
 
@@ -50,6 +52,51 @@ public struct BackupApplianceBackupProperties: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let generationId = CodingKeys(stringValue: "generationId")
+    static let finalizeTime = CodingKeys(stringValue: "finalizeTime")
+    static let recoveryRangeStartTime = CodingKeys(stringValue: "recoveryRangeStartTime")
+    static let recoveryRangeEndTime = CodingKeys(stringValue: "recoveryRangeEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "generationId",
+      "finalizeTime",
+      "recoveryRangeStartTime",
+      "recoveryRangeEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.generationId = try container.decodeIfPresent(Swift.Int32.self, forKey: .generationId)
+    self.finalizeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finalizeTime)
+    self.recoveryRangeStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .recoveryRangeStartTime)
+    self.recoveryRangeEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .recoveryRangeEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.generationId, forKey: .generationId)
+    try container.encodeIfPresent(self.finalizeTime, forKey: .finalizeTime)
+    try container.encodeIfPresent(self.recoveryRangeStartTime, forKey: .recoveryRangeStartTime)
+    try container.encodeIfPresent(self.recoveryRangeEndTime, forKey: .recoveryRangeEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -26,6 +26,8 @@ public struct SdpBasicConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var filterEnforcement: SdpBasicConfig.SdpBasicConfigEnforcement =
     SdpBasicConfig.SdpBasicConfigEnforcement()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpBasicConfig`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct SdpBasicConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filterEnforcement = CodingKeys(stringValue: "filterEnforcement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filterEnforcement"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      SdpBasicConfig.SdpBasicConfigEnforcement.self, forKey: .filterEnforcement)
+    {
+      self.filterEnforcement = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Option to specify the state of Sensitive Data Protection basic config

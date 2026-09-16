@@ -85,6 +85,8 @@
     /// [google.cloud.aiplatform.v1.PredictResponse.predictions]: <doc:PredictResponse/predictions>
     public var predictionSchemaUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PredictSchemata`.
     public init() {}
 
@@ -99,6 +101,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceSchemaUri = CodingKeys(stringValue: "instanceSchemaUri")
+      static let parametersSchemaUri = CodingKeys(stringValue: "parametersSchemaUri")
+      static let predictionSchemaUri = CodingKeys(stringValue: "predictionSchemaUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceSchemaUri",
+        "parametersSchemaUri",
+        "predictionSchemaUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceSchemaUri) {
+        self.instanceSchemaUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parametersSchemaUri)
+      {
+        self.parametersSchemaUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predictionSchemaUri)
+      {
+        self.predictionSchemaUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.instanceSchemaUri, forKey: .instanceSchemaUri)
+      try container.encode(self.parametersSchemaUri, forKey: .parametersSchemaUri)
+      try container.encode(self.predictionSchemaUri, forKey: .predictionSchemaUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

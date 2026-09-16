@@ -57,6 +57,8 @@ public struct ConnectorVersionReportLog: Codable, Equatable, GoogleCloudWKT._Any
   /// Required. Transport
   public var transport: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectorVersionReportLog`.
   public init() {}
 
@@ -71,6 +73,104 @@ public struct ConnectorVersionReportLog: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+    static let hostName = CodingKeys(stringValue: "hostName")
+    static let hostId = CodingKeys(stringValue: "hostId")
+    static let hostOsType = CodingKeys(stringValue: "hostOsType")
+    static let hostIpAddress = CodingKeys(stringValue: "hostIpAddress")
+    static let dbAuthentication = CodingKeys(stringValue: "dbAuthentication")
+    static let installedVersion = CodingKeys(stringValue: "installedVersion")
+    static let availableVersion = CodingKeys(stringValue: "availableVersion")
+    static let versionCheck = CodingKeys(stringValue: "versionCheck")
+    static let diskPreference = CodingKeys(stringValue: "diskPreference")
+    static let transport = CodingKeys(stringValue: "transport")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "applianceName",
+      "applianceId",
+      "hostName",
+      "hostId",
+      "hostOsType",
+      "hostIpAddress",
+      "dbAuthentication",
+      "installedVersion",
+      "availableVersion",
+      "versionCheck",
+      "diskPreference",
+      "transport",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+      self.hostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostId) {
+      self.hostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostOsType) {
+      self.hostOsType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostIpAddress) {
+      self.hostIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbAuthentication) {
+      self.dbAuthentication = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .installedVersion) {
+      self.installedVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .availableVersion) {
+      self.availableVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionCheck) {
+      self.versionCheck = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskPreference) {
+      self.diskPreference = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transport) {
+      self.transport = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    try container.encode(self.hostName, forKey: .hostName)
+    try container.encode(self.hostId, forKey: .hostId)
+    try container.encode(self.hostOsType, forKey: .hostOsType)
+    try container.encode(self.hostIpAddress, forKey: .hostIpAddress)
+    try container.encode(self.dbAuthentication, forKey: .dbAuthentication)
+    try container.encode(self.installedVersion, forKey: .installedVersion)
+    try container.encode(self.availableVersion, forKey: .availableVersion)
+    try container.encode(self.versionCheck, forKey: .versionCheck)
+    try container.encode(self.diskPreference, forKey: .diskPreference)
+    try container.encode(self.transport, forKey: .transport)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

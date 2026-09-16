@@ -26,6 +26,8 @@ public struct FilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// results.
   public var filterResult: OneOf_FilterResult? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FilterResult`.
   public init() {}
 
@@ -42,13 +44,27 @@ public struct FilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case raiFilterResult = "raiFilterResult"
-    case sdpFilterResult = "sdpFilterResult"
-    case piAndJailbreakFilterResult = "piAndJailbreakFilterResult"
-    case maliciousUriFilterResult = "maliciousUriFilterResult"
-    case csamFilterFilterResult = "csamFilterFilterResult"
-    case virusScanFilterResult = "virusScanFilterResult"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let raiFilterResult = CodingKeys(stringValue: "raiFilterResult")
+    static let sdpFilterResult = CodingKeys(stringValue: "sdpFilterResult")
+    static let piAndJailbreakFilterResult = CodingKeys(stringValue: "piAndJailbreakFilterResult")
+    static let maliciousUriFilterResult = CodingKeys(stringValue: "maliciousUriFilterResult")
+    static let csamFilterFilterResult = CodingKeys(stringValue: "csamFilterFilterResult")
+    static let virusScanFilterResult = CodingKeys(stringValue: "virusScanFilterResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "raiFilterResult",
+      "sdpFilterResult",
+      "piAndJailbreakFilterResult",
+      "maliciousUriFilterResult",
+      "csamFilterFilterResult",
+      "virusScanFilterResult",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -95,6 +111,10 @@ public struct FilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try filterResultCheckAndSet(.virusScanFilterResult(virusScanFilterResult))
     }
     self.filterResult = filterResult
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +135,9 @@ public struct FilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .virusScanFilterResult(let value):
         try container.encode(value, forKey: .virusScanFilterResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

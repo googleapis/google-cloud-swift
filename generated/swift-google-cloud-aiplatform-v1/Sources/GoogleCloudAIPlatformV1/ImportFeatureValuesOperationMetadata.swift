@@ -50,6 +50,8 @@
     /// that are blocking this operation.
     public var blockingOperationIds: [Swift.Int64] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportFeatureValuesOperationMetadata`.
     public init() {}
 
@@ -64,6 +66,81 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let genericMetadata = CodingKeys(stringValue: "genericMetadata")
+      static let importedEntityCount = CodingKeys(stringValue: "importedEntityCount")
+      static let importedFeatureValueCount = CodingKeys(stringValue: "importedFeatureValueCount")
+      static let sourceUris = CodingKeys(stringValue: "sourceUris")
+      static let invalidRowCount = CodingKeys(stringValue: "invalidRowCount")
+      static let timestampOutsideRetentionRowsCount = CodingKeys(
+        stringValue: "timestampOutsideRetentionRowsCount")
+      static let blockingOperationIds = CodingKeys(stringValue: "blockingOperationIds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "genericMetadata",
+        "importedEntityCount",
+        "importedFeatureValueCount",
+        "sourceUris",
+        "invalidRowCount",
+        "timestampOutsideRetentionRowsCount",
+        "blockingOperationIds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.genericMetadata = try container.decodeIfPresent(
+        GenericOperationMetadata.self, forKey: .genericMetadata)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .importedEntityCount) {
+        self.importedEntityCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .importedFeatureValueCount)
+      {
+        self.importedFeatureValueCount = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceUris) {
+        self.sourceUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .invalidRowCount) {
+        self.invalidRowCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .timestampOutsideRetentionRowsCount)
+      {
+        self.timestampOutsideRetentionRowsCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.Int64].self, forKey: .blockingOperationIds)
+      {
+        self.blockingOperationIds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.genericMetadata, forKey: .genericMetadata)
+      try container.encode(self.importedEntityCount, forKey: .importedEntityCount)
+      try container.encode(self.importedFeatureValueCount, forKey: .importedFeatureValueCount)
+      try container.encode(self.sourceUris, forKey: .sourceUris)
+      try container.encode(self.invalidRowCount, forKey: .invalidRowCount)
+      try container.encode(
+        self.timestampOutsideRetentionRowsCount, forKey: .timestampOutsideRetentionRowsCount)
+      try container.encode(self.blockingOperationIds, forKey: .blockingOperationIds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

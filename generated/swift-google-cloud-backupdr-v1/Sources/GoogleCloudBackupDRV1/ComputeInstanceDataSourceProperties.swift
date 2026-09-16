@@ -37,6 +37,8 @@ public struct ComputeInstanceDataSourceProperties: Codable, Equatable, GoogleClo
   /// The sum of all the disk sizes.
   public var totalDiskSizeGb: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeInstanceDataSourceProperties`.
   public init() {}
 
@@ -51,6 +53,62 @@ public struct ComputeInstanceDataSourceProperties: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let totalDiskCount = CodingKeys(stringValue: "totalDiskCount")
+    static let totalDiskSizeGb = CodingKeys(stringValue: "totalDiskSizeGb")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "machineType",
+      "totalDiskCount",
+      "totalDiskSizeGb",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalDiskCount) {
+      self.totalDiskCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalDiskSizeGb) {
+      self.totalDiskSizeGb = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.totalDiskCount, forKey: .totalDiskCount)
+    try container.encode(self.totalDiskSizeGb, forKey: .totalDiskSizeGb)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

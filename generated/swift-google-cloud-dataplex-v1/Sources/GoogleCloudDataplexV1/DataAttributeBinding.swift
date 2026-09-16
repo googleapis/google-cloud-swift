@@ -68,6 +68,8 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// the query to match resources and associate attributes.
   public var resourceReference: OneOf_ResourceReference? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataAttributeBinding`.
   public init() {}
 
@@ -84,34 +86,70 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case description = "description"
-    case displayName = "displayName"
-    case labels = "labels"
-    case etag = "etag"
-    case resource = "resource"
-    case attributes = "attributes"
-    case paths = "paths"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let paths = CodingKeys(stringValue: "paths")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "description",
+      "displayName",
+      "labels",
+      "etag",
+      "resource",
+      "attributes",
+      "paths",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.attributes = try container.decode([Swift.String].self, forKey: .attributes)
-    self.paths = try container.decode([DataAttributeBinding.Path].self, forKey: .paths)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .attributes) {
+      self.attributes = value
+    }
+    if let value = try container.decodeIfPresent([DataAttributeBinding.Path].self, forKey: .paths) {
+      self.paths = value
+    }
 
     var resourceReference: OneOf_ResourceReference? = nil
     let resourceReferenceCheckAndSet = {
@@ -127,14 +165,18 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try resourceReferenceCheckAndSet(.resource(resource))
     }
     self.resourceReference = resourceReference
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
@@ -147,6 +189,9 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .resource(let value):
         try container.encode(value, forKey: .resource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -165,6 +210,8 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
     public var attributes: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Path`.
     public init() {}
 
@@ -179,6 +226,44 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let attributes = CodingKeys(stringValue: "attributes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "attributes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .attributes) {
+        self.attributes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.attributes, forKey: .attributes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

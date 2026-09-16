@@ -37,6 +37,8 @@
     /// configuration.
     public var isActive: InterconnectGroupsOperationalStatusInterconnectStatus.IsActive? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectGroupsOperationalStatusInterconnectStatus`.
     public init() {}
 
@@ -51,6 +53,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let diagnostics = CodingKeys(stringValue: "diagnostics")
+      static let interconnect = CodingKeys(stringValue: "interconnect")
+      static let isActive = CodingKeys(stringValue: "isActive")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adminEnabled",
+        "diagnostics",
+        "interconnect",
+        "isActive",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
+      self.diagnostics = try container.decodeIfPresent(
+        InterconnectDiagnostics.self, forKey: .diagnostics)
+      self.interconnect = try container.decodeIfPresent(Swift.String.self, forKey: .interconnect)
+      self.isActive = try container.decodeIfPresent(
+        InterconnectGroupsOperationalStatusInterconnectStatus.IsActive.self, forKey: .isActive)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(self.diagnostics, forKey: .diagnostics)
+      try container.encodeIfPresent(self.interconnect, forKey: .interconnect)
+      try container.encodeIfPresent(self.isActive, forKey: .isActive)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [isActive][google.cloud.compute.v1.InterconnectGroupsOperationalStatusInterconnectStatus.isActive] field.

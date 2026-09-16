@@ -32,6 +32,8 @@ public struct MigrationJobVerificationError: Codable, Equatable, GoogleCloudWKT.
   /// Output only. A specific detailed error message, if supplied by the engine.
   public var errorDetailMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationJobVerificationError`.
   public init() {}
 
@@ -46,6 +48,52 @@ public struct MigrationJobVerificationError: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let errorDetailMessage = CodingKeys(stringValue: "errorDetailMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errorCode",
+      "errorMessage",
+      "errorDetailMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      MigrationJobVerificationError.ErrorCode.self, forKey: .errorCode)
+    {
+      self.errorCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorDetailMessage) {
+      self.errorDetailMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errorCode, forKey: .errorCode)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.errorDetailMessage, forKey: .errorDetailMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A general error code describing the type of error that occurred.

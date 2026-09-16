@@ -54,6 +54,8 @@
     /// Optional. Weakly typed raw event data in proto struct format.
     public var rawEvent: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SessionEvent`.
     public init() {}
 
@@ -68,6 +70,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let author = CodingKeys(stringValue: "author")
+      static let content = CodingKeys(stringValue: "content")
+      static let invocationId = CodingKeys(stringValue: "invocationId")
+      static let actions = CodingKeys(stringValue: "actions")
+      static let timestamp = CodingKeys(stringValue: "timestamp")
+      static let errorCode = CodingKeys(stringValue: "errorCode")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+      static let eventMetadata = CodingKeys(stringValue: "eventMetadata")
+      static let rawEvent = CodingKeys(stringValue: "rawEvent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "author",
+        "content",
+        "invocationId",
+        "actions",
+        "timestamp",
+        "errorCode",
+        "errorMessage",
+        "eventMetadata",
+        "rawEvent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
+        self.author = value
+      }
+      self.content = try container.decodeIfPresent(Content.self, forKey: .content)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .invocationId) {
+        self.invocationId = value
+      }
+      self.actions = try container.decodeIfPresent(EventActions.self, forKey: .actions)
+      self.timestamp = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .timestamp)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorCode) {
+        self.errorCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      self.eventMetadata = try container.decodeIfPresent(EventMetadata.self, forKey: .eventMetadata)
+      self.rawEvent = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .rawEvent)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.author, forKey: .author)
+      try container.encodeIfPresent(self.content, forKey: .content)
+      try container.encode(self.invocationId, forKey: .invocationId)
+      try container.encodeIfPresent(self.actions, forKey: .actions)
+      try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+      try container.encode(self.errorCode, forKey: .errorCode)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      try container.encodeIfPresent(self.eventMetadata, forKey: .eventMetadata)
+      try container.encodeIfPresent(self.rawEvent, forKey: .rawEvent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

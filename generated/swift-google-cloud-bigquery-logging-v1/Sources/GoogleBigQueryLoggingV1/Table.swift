@@ -56,6 +56,8 @@ public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The table encryption information. Set when non-default encryption is used.
   public var encryption: EncryptionInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Table`.
   public init() {}
 
@@ -70,6 +72,74 @@ public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tableName = CodingKeys(stringValue: "tableName")
+    static let info = CodingKeys(stringValue: "info")
+    static let schemaJson = CodingKeys(stringValue: "schemaJson")
+    static let view = CodingKeys(stringValue: "view")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let truncateTime = CodingKeys(stringValue: "truncateTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let encryption = CodingKeys(stringValue: "encryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tableName",
+      "info",
+      "schemaJson",
+      "view",
+      "expireTime",
+      "createTime",
+      "truncateTime",
+      "updateTime",
+      "encryption",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tableName = try container.decodeIfPresent(TableName.self, forKey: .tableName)
+    self.info = try container.decodeIfPresent(TableInfo.self, forKey: .info)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaJson) {
+      self.schemaJson = value
+    }
+    self.view = try container.decodeIfPresent(TableViewDefinition.self, forKey: .view)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.truncateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .truncateTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.encryption = try container.decodeIfPresent(EncryptionInfo.self, forKey: .encryption)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tableName, forKey: .tableName)
+    try container.encodeIfPresent(self.info, forKey: .info)
+    try container.encode(self.schemaJson, forKey: .schemaJson)
+    try container.encodeIfPresent(self.view, forKey: .view)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.truncateTime, forKey: .truncateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

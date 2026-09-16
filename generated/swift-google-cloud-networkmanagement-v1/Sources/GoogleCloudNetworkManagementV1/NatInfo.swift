@@ -65,6 +65,8 @@ public struct NatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.
   public var cloudNatGatewayType: NatInfo.CloudNatGatewayType = NatInfo.CloudNatGatewayType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NatInfo`.
   public init() {}
 
@@ -81,40 +83,95 @@ public struct NatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case `protocol` = "protocol"
-    case networkUri = "networkUri"
-    case oldSourceIp = "oldSourceIp"
-    case newSourceIp = "newSourceIp"
-    case oldDestinationIp = "oldDestinationIp"
-    case newDestinationIp = "newDestinationIp"
-    case oldSourcePort = "oldSourcePort"
-    case newSourcePort = "newSourcePort"
-    case oldDestinationPort = "oldDestinationPort"
-    case newDestinationPort = "newDestinationPort"
-    case routerUri = "routerUri"
-    case natGatewayName = "natGatewayName"
-    case cloudNatGatewayType = "cloudNatGatewayType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let oldSourceIp = CodingKeys(stringValue: "oldSourceIp")
+    static let newSourceIp = CodingKeys(stringValue: "newSourceIp")
+    static let oldDestinationIp = CodingKeys(stringValue: "oldDestinationIp")
+    static let newDestinationIp = CodingKeys(stringValue: "newDestinationIp")
+    static let oldSourcePort = CodingKeys(stringValue: "oldSourcePort")
+    static let newSourcePort = CodingKeys(stringValue: "newSourcePort")
+    static let oldDestinationPort = CodingKeys(stringValue: "oldDestinationPort")
+    static let newDestinationPort = CodingKeys(stringValue: "newDestinationPort")
+    static let routerUri = CodingKeys(stringValue: "routerUri")
+    static let natGatewayName = CodingKeys(stringValue: "natGatewayName")
+    static let cloudNatGatewayType = CodingKeys(stringValue: "cloudNatGatewayType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "protocol",
+      "networkUri",
+      "oldSourceIp",
+      "newSourceIp",
+      "oldDestinationIp",
+      "newDestinationIp",
+      "oldSourcePort",
+      "newSourcePort",
+      "oldDestinationPort",
+      "newDestinationPort",
+      "routerUri",
+      "natGatewayName",
+      "cloudNatGatewayType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(NatInfo.Type_.self, forKey: .type)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.networkUri = try container.decode(Swift.String.self, forKey: .networkUri)
-    self.oldSourceIp = try container.decode(Swift.String.self, forKey: .oldSourceIp)
-    self.newSourceIp = try container.decode(Swift.String.self, forKey: .newSourceIp)
-    self.oldDestinationIp = try container.decode(Swift.String.self, forKey: .oldDestinationIp)
-    self.newDestinationIp = try container.decode(Swift.String.self, forKey: .newDestinationIp)
-    self.oldSourcePort = try container.decode(Swift.Int32.self, forKey: .oldSourcePort)
-    self.newSourcePort = try container.decode(Swift.Int32.self, forKey: .newSourcePort)
-    self.oldDestinationPort = try container.decode(Swift.Int32.self, forKey: .oldDestinationPort)
-    self.newDestinationPort = try container.decode(Swift.Int32.self, forKey: .newDestinationPort)
-    self.routerUri = try container.decode(Swift.String.self, forKey: .routerUri)
-    self.natGatewayName = try container.decode(Swift.String.self, forKey: .natGatewayName)
-    self.cloudNatGatewayType = try container.decode(
+    if let value = try container.decodeIfPresent(NatInfo.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oldSourceIp) {
+      self.oldSourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newSourceIp) {
+      self.newSourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oldDestinationIp) {
+      self.oldDestinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newDestinationIp) {
+      self.newDestinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .oldSourcePort) {
+      self.oldSourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .newSourcePort) {
+      self.newSourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .oldDestinationPort) {
+      self.oldDestinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .newDestinationPort) {
+      self.newDestinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .routerUri) {
+      self.routerUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .natGatewayName) {
+      self.natGatewayName = value
+    }
+    if let value = try container.decodeIfPresent(
       NatInfo.CloudNatGatewayType.self, forKey: .cloudNatGatewayType)
+    {
+      self.cloudNatGatewayType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -133,6 +190,9 @@ public struct NatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.routerUri, forKey: .routerUri)
     try container.encode(self.natGatewayName, forKey: .natGatewayName)
     try container.encode(self.cloudNatGatewayType, forKey: .cloudNatGatewayType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of NAT.

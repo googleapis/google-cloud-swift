@@ -24,6 +24,8 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
   /// Location to store the transformation summary.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationDetailsStorageConfig`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case table = "table"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let table = CodingKeys(stringValue: "table")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "table"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,6 +72,10 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
       try typeCheckAndSet(.table(table))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -71,6 +86,9 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleClou
       case .table(let value):
         try container.encode(value, forKey: .table)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

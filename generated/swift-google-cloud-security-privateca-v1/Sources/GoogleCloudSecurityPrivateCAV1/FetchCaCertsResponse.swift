@@ -31,6 +31,8 @@ public struct FetchCaCertsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   public var caCerts: [FetchCaCertsResponse.CertChain] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchCaCertsResponse`.
   public init() {}
 
@@ -47,11 +49,47 @@ public struct FetchCaCertsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let caCerts = CodingKeys(stringValue: "caCerts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "caCerts"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [FetchCaCertsResponse.CertChain].self, forKey: .caCerts)
+    {
+      self.caCerts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.caCerts, forKey: .caCerts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   public struct CertChain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The certificates that form the CA chain, from leaf to root order.
     public var certificates: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CertChain`.
     public init() {}
@@ -67,6 +105,38 @@ public struct FetchCaCertsResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let certificates = CodingKeys(stringValue: "certificates")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "certificates"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .certificates) {
+        self.certificates = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.certificates, forKey: .certificates)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

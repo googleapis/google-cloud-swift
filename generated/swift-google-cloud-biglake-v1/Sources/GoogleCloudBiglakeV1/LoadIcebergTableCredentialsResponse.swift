@@ -24,6 +24,8 @@ public struct LoadIcebergTableCredentialsResponse: Codable, Equatable, GoogleClo
   /// The credentials for the table assigned to the caller.
   public var storageCredentials: [StorageCredential] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoadIcebergTableCredentialsResponse`.
   public init() {}
 
@@ -40,19 +42,38 @@ public struct LoadIcebergTableCredentialsResponse: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case storageCredentials = "storage-credentials"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageCredentials = CodingKeys(stringValue: "storage-credentials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storage-credentials"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.storageCredentials = try container.decode(
+    if let value = try container.decodeIfPresent(
       [StorageCredential].self, forKey: .storageCredentials)
+    {
+      self.storageCredentials = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.storageCredentials, forKey: .storageCredentials)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

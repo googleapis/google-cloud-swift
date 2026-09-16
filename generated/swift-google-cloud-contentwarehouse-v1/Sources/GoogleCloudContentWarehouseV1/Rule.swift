@@ -40,6 +40,8 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of actions that are executed when the rule is satisfied.
   public var actions: [Action] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rule`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let ruleId = CodingKeys(stringValue: "ruleId")
+    static let triggerType = CodingKeys(stringValue: "triggerType")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let actions = CodingKeys(stringValue: "actions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "ruleId",
+      "triggerType",
+      "condition",
+      "actions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleId) {
+      self.ruleId = value
+    }
+    if let value = try container.decodeIfPresent(Rule.TriggerType.self, forKey: .triggerType) {
+      self.triggerType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+      self.condition = value
+    }
+    if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
+      self.actions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.ruleId, forKey: .ruleId)
+    try container.encode(self.triggerType, forKey: .triggerType)
+    try container.encode(self.condition, forKey: .condition)
+    try container.encode(self.actions, forKey: .actions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The trigger types for actions.

@@ -177,6 +177,8 @@
     /// route, this field will be populated with warning messages.
     public var warnings: [Route.Warnings] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Route`.
     public init() {}
 
@@ -191,6 +193,157 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let asPaths = CodingKeys(stringValue: "asPaths")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let destRange = CodingKeys(stringValue: "destRange")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let nextHopGateway = CodingKeys(stringValue: "nextHopGateway")
+      static let nextHopHub = CodingKeys(stringValue: "nextHopHub")
+      static let nextHopIlb = CodingKeys(stringValue: "nextHopIlb")
+      static let nextHopInstance = CodingKeys(stringValue: "nextHopInstance")
+      static let nextHopInterRegionCost = CodingKeys(stringValue: "nextHopInterRegionCost")
+      static let nextHopInterconnectAttachment = CodingKeys(
+        stringValue: "nextHopInterconnectAttachment")
+      static let nextHopIp = CodingKeys(stringValue: "nextHopIp")
+      static let nextHopMed = CodingKeys(stringValue: "nextHopMed")
+      static let nextHopNetwork = CodingKeys(stringValue: "nextHopNetwork")
+      static let nextHopOrigin = CodingKeys(stringValue: "nextHopOrigin")
+      static let nextHopPeering = CodingKeys(stringValue: "nextHopPeering")
+      static let nextHopVpnTunnel = CodingKeys(stringValue: "nextHopVpnTunnel")
+      static let params = CodingKeys(stringValue: "params")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let routeStatus = CodingKeys(stringValue: "routeStatus")
+      static let routeType = CodingKeys(stringValue: "routeType")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let warnings = CodingKeys(stringValue: "warnings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "asPaths",
+        "creationTimestamp",
+        "description",
+        "destRange",
+        "id",
+        "kind",
+        "name",
+        "network",
+        "nextHopGateway",
+        "nextHopHub",
+        "nextHopIlb",
+        "nextHopInstance",
+        "nextHopInterRegionCost",
+        "nextHopInterconnectAttachment",
+        "nextHopIp",
+        "nextHopMed",
+        "nextHopNetwork",
+        "nextHopOrigin",
+        "nextHopPeering",
+        "nextHopVpnTunnel",
+        "params",
+        "priority",
+        "routeStatus",
+        "routeType",
+        "selfLink",
+        "tags",
+        "warnings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([RouteAsPath].self, forKey: .asPaths) {
+        self.asPaths = value
+      }
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.destRange = try container.decodeIfPresent(Swift.String.self, forKey: .destRange)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.nextHopGateway = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopGateway)
+      self.nextHopHub = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopHub)
+      self.nextHopIlb = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopIlb)
+      self.nextHopInstance = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopInstance)
+      self.nextHopInterRegionCost = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .nextHopInterRegionCost)
+      self.nextHopInterconnectAttachment = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopInterconnectAttachment)
+      self.nextHopIp = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopIp)
+      self.nextHopMed = try container.decodeIfPresent(Swift.UInt32.self, forKey: .nextHopMed)
+      self.nextHopNetwork = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopNetwork)
+      self.nextHopOrigin = try container.decodeIfPresent(
+        Route.NextHopOrigin.self, forKey: .nextHopOrigin)
+      self.nextHopPeering = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopPeering)
+      self.nextHopVpnTunnel = try container.decodeIfPresent(
+        Swift.String.self, forKey: .nextHopVpnTunnel)
+      self.params = try container.decodeIfPresent(RouteParams.self, forKey: .params)
+      self.priority = try container.decodeIfPresent(Swift.UInt32.self, forKey: .priority)
+      self.routeStatus = try container.decodeIfPresent(Route.RouteStatus.self, forKey: .routeStatus)
+      self.routeType = try container.decodeIfPresent(Route.RouteType.self, forKey: .routeType)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+        self.tags = value
+      }
+      if let value = try container.decodeIfPresent([Route.Warnings].self, forKey: .warnings) {
+        self.warnings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.asPaths, forKey: .asPaths)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.destRange, forKey: .destRange)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.nextHopGateway, forKey: .nextHopGateway)
+      try container.encodeIfPresent(self.nextHopHub, forKey: .nextHopHub)
+      try container.encodeIfPresent(self.nextHopIlb, forKey: .nextHopIlb)
+      try container.encodeIfPresent(self.nextHopInstance, forKey: .nextHopInstance)
+      try container.encodeIfPresent(self.nextHopInterRegionCost, forKey: .nextHopInterRegionCost)
+      try container.encodeIfPresent(
+        self.nextHopInterconnectAttachment, forKey: .nextHopInterconnectAttachment)
+      try container.encodeIfPresent(self.nextHopIp, forKey: .nextHopIp)
+      try container.encodeIfPresent(self.nextHopMed, forKey: .nextHopMed)
+      try container.encodeIfPresent(self.nextHopNetwork, forKey: .nextHopNetwork)
+      try container.encodeIfPresent(self.nextHopOrigin, forKey: .nextHopOrigin)
+      try container.encodeIfPresent(self.nextHopPeering, forKey: .nextHopPeering)
+      try container.encodeIfPresent(self.nextHopVpnTunnel, forKey: .nextHopVpnTunnel)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.routeStatus, forKey: .routeStatus)
+      try container.encodeIfPresent(self.routeType, forKey: .routeType)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encode(self.tags, forKey: .tags)
+      try container.encode(self.warnings, forKey: .warnings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The message type for the [warnings][google.cloud.compute.v1.Route.warnings] field.
@@ -217,6 +370,8 @@
       /// [Output Only] A human-readable description of the warning code.
       public var message: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Warnings`.
       public init() {}
 
@@ -231,6 +386,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let code = CodingKeys(stringValue: "code")
+        static let data = CodingKeys(stringValue: "data")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "code",
+          "data",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decodeIfPresent(Route.Warnings.Code.self, forKey: .code)
+        if let value = try container.decodeIfPresent([Route.Warnings.Data].self, forKey: .data) {
+          self.data = value
+        }
+        self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.data, forKey: .data)
+        try container.encodeIfPresent(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [data][google.cloud.compute.v1.Route.warnings.data] field.
@@ -251,6 +446,9 @@
         /// [Output Only] A warning data value corresponding to the key.
         public var value: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Data`.
         public init() {}
 
@@ -265,6 +463,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
+          self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

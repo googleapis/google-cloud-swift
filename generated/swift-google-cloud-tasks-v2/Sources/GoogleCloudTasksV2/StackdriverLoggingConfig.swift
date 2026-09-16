@@ -28,6 +28,8 @@ public struct StackdriverLoggingConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// 0.0 is the default and means that no operations are logged.
   public var samplingRatio: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StackdriverLoggingConfig`.
   public init() {}
 
@@ -42,6 +44,38 @@ public struct StackdriverLoggingConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let samplingRatio = CodingKeys(stringValue: "samplingRatio")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "samplingRatio"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .samplingRatio) {
+      self.samplingRatio = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.samplingRatio, forKey: .samplingRatio)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

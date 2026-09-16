@@ -33,6 +33,8 @@
     /// future time period.
     public var totalCount: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationSpecificSKUProperties`.
     public init() {}
 
@@ -47,6 +49,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceProperties = CodingKeys(stringValue: "instanceProperties")
+      static let sourceInstanceTemplate = CodingKeys(stringValue: "sourceInstanceTemplate")
+      static let totalCount = CodingKeys(stringValue: "totalCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceProperties",
+        "sourceInstanceTemplate",
+        "totalCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instanceProperties = try container.decodeIfPresent(
+        AllocationSpecificSKUAllocationReservedInstanceProperties.self, forKey: .instanceProperties)
+      self.sourceInstanceTemplate = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceInstanceTemplate)
+      self.totalCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.instanceProperties, forKey: .instanceProperties)
+      try container.encodeIfPresent(self.sourceInstanceTemplate, forKey: .sourceInstanceTemplate)
+      try container.encodeIfPresent(self.totalCount, forKey: .totalCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

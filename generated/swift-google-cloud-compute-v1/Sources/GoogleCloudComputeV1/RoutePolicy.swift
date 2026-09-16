@@ -46,6 +46,8 @@
 
     public var type: RoutePolicy.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RoutePolicy`.
     public init() {}
 
@@ -62,12 +64,25 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case name = "name"
-      case terms = "terms"
-      case type = "type"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let name = CodingKeys(stringValue: "name")
+      static let terms = CodingKeys(stringValue: "terms")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "fingerprint",
+        "name",
+        "terms",
+        "type",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -83,21 +98,30 @@
         self.fingerprint = v
       }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.terms = try container.decode([RoutePolicyPolicyTerm].self, forKey: .terms)
+      if let value = try container.decodeIfPresent([RoutePolicyPolicyTerm].self, forKey: .terms) {
+        self.terms = value
+      }
       self.type = try container.decodeIfPresent(RoutePolicy.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.terms, forKey: .terms)
-      try container.encode(self.type, forKey: .type)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.RoutePolicy.type] field.

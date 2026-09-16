@@ -37,6 +37,8 @@
     /// Instruction list of this few_shot example.
     public var instructionList: OneOf_InstructionList? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FewShotExample`.
     public init() {}
 
@@ -53,18 +55,34 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case conversationContext = "conversationContext"
-      case extraInfo = "extraInfo"
-      case summarizationSectionList = "summarizationSectionList"
-      case output = "output"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversationContext = CodingKeys(stringValue: "conversationContext")
+      static let extraInfo = CodingKeys(stringValue: "extraInfo")
+      static let summarizationSectionList = CodingKeys(stringValue: "summarizationSectionList")
+      static let output = CodingKeys(stringValue: "output")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversationContext",
+        "extraInfo",
+        "summarizationSectionList",
+        "output",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.conversationContext = try container.decodeIfPresent(
         ConversationContext.self, forKey: .conversationContext)
-      self.extraInfo = try container.decode([Swift.String: Swift.String].self, forKey: .extraInfo)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .extraInfo)
+      {
+        self.extraInfo = value
+      }
       self.output = try container.decodeIfPresent(GeneratorSuggestion.self, forKey: .output)
 
       var instructionList: OneOf_InstructionList? = nil
@@ -83,19 +101,26 @@
         try instructionListCheckAndSet(.summarizationSectionList(summarizationSectionList))
       }
       self.instructionList = instructionList
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.conversationContext, forKey: .conversationContext)
+      try container.encodeIfPresent(self.conversationContext, forKey: .conversationContext)
       try container.encode(self.extraInfo, forKey: .extraInfo)
-      try container.encode(self.output, forKey: .output)
+      try container.encodeIfPresent(self.output, forKey: .output)
 
       if let choice = self.instructionList {
         switch choice {
         case .summarizationSectionList(let value):
           try container.encode(value, forKey: .summarizationSectionList)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -30,6 +30,8 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// referenced directly in a PhraseSet.
   public var customClasses: [CustomClass] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpeechAdaptation`.
   public init() {}
 
@@ -46,12 +48,54 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let phraseSets = CodingKeys(stringValue: "phraseSets")
+    static let customClasses = CodingKeys(stringValue: "customClasses")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "phraseSets",
+      "customClasses",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SpeechAdaptation.AdaptationPhraseSet].self, forKey: .phraseSets)
+    {
+      self.phraseSets = value
+    }
+    if let value = try container.decodeIfPresent([CustomClass].self, forKey: .customClasses) {
+      self.customClasses = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.phraseSets, forKey: .phraseSets)
+    try container.encode(self.customClasses, forKey: .customClasses)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A biasing PhraseSet, which can be either a string referencing the name of
   /// an existing PhraseSets resource, or an inline definition of a PhraseSet.
   public struct AdaptationPhraseSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var value: OneOf_Value? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AdaptationPhraseSet`.
     public init() {}
@@ -69,9 +113,19 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case phraseSet = "phraseSet"
-      case inlinePhraseSet = "inlinePhraseSet"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let phraseSet = CodingKeys(stringValue: "phraseSet")
+      static let inlinePhraseSet = CodingKeys(stringValue: "inlinePhraseSet")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "phraseSet",
+        "inlinePhraseSet",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -96,6 +150,10 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try valueCheckAndSet(.inlinePhraseSet(inlinePhraseSet))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -108,6 +166,9 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .inlinePhraseSet(let value):
           try container.encode(value, forKey: .inlinePhraseSet)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -31,6 +31,8 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// specific entity.
   public var entity: GovernanceEvent.Entity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GovernanceEvent`.
   public init() {}
 
@@ -47,6 +49,49 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let eventType = CodingKeys(stringValue: "eventType")
+    static let entity = CodingKeys(stringValue: "entity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "eventType",
+      "entity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(GovernanceEvent.EventType.self, forKey: .eventType)
+    {
+      self.eventType = value
+    }
+    self.entity = try container.decodeIfPresent(GovernanceEvent.Entity.self, forKey: .entity)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.eventType, forKey: .eventType)
+    try container.encodeIfPresent(self.entity, forKey: .entity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Information about Entity resource that the log event is associated with.
   public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -58,6 +103,8 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Type of entity.
     public var entityType: GovernanceEvent.Entity.EntityType = GovernanceEvent.Entity.EntityType()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Entity`.
     public init() {}
@@ -73,6 +120,46 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entity = CodingKeys(stringValue: "entity")
+      static let entityType = CodingKeys(stringValue: "entityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entity",
+        "entityType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+        self.entity = value
+      }
+      if let value = try container.decodeIfPresent(
+        GovernanceEvent.Entity.EntityType.self, forKey: .entityType)
+      {
+        self.entityType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entity, forKey: .entity)
+      try container.encode(self.entityType, forKey: .entityType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Type of entity.

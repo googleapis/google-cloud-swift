@@ -69,6 +69,8 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// substituted away.
   public var nestingReason: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TextLocator`.
   public init() {}
 
@@ -85,6 +87,59 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let source = CodingKeys(stringValue: "source")
+    static let startPosition = CodingKeys(stringValue: "startPosition")
+    static let endPosition = CodingKeys(stringValue: "endPosition")
+    static let nestedLocator = CodingKeys(stringValue: "nestedLocator")
+    static let nestingReason = CodingKeys(stringValue: "nestingReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "source",
+      "startPosition",
+      "endPosition",
+      "nestedLocator",
+      "nestingReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+      self.source = value
+    }
+    self.startPosition = try container.decodeIfPresent(
+      TextLocator.Position.self, forKey: .startPosition)
+    self.endPosition = try container.decodeIfPresent(
+      TextLocator.Position.self, forKey: .endPosition)
+    self.nestedLocator = try container.decodeIfPresent(
+      GoogleCloudWKT.Recursive<TextLocator>.self, forKey: .nestedLocator)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nestingReason) {
+      self.nestingReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.source, forKey: .source)
+    try container.encodeIfPresent(self.startPosition, forKey: .startPosition)
+    try container.encodeIfPresent(self.endPosition, forKey: .endPosition)
+    try container.encodeIfPresent(self.nestedLocator, forKey: .nestedLocator)
+    try container.encode(self.nestingReason, forKey: .nestingReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The position of a byte within the text.
   public struct Position: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -95,6 +150,8 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The column within the line, starting with 1, where the byte is
     /// positioned. This is a byte index even though the text is UTF-8.
     public var column: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Position`.
     public init() {}
@@ -110,6 +167,44 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let line = CodingKeys(stringValue: "line")
+      static let column = CodingKeys(stringValue: "column")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "line",
+        "column",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .line) {
+        self.line = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .column) {
+        self.column = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.line, forKey: .line)
+      try container.encode(self.column, forKey: .column)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

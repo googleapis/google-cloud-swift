@@ -88,6 +88,8 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
     public var target: OneOf_Target? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransitionRoute`.
     public init() {}
 
@@ -104,22 +106,45 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case description = "description"
-      case intent = "intent"
-      case condition = "condition"
-      case triggerFulfillment = "triggerFulfillment"
-      case targetPage = "targetPage"
-      case targetFlow = "targetFlow"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let condition = CodingKeys(stringValue: "condition")
+      static let triggerFulfillment = CodingKeys(stringValue: "triggerFulfillment")
+      static let targetPage = CodingKeys(stringValue: "targetPage")
+      static let targetFlow = CodingKeys(stringValue: "targetFlow")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "intent",
+        "condition",
+        "triggerFulfillment",
+        "targetPage",
+        "targetFlow",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.intent = try container.decode(Swift.String.self, forKey: .intent)
-      self.condition = try container.decode(Swift.String.self, forKey: .condition)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .intent) {
+        self.intent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+        self.condition = value
+      }
       self.triggerFulfillment = try container.decodeIfPresent(
         Fulfillment.self, forKey: .triggerFulfillment)
 
@@ -140,6 +165,10 @@
         try targetCheckAndSet(.targetFlow(targetFlow))
       }
       self.target = target
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -148,7 +177,7 @@
       try container.encode(self.description, forKey: .description)
       try container.encode(self.intent, forKey: .intent)
       try container.encode(self.condition, forKey: .condition)
-      try container.encode(self.triggerFulfillment, forKey: .triggerFulfillment)
+      try container.encodeIfPresent(self.triggerFulfillment, forKey: .triggerFulfillment)
 
       if let choice = self.target {
         switch choice {
@@ -157,6 +186,9 @@
         case .targetFlow(let value):
           try container.encode(value, forKey: .targetFlow)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

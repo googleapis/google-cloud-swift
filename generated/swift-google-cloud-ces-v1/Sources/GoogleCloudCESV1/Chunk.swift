@@ -24,6 +24,8 @@ public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Chunk data.
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Chunk`.
   public init() {}
 
@@ -40,17 +42,35 @@ public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case transcript = "transcript"
-    case blob = "blob"
-    case payload = "payload"
-    case image = "image"
-    case toolCall = "toolCall"
-    case toolResponse = "toolResponse"
-    case agentTransfer = "agentTransfer"
-    case updatedVariables = "updatedVariables"
-    case defaultVariables = "defaultVariables"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let transcript = CodingKeys(stringValue: "transcript")
+    static let blob = CodingKeys(stringValue: "blob")
+    static let payload = CodingKeys(stringValue: "payload")
+    static let image = CodingKeys(stringValue: "image")
+    static let toolCall = CodingKeys(stringValue: "toolCall")
+    static let toolResponse = CodingKeys(stringValue: "toolResponse")
+    static let agentTransfer = CodingKeys(stringValue: "agentTransfer")
+    static let updatedVariables = CodingKeys(stringValue: "updatedVariables")
+    static let defaultVariables = CodingKeys(stringValue: "defaultVariables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "transcript",
+      "blob",
+      "payload",
+      "image",
+      "toolCall",
+      "toolResponse",
+      "agentTransfer",
+      "updatedVariables",
+      "defaultVariables",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -103,6 +123,10 @@ public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataCheckAndSet(.defaultVariables(defaultVariables))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -131,6 +155,9 @@ public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .defaultVariables(let value):
         try container.encode(value, forKey: .defaultVariables)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

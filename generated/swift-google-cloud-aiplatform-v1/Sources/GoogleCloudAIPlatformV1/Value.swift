@@ -24,6 +24,8 @@
   {
     public var value: OneOf_Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Value`.
     public init() {}
 
@@ -40,10 +42,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case intValue = "intValue"
-      case doubleValue = "doubleValue"
-      case stringValue = "stringValue"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intValue = CodingKeys(stringValue: "intValue")
+      static let doubleValue = CodingKeys(stringValue: "doubleValue")
+      static let stringValue = CodingKeys(stringValue: "stringValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intValue",
+        "doubleValue",
+        "stringValue",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,6 +82,10 @@
         try valueCheckAndSet(.stringValue(stringValue))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -83,6 +100,9 @@
         case .stringValue(let value):
           try container.encode(value, forKey: .stringValue)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

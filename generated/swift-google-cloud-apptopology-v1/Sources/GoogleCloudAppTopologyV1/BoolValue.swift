@@ -30,6 +30,8 @@ public struct BoolValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// one of the allowed values.
   public var allowedValues: [Swift.Bool] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BoolValue`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct BoolValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let allowedValues = CodingKeys(stringValue: "allowedValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repeated",
+      "allowedValues",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .repeated) {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Bool].self, forKey: .allowedValues) {
+      self.allowedValues = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.repeated, forKey: .repeated)
+    try container.encode(self.allowedValues, forKey: .allowedValues)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -59,6 +59,8 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Indicates if current template is part of advanced settings
   public var isAdvanced: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigVariableTemplate`.
   public init() {}
 
@@ -75,34 +77,78 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case key = "key"
-    case valueType = "valueType"
-    case displayName = "displayName"
-    case description = "description"
-    case validationRegex = "validationRegex"
-    case `required` = "required"
-    case roleGrant = "roleGrant"
-    case enumOptions = "enumOptions"
-    case authorizationCodeLink = "authorizationCodeLink"
-    case state = "state"
-    case isAdvanced = "isAdvanced"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let valueType = CodingKeys(stringValue: "valueType")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let validationRegex = CodingKeys(stringValue: "validationRegex")
+    static let `required` = CodingKeys(stringValue: "required")
+    static let roleGrant = CodingKeys(stringValue: "roleGrant")
+    static let enumOptions = CodingKeys(stringValue: "enumOptions")
+    static let authorizationCodeLink = CodingKeys(stringValue: "authorizationCodeLink")
+    static let state = CodingKeys(stringValue: "state")
+    static let isAdvanced = CodingKeys(stringValue: "isAdvanced")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "valueType",
+      "displayName",
+      "description",
+      "validationRegex",
+      "required",
+      "roleGrant",
+      "enumOptions",
+      "authorizationCodeLink",
+      "state",
+      "isAdvanced",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
-    self.valueType = try container.decode(ConfigVariableTemplate.ValueType.self, forKey: .valueType)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.validationRegex = try container.decode(Swift.String.self, forKey: .validationRegex)
-    self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(
+      ConfigVariableTemplate.ValueType.self, forKey: .valueType)
+    {
+      self.valueType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationRegex) {
+      self.validationRegex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+      self.`required` = value
+    }
     self.roleGrant = try container.decodeIfPresent(RoleGrant.self, forKey: .roleGrant)
-    self.enumOptions = try container.decode([EnumOption].self, forKey: .enumOptions)
+    if let value = try container.decodeIfPresent([EnumOption].self, forKey: .enumOptions) {
+      self.enumOptions = value
+    }
     self.authorizationCodeLink = try container.decodeIfPresent(
       AuthorizationCodeLink.self, forKey: .authorizationCodeLink)
-    self.state = try container.decode(ConfigVariableTemplate.State.self, forKey: .state)
-    self.isAdvanced = try container.decode(Swift.Bool.self, forKey: .isAdvanced)
+    if let value = try container.decodeIfPresent(ConfigVariableTemplate.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isAdvanced) {
+      self.isAdvanced = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -113,11 +159,14 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     try container.encode(self.description, forKey: .description)
     try container.encode(self.validationRegex, forKey: .validationRegex)
     try container.encode(self.`required`, forKey: .`required`)
-    try container.encode(self.roleGrant, forKey: .roleGrant)
+    try container.encodeIfPresent(self.roleGrant, forKey: .roleGrant)
     try container.encode(self.enumOptions, forKey: .enumOptions)
-    try container.encode(self.authorizationCodeLink, forKey: .authorizationCodeLink)
+    try container.encodeIfPresent(self.authorizationCodeLink, forKey: .authorizationCodeLink)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.isAdvanced, forKey: .isAdvanced)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// ValueType indicates the data type of the value.

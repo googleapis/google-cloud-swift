@@ -175,6 +175,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the clone.
   public var cloneDetails: Volume.CloneDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Volume`.
   public init() {}
 
@@ -189,6 +191,287 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let shareName = CodingKeys(stringValue: "shareName")
+    static let psaRange = CodingKeys(stringValue: "psaRange")
+    static let storagePool = CodingKeys(stringValue: "storagePool")
+    static let network = CodingKeys(stringValue: "network")
+    static let serviceLevel = CodingKeys(stringValue: "serviceLevel")
+    static let capacityGib = CodingKeys(stringValue: "capacityGib")
+    static let exportPolicy = CodingKeys(stringValue: "exportPolicy")
+    static let protocols = CodingKeys(stringValue: "protocols")
+    static let smbSettings = CodingKeys(stringValue: "smbSettings")
+    static let mountOptions = CodingKeys(stringValue: "mountOptions")
+    static let unixPermissions = CodingKeys(stringValue: "unixPermissions")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let snapshotPolicy = CodingKeys(stringValue: "snapshotPolicy")
+    static let snapReserve = CodingKeys(stringValue: "snapReserve")
+    static let snapshotDirectory = CodingKeys(stringValue: "snapshotDirectory")
+    static let usedGib = CodingKeys(stringValue: "usedGib")
+    static let securityStyle = CodingKeys(stringValue: "securityStyle")
+    static let kerberosEnabled = CodingKeys(stringValue: "kerberosEnabled")
+    static let ldapEnabled = CodingKeys(stringValue: "ldapEnabled")
+    static let activeDirectory = CodingKeys(stringValue: "activeDirectory")
+    static let restoreParameters = CodingKeys(stringValue: "restoreParameters")
+    static let kmsConfig = CodingKeys(stringValue: "kmsConfig")
+    static let encryptionType = CodingKeys(stringValue: "encryptionType")
+    static let hasReplication = CodingKeys(stringValue: "hasReplication")
+    static let backupConfig = CodingKeys(stringValue: "backupConfig")
+    static let restrictedActions = CodingKeys(stringValue: "restrictedActions")
+    static let largeCapacity = CodingKeys(stringValue: "largeCapacity")
+    static let multipleEndpoints = CodingKeys(stringValue: "multipleEndpoints")
+    static let tieringPolicy = CodingKeys(stringValue: "tieringPolicy")
+    static let replicaZone = CodingKeys(stringValue: "replicaZone")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let coldTierSizeGib = CodingKeys(stringValue: "coldTierSizeGib")
+    static let hybridReplicationParameters = CodingKeys(stringValue: "hybridReplicationParameters")
+    static let throughputMibps = CodingKeys(stringValue: "throughputMibps")
+    static let cacheParameters = CodingKeys(stringValue: "cacheParameters")
+    static let hotTierSizeUsedGib = CodingKeys(stringValue: "hotTierSizeUsedGib")
+    static let blockDevices = CodingKeys(stringValue: "blockDevices")
+    static let largeCapacityConfig = CodingKeys(stringValue: "largeCapacityConfig")
+    static let cloneDetails = CodingKeys(stringValue: "cloneDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "stateDetails",
+      "createTime",
+      "shareName",
+      "psaRange",
+      "storagePool",
+      "network",
+      "serviceLevel",
+      "capacityGib",
+      "exportPolicy",
+      "protocols",
+      "smbSettings",
+      "mountOptions",
+      "unixPermissions",
+      "labels",
+      "description",
+      "snapshotPolicy",
+      "snapReserve",
+      "snapshotDirectory",
+      "usedGib",
+      "securityStyle",
+      "kerberosEnabled",
+      "ldapEnabled",
+      "activeDirectory",
+      "restoreParameters",
+      "kmsConfig",
+      "encryptionType",
+      "hasReplication",
+      "backupConfig",
+      "restrictedActions",
+      "largeCapacity",
+      "multipleEndpoints",
+      "tieringPolicy",
+      "replicaZone",
+      "zone",
+      "coldTierSizeGib",
+      "hybridReplicationParameters",
+      "throughputMibps",
+      "cacheParameters",
+      "hotTierSizeUsedGib",
+      "blockDevices",
+      "largeCapacityConfig",
+      "cloneDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Volume.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shareName) {
+      self.shareName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .psaRange) {
+      self.psaRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool) {
+      self.storagePool = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(ServiceLevel.self, forKey: .serviceLevel) {
+      self.serviceLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityGib) {
+      self.capacityGib = value
+    }
+    self.exportPolicy = try container.decodeIfPresent(ExportPolicy.self, forKey: .exportPolicy)
+    if let value = try container.decodeIfPresent([Protocols].self, forKey: .protocols) {
+      self.protocols = value
+    }
+    if let value = try container.decodeIfPresent([SMBSettings].self, forKey: .smbSettings) {
+      self.smbSettings = value
+    }
+    if let value = try container.decodeIfPresent([MountOption].self, forKey: .mountOptions) {
+      self.mountOptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unixPermissions) {
+      self.unixPermissions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.snapshotPolicy = try container.decodeIfPresent(
+      SnapshotPolicy.self, forKey: .snapshotPolicy)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .snapReserve) {
+      self.snapReserve = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .snapshotDirectory) {
+      self.snapshotDirectory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .usedGib) {
+      self.usedGib = value
+    }
+    if let value = try container.decodeIfPresent(SecurityStyle.self, forKey: .securityStyle) {
+      self.securityStyle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .kerberosEnabled) {
+      self.kerberosEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ldapEnabled) {
+      self.ldapEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeDirectory) {
+      self.activeDirectory = value
+    }
+    self.restoreParameters = try container.decodeIfPresent(
+      RestoreParameters.self, forKey: .restoreParameters)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsConfig) {
+      self.kmsConfig = value
+    }
+    if let value = try container.decodeIfPresent(EncryptionType.self, forKey: .encryptionType) {
+      self.encryptionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasReplication) {
+      self.hasReplication = value
+    }
+    self.backupConfig = try container.decodeIfPresent(BackupConfig.self, forKey: .backupConfig)
+    if let value = try container.decodeIfPresent(
+      [RestrictedAction].self, forKey: .restrictedActions)
+    {
+      self.restrictedActions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .largeCapacity) {
+      self.largeCapacity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .multipleEndpoints) {
+      self.multipleEndpoints = value
+    }
+    self.tieringPolicy = try container.decodeIfPresent(TieringPolicy.self, forKey: .tieringPolicy)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replicaZone) {
+      self.replicaZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .coldTierSizeGib) {
+      self.coldTierSizeGib = value
+    }
+    self.hybridReplicationParameters = try container.decodeIfPresent(
+      HybridReplicationParameters.self, forKey: .hybridReplicationParameters)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .throughputMibps) {
+      self.throughputMibps = value
+    }
+    self.cacheParameters = try container.decodeIfPresent(
+      CacheParameters.self, forKey: .cacheParameters)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .hotTierSizeUsedGib) {
+      self.hotTierSizeUsedGib = value
+    }
+    if let value = try container.decodeIfPresent([BlockDevice].self, forKey: .blockDevices) {
+      self.blockDevices = value
+    }
+    self.largeCapacityConfig = try container.decodeIfPresent(
+      LargeCapacityConfig.self, forKey: .largeCapacityConfig)
+    self.cloneDetails = try container.decodeIfPresent(
+      Volume.CloneDetails.self, forKey: .cloneDetails)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.shareName, forKey: .shareName)
+    try container.encode(self.psaRange, forKey: .psaRange)
+    try container.encode(self.storagePool, forKey: .storagePool)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.serviceLevel, forKey: .serviceLevel)
+    try container.encode(self.capacityGib, forKey: .capacityGib)
+    try container.encodeIfPresent(self.exportPolicy, forKey: .exportPolicy)
+    try container.encode(self.protocols, forKey: .protocols)
+    try container.encode(self.smbSettings, forKey: .smbSettings)
+    try container.encode(self.mountOptions, forKey: .mountOptions)
+    try container.encode(self.unixPermissions, forKey: .unixPermissions)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.snapshotPolicy, forKey: .snapshotPolicy)
+    try container.encode(self.snapReserve, forKey: .snapReserve)
+    try container.encode(self.snapshotDirectory, forKey: .snapshotDirectory)
+    try container.encode(self.usedGib, forKey: .usedGib)
+    try container.encode(self.securityStyle, forKey: .securityStyle)
+    try container.encode(self.kerberosEnabled, forKey: .kerberosEnabled)
+    try container.encode(self.ldapEnabled, forKey: .ldapEnabled)
+    try container.encode(self.activeDirectory, forKey: .activeDirectory)
+    try container.encodeIfPresent(self.restoreParameters, forKey: .restoreParameters)
+    try container.encode(self.kmsConfig, forKey: .kmsConfig)
+    try container.encode(self.encryptionType, forKey: .encryptionType)
+    try container.encode(self.hasReplication, forKey: .hasReplication)
+    try container.encodeIfPresent(self.backupConfig, forKey: .backupConfig)
+    try container.encode(self.restrictedActions, forKey: .restrictedActions)
+    try container.encode(self.largeCapacity, forKey: .largeCapacity)
+    try container.encode(self.multipleEndpoints, forKey: .multipleEndpoints)
+    try container.encodeIfPresent(self.tieringPolicy, forKey: .tieringPolicy)
+    try container.encode(self.replicaZone, forKey: .replicaZone)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.coldTierSizeGib, forKey: .coldTierSizeGib)
+    try container.encodeIfPresent(
+      self.hybridReplicationParameters, forKey: .hybridReplicationParameters)
+    try container.encode(self.throughputMibps, forKey: .throughputMibps)
+    try container.encodeIfPresent(self.cacheParameters, forKey: .cacheParameters)
+    try container.encode(self.hotTierSizeUsedGib, forKey: .hotTierSizeUsedGib)
+    try container.encode(self.blockDevices, forKey: .blockDevices)
+    try container.encodeIfPresent(self.largeCapacityConfig, forKey: .largeCapacityConfig)
+    try container.encodeIfPresent(self.cloneDetails, forKey: .cloneDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details about a clone volume.
@@ -209,6 +492,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// based on size of source snapshot.
     public var sharedSpaceGib: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloneDetails`.
     public init() {}
 
@@ -223,6 +508,50 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+      static let sourceVolume = CodingKeys(stringValue: "sourceVolume")
+      static let sharedSpaceGib = CodingKeys(stringValue: "sharedSpaceGib")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceSnapshot",
+        "sourceVolume",
+        "sharedSpaceGib",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot) {
+        self.sourceSnapshot = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceVolume) {
+        self.sourceVolume = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sharedSpaceGib) {
+        self.sharedSpaceGib = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
+      try container.encode(self.sourceVolume, forKey: .sourceVolume)
+      try container.encode(self.sharedSpaceGib, forKey: .sharedSpaceGib)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

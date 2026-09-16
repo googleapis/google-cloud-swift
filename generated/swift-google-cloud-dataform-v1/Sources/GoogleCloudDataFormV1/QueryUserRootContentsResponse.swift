@@ -30,6 +30,8 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleCloudWKT.
   /// If this field is omitted, there are no subsequent pages.
   public var nextPageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryUserRootContentsResponse`.
   public init() {}
 
@@ -46,12 +48,54 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entries = CodingKeys(stringValue: "entries")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entries",
+      "nextPageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [QueryUserRootContentsResponse.RootContentsEntry].self, forKey: .entries)
+    {
+      self.entries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entries, forKey: .entries)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents a single content entry.
   public struct RootContentsEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The content entry.
     public var entry: OneOf_Entry? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RootContentsEntry`.
     public init() {}
@@ -69,9 +113,19 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleCloudWKT.
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case folder = "folder"
-      case repository = "repository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let folder = CodingKeys(stringValue: "folder")
+      static let repository = CodingKeys(stringValue: "repository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "folder",
+        "repository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -94,6 +148,10 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleCloudWKT.
         try entryCheckAndSet(.repository(repository))
       }
       self.entry = entry
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -106,6 +164,9 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleCloudWKT.
         case .repository(let value):
           try container.encode(value, forKey: .repository)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

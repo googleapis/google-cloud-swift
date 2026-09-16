@@ -114,6 +114,8 @@ public struct RouteInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Hub, the URI of the corresponding route in NCC Hub's routing table.
   public var nccHubRouteUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RouteInfo`.
   public init() {}
 
@@ -128,6 +130,175 @@ public struct RouteInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let routeType = CodingKeys(stringValue: "routeType")
+    static let nextHopType = CodingKeys(stringValue: "nextHopType")
+    static let routeScope = CodingKeys(stringValue: "routeScope")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let region = CodingKeys(stringValue: "region")
+    static let destIpRange = CodingKeys(stringValue: "destIpRange")
+    static let nextHop = CodingKeys(stringValue: "nextHop")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let instanceTags = CodingKeys(stringValue: "instanceTags")
+    static let srcIpRange = CodingKeys(stringValue: "srcIpRange")
+    static let destPortRanges = CodingKeys(stringValue: "destPortRanges")
+    static let srcPortRanges = CodingKeys(stringValue: "srcPortRanges")
+    static let protocols = CodingKeys(stringValue: "protocols")
+    static let nccHubUri = CodingKeys(stringValue: "nccHubUri")
+    static let nccSpokeUri = CodingKeys(stringValue: "nccSpokeUri")
+    static let advertisedRouteSourceRouterUri = CodingKeys(
+      stringValue: "advertisedRouteSourceRouterUri")
+    static let advertisedRouteNextHopUri = CodingKeys(stringValue: "advertisedRouteNextHopUri")
+    static let nextHopUri = CodingKeys(stringValue: "nextHopUri")
+    static let nextHopNetworkUri = CodingKeys(stringValue: "nextHopNetworkUri")
+    static let originatingRouteUri = CodingKeys(stringValue: "originatingRouteUri")
+    static let originatingRouteDisplayName = CodingKeys(stringValue: "originatingRouteDisplayName")
+    static let nccHubRouteUri = CodingKeys(stringValue: "nccHubRouteUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "routeType",
+      "nextHopType",
+      "routeScope",
+      "displayName",
+      "uri",
+      "region",
+      "destIpRange",
+      "nextHop",
+      "networkUri",
+      "priority",
+      "instanceTags",
+      "srcIpRange",
+      "destPortRanges",
+      "srcPortRanges",
+      "protocols",
+      "nccHubUri",
+      "nccSpokeUri",
+      "advertisedRouteSourceRouterUri",
+      "advertisedRouteNextHopUri",
+      "nextHopUri",
+      "nextHopNetworkUri",
+      "originatingRouteUri",
+      "originatingRouteDisplayName",
+      "nccHubRouteUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(RouteInfo.RouteType.self, forKey: .routeType) {
+      self.routeType = value
+    }
+    if let value = try container.decodeIfPresent(RouteInfo.NextHopType.self, forKey: .nextHopType) {
+      self.nextHopType = value
+    }
+    if let value = try container.decodeIfPresent(RouteInfo.RouteScope.self, forKey: .routeScope) {
+      self.routeScope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destIpRange) {
+      self.destIpRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextHop) {
+      self.nextHop = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instanceTags) {
+      self.instanceTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .srcIpRange) {
+      self.srcIpRange = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destPortRanges) {
+      self.destPortRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .srcPortRanges) {
+      self.srcPortRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .protocols) {
+      self.protocols = value
+    }
+    self.nccHubUri = try container.decodeIfPresent(Swift.String.self, forKey: .nccHubUri)
+    self.nccSpokeUri = try container.decodeIfPresent(Swift.String.self, forKey: .nccSpokeUri)
+    self.advertisedRouteSourceRouterUri = try container.decodeIfPresent(
+      Swift.String.self, forKey: .advertisedRouteSourceRouterUri)
+    self.advertisedRouteNextHopUri = try container.decodeIfPresent(
+      Swift.String.self, forKey: .advertisedRouteNextHopUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopUri) {
+      self.nextHopUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopNetworkUri) {
+      self.nextHopNetworkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .originatingRouteUri) {
+      self.originatingRouteUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .originatingRouteDisplayName)
+    {
+      self.originatingRouteDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nccHubRouteUri) {
+      self.nccHubRouteUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.routeType, forKey: .routeType)
+    try container.encode(self.nextHopType, forKey: .nextHopType)
+    try container.encode(self.routeScope, forKey: .routeScope)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.destIpRange, forKey: .destIpRange)
+    try container.encode(self.nextHop, forKey: .nextHop)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.priority, forKey: .priority)
+    try container.encode(self.instanceTags, forKey: .instanceTags)
+    try container.encode(self.srcIpRange, forKey: .srcIpRange)
+    try container.encode(self.destPortRanges, forKey: .destPortRanges)
+    try container.encode(self.srcPortRanges, forKey: .srcPortRanges)
+    try container.encode(self.protocols, forKey: .protocols)
+    try container.encodeIfPresent(self.nccHubUri, forKey: .nccHubUri)
+    try container.encodeIfPresent(self.nccSpokeUri, forKey: .nccSpokeUri)
+    try container.encodeIfPresent(
+      self.advertisedRouteSourceRouterUri, forKey: .advertisedRouteSourceRouterUri)
+    try container.encodeIfPresent(
+      self.advertisedRouteNextHopUri, forKey: .advertisedRouteNextHopUri)
+    try container.encode(self.nextHopUri, forKey: .nextHopUri)
+    try container.encode(self.nextHopNetworkUri, forKey: .nextHopNetworkUri)
+    try container.encode(self.originatingRouteUri, forKey: .originatingRouteUri)
+    try container.encode(self.originatingRouteDisplayName, forKey: .originatingRouteDisplayName)
+    try container.encode(self.nccHubRouteUri, forKey: .nccHubRouteUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of route:

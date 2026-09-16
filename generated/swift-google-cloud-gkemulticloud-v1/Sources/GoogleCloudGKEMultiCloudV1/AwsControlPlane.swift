@@ -99,6 +99,8 @@ public struct AwsControlPlane: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// When unspecified, the VPC's default tenancy will be used.
   public var instancePlacement: AwsInstancePlacement? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsControlPlane`.
   public init() {}
 
@@ -113,6 +115,105 @@ public struct AwsControlPlane: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let sshConfig = CodingKeys(stringValue: "sshConfig")
+    static let subnetIds = CodingKeys(stringValue: "subnetIds")
+    static let securityGroupIds = CodingKeys(stringValue: "securityGroupIds")
+    static let iamInstanceProfile = CodingKeys(stringValue: "iamInstanceProfile")
+    static let rootVolume = CodingKeys(stringValue: "rootVolume")
+    static let mainVolume = CodingKeys(stringValue: "mainVolume")
+    static let databaseEncryption = CodingKeys(stringValue: "databaseEncryption")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let awsServicesAuthentication = CodingKeys(stringValue: "awsServicesAuthentication")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+    static let configEncryption = CodingKeys(stringValue: "configEncryption")
+    static let instancePlacement = CodingKeys(stringValue: "instancePlacement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "instanceType",
+      "sshConfig",
+      "subnetIds",
+      "securityGroupIds",
+      "iamInstanceProfile",
+      "rootVolume",
+      "mainVolume",
+      "databaseEncryption",
+      "tags",
+      "awsServicesAuthentication",
+      "proxyConfig",
+      "configEncryption",
+      "instancePlacement",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    self.sshConfig = try container.decodeIfPresent(AwsSshConfig.self, forKey: .sshConfig)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subnetIds) {
+      self.subnetIds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .securityGroupIds) {
+      self.securityGroupIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamInstanceProfile) {
+      self.iamInstanceProfile = value
+    }
+    self.rootVolume = try container.decodeIfPresent(AwsVolumeTemplate.self, forKey: .rootVolume)
+    self.mainVolume = try container.decodeIfPresent(AwsVolumeTemplate.self, forKey: .mainVolume)
+    self.databaseEncryption = try container.decodeIfPresent(
+      AwsDatabaseEncryption.self, forKey: .databaseEncryption)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    self.awsServicesAuthentication = try container.decodeIfPresent(
+      AwsServicesAuthentication.self, forKey: .awsServicesAuthentication)
+    self.proxyConfig = try container.decodeIfPresent(AwsProxyConfig.self, forKey: .proxyConfig)
+    self.configEncryption = try container.decodeIfPresent(
+      AwsConfigEncryption.self, forKey: .configEncryption)
+    self.instancePlacement = try container.decodeIfPresent(
+      AwsInstancePlacement.self, forKey: .instancePlacement)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encodeIfPresent(self.sshConfig, forKey: .sshConfig)
+    try container.encode(self.subnetIds, forKey: .subnetIds)
+    try container.encode(self.securityGroupIds, forKey: .securityGroupIds)
+    try container.encode(self.iamInstanceProfile, forKey: .iamInstanceProfile)
+    try container.encodeIfPresent(self.rootVolume, forKey: .rootVolume)
+    try container.encodeIfPresent(self.mainVolume, forKey: .mainVolume)
+    try container.encodeIfPresent(self.databaseEncryption, forKey: .databaseEncryption)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encodeIfPresent(
+      self.awsServicesAuthentication, forKey: .awsServicesAuthentication)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    try container.encodeIfPresent(self.configEncryption, forKey: .configEncryption)
+    try container.encodeIfPresent(self.instancePlacement, forKey: .instancePlacement)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -50,6 +50,8 @@
     /// Debug information from CES runtime API.
     public var cesDebugInfo: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KnowledgeAssistDebugInfo`.
     public init() {}
 
@@ -64,6 +66,89 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let queryGenerationFailureReason = CodingKeys(
+        stringValue: "queryGenerationFailureReason")
+      static let queryCategorizationFailureReason = CodingKeys(
+        stringValue: "queryCategorizationFailureReason")
+      static let datastoreResponseReason = CodingKeys(stringValue: "datastoreResponseReason")
+      static let knowledgeAssistBehavior = CodingKeys(stringValue: "knowledgeAssistBehavior")
+      static let ingestedContextReferenceDebugInfo = CodingKeys(
+        stringValue: "ingestedContextReferenceDebugInfo")
+      static let serviceLatency = CodingKeys(stringValue: "serviceLatency")
+      static let queryGenerationDebugInfo = CodingKeys(stringValue: "queryGenerationDebugInfo")
+      static let cesDebugInfo = CodingKeys(stringValue: "cesDebugInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "queryGenerationFailureReason",
+        "queryCategorizationFailureReason",
+        "datastoreResponseReason",
+        "knowledgeAssistBehavior",
+        "ingestedContextReferenceDebugInfo",
+        "serviceLatency",
+        "queryGenerationDebugInfo",
+        "cesDebugInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        KnowledgeAssistDebugInfo.QueryGenerationFailureReason.self,
+        forKey: .queryGenerationFailureReason)
+      {
+        self.queryGenerationFailureReason = value
+      }
+      if let value = try container.decodeIfPresent(
+        KnowledgeAssistDebugInfo.QueryCategorizationFailureReason.self,
+        forKey: .queryCategorizationFailureReason)
+      {
+        self.queryCategorizationFailureReason = value
+      }
+      if let value = try container.decodeIfPresent(
+        DatastoreResponseReason.self, forKey: .datastoreResponseReason)
+      {
+        self.datastoreResponseReason = value
+      }
+      self.knowledgeAssistBehavior = try container.decodeIfPresent(
+        KnowledgeAssistDebugInfo.KnowledgeAssistBehavior.self, forKey: .knowledgeAssistBehavior)
+      self.ingestedContextReferenceDebugInfo = try container.decodeIfPresent(
+        IngestedContextReferenceDebugInfo.self, forKey: .ingestedContextReferenceDebugInfo)
+      self.serviceLatency = try container.decodeIfPresent(
+        ServiceLatency.self, forKey: .serviceLatency)
+      self.queryGenerationDebugInfo = try container.decodeIfPresent(
+        KnowledgeAssistDebugInfo.QueryGenerationDebugInfo.self, forKey: .queryGenerationDebugInfo)
+      self.cesDebugInfo = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .cesDebugInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.queryGenerationFailureReason, forKey: .queryGenerationFailureReason)
+      try container.encode(
+        self.queryCategorizationFailureReason, forKey: .queryCategorizationFailureReason)
+      try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      try container.encodeIfPresent(self.knowledgeAssistBehavior, forKey: .knowledgeAssistBehavior)
+      try container.encodeIfPresent(
+        self.ingestedContextReferenceDebugInfo, forKey: .ingestedContextReferenceDebugInfo)
+      try container.encodeIfPresent(self.serviceLatency, forKey: .serviceLatency)
+      try container.encodeIfPresent(
+        self.queryGenerationDebugInfo, forKey: .queryGenerationDebugInfo)
+      try container.encodeIfPresent(self.cesDebugInfo, forKey: .cesDebugInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configured behaviors for Knowedge Assist.
@@ -128,6 +213,8 @@
       /// The number of search contexts appended to the query.
       public var appendedSearchContextCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `KnowledgeAssistBehavior`.
       public init() {}
 
@@ -142,6 +229,179 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let answerGenerationRewriterOn = CodingKeys(
+          stringValue: "answerGenerationRewriterOn")
+        static let endUserMetadataIncluded = CodingKeys(stringValue: "endUserMetadataIncluded")
+        static let returnQueryOnly = CodingKeys(stringValue: "returnQueryOnly")
+        static let usePubsubDelivery = CodingKeys(stringValue: "usePubsubDelivery")
+        static let disableSyncDelivery = CodingKeys(stringValue: "disableSyncDelivery")
+        static let previousQueriesIncluded = CodingKeys(stringValue: "previousQueriesIncluded")
+        static let useTranslatedMessage = CodingKeys(stringValue: "useTranslatedMessage")
+        static let useCustomSafetyFilterLevel = CodingKeys(
+          stringValue: "useCustomSafetyFilterLevel")
+        static let conversationTranscriptHasMixedLanguages = CodingKeys(
+          stringValue: "conversationTranscriptHasMixedLanguages")
+        static let queryGenerationAgentLanguageMismatch = CodingKeys(
+          stringValue: "queryGenerationAgentLanguageMismatch")
+        static let queryGenerationEndUserLanguageMismatch = CodingKeys(
+          stringValue: "queryGenerationEndUserLanguageMismatch")
+        static let thirdPartyConnectorAllowed = CodingKeys(
+          stringValue: "thirdPartyConnectorAllowed")
+        static let multipleQueriesGenerated = CodingKeys(stringValue: "multipleQueriesGenerated")
+        static let queryContainedSearchContext = CodingKeys(
+          stringValue: "queryContainedSearchContext")
+        static let invalidItemsQuerySuggestionSkipped = CodingKeys(
+          stringValue: "invalidItemsQuerySuggestionSkipped")
+        static let primaryQueryRedactedAndReplaced = CodingKeys(
+          stringValue: "primaryQueryRedactedAndReplaced")
+        static let appendedSearchContextCount = CodingKeys(
+          stringValue: "appendedSearchContextCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "answerGenerationRewriterOn",
+          "endUserMetadataIncluded",
+          "returnQueryOnly",
+          "usePubsubDelivery",
+          "disableSyncDelivery",
+          "previousQueriesIncluded",
+          "useTranslatedMessage",
+          "useCustomSafetyFilterLevel",
+          "conversationTranscriptHasMixedLanguages",
+          "queryGenerationAgentLanguageMismatch",
+          "queryGenerationEndUserLanguageMismatch",
+          "thirdPartyConnectorAllowed",
+          "multipleQueriesGenerated",
+          "queryContainedSearchContext",
+          "invalidItemsQuerySuggestionSkipped",
+          "primaryQueryRedactedAndReplaced",
+          "appendedSearchContextCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .answerGenerationRewriterOn)
+        {
+          self.answerGenerationRewriterOn = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .endUserMetadataIncluded)
+        {
+          self.endUserMetadataIncluded = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnQueryOnly) {
+          self.returnQueryOnly = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .usePubsubDelivery) {
+          self.usePubsubDelivery = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableSyncDelivery)
+        {
+          self.disableSyncDelivery = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .previousQueriesIncluded)
+        {
+          self.previousQueriesIncluded = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useTranslatedMessage)
+        {
+          self.useTranslatedMessage = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .useCustomSafetyFilterLevel)
+        {
+          self.useCustomSafetyFilterLevel = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .conversationTranscriptHasMixedLanguages)
+        {
+          self.conversationTranscriptHasMixedLanguages = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .queryGenerationAgentLanguageMismatch)
+        {
+          self.queryGenerationAgentLanguageMismatch = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .queryGenerationEndUserLanguageMismatch)
+        {
+          self.queryGenerationEndUserLanguageMismatch = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .thirdPartyConnectorAllowed)
+        {
+          self.thirdPartyConnectorAllowed = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .multipleQueriesGenerated)
+        {
+          self.multipleQueriesGenerated = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .queryContainedSearchContext)
+        {
+          self.queryContainedSearchContext = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .invalidItemsQuerySuggestionSkipped)
+        {
+          self.invalidItemsQuerySuggestionSkipped = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .primaryQueryRedactedAndReplaced)
+        {
+          self.primaryQueryRedactedAndReplaced = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .appendedSearchContextCount)
+        {
+          self.appendedSearchContextCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.answerGenerationRewriterOn, forKey: .answerGenerationRewriterOn)
+        try container.encode(self.endUserMetadataIncluded, forKey: .endUserMetadataIncluded)
+        try container.encode(self.returnQueryOnly, forKey: .returnQueryOnly)
+        try container.encode(self.usePubsubDelivery, forKey: .usePubsubDelivery)
+        try container.encode(self.disableSyncDelivery, forKey: .disableSyncDelivery)
+        try container.encode(self.previousQueriesIncluded, forKey: .previousQueriesIncluded)
+        try container.encode(self.useTranslatedMessage, forKey: .useTranslatedMessage)
+        try container.encode(self.useCustomSafetyFilterLevel, forKey: .useCustomSafetyFilterLevel)
+        try container.encode(
+          self.conversationTranscriptHasMixedLanguages,
+          forKey: .conversationTranscriptHasMixedLanguages)
+        try container.encode(
+          self.queryGenerationAgentLanguageMismatch, forKey: .queryGenerationAgentLanguageMismatch)
+        try container.encode(
+          self.queryGenerationEndUserLanguageMismatch,
+          forKey: .queryGenerationEndUserLanguageMismatch)
+        try container.encode(self.thirdPartyConnectorAllowed, forKey: .thirdPartyConnectorAllowed)
+        try container.encode(self.multipleQueriesGenerated, forKey: .multipleQueriesGenerated)
+        try container.encode(self.queryContainedSearchContext, forKey: .queryContainedSearchContext)
+        try container.encode(
+          self.invalidItemsQuerySuggestionSkipped, forKey: .invalidItemsQuerySuggestionSkipped)
+        try container.encode(
+          self.primaryQueryRedactedAndReplaced, forKey: .primaryQueryRedactedAndReplaced)
+        try container.encode(self.appendedSearchContextCount, forKey: .appendedSearchContextCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -169,6 +429,8 @@
       /// The total number of tokens for the entire request.
       public var totalTokenCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `QueryGenerationDebugInfo`.
       public init() {}
 
@@ -183,6 +445,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let promptTokenCount = CodingKeys(stringValue: "promptTokenCount")
+        static let candidatesTokenCount = CodingKeys(stringValue: "candidatesTokenCount")
+        static let totalTokenCount = CodingKeys(stringValue: "totalTokenCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "promptTokenCount",
+          "candidatesTokenCount",
+          "totalTokenCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .promptTokenCount) {
+          self.promptTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .candidatesTokenCount)
+        {
+          self.candidatesTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokenCount) {
+          self.totalTokenCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.promptTokenCount, forKey: .promptTokenCount)
+        try container.encode(self.candidatesTokenCount, forKey: .candidatesTokenCount)
+        try container.encode(self.totalTokenCount, forKey: .totalTokenCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

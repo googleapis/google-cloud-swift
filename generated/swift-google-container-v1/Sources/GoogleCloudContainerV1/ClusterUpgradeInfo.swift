@@ -45,6 +45,8 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. The cluster's rollback-safe upgrade status.
   public var rollbackSafeUpgradeStatus: RollbackSafeUpgradeStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterUpgradeInfo`.
   public init() {}
 
@@ -59,6 +61,84 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let minorTargetVersion = CodingKeys(stringValue: "minorTargetVersion")
+    static let patchTargetVersion = CodingKeys(stringValue: "patchTargetVersion")
+    static let autoUpgradeStatus = CodingKeys(stringValue: "autoUpgradeStatus")
+    static let pausedReason = CodingKeys(stringValue: "pausedReason")
+    static let upgradeDetails = CodingKeys(stringValue: "upgradeDetails")
+    static let endOfStandardSupportTimestamp = CodingKeys(
+      stringValue: "endOfStandardSupportTimestamp")
+    static let endOfExtendedSupportTimestamp = CodingKeys(
+      stringValue: "endOfExtendedSupportTimestamp")
+    static let rollbackSafeUpgradeStatus = CodingKeys(stringValue: "rollbackSafeUpgradeStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "minorTargetVersion",
+      "patchTargetVersion",
+      "autoUpgradeStatus",
+      "pausedReason",
+      "upgradeDetails",
+      "endOfStandardSupportTimestamp",
+      "endOfExtendedSupportTimestamp",
+      "rollbackSafeUpgradeStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.minorTargetVersion = try container.decodeIfPresent(
+      Swift.String.self, forKey: .minorTargetVersion)
+    self.patchTargetVersion = try container.decodeIfPresent(
+      Swift.String.self, forKey: .patchTargetVersion)
+    if let value = try container.decodeIfPresent(
+      [ClusterUpgradeInfo.AutoUpgradeStatus].self, forKey: .autoUpgradeStatus)
+    {
+      self.autoUpgradeStatus = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ClusterUpgradeInfo.AutoUpgradePausedReason].self, forKey: .pausedReason)
+    {
+      self.pausedReason = value
+    }
+    if let value = try container.decodeIfPresent([UpgradeDetails].self, forKey: .upgradeDetails) {
+      self.upgradeDetails = value
+    }
+    self.endOfStandardSupportTimestamp = try container.decodeIfPresent(
+      Swift.String.self, forKey: .endOfStandardSupportTimestamp)
+    self.endOfExtendedSupportTimestamp = try container.decodeIfPresent(
+      Swift.String.self, forKey: .endOfExtendedSupportTimestamp)
+    self.rollbackSafeUpgradeStatus = try container.decodeIfPresent(
+      RollbackSafeUpgradeStatus.self, forKey: .rollbackSafeUpgradeStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.minorTargetVersion, forKey: .minorTargetVersion)
+    try container.encodeIfPresent(self.patchTargetVersion, forKey: .patchTargetVersion)
+    try container.encode(self.autoUpgradeStatus, forKey: .autoUpgradeStatus)
+    try container.encode(self.pausedReason, forKey: .pausedReason)
+    try container.encode(self.upgradeDetails, forKey: .upgradeDetails)
+    try container.encodeIfPresent(
+      self.endOfStandardSupportTimestamp, forKey: .endOfStandardSupportTimestamp)
+    try container.encodeIfPresent(
+      self.endOfExtendedSupportTimestamp, forKey: .endOfExtendedSupportTimestamp)
+    try container.encodeIfPresent(
+      self.rollbackSafeUpgradeStatus, forKey: .rollbackSafeUpgradeStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// AutoUpgradeStatus indicates the status of auto upgrade.

@@ -39,6 +39,8 @@
     /// use.
     public var timeRangeSpec: FlexibleTimeRange? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureResourcesSpec`.
     public init() {}
 
@@ -53,6 +55,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deploymentType = CodingKeys(stringValue: "deploymentType")
+      static let locationPolicy = CodingKeys(stringValue: "locationPolicy")
+      static let targetResources = CodingKeys(stringValue: "targetResources")
+      static let timeRangeSpec = CodingKeys(stringValue: "timeRangeSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deploymentType",
+        "locationPolicy",
+        "targetResources",
+        "timeRangeSpec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.deploymentType = try container.decodeIfPresent(
+        FutureResourcesSpec.DeploymentType.self, forKey: .deploymentType)
+      self.locationPolicy = try container.decodeIfPresent(
+        FutureResourcesSpecLocationPolicy.self, forKey: .locationPolicy)
+      self.targetResources = try container.decodeIfPresent(
+        FutureResourcesSpecTargetResources.self, forKey: .targetResources)
+      self.timeRangeSpec = try container.decodeIfPresent(
+        FlexibleTimeRange.self, forKey: .timeRangeSpec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.deploymentType, forKey: .deploymentType)
+      try container.encodeIfPresent(self.locationPolicy, forKey: .locationPolicy)
+      try container.encodeIfPresent(self.targetResources, forKey: .targetResources)
+      try container.encodeIfPresent(self.timeRangeSpec, forKey: .timeRangeSpec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [deploymentType][google.cloud.compute.v1.FutureResourcesSpec.deploymentType] field.

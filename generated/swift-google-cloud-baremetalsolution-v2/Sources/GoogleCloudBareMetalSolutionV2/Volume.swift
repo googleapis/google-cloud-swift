@@ -110,6 +110,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// It is filled in List responses as well.
   public var attached: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Volume`.
   public init() {}
 
@@ -126,65 +128,150 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case id = "id"
-    case storageType = "storageType"
-    case state = "state"
-    case requestedSizeGib = "requestedSizeGib"
-    case originallyRequestedSizeGib = "originallyRequestedSizeGib"
-    case currentSizeGib = "currentSizeGib"
-    case emergencySizeGib = "emergencySizeGib"
-    case maxSizeGib = "maxSizeGib"
-    case autoGrownSizeGib = "autoGrownSizeGib"
-    case remainingSpaceGib = "remainingSpaceGib"
-    case snapshotReservationDetail = "snapshotReservationDetail"
-    case snapshotAutoDeleteBehavior = "snapshotAutoDeleteBehavior"
-    case labels = "labels"
-    case snapshotEnabled = "snapshotEnabled"
-    case pod = "pod"
-    case `protocol` = "protocol"
-    case bootVolume = "bootVolume"
-    case performanceTier = "performanceTier"
-    case notes = "notes"
-    case workloadProfile = "workloadProfile"
-    case expireTime = "expireTime"
-    case instances = "instances"
-    case attached = "attached"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let storageType = CodingKeys(stringValue: "storageType")
+    static let state = CodingKeys(stringValue: "state")
+    static let requestedSizeGib = CodingKeys(stringValue: "requestedSizeGib")
+    static let originallyRequestedSizeGib = CodingKeys(stringValue: "originallyRequestedSizeGib")
+    static let currentSizeGib = CodingKeys(stringValue: "currentSizeGib")
+    static let emergencySizeGib = CodingKeys(stringValue: "emergencySizeGib")
+    static let maxSizeGib = CodingKeys(stringValue: "maxSizeGib")
+    static let autoGrownSizeGib = CodingKeys(stringValue: "autoGrownSizeGib")
+    static let remainingSpaceGib = CodingKeys(stringValue: "remainingSpaceGib")
+    static let snapshotReservationDetail = CodingKeys(stringValue: "snapshotReservationDetail")
+    static let snapshotAutoDeleteBehavior = CodingKeys(stringValue: "snapshotAutoDeleteBehavior")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let snapshotEnabled = CodingKeys(stringValue: "snapshotEnabled")
+    static let pod = CodingKeys(stringValue: "pod")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let bootVolume = CodingKeys(stringValue: "bootVolume")
+    static let performanceTier = CodingKeys(stringValue: "performanceTier")
+    static let notes = CodingKeys(stringValue: "notes")
+    static let workloadProfile = CodingKeys(stringValue: "workloadProfile")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let instances = CodingKeys(stringValue: "instances")
+    static let attached = CodingKeys(stringValue: "attached")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "storageType",
+      "state",
+      "requestedSizeGib",
+      "originallyRequestedSizeGib",
+      "currentSizeGib",
+      "emergencySizeGib",
+      "maxSizeGib",
+      "autoGrownSizeGib",
+      "remainingSpaceGib",
+      "snapshotReservationDetail",
+      "snapshotAutoDeleteBehavior",
+      "labels",
+      "snapshotEnabled",
+      "pod",
+      "protocol",
+      "bootVolume",
+      "performanceTier",
+      "notes",
+      "workloadProfile",
+      "expireTime",
+      "instances",
+      "attached",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.storageType = try container.decode(Volume.StorageType.self, forKey: .storageType)
-    self.state = try container.decode(Volume.State.self, forKey: .state)
-    self.requestedSizeGib = try container.decode(Swift.Int64.self, forKey: .requestedSizeGib)
-    self.originallyRequestedSizeGib = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Volume.StorageType.self, forKey: .storageType) {
+      self.storageType = value
+    }
+    if let value = try container.decodeIfPresent(Volume.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .requestedSizeGib) {
+      self.requestedSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .originallyRequestedSizeGib)
-    self.currentSizeGib = try container.decode(Swift.Int64.self, forKey: .currentSizeGib)
-    self.emergencySizeGib = try container.decode(Swift.Int64.self, forKey: .emergencySizeGib)
-    self.maxSizeGib = try container.decode(Swift.Int64.self, forKey: .maxSizeGib)
-    self.autoGrownSizeGib = try container.decode(Swift.Int64.self, forKey: .autoGrownSizeGib)
-    self.remainingSpaceGib = try container.decode(Swift.Int64.self, forKey: .remainingSpaceGib)
+    {
+      self.originallyRequestedSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .currentSizeGib) {
+      self.currentSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .emergencySizeGib) {
+      self.emergencySizeGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxSizeGib) {
+      self.maxSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .autoGrownSizeGib) {
+      self.autoGrownSizeGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .remainingSpaceGib) {
+      self.remainingSpaceGib = value
+    }
     self.snapshotReservationDetail = try container.decodeIfPresent(
       Volume.SnapshotReservationDetail.self, forKey: .snapshotReservationDetail)
-    self.snapshotAutoDeleteBehavior = try container.decode(
+    if let value = try container.decodeIfPresent(
       Volume.SnapshotAutoDeleteBehavior.self, forKey: .snapshotAutoDeleteBehavior)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.snapshotEnabled = try container.decode(Swift.Bool.self, forKey: .snapshotEnabled)
-    self.pod = try container.decode(Swift.String.self, forKey: .pod)
-    self.`protocol` = try container.decode(Volume.Protocol_.self, forKey: .`protocol`)
-    self.bootVolume = try container.decode(Swift.Bool.self, forKey: .bootVolume)
-    self.performanceTier = try container.decode(
+    {
+      self.snapshotAutoDeleteBehavior = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .snapshotEnabled) {
+      self.snapshotEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pod) {
+      self.pod = value
+    }
+    if let value = try container.decodeIfPresent(Volume.Protocol_.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bootVolume) {
+      self.bootVolume = value
+    }
+    if let value = try container.decodeIfPresent(
       VolumePerformanceTier.self, forKey: .performanceTier)
-    self.notes = try container.decode(Swift.String.self, forKey: .notes)
-    self.workloadProfile = try container.decode(
+    {
+      self.performanceTier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .notes) {
+      self.notes = value
+    }
+    if let value = try container.decodeIfPresent(
       Volume.WorkloadProfile.self, forKey: .workloadProfile)
+    {
+      self.workloadProfile = value
+    }
     self.expireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
-    self.instances = try container.decode([Swift.String].self, forKey: .instances)
-    self.attached = try container.decode(Swift.Bool.self, forKey: .attached)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+      self.instances = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .attached) {
+      self.attached = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -200,7 +287,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.maxSizeGib, forKey: .maxSizeGib)
     try container.encode(self.autoGrownSizeGib, forKey: .autoGrownSizeGib)
     try container.encode(self.remainingSpaceGib, forKey: .remainingSpaceGib)
-    try container.encode(self.snapshotReservationDetail, forKey: .snapshotReservationDetail)
+    try container.encodeIfPresent(
+      self.snapshotReservationDetail, forKey: .snapshotReservationDetail)
     try container.encode(self.snapshotAutoDeleteBehavior, forKey: .snapshotAutoDeleteBehavior)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.snapshotEnabled, forKey: .snapshotEnabled)
@@ -210,9 +298,12 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.performanceTier, forKey: .performanceTier)
     try container.encode(self.notes, forKey: .notes)
     try container.encode(self.workloadProfile, forKey: .workloadProfile)
-    try container.encode(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.instances, forKey: .instances)
     try container.encode(self.attached, forKey: .attached)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details about snapshot space reservation and usage on the storage volume.
@@ -239,6 +330,8 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Setting this field will effectively set snapshot_enabled to true.
     public var reservedSpacePercent: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SnapshotReservationDetail`.
     public init() {}
 
@@ -253,6 +346,61 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reservedSpaceGib = CodingKeys(stringValue: "reservedSpaceGib")
+      static let reservedSpaceUsedPercent = CodingKeys(stringValue: "reservedSpaceUsedPercent")
+      static let reservedSpaceRemainingGib = CodingKeys(stringValue: "reservedSpaceRemainingGib")
+      static let reservedSpacePercent = CodingKeys(stringValue: "reservedSpacePercent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reservedSpaceGib",
+        "reservedSpaceUsedPercent",
+        "reservedSpaceRemainingGib",
+        "reservedSpacePercent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .reservedSpaceGib) {
+        self.reservedSpaceGib = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .reservedSpaceUsedPercent)
+      {
+        self.reservedSpaceUsedPercent = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .reservedSpaceRemainingGib)
+      {
+        self.reservedSpaceRemainingGib = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .reservedSpacePercent)
+      {
+        self.reservedSpacePercent = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.reservedSpaceGib, forKey: .reservedSpaceGib)
+      try container.encode(self.reservedSpaceUsedPercent, forKey: .reservedSpaceUsedPercent)
+      try container.encode(self.reservedSpaceRemainingGib, forKey: .reservedSpaceRemainingGib)
+      try container.encode(self.reservedSpacePercent, forKey: .reservedSpacePercent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

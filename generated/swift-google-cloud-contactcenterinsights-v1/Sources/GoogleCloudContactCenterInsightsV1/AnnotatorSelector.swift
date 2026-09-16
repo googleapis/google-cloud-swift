@@ -69,6 +69,8 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Configuration for the QA annotator.
   public var qaConfig: AnnotatorSelector.QaConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotatorSelector`.
   public init() {}
 
@@ -85,6 +87,113 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let runInterruptionAnnotator = CodingKeys(stringValue: "runInterruptionAnnotator")
+    static let runSilenceAnnotator = CodingKeys(stringValue: "runSilenceAnnotator")
+    static let runPhraseMatcherAnnotator = CodingKeys(stringValue: "runPhraseMatcherAnnotator")
+    static let phraseMatchers = CodingKeys(stringValue: "phraseMatchers")
+    static let runSentimentAnnotator = CodingKeys(stringValue: "runSentimentAnnotator")
+    static let runEntityAnnotator = CodingKeys(stringValue: "runEntityAnnotator")
+    static let runIntentAnnotator = CodingKeys(stringValue: "runIntentAnnotator")
+    static let runIssueModelAnnotator = CodingKeys(stringValue: "runIssueModelAnnotator")
+    static let issueModels = CodingKeys(stringValue: "issueModels")
+    static let runSummarizationAnnotator = CodingKeys(stringValue: "runSummarizationAnnotator")
+    static let summarizationConfig = CodingKeys(stringValue: "summarizationConfig")
+    static let runQaAnnotator = CodingKeys(stringValue: "runQaAnnotator")
+    static let qaConfig = CodingKeys(stringValue: "qaConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "runInterruptionAnnotator",
+      "runSilenceAnnotator",
+      "runPhraseMatcherAnnotator",
+      "phraseMatchers",
+      "runSentimentAnnotator",
+      "runEntityAnnotator",
+      "runIntentAnnotator",
+      "runIssueModelAnnotator",
+      "issueModels",
+      "runSummarizationAnnotator",
+      "summarizationConfig",
+      "runQaAnnotator",
+      "qaConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runInterruptionAnnotator)
+    {
+      self.runInterruptionAnnotator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runSilenceAnnotator) {
+      self.runSilenceAnnotator = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .runPhraseMatcherAnnotator)
+    {
+      self.runPhraseMatcherAnnotator = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phraseMatchers) {
+      self.phraseMatchers = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runSentimentAnnotator) {
+      self.runSentimentAnnotator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runEntityAnnotator) {
+      self.runEntityAnnotator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runIntentAnnotator) {
+      self.runIntentAnnotator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runIssueModelAnnotator) {
+      self.runIssueModelAnnotator = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .issueModels) {
+      self.issueModels = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .runSummarizationAnnotator)
+    {
+      self.runSummarizationAnnotator = value
+    }
+    self.summarizationConfig = try container.decodeIfPresent(
+      AnnotatorSelector.SummarizationConfig.self, forKey: .summarizationConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runQaAnnotator) {
+      self.runQaAnnotator = value
+    }
+    self.qaConfig = try container.decodeIfPresent(
+      AnnotatorSelector.QaConfig.self, forKey: .qaConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.runInterruptionAnnotator, forKey: .runInterruptionAnnotator)
+    try container.encode(self.runSilenceAnnotator, forKey: .runSilenceAnnotator)
+    try container.encode(self.runPhraseMatcherAnnotator, forKey: .runPhraseMatcherAnnotator)
+    try container.encode(self.phraseMatchers, forKey: .phraseMatchers)
+    try container.encode(self.runSentimentAnnotator, forKey: .runSentimentAnnotator)
+    try container.encode(self.runEntityAnnotator, forKey: .runEntityAnnotator)
+    try container.encode(self.runIntentAnnotator, forKey: .runIntentAnnotator)
+    try container.encode(self.runIssueModelAnnotator, forKey: .runIssueModelAnnotator)
+    try container.encode(self.issueModels, forKey: .issueModels)
+    try container.encode(self.runSummarizationAnnotator, forKey: .runSummarizationAnnotator)
+    try container.encodeIfPresent(self.summarizationConfig, forKey: .summarizationConfig)
+    try container.encode(self.runQaAnnotator, forKey: .runQaAnnotator)
+    try container.encodeIfPresent(self.qaConfig, forKey: .qaConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration for summarization.
   public struct SummarizationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -92,6 +201,8 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Summarization must use either a preexisting conversation profile or one
     /// of the supported default models.
     public var modelSource: OneOf_ModelSource? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SummarizationConfig`.
     public init() {}
@@ -109,9 +220,19 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case conversationProfile = "conversationProfile"
-      case summarizationModel = "summarizationModel"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversationProfile = CodingKeys(stringValue: "conversationProfile")
+      static let summarizationModel = CodingKeys(stringValue: "summarizationModel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversationProfile",
+        "summarizationModel",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -138,6 +259,10 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try modelSourceCheckAndSet(.summarizationModel(summarizationModel))
       }
       self.modelSource = modelSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -150,6 +275,9 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .summarizationModel(let value):
           try container.encode(value, forKey: .summarizationModel)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -288,6 +416,8 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Which scorecards should be scored.
     public var scorecardSource: OneOf_ScorecardSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaConfig`.
     public init() {}
 
@@ -304,8 +434,17 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case scorecardList = "scorecardList"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scorecardList = CodingKeys(stringValue: "scorecardList")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scorecardList"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -327,6 +466,10 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try scorecardSourceCheckAndSet(.scorecardList(scorecardList))
       }
       self.scorecardSource = scorecardSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -338,6 +481,9 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
           try container.encode(value, forKey: .scorecardList)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Container for a list of scorecards.
@@ -346,6 +492,8 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
     {
       /// List of QaScorecardRevisions.
       public var qaScorecardRevisions: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ScorecardList`.
       public init() {}
@@ -361,6 +509,40 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let qaScorecardRevisions = CodingKeys(stringValue: "qaScorecardRevisions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "qaScorecardRevisions"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .qaScorecardRevisions)
+        {
+          self.qaScorecardRevisions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.qaScorecardRevisions, forKey: .qaScorecardRevisions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

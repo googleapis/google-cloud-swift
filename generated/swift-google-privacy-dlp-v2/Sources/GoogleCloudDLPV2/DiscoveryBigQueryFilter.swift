@@ -29,6 +29,8 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// `other_tables`.
   public var filter: OneOf_Filter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryBigQueryFilter`.
   public init() {}
 
@@ -45,10 +47,21 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tables = "tables"
-    case otherTables = "otherTables"
-    case tableReference = "tableReference"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tables = CodingKeys(stringValue: "tables")
+    static let otherTables = CodingKeys(stringValue: "otherTables")
+    static let tableReference = CodingKeys(stringValue: "tableReference")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tables",
+      "otherTables",
+      "tableReference",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,6 +91,10 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
       try filterCheckAndSet(.tableReference(tableReference))
     }
     self.filter = filter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +110,9 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
         try container.encode(value, forKey: .tableReference)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Catch-all for all other tables not specified by other filters. Should
@@ -101,6 +121,8 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
   public struct AllOtherBigQueryTables: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllOtherBigQueryTables`.
     public init() {}
 
@@ -115,6 +137,30 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

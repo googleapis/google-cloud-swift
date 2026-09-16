@@ -53,6 +53,8 @@
     /// individual resource type.
     public var type: ResourceCommitment.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceCommitment`.
     public init() {}
 
@@ -67,6 +69,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+      static let amount = CodingKeys(stringValue: "amount")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "acceleratorType",
+        "amount",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.acceleratorType = try container.decodeIfPresent(
+        Swift.String.self, forKey: .acceleratorType)
+      self.amount = try container.decodeIfPresent(Swift.Int64.self, forKey: .amount)
+      self.type = try container.decodeIfPresent(ResourceCommitment.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.acceleratorType, forKey: .acceleratorType)
+      try container.encodeIfPresent(self.amount, forKey: .amount)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.ResourceCommitment.type] field.

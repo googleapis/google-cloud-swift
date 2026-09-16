@@ -29,6 +29,8 @@ public struct Csv: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// single comma-separated string.
   public var dataRows: [Csv.CsvRow] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Csv`.
   public init() {}
 
@@ -45,6 +47,44 @@ public struct Csv: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let headers = CodingKeys(stringValue: "headers")
+    static let dataRows = CodingKeys(stringValue: "dataRows")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "headers",
+      "dataRows",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .headers) {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent([Csv.CsvRow].self, forKey: .dataRows) {
+      self.dataRows = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.headers, forKey: .headers)
+    try container.encode(self.dataRows, forKey: .dataRows)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A representation of a single data row in a CSV file.
   public struct CsvRow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +92,8 @@ public struct Csv: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The data entries in a CSV file row, as a string array rather than a
     /// single comma-separated string.
     public var entries: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CsvRow`.
     public init() {}
@@ -67,6 +109,38 @@ public struct Csv: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entries = CodingKeys(stringValue: "entries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entries"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entries) {
+        self.entries = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entries, forKey: .entries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

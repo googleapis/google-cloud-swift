@@ -65,6 +65,8 @@ public struct CodeCompilationConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// `workflow_settings.yaml`.
   public var lineageEnabled: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CodeCompilationConfig`.
   public init() {}
 
@@ -79,6 +81,104 @@ public struct CodeCompilationConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let defaultDatabase = CodingKeys(stringValue: "defaultDatabase")
+    static let defaultSchema = CodingKeys(stringValue: "defaultSchema")
+    static let defaultLocation = CodingKeys(stringValue: "defaultLocation")
+    static let assertionSchema = CodingKeys(stringValue: "assertionSchema")
+    static let vars = CodingKeys(stringValue: "vars")
+    static let databaseSuffix = CodingKeys(stringValue: "databaseSuffix")
+    static let schemaSuffix = CodingKeys(stringValue: "schemaSuffix")
+    static let tablePrefix = CodingKeys(stringValue: "tablePrefix")
+    static let builtinAssertionNamePrefix = CodingKeys(stringValue: "builtinAssertionNamePrefix")
+    static let defaultNotebookRuntimeOptions = CodingKeys(
+      stringValue: "defaultNotebookRuntimeOptions")
+    static let pipelineConfig = CodingKeys(stringValue: "pipelineConfig")
+    static let lineageEnabled = CodingKeys(stringValue: "lineageEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "defaultDatabase",
+      "defaultSchema",
+      "defaultLocation",
+      "assertionSchema",
+      "vars",
+      "databaseSuffix",
+      "schemaSuffix",
+      "tablePrefix",
+      "builtinAssertionNamePrefix",
+      "defaultNotebookRuntimeOptions",
+      "pipelineConfig",
+      "lineageEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultDatabase) {
+      self.defaultDatabase = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultSchema) {
+      self.defaultSchema = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultLocation) {
+      self.defaultLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assertionSchema) {
+      self.assertionSchema = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .vars) {
+      self.vars = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseSuffix) {
+      self.databaseSuffix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaSuffix) {
+      self.schemaSuffix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tablePrefix) {
+      self.tablePrefix = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .builtinAssertionNamePrefix)
+    {
+      self.builtinAssertionNamePrefix = value
+    }
+    self.defaultNotebookRuntimeOptions = try container.decodeIfPresent(
+      NotebookRuntimeOptions.self, forKey: .defaultNotebookRuntimeOptions)
+    self.pipelineConfig = try container.decodeIfPresent(
+      PipelineConfig.self, forKey: .pipelineConfig)
+    self.lineageEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .lineageEnabled)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.defaultDatabase, forKey: .defaultDatabase)
+    try container.encode(self.defaultSchema, forKey: .defaultSchema)
+    try container.encode(self.defaultLocation, forKey: .defaultLocation)
+    try container.encode(self.assertionSchema, forKey: .assertionSchema)
+    try container.encode(self.vars, forKey: .vars)
+    try container.encode(self.databaseSuffix, forKey: .databaseSuffix)
+    try container.encode(self.schemaSuffix, forKey: .schemaSuffix)
+    try container.encode(self.tablePrefix, forKey: .tablePrefix)
+    try container.encode(self.builtinAssertionNamePrefix, forKey: .builtinAssertionNamePrefix)
+    try container.encodeIfPresent(
+      self.defaultNotebookRuntimeOptions, forKey: .defaultNotebookRuntimeOptions)
+    try container.encodeIfPresent(self.pipelineConfig, forKey: .pipelineConfig)
+    try container.encodeIfPresent(self.lineageEnabled, forKey: .lineageEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

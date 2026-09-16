@@ -30,6 +30,8 @@
     public var intendedSlaBlockers:
       [InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentGroupConfiguredAvailabilitySLA`.
     public init() {}
 
@@ -44,6 +46,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let effectiveSla = CodingKeys(stringValue: "effectiveSla")
+      static let intendedSlaBlockers = CodingKeys(stringValue: "intendedSlaBlockers")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "effectiveSla",
+        "intendedSlaBlockers",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.effectiveSla = try container.decodeIfPresent(
+        InterconnectAttachmentGroupConfiguredAvailabilitySLA.EffectiveSla.self,
+        forKey: .effectiveSla)
+      if let value = try container.decodeIfPresent(
+        [InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers].self,
+        forKey: .intendedSlaBlockers)
+      {
+        self.intendedSlaBlockers = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.effectiveSla, forKey: .effectiveSla)
+      try container.encode(self.intendedSlaBlockers, forKey: .intendedSlaBlockers)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [effectiveSla][google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLA.effectiveSla] field.

@@ -44,6 +44,8 @@ public struct EntityMapping: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// logged along with the reason preventing them to do so.
   public var mappingLog: [EntityMappingLogEntry] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntityMapping`.
   public init() {}
 
@@ -58,6 +60,63 @@ public struct EntityMapping: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceEntity = CodingKeys(stringValue: "sourceEntity")
+    static let draftEntity = CodingKeys(stringValue: "draftEntity")
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let draftType = CodingKeys(stringValue: "draftType")
+    static let mappingLog = CodingKeys(stringValue: "mappingLog")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceEntity",
+      "draftEntity",
+      "sourceType",
+      "draftType",
+      "mappingLog",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceEntity) {
+      self.sourceEntity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .draftEntity) {
+      self.draftEntity = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntityType.self, forKey: .sourceType) {
+      self.sourceType = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntityType.self, forKey: .draftType) {
+      self.draftType = value
+    }
+    if let value = try container.decodeIfPresent([EntityMappingLogEntry].self, forKey: .mappingLog)
+    {
+      self.mappingLog = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceEntity, forKey: .sourceEntity)
+    try container.encode(self.draftEntity, forKey: .draftEntity)
+    try container.encode(self.sourceType, forKey: .sourceType)
+    try container.encode(self.draftType, forKey: .draftType)
+    try container.encode(self.mappingLog, forKey: .mappingLog)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

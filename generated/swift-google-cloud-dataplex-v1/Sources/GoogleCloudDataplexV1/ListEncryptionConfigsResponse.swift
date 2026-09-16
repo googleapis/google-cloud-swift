@@ -33,6 +33,8 @@ public struct ListEncryptionConfigsResponse: Codable, Equatable, GoogleCloudWKT.
   /// Locations that could not be reached.
   public var unreachableLocations: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListEncryptionConfigsResponse`.
   public init() {}
 
@@ -47,6 +49,53 @@ public struct ListEncryptionConfigsResponse: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let encryptionConfigs = CodingKeys(stringValue: "encryptionConfigs")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let unreachableLocations = CodingKeys(stringValue: "unreachableLocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "encryptionConfigs",
+      "nextPageToken",
+      "unreachableLocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [EncryptionConfig].self, forKey: .encryptionConfigs)
+    {
+      self.encryptionConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachableLocations)
+    {
+      self.unreachableLocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.encryptionConfigs, forKey: .encryptionConfigs)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.unreachableLocations, forKey: .unreachableLocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

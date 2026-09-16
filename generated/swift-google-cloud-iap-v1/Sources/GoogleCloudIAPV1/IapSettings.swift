@@ -30,6 +30,8 @@ public struct IapSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Top level wrapper for all application related settings in IAP
   public var applicationSettings: ApplicationSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IapSettings`.
   public init() {}
 
@@ -44,6 +46,48 @@ public struct IapSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let accessSettings = CodingKeys(stringValue: "accessSettings")
+    static let applicationSettings = CodingKeys(stringValue: "applicationSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "accessSettings",
+      "applicationSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.accessSettings = try container.decodeIfPresent(
+      AccessSettings.self, forKey: .accessSettings)
+    self.applicationSettings = try container.decodeIfPresent(
+      ApplicationSettings.self, forKey: .applicationSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.accessSettings, forKey: .accessSettings)
+    try container.encodeIfPresent(self.applicationSettings, forKey: .applicationSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

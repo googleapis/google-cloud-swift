@@ -43,6 +43,8 @@
 
     public var instance: OneOf_Instance? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NearestNeighborQuery`.
     public init() {}
 
@@ -59,25 +61,52 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case entityId = "entityId"
-      case embedding = "embedding"
-      case neighborCount = "neighborCount"
-      case stringFilters = "stringFilters"
-      case numericFilters = "numericFilters"
-      case perCrowdingAttributeNeighborCount = "perCrowdingAttributeNeighborCount"
-      case parameters = "parameters"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityId = CodingKeys(stringValue: "entityId")
+      static let embedding = CodingKeys(stringValue: "embedding")
+      static let neighborCount = CodingKeys(stringValue: "neighborCount")
+      static let stringFilters = CodingKeys(stringValue: "stringFilters")
+      static let numericFilters = CodingKeys(stringValue: "numericFilters")
+      static let perCrowdingAttributeNeighborCount = CodingKeys(
+        stringValue: "perCrowdingAttributeNeighborCount")
+      static let parameters = CodingKeys(stringValue: "parameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityId",
+        "embedding",
+        "neighborCount",
+        "stringFilters",
+        "numericFilters",
+        "perCrowdingAttributeNeighborCount",
+        "parameters",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.neighborCount = try container.decode(Swift.Int32.self, forKey: .neighborCount)
-      self.stringFilters = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .neighborCount) {
+        self.neighborCount = value
+      }
+      if let value = try container.decodeIfPresent(
         [NearestNeighborQuery.StringFilter].self, forKey: .stringFilters)
-      self.numericFilters = try container.decode(
+      {
+        self.stringFilters = value
+      }
+      if let value = try container.decodeIfPresent(
         [NearestNeighborQuery.NumericFilter].self, forKey: .numericFilters)
-      self.perCrowdingAttributeNeighborCount = try container.decode(
+      {
+        self.numericFilters = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .perCrowdingAttributeNeighborCount)
+      {
+        self.perCrowdingAttributeNeighborCount = value
+      }
       self.parameters = try container.decodeIfPresent(
         NearestNeighborQuery.Parameters.self, forKey: .parameters)
 
@@ -100,6 +129,10 @@
         try instanceCheckAndSet(.embedding(embedding))
       }
       self.instance = instance
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -109,7 +142,7 @@
       try container.encode(self.numericFilters, forKey: .numericFilters)
       try container.encode(
         self.perCrowdingAttributeNeighborCount, forKey: .perCrowdingAttributeNeighborCount)
-      try container.encode(self.parameters, forKey: .parameters)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
 
       if let choice = self.instance {
         switch choice {
@@ -119,6 +152,9 @@
           try container.encode(value, forKey: .embedding)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The embedding vector.
@@ -127,6 +163,8 @@
     {
       /// Optional. Individual value in the embedding.
       public var value: [Swift.Float] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Embedding`.
       public init() {}
@@ -142,6 +180,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let value = CodingKeys(stringValue: "value")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "value"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .value) {
+          self.value = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.value, forKey: .value)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -175,6 +245,8 @@
       /// Optional. The denied tokens.
       public var denyTokens: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `StringFilter`.
       public init() {}
 
@@ -189,6 +261,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let allowTokens = CodingKeys(stringValue: "allowTokens")
+        static let denyTokens = CodingKeys(stringValue: "denyTokens")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "allowTokens",
+          "denyTokens",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowTokens) {
+          self.allowTokens = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .denyTokens) {
+          self.denyTokens = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.allowTokens, forKey: .allowTokens)
+        try container.encode(self.denyTokens, forKey: .denyTokens)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -224,6 +340,8 @@
       /// name.  This is verified at runtime.
       public var value: OneOf_Value? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NumericFilter`.
       public init() {}
 
@@ -240,17 +358,32 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case valueInt = "valueInt"
-        case valueFloat = "valueFloat"
-        case valueDouble = "valueDouble"
-        case name = "name"
-        case op = "op"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let valueInt = CodingKeys(stringValue: "valueInt")
+        static let valueFloat = CodingKeys(stringValue: "valueFloat")
+        static let valueDouble = CodingKeys(stringValue: "valueDouble")
+        static let name = CodingKeys(stringValue: "name")
+        static let op = CodingKeys(stringValue: "op")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "valueInt",
+          "valueFloat",
+          "valueDouble",
+          "name",
+          "op",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(Swift.String.self, forKey: .name)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
         self.op = try container.decodeIfPresent(
           NearestNeighborQuery.NumericFilter.Operator.self, forKey: .op)
 
@@ -275,12 +408,16 @@
           try valueCheckAndSet(.valueDouble(valueDouble))
         }
         self.value = value
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
-        try container.encode(self.op, forKey: .op)
+        try container.encodeIfPresent(self.op, forKey: .op)
 
         if let choice = self.value {
           switch choice {
@@ -291,6 +428,9 @@
           case .valueDouble(let value):
             try container.encode(value, forKey: .valueDouble)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -466,6 +606,8 @@
       /// 0.0 and 1.0.
       public var leafNodesSearchFraction: Swift.Double = Swift.Double()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Parameters`.
       public init() {}
 
@@ -480,6 +622,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let approximateNeighborCandidates = CodingKeys(
+          stringValue: "approximateNeighborCandidates")
+        static let leafNodesSearchFraction = CodingKeys(stringValue: "leafNodesSearchFraction")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "approximateNeighborCandidates",
+          "leafNodesSearchFraction",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .approximateNeighborCandidates)
+        {
+          self.approximateNeighborCandidates = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Double.self, forKey: .leafNodesSearchFraction)
+        {
+          self.leafNodesSearchFraction = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.approximateNeighborCandidates, forKey: .approximateNeighborCandidates)
+        try container.encode(self.leafNodesSearchFraction, forKey: .leafNodesSearchFraction)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

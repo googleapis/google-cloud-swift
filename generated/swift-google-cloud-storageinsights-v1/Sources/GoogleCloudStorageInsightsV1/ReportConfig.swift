@@ -52,6 +52,8 @@ public struct ReportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration options for report contents.
   public var reportKind: OneOf_ReportKind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportConfig`.
   public init() {}
 
@@ -68,29 +70,53 @@ public struct ReportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case frequencyOptions = "frequencyOptions"
-    case csvOptions = "csvOptions"
-    case parquetOptions = "parquetOptions"
-    case objectMetadataReportOptions = "objectMetadataReportOptions"
-    case labels = "labels"
-    case displayName = "displayName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let frequencyOptions = CodingKeys(stringValue: "frequencyOptions")
+    static let csvOptions = CodingKeys(stringValue: "csvOptions")
+    static let parquetOptions = CodingKeys(stringValue: "parquetOptions")
+    static let objectMetadataReportOptions = CodingKeys(stringValue: "objectMetadataReportOptions")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "frequencyOptions",
+      "csvOptions",
+      "parquetOptions",
+      "objectMetadataReportOptions",
+      "labels",
+      "displayName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.frequencyOptions = try container.decodeIfPresent(
       FrequencyOptions.self, forKey: .frequencyOptions)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
 
     var reportFormat: OneOf_ReportFormat? = nil
     let reportFormatCheckAndSet = {
@@ -128,14 +154,18 @@ public struct ReportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try reportKindCheckAndSet(.objectMetadataReportOptions(objectMetadataReportOptions))
     }
     self.reportKind = reportKind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.frequencyOptions, forKey: .frequencyOptions)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.frequencyOptions, forKey: .frequencyOptions)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
 
@@ -153,6 +183,9 @@ public struct ReportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .objectMetadataReportOptions(let value):
         try container.encode(value, forKey: .objectMetadataReportOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

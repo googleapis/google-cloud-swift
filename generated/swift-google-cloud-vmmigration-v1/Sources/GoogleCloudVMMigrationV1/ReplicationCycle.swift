@@ -57,6 +57,8 @@ public struct ReplicationCycle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Warnings that occurred during the cycle.
   public var warnings: [MigrationWarning] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplicationCycle`.
   public init() {}
 
@@ -71,6 +73,86 @@ public struct ReplicationCycle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let cycleNumber = CodingKeys(stringValue: "cycleNumber")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let totalPauseDuration = CodingKeys(stringValue: "totalPauseDuration")
+    static let progressPercent = CodingKeys(stringValue: "progressPercent")
+    static let steps = CodingKeys(stringValue: "steps")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let warnings = CodingKeys(stringValue: "warnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "cycleNumber",
+      "startTime",
+      "endTime",
+      "totalPauseDuration",
+      "progressPercent",
+      "steps",
+      "state",
+      "error",
+      "warnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cycleNumber) {
+      self.cycleNumber = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.totalPauseDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .totalPauseDuration)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
+      self.progressPercent = value
+    }
+    if let value = try container.decodeIfPresent([CycleStep].self, forKey: .steps) {
+      self.steps = value
+    }
+    if let value = try container.decodeIfPresent(ReplicationCycle.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent([MigrationWarning].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.cycleNumber, forKey: .cycleNumber)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.totalPauseDuration, forKey: .totalPauseDuration)
+    try container.encode(self.progressPercent, forKey: .progressPercent)
+    try container.encode(self.steps, forKey: .steps)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.warnings, forKey: .warnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a replication cycle.

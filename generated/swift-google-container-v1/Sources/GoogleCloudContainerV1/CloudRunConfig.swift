@@ -27,6 +27,8 @@ public struct CloudRunConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Which load balancer type is installed for Cloud Run.
   public var loadBalancerType: CloudRunConfig.LoadBalancerType = CloudRunConfig.LoadBalancerType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudRunConfig`.
   public init() {}
 
@@ -41,6 +43,46 @@ public struct CloudRunConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let loadBalancerType = CodingKeys(stringValue: "loadBalancerType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "disabled",
+      "loadBalancerType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudRunConfig.LoadBalancerType.self, forKey: .loadBalancerType)
+    {
+      self.loadBalancerType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.disabled, forKey: .disabled)
+    try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Load balancer type of ingress service of Cloud Run.

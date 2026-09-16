@@ -24,6 +24,8 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Type of transformation.
   public var transformation: OneOf_Transformation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrimitiveTransformation`.
   public init() {}
 
@@ -40,19 +42,39 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case replaceConfig = "replaceConfig"
-    case redactConfig = "redactConfig"
-    case characterMaskConfig = "characterMaskConfig"
-    case cryptoReplaceFfxFpeConfig = "cryptoReplaceFfxFpeConfig"
-    case fixedSizeBucketingConfig = "fixedSizeBucketingConfig"
-    case bucketingConfig = "bucketingConfig"
-    case replaceWithInfoTypeConfig = "replaceWithInfoTypeConfig"
-    case timePartConfig = "timePartConfig"
-    case cryptoHashConfig = "cryptoHashConfig"
-    case dateShiftConfig = "dateShiftConfig"
-    case cryptoDeterministicConfig = "cryptoDeterministicConfig"
-    case replaceDictionaryConfig = "replaceDictionaryConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let replaceConfig = CodingKeys(stringValue: "replaceConfig")
+    static let redactConfig = CodingKeys(stringValue: "redactConfig")
+    static let characterMaskConfig = CodingKeys(stringValue: "characterMaskConfig")
+    static let cryptoReplaceFfxFpeConfig = CodingKeys(stringValue: "cryptoReplaceFfxFpeConfig")
+    static let fixedSizeBucketingConfig = CodingKeys(stringValue: "fixedSizeBucketingConfig")
+    static let bucketingConfig = CodingKeys(stringValue: "bucketingConfig")
+    static let replaceWithInfoTypeConfig = CodingKeys(stringValue: "replaceWithInfoTypeConfig")
+    static let timePartConfig = CodingKeys(stringValue: "timePartConfig")
+    static let cryptoHashConfig = CodingKeys(stringValue: "cryptoHashConfig")
+    static let dateShiftConfig = CodingKeys(stringValue: "dateShiftConfig")
+    static let cryptoDeterministicConfig = CodingKeys(stringValue: "cryptoDeterministicConfig")
+    static let replaceDictionaryConfig = CodingKeys(stringValue: "replaceDictionaryConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "replaceConfig",
+      "redactConfig",
+      "characterMaskConfig",
+      "cryptoReplaceFfxFpeConfig",
+      "fixedSizeBucketingConfig",
+      "bucketingConfig",
+      "replaceWithInfoTypeConfig",
+      "timePartConfig",
+      "cryptoHashConfig",
+      "dateShiftConfig",
+      "cryptoDeterministicConfig",
+      "replaceDictionaryConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -127,6 +149,10 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleCloudWKT._AnyPa
       try transformationCheckAndSet(.replaceDictionaryConfig(replaceDictionaryConfig))
     }
     self.transformation = transformation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -159,6 +185,9 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .replaceDictionaryConfig(let value):
         try container.encode(value, forKey: .replaceDictionaryConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

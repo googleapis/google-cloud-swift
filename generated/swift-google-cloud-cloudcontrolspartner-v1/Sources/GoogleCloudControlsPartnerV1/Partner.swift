@@ -47,6 +47,8 @@ public struct Partner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The last time the resource was updated
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Partner`.
   public init() {}
 
@@ -61,6 +63,73 @@ public struct Partner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let skus = CodingKeys(stringValue: "skus")
+    static let ekmSolutions = CodingKeys(stringValue: "ekmSolutions")
+    static let operatedCloudRegions = CodingKeys(stringValue: "operatedCloudRegions")
+    static let partnerProjectId = CodingKeys(stringValue: "partnerProjectId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "skus",
+      "ekmSolutions",
+      "operatedCloudRegions",
+      "partnerProjectId",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Sku].self, forKey: .skus) {
+      self.skus = value
+    }
+    if let value = try container.decodeIfPresent([EkmMetadata].self, forKey: .ekmSolutions) {
+      self.ekmSolutions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .operatedCloudRegions)
+    {
+      self.operatedCloudRegions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .partnerProjectId) {
+      self.partnerProjectId = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.skus, forKey: .skus)
+    try container.encode(self.ekmSolutions, forKey: .ekmSolutions)
+    try container.encode(self.operatedCloudRegions, forKey: .operatedCloudRegions)
+    try container.encode(self.partnerProjectId, forKey: .partnerProjectId)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

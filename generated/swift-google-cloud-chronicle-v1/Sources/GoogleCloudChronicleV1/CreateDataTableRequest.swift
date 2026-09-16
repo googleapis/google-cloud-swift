@@ -35,6 +35,8 @@ public struct CreateDataTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// - Must be unique and has length < 256.
   public var dataTableId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDataTableRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateDataTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let dataTable = CodingKeys(stringValue: "dataTable")
+    static let dataTableId = CodingKeys(stringValue: "dataTableId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "dataTable",
+      "dataTableId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.dataTable = try container.decodeIfPresent(DataTable.self, forKey: .dataTable)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataTableId) {
+      self.dataTableId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.dataTable, forKey: .dataTable)
+    try container.encode(self.dataTableId, forKey: .dataTableId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

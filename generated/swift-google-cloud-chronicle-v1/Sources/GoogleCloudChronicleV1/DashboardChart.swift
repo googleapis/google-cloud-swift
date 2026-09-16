@@ -58,6 +58,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The number of tokens are not expected to be more than 10.
   public var tokens: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DashboardChart`.
   public init() {}
 
@@ -74,6 +76,89 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let nativeDashboard = CodingKeys(stringValue: "nativeDashboard")
+    static let tileType = CodingKeys(stringValue: "tileType")
+    static let chartDatasource = CodingKeys(stringValue: "chartDatasource")
+    static let visualization = CodingKeys(stringValue: "visualization")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let drillDownConfig = CodingKeys(stringValue: "drillDownConfig")
+    static let tokens = CodingKeys(stringValue: "tokens")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "nativeDashboard",
+      "tileType",
+      "chartDatasource",
+      "visualization",
+      "etag",
+      "drillDownConfig",
+      "tokens",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nativeDashboard) {
+      self.nativeDashboard = value
+    }
+    if let value = try container.decodeIfPresent(TileType.self, forKey: .tileType) {
+      self.tileType = value
+    }
+    self.chartDatasource = try container.decodeIfPresent(
+      DashboardChart.ChartDatasource.self, forKey: .chartDatasource)
+    self.visualization = try container.decodeIfPresent(
+      DashboardChart.Visualization.self, forKey: .visualization)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    self.drillDownConfig = try container.decodeIfPresent(
+      DashboardChart.DrillDownConfig.self, forKey: .drillDownConfig)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tokens) {
+      self.tokens = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.nativeDashboard, forKey: .nativeDashboard)
+    try container.encode(self.tileType, forKey: .tileType)
+    try container.encodeIfPresent(self.chartDatasource, forKey: .chartDatasource)
+    try container.encodeIfPresent(self.visualization, forKey: .visualization)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.drillDownConfig, forKey: .drillDownConfig)
+    try container.encode(self.tokens, forKey: .tokens)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Datasource of the chart including the query reference and source name.
   public struct ChartDatasource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -83,6 +168,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Name of the datasource used in the chart.
     public var dataSources: [DataSource] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ChartDatasource`.
     public init() {}
@@ -98,6 +185,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dashboardQuery = CodingKeys(stringValue: "dashboardQuery")
+      static let dataSources = CodingKeys(stringValue: "dataSources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dashboardQuery",
+        "dataSources",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardQuery) {
+        self.dashboardQuery = value
+      }
+      if let value = try container.decodeIfPresent([DataSource].self, forKey: .dataSources) {
+        self.dataSources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dashboardQuery, forKey: .dashboardQuery)
+      try container.encode(self.dataSources, forKey: .dataSources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -155,6 +280,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Visual maps for the chart.
     public var visualMaps: [DashboardChart.Visualization.VisualMap] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Visualization`.
     public init() {}
 
@@ -169,6 +296,123 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let xAxes = CodingKeys(stringValue: "xAxes")
+      static let yAxes = CodingKeys(stringValue: "yAxes")
+      static let series = CodingKeys(stringValue: "series")
+      static let tooltip = CodingKeys(stringValue: "tooltip")
+      static let legends = CodingKeys(stringValue: "legends")
+      static let columnDefs = CodingKeys(stringValue: "columnDefs")
+      static let tableConfig = CodingKeys(stringValue: "tableConfig")
+      static let button = CodingKeys(stringValue: "button")
+      static let markdown = CodingKeys(stringValue: "markdown")
+      static let seriesColumn = CodingKeys(stringValue: "seriesColumn")
+      static let groupingType = CodingKeys(stringValue: "groupingType")
+      static let googleMapsConfig = CodingKeys(stringValue: "googleMapsConfig")
+      static let thresholdColoringEnabled = CodingKeys(stringValue: "thresholdColoringEnabled")
+      static let visualMaps = CodingKeys(stringValue: "visualMaps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "xAxes",
+        "yAxes",
+        "series",
+        "tooltip",
+        "legends",
+        "columnDefs",
+        "tableConfig",
+        "button",
+        "markdown",
+        "seriesColumn",
+        "groupingType",
+        "googleMapsConfig",
+        "thresholdColoringEnabled",
+        "visualMaps",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.Axis].self, forKey: .xAxes)
+      {
+        self.xAxes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.Axis].self, forKey: .yAxes)
+      {
+        self.yAxes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.Series].self, forKey: .series)
+      {
+        self.series = value
+      }
+      self.tooltip = try container.decodeIfPresent(
+        DashboardChart.Visualization.Tooltip.self, forKey: .tooltip)
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.Legend].self, forKey: .legends)
+      {
+        self.legends = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.ColumnDef].self, forKey: .columnDefs)
+      {
+        self.columnDefs = value
+      }
+      self.tableConfig = try container.decodeIfPresent(
+        DashboardChart.Visualization.TableConfig.self, forKey: .tableConfig)
+      self.button = try container.decodeIfPresent(Button.self, forKey: .button)
+      self.markdown = try container.decodeIfPresent(Markdown.self, forKey: .markdown)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .seriesColumn) {
+        self.seriesColumn = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupingType) {
+        self.groupingType = value
+      }
+      self.googleMapsConfig = try container.decodeIfPresent(
+        DashboardChart.Visualization.GoogleMapsConfig.self, forKey: .googleMapsConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .thresholdColoringEnabled)
+      {
+        self.thresholdColoringEnabled = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.Visualization.VisualMap].self, forKey: .visualMaps)
+      {
+        self.visualMaps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.xAxes, forKey: .xAxes)
+      try container.encode(self.yAxes, forKey: .yAxes)
+      try container.encode(self.series, forKey: .series)
+      try container.encodeIfPresent(self.tooltip, forKey: .tooltip)
+      try container.encode(self.legends, forKey: .legends)
+      try container.encode(self.columnDefs, forKey: .columnDefs)
+      try container.encodeIfPresent(self.tableConfig, forKey: .tableConfig)
+      try container.encodeIfPresent(self.button, forKey: .button)
+      try container.encodeIfPresent(self.markdown, forKey: .markdown)
+      try container.encode(self.seriesColumn, forKey: .seriesColumn)
+      try container.encode(self.groupingType, forKey: .groupingType)
+      try container.encodeIfPresent(self.googleMapsConfig, forKey: .googleMapsConfig)
+      try container.encode(self.thresholdColoringEnabled, forKey: .thresholdColoringEnabled)
+      try container.encode(self.visualMaps, forKey: .visualMaps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public struct Axis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -186,6 +430,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// https://echarts.apache.org/en/option.html#xAxis.max
       public var max: Swift.Int32? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Axis`.
       public init() {}
 
@@ -200,6 +446,52 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let axisType = CodingKeys(stringValue: "axisType")
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let min = CodingKeys(stringValue: "min")
+        static let max = CodingKeys(stringValue: "max")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "axisType",
+          "displayName",
+          "min",
+          "max",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(AxisType.self, forKey: .axisType) {
+          self.axisType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        self.min = try container.decodeIfPresent(Swift.Int32.self, forKey: .min)
+        self.max = try container.decodeIfPresent(Swift.Int32.self, forKey: .max)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.axisType, forKey: .axisType)
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encodeIfPresent(self.min, forKey: .min)
+        try container.encodeIfPresent(self.max, forKey: .max)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -260,6 +552,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Fields to capture trend config for metric charts
       public var metricTrendConfig: DashboardChart.Visualization.Series.MetricTrendConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Series`.
       public init() {}
 
@@ -274,6 +568,130 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let seriesType = CodingKeys(stringValue: "seriesType")
+        static let seriesName = CodingKeys(stringValue: "seriesName")
+        static let showSymbol = CodingKeys(stringValue: "showSymbol")
+        static let showBackground = CodingKeys(stringValue: "showBackground")
+        static let stack = CodingKeys(stringValue: "stack")
+        static let seriesStackStrategy = CodingKeys(stringValue: "seriesStackStrategy")
+        static let encode = CodingKeys(stringValue: "encode")
+        static let label = CodingKeys(stringValue: "label")
+        static let field = CodingKeys(stringValue: "field")
+        static let dataLabel = CodingKeys(stringValue: "dataLabel")
+        static let radius = CodingKeys(stringValue: "radius")
+        static let itemStyle = CodingKeys(stringValue: "itemStyle")
+        static let seriesUniqueValue = CodingKeys(stringValue: "seriesUniqueValue")
+        static let areaStyle = CodingKeys(stringValue: "areaStyle")
+        static let itemColors = CodingKeys(stringValue: "itemColors")
+        static let gaugeConfig = CodingKeys(stringValue: "gaugeConfig")
+        static let metricTrendConfig = CodingKeys(stringValue: "metricTrendConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "seriesType",
+          "seriesName",
+          "showSymbol",
+          "showBackground",
+          "stack",
+          "seriesStackStrategy",
+          "encode",
+          "label",
+          "field",
+          "dataLabel",
+          "radius",
+          "itemStyle",
+          "seriesUniqueValue",
+          "areaStyle",
+          "itemColors",
+          "gaugeConfig",
+          "metricTrendConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(SeriesType.self, forKey: .seriesType) {
+          self.seriesType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .seriesName) {
+          self.seriesName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .showSymbol) {
+          self.showSymbol = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .showBackground) {
+          self.showBackground = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stack) {
+          self.stack = value
+        }
+        if let value = try container.decodeIfPresent(
+          SeriesStackStrategy.self, forKey: .seriesStackStrategy)
+        {
+          self.seriesStackStrategy = value
+        }
+        self.encode = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.Encode.self, forKey: .encode)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+          self.label = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+          self.field = value
+        }
+        self.dataLabel = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.DataLabel.self, forKey: .dataLabel)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .radius) {
+          self.radius = value
+        }
+        self.itemStyle = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.ItemStyle.self, forKey: .itemStyle)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .seriesUniqueValue)
+        {
+          self.seriesUniqueValue = value
+        }
+        self.areaStyle = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.AreaStyle.self, forKey: .areaStyle)
+        self.itemColors = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.ItemColors.self, forKey: .itemColors)
+        self.gaugeConfig = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.GaugeConfig.self, forKey: .gaugeConfig)
+        self.metricTrendConfig = try container.decodeIfPresent(
+          DashboardChart.Visualization.Series.MetricTrendConfig.self, forKey: .metricTrendConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.seriesType, forKey: .seriesType)
+        try container.encode(self.seriesName, forKey: .seriesName)
+        try container.encode(self.showSymbol, forKey: .showSymbol)
+        try container.encode(self.showBackground, forKey: .showBackground)
+        try container.encode(self.stack, forKey: .stack)
+        try container.encode(self.seriesStackStrategy, forKey: .seriesStackStrategy)
+        try container.encodeIfPresent(self.encode, forKey: .encode)
+        try container.encode(self.label, forKey: .label)
+        try container.encode(self.field, forKey: .field)
+        try container.encodeIfPresent(self.dataLabel, forKey: .dataLabel)
+        try container.encode(self.radius, forKey: .radius)
+        try container.encodeIfPresent(self.itemStyle, forKey: .itemStyle)
+        try container.encode(self.seriesUniqueValue, forKey: .seriesUniqueValue)
+        try container.encodeIfPresent(self.areaStyle, forKey: .areaStyle)
+        try container.encodeIfPresent(self.itemColors, forKey: .itemColors)
+        try container.encodeIfPresent(self.gaugeConfig, forKey: .gaugeConfig)
+        try container.encodeIfPresent(self.metricTrendConfig, forKey: .metricTrendConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public struct Encode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -291,6 +709,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// displayed in legend.
         public var itemName: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Encode`.
         public init() {}
 
@@ -305,6 +726,56 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let x = CodingKeys(stringValue: "x")
+          static let y = CodingKeys(stringValue: "y")
+          static let value = CodingKeys(stringValue: "value")
+          static let itemName = CodingKeys(stringValue: "itemName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "x",
+            "y",
+            "value",
+            "itemName",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .x) {
+            self.x = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .y) {
+            self.y = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+            self.value = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .itemName) {
+            self.itemName = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.x, forKey: .x)
+          try container.encode(self.y, forKey: .y)
+          try container.encode(self.value, forKey: .value)
+          try container.encode(self.itemName, forKey: .itemName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -326,6 +797,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Whether to show data label.
         public var show: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DataLabel`.
         public init() {}
 
@@ -340,6 +814,38 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let show = CodingKeys(stringValue: "show")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "show"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
+            self.show = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.show, forKey: .show)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -367,6 +873,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Used to add color
         public var color: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ItemStyle`.
         public init() {}
 
@@ -381,6 +890,50 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let borderWidth = CodingKeys(stringValue: "borderWidth")
+          static let borderColor = CodingKeys(stringValue: "borderColor")
+          static let color = CodingKeys(stringValue: "color")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "borderWidth",
+            "borderColor",
+            "color",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .borderWidth) {
+            self.borderWidth = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .borderColor) {
+            self.borderColor = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.borderWidth, forKey: .borderWidth)
+          try container.encode(self.borderColor, forKey: .borderColor)
+          try container.encode(self.color, forKey: .color)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -420,6 +973,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Used to add opacity
         public var opacity: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `AreaStyle`.
         public init() {}
 
@@ -434,6 +990,74 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let color = CodingKeys(stringValue: "color")
+          static let origin = CodingKeys(stringValue: "origin")
+          static let shadowBlur = CodingKeys(stringValue: "shadowBlur")
+          static let shadowColor = CodingKeys(stringValue: "shadowColor")
+          static let shadowOffsetX = CodingKeys(stringValue: "shadowOffsetX")
+          static let shadowOffsetY = CodingKeys(stringValue: "shadowOffsetY")
+          static let opacity = CodingKeys(stringValue: "opacity")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "color",
+            "origin",
+            "shadowBlur",
+            "shadowColor",
+            "shadowOffsetX",
+            "shadowOffsetY",
+            "opacity",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .origin) {
+            self.origin = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shadowBlur) {
+            self.shadowBlur = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shadowColor) {
+            self.shadowColor = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shadowOffsetX) {
+            self.shadowOffsetX = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shadowOffsetY) {
+            self.shadowOffsetY = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .opacity) {
+            self.opacity = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.color, forKey: .color)
+          try container.encode(self.origin, forKey: .origin)
+          try container.encode(self.shadowBlur, forKey: .shadowBlur)
+          try container.encode(self.shadowColor, forKey: .shadowColor)
+          try container.encode(self.shadowOffsetX, forKey: .shadowOffsetX)
+          try container.encode(self.shadowOffsetY, forKey: .shadowOffsetY)
+          try container.encode(self.opacity, forKey: .opacity)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -458,6 +1082,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. User specified label for a pie slice
         public var label: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `UserSelectedValues`.
         public init() {}
 
@@ -472,6 +1099,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let color = CodingKeys(stringValue: "color")
+          static let label = CodingKeys(stringValue: "label")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "color",
+            "label",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+            self.label = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.color, forKey: .color)
+          try container.encode(self.label, forKey: .label)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -496,6 +1161,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Value for the slice
         public var value: DashboardChart.Visualization.Series.UserSelectedValues? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ChartSliceColor`.
         public init() {}
 
@@ -510,6 +1178,43 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+            self.key = value
+          }
+          self.value = try container.decodeIfPresent(
+            DashboardChart.Visualization.Series.UserSelectedValues.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -531,6 +1236,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Slice colors array
         public var colors: [DashboardChart.Visualization.Series.ChartSliceColor] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ItemColors`.
         public init() {}
 
@@ -545,6 +1253,40 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let colors = CodingKeys(stringValue: "colors")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "colors"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [DashboardChart.Visualization.Series.ChartSliceColor].self, forKey: .colors)
+          {
+            self.colors = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.colors, forKey: .colors)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -569,6 +1311,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Color for gauge chart
         public var color: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `GaugeValue`.
         public init() {}
 
@@ -583,6 +1328,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let value = CodingKeys(stringValue: "value")
+          static let color = CodingKeys(stringValue: "color")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "value",
+            "color",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .value) {
+            self.value = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.value, forKey: .value)
+          try container.encode(self.color, forKey: .color)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -610,6 +1393,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Threshold values for gauge chart
         public var thresholdValues: [DashboardChart.Visualization.Series.GaugeValue] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `GaugeConfig`.
         public init() {}
 
@@ -624,6 +1410,50 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let baseValue = CodingKeys(stringValue: "baseValue")
+          static let limitValue = CodingKeys(stringValue: "limitValue")
+          static let thresholdValues = CodingKeys(stringValue: "thresholdValues")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "baseValue",
+            "limitValue",
+            "thresholdValues",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.baseValue = try container.decodeIfPresent(
+            DashboardChart.Visualization.Series.GaugeValue.self, forKey: .baseValue)
+          self.limitValue = try container.decodeIfPresent(
+            DashboardChart.Visualization.Series.GaugeValue.self, forKey: .limitValue)
+          if let value = try container.decodeIfPresent(
+            [DashboardChart.Visualization.Series.GaugeValue].self, forKey: .thresholdValues)
+          {
+            self.thresholdValues = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.baseValue, forKey: .baseValue)
+          try container.encodeIfPresent(self.limitValue, forKey: .limitValue)
+          try container.encode(self.thresholdValues, forKey: .thresholdValues)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -656,6 +1486,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// regular or inverse
         public var metricTrendType: MetricTrendType = MetricTrendType()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `MetricTrendConfig`.
         public init() {}
 
@@ -670,6 +1503,60 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let metricFormat = CodingKeys(stringValue: "metricFormat")
+          static let showMetricTrend = CodingKeys(stringValue: "showMetricTrend")
+          static let metricDisplayTrend = CodingKeys(stringValue: "metricDisplayTrend")
+          static let metricTrendType = CodingKeys(stringValue: "metricTrendType")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "metricFormat",
+            "showMetricTrend",
+            "metricDisplayTrend",
+            "metricTrendType",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(MetricFormat.self, forKey: .metricFormat) {
+            self.metricFormat = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .showMetricTrend) {
+            self.showMetricTrend = value
+          }
+          if let value = try container.decodeIfPresent(
+            MetricDisplayTrend.self, forKey: .metricDisplayTrend)
+          {
+            self.metricDisplayTrend = value
+          }
+          if let value = try container.decodeIfPresent(
+            MetricTrendType.self, forKey: .metricTrendType)
+          {
+            self.metricTrendType = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.metricFormat, forKey: .metricFormat)
+          try container.encode(self.showMetricTrend, forKey: .showMetricTrend)
+          try container.encode(self.metricDisplayTrend, forKey: .metricDisplayTrend)
+          try container.encode(self.metricTrendType, forKey: .metricTrendType)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -702,6 +1589,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       public var tooltipTrigger: ToolTipTrigger = ToolTipTrigger()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Tooltip`.
       public init() {}
 
@@ -716,6 +1605,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let show = CodingKeys(stringValue: "show")
+        static let tooltipTrigger = CodingKeys(stringValue: "tooltipTrigger")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "show",
+          "tooltipTrigger",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
+          self.show = value
+        }
+        if let value = try container.decodeIfPresent(ToolTipTrigger.self, forKey: .tooltipTrigger) {
+          self.tooltipTrigger = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.show, forKey: .show)
+        try container.encode(self.tooltipTrigger, forKey: .tooltipTrigger)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -754,6 +1681,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       public var padding: [Swift.Int32] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Legend`.
       public init() {}
 
@@ -770,33 +1699,78 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case id = "id"
-        case show = "show"
-        case zLevel = "zLevel"
-        case z = "z"
-        case `left` = "left"
-        case top = "top"
-        case `right` = "right"
-        case bottom = "bottom"
-        case legendOrient = "legendOrient"
-        case legendAlign = "legendAlign"
-        case padding = "padding"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let show = CodingKeys(stringValue: "show")
+        static let zLevel = CodingKeys(stringValue: "zLevel")
+        static let z = CodingKeys(stringValue: "z")
+        static let `left` = CodingKeys(stringValue: "left")
+        static let top = CodingKeys(stringValue: "top")
+        static let `right` = CodingKeys(stringValue: "right")
+        static let bottom = CodingKeys(stringValue: "bottom")
+        static let legendOrient = CodingKeys(stringValue: "legendOrient")
+        static let legendAlign = CodingKeys(stringValue: "legendAlign")
+        static let padding = CodingKeys(stringValue: "padding")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "show",
+          "zLevel",
+          "z",
+          "left",
+          "top",
+          "right",
+          "bottom",
+          "legendOrient",
+          "legendAlign",
+          "padding",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Swift.String.self, forKey: .id)
-        self.show = try container.decode(Swift.Bool.self, forKey: .show)
-        self.zLevel = try container.decode(Swift.Int32.self, forKey: .zLevel)
-        self.z = try container.decode(Swift.Int32.self, forKey: .z)
-        self.`left` = try container.decode(Swift.Int32.self, forKey: .`left`)
-        self.top = try container.decode(Swift.Int32.self, forKey: .top)
-        self.`right` = try container.decode(Swift.Int32.self, forKey: .`right`)
-        self.bottom = try container.decode(Swift.Int32.self, forKey: .bottom)
-        self.legendOrient = try container.decode(LegendOrient.self, forKey: .legendOrient)
-        self.legendAlign = try container.decode(LegendAlign.self, forKey: .legendAlign)
-        self.padding = try container.decode([Swift.Int32].self, forKey: .padding)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
+          self.show = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .zLevel) {
+          self.zLevel = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .z) {
+          self.z = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .`left`) {
+          self.`left` = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .top) {
+          self.top = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .`right`) {
+          self.`right` = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bottom) {
+          self.bottom = value
+        }
+        if let value = try container.decodeIfPresent(LegendOrient.self, forKey: .legendOrient) {
+          self.legendOrient = value
+        }
+        if let value = try container.decodeIfPresent(LegendAlign.self, forKey: .legendAlign) {
+          self.legendAlign = value
+        }
+        if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .padding) {
+          self.padding = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -812,6 +1786,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(self.legendOrient, forKey: .legendOrient)
         try container.encode(self.legendAlign, forKey: .legendAlign)
         try container.encode(self.padding, forKey: .padding)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -835,6 +1812,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Header name for column.
       public var header: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ColumnDef`.
       public init() {}
 
@@ -849,6 +1828,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let field = CodingKeys(stringValue: "field")
+        static let header = CodingKeys(stringValue: "header")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "field",
+          "header",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+          self.field = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {
+          self.header = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.field, forKey: .field)
+        try container.encode(self.header, forKey: .header)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -874,6 +1891,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Column render type.
       public var columnRenderType: RenderType = RenderType()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ColumnRenderTypeSettings`.
       public init() {}
 
@@ -888,6 +1907,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let field = CodingKeys(stringValue: "field")
+        static let columnRenderType = CodingKeys(stringValue: "columnRenderType")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "field",
+          "columnRenderType",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+          self.field = value
+        }
+        if let value = try container.decodeIfPresent(RenderType.self, forKey: .columnRenderType) {
+          self.columnRenderType = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.field, forKey: .field)
+        try container.encode(self.columnRenderType, forKey: .columnRenderType)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -915,6 +1972,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Column cell tooltip text.
       public var cellTooltipText: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ColumnTooltipSettings`.
       public init() {}
 
@@ -929,6 +1988,51 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let field = CodingKeys(stringValue: "field")
+        static let headerTooltipText = CodingKeys(stringValue: "headerTooltipText")
+        static let cellTooltipText = CodingKeys(stringValue: "cellTooltipText")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "field",
+          "headerTooltipText",
+          "cellTooltipText",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
+          self.field = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .headerTooltipText)
+        {
+          self.headerTooltipText = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cellTooltipText) {
+          self.cellTooltipText = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.field, forKey: .field)
+        try container.encode(self.headerTooltipText, forKey: .headerTooltipText)
+        try container.encode(self.cellTooltipText, forKey: .cellTooltipText)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -957,6 +2061,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Settings for tooltip for column header and cell.
       public var columnTooltipSettings: [DashboardChart.Visualization.ColumnTooltipSettings] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TableConfig`.
       public init() {}
 
@@ -971,6 +2077,55 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableTextWrap = CodingKeys(stringValue: "enableTextWrap")
+        static let columnRenderTypeSettings = CodingKeys(stringValue: "columnRenderTypeSettings")
+        static let columnTooltipSettings = CodingKeys(stringValue: "columnTooltipSettings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableTextWrap",
+          "columnRenderTypeSettings",
+          "columnTooltipSettings",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextWrap) {
+          self.enableTextWrap = value
+        }
+        if let value = try container.decodeIfPresent(
+          [DashboardChart.Visualization.ColumnRenderTypeSettings].self,
+          forKey: .columnRenderTypeSettings)
+        {
+          self.columnRenderTypeSettings = value
+        }
+        if let value = try container.decodeIfPresent(
+          [DashboardChart.Visualization.ColumnTooltipSettings].self, forKey: .columnTooltipSettings)
+        {
+          self.columnTooltipSettings = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableTextWrap, forKey: .enableTextWrap)
+        try container.encode(self.columnRenderTypeSettings, forKey: .columnRenderTypeSettings)
+        try container.encode(self.columnTooltipSettings, forKey: .columnTooltipSettings)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1002,6 +2157,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Point settings for the map.
       public var pointSettings: DashboardChart.Visualization.GoogleMapsConfig.PointSettings? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GoogleMapsConfig`.
       public init() {}
 
@@ -1018,6 +2175,53 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataSettings = CodingKeys(stringValue: "dataSettings")
+        static let plotMode = CodingKeys(stringValue: "plotMode")
+        static let mapPosition = CodingKeys(stringValue: "mapPosition")
+        static let pointSettings = CodingKeys(stringValue: "pointSettings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataSettings",
+          "plotMode",
+          "mapPosition",
+          "pointSettings",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.dataSettings = try container.decodeIfPresent(
+          DashboardChart.Visualization.GoogleMapsConfig.DataSettings.self, forKey: .dataSettings)
+        if let value = try container.decodeIfPresent(PlotMode.self, forKey: .plotMode) {
+          self.plotMode = value
+        }
+        self.mapPosition = try container.decodeIfPresent(
+          DashboardChart.Visualization.GoogleMapsConfig.MapPosition.self, forKey: .mapPosition)
+        self.pointSettings = try container.decodeIfPresent(
+          DashboardChart.Visualization.GoogleMapsConfig.PointSettings.self, forKey: .pointSettings)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.dataSettings, forKey: .dataSettings)
+        try container.encode(self.plotMode, forKey: .plotMode)
+        try container.encodeIfPresent(self.mapPosition, forKey: .mapPosition)
+        try container.encodeIfPresent(self.pointSettings, forKey: .pointSettings)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Data settings for the map.
       public struct DataSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -1030,6 +2234,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
         /// Optional. Field to count.
         public var countColumn: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `DataSettings`.
         public init() {}
@@ -1045,6 +2252,51 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let latitudeColumn = CodingKeys(stringValue: "latitudeColumn")
+          static let longitudeColumn = CodingKeys(stringValue: "longitudeColumn")
+          static let countColumn = CodingKeys(stringValue: "countColumn")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "latitudeColumn",
+            "longitudeColumn",
+            "countColumn",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latitudeColumn) {
+            self.latitudeColumn = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .longitudeColumn)
+          {
+            self.longitudeColumn = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .countColumn) {
+            self.countColumn = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.latitudeColumn, forKey: .latitudeColumn)
+          try container.encode(self.longitudeColumn, forKey: .longitudeColumn)
+          try container.encode(self.countColumn, forKey: .countColumn)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1077,6 +2329,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Scale of the map.
         public var zoomScaleValue: Swift.Double = Swift.Double()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `MapPosition`.
         public init() {}
 
@@ -1091,6 +2346,56 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let fitData = CodingKeys(stringValue: "fitData")
+          static let latitudeValue = CodingKeys(stringValue: "latitudeValue")
+          static let longitudeValue = CodingKeys(stringValue: "longitudeValue")
+          static let zoomScaleValue = CodingKeys(stringValue: "zoomScaleValue")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "fitData",
+            "latitudeValue",
+            "longitudeValue",
+            "zoomScaleValue",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fitData) {
+            self.fitData = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .latitudeValue) {
+            self.latitudeValue = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .longitudeValue) {
+            self.longitudeValue = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .zoomScaleValue) {
+            self.zoomScaleValue = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.fitData, forKey: .fitData)
+          try container.encode(self.latitudeValue, forKey: .latitudeValue)
+          try container.encode(self.longitudeValue, forKey: .longitudeValue)
+          try container.encode(self.zoomScaleValue, forKey: .zoomScaleValue)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1116,6 +2421,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Color for the point on the map.
         public var color: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `PointSettings`.
         public init() {}
 
@@ -1130,6 +2438,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let pointSizeType = CodingKeys(stringValue: "pointSizeType")
+          static let color = CodingKeys(stringValue: "color")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "pointSizeType",
+            "color",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(PointSizeType.self, forKey: .pointSizeType) {
+            self.pointSizeType = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.pointSizeType, forKey: .pointSizeType)
+          try container.encode(self.color, forKey: .color)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1168,6 +2514,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Pieces of the visual map.
       public var pieces: [DashboardChart.Visualization.VisualMap.VisualMapPiece] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `VisualMap`.
       public init() {}
 
@@ -1182,6 +2530,46 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let visualMapType = CodingKeys(stringValue: "visualMapType")
+        static let pieces = CodingKeys(stringValue: "pieces")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "visualMapType",
+          "pieces",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(VisualMapType.self, forKey: .visualMapType) {
+          self.visualMapType = value
+        }
+        if let value = try container.decodeIfPresent(
+          [DashboardChart.Visualization.VisualMap.VisualMapPiece].self, forKey: .pieces)
+        {
+          self.pieces = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.visualMapType, forKey: .visualMapType)
+        try container.encode(self.pieces, forKey: .pieces)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// An ECharts visual map of type 'piecewise' contain many pieces. Each
@@ -1202,6 +2590,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Optional. Label used in visual map controller.
         public var label: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `VisualMapPiece`.
         public init() {}
 
@@ -1216,6 +2607,52 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let min = CodingKeys(stringValue: "min")
+          static let max = CodingKeys(stringValue: "max")
+          static let color = CodingKeys(stringValue: "color")
+          static let label = CodingKeys(stringValue: "label")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "min",
+            "max",
+            "color",
+            "label",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.min = try container.decodeIfPresent(Swift.Int64.self, forKey: .min)
+          self.max = try container.decodeIfPresent(Swift.Int64.self, forKey: .max)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
+            self.color = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+            self.label = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.min, forKey: .min)
+          try container.encodeIfPresent(self.max, forKey: .max)
+          try container.encode(self.color, forKey: .color)
+          try container.encode(self.label, forKey: .label)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1263,6 +2700,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Right click drill downs.
     public var rightDrillDowns: [DashboardChart.DrillDownConfig.DrillDown] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DrillDownConfig`.
     public init() {}
 
@@ -1279,6 +2718,48 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let leftDrillDowns = CodingKeys(stringValue: "leftDrillDowns")
+      static let rightDrillDowns = CodingKeys(stringValue: "rightDrillDowns")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "leftDrillDowns",
+        "rightDrillDowns",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.DrillDownConfig.DrillDown].self, forKey: .leftDrillDowns)
+      {
+        self.leftDrillDowns = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DashboardChart.DrillDownConfig.DrillDown].self, forKey: .rightDrillDowns)
+      {
+        self.rightDrillDowns = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.leftDrillDowns, forKey: .leftDrillDowns)
+      try container.encode(self.rightDrillDowns, forKey: .rightDrillDowns)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Drill down config.
     public struct DrillDown: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -1291,6 +2772,8 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Drill down settings.
       public var settings: OneOf_Settings? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `DrillDown`.
       public init() {}
@@ -1308,17 +2791,33 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case defaultSettings = "defaultSettings"
-        case customSettings = "customSettings"
-        case id = "id"
-        case displayName = "displayName"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let defaultSettings = CodingKeys(stringValue: "defaultSettings")
+        static let customSettings = CodingKeys(stringValue: "customSettings")
+        static let id = CodingKeys(stringValue: "id")
+        static let displayName = CodingKeys(stringValue: "displayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "defaultSettings",
+          "customSettings",
+          "id",
+          "displayName",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Swift.String.self, forKey: .id)
-        self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
 
         var settings: OneOf_Settings? = nil
         let settingsCheckAndSet = {
@@ -1343,6 +2842,10 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try settingsCheckAndSet(.customSettings(customSettings))
         }
         self.settings = settings
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -1358,6 +2861,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             try container.encode(value, forKey: .customSettings)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Default drill down settings.
@@ -1366,6 +2872,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       {
         /// Required. Whether the default drill down is enabled.
         public var enabled: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `DefaultDrillDownSettings`.
         public init() {}
@@ -1381,6 +2890,38 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enabled = CodingKeys(stringValue: "enabled")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enabled"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+            self.enabled = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enabled, forKey: .enabled)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1409,6 +2950,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Action to be performed on drill down.
         public var action: OneOf_Action? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `CustomDrillDownSettings`.
         public init() {}
 
@@ -1425,18 +2969,36 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case query = "query"
-          case filter = "filter"
-          case externalLink = "externalLink"
-          case newTab = "newTab"
-          case leftClickColumn = "leftClickColumn"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let query = CodingKeys(stringValue: "query")
+          static let filter = CodingKeys(stringValue: "filter")
+          static let externalLink = CodingKeys(stringValue: "externalLink")
+          static let newTab = CodingKeys(stringValue: "newTab")
+          static let leftClickColumn = CodingKeys(stringValue: "leftClickColumn")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "query",
+            "filter",
+            "externalLink",
+            "newTab",
+            "leftClickColumn",
+          ]
         }
 
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.newTab = try container.decode(Swift.Bool.self, forKey: .newTab)
-          self.leftClickColumn = try container.decode(Swift.String.self, forKey: .leftClickColumn)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .newTab) {
+            self.newTab = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leftClickColumn)
+          {
+            self.leftClickColumn = value
+          }
 
           var action: OneOf_Action? = nil
           let actionCheckAndSet = {
@@ -1467,6 +3029,10 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             try actionCheckAndSet(.externalLink(externalLink))
           }
           self.action = action
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -1484,6 +3050,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
               try container.encode(value, forKey: .externalLink)
             }
           }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Drill down query config.
@@ -1492,6 +3061,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         {
           /// Required. Search query to be executed on drill down.
           public var query: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `DrillDownQuery`.
           public init() {}
@@ -1507,6 +3079,38 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let query = CodingKeys(stringValue: "query")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "query"
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+              self.query = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.query, forKey: .query)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -1530,6 +3134,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             [DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter
               .DrillDownDashboardFilter] = []
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `DrillDownFilter`.
           public init() {}
 
@@ -1546,6 +3153,43 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             return copy
           }
 
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let dashboardFilters = CodingKeys(stringValue: "dashboardFilters")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "dashboardFilters"
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(
+              [
+                DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter
+                  .DrillDownDashboardFilter
+              ].self, forKey: .dashboardFilters)
+            {
+              self.dashboardFilters = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.dashboardFilters, forKey: .dashboardFilters)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
           /// Drill down dashboard filter config.
           public struct DrillDownDashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
@@ -1556,6 +3200,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             /// Required. Filter operator and field values for the dashboard
             /// filter.
             public var filterOperatorAndValues: [FilterOperatorAndValues] = []
+
+            @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+              .init()
 
             /// Initialize a new instance of `DrillDownDashboardFilter`.
             public init() {}
@@ -1571,6 +3218,49 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
               var copy = self
               try config(&copy)
               return copy
+            }
+
+            private struct CodingKeys: CodingKey {
+              var stringValue: Swift.String
+              var intValue: Swift.Int? { nil }
+              init(stringValue: Swift.String) { self.stringValue = stringValue }
+              init?(intValue: Swift.Int) { nil }
+
+              static let dashboardFilterId = CodingKeys(stringValue: "dashboardFilterId")
+              static let filterOperatorAndValues = CodingKeys(
+                stringValue: "filterOperatorAndValues")
+
+              static let _knownKeys: Set<Swift.String> = [
+                "dashboardFilterId",
+                "filterOperatorAndValues",
+              ]
+            }
+
+            public init(from decoder: Decoder) throws {
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+              if let value = try container.decodeIfPresent(
+                Swift.String.self, forKey: .dashboardFilterId)
+              {
+                self.dashboardFilterId = value
+              }
+              if let value = try container.decodeIfPresent(
+                [FilterOperatorAndValues].self, forKey: .filterOperatorAndValues)
+              {
+                self.filterOperatorAndValues = value
+              }
+              for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+                self._unknownFields.json[key.stringValue] = try container.decode(
+                  GoogleCloudWKT.Value.self, forKey: key)
+              }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+              var container = encoder.container(keyedBy: CodingKeys.self)
+              try container.encode(self.dashboardFilterId, forKey: .dashboardFilterId)
+              try container.encode(self.filterOperatorAndValues, forKey: .filterOperatorAndValues)
+              for (key, value) in self._unknownFields.json {
+                try container.encode(value, forKey: CodingKeys(stringValue: key))
+              }
             }
 
             public static var _anyTypeUrl: Swift.String {
@@ -1607,6 +3297,9 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           /// Optional. Description of the external link.
           public var description: Swift.String = Swift.String()
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `DrillDownExternalLink`.
           public init() {}
 
@@ -1621,6 +3314,44 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let link = CodingKeys(stringValue: "link")
+            static let description = CodingKeys(stringValue: "description")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "link",
+              "description",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .link) {
+              self.link = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+              self.description = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.link, forKey: .link)
+            try container.encode(self.description, forKey: .description)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {

@@ -54,6 +54,8 @@
 
     public var syncConfig: OneOf_SyncConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlInstancesStartExternalSyncRequest`.
     public init() {}
 
@@ -70,30 +72,64 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case instance = "instance"
-      case project = "project"
-      case syncMode = "syncMode"
-      case skipVerification = "skipVerification"
-      case mysqlSyncConfig = "mysqlSyncConfig"
-      case syncParallelLevel = "syncParallelLevel"
-      case migrationType = "migrationType"
-      case replicaOverwriteEnabled = "replicaOverwriteEnabled"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let syncMode = CodingKeys(stringValue: "syncMode")
+      static let skipVerification = CodingKeys(stringValue: "skipVerification")
+      static let mysqlSyncConfig = CodingKeys(stringValue: "mysqlSyncConfig")
+      static let syncParallelLevel = CodingKeys(stringValue: "syncParallelLevel")
+      static let migrationType = CodingKeys(stringValue: "migrationType")
+      static let replicaOverwriteEnabled = CodingKeys(stringValue: "replicaOverwriteEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "project",
+        "syncMode",
+        "skipVerification",
+        "mysqlSyncConfig",
+        "syncParallelLevel",
+        "migrationType",
+        "replicaOverwriteEnabled",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
-      self.syncMode = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(
         SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode.self, forKey: .syncMode)
-      self.skipVerification = try container.decode(Swift.Bool.self, forKey: .skipVerification)
-      self.syncParallelLevel = try container.decode(
+      {
+        self.syncMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipVerification) {
+        self.skipVerification = value
+      }
+      if let value = try container.decodeIfPresent(
         ExternalSyncParallelLevel.self, forKey: .syncParallelLevel)
-      self.migrationType = try container.decode(
+      {
+        self.syncParallelLevel = value
+      }
+      if let value = try container.decodeIfPresent(
         SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType.self, forKey: .migrationType)
-      self.replicaOverwriteEnabled = try container.decode(
+      {
+        self.migrationType = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .replicaOverwriteEnabled)
+      {
+        self.replicaOverwriteEnabled = value
+      }
 
       var syncConfig: OneOf_SyncConfig? = nil
       let syncConfigCheckAndSet = {
@@ -111,6 +147,10 @@
         try syncConfigCheckAndSet(.mysqlSyncConfig(mysqlSyncConfig))
       }
       self.syncConfig = syncConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,6 +168,9 @@
         case .mysqlSyncConfig(let value):
           try container.encode(value, forKey: .mysqlSyncConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

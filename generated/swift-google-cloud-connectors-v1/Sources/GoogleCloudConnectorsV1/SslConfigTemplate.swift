@@ -36,6 +36,8 @@ public struct SslConfigTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Any additional fields that need to be rendered
   public var additionalVariables: [ConfigVariableTemplate] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SslConfigTemplate`.
   public init() {}
 
@@ -50,6 +52,64 @@ public struct SslConfigTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sslType = CodingKeys(stringValue: "sslType")
+    static let isTlsMandatory = CodingKeys(stringValue: "isTlsMandatory")
+    static let serverCertType = CodingKeys(stringValue: "serverCertType")
+    static let clientCertType = CodingKeys(stringValue: "clientCertType")
+    static let additionalVariables = CodingKeys(stringValue: "additionalVariables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sslType",
+      "isTlsMandatory",
+      "serverCertType",
+      "clientCertType",
+      "additionalVariables",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(SslType.self, forKey: .sslType) {
+      self.sslType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isTlsMandatory) {
+      self.isTlsMandatory = value
+    }
+    if let value = try container.decodeIfPresent([CertType].self, forKey: .serverCertType) {
+      self.serverCertType = value
+    }
+    if let value = try container.decodeIfPresent([CertType].self, forKey: .clientCertType) {
+      self.clientCertType = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ConfigVariableTemplate].self, forKey: .additionalVariables)
+    {
+      self.additionalVariables = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sslType, forKey: .sslType)
+    try container.encode(self.isTlsMandatory, forKey: .isTlsMandatory)
+    try container.encode(self.serverCertType, forKey: .serverCertType)
+    try container.encode(self.clientCertType, forKey: .clientCertType)
+    try container.encode(self.additionalVariables, forKey: .additionalVariables)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

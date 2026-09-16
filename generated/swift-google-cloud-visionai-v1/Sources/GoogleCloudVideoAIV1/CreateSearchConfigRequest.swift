@@ -35,6 +35,8 @@ public struct CreateSearchConfigRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// must be a letter, the last could be a letter or a number.
   public var searchConfigId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateSearchConfigRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateSearchConfigRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let searchConfig = CodingKeys(stringValue: "searchConfig")
+    static let searchConfigId = CodingKeys(stringValue: "searchConfigId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "searchConfig",
+      "searchConfigId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.searchConfig = try container.decodeIfPresent(SearchConfig.self, forKey: .searchConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchConfigId) {
+      self.searchConfigId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.searchConfig, forKey: .searchConfig)
+    try container.encode(self.searchConfigId, forKey: .searchConfigId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

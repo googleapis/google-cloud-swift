@@ -123,6 +123,8 @@ public struct Recognizer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`.
   public var kmsKeyVersionName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Recognizer`.
   public init() {}
 
@@ -137,6 +139,125 @@ public struct Recognizer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let model = CodingKeys(stringValue: "model")
+    static let languageCodes = CodingKeys(stringValue: "languageCodes")
+    static let defaultRecognitionConfig = CodingKeys(stringValue: "defaultRecognitionConfig")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let kmsKeyVersionName = CodingKeys(stringValue: "kmsKeyVersionName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "displayName",
+      "model",
+      "languageCodes",
+      "defaultRecognitionConfig",
+      "annotations",
+      "state",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "etag",
+      "reconciling",
+      "kmsKeyName",
+      "kmsKeyVersionName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageCodes) {
+      self.languageCodes = value
+    }
+    self.defaultRecognitionConfig = try container.decodeIfPresent(
+      RecognitionConfig.self, forKey: .defaultRecognitionConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Recognizer.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersionName) {
+      self.kmsKeyVersionName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.model, forKey: .model)
+    try container.encode(self.languageCodes, forKey: .languageCodes)
+    try container.encodeIfPresent(self.defaultRecognitionConfig, forKey: .defaultRecognitionConfig)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+    try container.encode(self.kmsKeyVersionName, forKey: .kmsKeyVersionName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Set of states that define the lifecycle of a Recognizer.

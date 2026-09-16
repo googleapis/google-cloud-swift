@@ -51,6 +51,8 @@
     /// Maps grounding.
     public var sourceFlaggingUris: [GroundingMetadata.SourceFlaggingUri] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroundingMetadata`.
     public init() {}
 
@@ -67,6 +69,84 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let webSearchQueries = CodingKeys(stringValue: "webSearchQueries")
+      static let searchEntryPoint = CodingKeys(stringValue: "searchEntryPoint")
+      static let retrievalQueries = CodingKeys(stringValue: "retrievalQueries")
+      static let groundingChunks = CodingKeys(stringValue: "groundingChunks")
+      static let groundingSupports = CodingKeys(stringValue: "groundingSupports")
+      static let retrievalMetadata = CodingKeys(stringValue: "retrievalMetadata")
+      static let googleMapsWidgetContextToken = CodingKeys(
+        stringValue: "googleMapsWidgetContextToken")
+      static let sourceFlaggingUris = CodingKeys(stringValue: "sourceFlaggingUris")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "webSearchQueries",
+        "searchEntryPoint",
+        "retrievalQueries",
+        "groundingChunks",
+        "groundingSupports",
+        "retrievalMetadata",
+        "googleMapsWidgetContextToken",
+        "sourceFlaggingUris",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .webSearchQueries) {
+        self.webSearchQueries = value
+      }
+      self.searchEntryPoint = try container.decodeIfPresent(
+        SearchEntryPoint.self, forKey: .searchEntryPoint)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retrievalQueries) {
+        self.retrievalQueries = value
+      }
+      if let value = try container.decodeIfPresent([GroundingChunk].self, forKey: .groundingChunks)
+      {
+        self.groundingChunks = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GroundingSupport].self, forKey: .groundingSupports)
+      {
+        self.groundingSupports = value
+      }
+      self.retrievalMetadata = try container.decodeIfPresent(
+        RetrievalMetadata.self, forKey: .retrievalMetadata)
+      self.googleMapsWidgetContextToken = try container.decodeIfPresent(
+        Swift.String.self, forKey: .googleMapsWidgetContextToken)
+      if let value = try container.decodeIfPresent(
+        [GroundingMetadata.SourceFlaggingUri].self, forKey: .sourceFlaggingUris)
+      {
+        self.sourceFlaggingUris = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.webSearchQueries, forKey: .webSearchQueries)
+      try container.encodeIfPresent(self.searchEntryPoint, forKey: .searchEntryPoint)
+      try container.encode(self.retrievalQueries, forKey: .retrievalQueries)
+      try container.encode(self.groundingChunks, forKey: .groundingChunks)
+      try container.encode(self.groundingSupports, forKey: .groundingSupports)
+      try container.encodeIfPresent(self.retrievalMetadata, forKey: .retrievalMetadata)
+      try container.encodeIfPresent(
+        self.googleMapsWidgetContextToken, forKey: .googleMapsWidgetContextToken)
+      try container.encode(self.sourceFlaggingUris, forKey: .sourceFlaggingUris)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Source content flagging uri for a place or review. This is currently
     /// populated only for Google Maps grounding.
     public struct SourceFlaggingUri: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -80,6 +160,8 @@
       /// information from the user query. It may contain information of the
       /// content it is flagging, which can be used to identify places. --)
       public var flagContentUri: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SourceFlaggingUri`.
       public init() {}
@@ -95,6 +177,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sourceId = CodingKeys(stringValue: "sourceId")
+        static let flagContentUri = CodingKeys(stringValue: "flagContentUri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sourceId",
+          "flagContentUri",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceId) {
+          self.sourceId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .flagContentUri) {
+          self.flagContentUri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.sourceId, forKey: .sourceId)
+        try container.encode(self.flagContentUri, forKey: .flagContentUri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

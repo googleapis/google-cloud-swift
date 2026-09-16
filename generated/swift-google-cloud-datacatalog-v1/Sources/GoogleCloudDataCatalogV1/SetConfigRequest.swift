@@ -30,6 +30,8 @@ public struct SetConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The configuration field to set.
   public var configuration: OneOf_Configuration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SetConfigRequest`.
   public init() {}
 
@@ -46,15 +48,28 @@ public struct SetConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case tagTemplateMigration = "tagTemplateMigration"
-    case catalogUiExperience = "catalogUiExperience"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let tagTemplateMigration = CodingKeys(stringValue: "tagTemplateMigration")
+    static let catalogUiExperience = CodingKeys(stringValue: "catalogUiExperience")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "tagTemplateMigration",
+      "catalogUiExperience",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var configuration: OneOf_Configuration? = nil
     let configurationCheckAndSet = {
@@ -77,6 +92,10 @@ public struct SetConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try configurationCheckAndSet(.catalogUiExperience(catalogUiExperience))
     }
     self.configuration = configuration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +109,9 @@ public struct SetConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .catalogUiExperience(let value):
         try container.encode(value, forKey: .catalogUiExperience)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -35,6 +35,8 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._An
   /// Desired expiration or lifetime of the access token.
   public var expiration: OneOf_Expiration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateAccessTokenRequest`.
   public init() {}
 
@@ -51,17 +53,33 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case expireTime = "expireTime"
-    case ttl = "ttl"
-    case workstation = "workstation"
-    case port = "port"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let workstation = CodingKeys(stringValue: "workstation")
+    static let port = CodingKeys(stringValue: "port")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "expireTime",
+      "ttl",
+      "workstation",
+      "port",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.workstation = try container.decode(Swift.String.self, forKey: .workstation)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workstation) {
+      self.workstation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
 
     var expiration: OneOf_Expiration? = nil
     let expirationCheckAndSet = {
@@ -82,6 +100,10 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._An
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,6 +118,9 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._An
       case .ttl(let value):
         try container.encode(value, forKey: .ttl)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -41,6 +41,8 @@ public struct MysqlProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// connection password. Mutually exclusive with the `password` field.
   public var secretManagerStoredPassword: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MysqlProfile`.
   public init() {}
 
@@ -55,6 +57,68 @@ public struct MysqlProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let port = CodingKeys(stringValue: "port")
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let sslConfig = CodingKeys(stringValue: "sslConfig")
+    static let secretManagerStoredPassword = CodingKeys(stringValue: "secretManagerStoredPassword")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostname",
+      "port",
+      "username",
+      "password",
+      "sslConfig",
+      "secretManagerStoredPassword",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    self.sslConfig = try container.decodeIfPresent(MysqlSslConfig.self, forKey: .sslConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .secretManagerStoredPassword)
+    {
+      self.secretManagerStoredPassword = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.port, forKey: .port)
+    try container.encode(self.username, forKey: .username)
+    try container.encode(self.password, forKey: .password)
+    try container.encodeIfPresent(self.sslConfig, forKey: .sslConfig)
+    try container.encode(self.secretManagerStoredPassword, forKey: .secretManagerStoredPassword)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

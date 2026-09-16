@@ -62,6 +62,8 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// numbers for which none of the fields they coded against are set.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PhoneNumber`.
   public init() {}
 
@@ -78,15 +80,28 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case e164Number = "e164Number"
-    case shortCode = "shortCode"
-    case `extension` = "extension"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let e164Number = CodingKeys(stringValue: "e164Number")
+    static let shortCode = CodingKeys(stringValue: "shortCode")
+    static let `extension` = CodingKeys(stringValue: "extension")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "e164Number",
+      "shortCode",
+      "extension",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`extension` = try container.decode(Swift.String.self, forKey: .`extension`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`extension`) {
+      self.`extension` = value
+    }
 
     var kind: OneOf_Kind? = nil
     let kindCheckAndSet = {
@@ -107,6 +122,10 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try kindCheckAndSet(.shortCode(shortCode))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -120,6 +139,9 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .shortCode(let value):
         try container.encode(value, forKey: .shortCode)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -147,6 +169,8 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// calling code. For example "611".
     public var number: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ShortCode`.
     public init() {}
 
@@ -161,6 +185,44 @@ public struct PhoneNumber: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let regionCode = CodingKeys(stringValue: "regionCode")
+      static let number = CodingKeys(stringValue: "number")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "regionCode",
+        "number",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
+        self.regionCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .number) {
+        self.number = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.regionCode, forKey: .regionCode)
+      try container.encode(self.number, forKey: .number)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

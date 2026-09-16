@@ -34,6 +34,8 @@ public struct CdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration associated with the CDN key.
   public var cdnKeyConfig: OneOf_CdnKeyConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CdnKey`.
   public init() {}
 
@@ -50,18 +52,35 @@ public struct CdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case googleCdnKey = "googleCdnKey"
-    case akamaiCdnKey = "akamaiCdnKey"
-    case mediaCdnKey = "mediaCdnKey"
-    case name = "name"
-    case hostname = "hostname"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let googleCdnKey = CodingKeys(stringValue: "googleCdnKey")
+    static let akamaiCdnKey = CodingKeys(stringValue: "akamaiCdnKey")
+    static let mediaCdnKey = CodingKeys(stringValue: "mediaCdnKey")
+    static let name = CodingKeys(stringValue: "name")
+    static let hostname = CodingKeys(stringValue: "hostname")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "googleCdnKey",
+      "akamaiCdnKey",
+      "mediaCdnKey",
+      "name",
+      "hostname",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.hostname = try container.decode(Swift.String.self, forKey: .hostname)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
 
     var cdnKeyConfig: OneOf_CdnKeyConfig? = nil
     let cdnKeyConfigCheckAndSet = {
@@ -83,6 +102,10 @@ public struct CdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try cdnKeyConfigCheckAndSet(.mediaCdnKey(mediaCdnKey))
     }
     self.cdnKeyConfig = cdnKeyConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -99,6 +122,9 @@ public struct CdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .mediaCdnKey(let value):
         try container.encode(value, forKey: .mediaCdnKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

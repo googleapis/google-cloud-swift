@@ -47,6 +47,8 @@ public struct KubernetesMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// EndpointDetails are updated internally for API consumers.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KubernetesMetadata`.
   public init() {}
 
@@ -61,6 +63,69 @@ public struct KubernetesMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kubernetesApiServerVersion = CodingKeys(stringValue: "kubernetesApiServerVersion")
+    static let nodeProviderId = CodingKeys(stringValue: "nodeProviderId")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let vcpuCount = CodingKeys(stringValue: "vcpuCount")
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kubernetesApiServerVersion",
+      "nodeProviderId",
+      "nodeCount",
+      "vcpuCount",
+      "memoryMb",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .kubernetesApiServerVersion)
+    {
+      self.kubernetesApiServerVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeProviderId) {
+      self.nodeProviderId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vcpuCount) {
+      self.vcpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.kubernetesApiServerVersion, forKey: .kubernetesApiServerVersion)
+    try container.encode(self.nodeProviderId, forKey: .nodeProviderId)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encode(self.vcpuCount, forKey: .vcpuCount)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

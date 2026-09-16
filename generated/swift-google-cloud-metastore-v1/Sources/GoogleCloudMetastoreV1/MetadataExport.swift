@@ -35,6 +35,8 @@ public struct MetadataExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataExport`.
   public init() {}
 
@@ -51,12 +53,25 @@ public struct MetadataExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case destinationGcsUri = "destinationGcsUri"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case state = "state"
-    case databaseDumpType = "databaseDumpType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationGcsUri = CodingKeys(stringValue: "destinationGcsUri")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let databaseDumpType = CodingKeys(stringValue: "databaseDumpType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationGcsUri",
+      "startTime",
+      "endTime",
+      "state",
+      "databaseDumpType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,9 +79,14 @@ public struct MetadataExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.state = try container.decode(MetadataExport.State.self, forKey: .state)
-    self.databaseDumpType = try container.decode(
+    if let value = try container.decodeIfPresent(MetadataExport.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseDumpSpec.Type_.self, forKey: .databaseDumpType)
+    {
+      self.databaseDumpType = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -84,12 +104,16 @@ public struct MetadataExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try destinationCheckAndSet(.destinationGcsUri(destinationGcsUri))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.databaseDumpType, forKey: .databaseDumpType)
 
@@ -98,6 +122,9 @@ public struct MetadataExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .destinationGcsUri(let value):
         try container.encode(value, forKey: .destinationGcsUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

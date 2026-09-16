@@ -47,6 +47,8 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The input of the widget tool.
   public var input: OneOf_Input? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WidgetTool`.
   public init() {}
 
@@ -63,21 +65,42 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parameters = "parameters"
-    case name = "name"
-    case description = "description"
-    case widgetType = "widgetType"
-    case uiConfig = "uiConfig"
-    case dataMapping = "dataMapping"
-    case textResponseConfig = "textResponseConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let widgetType = CodingKeys(stringValue: "widgetType")
+    static let uiConfig = CodingKeys(stringValue: "uiConfig")
+    static let dataMapping = CodingKeys(stringValue: "dataMapping")
+    static let textResponseConfig = CodingKeys(stringValue: "textResponseConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parameters",
+      "name",
+      "description",
+      "widgetType",
+      "uiConfig",
+      "dataMapping",
+      "textResponseConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.widgetType = try container.decode(WidgetTool.WidgetType.self, forKey: .widgetType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(WidgetTool.WidgetType.self, forKey: .widgetType) {
+      self.widgetType = value
+    }
     self.uiConfig = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .uiConfig)
     self.dataMapping = try container.decodeIfPresent(
       WidgetTool.DataMapping.self, forKey: .dataMapping)
@@ -98,6 +121,10 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try inputCheckAndSet(.parameters(parameters))
     }
     self.input = input
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -105,15 +132,18 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.widgetType, forKey: .widgetType)
-    try container.encode(self.uiConfig, forKey: .uiConfig)
-    try container.encode(self.dataMapping, forKey: .dataMapping)
-    try container.encode(self.textResponseConfig, forKey: .textResponseConfig)
+    try container.encodeIfPresent(self.uiConfig, forKey: .uiConfig)
+    try container.encodeIfPresent(self.dataMapping, forKey: .dataMapping)
+    try container.encodeIfPresent(self.textResponseConfig, forKey: .textResponseConfig)
 
     if let choice = self.input {
       switch choice {
       case .parameters(let value):
         try container.encode(value, forKey: .parameters)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -132,6 +162,8 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// LLM_GENERATED.
     public var textResponseInstruction: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextResponseConfig`.
     public init() {}
 
@@ -146,6 +178,54 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let staticText = CodingKeys(stringValue: "staticText")
+      static let textResponseInstruction = CodingKeys(stringValue: "textResponseInstruction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "staticText",
+        "textResponseInstruction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        WidgetTool.TextResponseConfig.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .staticText) {
+        self.staticText = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .textResponseInstruction)
+      {
+        self.textResponseInstruction = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.staticText, forKey: .staticText)
+      try container.encode(self.textResponseInstruction, forKey: .textResponseInstruction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines how the text response is produced.
@@ -297,6 +377,8 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     @available(*, deprecated)
     public var pythonScript: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataMapping`.
     public init() {}
 
@@ -311,6 +393,64 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceToolName = CodingKeys(stringValue: "sourceToolName")
+      static let fieldMappings = CodingKeys(stringValue: "fieldMappings")
+      static let pythonFunction = CodingKeys(stringValue: "pythonFunction")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let pythonScript = CodingKeys(stringValue: "pythonScript")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceToolName",
+        "fieldMappings",
+        "pythonFunction",
+        "mode",
+        "pythonScript",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceToolName) {
+        self.sourceToolName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .fieldMappings)
+      {
+        self.fieldMappings = value
+      }
+      self.pythonFunction = try container.decodeIfPresent(
+        PythonFunction.self, forKey: .pythonFunction)
+      if let value = try container.decodeIfPresent(WidgetTool.DataMapping.Mode.self, forKey: .mode)
+      {
+        self.mode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pythonScript) {
+        self.pythonScript = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceToolName, forKey: .sourceToolName)
+      try container.encode(self.fieldMappings, forKey: .fieldMappings)
+      try container.encodeIfPresent(self.pythonFunction, forKey: .pythonFunction)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encode(self.pythonScript, forKey: .pythonScript)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The strategy used to map data from the source tool to the widget.

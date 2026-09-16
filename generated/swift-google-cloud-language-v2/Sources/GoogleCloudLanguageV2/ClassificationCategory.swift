@@ -33,6 +33,8 @@ public struct ClassificationCategory: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// the corresponding category has a severity score.
   public var severity: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClassificationCategory`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct ClassificationCategory: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let confidence = CodingKeys(stringValue: "confidence")
+    static let severity = CodingKeys(stringValue: "severity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "confidence",
+      "severity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .severity) {
+      self.severity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.confidence, forKey: .confidence)
+    try container.encode(self.severity, forKey: .severity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Details specific to the automation rule type.
   public var ruleTypeCondition: OneOf_RuleTypeCondition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomationRuleCondition`.
   public init() {}
 
@@ -44,9 +46,20 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case targetsPresentCondition = "targetsPresentCondition"
-    case timedPromoteReleaseCondition = "timedPromoteReleaseCondition"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetsPresentCondition = CodingKeys(stringValue: "targetsPresentCondition")
+    static let timedPromoteReleaseCondition = CodingKeys(
+      stringValue: "timedPromoteReleaseCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetsPresentCondition",
+      "timedPromoteReleaseCondition",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,17 +83,24 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleCloudWKT._AnyPa
       try ruleTypeConditionCheckAndSet(.timedPromoteReleaseCondition(timedPromoteReleaseCondition))
     }
     self.ruleTypeCondition = ruleTypeCondition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.targetsPresentCondition, forKey: .targetsPresentCondition)
+    try container.encodeIfPresent(self.targetsPresentCondition, forKey: .targetsPresentCondition)
 
     if let choice = self.ruleTypeCondition {
       switch choice {
       case .timedPromoteReleaseCondition(let value):
         try container.encode(value, forKey: .timedPromoteReleaseCondition)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

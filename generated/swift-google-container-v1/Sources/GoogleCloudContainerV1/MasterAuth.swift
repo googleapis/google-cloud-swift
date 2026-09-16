@@ -64,6 +64,8 @@ public struct MasterAuth: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to the cluster endpoint.
   public var clientKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MasterAuth`.
   public init() {}
 
@@ -78,6 +80,67 @@ public struct MasterAuth: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let clientCertificateConfig = CodingKeys(stringValue: "clientCertificateConfig")
+    static let clusterCaCertificate = CodingKeys(stringValue: "clusterCaCertificate")
+    static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+    static let clientKey = CodingKeys(stringValue: "clientKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "username",
+      "password",
+      "clientCertificateConfig",
+      "clusterCaCertificate",
+      "clientCertificate",
+      "clientKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    self.clientCertificateConfig = try container.decodeIfPresent(
+      ClientCertificateConfig.self, forKey: .clientCertificateConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterCaCertificate) {
+      self.clusterCaCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+      self.clientCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+      self.clientKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.username, forKey: .username)
+    try container.encode(self.password, forKey: .password)
+    try container.encodeIfPresent(self.clientCertificateConfig, forKey: .clientCertificateConfig)
+    try container.encode(self.clusterCaCertificate, forKey: .clusterCaCertificate)
+    try container.encode(self.clientCertificate, forKey: .clientCertificate)
+    try container.encode(self.clientKey, forKey: .clientKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

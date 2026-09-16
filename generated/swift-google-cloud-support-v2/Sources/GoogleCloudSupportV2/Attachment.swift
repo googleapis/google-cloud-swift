@@ -47,6 +47,8 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The size of the attachment in bytes.
   public var sizeBytes: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attachment`.
   public init() {}
 
@@ -61,6 +63,65 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let filename = CodingKeys(stringValue: "filename")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "creator",
+      "filename",
+      "mimeType",
+      "sizeBytes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.creator = try container.decodeIfPresent(Actor.self, forKey: .creator)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filename) {
+      self.filename = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.creator, forKey: .creator)
+    try container.encode(self.filename, forKey: .filename)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    try container.encode(self.sizeBytes, forKey: .sizeBytes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@ public struct BackupRuleDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Backup Window Timezone in IANA format. For Eg. “America/Los_Angeles”
   public var backupWindowTimezone: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupRuleDetail`.
   public init() {}
 
@@ -52,6 +54,58 @@ public struct BackupRuleDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ruleName = CodingKeys(stringValue: "ruleName")
+    static let retentionDays = CodingKeys(stringValue: "retentionDays")
+    static let recurrence = CodingKeys(stringValue: "recurrence")
+    static let recurrenceSchedule = CodingKeys(stringValue: "recurrenceSchedule")
+    static let backupWindow = CodingKeys(stringValue: "backupWindow")
+    static let backupWindowTimezone = CodingKeys(stringValue: "backupWindowTimezone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ruleName",
+      "retentionDays",
+      "recurrence",
+      "recurrenceSchedule",
+      "backupWindow",
+      "backupWindowTimezone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.ruleName = try container.decodeIfPresent(Swift.String.self, forKey: .ruleName)
+    self.retentionDays = try container.decodeIfPresent(Swift.Int32.self, forKey: .retentionDays)
+    self.recurrence = try container.decodeIfPresent(Swift.String.self, forKey: .recurrence)
+    self.recurrenceSchedule = try container.decodeIfPresent(
+      Swift.String.self, forKey: .recurrenceSchedule)
+    self.backupWindow = try container.decodeIfPresent(Swift.String.self, forKey: .backupWindow)
+    self.backupWindowTimezone = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupWindowTimezone)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.ruleName, forKey: .ruleName)
+    try container.encodeIfPresent(self.retentionDays, forKey: .retentionDays)
+    try container.encodeIfPresent(self.recurrence, forKey: .recurrence)
+    try container.encodeIfPresent(self.recurrenceSchedule, forKey: .recurrenceSchedule)
+    try container.encodeIfPresent(self.backupWindow, forKey: .backupWindow)
+    try container.encodeIfPresent(self.backupWindowTimezone, forKey: .backupWindowTimezone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

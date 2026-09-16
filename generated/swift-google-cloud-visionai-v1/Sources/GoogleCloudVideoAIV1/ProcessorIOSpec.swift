@@ -39,6 +39,8 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var instanceResourceOutputBindingSpecs:
     [ProcessorIOSpec.InstanceResourceOutputBindingSpec] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessorIOSpec`.
   public init() {}
 
@@ -53,6 +55,70 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let graphInputChannelSpecs = CodingKeys(stringValue: "graphInputChannelSpecs")
+    static let graphOutputChannelSpecs = CodingKeys(stringValue: "graphOutputChannelSpecs")
+    static let instanceResourceInputBindingSpecs = CodingKeys(
+      stringValue: "instanceResourceInputBindingSpecs")
+    static let instanceResourceOutputBindingSpecs = CodingKeys(
+      stringValue: "instanceResourceOutputBindingSpecs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "graphInputChannelSpecs",
+      "graphOutputChannelSpecs",
+      "instanceResourceInputBindingSpecs",
+      "instanceResourceOutputBindingSpecs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ProcessorIOSpec.GraphInputChannelSpec].self, forKey: .graphInputChannelSpecs)
+    {
+      self.graphInputChannelSpecs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ProcessorIOSpec.GraphOutputChannelSpec].self, forKey: .graphOutputChannelSpecs)
+    {
+      self.graphOutputChannelSpecs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ProcessorIOSpec.InstanceResourceInputBindingSpec].self,
+      forKey: .instanceResourceInputBindingSpecs)
+    {
+      self.instanceResourceInputBindingSpecs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ProcessorIOSpec.InstanceResourceOutputBindingSpec].self,
+      forKey: .instanceResourceOutputBindingSpecs)
+    {
+      self.instanceResourceOutputBindingSpecs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.graphInputChannelSpecs, forKey: .graphInputChannelSpecs)
+    try container.encode(self.graphOutputChannelSpecs, forKey: .graphOutputChannelSpecs)
+    try container.encode(
+      self.instanceResourceInputBindingSpecs, forKey: .instanceResourceInputBindingSpecs)
+    try container.encode(
+      self.instanceResourceOutputBindingSpecs, forKey: .instanceResourceOutputBindingSpecs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Message for input channel specification.
@@ -82,6 +148,8 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// unlimited.
     public var maxConnectionAllowed: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GraphInputChannelSpec`.
     public init() {}
 
@@ -98,23 +166,51 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case dataType = "dataType"
-      case acceptedDataTypeUris = "acceptedDataTypeUris"
-      case `required` = "required"
-      case maxConnectionAllowed = "maxConnectionAllowed"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let dataType = CodingKeys(stringValue: "dataType")
+      static let acceptedDataTypeUris = CodingKeys(stringValue: "acceptedDataTypeUris")
+      static let `required` = CodingKeys(stringValue: "required")
+      static let maxConnectionAllowed = CodingKeys(stringValue: "maxConnectionAllowed")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "dataType",
+        "acceptedDataTypeUris",
+        "required",
+        "maxConnectionAllowed",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.dataType = try container.decode(DataType.self, forKey: .dataType)
-      self.acceptedDataTypeUris = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+        self.dataType = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .acceptedDataTypeUris)
-      self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-      self.maxConnectionAllowed = try container.decode(
-        Swift.Int64.self, forKey: .maxConnectionAllowed)
+      {
+        self.acceptedDataTypeUris = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+        self.`required` = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxConnectionAllowed)
+      {
+        self.maxConnectionAllowed = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,6 +220,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try container.encode(self.acceptedDataTypeUris, forKey: .acceptedDataTypeUris)
       try container.encode(self.`required`, forKey: .`required`)
       try container.encode(self.maxConnectionAllowed, forKey: .maxConnectionAllowed)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -149,6 +248,8 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public var dataTypeUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GraphOutputChannelSpec`.
     public init() {}
 
@@ -163,6 +264,50 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let dataType = CodingKeys(stringValue: "dataType")
+      static let dataTypeUri = CodingKeys(stringValue: "dataTypeUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "dataType",
+        "dataTypeUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+        self.dataType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataTypeUri) {
+        self.dataTypeUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.dataType, forKey: .dataType)
+      try container.encode(self.dataTypeUri, forKey: .dataTypeUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -188,6 +333,8 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public var resourceType: OneOf_ResourceType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceResourceInputBindingSpec`.
     public init() {}
 
@@ -204,15 +351,28 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case configTypeUri = "configTypeUri"
-      case resourceTypeUri = "resourceTypeUri"
-      case name = "name"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let configTypeUri = CodingKeys(stringValue: "configTypeUri")
+      static let resourceTypeUri = CodingKeys(stringValue: "resourceTypeUri")
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "configTypeUri",
+        "resourceTypeUri",
+        "name",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
 
       var resourceType: OneOf_ResourceType? = nil
       let resourceTypeCheckAndSet = {
@@ -235,6 +395,10 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try resourceTypeCheckAndSet(.resourceTypeUri(resourceTypeUri))
       }
       self.resourceType = resourceType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -248,6 +412,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .resourceTypeUri(let value):
           try container.encode(value, forKey: .resourceTypeUri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -285,6 +452,8 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// If it is false, the processor will automatically generate it if required.
     public var explicit: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceResourceOutputBindingSpec`.
     public init() {}
 
@@ -299,6 +468,50 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let resourceTypeUri = CodingKeys(stringValue: "resourceTypeUri")
+      static let explicit = CodingKeys(stringValue: "explicit")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "resourceTypeUri",
+        "explicit",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceTypeUri) {
+        self.resourceTypeUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .explicit) {
+        self.explicit = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.resourceTypeUri, forKey: .resourceTypeUri)
+      try container.encode(self.explicit, forKey: .explicit)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

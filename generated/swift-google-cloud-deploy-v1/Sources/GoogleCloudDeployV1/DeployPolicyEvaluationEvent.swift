@@ -69,6 +69,8 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWKT._A
   /// with verdict decide whether the request is allowed.
   public var overrides: [DeployPolicyEvaluationEvent.PolicyVerdictOverride] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeployPolicyEvaluationEvent`.
   public init() {}
 
@@ -83,6 +85,114 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let ruleType = CodingKeys(stringValue: "ruleType")
+    static let rule = CodingKeys(stringValue: "rule")
+    static let pipelineUid = CodingKeys(stringValue: "pipelineUid")
+    static let deliveryPipeline = CodingKeys(stringValue: "deliveryPipeline")
+    static let targetUid = CodingKeys(stringValue: "targetUid")
+    static let target = CodingKeys(stringValue: "target")
+    static let invoker = CodingKeys(stringValue: "invoker")
+    static let deployPolicy = CodingKeys(stringValue: "deployPolicy")
+    static let deployPolicyUid = CodingKeys(stringValue: "deployPolicyUid")
+    static let allowed = CodingKeys(stringValue: "allowed")
+    static let verdict = CodingKeys(stringValue: "verdict")
+    static let overrides = CodingKeys(stringValue: "overrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "ruleType",
+      "rule",
+      "pipelineUid",
+      "deliveryPipeline",
+      "targetUid",
+      "target",
+      "invoker",
+      "deployPolicy",
+      "deployPolicyUid",
+      "allowed",
+      "verdict",
+      "overrides",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleType) {
+      self.ruleType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rule) {
+      self.rule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pipelineUid) {
+      self.pipelineUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deliveryPipeline) {
+      self.deliveryPipeline = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetUid) {
+      self.targetUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(DeployPolicy.Invoker.self, forKey: .invoker) {
+      self.invoker = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployPolicy) {
+      self.deployPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployPolicyUid) {
+      self.deployPolicyUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowed) {
+      self.allowed = value
+    }
+    if let value = try container.decodeIfPresent(
+      DeployPolicyEvaluationEvent.PolicyVerdict.self, forKey: .verdict)
+    {
+      self.verdict = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DeployPolicyEvaluationEvent.PolicyVerdictOverride].self, forKey: .overrides)
+    {
+      self.overrides = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.ruleType, forKey: .ruleType)
+    try container.encode(self.rule, forKey: .rule)
+    try container.encode(self.pipelineUid, forKey: .pipelineUid)
+    try container.encode(self.deliveryPipeline, forKey: .deliveryPipeline)
+    try container.encode(self.targetUid, forKey: .targetUid)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.invoker, forKey: .invoker)
+    try container.encode(self.deployPolicy, forKey: .deployPolicy)
+    try container.encode(self.deployPolicyUid, forKey: .deployPolicyUid)
+    try container.encode(self.allowed, forKey: .allowed)
+    try container.encode(self.verdict, forKey: .verdict)
+    try container.encode(self.overrides, forKey: .overrides)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The policy verdict of the request.

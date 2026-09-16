@@ -54,6 +54,8 @@
     /// Path portion including query parameters in the URL.
     public var path: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TestFailure`.
     public init() {}
 
@@ -68,6 +70,78 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let actualOutputUrl = CodingKeys(stringValue: "actualOutputUrl")
+      static let actualRedirectResponseCode = CodingKeys(stringValue: "actualRedirectResponseCode")
+      static let actualService = CodingKeys(stringValue: "actualService")
+      static let expectedOutputUrl = CodingKeys(stringValue: "expectedOutputUrl")
+      static let expectedRedirectResponseCode = CodingKeys(
+        stringValue: "expectedRedirectResponseCode")
+      static let expectedService = CodingKeys(stringValue: "expectedService")
+      static let headers = CodingKeys(stringValue: "headers")
+      static let host = CodingKeys(stringValue: "host")
+      static let path = CodingKeys(stringValue: "path")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "actualOutputUrl",
+        "actualRedirectResponseCode",
+        "actualService",
+        "expectedOutputUrl",
+        "expectedRedirectResponseCode",
+        "expectedService",
+        "headers",
+        "host",
+        "path",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.actualOutputUrl = try container.decodeIfPresent(
+        Swift.String.self, forKey: .actualOutputUrl)
+      self.actualRedirectResponseCode = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .actualRedirectResponseCode)
+      self.actualService = try container.decodeIfPresent(Swift.String.self, forKey: .actualService)
+      self.expectedOutputUrl = try container.decodeIfPresent(
+        Swift.String.self, forKey: .expectedOutputUrl)
+      self.expectedRedirectResponseCode = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .expectedRedirectResponseCode)
+      self.expectedService = try container.decodeIfPresent(
+        Swift.String.self, forKey: .expectedService)
+      if let value = try container.decodeIfPresent([UrlMapTestHeader].self, forKey: .headers) {
+        self.headers = value
+      }
+      self.host = try container.decodeIfPresent(Swift.String.self, forKey: .host)
+      self.path = try container.decodeIfPresent(Swift.String.self, forKey: .path)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.actualOutputUrl, forKey: .actualOutputUrl)
+      try container.encodeIfPresent(
+        self.actualRedirectResponseCode, forKey: .actualRedirectResponseCode)
+      try container.encodeIfPresent(self.actualService, forKey: .actualService)
+      try container.encodeIfPresent(self.expectedOutputUrl, forKey: .expectedOutputUrl)
+      try container.encodeIfPresent(
+        self.expectedRedirectResponseCode, forKey: .expectedRedirectResponseCode)
+      try container.encodeIfPresent(self.expectedService, forKey: .expectedService)
+      try container.encode(self.headers, forKey: .headers)
+      try container.encodeIfPresent(self.host, forKey: .host)
+      try container.encodeIfPresent(self.path, forKey: .path)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@
     /// The custom task to be executed in this worker pool.
     public var task: OneOf_Task? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkerPoolSpec`.
     public init() {}
 
@@ -56,22 +58,43 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case containerSpec = "containerSpec"
-      case pythonPackageSpec = "pythonPackageSpec"
-      case machineSpec = "machineSpec"
-      case replicaCount = "replicaCount"
-      case nfsMounts = "nfsMounts"
-      case lustreMounts = "lustreMounts"
-      case diskSpec = "diskSpec"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let containerSpec = CodingKeys(stringValue: "containerSpec")
+      static let pythonPackageSpec = CodingKeys(stringValue: "pythonPackageSpec")
+      static let machineSpec = CodingKeys(stringValue: "machineSpec")
+      static let replicaCount = CodingKeys(stringValue: "replicaCount")
+      static let nfsMounts = CodingKeys(stringValue: "nfsMounts")
+      static let lustreMounts = CodingKeys(stringValue: "lustreMounts")
+      static let diskSpec = CodingKeys(stringValue: "diskSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "containerSpec",
+        "pythonPackageSpec",
+        "machineSpec",
+        "replicaCount",
+        "nfsMounts",
+        "lustreMounts",
+        "diskSpec",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
-      self.replicaCount = try container.decode(Swift.Int64.self, forKey: .replicaCount)
-      self.nfsMounts = try container.decode([NfsMount].self, forKey: .nfsMounts)
-      self.lustreMounts = try container.decode([LustreMount].self, forKey: .lustreMounts)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .replicaCount) {
+        self.replicaCount = value
+      }
+      if let value = try container.decodeIfPresent([NfsMount].self, forKey: .nfsMounts) {
+        self.nfsMounts = value
+      }
+      if let value = try container.decodeIfPresent([LustreMount].self, forKey: .lustreMounts) {
+        self.lustreMounts = value
+      }
       self.diskSpec = try container.decodeIfPresent(DiskSpec.self, forKey: .diskSpec)
 
       var task: OneOf_Task? = nil
@@ -95,15 +118,19 @@
         try taskCheckAndSet(.pythonPackageSpec(pythonPackageSpec))
       }
       self.task = task
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.machineSpec, forKey: .machineSpec)
+      try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
       try container.encode(self.replicaCount, forKey: .replicaCount)
       try container.encode(self.nfsMounts, forKey: .nfsMounts)
       try container.encode(self.lustreMounts, forKey: .lustreMounts)
-      try container.encode(self.diskSpec, forKey: .diskSpec)
+      try container.encodeIfPresent(self.diskSpec, forKey: .diskSpec)
 
       if let choice = self.task {
         switch choice {
@@ -112,6 +139,9 @@
         case .pythonPackageSpec(let value):
           try container.encode(value, forKey: .pythonPackageSpec)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

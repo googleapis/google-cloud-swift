@@ -75,6 +75,8 @@ public struct SpeechTranscriptionConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// information is returned. The default is `false`.
   public var enableWordConfidence: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpeechTranscriptionConfig`.
   public init() {}
 
@@ -89,6 +91,90 @@ public struct SpeechTranscriptionConfig: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let maxAlternatives = CodingKeys(stringValue: "maxAlternatives")
+    static let filterProfanity = CodingKeys(stringValue: "filterProfanity")
+    static let speechContexts = CodingKeys(stringValue: "speechContexts")
+    static let enableAutomaticPunctuation = CodingKeys(stringValue: "enableAutomaticPunctuation")
+    static let audioTracks = CodingKeys(stringValue: "audioTracks")
+    static let enableSpeakerDiarization = CodingKeys(stringValue: "enableSpeakerDiarization")
+    static let diarizationSpeakerCount = CodingKeys(stringValue: "diarizationSpeakerCount")
+    static let enableWordConfidence = CodingKeys(stringValue: "enableWordConfidence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "languageCode",
+      "maxAlternatives",
+      "filterProfanity",
+      "speechContexts",
+      "enableAutomaticPunctuation",
+      "audioTracks",
+      "enableSpeakerDiarization",
+      "diarizationSpeakerCount",
+      "enableWordConfidence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxAlternatives) {
+      self.maxAlternatives = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .filterProfanity) {
+      self.filterProfanity = value
+    }
+    if let value = try container.decodeIfPresent([SpeechContext].self, forKey: .speechContexts) {
+      self.speechContexts = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableAutomaticPunctuation)
+    {
+      self.enableAutomaticPunctuation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .audioTracks) {
+      self.audioTracks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSpeakerDiarization)
+    {
+      self.enableSpeakerDiarization = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diarizationSpeakerCount)
+    {
+      self.diarizationSpeakerCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWordConfidence) {
+      self.enableWordConfidence = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.maxAlternatives, forKey: .maxAlternatives)
+    try container.encode(self.filterProfanity, forKey: .filterProfanity)
+    try container.encode(self.speechContexts, forKey: .speechContexts)
+    try container.encode(self.enableAutomaticPunctuation, forKey: .enableAutomaticPunctuation)
+    try container.encode(self.audioTracks, forKey: .audioTracks)
+    try container.encode(self.enableSpeakerDiarization, forKey: .enableSpeakerDiarization)
+    try container.encode(self.diarizationSpeakerCount, forKey: .diarizationSpeakerCount)
+    try container.encode(self.enableWordConfidence, forKey: .enableWordConfidence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

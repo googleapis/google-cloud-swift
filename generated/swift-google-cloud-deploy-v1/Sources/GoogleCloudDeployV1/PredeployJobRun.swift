@@ -34,6 +34,8 @@ public struct PredeployJobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// available.
   public var failureMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PredeployJobRun`.
   public init() {}
 
@@ -48,6 +50,52 @@ public struct PredeployJobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let build = CodingKeys(stringValue: "build")
+    static let failureCause = CodingKeys(stringValue: "failureCause")
+    static let failureMessage = CodingKeys(stringValue: "failureMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "build",
+      "failureCause",
+      "failureMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .build) {
+      self.build = value
+    }
+    if let value = try container.decodeIfPresent(
+      PredeployJobRun.FailureCause.self, forKey: .failureCause)
+    {
+      self.failureCause = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureMessage) {
+      self.failureMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.build, forKey: .build)
+    try container.encode(self.failureCause, forKey: .failureCause)
+    try container.encode(self.failureMessage, forKey: .failureMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Well-known predeploy failures.

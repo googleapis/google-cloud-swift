@@ -40,6 +40,8 @@ public struct TimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Selects an optional time series filter.
   public var outputFilter: OneOf_OutputFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeSeriesFilter`.
   public init() {}
 
@@ -56,17 +58,32 @@ public struct TimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case filter = "filter"
-    case aggregation = "aggregation"
-    case secondaryAggregation = "secondaryAggregation"
-    case pickTimeSeriesFilter = "pickTimeSeriesFilter"
-    case statisticalTimeSeriesFilter = "statisticalTimeSeriesFilter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filter = CodingKeys(stringValue: "filter")
+    static let aggregation = CodingKeys(stringValue: "aggregation")
+    static let secondaryAggregation = CodingKeys(stringValue: "secondaryAggregation")
+    static let pickTimeSeriesFilter = CodingKeys(stringValue: "pickTimeSeriesFilter")
+    static let statisticalTimeSeriesFilter = CodingKeys(stringValue: "statisticalTimeSeriesFilter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filter",
+      "aggregation",
+      "secondaryAggregation",
+      "pickTimeSeriesFilter",
+      "statisticalTimeSeriesFilter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
     self.aggregation = try container.decodeIfPresent(Aggregation.self, forKey: .aggregation)
     self.secondaryAggregation = try container.decodeIfPresent(
       Aggregation.self, forKey: .secondaryAggregation)
@@ -92,13 +109,17 @@ public struct TimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try outputFilterCheckAndSet(.statisticalTimeSeriesFilter(statisticalTimeSeriesFilter))
     }
     self.outputFilter = outputFilter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.aggregation, forKey: .aggregation)
-    try container.encode(self.secondaryAggregation, forKey: .secondaryAggregation)
+    try container.encodeIfPresent(self.aggregation, forKey: .aggregation)
+    try container.encodeIfPresent(self.secondaryAggregation, forKey: .secondaryAggregation)
 
     if let choice = self.outputFilter {
       switch choice {
@@ -107,6 +128,9 @@ public struct TimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .statisticalTimeSeriesFilter(let value):
         try container.encode(value, forKey: .statisticalTimeSeriesFilter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

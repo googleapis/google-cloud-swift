@@ -77,6 +77,8 @@ public struct AudioStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// will be added to the HLS/DASH manifest. Not supported in MP4 files.
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AudioStream`.
   public init() {}
 
@@ -91,6 +93,81 @@ public struct AudioStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let codec = CodingKeys(stringValue: "codec")
+    static let bitrateBps = CodingKeys(stringValue: "bitrateBps")
+    static let channelCount = CodingKeys(stringValue: "channelCount")
+    static let channelLayout = CodingKeys(stringValue: "channelLayout")
+    static let mapping = CodingKeys(stringValue: "mapping")
+    static let sampleRateHertz = CodingKeys(stringValue: "sampleRateHertz")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "codec",
+      "bitrateBps",
+      "channelCount",
+      "channelLayout",
+      "mapping",
+      "sampleRateHertz",
+      "languageCode",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codec) {
+      self.codec = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bitrateBps) {
+      self.bitrateBps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelCount) {
+      self.channelCount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .channelLayout) {
+      self.channelLayout = value
+    }
+    if let value = try container.decodeIfPresent([AudioStream.AudioMapping].self, forKey: .mapping)
+    {
+      self.mapping = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleRateHertz) {
+      self.sampleRateHertz = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.codec, forKey: .codec)
+    try container.encode(self.bitrateBps, forKey: .bitrateBps)
+    try container.encode(self.channelCount, forKey: .channelCount)
+    try container.encode(self.channelLayout, forKey: .channelLayout)
+    try container.encode(self.mapping, forKey: .mapping)
+    try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The mapping for the
@@ -131,6 +208,8 @@ public struct AudioStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// positive values increase. The default is 0.
     public var gainDb: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AudioMapping`.
     public init() {}
 
@@ -145,6 +224,68 @@ public struct AudioStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let atomKey = CodingKeys(stringValue: "atomKey")
+      static let inputKey = CodingKeys(stringValue: "inputKey")
+      static let inputTrack = CodingKeys(stringValue: "inputTrack")
+      static let inputChannel = CodingKeys(stringValue: "inputChannel")
+      static let outputChannel = CodingKeys(stringValue: "outputChannel")
+      static let gainDb = CodingKeys(stringValue: "gainDb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "atomKey",
+        "inputKey",
+        "inputTrack",
+        "inputChannel",
+        "outputChannel",
+        "gainDb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .atomKey) {
+        self.atomKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputKey) {
+        self.inputKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .inputTrack) {
+        self.inputTrack = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .inputChannel) {
+        self.inputChannel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .outputChannel) {
+        self.outputChannel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .gainDb) {
+        self.gainDb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.atomKey, forKey: .atomKey)
+      try container.encode(self.inputKey, forKey: .inputKey)
+      try container.encode(self.inputTrack, forKey: .inputTrack)
+      try container.encode(self.inputChannel, forKey: .inputChannel)
+      try container.encode(self.outputChannel, forKey: .outputChannel)
+      try container.encode(self.gainDb, forKey: .gainDb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

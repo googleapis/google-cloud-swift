@@ -33,6 +33,8 @@ public struct ThreatPreventionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Configuration for overriding antivirus actions per protocol.
   public var antivirusOverrides: [AntivirusOverride] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ThreatPreventionProfile`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct ThreatPreventionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let severityOverrides = CodingKeys(stringValue: "severityOverrides")
+    static let threatOverrides = CodingKeys(stringValue: "threatOverrides")
+    static let antivirusOverrides = CodingKeys(stringValue: "antivirusOverrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "severityOverrides",
+      "threatOverrides",
+      "antivirusOverrides",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SeverityOverride].self, forKey: .severityOverrides)
+    {
+      self.severityOverrides = value
+    }
+    if let value = try container.decodeIfPresent([ThreatOverride].self, forKey: .threatOverrides) {
+      self.threatOverrides = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AntivirusOverride].self, forKey: .antivirusOverrides)
+    {
+      self.antivirusOverrides = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.severityOverrides, forKey: .severityOverrides)
+    try container.encode(self.threatOverrides, forKey: .threatOverrides)
+    try container.encode(self.antivirusOverrides, forKey: .antivirusOverrides)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

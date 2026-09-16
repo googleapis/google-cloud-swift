@@ -124,6 +124,8 @@
     /// migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
     public var optOutConformerModelMigration: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputAudioConfig`.
     public init() {}
 
@@ -138,6 +140,128 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audioEncoding = CodingKeys(stringValue: "audioEncoding")
+      static let sampleRateHertz = CodingKeys(stringValue: "sampleRateHertz")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let enableWordInfo = CodingKeys(stringValue: "enableWordInfo")
+      static let phraseHints = CodingKeys(stringValue: "phraseHints")
+      static let speechContexts = CodingKeys(stringValue: "speechContexts")
+      static let model = CodingKeys(stringValue: "model")
+      static let modelVariant = CodingKeys(stringValue: "modelVariant")
+      static let singleUtterance = CodingKeys(stringValue: "singleUtterance")
+      static let enableVoiceActivityEvents = CodingKeys(stringValue: "enableVoiceActivityEvents")
+      static let disableNoSpeechRecognizedEvent = CodingKeys(
+        stringValue: "disableNoSpeechRecognizedEvent")
+      static let enableAutomaticPunctuation = CodingKeys(stringValue: "enableAutomaticPunctuation")
+      static let phraseSets = CodingKeys(stringValue: "phraseSets")
+      static let optOutConformerModelMigration = CodingKeys(
+        stringValue: "optOutConformerModelMigration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audioEncoding",
+        "sampleRateHertz",
+        "languageCode",
+        "enableWordInfo",
+        "phraseHints",
+        "speechContexts",
+        "model",
+        "modelVariant",
+        "singleUtterance",
+        "enableVoiceActivityEvents",
+        "disableNoSpeechRecognizedEvent",
+        "enableAutomaticPunctuation",
+        "phraseSets",
+        "optOutConformerModelMigration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(AudioEncoding.self, forKey: .audioEncoding) {
+        self.audioEncoding = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleRateHertz) {
+        self.sampleRateHertz = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWordInfo) {
+        self.enableWordInfo = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phraseHints) {
+        self.phraseHints = value
+      }
+      if let value = try container.decodeIfPresent([SpeechContext].self, forKey: .speechContexts) {
+        self.speechContexts = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent(SpeechModelVariant.self, forKey: .modelVariant) {
+        self.modelVariant = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .singleUtterance) {
+        self.singleUtterance = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableVoiceActivityEvents)
+      {
+        self.enableVoiceActivityEvents = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableNoSpeechRecognizedEvent)
+      {
+        self.disableNoSpeechRecognizedEvent = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableAutomaticPunctuation)
+      {
+        self.enableAutomaticPunctuation = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phraseSets) {
+        self.phraseSets = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .optOutConformerModelMigration)
+      {
+        self.optOutConformerModelMigration = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encode(self.enableWordInfo, forKey: .enableWordInfo)
+      try container.encode(self.phraseHints, forKey: .phraseHints)
+      try container.encode(self.speechContexts, forKey: .speechContexts)
+      try container.encode(self.model, forKey: .model)
+      try container.encode(self.modelVariant, forKey: .modelVariant)
+      try container.encode(self.singleUtterance, forKey: .singleUtterance)
+      try container.encode(self.enableVoiceActivityEvents, forKey: .enableVoiceActivityEvents)
+      try container.encode(
+        self.disableNoSpeechRecognizedEvent, forKey: .disableNoSpeechRecognizedEvent)
+      try container.encode(self.enableAutomaticPunctuation, forKey: .enableAutomaticPunctuation)
+      try container.encode(self.phraseSets, forKey: .phraseSets)
+      try container.encode(
+        self.optOutConformerModelMigration, forKey: .optOutConformerModelMigration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

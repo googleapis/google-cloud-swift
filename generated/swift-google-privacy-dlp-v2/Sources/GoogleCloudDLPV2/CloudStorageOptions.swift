@@ -61,6 +61,8 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// inclusively. Both 0 and 100 means no limit. Defaults to 0.
   public var filesLimitPercent: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudStorageOptions`.
   public init() {}
 
@@ -75,6 +77,70 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fileSet = CodingKeys(stringValue: "fileSet")
+    static let bytesLimitPerFile = CodingKeys(stringValue: "bytesLimitPerFile")
+    static let bytesLimitPerFilePercent = CodingKeys(stringValue: "bytesLimitPerFilePercent")
+    static let fileTypes = CodingKeys(stringValue: "fileTypes")
+    static let sampleMethod = CodingKeys(stringValue: "sampleMethod")
+    static let filesLimitPercent = CodingKeys(stringValue: "filesLimitPercent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fileSet",
+      "bytesLimitPerFile",
+      "bytesLimitPerFilePercent",
+      "fileTypes",
+      "sampleMethod",
+      "filesLimitPercent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.fileSet = try container.decodeIfPresent(CloudStorageOptions.FileSet.self, forKey: .fileSet)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bytesLimitPerFile) {
+      self.bytesLimitPerFile = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .bytesLimitPerFilePercent)
+    {
+      self.bytesLimitPerFilePercent = value
+    }
+    if let value = try container.decodeIfPresent([FileType].self, forKey: .fileTypes) {
+      self.fileTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      CloudStorageOptions.SampleMethod.self, forKey: .sampleMethod)
+    {
+      self.sampleMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .filesLimitPercent) {
+      self.filesLimitPercent = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.fileSet, forKey: .fileSet)
+    try container.encode(self.bytesLimitPerFile, forKey: .bytesLimitPerFile)
+    try container.encode(self.bytesLimitPerFilePercent, forKey: .bytesLimitPerFilePercent)
+    try container.encode(self.fileTypes, forKey: .fileTypes)
+    try container.encode(self.sampleMethod, forKey: .sampleMethod)
+    try container.encode(self.filesLimitPercent, forKey: .filesLimitPercent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Set of files to scan.
@@ -97,6 +163,8 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// `regex_file_set` must be set.
     public var regexFileSet: CloudStorageRegexFileSet? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FileSet`.
     public init() {}
 
@@ -111,6 +179,43 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let url = CodingKeys(stringValue: "url")
+      static let regexFileSet = CodingKeys(stringValue: "regexFileSet")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "url",
+        "regexFileSet",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+        self.url = value
+      }
+      self.regexFileSet = try container.decodeIfPresent(
+        CloudStorageRegexFileSet.self, forKey: .regexFileSet)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.url, forKey: .url)
+      try container.encodeIfPresent(self.regexFileSet, forKey: .regexFileSet)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@ public struct BulkAnalyzeConversationsMetadata: Codable, Equatable, GoogleCloudW
   /// the operation output to be incomplete.
   public var partialErrors: [GoogleRpc.Status] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BulkAnalyzeConversationsMetadata`.
   public init() {}
 
@@ -59,6 +61,73 @@ public struct BulkAnalyzeConversationsMetadata: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let request = CodingKeys(stringValue: "request")
+    static let completedAnalysesCount = CodingKeys(stringValue: "completedAnalysesCount")
+    static let failedAnalysesCount = CodingKeys(stringValue: "failedAnalysesCount")
+    static let totalRequestedAnalysesCount = CodingKeys(stringValue: "totalRequestedAnalysesCount")
+    static let partialErrors = CodingKeys(stringValue: "partialErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "request",
+      "completedAnalysesCount",
+      "failedAnalysesCount",
+      "totalRequestedAnalysesCount",
+      "partialErrors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.request = try container.decodeIfPresent(
+      BulkAnalyzeConversationsRequest.self, forKey: .request)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .completedAnalysesCount)
+    {
+      self.completedAnalysesCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failedAnalysesCount) {
+      self.failedAnalysesCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .totalRequestedAnalysesCount)
+    {
+      self.totalRequestedAnalysesCount = value
+    }
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .partialErrors) {
+      self.partialErrors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.request, forKey: .request)
+    try container.encode(self.completedAnalysesCount, forKey: .completedAnalysesCount)
+    try container.encode(self.failedAnalysesCount, forKey: .failedAnalysesCount)
+    try container.encode(self.totalRequestedAnalysesCount, forKey: .totalRequestedAnalysesCount)
+    try container.encode(self.partialErrors, forKey: .partialErrors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@ public struct ScanRunErrorTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// 404, the scan has encountered too many NOT_FOUND responses.
   public var mostCommonHttpErrorCode: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScanRunErrorTrace`.
   public init() {}
 
@@ -49,6 +51,50 @@ public struct ScanRunErrorTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let scanConfigError = CodingKeys(stringValue: "scanConfigError")
+    static let mostCommonHttpErrorCode = CodingKeys(stringValue: "mostCommonHttpErrorCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "scanConfigError",
+      "mostCommonHttpErrorCode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ScanRunErrorTrace.Code.self, forKey: .code) {
+      self.code = value
+    }
+    self.scanConfigError = try container.decodeIfPresent(
+      ScanConfigError.self, forKey: .scanConfigError)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .mostCommonHttpErrorCode)
+    {
+      self.mostCommonHttpErrorCode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encodeIfPresent(self.scanConfigError, forKey: .scanConfigError)
+    try container.encode(self.mostCommonHttpErrorCode, forKey: .mostCommonHttpErrorCode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Output only.

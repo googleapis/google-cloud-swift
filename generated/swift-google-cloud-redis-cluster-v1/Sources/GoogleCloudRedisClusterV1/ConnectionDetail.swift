@@ -27,6 +27,8 @@ public struct ConnectionDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// connection).
   public var connection: OneOf_Connection? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectionDetail`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct ConnectionDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case pscAutoConnection = "pscAutoConnection"
-    case pscConnection = "pscConnection"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pscAutoConnection = CodingKeys(stringValue: "pscAutoConnection")
+    static let pscConnection = CodingKeys(stringValue: "pscConnection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pscAutoConnection",
+      "pscConnection",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,6 +84,10 @@ public struct ConnectionDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try connectionCheckAndSet(.pscConnection(pscConnection))
     }
     self.connection = connection
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +100,9 @@ public struct ConnectionDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .pscConnection(let value):
         try container.encode(value, forKey: .pscConnection)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

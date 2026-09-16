@@ -65,6 +65,8 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// stats.
   public var stats: [MaintenanceSummary.Stats] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenanceSummary`.
   public init() {}
 
@@ -81,6 +83,97 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maintenanceName = CodingKeys(stringValue: "maintenanceName")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let category = CodingKeys(stringValue: "category")
+    static let maintenanceScheduledStartTime = CodingKeys(
+      stringValue: "maintenanceScheduledStartTime")
+    static let maintenanceScheduledEndTime = CodingKeys(stringValue: "maintenanceScheduledEndTime")
+    static let maintenanceStartTime = CodingKeys(stringValue: "maintenanceStartTime")
+    static let maintenanceEndTime = CodingKeys(stringValue: "maintenanceEndTime")
+    static let userControllable = CodingKeys(stringValue: "userControllable")
+    static let controls = CodingKeys(stringValue: "controls")
+    static let stats = CodingKeys(stringValue: "stats")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maintenanceName",
+      "title",
+      "description",
+      "category",
+      "maintenanceScheduledStartTime",
+      "maintenanceScheduledEndTime",
+      "maintenanceStartTime",
+      "maintenanceEndTime",
+      "userControllable",
+      "controls",
+      "stats",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceName) {
+      self.maintenanceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(MaintenanceCategory.self, forKey: .category) {
+      self.category = value
+    }
+    self.maintenanceScheduledStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceScheduledStartTime)
+    self.maintenanceScheduledEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceScheduledEndTime)
+    self.maintenanceStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceStartTime)
+    self.maintenanceEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceEndTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userControllable) {
+      self.userControllable = value
+    }
+    if let value = try container.decodeIfPresent([MaintenanceControl].self, forKey: .controls) {
+      self.controls = value
+    }
+    if let value = try container.decodeIfPresent([MaintenanceSummary.Stats].self, forKey: .stats) {
+      self.stats = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.maintenanceName, forKey: .maintenanceName)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.category, forKey: .category)
+    try container.encodeIfPresent(
+      self.maintenanceScheduledStartTime, forKey: .maintenanceScheduledStartTime)
+    try container.encodeIfPresent(
+      self.maintenanceScheduledEndTime, forKey: .maintenanceScheduledEndTime)
+    try container.encodeIfPresent(self.maintenanceStartTime, forKey: .maintenanceStartTime)
+    try container.encodeIfPresent(self.maintenanceEndTime, forKey: .maintenanceEndTime)
+    try container.encode(self.userControllable, forKey: .userControllable)
+    try container.encode(self.controls, forKey: .controls)
+    try container.encode(self.stats, forKey: .stats)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Stats indicates the type of aggregate and the corresponding aggregates.
   public struct Stats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -93,6 +186,8 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// group_by is `"state"` a possible tuple in the aggregates list could be
     /// "SCHEDULED" : `11`,
     public var aggregates: [MaintenanceSummary.Aggregate] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Stats`.
     public init() {}
@@ -108,6 +203,46 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let groupBy = CodingKeys(stringValue: "groupBy")
+      static let aggregates = CodingKeys(stringValue: "aggregates")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "groupBy",
+        "aggregates",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupBy) {
+        self.groupBy = value
+      }
+      if let value = try container.decodeIfPresent(
+        [MaintenanceSummary.Aggregate].self, forKey: .aggregates)
+      {
+        self.aggregates = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.groupBy, forKey: .groupBy)
+      try container.encode(self.aggregates, forKey: .aggregates)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -133,6 +268,8 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// The count of the group.
     public var count: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Aggregate`.
     public init() {}
 
@@ -147,6 +284,44 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let group = CodingKeys(stringValue: "group")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "group",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
+        self.group = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.group, forKey: .group)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

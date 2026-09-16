@@ -51,6 +51,8 @@ public struct AccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// access
   public var networkTier: AccessConfig.NetworkTier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessConfig`.
   public init() {}
 
@@ -67,15 +69,31 @@ public struct AccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case name = "name"
-    case externalIp = "natIP"
-    case externalIpv6 = "externalIpv6"
-    case externalIpv6PrefixLength = "externalIpv6PrefixLength"
-    case setPublicPtr = "setPublicPtr"
-    case publicPtrDomainName = "publicPtrDomainName"
-    case networkTier = "networkTier"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let name = CodingKeys(stringValue: "name")
+    static let externalIp = CodingKeys(stringValue: "natIP")
+    static let externalIpv6 = CodingKeys(stringValue: "externalIpv6")
+    static let externalIpv6PrefixLength = CodingKeys(stringValue: "externalIpv6PrefixLength")
+    static let setPublicPtr = CodingKeys(stringValue: "setPublicPtr")
+    static let publicPtrDomainName = CodingKeys(stringValue: "publicPtrDomainName")
+    static let networkTier = CodingKeys(stringValue: "networkTier")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "name",
+      "natIP",
+      "externalIpv6",
+      "externalIpv6PrefixLength",
+      "setPublicPtr",
+      "publicPtrDomainName",
+      "networkTier",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -91,18 +109,25 @@ public struct AccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Swift.String.self, forKey: .publicPtrDomainName)
     self.networkTier = try container.decodeIfPresent(
       AccessConfig.NetworkTier.self, forKey: .networkTier)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.name, forKey: .name)
-    try container.encode(self.externalIp, forKey: .externalIp)
-    try container.encode(self.externalIpv6, forKey: .externalIpv6)
-    try container.encode(self.externalIpv6PrefixLength, forKey: .externalIpv6PrefixLength)
-    try container.encode(self.setPublicPtr, forKey: .setPublicPtr)
-    try container.encode(self.publicPtrDomainName, forKey: .publicPtrDomainName)
-    try container.encode(self.networkTier, forKey: .networkTier)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encodeIfPresent(self.name, forKey: .name)
+    try container.encodeIfPresent(self.externalIp, forKey: .externalIp)
+    try container.encodeIfPresent(self.externalIpv6, forKey: .externalIpv6)
+    try container.encodeIfPresent(self.externalIpv6PrefixLength, forKey: .externalIpv6PrefixLength)
+    try container.encodeIfPresent(self.setPublicPtr, forKey: .setPublicPtr)
+    try container.encodeIfPresent(self.publicPtrDomainName, forKey: .publicPtrDomainName)
+    try container.encodeIfPresent(self.networkTier, forKey: .networkTier)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of configuration.

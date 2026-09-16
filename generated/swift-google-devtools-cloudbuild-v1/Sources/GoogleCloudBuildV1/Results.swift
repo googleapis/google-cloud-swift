@@ -61,6 +61,8 @@ public struct Results: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Npm packages uploaded to Artifact Registry at the end of the build.
   public var npmPackages: [UploadedNpmPackage] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Results`.
   public init() {}
 
@@ -75,6 +77,95 @@ public struct Results: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let images = CodingKeys(stringValue: "images")
+    static let buildStepImages = CodingKeys(stringValue: "buildStepImages")
+    static let artifactManifest = CodingKeys(stringValue: "artifactManifest")
+    static let numArtifacts = CodingKeys(stringValue: "numArtifacts")
+    static let buildStepOutputs = CodingKeys(stringValue: "buildStepOutputs")
+    static let artifactTiming = CodingKeys(stringValue: "artifactTiming")
+    static let pythonPackages = CodingKeys(stringValue: "pythonPackages")
+    static let mavenArtifacts = CodingKeys(stringValue: "mavenArtifacts")
+    static let goModules = CodingKeys(stringValue: "goModules")
+    static let npmPackages = CodingKeys(stringValue: "npmPackages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "images",
+      "buildStepImages",
+      "artifactManifest",
+      "numArtifacts",
+      "buildStepOutputs",
+      "artifactTiming",
+      "pythonPackages",
+      "mavenArtifacts",
+      "goModules",
+      "npmPackages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([BuiltImage].self, forKey: .images) {
+      self.images = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .buildStepImages) {
+      self.buildStepImages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactManifest) {
+      self.artifactManifest = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .numArtifacts) {
+      self.numArtifacts = value
+    }
+    if let value = try container.decodeIfPresent([Foundation.Data].self, forKey: .buildStepOutputs)
+    {
+      self.buildStepOutputs = value
+    }
+    self.artifactTiming = try container.decodeIfPresent(TimeSpan.self, forKey: .artifactTiming)
+    if let value = try container.decodeIfPresent(
+      [UploadedPythonPackage].self, forKey: .pythonPackages)
+    {
+      self.pythonPackages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [UploadedMavenArtifact].self, forKey: .mavenArtifacts)
+    {
+      self.mavenArtifacts = value
+    }
+    if let value = try container.decodeIfPresent([UploadedGoModule].self, forKey: .goModules) {
+      self.goModules = value
+    }
+    if let value = try container.decodeIfPresent([UploadedNpmPackage].self, forKey: .npmPackages) {
+      self.npmPackages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.images, forKey: .images)
+    try container.encode(self.buildStepImages, forKey: .buildStepImages)
+    try container.encode(self.artifactManifest, forKey: .artifactManifest)
+    try container.encode(self.numArtifacts, forKey: .numArtifacts)
+    try container.encode(self.buildStepOutputs, forKey: .buildStepOutputs)
+    try container.encodeIfPresent(self.artifactTiming, forKey: .artifactTiming)
+    try container.encode(self.pythonPackages, forKey: .pythonPackages)
+    try container.encode(self.mavenArtifacts, forKey: .mavenArtifacts)
+    try container.encode(self.goModules, forKey: .goModules)
+    try container.encode(self.npmPackages, forKey: .npmPackages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

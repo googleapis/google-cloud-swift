@@ -44,6 +44,8 @@ public struct StaticOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// than `0.0`.
   public var opacity: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StaticOverlay`.
   public init() {}
 
@@ -58,6 +60,52 @@ public struct StaticOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let asset = CodingKeys(stringValue: "asset")
+    static let resolution = CodingKeys(stringValue: "resolution")
+    static let position = CodingKeys(stringValue: "position")
+    static let opacity = CodingKeys(stringValue: "opacity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "asset",
+      "resolution",
+      "position",
+      "opacity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
+      self.asset = value
+    }
+    self.resolution = try container.decodeIfPresent(NormalizedResolution.self, forKey: .resolution)
+    self.position = try container.decodeIfPresent(NormalizedCoordinate.self, forKey: .position)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .opacity) {
+      self.opacity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.asset, forKey: .asset)
+    try container.encodeIfPresent(self.resolution, forKey: .resolution)
+    try container.encodeIfPresent(self.position, forKey: .position)
+    try container.encode(self.opacity, forKey: .opacity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

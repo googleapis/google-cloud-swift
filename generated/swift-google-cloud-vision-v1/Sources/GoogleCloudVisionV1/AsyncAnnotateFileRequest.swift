@@ -33,6 +33,8 @@ public struct AsyncAnnotateFileRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Required. The desired output location and metadata (e.g. format).
   public var outputConfig: OutputConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AsyncAnnotateFileRequest`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct AsyncAnnotateFileRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputConfig = CodingKeys(stringValue: "inputConfig")
+    static let features = CodingKeys(stringValue: "features")
+    static let imageContext = CodingKeys(stringValue: "imageContext")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputConfig",
+      "features",
+      "imageContext",
+      "outputConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.inputConfig = try container.decodeIfPresent(InputConfig.self, forKey: .inputConfig)
+    if let value = try container.decodeIfPresent([Feature].self, forKey: .features) {
+      self.features = value
+    }
+    self.imageContext = try container.decodeIfPresent(ImageContext.self, forKey: .imageContext)
+    self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
+    try container.encode(self.features, forKey: .features)
+    try container.encodeIfPresent(self.imageContext, forKey: .imageContext)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@ public struct IgnoreJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
   public var overrideDeployPolicy: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IgnoreJobRequest`.
   public init() {}
 
@@ -49,6 +51,57 @@ public struct IgnoreJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rollout = CodingKeys(stringValue: "rollout")
+    static let phaseId = CodingKeys(stringValue: "phaseId")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let overrideDeployPolicy = CodingKeys(stringValue: "overrideDeployPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rollout",
+      "phaseId",
+      "jobId",
+      "overrideDeployPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rollout) {
+      self.rollout = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phaseId) {
+      self.phaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .overrideDeployPolicy)
+    {
+      self.overrideDeployPolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rollout, forKey: .rollout)
+    try container.encode(self.phaseId, forKey: .phaseId)
+    try container.encode(self.jobId, forKey: .jobId)
+    try container.encode(self.overrideDeployPolicy, forKey: .overrideDeployPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

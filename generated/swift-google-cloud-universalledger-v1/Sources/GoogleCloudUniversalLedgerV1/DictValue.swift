@@ -27,6 +27,8 @@ public struct DictValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Each value can be exactly one kind.
   public var values: OneOf_Values? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DictValue`.
   public init() {}
 
@@ -43,15 +45,31 @@ public struct DictValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case boolKeys = "boolKeys"
-    case stringKeys = "stringKeys"
-    case int64Keys = "int64Keys"
-    case accountIdKeys = "accountIdKeys"
-    case boolValues = "boolValues"
-    case stringValues = "stringValues"
-    case int64Values = "int64Values"
-    case dictValues = "dictValues"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let boolKeys = CodingKeys(stringValue: "boolKeys")
+    static let stringKeys = CodingKeys(stringValue: "stringKeys")
+    static let int64Keys = CodingKeys(stringValue: "int64Keys")
+    static let accountIdKeys = CodingKeys(stringValue: "accountIdKeys")
+    static let boolValues = CodingKeys(stringValue: "boolValues")
+    static let stringValues = CodingKeys(stringValue: "stringValues")
+    static let int64Values = CodingKeys(stringValue: "int64Values")
+    static let dictValues = CodingKeys(stringValue: "dictValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "boolKeys",
+      "stringKeys",
+      "int64Keys",
+      "accountIdKeys",
+      "boolValues",
+      "stringValues",
+      "int64Values",
+      "dictValues",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -106,6 +124,10 @@ public struct DictValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valuesCheckAndSet(.dictValues(dictValues))
     }
     self.values = values
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -135,6 +157,9 @@ public struct DictValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dictValues(let value):
         try container.encode(value, forKey: .dictValues)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

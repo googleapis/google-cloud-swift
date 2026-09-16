@@ -42,6 +42,8 @@ public struct TransactionCertificate: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// sequence. Used to build a Merkle tree for the proof of inclusion.
   public var certificationResultsDigestHex: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransactionCertificate`.
   public init() {}
 
@@ -56,6 +58,74 @@ public struct TransactionCertificate: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transactionDigestHex = CodingKeys(stringValue: "transactionDigestHex")
+    static let roundId = CodingKeys(stringValue: "roundId")
+    static let transactionEffects = CodingKeys(stringValue: "transactionEffects")
+    static let events = CodingKeys(stringValue: "events")
+    static let transactionEffectsStateChecksumHex = CodingKeys(
+      stringValue: "transactionEffectsStateChecksumHex")
+    static let certificationResultsDigestHex = CodingKeys(
+      stringValue: "certificationResultsDigestHex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transactionDigestHex",
+      "roundId",
+      "transactionEffects",
+      "events",
+      "transactionEffectsStateChecksumHex",
+      "certificationResultsDigestHex",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transactionDigestHex) {
+      self.transactionDigestHex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .roundId) {
+      self.roundId = value
+    }
+    self.transactionEffects = try container.decodeIfPresent(
+      TransactionEffects.self, forKey: .transactionEffects)
+    if let value = try container.decodeIfPresent([TransactionEvent].self, forKey: .events) {
+      self.events = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .transactionEffectsStateChecksumHex)
+    {
+      self.transactionEffectsStateChecksumHex = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .certificationResultsDigestHex)
+    {
+      self.certificationResultsDigestHex = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transactionDigestHex, forKey: .transactionDigestHex)
+    try container.encode(self.roundId, forKey: .roundId)
+    try container.encodeIfPresent(self.transactionEffects, forKey: .transactionEffects)
+    try container.encode(self.events, forKey: .events)
+    try container.encode(
+      self.transactionEffectsStateChecksumHex, forKey: .transactionEffectsStateChecksumHex)
+    try container.encode(self.certificationResultsDigestHex, forKey: .certificationResultsDigestHex)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

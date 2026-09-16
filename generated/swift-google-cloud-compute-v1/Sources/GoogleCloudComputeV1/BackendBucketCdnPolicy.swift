@@ -146,6 +146,8 @@
     /// [Output Only] Names of the keys for signing request URLs.
     public var signedUrlKeyNames: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendBucketCdnPolicy`.
     public init() {}
 
@@ -160,6 +162,99 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bypassCacheOnRequestHeaders = CodingKeys(
+        stringValue: "bypassCacheOnRequestHeaders")
+      static let cacheKeyPolicy = CodingKeys(stringValue: "cacheKeyPolicy")
+      static let cacheMode = CodingKeys(stringValue: "cacheMode")
+      static let clientTtl = CodingKeys(stringValue: "clientTtl")
+      static let defaultTtl = CodingKeys(stringValue: "defaultTtl")
+      static let maxTtl = CodingKeys(stringValue: "maxTtl")
+      static let negativeCaching = CodingKeys(stringValue: "negativeCaching")
+      static let negativeCachingPolicy = CodingKeys(stringValue: "negativeCachingPolicy")
+      static let requestCoalescing = CodingKeys(stringValue: "requestCoalescing")
+      static let serveWhileStale = CodingKeys(stringValue: "serveWhileStale")
+      static let signedUrlCacheMaxAgeSec = CodingKeys(stringValue: "signedUrlCacheMaxAgeSec")
+      static let signedUrlKeyNames = CodingKeys(stringValue: "signedUrlKeyNames")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bypassCacheOnRequestHeaders",
+        "cacheKeyPolicy",
+        "cacheMode",
+        "clientTtl",
+        "defaultTtl",
+        "maxTtl",
+        "negativeCaching",
+        "negativeCachingPolicy",
+        "requestCoalescing",
+        "serveWhileStale",
+        "signedUrlCacheMaxAgeSec",
+        "signedUrlKeyNames",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [BackendBucketCdnPolicyBypassCacheOnRequestHeader].self,
+        forKey: .bypassCacheOnRequestHeaders)
+      {
+        self.bypassCacheOnRequestHeaders = value
+      }
+      self.cacheKeyPolicy = try container.decodeIfPresent(
+        BackendBucketCdnPolicyCacheKeyPolicy.self, forKey: .cacheKeyPolicy)
+      self.cacheMode = try container.decodeIfPresent(
+        BackendBucketCdnPolicy.CacheMode.self, forKey: .cacheMode)
+      self.clientTtl = try container.decodeIfPresent(Swift.Int32.self, forKey: .clientTtl)
+      self.defaultTtl = try container.decodeIfPresent(Swift.Int32.self, forKey: .defaultTtl)
+      self.maxTtl = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxTtl)
+      self.negativeCaching = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .negativeCaching)
+      if let value = try container.decodeIfPresent(
+        [BackendBucketCdnPolicyNegativeCachingPolicy].self, forKey: .negativeCachingPolicy)
+      {
+        self.negativeCachingPolicy = value
+      }
+      self.requestCoalescing = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .requestCoalescing)
+      self.serveWhileStale = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .serveWhileStale)
+      self.signedUrlCacheMaxAgeSec = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .signedUrlCacheMaxAgeSec)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .signedUrlKeyNames)
+      {
+        self.signedUrlKeyNames = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.bypassCacheOnRequestHeaders, forKey: .bypassCacheOnRequestHeaders)
+      try container.encodeIfPresent(self.cacheKeyPolicy, forKey: .cacheKeyPolicy)
+      try container.encodeIfPresent(self.cacheMode, forKey: .cacheMode)
+      try container.encodeIfPresent(self.clientTtl, forKey: .clientTtl)
+      try container.encodeIfPresent(self.defaultTtl, forKey: .defaultTtl)
+      try container.encodeIfPresent(self.maxTtl, forKey: .maxTtl)
+      try container.encodeIfPresent(self.negativeCaching, forKey: .negativeCaching)
+      try container.encode(self.negativeCachingPolicy, forKey: .negativeCachingPolicy)
+      try container.encodeIfPresent(self.requestCoalescing, forKey: .requestCoalescing)
+      try container.encodeIfPresent(self.serveWhileStale, forKey: .serveWhileStale)
+      try container.encodeIfPresent(self.signedUrlCacheMaxAgeSec, forKey: .signedUrlCacheMaxAgeSec)
+      try container.encode(self.signedUrlKeyNames, forKey: .signedUrlKeyNames)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [cacheMode][google.cloud.compute.v1.BackendBucketCdnPolicy.cacheMode] field.

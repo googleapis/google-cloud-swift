@@ -38,6 +38,8 @@
     /// Optional. Human readable alias for this trunk.
     public var displayName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SipTrunk`.
     public init() {}
 
@@ -52,6 +54,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let expectedHostname = CodingKeys(stringValue: "expectedHostname")
+      static let connections = CodingKeys(stringValue: "connections")
+      static let displayName = CodingKeys(stringValue: "displayName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "expectedHostname",
+        "connections",
+        "displayName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .expectedHostname) {
+        self.expectedHostname = value
+      }
+      if let value = try container.decodeIfPresent([Connection].self, forKey: .connections) {
+        self.connections = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.expectedHostname, forKey: .expectedHostname)
+      try container.encode(self.connections, forKey: .connections)
+      try container.encode(self.displayName, forKey: .displayName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

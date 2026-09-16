@@ -24,6 +24,8 @@ public struct ParameterValidation: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. The type of validation to be performed.
   public var validationType: OneOf_ValidationType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ParameterValidation`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ParameterValidation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case regex = "regex"
-    case values = "values"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let regex = CodingKeys(stringValue: "regex")
+    static let values = CodingKeys(stringValue: "values")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "regex",
+      "values",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,6 +77,10 @@ public struct ParameterValidation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try validationTypeCheckAndSet(.values(values))
     }
     self.validationType = validationType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +93,9 @@ public struct ParameterValidation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .values(let value):
         try container.encode(value, forKey: .values)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

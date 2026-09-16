@@ -33,6 +33,8 @@ public struct PluggableDatabaseConnectionStrings: Codable, Equatable, GoogleClou
   /// database using IP.
   public var pdbIpDefault: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PluggableDatabaseConnectionStrings`.
   public init() {}
 
@@ -47,6 +49,52 @@ public struct PluggableDatabaseConnectionStrings: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allConnectionStrings = CodingKeys(stringValue: "allConnectionStrings")
+    static let pdbDefault = CodingKeys(stringValue: "pdbDefault")
+    static let pdbIpDefault = CodingKeys(stringValue: "pdbIpDefault")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allConnectionStrings",
+      "pdbDefault",
+      "pdbIpDefault",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .allConnectionStrings)
+    {
+      self.allConnectionStrings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pdbDefault) {
+      self.pdbDefault = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pdbIpDefault) {
+      self.pdbIpDefault = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.allConnectionStrings, forKey: .allConnectionStrings)
+    try container.encode(self.pdbDefault, forKey: .pdbDefault)
+    try container.encode(self.pdbIpDefault, forKey: .pdbIpDefault)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

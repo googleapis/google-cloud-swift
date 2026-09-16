@@ -187,6 +187,8 @@
     /// Possible values are: `0`, `1`.
     public var vpnGatewayInterface: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpnTunnel`.
     public init() {}
 
@@ -203,33 +205,68 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cipherSuite = "cipherSuite"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case detailedStatus = "detailedStatus"
-      case id = "id"
-      case ikeVersion = "ikeVersion"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case localTrafficSelector = "localTrafficSelector"
-      case name = "name"
-      case params = "params"
-      case peerExternalGateway = "peerExternalGateway"
-      case peerExternalGatewayInterface = "peerExternalGatewayInterface"
-      case peerGcpGateway = "peerGcpGateway"
-      case peerIp = "peerIp"
-      case region = "region"
-      case remoteTrafficSelector = "remoteTrafficSelector"
-      case router = "router"
-      case selfLink = "selfLink"
-      case sharedSecret = "sharedSecret"
-      case sharedSecretHash = "sharedSecretHash"
-      case status = "status"
-      case targetVpnGateway = "targetVpnGateway"
-      case vpnGateway = "vpnGateway"
-      case vpnGatewayInterface = "vpnGatewayInterface"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cipherSuite = CodingKeys(stringValue: "cipherSuite")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let detailedStatus = CodingKeys(stringValue: "detailedStatus")
+      static let id = CodingKeys(stringValue: "id")
+      static let ikeVersion = CodingKeys(stringValue: "ikeVersion")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let localTrafficSelector = CodingKeys(stringValue: "localTrafficSelector")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let peerExternalGateway = CodingKeys(stringValue: "peerExternalGateway")
+      static let peerExternalGatewayInterface = CodingKeys(
+        stringValue: "peerExternalGatewayInterface")
+      static let peerGcpGateway = CodingKeys(stringValue: "peerGcpGateway")
+      static let peerIp = CodingKeys(stringValue: "peerIp")
+      static let region = CodingKeys(stringValue: "region")
+      static let remoteTrafficSelector = CodingKeys(stringValue: "remoteTrafficSelector")
+      static let router = CodingKeys(stringValue: "router")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sharedSecret = CodingKeys(stringValue: "sharedSecret")
+      static let sharedSecretHash = CodingKeys(stringValue: "sharedSecretHash")
+      static let status = CodingKeys(stringValue: "status")
+      static let targetVpnGateway = CodingKeys(stringValue: "targetVpnGateway")
+      static let vpnGateway = CodingKeys(stringValue: "vpnGateway")
+      static let vpnGatewayInterface = CodingKeys(stringValue: "vpnGatewayInterface")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cipherSuite",
+        "creationTimestamp",
+        "description",
+        "detailedStatus",
+        "id",
+        "ikeVersion",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "localTrafficSelector",
+        "name",
+        "params",
+        "peerExternalGateway",
+        "peerExternalGatewayInterface",
+        "peerGcpGateway",
+        "peerIp",
+        "region",
+        "remoteTrafficSelector",
+        "router",
+        "selfLink",
+        "sharedSecret",
+        "sharedSecretHash",
+        "status",
+        "targetVpnGateway",
+        "vpnGateway",
+        "vpnGatewayInterface",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -253,9 +290,16 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-      self.localTrafficSelector = try container.decode(
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .localTrafficSelector)
+      {
+        self.localTrafficSelector = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.params = try container.decodeIfPresent(VpnTunnelParams.self, forKey: .params)
       self.peerExternalGateway = try container.decodeIfPresent(
@@ -266,8 +310,11 @@
         Swift.String.self, forKey: .peerGcpGateway)
       self.peerIp = try container.decodeIfPresent(Swift.String.self, forKey: .peerIp)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
-      self.remoteTrafficSelector = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .remoteTrafficSelector)
+      {
+        self.remoteTrafficSelector = value
+      }
       self.router = try container.decodeIfPresent(Swift.String.self, forKey: .router)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.sharedSecret = try container.decodeIfPresent(Swift.String.self, forKey: .sharedSecret)
@@ -279,17 +326,21 @@
       self.vpnGateway = try container.decodeIfPresent(Swift.String.self, forKey: .vpnGateway)
       self.vpnGatewayInterface = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .vpnGatewayInterface)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.cipherSuite, forKey: .cipherSuite)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.detailedStatus, forKey: .detailedStatus)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ikeVersion, forKey: .ikeVersion)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.cipherSuite, forKey: .cipherSuite)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.detailedStatus, forKey: .detailedStatus)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ikeVersion, forKey: .ikeVersion)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
@@ -297,22 +348,26 @@
       }
       try container.encode(self.labels, forKey: .labels)
       try container.encode(self.localTrafficSelector, forKey: .localTrafficSelector)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.peerExternalGateway, forKey: .peerExternalGateway)
-      try container.encode(self.peerExternalGatewayInterface, forKey: .peerExternalGatewayInterface)
-      try container.encode(self.peerGcpGateway, forKey: .peerGcpGateway)
-      try container.encode(self.peerIp, forKey: .peerIp)
-      try container.encode(self.region, forKey: .region)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.peerExternalGateway, forKey: .peerExternalGateway)
+      try container.encodeIfPresent(
+        self.peerExternalGatewayInterface, forKey: .peerExternalGatewayInterface)
+      try container.encodeIfPresent(self.peerGcpGateway, forKey: .peerGcpGateway)
+      try container.encodeIfPresent(self.peerIp, forKey: .peerIp)
+      try container.encodeIfPresent(self.region, forKey: .region)
       try container.encode(self.remoteTrafficSelector, forKey: .remoteTrafficSelector)
-      try container.encode(self.router, forKey: .router)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.sharedSecret, forKey: .sharedSecret)
-      try container.encode(self.sharedSecretHash, forKey: .sharedSecretHash)
-      try container.encode(self.status, forKey: .status)
-      try container.encode(self.targetVpnGateway, forKey: .targetVpnGateway)
-      try container.encode(self.vpnGateway, forKey: .vpnGateway)
-      try container.encode(self.vpnGatewayInterface, forKey: .vpnGatewayInterface)
+      try container.encodeIfPresent(self.router, forKey: .router)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.sharedSecret, forKey: .sharedSecret)
+      try container.encodeIfPresent(self.sharedSecretHash, forKey: .sharedSecretHash)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.targetVpnGateway, forKey: .targetVpnGateway)
+      try container.encodeIfPresent(self.vpnGateway, forKey: .vpnGateway)
+      try container.encodeIfPresent(self.vpnGatewayInterface, forKey: .vpnGatewayInterface)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.VpnTunnel.status] field.

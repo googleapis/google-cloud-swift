@@ -30,6 +30,8 @@ public struct BusinessGlossaryEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Name of the resource.
   public var resource: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BusinessGlossaryEvent`.
   public init() {}
 
@@ -44,6 +46,52 @@ public struct BusinessGlossaryEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let eventType = CodingKeys(stringValue: "eventType")
+    static let resource = CodingKeys(stringValue: "resource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "eventType",
+      "resource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(
+      BusinessGlossaryEvent.EventType.self, forKey: .eventType)
+    {
+      self.eventType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.eventType, forKey: .eventType)
+    try container.encode(self.resource, forKey: .resource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of glossary log event.

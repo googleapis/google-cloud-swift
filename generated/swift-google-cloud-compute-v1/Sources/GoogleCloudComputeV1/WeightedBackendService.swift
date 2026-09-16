@@ -58,6 +58,8 @@
     /// The value must be from 0 to 1000.
     public var weight: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WeightedBackendService`.
     public init() {}
 
@@ -72,6 +74,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let backendService = CodingKeys(stringValue: "backendService")
+      static let headerAction = CodingKeys(stringValue: "headerAction")
+      static let weight = CodingKeys(stringValue: "weight")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "backendService",
+        "headerAction",
+        "weight",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.backendService = try container.decodeIfPresent(
+        Swift.String.self, forKey: .backendService)
+      self.headerAction = try container.decodeIfPresent(
+        HttpHeaderAction.self, forKey: .headerAction)
+      self.weight = try container.decodeIfPresent(Swift.UInt32.self, forKey: .weight)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.backendService, forKey: .backendService)
+      try container.encodeIfPresent(self.headerAction, forKey: .headerAction)
+      try container.encodeIfPresent(self.weight, forKey: .weight)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

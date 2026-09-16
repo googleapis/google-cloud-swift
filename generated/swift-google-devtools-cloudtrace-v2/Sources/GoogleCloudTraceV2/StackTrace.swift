@@ -35,6 +35,8 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to that stack trace by only setting `stackTraceHashId`.
   public var stackTraceHashId: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StackTrace`.
   public init() {}
 
@@ -49,6 +51,43 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stackFrames = CodingKeys(stringValue: "stackFrames")
+    static let stackTraceHashId = CodingKeys(stringValue: "stackTraceHashId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stackFrames",
+      "stackTraceHashId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.stackFrames = try container.decodeIfPresent(
+      StackTrace.StackFrames.self, forKey: .stackFrames)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .stackTraceHashId) {
+      self.stackTraceHashId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.stackFrames, forKey: .stackFrames)
+    try container.encode(self.stackTraceHashId, forKey: .stackTraceHashId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a single stack frame in a stack trace.
@@ -82,6 +121,8 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The version of the deployed source code (up to 128 bytes).
     public var sourceVersion: TruncatableString? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StackFrame`.
     public init() {}
 
@@ -96,6 +137,67 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let functionName = CodingKeys(stringValue: "functionName")
+      static let originalFunctionName = CodingKeys(stringValue: "originalFunctionName")
+      static let fileName = CodingKeys(stringValue: "fileName")
+      static let lineNumber = CodingKeys(stringValue: "lineNumber")
+      static let columnNumber = CodingKeys(stringValue: "columnNumber")
+      static let loadModule = CodingKeys(stringValue: "loadModule")
+      static let sourceVersion = CodingKeys(stringValue: "sourceVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "functionName",
+        "originalFunctionName",
+        "fileName",
+        "lineNumber",
+        "columnNumber",
+        "loadModule",
+        "sourceVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.functionName = try container.decodeIfPresent(
+        TruncatableString.self, forKey: .functionName)
+      self.originalFunctionName = try container.decodeIfPresent(
+        TruncatableString.self, forKey: .originalFunctionName)
+      self.fileName = try container.decodeIfPresent(TruncatableString.self, forKey: .fileName)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .lineNumber) {
+        self.lineNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .columnNumber) {
+        self.columnNumber = value
+      }
+      self.loadModule = try container.decodeIfPresent(Module.self, forKey: .loadModule)
+      self.sourceVersion = try container.decodeIfPresent(
+        TruncatableString.self, forKey: .sourceVersion)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.functionName, forKey: .functionName)
+      try container.encodeIfPresent(self.originalFunctionName, forKey: .originalFunctionName)
+      try container.encodeIfPresent(self.fileName, forKey: .fileName)
+      try container.encode(self.lineNumber, forKey: .lineNumber)
+      try container.encode(self.columnNumber, forKey: .columnNumber)
+      try container.encodeIfPresent(self.loadModule, forKey: .loadModule)
+      try container.encodeIfPresent(self.sourceVersion, forKey: .sourceVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -121,6 +223,8 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// If this value is 0, then no stack frames were dropped.
     public var droppedFramesCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StackFrames`.
     public init() {}
 
@@ -135,6 +239,44 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let frame = CodingKeys(stringValue: "frame")
+      static let droppedFramesCount = CodingKeys(stringValue: "droppedFramesCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "frame",
+        "droppedFramesCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([StackTrace.StackFrame].self, forKey: .frame) {
+        self.frame = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .droppedFramesCount) {
+        self.droppedFramesCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.frame, forKey: .frame)
+      try container.encode(self.droppedFramesCount, forKey: .droppedFramesCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

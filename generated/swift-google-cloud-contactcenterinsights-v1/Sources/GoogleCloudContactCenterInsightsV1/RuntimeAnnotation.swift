@@ -44,6 +44,8 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The data in the annotation.
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeAnnotation`.
   public init() {}
 
@@ -60,24 +62,47 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case articleSuggestion = "articleSuggestion"
-    case faqAnswer = "faqAnswer"
-    case smartReply = "smartReply"
-    case smartComposeSuggestion = "smartComposeSuggestion"
-    case dialogflowInteraction = "dialogflowInteraction"
-    case conversationSummarizationSuggestion = "conversationSummarizationSuggestion"
-    case annotationId = "annotationId"
-    case createTime = "createTime"
-    case startBoundary = "startBoundary"
-    case endBoundary = "endBoundary"
-    case answerFeedback = "answerFeedback"
-    case userInput = "userInput"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let articleSuggestion = CodingKeys(stringValue: "articleSuggestion")
+    static let faqAnswer = CodingKeys(stringValue: "faqAnswer")
+    static let smartReply = CodingKeys(stringValue: "smartReply")
+    static let smartComposeSuggestion = CodingKeys(stringValue: "smartComposeSuggestion")
+    static let dialogflowInteraction = CodingKeys(stringValue: "dialogflowInteraction")
+    static let conversationSummarizationSuggestion = CodingKeys(
+      stringValue: "conversationSummarizationSuggestion")
+    static let annotationId = CodingKeys(stringValue: "annotationId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startBoundary = CodingKeys(stringValue: "startBoundary")
+    static let endBoundary = CodingKeys(stringValue: "endBoundary")
+    static let answerFeedback = CodingKeys(stringValue: "answerFeedback")
+    static let userInput = CodingKeys(stringValue: "userInput")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "articleSuggestion",
+      "faqAnswer",
+      "smartReply",
+      "smartComposeSuggestion",
+      "dialogflowInteraction",
+      "conversationSummarizationSuggestion",
+      "annotationId",
+      "createTime",
+      "startBoundary",
+      "endBoundary",
+      "answerFeedback",
+      "userInput",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.annotationId = try container.decode(Swift.String.self, forKey: .annotationId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationId) {
+      self.annotationId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startBoundary = try container.decodeIfPresent(
@@ -125,16 +150,20 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try dataCheckAndSet(.conversationSummarizationSuggestion(conversationSummarizationSuggestion))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.annotationId, forKey: .annotationId)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startBoundary, forKey: .startBoundary)
-    try container.encode(self.endBoundary, forKey: .endBoundary)
-    try container.encode(self.answerFeedback, forKey: .answerFeedback)
-    try container.encode(self.userInput, forKey: .userInput)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startBoundary, forKey: .startBoundary)
+    try container.encodeIfPresent(self.endBoundary, forKey: .endBoundary)
+    try container.encodeIfPresent(self.answerFeedback, forKey: .answerFeedback)
+    try container.encodeIfPresent(self.userInput, forKey: .userInput)
 
     if let choice = self.data {
       switch choice {
@@ -151,6 +180,9 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .conversationSummarizationSuggestion(let value):
         try container.encode(value, forKey: .conversationSummarizationSuggestion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -170,6 +202,8 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public var querySource: RuntimeAnnotation.UserInput.QuerySource = RuntimeAnnotation.UserInput
       .QuerySource()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UserInput`.
     public init() {}
 
@@ -184,6 +218,52 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let query = CodingKeys(stringValue: "query")
+      static let generatorName = CodingKeys(stringValue: "generatorName")
+      static let querySource = CodingKeys(stringValue: "querySource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "query",
+        "generatorName",
+        "querySource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generatorName) {
+        self.generatorName = value
+      }
+      if let value = try container.decodeIfPresent(
+        RuntimeAnnotation.UserInput.QuerySource.self, forKey: .querySource)
+      {
+        self.querySource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.query, forKey: .query)
+      try container.encode(self.generatorName, forKey: .generatorName)
+      try container.encode(self.querySource, forKey: .querySource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The source of the query.

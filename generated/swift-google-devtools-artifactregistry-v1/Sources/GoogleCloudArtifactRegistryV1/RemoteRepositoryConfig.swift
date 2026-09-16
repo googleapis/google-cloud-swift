@@ -34,6 +34,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Settings specific to the remote repository.
   public var remoteSource: OneOf_RemoteSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RemoteRepositoryConfig`.
   public init() {}
 
@@ -50,26 +52,49 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dockerRepository = "dockerRepository"
-    case mavenRepository = "mavenRepository"
-    case npmRepository = "npmRepository"
-    case pythonRepository = "pythonRepository"
-    case aptRepository = "aptRepository"
-    case yumRepository = "yumRepository"
-    case commonRepository = "commonRepository"
-    case description = "description"
-    case upstreamCredentials = "upstreamCredentials"
-    case disableUpstreamValidation = "disableUpstreamValidation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dockerRepository = CodingKeys(stringValue: "dockerRepository")
+    static let mavenRepository = CodingKeys(stringValue: "mavenRepository")
+    static let npmRepository = CodingKeys(stringValue: "npmRepository")
+    static let pythonRepository = CodingKeys(stringValue: "pythonRepository")
+    static let aptRepository = CodingKeys(stringValue: "aptRepository")
+    static let yumRepository = CodingKeys(stringValue: "yumRepository")
+    static let commonRepository = CodingKeys(stringValue: "commonRepository")
+    static let description = CodingKeys(stringValue: "description")
+    static let upstreamCredentials = CodingKeys(stringValue: "upstreamCredentials")
+    static let disableUpstreamValidation = CodingKeys(stringValue: "disableUpstreamValidation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dockerRepository",
+      "mavenRepository",
+      "npmRepository",
+      "pythonRepository",
+      "aptRepository",
+      "yumRepository",
+      "commonRepository",
+      "description",
+      "upstreamCredentials",
+      "disableUpstreamValidation",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.upstreamCredentials = try container.decodeIfPresent(
       RemoteRepositoryConfig.UpstreamCredentials.self, forKey: .upstreamCredentials)
-    self.disableUpstreamValidation = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .disableUpstreamValidation)
+    {
+      self.disableUpstreamValidation = value
+    }
 
     var remoteSource: OneOf_RemoteSource? = nil
     let remoteSourceCheckAndSet = {
@@ -117,12 +142,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       try remoteSourceCheckAndSet(.commonRepository(commonRepository))
     }
     self.remoteSource = remoteSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.upstreamCredentials, forKey: .upstreamCredentials)
+    try container.encodeIfPresent(self.upstreamCredentials, forKey: .upstreamCredentials)
     try container.encode(self.disableUpstreamValidation, forKey: .disableUpstreamValidation)
 
     if let choice = self.remoteSource {
@@ -143,6 +172,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try container.encode(value, forKey: .commonRepository)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The credentials to access the remote repository.
@@ -150,6 +182,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     Sendable
   {
     public var credentials: OneOf_Credentials? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UpstreamCredentials`.
     public init() {}
@@ -167,8 +201,18 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case usernamePasswordCredentials = "usernamePasswordCredentials"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let usernamePasswordCredentials = CodingKeys(
+        stringValue: "usernamePasswordCredentials")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "usernamePasswordCredentials"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -191,6 +235,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try credentialsCheckAndSet(.usernamePasswordCredentials(usernamePasswordCredentials))
       }
       self.credentials = credentials
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -201,6 +249,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .usernamePasswordCredentials(let value):
           try container.encode(value, forKey: .usernamePasswordCredentials)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -216,6 +267,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// `projects/{project}/secrets/{secret}/versions/{version}`.
       public var passwordSecretVersion: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `UsernamePasswordCredentials`.
       public init() {}
 
@@ -230,6 +283,46 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let username = CodingKeys(stringValue: "username")
+        static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "username",
+          "passwordSecretVersion",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+          self.username = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .passwordSecretVersion)
+        {
+          self.passwordSecretVersion = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.username, forKey: .username)
+        try container.encode(self.passwordSecretVersion, forKey: .passwordSecretVersion)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -269,6 +362,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository.
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DockerRepository`.
     public init() {}
 
@@ -285,9 +380,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -314,6 +419,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -327,6 +436,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
           try container.encode(value, forKey: .customRepository)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Customer-specified publicly available remote repository.
@@ -336,6 +448,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// An http/https uri reference to the custom remote repository, for ex:
       /// "https://registry-1.docker.io".
       public var uri: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
@@ -351,6 +465,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -492,6 +638,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository.
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MavenRepository`.
     public init() {}
 
@@ -508,9 +656,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -537,6 +695,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -550,6 +712,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
           try container.encode(value, forKey: .customRepository)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Customer-specified publicly available remote repository.
@@ -559,6 +724,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// An http/https uri reference to the upstream remote repository, for ex:
       /// "https://my.maven.registry/".
       public var uri: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
@@ -574,6 +741,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -715,6 +914,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NpmRepository`.
     public init() {}
 
@@ -731,9 +932,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -760,6 +971,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -773,6 +988,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
           try container.encode(value, forKey: .customRepository)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Customer-specified publicly available remote repository.
@@ -782,6 +1000,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// An http/https uri reference to the upstream remote repository, for ex:
       /// "https://my.npm.registry/".
       public var uri: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
@@ -797,6 +1017,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -937,6 +1189,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository.
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PythonRepository`.
     public init() {}
 
@@ -953,9 +1207,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -982,6 +1246,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -995,6 +1263,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
           try container.encode(value, forKey: .customRepository)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Customer-specified publicly available remote repository.
@@ -1004,6 +1275,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// An http/https uri reference to the upstream remote repository, for ex:
       /// "https://my.python.registry/".
       public var uri: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
@@ -1019,6 +1292,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1159,6 +1464,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository.
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AptRepository`.
     public init() {}
 
@@ -1175,9 +1482,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -1204,6 +1521,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -1216,6 +1537,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .customRepository(let value):
           try container.encode(value, forKey: .customRepository)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -1232,6 +1556,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// A custom field to define a path to a specific repository from the base.
       public var repositoryPath: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PublicRepository`.
       public init() {}
 
@@ -1246,6 +1572,47 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let repositoryBase = CodingKeys(stringValue: "repositoryBase")
+        static let repositoryPath = CodingKeys(stringValue: "repositoryPath")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "repositoryBase",
+          "repositoryPath",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          RemoteRepositoryConfig.AptRepository.PublicRepository.RepositoryBase.self,
+          forKey: .repositoryBase)
+        {
+          self.repositoryBase = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryPath) {
+          self.repositoryPath = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        try container.encode(self.repositoryPath, forKey: .repositoryPath)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Predefined list of publicly available repository bases for Apt.
@@ -1380,6 +1747,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// "https://my.apt.registry/".
       public var uri: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
 
@@ -1394,6 +1763,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1436,6 +1837,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Address of the remote repository.
     public var upstream: OneOf_Upstream? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `YumRepository`.
     public init() {}
 
@@ -1452,9 +1855,19 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case publicRepository = "publicRepository"
-      case customRepository = "customRepository"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let publicRepository = CodingKeys(stringValue: "publicRepository")
+      static let customRepository = CodingKeys(stringValue: "customRepository")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "publicRepository",
+        "customRepository",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -1481,6 +1894,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
       self.upstream = upstream
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -1493,6 +1910,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .customRepository(let value):
           try container.encode(value, forKey: .customRepository)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -1509,6 +1929,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// A custom field to define a path to a specific repository from the base.
       public var repositoryPath: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `PublicRepository`.
       public init() {}
 
@@ -1523,6 +1945,47 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let repositoryBase = CodingKeys(stringValue: "repositoryBase")
+        static let repositoryPath = CodingKeys(stringValue: "repositoryPath")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "repositoryBase",
+          "repositoryPath",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          RemoteRepositoryConfig.YumRepository.PublicRepository.RepositoryBase.self,
+          forKey: .repositoryBase)
+        {
+          self.repositoryBase = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryPath) {
+          self.repositoryPath = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.repositoryBase, forKey: .repositoryBase)
+        try container.encode(self.repositoryPath, forKey: .repositoryPath)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Predefined list of publicly available repository bases for Yum.
@@ -1678,6 +2141,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       /// "https://my.yum.registry/".
       public var uri: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CustomRepository`.
       public init() {}
 
@@ -1692,6 +2157,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1734,6 +2231,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Required. A common public repository base for remote repository.
     public var uri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CommonRemoteRepository`.
     public init() {}
 
@@ -1748,6 +2247,38 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

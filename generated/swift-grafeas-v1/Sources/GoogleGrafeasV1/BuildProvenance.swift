@@ -64,6 +64,8 @@ public struct BuildProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Version string of the builder at the time this build was executed.
   public var builderVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildProvenance`.
   public init() {}
 
@@ -78,6 +80,106 @@ public struct BuildProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let commands = CodingKeys(stringValue: "commands")
+    static let builtArtifacts = CodingKeys(stringValue: "builtArtifacts")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let logsUri = CodingKeys(stringValue: "logsUri")
+    static let sourceProvenance = CodingKeys(stringValue: "sourceProvenance")
+    static let triggerId = CodingKeys(stringValue: "triggerId")
+    static let buildOptions = CodingKeys(stringValue: "buildOptions")
+    static let builderVersion = CodingKeys(stringValue: "builderVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "projectId",
+      "commands",
+      "builtArtifacts",
+      "createTime",
+      "startTime",
+      "endTime",
+      "creator",
+      "logsUri",
+      "sourceProvenance",
+      "triggerId",
+      "buildOptions",
+      "builderVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent([Command].self, forKey: .commands) {
+      self.commands = value
+    }
+    if let value = try container.decodeIfPresent([Artifact].self, forKey: .builtArtifacts) {
+      self.builtArtifacts = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logsUri) {
+      self.logsUri = value
+    }
+    self.sourceProvenance = try container.decodeIfPresent(Source.self, forKey: .sourceProvenance)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .triggerId) {
+      self.triggerId = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .buildOptions)
+    {
+      self.buildOptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .builderVersion) {
+      self.builderVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.commands, forKey: .commands)
+    try container.encode(self.builtArtifacts, forKey: .builtArtifacts)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.creator, forKey: .creator)
+    try container.encode(self.logsUri, forKey: .logsUri)
+    try container.encodeIfPresent(self.sourceProvenance, forKey: .sourceProvenance)
+    try container.encode(self.triggerId, forKey: .triggerId)
+    try container.encode(self.buildOptions, forKey: .buildOptions)
+    try container.encode(self.builderVersion, forKey: .builderVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

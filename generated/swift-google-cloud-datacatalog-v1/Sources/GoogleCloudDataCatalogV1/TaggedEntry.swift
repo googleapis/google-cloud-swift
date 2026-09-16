@@ -33,6 +33,8 @@ public struct TaggedEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. Entry to be ingested.
   public var entry: OneOf_Entry? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaggedEntry`.
   public init() {}
 
@@ -49,16 +51,31 @@ public struct TaggedEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case v1Entry = "v1Entry"
-    case presentTags = "presentTags"
-    case absentTags = "absentTags"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let v1Entry = CodingKeys(stringValue: "v1Entry")
+    static let presentTags = CodingKeys(stringValue: "presentTags")
+    static let absentTags = CodingKeys(stringValue: "absentTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "v1Entry",
+      "presentTags",
+      "absentTags",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.presentTags = try container.decode([Tag].self, forKey: .presentTags)
-    self.absentTags = try container.decode([Tag].self, forKey: .absentTags)
+    if let value = try container.decodeIfPresent([Tag].self, forKey: .presentTags) {
+      self.presentTags = value
+    }
+    if let value = try container.decodeIfPresent([Tag].self, forKey: .absentTags) {
+      self.absentTags = value
+    }
 
     var entry: OneOf_Entry? = nil
     let entryCheckAndSet = {
@@ -74,6 +91,10 @@ public struct TaggedEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try entryCheckAndSet(.v1Entry(v1Entry))
     }
     self.entry = entry
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +107,9 @@ public struct TaggedEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .v1Entry(let value):
         try container.encode(value, forKey: .v1Entry)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

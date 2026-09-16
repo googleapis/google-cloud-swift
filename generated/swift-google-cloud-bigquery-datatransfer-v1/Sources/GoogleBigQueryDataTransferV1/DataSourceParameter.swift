@@ -71,6 +71,8 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// visible to users.
   public var deprecated: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSourceParameter`.
   public init() {}
 
@@ -87,46 +89,102 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case paramId = "paramId"
-    case displayName = "displayName"
-    case description = "description"
-    case type = "type"
-    case `required` = "required"
-    case repeated = "repeated"
-    case validationRegex = "validationRegex"
-    case allowedValues = "allowedValues"
-    case minValue = "minValue"
-    case maxValue = "maxValue"
-    case fields = "fields"
-    case validationDescription = "validationDescription"
-    case validationHelpUrl = "validationHelpUrl"
-    case immutable = "immutable"
-    case recurse = "recurse"
-    case deprecated = "deprecated"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let paramId = CodingKeys(stringValue: "paramId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let type = CodingKeys(stringValue: "type")
+    static let `required` = CodingKeys(stringValue: "required")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let validationRegex = CodingKeys(stringValue: "validationRegex")
+    static let allowedValues = CodingKeys(stringValue: "allowedValues")
+    static let minValue = CodingKeys(stringValue: "minValue")
+    static let maxValue = CodingKeys(stringValue: "maxValue")
+    static let fields = CodingKeys(stringValue: "fields")
+    static let validationDescription = CodingKeys(stringValue: "validationDescription")
+    static let validationHelpUrl = CodingKeys(stringValue: "validationHelpUrl")
+    static let immutable = CodingKeys(stringValue: "immutable")
+    static let recurse = CodingKeys(stringValue: "recurse")
+    static let deprecated = CodingKeys(stringValue: "deprecated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "paramId",
+      "displayName",
+      "description",
+      "type",
+      "required",
+      "repeated",
+      "validationRegex",
+      "allowedValues",
+      "minValue",
+      "maxValue",
+      "fields",
+      "validationDescription",
+      "validationHelpUrl",
+      "immutable",
+      "recurse",
+      "deprecated",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.paramId = try container.decode(Swift.String.self, forKey: .paramId)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.type = try container.decode(DataSourceParameter.Type_.self, forKey: .type)
-    self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-    self.repeated = try container.decode(Swift.Bool.self, forKey: .repeated)
-    self.validationRegex = try container.decode(Swift.String.self, forKey: .validationRegex)
-    self.allowedValues = try container.decode([Swift.String].self, forKey: .allowedValues)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .paramId) {
+      self.paramId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(DataSourceParameter.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+      self.`required` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .repeated) {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationRegex) {
+      self.validationRegex = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
+      self.allowedValues = value
+    }
     self.minValue = try container.decodeIfPresent(
       GoogleCloudWKT.DoubleValue.self, forKey: .minValue)
     self.maxValue = try container.decodeIfPresent(
       GoogleCloudWKT.DoubleValue.self, forKey: .maxValue)
-    self.fields = try container.decode([DataSourceParameter].self, forKey: .fields)
-    self.validationDescription = try container.decode(
-      Swift.String.self, forKey: .validationDescription)
-    self.validationHelpUrl = try container.decode(Swift.String.self, forKey: .validationHelpUrl)
-    self.immutable = try container.decode(Swift.Bool.self, forKey: .immutable)
-    self.recurse = try container.decode(Swift.Bool.self, forKey: .recurse)
-    self.deprecated = try container.decode(Swift.Bool.self, forKey: .deprecated)
+    if let value = try container.decodeIfPresent([DataSourceParameter].self, forKey: .fields) {
+      self.fields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationDescription)
+    {
+      self.validationDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationHelpUrl) {
+      self.validationHelpUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .immutable) {
+      self.immutable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recurse) {
+      self.recurse = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deprecated) {
+      self.deprecated = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -139,14 +197,17 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.validationRegex, forKey: .validationRegex)
     try container.encode(self.allowedValues, forKey: .allowedValues)
-    try container.encode(self.minValue, forKey: .minValue)
-    try container.encode(self.maxValue, forKey: .maxValue)
+    try container.encodeIfPresent(self.minValue, forKey: .minValue)
+    try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
     try container.encode(self.fields, forKey: .fields)
     try container.encode(self.validationDescription, forKey: .validationDescription)
     try container.encode(self.validationHelpUrl, forKey: .validationHelpUrl)
     try container.encode(self.immutable, forKey: .immutable)
     try container.encode(self.recurse, forKey: .recurse)
     try container.encode(self.deprecated, forKey: .deprecated)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Parameter type.

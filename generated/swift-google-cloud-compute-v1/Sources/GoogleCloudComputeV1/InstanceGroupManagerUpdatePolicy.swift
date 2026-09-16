@@ -99,6 +99,8 @@
     /// to update.
     public var type: InstanceGroupManagerUpdatePolicy.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerUpdatePolicy`.
     public init() {}
 
@@ -113,6 +115,71 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceRedistributionType = CodingKeys(stringValue: "instanceRedistributionType")
+      static let maxSurge = CodingKeys(stringValue: "maxSurge")
+      static let maxUnavailable = CodingKeys(stringValue: "maxUnavailable")
+      static let minimalAction = CodingKeys(stringValue: "minimalAction")
+      static let mostDisruptiveAllowedAction = CodingKeys(
+        stringValue: "mostDisruptiveAllowedAction")
+      static let replacementMethod = CodingKeys(stringValue: "replacementMethod")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceRedistributionType",
+        "maxSurge",
+        "maxUnavailable",
+        "minimalAction",
+        "mostDisruptiveAllowedAction",
+        "replacementMethod",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instanceRedistributionType = try container.decodeIfPresent(
+        InstanceGroupManagerUpdatePolicy.InstanceRedistributionType.self,
+        forKey: .instanceRedistributionType)
+      self.maxSurge = try container.decodeIfPresent(FixedOrPercent.self, forKey: .maxSurge)
+      self.maxUnavailable = try container.decodeIfPresent(
+        FixedOrPercent.self, forKey: .maxUnavailable)
+      self.minimalAction = try container.decodeIfPresent(
+        InstanceGroupManagerUpdatePolicy.MinimalAction.self, forKey: .minimalAction)
+      self.mostDisruptiveAllowedAction = try container.decodeIfPresent(
+        InstanceGroupManagerUpdatePolicy.MostDisruptiveAllowedAction.self,
+        forKey: .mostDisruptiveAllowedAction)
+      self.replacementMethod = try container.decodeIfPresent(
+        InstanceGroupManagerUpdatePolicy.ReplacementMethod.self, forKey: .replacementMethod)
+      self.type = try container.decodeIfPresent(
+        InstanceGroupManagerUpdatePolicy.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.instanceRedistributionType, forKey: .instanceRedistributionType)
+      try container.encodeIfPresent(self.maxSurge, forKey: .maxSurge)
+      try container.encodeIfPresent(self.maxUnavailable, forKey: .maxUnavailable)
+      try container.encodeIfPresent(self.minimalAction, forKey: .minimalAction)
+      try container.encodeIfPresent(
+        self.mostDisruptiveAllowedAction, forKey: .mostDisruptiveAllowedAction)
+      try container.encodeIfPresent(self.replacementMethod, forKey: .replacementMethod)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [instanceRedistributionType][google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.instanceRedistributionType] field.

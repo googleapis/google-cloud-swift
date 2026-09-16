@@ -40,6 +40,8 @@ public struct EdgeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This takes precedence over the `destination_node_type` field.
   public var destinationNode: OneOf_DestinationNode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EdgeRule`.
   public init() {}
 
@@ -56,17 +58,32 @@ public struct EdgeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case srcNodeType = "srcNodeType"
-    case srcNodeGroup = "srcNodeGroup"
-    case destNodeType = "destNodeType"
-    case destNodeGroup = "destNodeGroup"
-    case edgeType = "edgeType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let srcNodeType = CodingKeys(stringValue: "srcNodeType")
+    static let srcNodeGroup = CodingKeys(stringValue: "srcNodeGroup")
+    static let destNodeType = CodingKeys(stringValue: "destNodeType")
+    static let destNodeGroup = CodingKeys(stringValue: "destNodeGroup")
+    static let edgeType = CodingKeys(stringValue: "edgeType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "srcNodeType",
+      "srcNodeGroup",
+      "destNodeType",
+      "destNodeGroup",
+      "edgeType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.edgeType = try container.decode(Swift.String.self, forKey: .edgeType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .edgeType) {
+      self.edgeType = value
+    }
 
     var sourceNode: OneOf_SourceNode? = nil
     let sourceNodeCheckAndSet = {
@@ -103,6 +120,10 @@ public struct EdgeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try destinationNodeCheckAndSet(.destNodeGroup(destNodeGroup))
     }
     self.destinationNode = destinationNode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -125,6 +146,9 @@ public struct EdgeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .destNodeGroup(let value):
         try container.encode(value, forKey: .destNodeGroup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -31,6 +31,8 @@ public struct ControlDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// compliance controls and the assessment status.
   public var controlReportSummary: ReportSummary? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ControlDetails`.
   public init() {}
 
@@ -45,6 +47,47 @@ public struct ControlDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let control = CodingKeys(stringValue: "control")
+    static let complianceState = CodingKeys(stringValue: "complianceState")
+    static let controlReportSummary = CodingKeys(stringValue: "controlReportSummary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "control",
+      "complianceState",
+      "controlReportSummary",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.control = try container.decodeIfPresent(Control.self, forKey: .control)
+    if let value = try container.decodeIfPresent(ComplianceState.self, forKey: .complianceState) {
+      self.complianceState = value
+    }
+    self.controlReportSummary = try container.decodeIfPresent(
+      ReportSummary.self, forKey: .controlReportSummary)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.control, forKey: .control)
+    try container.encode(self.complianceState, forKey: .complianceState)
+    try container.encodeIfPresent(self.controlReportSummary, forKey: .controlReportSummary)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

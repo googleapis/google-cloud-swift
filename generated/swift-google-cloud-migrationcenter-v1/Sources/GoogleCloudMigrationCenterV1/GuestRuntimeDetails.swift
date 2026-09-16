@@ -45,6 +45,8 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Open files information.
   public var openFileList: OpenFileList? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GuestRuntimeDetails`.
   public init() {}
 
@@ -59,6 +61,70 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let services = CodingKeys(stringValue: "services")
+    static let processes = CodingKeys(stringValue: "processes")
+    static let network = CodingKeys(stringValue: "network")
+    static let lastBootTime = CodingKeys(stringValue: "lastBootTime")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let machineName = CodingKeys(stringValue: "machineName")
+    static let installedApps = CodingKeys(stringValue: "installedApps")
+    static let openFileList = CodingKeys(stringValue: "openFileList")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "services",
+      "processes",
+      "network",
+      "lastBootTime",
+      "domain",
+      "machineName",
+      "installedApps",
+      "openFileList",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.services = try container.decodeIfPresent(RunningServiceList.self, forKey: .services)
+    self.processes = try container.decodeIfPresent(RunningProcessList.self, forKey: .processes)
+    self.network = try container.decodeIfPresent(RuntimeNetworkInfo.self, forKey: .network)
+    self.lastBootTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastBootTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineName) {
+      self.machineName = value
+    }
+    self.installedApps = try container.decodeIfPresent(
+      GuestInstalledApplicationList.self, forKey: .installedApps)
+    self.openFileList = try container.decodeIfPresent(OpenFileList.self, forKey: .openFileList)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.services, forKey: .services)
+    try container.encodeIfPresent(self.processes, forKey: .processes)
+    try container.encodeIfPresent(self.network, forKey: .network)
+    try container.encodeIfPresent(self.lastBootTime, forKey: .lastBootTime)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.machineName, forKey: .machineName)
+    try container.encodeIfPresent(self.installedApps, forKey: .installedApps)
+    try container.encodeIfPresent(self.openFileList, forKey: .openFileList)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

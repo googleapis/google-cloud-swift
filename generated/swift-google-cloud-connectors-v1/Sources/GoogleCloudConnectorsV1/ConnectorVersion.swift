@@ -70,6 +70,8 @@ public struct ConnectorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Ssl configuration supported by the Connector.
   public var sslConfigTemplate: SslConfigTemplate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectorVersion`.
   public init() {}
 
@@ -84,6 +86,114 @@ public struct ConnectorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let releaseVersion = CodingKeys(stringValue: "releaseVersion")
+    static let authConfigTemplates = CodingKeys(stringValue: "authConfigTemplates")
+    static let configVariableTemplates = CodingKeys(stringValue: "configVariableTemplates")
+    static let supportedRuntimeFeatures = CodingKeys(stringValue: "supportedRuntimeFeatures")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let egressControlConfig = CodingKeys(stringValue: "egressControlConfig")
+    static let roleGrants = CodingKeys(stringValue: "roleGrants")
+    static let roleGrant = CodingKeys(stringValue: "roleGrant")
+    static let sslConfigTemplate = CodingKeys(stringValue: "sslConfigTemplate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "launchStage",
+      "releaseVersion",
+      "authConfigTemplates",
+      "configVariableTemplates",
+      "supportedRuntimeFeatures",
+      "displayName",
+      "egressControlConfig",
+      "roleGrants",
+      "roleGrant",
+      "sslConfigTemplate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseVersion) {
+      self.releaseVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AuthConfigTemplate].self, forKey: .authConfigTemplates)
+    {
+      self.authConfigTemplates = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ConfigVariableTemplate].self, forKey: .configVariableTemplates)
+    {
+      self.configVariableTemplates = value
+    }
+    self.supportedRuntimeFeatures = try container.decodeIfPresent(
+      SupportedRuntimeFeatures.self, forKey: .supportedRuntimeFeatures)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.egressControlConfig = try container.decodeIfPresent(
+      EgressControlConfig.self, forKey: .egressControlConfig)
+    if let value = try container.decodeIfPresent([RoleGrant].self, forKey: .roleGrants) {
+      self.roleGrants = value
+    }
+    self.roleGrant = try container.decodeIfPresent(RoleGrant.self, forKey: .roleGrant)
+    self.sslConfigTemplate = try container.decodeIfPresent(
+      SslConfigTemplate.self, forKey: .sslConfigTemplate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    try container.encode(self.releaseVersion, forKey: .releaseVersion)
+    try container.encode(self.authConfigTemplates, forKey: .authConfigTemplates)
+    try container.encode(self.configVariableTemplates, forKey: .configVariableTemplates)
+    try container.encodeIfPresent(self.supportedRuntimeFeatures, forKey: .supportedRuntimeFeatures)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.egressControlConfig, forKey: .egressControlConfig)
+    try container.encode(self.roleGrants, forKey: .roleGrants)
+    try container.encodeIfPresent(self.roleGrant, forKey: .roleGrant)
+    try container.encodeIfPresent(self.sslConfigTemplate, forKey: .sslConfigTemplate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

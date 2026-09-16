@@ -45,6 +45,8 @@ public struct SynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The input source, which is either plain text or SSML.
   public var inputSource: OneOf_InputSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SynthesisInput`.
   public init() {}
 
@@ -61,13 +63,27 @@ public struct SynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case markup = "markup"
-    case ssml = "ssml"
-    case multiSpeakerMarkup = "multiSpeakerMarkup"
-    case prompt = "prompt"
-    case customPronunciations = "customPronunciations"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let markup = CodingKeys(stringValue: "markup")
+    static let ssml = CodingKeys(stringValue: "ssml")
+    static let multiSpeakerMarkup = CodingKeys(stringValue: "multiSpeakerMarkup")
+    static let prompt = CodingKeys(stringValue: "prompt")
+    static let customPronunciations = CodingKeys(stringValue: "customPronunciations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "markup",
+      "ssml",
+      "multiSpeakerMarkup",
+      "prompt",
+      "customPronunciations",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -101,12 +117,16 @@ public struct SynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try inputSourceCheckAndSet(.multiSpeakerMarkup(multiSpeakerMarkup))
     }
     self.inputSource = inputSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.prompt, forKey: .prompt)
-    try container.encode(self.customPronunciations, forKey: .customPronunciations)
+    try container.encodeIfPresent(self.prompt, forKey: .prompt)
+    try container.encodeIfPresent(self.customPronunciations, forKey: .customPronunciations)
 
     if let choice = self.inputSource {
       switch choice {
@@ -119,6 +139,9 @@ public struct SynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .multiSpeakerMarkup(let value):
         try container.encode(value, forKey: .multiSpeakerMarkup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

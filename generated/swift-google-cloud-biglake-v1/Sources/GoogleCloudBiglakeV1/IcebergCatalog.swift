@@ -91,6 +91,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration options for federated catalogs.
   public var federatedCatalogOptions: IcebergCatalog.FederatedCatalogOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IcebergCatalog`.
   public init() {}
 
@@ -107,44 +109,91 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case credentialMode = "credential-mode"
-    case biglakeServiceAccount = "biglake-service-account"
-    case biglakeServiceAccountUniqueId = "biglake-service-account-id"
-    case catalogType = "catalog-type"
-    case defaultLocation = "default-location"
-    case storageRegions = "storage-regions"
-    case createTime = "create-time"
-    case updateTime = "update-time"
-    case replicas = "replicas"
-    case description = "description"
-    case restrictedLocationsConfig = "restricted-locations-config"
-    case federatedCatalogOptions = "federated-catalog-options"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let credentialMode = CodingKeys(stringValue: "credential-mode")
+    static let biglakeServiceAccount = CodingKeys(stringValue: "biglake-service-account")
+    static let biglakeServiceAccountUniqueId = CodingKeys(stringValue: "biglake-service-account-id")
+    static let catalogType = CodingKeys(stringValue: "catalog-type")
+    static let defaultLocation = CodingKeys(stringValue: "default-location")
+    static let storageRegions = CodingKeys(stringValue: "storage-regions")
+    static let createTime = CodingKeys(stringValue: "create-time")
+    static let updateTime = CodingKeys(stringValue: "update-time")
+    static let replicas = CodingKeys(stringValue: "replicas")
+    static let description = CodingKeys(stringValue: "description")
+    static let restrictedLocationsConfig = CodingKeys(stringValue: "restricted-locations-config")
+    static let federatedCatalogOptions = CodingKeys(stringValue: "federated-catalog-options")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "credential-mode",
+      "biglake-service-account",
+      "biglake-service-account-id",
+      "catalog-type",
+      "default-location",
+      "storage-regions",
+      "create-time",
+      "update-time",
+      "replicas",
+      "description",
+      "restricted-locations-config",
+      "federated-catalog-options",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.credentialMode = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
       IcebergCatalog.CredentialMode.self, forKey: .credentialMode)
-    self.biglakeServiceAccount = try container.decode(
-      Swift.String.self, forKey: .biglakeServiceAccount)
-    self.biglakeServiceAccountUniqueId = try container.decode(
+    {
+      self.credentialMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .biglakeServiceAccount)
+    {
+      self.biglakeServiceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .biglakeServiceAccountUniqueId)
-    self.catalogType = try container.decode(IcebergCatalog.CatalogType.self, forKey: .catalogType)
-    self.defaultLocation = try container.decode(Swift.String.self, forKey: .defaultLocation)
-    self.storageRegions = try container.decode([Swift.String].self, forKey: .storageRegions)
+    {
+      self.biglakeServiceAccountUniqueId = value
+    }
+    if let value = try container.decodeIfPresent(
+      IcebergCatalog.CatalogType.self, forKey: .catalogType)
+    {
+      self.catalogType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultLocation) {
+      self.defaultLocation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .storageRegions) {
+      self.storageRegions = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.replicas = try container.decode([IcebergCatalog.Replica].self, forKey: .replicas)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([IcebergCatalog.Replica].self, forKey: .replicas) {
+      self.replicas = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.restrictedLocationsConfig = try container.decodeIfPresent(
       IcebergCatalog.RestrictedLocationsConfig.self, forKey: .restrictedLocationsConfig)
     self.federatedCatalogOptions = try container.decodeIfPresent(
       IcebergCatalog.FederatedCatalogOptions.self, forKey: .federatedCatalogOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -156,12 +205,16 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.catalogType, forKey: .catalogType)
     try container.encode(self.defaultLocation, forKey: .defaultLocation)
     try container.encode(self.storageRegions, forKey: .storageRegions)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.replicas, forKey: .replicas)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.restrictedLocationsConfig, forKey: .restrictedLocationsConfig)
-    try container.encode(self.federatedCatalogOptions, forKey: .federatedCatalogOptions)
+    try container.encodeIfPresent(
+      self.restrictedLocationsConfig, forKey: .restrictedLocationsConfig)
+    try container.encodeIfPresent(self.federatedCatalogOptions, forKey: .federatedCatalogOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The replica of the Catalog.
@@ -173,6 +226,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Output only. The current state of the replica.
     public var state: IcebergCatalog.Replica.State = IcebergCatalog.Replica.State()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Replica`.
     public init() {}
@@ -188,6 +243,46 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let region = CodingKeys(stringValue: "region")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "region",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+        self.region = value
+      }
+      if let value = try container.decodeIfPresent(
+        IcebergCatalog.Replica.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.region, forKey: .region)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// If the catalog is replicated to multiple regions, this enum describes the
@@ -329,6 +424,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// allowed.
     public var restrictedLocations: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RestrictedLocationsConfig`.
     public init() {}
 
@@ -345,19 +442,38 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case restrictedLocations = "restricted-locations"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let restrictedLocations = CodingKeys(stringValue: "restricted-locations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "restricted-locations"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.restrictedLocations = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .restrictedLocations)
+      {
+        self.restrictedLocations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.restrictedLocations, forKey: .restrictedLocations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -405,6 +521,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Info specific to a remote Iceberg REST catalog.
     public var remoteCatalogInfo: OneOf_RemoteCatalogInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FederatedCatalogOptions`.
     public init() {}
 
@@ -421,14 +539,29 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case unityCatalogInfo = "unity-catalog-info"
-      case glueCatalogInfo = "glue-catalog-info"
-      case snowflakeCatalogInfo = "snowflake-catalog-info"
-      case secretName = "secret-name"
-      case serviceDirectoryName = "service-directory-name"
-      case refreshOptions = "refresh-options"
-      case refreshStatus = "refresh-status"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let unityCatalogInfo = CodingKeys(stringValue: "unity-catalog-info")
+      static let glueCatalogInfo = CodingKeys(stringValue: "glue-catalog-info")
+      static let snowflakeCatalogInfo = CodingKeys(stringValue: "snowflake-catalog-info")
+      static let secretName = CodingKeys(stringValue: "secret-name")
+      static let serviceDirectoryName = CodingKeys(stringValue: "service-directory-name")
+      static let refreshOptions = CodingKeys(stringValue: "refresh-options")
+      static let refreshStatus = CodingKeys(stringValue: "refresh-status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "unity-catalog-info",
+        "glue-catalog-info",
+        "snowflake-catalog-info",
+        "secret-name",
+        "service-directory-name",
+        "refresh-options",
+        "refresh-status",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -468,14 +601,18 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try remoteCatalogInfoCheckAndSet(.snowflakeCatalogInfo(snowflakeCatalogInfo))
       }
       self.remoteCatalogInfo = remoteCatalogInfo
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.secretName, forKey: .secretName)
-      try container.encode(self.serviceDirectoryName, forKey: .serviceDirectoryName)
-      try container.encode(self.refreshOptions, forKey: .refreshOptions)
-      try container.encode(self.refreshStatus, forKey: .refreshStatus)
+      try container.encodeIfPresent(self.secretName, forKey: .secretName)
+      try container.encodeIfPresent(self.serviceDirectoryName, forKey: .serviceDirectoryName)
+      try container.encodeIfPresent(self.refreshOptions, forKey: .refreshOptions)
+      try container.encodeIfPresent(self.refreshStatus, forKey: .refreshStatus)
 
       if let choice = self.remoteCatalogInfo {
         switch choice {
@@ -486,6 +623,9 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .snowflakeCatalogInfo(let value):
           try container.encode(value, forKey: .snowflakeCatalogInfo)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -507,6 +647,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// flow.
       public var servicePrincipalApplicationId: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `UnityCatalogInfo`.
       public init() {}
 
@@ -523,10 +665,22 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case instanceName = "instance-name"
-        case catalogName = "catalog-name"
-        case servicePrincipalApplicationId = "service-principal-application-id"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceName = CodingKeys(stringValue: "instance-name")
+        static let catalogName = CodingKeys(stringValue: "catalog-name")
+        static let servicePrincipalApplicationId = CodingKeys(
+          stringValue: "service-principal-application-id")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instance-name",
+          "catalog-name",
+          "service-principal-application-id",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -535,14 +689,21 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         self.catalogName = try container.decodeIfPresent(Swift.String.self, forKey: .catalogName)
         self.servicePrincipalApplicationId = try container.decodeIfPresent(
           Swift.String.self, forKey: .servicePrincipalApplicationId)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.instanceName, forKey: .instanceName)
-        try container.encode(self.catalogName, forKey: .catalogName)
-        try container.encode(
+        try container.encodeIfPresent(self.instanceName, forKey: .instanceName)
+        try container.encodeIfPresent(self.catalogName, forKey: .catalogName)
+        try container.encodeIfPresent(
           self.servicePrincipalApplicationId, forKey: .servicePrincipalApplicationId)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -582,6 +743,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// updated.
       public var awsRoleArn: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GlueCatalogInfo`.
       public init() {}
 
@@ -598,10 +761,21 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case warehouse = "warehouse"
-        case awsRegion = "aws-region"
-        case awsRoleArn = "aws-role-arn"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let warehouse = CodingKeys(stringValue: "warehouse")
+        static let awsRegion = CodingKeys(stringValue: "aws-region")
+        static let awsRoleArn = CodingKeys(stringValue: "aws-role-arn")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "warehouse",
+          "aws-region",
+          "aws-role-arn",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -609,13 +783,20 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         self.warehouse = try container.decodeIfPresent(Swift.String.self, forKey: .warehouse)
         self.awsRegion = try container.decodeIfPresent(Swift.String.self, forKey: .awsRegion)
         self.awsRoleArn = try container.decodeIfPresent(Swift.String.self, forKey: .awsRoleArn)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.warehouse, forKey: .warehouse)
-        try container.encode(self.awsRegion, forKey: .awsRegion)
-        try container.encode(self.awsRoleArn, forKey: .awsRoleArn)
+        try container.encodeIfPresent(self.warehouse, forKey: .warehouse)
+        try container.encodeIfPresent(self.awsRegion, forKey: .awsRegion)
+        try container.encodeIfPresent(self.awsRoleArn, forKey: .awsRoleArn)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -659,6 +840,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// the Snowflake service user mapped to the BigLake service account.
       public var snowflakeRole: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SnowflakeCatalogInfo`.
       public init() {}
 
@@ -675,10 +858,21 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case accountIdentifier = "account-identifier"
-        case warehouse = "warehouse"
-        case snowflakeRole = "snowflake-role"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let accountIdentifier = CodingKeys(stringValue: "account-identifier")
+        static let warehouse = CodingKeys(stringValue: "warehouse")
+        static let snowflakeRole = CodingKeys(stringValue: "snowflake-role")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "account-identifier",
+          "warehouse",
+          "snowflake-role",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -688,13 +882,20 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         self.warehouse = try container.decodeIfPresent(Swift.String.self, forKey: .warehouse)
         self.snowflakeRole = try container.decodeIfPresent(
           Swift.String.self, forKey: .snowflakeRole)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.accountIdentifier, forKey: .accountIdentifier)
-        try container.encode(self.warehouse, forKey: .warehouse)
-        try container.encode(self.snowflakeRole, forKey: .snowflakeRole)
+        try container.encodeIfPresent(self.accountIdentifier, forKey: .accountIdentifier)
+        try container.encodeIfPresent(self.warehouse, forKey: .warehouse)
+        try container.encodeIfPresent(self.snowflakeRole, forKey: .snowflakeRole)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -720,6 +921,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// interval will take effect.
       public var refreshInterval: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RefreshSchedule`.
       public init() {}
 
@@ -736,19 +939,35 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case refreshInterval = "refresh-interval"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let refreshInterval = CodingKeys(stringValue: "refresh-interval")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "refresh-interval"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.refreshInterval = try container.decodeIfPresent(
           GoogleCloudWKT.Duration.self, forKey: .refreshInterval)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.refreshInterval, forKey: .refreshInterval)
+        try container.encodeIfPresent(self.refreshInterval, forKey: .refreshInterval)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -775,6 +994,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// The maximum number of namespace filters allowed is 32.
       public var namespaceFilters: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RefreshScope`.
       public init() {}
 
@@ -791,18 +1012,37 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case namespaceFilters = "namespace-filters"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let namespaceFilters = CodingKeys(stringValue: "namespace-filters")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "namespace-filters"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.namespaceFilters = try container.decode([Swift.String].self, forKey: .namespaceFilters)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .namespaceFilters)
+        {
+          self.namespaceFilters = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.namespaceFilters, forKey: .namespaceFilters)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -828,6 +1068,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Optional. Refresh scope configurations.
       public var refreshScope: IcebergCatalog.FederatedCatalogOptions.RefreshScope? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RefreshOptions`.
       public init() {}
 
@@ -844,9 +1086,19 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case refreshSchedule = "refresh-schedule"
-        case refreshScope = "refresh-scope"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let refreshSchedule = CodingKeys(stringValue: "refresh-schedule")
+        static let refreshScope = CodingKeys(stringValue: "refresh-scope")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "refresh-schedule",
+          "refresh-scope",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -855,12 +1107,19 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           IcebergCatalog.FederatedCatalogOptions.RefreshSchedule.self, forKey: .refreshSchedule)
         self.refreshScope = try container.decodeIfPresent(
           IcebergCatalog.FederatedCatalogOptions.RefreshScope.self, forKey: .refreshScope)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.refreshSchedule, forKey: .refreshSchedule)
-        try container.encode(self.refreshScope, forKey: .refreshScope)
+        try container.encodeIfPresent(self.refreshSchedule, forKey: .refreshSchedule)
+        try container.encodeIfPresent(self.refreshScope, forKey: .refreshScope)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -891,6 +1150,8 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// for in-progress refreshes.
       public var status: GoogleRpc.Status? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RefreshStatus`.
       public init() {}
 
@@ -907,10 +1168,21 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case startTime = "start-time"
-        case endTime = "end-time"
-        case status = "status"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startTime = CodingKeys(stringValue: "start-time")
+        static let endTime = CodingKeys(stringValue: "end-time")
+        static let status = CodingKeys(stringValue: "status")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "start-time",
+          "end-time",
+          "status",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -920,13 +1192,20 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         self.endTime = try container.decodeIfPresent(
           GoogleCloudWKT.Timestamp.self, forKey: .endTime)
         self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.startTime, forKey: .startTime)
-        try container.encode(self.endTime, forKey: .endTime)
-        try container.encode(self.status, forKey: .status)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

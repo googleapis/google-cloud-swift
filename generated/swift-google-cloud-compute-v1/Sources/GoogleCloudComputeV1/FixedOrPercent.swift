@@ -43,6 +43,8 @@
     /// example, specify 80 for 80%.
     public var percent: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FixedOrPercent`.
     public init() {}
 
@@ -57,6 +59,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let calculated = CodingKeys(stringValue: "calculated")
+      static let fixed = CodingKeys(stringValue: "fixed")
+      static let percent = CodingKeys(stringValue: "percent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "calculated",
+        "fixed",
+        "percent",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.calculated = try container.decodeIfPresent(Swift.Int32.self, forKey: .calculated)
+      self.fixed = try container.decodeIfPresent(Swift.Int32.self, forKey: .fixed)
+      self.percent = try container.decodeIfPresent(Swift.Int32.self, forKey: .percent)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.calculated, forKey: .calculated)
+      try container.encodeIfPresent(self.fixed, forKey: .fixed)
+      try container.encodeIfPresent(self.percent, forKey: .percent)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

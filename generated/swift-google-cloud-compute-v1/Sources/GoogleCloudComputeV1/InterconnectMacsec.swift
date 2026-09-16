@@ -37,6 +37,8 @@
     /// secure link.
     public var preSharedKeys: [InterconnectMacsecPreSharedKey] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectMacsec`.
     public init() {}
 
@@ -51,6 +53,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let failOpen = CodingKeys(stringValue: "failOpen")
+      static let preSharedKeys = CodingKeys(stringValue: "preSharedKeys")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "failOpen",
+        "preSharedKeys",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.failOpen = try container.decodeIfPresent(Swift.Bool.self, forKey: .failOpen)
+      if let value = try container.decodeIfPresent(
+        [InterconnectMacsecPreSharedKey].self, forKey: .preSharedKeys)
+      {
+        self.preSharedKeys = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.failOpen, forKey: .failOpen)
+      try container.encode(self.preSharedKeys, forKey: .preSharedKeys)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

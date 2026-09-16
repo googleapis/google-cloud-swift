@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ObjectFullContext {
@@ -32,6 +32,7 @@ extension ObjectFullContext {
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.extendedData = proto.hasExtendedData ? try .init(proto: proto.extendedData) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -42,6 +43,9 @@ extension ObjectFullContext {
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     if let extendedData = self.extendedData { proto.extendedData = try extendedData.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

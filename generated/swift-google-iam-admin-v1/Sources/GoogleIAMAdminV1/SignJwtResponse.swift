@@ -38,6 +38,8 @@ public struct SignJwtResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var signedJwt: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SignJwtResponse`.
   public init() {}
 
@@ -52,6 +54,44 @@ public struct SignJwtResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let keyId = CodingKeys(stringValue: "keyId")
+    static let signedJwt = CodingKeys(stringValue: "signedJwt")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "keyId",
+      "signedJwt",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
+      self.keyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .signedJwt) {
+      self.signedJwt = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.keyId, forKey: .keyId)
+    try container.encode(self.signedJwt, forKey: .signedJwt)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

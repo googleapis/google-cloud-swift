@@ -47,6 +47,8 @@
     /// latency and cost of the query.
     public var returnFullDatapoint: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FindNeighborsRequest`.
     public init() {}
 
@@ -61,6 +63,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let indexEndpoint = CodingKeys(stringValue: "indexEndpoint")
+      static let deployedIndexId = CodingKeys(stringValue: "deployedIndexId")
+      static let queries = CodingKeys(stringValue: "queries")
+      static let returnFullDatapoint = CodingKeys(stringValue: "returnFullDatapoint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "indexEndpoint",
+        "deployedIndexId",
+        "queries",
+        "returnFullDatapoint",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
+        self.indexEndpoint = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedIndexId) {
+        self.deployedIndexId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [FindNeighborsRequest.Query].self, forKey: .queries)
+      {
+        self.queries = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnFullDatapoint) {
+        self.returnFullDatapoint = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.indexEndpoint, forKey: .indexEndpoint)
+      try container.encode(self.deployedIndexId, forKey: .deployedIndexId)
+      try container.encode(self.queries, forKey: .queries)
+      try container.encode(self.returnFullDatapoint, forKey: .returnFullDatapoint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A query to find a number of the nearest neighbors (most similar vectors)
@@ -99,6 +153,8 @@
 
       public var ranking: OneOf_Ranking? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Query`.
       public init() {}
 
@@ -115,25 +171,52 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case rrf = "rrf"
-        case datapoint = "datapoint"
-        case neighborCount = "neighborCount"
-        case perCrowdingAttributeNeighborCount = "perCrowdingAttributeNeighborCount"
-        case approximateNeighborCount = "approximateNeighborCount"
-        case fractionLeafNodesToSearchOverride = "fractionLeafNodesToSearchOverride"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rrf = CodingKeys(stringValue: "rrf")
+        static let datapoint = CodingKeys(stringValue: "datapoint")
+        static let neighborCount = CodingKeys(stringValue: "neighborCount")
+        static let perCrowdingAttributeNeighborCount = CodingKeys(
+          stringValue: "perCrowdingAttributeNeighborCount")
+        static let approximateNeighborCount = CodingKeys(stringValue: "approximateNeighborCount")
+        static let fractionLeafNodesToSearchOverride = CodingKeys(
+          stringValue: "fractionLeafNodesToSearchOverride")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rrf",
+          "datapoint",
+          "neighborCount",
+          "perCrowdingAttributeNeighborCount",
+          "approximateNeighborCount",
+          "fractionLeafNodesToSearchOverride",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.datapoint = try container.decodeIfPresent(IndexDatapoint.self, forKey: .datapoint)
-        self.neighborCount = try container.decode(Swift.Int32.self, forKey: .neighborCount)
-        self.perCrowdingAttributeNeighborCount = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .neighborCount) {
+          self.neighborCount = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .perCrowdingAttributeNeighborCount)
-        self.approximateNeighborCount = try container.decode(
+        {
+          self.perCrowdingAttributeNeighborCount = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .approximateNeighborCount)
-        self.fractionLeafNodesToSearchOverride = try container.decode(
+        {
+          self.approximateNeighborCount = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Double.self, forKey: .fractionLeafNodesToSearchOverride)
+        {
+          self.fractionLeafNodesToSearchOverride = value
+        }
 
         var ranking: OneOf_Ranking? = nil
         let rankingCheckAndSet = {
@@ -151,11 +234,15 @@
           try rankingCheckAndSet(.rrf(rrf))
         }
         self.ranking = ranking
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.datapoint, forKey: .datapoint)
+        try container.encodeIfPresent(self.datapoint, forKey: .datapoint)
         try container.encode(self.neighborCount, forKey: .neighborCount)
         try container.encode(
           self.perCrowdingAttributeNeighborCount, forKey: .perCrowdingAttributeNeighborCount)
@@ -169,6 +256,9 @@
             try container.encode(value, forKey: .rrf)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Parameters for RRF algorithm that combines search results.
@@ -179,6 +269,9 @@
         /// vs sparse results. For example, if the alpha is 0, we only return
         /// sparse and if the alpha is 1, we only return dense.
         public var alpha: Swift.Float = Swift.Float()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `RRF`.
         public init() {}
@@ -194,6 +287,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let alpha = CodingKeys(stringValue: "alpha")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "alpha"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .alpha) {
+            self.alpha = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.alpha, forKey: .alpha)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

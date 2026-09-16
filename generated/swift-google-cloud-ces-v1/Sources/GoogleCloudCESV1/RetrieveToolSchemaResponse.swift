@@ -33,6 +33,8 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleCloudWKT._An
   /// The identifier of the tool that the schema is for.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RetrieveToolSchemaResponse`.
   public init() {}
 
@@ -49,11 +51,23 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tool = "tool"
-    case toolsetTool = "toolsetTool"
-    case inputSchema = "inputSchema"
-    case outputSchema = "outputSchema"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tool = CodingKeys(stringValue: "tool")
+    static let toolsetTool = CodingKeys(stringValue: "toolsetTool")
+    static let inputSchema = CodingKeys(stringValue: "inputSchema")
+    static let outputSchema = CodingKeys(stringValue: "outputSchema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tool",
+      "toolsetTool",
+      "inputSchema",
+      "outputSchema",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,12 +92,16 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleCloudWKT._An
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.inputSchema, forKey: .inputSchema)
-    try container.encode(self.outputSchema, forKey: .outputSchema)
+    try container.encodeIfPresent(self.inputSchema, forKey: .inputSchema)
+    try container.encodeIfPresent(self.outputSchema, forKey: .outputSchema)
 
     if let choice = self.toolIdentifier {
       switch choice {
@@ -92,6 +110,9 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleCloudWKT._An
       case .toolsetTool(let value):
         try container.encode(value, forKey: .toolsetTool)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

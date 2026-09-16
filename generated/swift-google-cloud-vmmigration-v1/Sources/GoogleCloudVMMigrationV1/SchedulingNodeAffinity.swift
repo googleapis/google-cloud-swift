@@ -33,6 +33,8 @@ public struct SchedulingNodeAffinity: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Corresponds to the label values of Node resource.
   public var values: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchedulingNodeAffinity`.
   public init() {}
 
@@ -49,18 +51,40 @@ public struct SchedulingNodeAffinity: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case key = "key"
-    case `operator` = "operator"
-    case values = "values"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let `operator` = CodingKeys(stringValue: "operator")
+    static let values = CodingKeys(stringValue: "values")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "operator",
+      "values",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
-    self.`operator` = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(
       SchedulingNodeAffinity.Operator.self, forKey: .`operator`)
-    self.values = try container.decode([Swift.String].self, forKey: .values)
+    {
+      self.`operator` = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+      self.values = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -68,6 +92,9 @@ public struct SchedulingNodeAffinity: Codable, Equatable, GoogleCloudWKT._AnyPac
     try container.encode(self.key, forKey: .key)
     try container.encode(self.`operator`, forKey: .`operator`)
     try container.encode(self.values, forKey: .values)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible types of node selection operators. Valid operators are IN for

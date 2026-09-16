@@ -24,6 +24,8 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Required. Speaker turns.
   public var turns: [MultiSpeakerMarkup.Turn] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MultiSpeakerMarkup`.
   public init() {}
 
@@ -40,6 +42,38 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let turns = CodingKeys(stringValue: "turns")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "turns"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MultiSpeakerMarkup.Turn].self, forKey: .turns) {
+      self.turns = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.turns, forKey: .turns)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A multi-speaker turn.
   public struct Turn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -50,6 +84,8 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
     /// Required. The text to speak.
     public var text: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Turn`.
     public init() {}
@@ -65,6 +101,44 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let speaker = CodingKeys(stringValue: "speaker")
+      static let text = CodingKeys(stringValue: "text")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "speaker",
+        "text",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .speaker) {
+        self.speaker = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.speaker, forKey: .speaker)
+      try container.encode(self.text, forKey: .text)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

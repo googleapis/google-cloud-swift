@@ -33,6 +33,8 @@ public struct RRSetRoutingPolicyPrimaryBackupPolicy: Codable, Equatable, GoogleC
   /// When serving state is `PRIMARY`, this field provides the option of sending a small percentage of the traffic to the backup targets.
   public var trickleTraffic: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RRSetRoutingPolicyPrimaryBackupPolicy`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct RRSetRoutingPolicyPrimaryBackupPolicy: Codable, Equatable, GoogleC
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupGeoTargets = CodingKeys(stringValue: "backupGeoTargets")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let primaryTargets = CodingKeys(stringValue: "primaryTargets")
+    static let trickleTraffic = CodingKeys(stringValue: "trickleTraffic")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupGeoTargets",
+      "kind",
+      "primaryTargets",
+      "trickleTraffic",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.backupGeoTargets = try container.decodeIfPresent(
+      RRSetRoutingPolicyGeoPolicy.self, forKey: .backupGeoTargets)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.primaryTargets = try container.decodeIfPresent(
+      RRSetRoutingPolicyHealthCheckTargets.self, forKey: .primaryTargets)
+    self.trickleTraffic = try container.decodeIfPresent(Swift.Double.self, forKey: .trickleTraffic)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.backupGeoTargets, forKey: .backupGeoTargets)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.primaryTargets, forKey: .primaryTargets)
+    try container.encodeIfPresent(self.trickleTraffic, forKey: .trickleTraffic)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -39,6 +39,8 @@ public struct Column: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the values for this column.
   public var dataType: Column.DataType = Column.DataType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Column`.
   public init() {}
 
@@ -53,6 +55,50 @@ public struct Column: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let columnId = CodingKeys(stringValue: "columnId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let dataType = CodingKeys(stringValue: "dataType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "columnId",
+      "displayName",
+      "dataType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnId) {
+      self.columnId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Column.DataType.self, forKey: .dataType) {
+      self.dataType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.columnId, forKey: .columnId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.dataType, forKey: .dataType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available data types for columns. Corresponds to the fields in the

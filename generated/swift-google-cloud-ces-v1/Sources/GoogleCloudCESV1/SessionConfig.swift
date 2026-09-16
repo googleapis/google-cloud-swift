@@ -83,6 +83,8 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.ces.v1.SessionService.StreamRunSession]: <doc:SessionServiceClient/streamRunSession(request:options:)>
   public var enableTextStreaming: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionConfig`.
   public init() {}
 
@@ -97,6 +99,91 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let session = CodingKeys(stringValue: "session")
+    static let inputAudioConfig = CodingKeys(stringValue: "inputAudioConfig")
+    static let outputAudioConfig = CodingKeys(stringValue: "outputAudioConfig")
+    static let historicalContexts = CodingKeys(stringValue: "historicalContexts")
+    static let entryAgent = CodingKeys(stringValue: "entryAgent")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let useToolFakes = CodingKeys(stringValue: "useToolFakes")
+    static let remoteDialogflowQueryParameters = CodingKeys(
+      stringValue: "remoteDialogflowQueryParameters")
+    static let enableTextStreaming = CodingKeys(stringValue: "enableTextStreaming")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "session",
+      "inputAudioConfig",
+      "outputAudioConfig",
+      "historicalContexts",
+      "entryAgent",
+      "deployment",
+      "timeZone",
+      "useToolFakes",
+      "remoteDialogflowQueryParameters",
+      "enableTextStreaming",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+      self.session = value
+    }
+    self.inputAudioConfig = try container.decodeIfPresent(
+      InputAudioConfig.self, forKey: .inputAudioConfig)
+    self.outputAudioConfig = try container.decodeIfPresent(
+      OutputAudioConfig.self, forKey: .outputAudioConfig)
+    if let value = try container.decodeIfPresent([Message].self, forKey: .historicalContexts) {
+      self.historicalContexts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entryAgent) {
+      self.entryAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+      self.deployment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+      self.timeZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useToolFakes) {
+      self.useToolFakes = value
+    }
+    self.remoteDialogflowQueryParameters = try container.decodeIfPresent(
+      SessionConfig.RemoteDialogflowQueryParameters.self, forKey: .remoteDialogflowQueryParameters)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextStreaming) {
+      self.enableTextStreaming = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.session, forKey: .session)
+    try container.encodeIfPresent(self.inputAudioConfig, forKey: .inputAudioConfig)
+    try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
+    try container.encode(self.historicalContexts, forKey: .historicalContexts)
+    try container.encode(self.entryAgent, forKey: .entryAgent)
+    try container.encode(self.deployment, forKey: .deployment)
+    try container.encode(self.timeZone, forKey: .timeZone)
+    try container.encode(self.useToolFakes, forKey: .useToolFakes)
+    try container.encodeIfPresent(
+      self.remoteDialogflowQueryParameters, forKey: .remoteDialogflowQueryParameters)
+    try container.encode(self.enableTextStreaming, forKey: .enableTextStreaming)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters)
@@ -118,6 +205,8 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters).
     public var endUserMetadata: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RemoteDialogflowQueryParameters`.
     public init() {}
 
@@ -132,6 +221,49 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let webhookHeaders = CodingKeys(stringValue: "webhookHeaders")
+      static let payload = CodingKeys(stringValue: "payload")
+      static let endUserMetadata = CodingKeys(stringValue: "endUserMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "webhookHeaders",
+        "payload",
+        "endUserMetadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .webhookHeaders)
+      {
+        self.webhookHeaders = value
+      }
+      self.payload = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .payload)
+      self.endUserMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .endUserMetadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.webhookHeaders, forKey: .webhookHeaders)
+      try container.encodeIfPresent(self.payload, forKey: .payload)
+      try container.encodeIfPresent(self.endUserMetadata, forKey: .endUserMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

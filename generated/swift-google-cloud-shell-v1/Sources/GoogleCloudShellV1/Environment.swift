@@ -65,6 +65,8 @@ public struct Environment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// methods.
   public var publicKeys: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Environment`.
   public init() {}
 
@@ -79,6 +81,86 @@ public struct Environment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let dockerImage = CodingKeys(stringValue: "dockerImage")
+    static let state = CodingKeys(stringValue: "state")
+    static let webHost = CodingKeys(stringValue: "webHost")
+    static let sshUsername = CodingKeys(stringValue: "sshUsername")
+    static let sshHost = CodingKeys(stringValue: "sshHost")
+    static let sshPort = CodingKeys(stringValue: "sshPort")
+    static let publicKeys = CodingKeys(stringValue: "publicKeys")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "dockerImage",
+      "state",
+      "webHost",
+      "sshUsername",
+      "sshHost",
+      "sshPort",
+      "publicKeys",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dockerImage) {
+      self.dockerImage = value
+    }
+    if let value = try container.decodeIfPresent(Environment.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webHost) {
+      self.webHost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sshUsername) {
+      self.sshUsername = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sshHost) {
+      self.sshHost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sshPort) {
+      self.sshPort = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .publicKeys) {
+      self.publicKeys = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.dockerImage, forKey: .dockerImage)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.webHost, forKey: .webHost)
+    try container.encode(self.sshUsername, forKey: .sshUsername)
+    try container.encode(self.sshHost, forKey: .sshHost)
+    try container.encode(self.sshPort, forKey: .sshPort)
+    try container.encode(self.publicKeys, forKey: .publicKeys)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible execution states for an environment.

@@ -29,6 +29,8 @@ public struct VmCapabilities: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The last time OS capabilities list was updated.
   public var lastOsCapabilitiesUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmCapabilities`.
   public init() {}
 
@@ -43,6 +45,45 @@ public struct VmCapabilities: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let osCapabilities = CodingKeys(stringValue: "osCapabilities")
+    static let lastOsCapabilitiesUpdateTime = CodingKeys(
+      stringValue: "lastOsCapabilitiesUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "osCapabilities",
+      "lastOsCapabilitiesUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([OsCapability].self, forKey: .osCapabilities) {
+      self.osCapabilities = value
+    }
+    self.lastOsCapabilitiesUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastOsCapabilitiesUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.osCapabilities, forKey: .osCapabilities)
+    try container.encodeIfPresent(
+      self.lastOsCapabilitiesUpdateTime, forKey: .lastOsCapabilitiesUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

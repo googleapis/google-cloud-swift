@@ -43,6 +43,8 @@ public struct AttachedOidcConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// to verify the OIDC JWT asserted by the IDP.
   public var jwks: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttachedOidcConfig`.
   public init() {}
 
@@ -57,6 +59,44 @@ public struct AttachedOidcConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let issuerUrl = CodingKeys(stringValue: "issuerUrl")
+    static let jwks = CodingKeys(stringValue: "jwks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "issuerUrl",
+      "jwks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuerUrl) {
+      self.issuerUrl = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .jwks) {
+      self.jwks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.issuerUrl, forKey: .issuerUrl)
+    try container.encode(self.jwks, forKey: .jwks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

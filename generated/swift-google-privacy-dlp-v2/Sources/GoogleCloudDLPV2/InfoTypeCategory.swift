@@ -25,6 +25,8 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Categories of infotypes.
   public var category: OneOf_Category? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InfoTypeCategory`.
   public init() {}
 
@@ -41,10 +43,21 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case locationCategory = "locationCategory"
-    case industryCategory = "industryCategory"
-    case typeCategory = "typeCategory"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let locationCategory = CodingKeys(stringValue: "locationCategory")
+    static let industryCategory = CodingKeys(stringValue: "industryCategory")
+    static let typeCategory = CodingKeys(stringValue: "typeCategory")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "locationCategory",
+      "industryCategory",
+      "typeCategory",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,6 +89,10 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try categoryCheckAndSet(.typeCategory(typeCategory))
     }
     self.category = category
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +107,9 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .typeCategory(let value):
         try container.encode(value, forKey: .typeCategory)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

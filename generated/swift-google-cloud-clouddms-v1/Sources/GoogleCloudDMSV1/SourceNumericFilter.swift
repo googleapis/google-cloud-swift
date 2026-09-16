@@ -41,6 +41,8 @@ public struct SourceNumericFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// to be applied to
   public var numericFilterOption: NumericFilterOption = NumericFilterOption()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceNumericFilter`.
   public init() {}
 
@@ -55,6 +57,68 @@ public struct SourceNumericFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceMinScaleFilter = CodingKeys(stringValue: "sourceMinScaleFilter")
+    static let sourceMaxScaleFilter = CodingKeys(stringValue: "sourceMaxScaleFilter")
+    static let sourceMinPrecisionFilter = CodingKeys(stringValue: "sourceMinPrecisionFilter")
+    static let sourceMaxPrecisionFilter = CodingKeys(stringValue: "sourceMaxPrecisionFilter")
+    static let numericFilterOption = CodingKeys(stringValue: "numericFilterOption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceMinScaleFilter",
+      "sourceMaxScaleFilter",
+      "sourceMinPrecisionFilter",
+      "sourceMaxPrecisionFilter",
+      "numericFilterOption",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourceMinScaleFilter) {
+      self.sourceMinScaleFilter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourceMaxScaleFilter) {
+      self.sourceMaxScaleFilter = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .sourceMinPrecisionFilter)
+    {
+      self.sourceMinPrecisionFilter = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .sourceMaxPrecisionFilter)
+    {
+      self.sourceMaxPrecisionFilter = value
+    }
+    if let value = try container.decodeIfPresent(
+      NumericFilterOption.self, forKey: .numericFilterOption)
+    {
+      self.numericFilterOption = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceMinScaleFilter, forKey: .sourceMinScaleFilter)
+    try container.encode(self.sourceMaxScaleFilter, forKey: .sourceMaxScaleFilter)
+    try container.encode(self.sourceMinPrecisionFilter, forKey: .sourceMinPrecisionFilter)
+    try container.encode(self.sourceMaxPrecisionFilter, forKey: .sourceMaxPrecisionFilter)
+    try container.encode(self.numericFilterOption, forKey: .numericFilterOption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

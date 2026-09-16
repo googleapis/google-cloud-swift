@@ -28,6 +28,8 @@ public struct OperationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Step of the operation.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationStep`.
   public init() {}
 
@@ -44,36 +46,70 @@ public struct OperationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case createNetwork = "createNetwork"
-    case createPrivateServiceAccess = "createPrivateServiceAccess"
-    case createFilestoreInstance = "createFilestoreInstance"
-    case createStorageBucket = "createStorageBucket"
-    case createLustreInstance = "createLustreInstance"
-    case createOrchestrator = "createOrchestrator"
-    case createNodeset = "createNodeset"
-    case createPartition = "createPartition"
-    case createLoginNode = "createLoginNode"
-    case checkClusterHealth = "checkClusterHealth"
-    case updateOrchestrator = "updateOrchestrator"
-    case updateNodeset = "updateNodeset"
-    case updatePartition = "updatePartition"
-    case updateLoginNode = "updateLoginNode"
-    case deleteOrchestrator = "deleteOrchestrator"
-    case deleteNodeset = "deleteNodeset"
-    case deletePartition = "deletePartition"
-    case deleteLoginNode = "deleteLoginNode"
-    case deleteFilestoreInstance = "deleteFilestoreInstance"
-    case deleteStorageBucket = "deleteStorageBucket"
-    case deleteLustreInstance = "deleteLustreInstance"
-    case deletePrivateServiceAccess = "deletePrivateServiceAccess"
-    case deleteNetwork = "deleteNetwork"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createNetwork = CodingKeys(stringValue: "createNetwork")
+    static let createPrivateServiceAccess = CodingKeys(stringValue: "createPrivateServiceAccess")
+    static let createFilestoreInstance = CodingKeys(stringValue: "createFilestoreInstance")
+    static let createStorageBucket = CodingKeys(stringValue: "createStorageBucket")
+    static let createLustreInstance = CodingKeys(stringValue: "createLustreInstance")
+    static let createOrchestrator = CodingKeys(stringValue: "createOrchestrator")
+    static let createNodeset = CodingKeys(stringValue: "createNodeset")
+    static let createPartition = CodingKeys(stringValue: "createPartition")
+    static let createLoginNode = CodingKeys(stringValue: "createLoginNode")
+    static let checkClusterHealth = CodingKeys(stringValue: "checkClusterHealth")
+    static let updateOrchestrator = CodingKeys(stringValue: "updateOrchestrator")
+    static let updateNodeset = CodingKeys(stringValue: "updateNodeset")
+    static let updatePartition = CodingKeys(stringValue: "updatePartition")
+    static let updateLoginNode = CodingKeys(stringValue: "updateLoginNode")
+    static let deleteOrchestrator = CodingKeys(stringValue: "deleteOrchestrator")
+    static let deleteNodeset = CodingKeys(stringValue: "deleteNodeset")
+    static let deletePartition = CodingKeys(stringValue: "deletePartition")
+    static let deleteLoginNode = CodingKeys(stringValue: "deleteLoginNode")
+    static let deleteFilestoreInstance = CodingKeys(stringValue: "deleteFilestoreInstance")
+    static let deleteStorageBucket = CodingKeys(stringValue: "deleteStorageBucket")
+    static let deleteLustreInstance = CodingKeys(stringValue: "deleteLustreInstance")
+    static let deletePrivateServiceAccess = CodingKeys(stringValue: "deletePrivateServiceAccess")
+    static let deleteNetwork = CodingKeys(stringValue: "deleteNetwork")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createNetwork",
+      "createPrivateServiceAccess",
+      "createFilestoreInstance",
+      "createStorageBucket",
+      "createLustreInstance",
+      "createOrchestrator",
+      "createNodeset",
+      "createPartition",
+      "createLoginNode",
+      "checkClusterHealth",
+      "updateOrchestrator",
+      "updateNodeset",
+      "updatePartition",
+      "updateLoginNode",
+      "deleteOrchestrator",
+      "deleteNodeset",
+      "deletePartition",
+      "deleteLoginNode",
+      "deleteFilestoreInstance",
+      "deleteStorageBucket",
+      "deleteLustreInstance",
+      "deletePrivateServiceAccess",
+      "deleteNetwork",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decode(OperationStep.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(OperationStep.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -201,6 +237,10 @@ public struct OperationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.deleteNetwork(deleteNetwork))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -256,6 +296,9 @@ public struct OperationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .deleteNetwork(let value):
         try container.encode(value, forKey: .deleteNetwork)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

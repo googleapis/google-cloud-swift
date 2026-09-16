@@ -169,6 +169,8 @@ public struct Secret: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
   public var expiration: OneOf_Expiration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Secret`.
   public init() {}
 
@@ -185,44 +187,88 @@ public struct Secret: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case replication = "replication"
-    case createTime = "createTime"
-    case labels = "labels"
-    case topics = "topics"
-    case expireTime = "expireTime"
-    case ttl = "ttl"
-    case etag = "etag"
-    case rotation = "rotation"
-    case versionAliases = "versionAliases"
-    case annotations = "annotations"
-    case versionDestroyTtl = "versionDestroyTtl"
-    case customerManagedEncryption = "customerManagedEncryption"
-    case tags = "tags"
-    case secretType = "secretType"
-    case policyMember = "policyMember"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let replication = CodingKeys(stringValue: "replication")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let topics = CodingKeys(stringValue: "topics")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let rotation = CodingKeys(stringValue: "rotation")
+    static let versionAliases = CodingKeys(stringValue: "versionAliases")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let versionDestroyTtl = CodingKeys(stringValue: "versionDestroyTtl")
+    static let customerManagedEncryption = CodingKeys(stringValue: "customerManagedEncryption")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let secretType = CodingKeys(stringValue: "secretType")
+    static let policyMember = CodingKeys(stringValue: "policyMember")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "replication",
+      "createTime",
+      "labels",
+      "topics",
+      "expireTime",
+      "ttl",
+      "etag",
+      "rotation",
+      "versionAliases",
+      "annotations",
+      "versionDestroyTtl",
+      "customerManagedEncryption",
+      "tags",
+      "secretType",
+      "policyMember",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.replication = try container.decodeIfPresent(Replication.self, forKey: .replication)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.topics = try container.decode([Topic].self, forKey: .topics)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Topic].self, forKey: .topics) {
+      self.topics = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
     self.rotation = try container.decodeIfPresent(Rotation.self, forKey: .rotation)
-    self.versionAliases = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.Int64].self, forKey: .versionAliases)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.versionAliases = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
     self.versionDestroyTtl = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .versionDestroyTtl)
     self.customerManagedEncryption = try container.decodeIfPresent(
       CustomerManagedEncryption.self, forKey: .customerManagedEncryption)
-    self.tags = try container.decode([Swift.String: Swift.String].self, forKey: .tags)
-    self.secretType = try container.decode(Secret.SecretType.self, forKey: .secretType)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Secret.SecretType.self, forKey: .secretType) {
+      self.secretType = value
+    }
     self.policyMember = try container.decodeIfPresent(
       GoogleIAMV1.ResourcePolicyMember.self, forKey: .policyMember)
 
@@ -245,24 +291,29 @@ public struct Secret: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.replication, forKey: .replication)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.replication, forKey: .replication)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.topics, forKey: .topics)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.rotation, forKey: .rotation)
+    try container.encodeIfPresent(self.rotation, forKey: .rotation)
     try container.encode(self.versionAliases, forKey: .versionAliases)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.versionDestroyTtl, forKey: .versionDestroyTtl)
-    try container.encode(self.customerManagedEncryption, forKey: .customerManagedEncryption)
+    try container.encodeIfPresent(self.versionDestroyTtl, forKey: .versionDestroyTtl)
+    try container.encodeIfPresent(
+      self.customerManagedEncryption, forKey: .customerManagedEncryption)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.secretType, forKey: .secretType)
-    try container.encode(self.policyMember, forKey: .policyMember)
+    try container.encodeIfPresent(self.policyMember, forKey: .policyMember)
 
     if let choice = self.expiration {
       switch choice {
@@ -271,6 +322,9 @@ public struct Secret: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .ttl(let value):
         try container.encode(value, forKey: .ttl)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

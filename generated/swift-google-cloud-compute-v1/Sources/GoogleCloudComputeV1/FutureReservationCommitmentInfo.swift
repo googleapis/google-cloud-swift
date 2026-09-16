@@ -35,6 +35,8 @@
     public var previousCommitmentTerms: FutureReservationCommitmentInfo.PreviousCommitmentTerms? =
       nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationCommitmentInfo`.
     public init() {}
 
@@ -49,6 +51,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let commitmentName = CodingKeys(stringValue: "commitmentName")
+      static let commitmentPlan = CodingKeys(stringValue: "commitmentPlan")
+      static let previousCommitmentTerms = CodingKeys(stringValue: "previousCommitmentTerms")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "commitmentName",
+        "commitmentPlan",
+        "previousCommitmentTerms",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.commitmentName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .commitmentName)
+      self.commitmentPlan = try container.decodeIfPresent(
+        FutureReservationCommitmentInfo.CommitmentPlan.self, forKey: .commitmentPlan)
+      self.previousCommitmentTerms = try container.decodeIfPresent(
+        FutureReservationCommitmentInfo.PreviousCommitmentTerms.self,
+        forKey: .previousCommitmentTerms)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.commitmentName, forKey: .commitmentName)
+      try container.encodeIfPresent(self.commitmentPlan, forKey: .commitmentPlan)
+      try container.encodeIfPresent(self.previousCommitmentTerms, forKey: .previousCommitmentTerms)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [commitmentPlan][google.cloud.compute.v1.FutureReservationCommitmentInfo.commitmentPlan] field.

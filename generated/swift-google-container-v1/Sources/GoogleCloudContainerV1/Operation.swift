@@ -99,6 +99,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The error result of the operation in case of failure.
   public var error: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Operation`.
   public init() {}
 
@@ -113,6 +115,121 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let operationType = CodingKeys(stringValue: "operationType")
+    static let status = CodingKeys(stringValue: "status")
+    static let detail = CodingKeys(stringValue: "detail")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let targetLink = CodingKeys(stringValue: "targetLink")
+    static let location = CodingKeys(stringValue: "location")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let progress = CodingKeys(stringValue: "progress")
+    static let clusterConditions = CodingKeys(stringValue: "clusterConditions")
+    static let nodepoolConditions = CodingKeys(stringValue: "nodepoolConditions")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "zone",
+      "operationType",
+      "status",
+      "detail",
+      "statusMessage",
+      "selfLink",
+      "targetLink",
+      "location",
+      "startTime",
+      "endTime",
+      "progress",
+      "clusterConditions",
+      "nodepoolConditions",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Operation.Type_.self, forKey: .operationType) {
+      self.operationType = value
+    }
+    if let value = try container.decodeIfPresent(Operation.Status.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+      self.detail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLink) {
+      self.targetLink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startTime) {
+      self.startTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endTime) {
+      self.endTime = value
+    }
+    self.progress = try container.decodeIfPresent(OperationProgress.self, forKey: .progress)
+    if let value = try container.decodeIfPresent([StatusCondition].self, forKey: .clusterConditions)
+    {
+      self.clusterConditions = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StatusCondition].self, forKey: .nodepoolConditions)
+    {
+      self.nodepoolConditions = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.operationType, forKey: .operationType)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.detail, forKey: .detail)
+    try container.encode(self.statusMessage, forKey: .statusMessage)
+    try container.encode(self.selfLink, forKey: .selfLink)
+    try container.encode(self.targetLink, forKey: .targetLink)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.startTime, forKey: .startTime)
+    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.progress, forKey: .progress)
+    try container.encode(self.clusterConditions, forKey: .clusterConditions)
+    try container.encode(self.nodepoolConditions, forKey: .nodepoolConditions)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Current status of the operation.

@@ -40,6 +40,8 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Rapid Cache configuration for a managed prefix.
   public var rapidCacheConfig: ManagedFolder.RapidCacheConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagedFolder`.
   public init() {}
 
@@ -56,6 +58,59 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let metageneration = CodingKeys(stringValue: "metageneration")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let rapidCacheConfig = CodingKeys(stringValue: "rapidCacheConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "metageneration",
+      "createTime",
+      "updateTime",
+      "rapidCacheConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .metageneration) {
+      self.metageneration = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.rapidCacheConfig = try container.decodeIfPresent(
+      ManagedFolder.RapidCacheConfig.self, forKey: .rapidCacheConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.metageneration, forKey: .metageneration)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.rapidCacheConfig, forKey: .rapidCacheConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Rapid Cache configuration for a managed prefix. This configuration is used
   /// to determine how the rapid cache behaves for objects under the managed
   /// folder.
@@ -68,6 +123,8 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// with the cache instance lifetime. This allows for a future transition
     /// from zone to a cache id if required.
     public var policies: [Swift.String: ManagedFolder.RapidCacheConfig.RapidCachePolicy] = [:]
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RapidCacheConfig`.
     public init() {}
@@ -85,6 +142,40 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let policies = CodingKeys(stringValue: "policies")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "policies"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: ManagedFolder.RapidCacheConfig.RapidCachePolicy].self, forKey: .policies)
+      {
+        self.policies = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.policies, forKey: .policies)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Rapid Cache policy for a managed folder.
     public struct RapidCachePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -96,6 +187,8 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// into the cache when they are written.
       public var ingestOnWrite: ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite =
         ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RapidCachePolicy`.
       public init() {}
@@ -111,6 +204,46 @@ public struct ManagedFolder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rapidCacheId = CodingKeys(stringValue: "rapidCacheId")
+        static let ingestOnWrite = CodingKeys(stringValue: "ingestOnWrite")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rapidCacheId",
+          "ingestOnWrite",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rapidCacheId) {
+          self.rapidCacheId = value
+        }
+        if let value = try container.decodeIfPresent(
+          ManagedFolder.RapidCacheConfig.RapidCachePolicy.IngestOnWrite.self, forKey: .ingestOnWrite
+        ) {
+          self.ingestOnWrite = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.rapidCacheId, forKey: .rapidCacheId)
+        try container.encode(self.ingestOnWrite, forKey: .ingestOnWrite)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The behavior of the rapid cache when an object is written.

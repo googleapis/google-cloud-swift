@@ -24,6 +24,8 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The replication policy for this secret.
   public var replication: OneOf_Replication? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Replication`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case automatic = "automatic"
-    case userManaged = "userManaged"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let automatic = CodingKeys(stringValue: "automatic")
+    static let userManaged = CodingKeys(stringValue: "userManaged")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "automatic",
+      "userManaged",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try replicationCheckAndSet(.userManaged(userManaged))
     }
     self.replication = replication
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .userManaged(let value):
         try container.encode(value, forKey: .userManaged)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -106,6 +125,8 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
     public var customerManagedEncryption: CustomerManagedEncryption? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Automatic`.
     public init() {}
 
@@ -120,6 +141,38 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customerManagedEncryption = CodingKeys(stringValue: "customerManagedEncryption")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customerManagedEncryption"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.customerManagedEncryption = try container.decodeIfPresent(
+        CustomerManagedEncryption.self, forKey: .customerManagedEncryption)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.customerManagedEncryption, forKey: .customerManagedEncryption)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -151,6 +204,8 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
     public var replicas: [Replication.UserManaged.Replica] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UserManaged`.
     public init() {}
 
@@ -165,6 +220,40 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let replicas = CodingKeys(stringValue: "replicas")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "replicas"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Replication.UserManaged.Replica].self, forKey: .replicas)
+      {
+        self.replicas = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.replicas, forKey: .replicas)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents a Replica for this
@@ -193,6 +282,8 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
       public var customerManagedEncryption: CustomerManagedEncryption? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Replica`.
       public init() {}
 
@@ -207,6 +298,44 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let location = CodingKeys(stringValue: "location")
+        static let customerManagedEncryption = CodingKeys(stringValue: "customerManagedEncryption")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "location",
+          "customerManagedEncryption",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+          self.location = value
+        }
+        self.customerManagedEncryption = try container.decodeIfPresent(
+          CustomerManagedEncryption.self, forKey: .customerManagedEncryption)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.location, forKey: .location)
+        try container.encodeIfPresent(
+          self.customerManagedEncryption, forKey: .customerManagedEncryption)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

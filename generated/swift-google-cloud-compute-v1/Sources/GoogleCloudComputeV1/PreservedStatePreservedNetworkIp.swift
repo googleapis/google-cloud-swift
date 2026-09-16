@@ -31,6 +31,8 @@
     /// Ip address representation
     public var ipAddress: PreservedStatePreservedNetworkIpIpAddress? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PreservedStatePreservedNetworkIp`.
     public init() {}
 
@@ -45,6 +47,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoDelete = CodingKeys(stringValue: "autoDelete")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoDelete",
+        "ipAddress",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoDelete = try container.decodeIfPresent(
+        PreservedStatePreservedNetworkIp.AutoDelete.self, forKey: .autoDelete)
+      self.ipAddress = try container.decodeIfPresent(
+        PreservedStatePreservedNetworkIpIpAddress.self, forKey: .ipAddress)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoDelete, forKey: .autoDelete)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [autoDelete][google.cloud.compute.v1.PreservedStatePreservedNetworkIp.autoDelete] field.

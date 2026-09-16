@@ -29,6 +29,8 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// labels.
   public var selector: Fleet.LabelSelector? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Fleet`.
   public init() {}
 
@@ -45,6 +47,42 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let project = CodingKeys(stringValue: "project")
+    static let selector = CodingKeys(stringValue: "selector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "project",
+      "selector",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    self.selector = try container.decodeIfPresent(Fleet.LabelSelector.self, forKey: .selector)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.project, forKey: .project)
+    try container.encodeIfPresent(self.selector, forKey: .selector)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A label selector is a label query over a set of resources. An empty label
   /// selector matches all objects.
   public struct LabelSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -54,6 +92,8 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// pair must match an existing label key and value exactly in order to
     /// satisfy the match.
     public var matchLabels: [Swift.String: Swift.String] = [:]
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LabelSelector`.
     public init() {}
@@ -69,6 +109,40 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let matchLabels = CodingKeys(stringValue: "matchLabels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "matchLabels"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .matchLabels)
+      {
+        self.matchLabels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.matchLabels, forKey: .matchLabels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

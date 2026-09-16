@@ -39,6 +39,8 @@ public struct CheckRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// latest one will be used.
   public var serviceConfigId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckRequest`.
   public init() {}
 
@@ -53,6 +55,48 @@ public struct CheckRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceName = CodingKeys(stringValue: "serviceName")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let serviceConfigId = CodingKeys(stringValue: "serviceConfigId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceName",
+      "operation",
+      "serviceConfigId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
+      self.serviceName = value
+    }
+    self.operation = try container.decodeIfPresent(Operation.self, forKey: .operation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceConfigId) {
+      self.serviceConfigId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceName, forKey: .serviceName)
+    try container.encodeIfPresent(self.operation, forKey: .operation)
+    try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

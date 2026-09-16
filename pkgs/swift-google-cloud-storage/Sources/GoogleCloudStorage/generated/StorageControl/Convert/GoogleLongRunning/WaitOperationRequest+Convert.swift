@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleLongRunning
 internal import GoogleCloudWKTConvert
 
 extension GoogleLongRunning.WaitOperationRequest {
@@ -29,12 +29,16 @@ extension GoogleLongRunning.WaitOperationRequest {
     self.init()
     self.name = proto.name
     self.timeout = proto.hasTimeout ? try .init(proto: proto.timeout) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.name = self.name
     if let timeout = self.timeout { proto.timeout = try timeout.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

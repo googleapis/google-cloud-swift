@@ -38,6 +38,8 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// IANA Internet Protocol Number such as TCP(6) and UDP(17).
   public var `protocol`: Connection.Protocol_ = Connection.Protocol_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Connection`.
   public init() {}
 
@@ -54,21 +56,48 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case destinationIp = "destinationIp"
-    case destinationPort = "destinationPort"
-    case sourceIp = "sourceIp"
-    case sourcePort = "sourcePort"
-    case `protocol` = "protocol"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationIp = CodingKeys(stringValue: "destinationIp")
+    static let destinationPort = CodingKeys(stringValue: "destinationPort")
+    static let sourceIp = CodingKeys(stringValue: "sourceIp")
+    static let sourcePort = CodingKeys(stringValue: "sourcePort")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationIp",
+      "destinationPort",
+      "sourceIp",
+      "sourcePort",
+      "protocol",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.destinationIp = try container.decode(Swift.String.self, forKey: .destinationIp)
-    self.destinationPort = try container.decode(Swift.Int32.self, forKey: .destinationPort)
-    self.sourceIp = try container.decode(Swift.String.self, forKey: .sourceIp)
-    self.sourcePort = try container.decode(Swift.Int32.self, forKey: .sourcePort)
-    self.`protocol` = try container.decode(Connection.Protocol_.self, forKey: .`protocol`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationIp) {
+      self.destinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .destinationPort) {
+      self.destinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceIp) {
+      self.sourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourcePort) {
+      self.sourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Connection.Protocol_.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +107,9 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.sourceIp, forKey: .sourceIp)
     try container.encode(self.sourcePort, forKey: .sourcePort)
     try container.encode(self.`protocol`, forKey: .`protocol`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// IANA Internet Protocol Number such as TCP(6) and UDP(17).

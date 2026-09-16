@@ -52,6 +52,8 @@
     /// IP was allocated from.
     public var subnetworkCidrRange: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkAttachmentConnectedEndpoint`.
     public init() {}
 
@@ -66,6 +68,72 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+      static let projectIdOrNum = CodingKeys(stringValue: "projectIdOrNum")
+      static let secondaryIpCidrRanges = CodingKeys(stringValue: "secondaryIpCidrRanges")
+      static let serviceClassId = CodingKeys(stringValue: "serviceClassId")
+      static let status = CodingKeys(stringValue: "status")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let subnetworkCidrRange = CodingKeys(stringValue: "subnetworkCidrRange")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipAddress",
+        "ipv6Address",
+        "projectIdOrNum",
+        "secondaryIpCidrRanges",
+        "serviceClassId",
+        "status",
+        "subnetwork",
+        "subnetworkCidrRange",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
+      self.projectIdOrNum = try container.decodeIfPresent(
+        Swift.String.self, forKey: .projectIdOrNum)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .secondaryIpCidrRanges)
+      {
+        self.secondaryIpCidrRanges = value
+      }
+      self.serviceClassId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serviceClassId)
+      self.status = try container.decodeIfPresent(
+        NetworkAttachmentConnectedEndpoint.Status.self, forKey: .status)
+      self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
+      self.subnetworkCidrRange = try container.decodeIfPresent(
+        Swift.String.self, forKey: .subnetworkCidrRange)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+      try container.encodeIfPresent(self.projectIdOrNum, forKey: .projectIdOrNum)
+      try container.encode(self.secondaryIpCidrRanges, forKey: .secondaryIpCidrRanges)
+      try container.encodeIfPresent(self.serviceClassId, forKey: .serviceClassId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      try container.encodeIfPresent(self.subnetworkCidrRange, forKey: .subnetworkCidrRange)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint.status] field.

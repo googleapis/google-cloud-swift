@@ -41,6 +41,8 @@ public struct SparkProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Spark History Server configuration for the connection.
   public var sparkHistoryServerConfig: SparkHistoryServerConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SparkProperties`.
   public init() {}
 
@@ -55,6 +57,48 @@ public struct SparkProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccountId = CodingKeys(stringValue: "serviceAccountId")
+    static let metastoreServiceConfig = CodingKeys(stringValue: "metastoreServiceConfig")
+    static let sparkHistoryServerConfig = CodingKeys(stringValue: "sparkHistoryServerConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccountId",
+      "metastoreServiceConfig",
+      "sparkHistoryServerConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountId) {
+      self.serviceAccountId = value
+    }
+    self.metastoreServiceConfig = try container.decodeIfPresent(
+      MetastoreServiceConfig.self, forKey: .metastoreServiceConfig)
+    self.sparkHistoryServerConfig = try container.decodeIfPresent(
+      SparkHistoryServerConfig.self, forKey: .sparkHistoryServerConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAccountId, forKey: .serviceAccountId)
+    try container.encodeIfPresent(self.metastoreServiceConfig, forKey: .metastoreServiceConfig)
+    try container.encodeIfPresent(self.sparkHistoryServerConfig, forKey: .sparkHistoryServerConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

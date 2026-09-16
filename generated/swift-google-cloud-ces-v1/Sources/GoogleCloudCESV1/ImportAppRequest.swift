@@ -55,6 +55,8 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The app to import.
   public var app: OneOf_App? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportAppRequest`.
   public init() {}
 
@@ -71,24 +73,47 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsUri = "gcsUri"
-    case appContent = "appContent"
-    case parent = "parent"
-    case displayName = "displayName"
-    case appId = "appId"
-    case importOptions = "importOptions"
-    case ignoreAppLock = "ignoreAppLock"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsUri = CodingKeys(stringValue: "gcsUri")
+    static let appContent = CodingKeys(stringValue: "appContent")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let appId = CodingKeys(stringValue: "appId")
+    static let importOptions = CodingKeys(stringValue: "importOptions")
+    static let ignoreAppLock = CodingKeys(stringValue: "ignoreAppLock")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsUri",
+      "appContent",
+      "parent",
+      "displayName",
+      "appId",
+      "importOptions",
+      "ignoreAppLock",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.appId = try container.decode(Swift.String.self, forKey: .appId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appId) {
+      self.appId = value
+    }
     self.importOptions = try container.decodeIfPresent(
       ImportAppRequest.ImportOptions.self, forKey: .importOptions)
-    self.ignoreAppLock = try container.decode(Swift.Bool.self, forKey: .ignoreAppLock)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreAppLock) {
+      self.ignoreAppLock = value
+    }
 
     var app: OneOf_App? = nil
     let appCheckAndSet = {
@@ -107,6 +132,10 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try appCheckAndSet(.appContent(appContent))
     }
     self.app = app
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,7 +143,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.appId, forKey: .appId)
-    try container.encode(self.importOptions, forKey: .importOptions)
+    try container.encodeIfPresent(self.importOptions, forKey: .importOptions)
     try container.encode(self.ignoreAppLock, forKey: .ignoreAppLock)
 
     if let choice = self.app {
@@ -124,6 +153,9 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .appContent(let value):
         try container.encode(value, forKey: .appContent)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -137,6 +169,8 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var conflictResolutionStrategy:
       ImportAppRequest.ImportOptions.ConflictResolutionStrategy = ImportAppRequest.ImportOptions
         .ConflictResolutionStrategy()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ImportOptions`.
     public init() {}
@@ -152,6 +186,41 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conflictResolutionStrategy = CodingKeys(stringValue: "conflictResolutionStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conflictResolutionStrategy"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ImportAppRequest.ImportOptions.ConflictResolutionStrategy.self,
+        forKey: .conflictResolutionStrategy)
+      {
+        self.conflictResolutionStrategy = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.conflictResolutionStrategy, forKey: .conflictResolutionStrategy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the strategy for handling conflicts when an app with the same ID

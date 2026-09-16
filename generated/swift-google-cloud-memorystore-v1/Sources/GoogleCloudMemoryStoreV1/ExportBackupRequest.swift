@@ -28,6 +28,8 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. Specify destination to export a backup.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportBackupRequest`.
   public init() {}
 
@@ -44,14 +46,26 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsBucket = "gcsBucket"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsBucket = CodingKeys(stringValue: "gcsBucket")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsBucket",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -67,6 +81,10 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try destinationCheckAndSet(.gcsBucket(gcsBucket))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +96,9 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .gcsBucket(let value):
         try container.encode(value, forKey: .gcsBucket)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

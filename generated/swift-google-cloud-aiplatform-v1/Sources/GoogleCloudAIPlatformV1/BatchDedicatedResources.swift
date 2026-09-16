@@ -37,6 +37,8 @@
     /// be scaled to. The default value is 10.
     public var maxReplicaCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchDedicatedResources`.
     public init() {}
 
@@ -51,6 +53,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineSpec = CodingKeys(stringValue: "machineSpec")
+      static let startingReplicaCount = CodingKeys(stringValue: "startingReplicaCount")
+      static let maxReplicaCount = CodingKeys(stringValue: "maxReplicaCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineSpec",
+        "startingReplicaCount",
+        "maxReplicaCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .startingReplicaCount)
+      {
+        self.startingReplicaCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxReplicaCount) {
+        self.maxReplicaCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
+      try container.encode(self.startingReplicaCount, forKey: .startingReplicaCount)
+      try container.encode(self.maxReplicaCount, forKey: .maxReplicaCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

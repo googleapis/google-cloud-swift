@@ -31,6 +31,8 @@ public struct GcsFileSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. File size in bytes.
   public var sizeBytes: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsFileSpec`.
   public init() {}
 
@@ -45,6 +47,49 @@ public struct GcsFileSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filePath = CodingKeys(stringValue: "filePath")
+    static let gcsTimestamps = CodingKeys(stringValue: "gcsTimestamps")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filePath",
+      "gcsTimestamps",
+      "sizeBytes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filePath) {
+      self.filePath = value
+    }
+    self.gcsTimestamps = try container.decodeIfPresent(
+      SystemTimestamps.self, forKey: .gcsTimestamps)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.filePath, forKey: .filePath)
+    try container.encodeIfPresent(self.gcsTimestamps, forKey: .gcsTimestamps)
+    try container.encode(self.sizeBytes, forKey: .sizeBytes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

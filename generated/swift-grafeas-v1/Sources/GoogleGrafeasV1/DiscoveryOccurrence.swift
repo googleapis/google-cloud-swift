@@ -62,6 +62,8 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The last time vulnerability scan results changed.
   public var lastVulnerabilityUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryOccurrence`.
   public init() {}
 
@@ -78,12 +80,110 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let continuousAnalysis = CodingKeys(stringValue: "continuousAnalysis")
+    static let analysisStatus = CodingKeys(stringValue: "analysisStatus")
+    static let analysisCompleted = CodingKeys(stringValue: "analysisCompleted")
+    static let analysisError = CodingKeys(stringValue: "analysisError")
+    static let analysisStatusError = CodingKeys(stringValue: "analysisStatusError")
+    static let cpe = CodingKeys(stringValue: "cpe")
+    static let lastScanTime = CodingKeys(stringValue: "lastScanTime")
+    static let archiveTime = CodingKeys(stringValue: "archiveTime")
+    static let sbomStatus = CodingKeys(stringValue: "sbomStatus")
+    static let vulnerabilityAttestation = CodingKeys(stringValue: "vulnerabilityAttestation")
+    static let files = CodingKeys(stringValue: "files")
+    static let lastVulnerabilityUpdateTime = CodingKeys(stringValue: "lastVulnerabilityUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "continuousAnalysis",
+      "analysisStatus",
+      "analysisCompleted",
+      "analysisError",
+      "analysisStatusError",
+      "cpe",
+      "lastScanTime",
+      "archiveTime",
+      "sbomStatus",
+      "vulnerabilityAttestation",
+      "files",
+      "lastVulnerabilityUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      DiscoveryOccurrence.ContinuousAnalysis.self, forKey: .continuousAnalysis)
+    {
+      self.continuousAnalysis = value
+    }
+    if let value = try container.decodeIfPresent(
+      DiscoveryOccurrence.AnalysisStatus.self, forKey: .analysisStatus)
+    {
+      self.analysisStatus = value
+    }
+    self.analysisCompleted = try container.decodeIfPresent(
+      DiscoveryOccurrence.AnalysisCompleted.self, forKey: .analysisCompleted)
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .analysisError) {
+      self.analysisError = value
+    }
+    self.analysisStatusError = try container.decodeIfPresent(
+      GoogleRpc.Status.self, forKey: .analysisStatusError)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpe) {
+      self.cpe = value
+    }
+    self.lastScanTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastScanTime)
+    self.archiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .archiveTime)
+    self.sbomStatus = try container.decodeIfPresent(
+      DiscoveryOccurrence.SBOMStatus.self, forKey: .sbomStatus)
+    self.vulnerabilityAttestation = try container.decodeIfPresent(
+      DiscoveryOccurrence.VulnerabilityAttestation.self, forKey: .vulnerabilityAttestation)
+    if let value = try container.decodeIfPresent([DiscoveryOccurrence.File].self, forKey: .files) {
+      self.files = value
+    }
+    self.lastVulnerabilityUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastVulnerabilityUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.continuousAnalysis, forKey: .continuousAnalysis)
+    try container.encode(self.analysisStatus, forKey: .analysisStatus)
+    try container.encodeIfPresent(self.analysisCompleted, forKey: .analysisCompleted)
+    try container.encode(self.analysisError, forKey: .analysisError)
+    try container.encodeIfPresent(self.analysisStatusError, forKey: .analysisStatusError)
+    try container.encode(self.cpe, forKey: .cpe)
+    try container.encodeIfPresent(self.lastScanTime, forKey: .lastScanTime)
+    try container.encodeIfPresent(self.archiveTime, forKey: .archiveTime)
+    try container.encodeIfPresent(self.sbomStatus, forKey: .sbomStatus)
+    try container.encodeIfPresent(self.vulnerabilityAttestation, forKey: .vulnerabilityAttestation)
+    try container.encode(self.files, forKey: .files)
+    try container.encodeIfPresent(
+      self.lastVulnerabilityUpdateTime, forKey: .lastVulnerabilityUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Indicates which analysis completed successfully. Multiple types of
   /// analysis can be performed on a single resource.
   public struct AnalysisCompleted: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var analysisType: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AnalysisCompleted`.
     public init() {}
@@ -99,6 +199,38 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let analysisType = CodingKeys(stringValue: "analysisType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "analysisType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .analysisType) {
+        self.analysisType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.analysisType, forKey: .analysisType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -124,6 +256,8 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// error was.
     public var error: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SBOMStatus`.
     public init() {}
 
@@ -138,6 +272,46 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sbomState = CodingKeys(stringValue: "sbomState")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sbomState",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DiscoveryOccurrence.SBOMStatus.SBOMState.self, forKey: .sbomState)
+      {
+        self.sbomState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
+        self.error = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sbomState, forKey: .sbomState)
+      try container.encode(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// An enum indicating the progress of the SBOM generation.
@@ -270,6 +444,8 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// If failure, the error reason for why the attestation generation failed.
     public var error: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VulnerabilityAttestation`.
     public init() {}
 
@@ -284,6 +460,52 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lastAttemptTime = CodingKeys(stringValue: "lastAttemptTime")
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lastAttemptTime",
+        "state",
+        "error",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.lastAttemptTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastAttemptTime)
+      if let value = try container.decodeIfPresent(
+        DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState.self,
+        forKey: .state)
+      {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
+        self.error = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.lastAttemptTime, forKey: .lastAttemptTime)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// An enum indicating the state of the attestation generation.
@@ -410,6 +632,8 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
     public var digest: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `File`.
     public init() {}
 
@@ -424,6 +648,46 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let digest = CodingKeys(stringValue: "digest")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "digest",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .digest)
+      {
+        self.digest = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.digest, forKey: .digest)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

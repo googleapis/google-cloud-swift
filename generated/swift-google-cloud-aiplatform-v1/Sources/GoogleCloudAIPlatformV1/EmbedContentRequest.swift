@@ -58,6 +58,8 @@
     /// Optional. Configuration for the EmbedContent request.
     public var embedContentConfig: EmbedContentRequest.EmbedContentConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EmbedContentRequest`.
     public init() {}
 
@@ -72,6 +74,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let model = CodingKeys(stringValue: "model")
+      static let content = CodingKeys(stringValue: "content")
+      static let title = CodingKeys(stringValue: "title")
+      static let taskType = CodingKeys(stringValue: "taskType")
+      static let outputDimensionality = CodingKeys(stringValue: "outputDimensionality")
+      static let autoTruncate = CodingKeys(stringValue: "autoTruncate")
+      static let embedContentConfig = CodingKeys(stringValue: "embedContentConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "model",
+        "content",
+        "title",
+        "taskType",
+        "outputDimensionality",
+        "autoTruncate",
+        "embedContentConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.model = try container.decodeIfPresent(Swift.String.self, forKey: .model)
+      self.content = try container.decodeIfPresent(Content.self, forKey: .content)
+      self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
+      self.taskType = try container.decodeIfPresent(
+        EmbedContentRequest.EmbeddingTaskType.self, forKey: .taskType)
+      self.outputDimensionality = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .outputDimensionality)
+      self.autoTruncate = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoTruncate)
+      self.embedContentConfig = try container.decodeIfPresent(
+        EmbedContentRequest.EmbedContentConfig.self, forKey: .embedContentConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.model, forKey: .model)
+      try container.encodeIfPresent(self.content, forKey: .content)
+      try container.encodeIfPresent(self.title, forKey: .title)
+      try container.encodeIfPresent(self.taskType, forKey: .taskType)
+      try container.encodeIfPresent(self.outputDimensionality, forKey: .outputDimensionality)
+      try container.encodeIfPresent(self.autoTruncate, forKey: .autoTruncate)
+      try container.encodeIfPresent(self.embedContentConfig, forKey: .embedContentConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configurations for the EmbedContent API.
@@ -104,6 +163,8 @@
       /// Optional. Whether to extract audio from video content.
       public var audioTrackExtraction: Swift.Bool? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `EmbedContentConfig`.
       public init() {}
 
@@ -118,6 +179,59 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let title = CodingKeys(stringValue: "title")
+        static let taskType = CodingKeys(stringValue: "taskType")
+        static let autoTruncate = CodingKeys(stringValue: "autoTruncate")
+        static let outputDimensionality = CodingKeys(stringValue: "outputDimensionality")
+        static let documentOcr = CodingKeys(stringValue: "documentOcr")
+        static let audioTrackExtraction = CodingKeys(stringValue: "audioTrackExtraction")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "title",
+          "taskType",
+          "autoTruncate",
+          "outputDimensionality",
+          "documentOcr",
+          "audioTrackExtraction",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
+        self.taskType = try container.decodeIfPresent(
+          EmbedContentRequest.EmbeddingTaskType.self, forKey: .taskType)
+        self.autoTruncate = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoTruncate)
+        self.outputDimensionality = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .outputDimensionality)
+        self.documentOcr = try container.decodeIfPresent(Swift.Bool.self, forKey: .documentOcr)
+        self.audioTrackExtraction = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .audioTrackExtraction)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.taskType, forKey: .taskType)
+        try container.encodeIfPresent(self.autoTruncate, forKey: .autoTruncate)
+        try container.encodeIfPresent(self.outputDimensionality, forKey: .outputDimensionality)
+        try container.encodeIfPresent(self.documentOcr, forKey: .documentOcr)
+        try container.encodeIfPresent(self.audioTrackExtraction, forKey: .audioTrackExtraction)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

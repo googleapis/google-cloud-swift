@@ -36,6 +36,8 @@
     /// instance was being created.
     public var version: ManagedInstanceVersion? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceManagedByIgmErrorInstanceActionDetails`.
     public init() {}
 
@@ -50,6 +52,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let action = CodingKeys(stringValue: "action")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let version = CodingKeys(stringValue: "version")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "action",
+        "instance",
+        "version",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.action = try container.decodeIfPresent(
+        InstanceManagedByIgmErrorInstanceActionDetails.Action.self, forKey: .action)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      self.version = try container.decodeIfPresent(ManagedInstanceVersion.self, forKey: .version)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.action, forKey: .action)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encodeIfPresent(self.version, forKey: .version)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [action][google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails.action] field.

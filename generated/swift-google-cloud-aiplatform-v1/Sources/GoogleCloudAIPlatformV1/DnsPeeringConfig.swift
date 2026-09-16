@@ -39,6 +39,8 @@
     /// visible.
     public var targetNetwork: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DnsPeeringConfig`.
     public init() {}
 
@@ -53,6 +55,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let domain = CodingKeys(stringValue: "domain")
+      static let targetProject = CodingKeys(stringValue: "targetProject")
+      static let targetNetwork = CodingKeys(stringValue: "targetNetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "domain",
+        "targetProject",
+        "targetNetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+        self.domain = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
+        self.targetProject = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetNetwork) {
+        self.targetNetwork = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.domain, forKey: .domain)
+      try container.encode(self.targetProject, forKey: .targetProject)
+      try container.encode(self.targetNetwork, forKey: .targetNetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

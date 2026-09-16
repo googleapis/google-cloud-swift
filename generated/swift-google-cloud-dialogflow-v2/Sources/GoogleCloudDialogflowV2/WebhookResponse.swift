@@ -103,6 +103,8 @@
     /// [google.cloud.dialogflow.v2.SessionEntityType]: <doc:SessionEntityType>
     public var sessionEntityTypes: [SessionEntityType] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebhookResponse`.
     public init() {}
 
@@ -117,6 +119,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fulfillmentText = CodingKeys(stringValue: "fulfillmentText")
+      static let fulfillmentMessages = CodingKeys(stringValue: "fulfillmentMessages")
+      static let source = CodingKeys(stringValue: "source")
+      static let payload = CodingKeys(stringValue: "payload")
+      static let outputContexts = CodingKeys(stringValue: "outputContexts")
+      static let followupEventInput = CodingKeys(stringValue: "followupEventInput")
+      static let sessionEntityTypes = CodingKeys(stringValue: "sessionEntityTypes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fulfillmentText",
+        "fulfillmentMessages",
+        "source",
+        "payload",
+        "outputContexts",
+        "followupEventInput",
+        "sessionEntityTypes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fulfillmentText) {
+        self.fulfillmentText = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.Message].self, forKey: .fulfillmentMessages)
+      {
+        self.fulfillmentMessages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+        self.source = value
+      }
+      self.payload = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .payload)
+      if let value = try container.decodeIfPresent([Context].self, forKey: .outputContexts) {
+        self.outputContexts = value
+      }
+      self.followupEventInput = try container.decodeIfPresent(
+        EventInput.self, forKey: .followupEventInput)
+      if let value = try container.decodeIfPresent(
+        [SessionEntityType].self, forKey: .sessionEntityTypes)
+      {
+        self.sessionEntityTypes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fulfillmentText, forKey: .fulfillmentText)
+      try container.encode(self.fulfillmentMessages, forKey: .fulfillmentMessages)
+      try container.encode(self.source, forKey: .source)
+      try container.encodeIfPresent(self.payload, forKey: .payload)
+      try container.encode(self.outputContexts, forKey: .outputContexts)
+      try container.encodeIfPresent(self.followupEventInput, forKey: .followupEventInput)
+      try container.encode(self.sessionEntityTypes, forKey: .sessionEntityTypes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

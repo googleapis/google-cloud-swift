@@ -30,6 +30,8 @@ public struct QuotaIncreaseEligibility: Codable, Equatable, GoogleCloudWKT._AnyP
   public var ineligibilityReason: QuotaIncreaseEligibility.IneligibilityReason =
     QuotaIncreaseEligibility.IneligibilityReason()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaIncreaseEligibility`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct QuotaIncreaseEligibility: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let isEligible = CodingKeys(stringValue: "isEligible")
+    static let ineligibilityReason = CodingKeys(stringValue: "ineligibilityReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "isEligible",
+      "ineligibilityReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isEligible) {
+      self.isEligible = value
+    }
+    if let value = try container.decodeIfPresent(
+      QuotaIncreaseEligibility.IneligibilityReason.self, forKey: .ineligibilityReason)
+    {
+      self.ineligibilityReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.isEligible, forKey: .isEligible)
+    try container.encode(self.ineligibilityReason, forKey: .ineligibilityReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumeration of reasons when it is ineligible to request increase

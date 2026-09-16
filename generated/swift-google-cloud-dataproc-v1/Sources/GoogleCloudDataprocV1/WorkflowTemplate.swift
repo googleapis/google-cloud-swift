@@ -93,6 +93,8 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// arguments.
   public var encryptionConfig: WorkflowTemplate.EncryptionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkflowTemplate`.
   public init() {}
 
@@ -107,6 +109,94 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let name = CodingKeys(stringValue: "name")
+    static let version = CodingKeys(stringValue: "version")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let placement = CodingKeys(stringValue: "placement")
+    static let jobs = CodingKeys(stringValue: "jobs")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let dagTimeout = CodingKeys(stringValue: "dagTimeout")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "name",
+      "version",
+      "createTime",
+      "updateTime",
+      "labels",
+      "placement",
+      "jobs",
+      "parameters",
+      "dagTimeout",
+      "encryptionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .version) {
+      self.version = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.placement = try container.decodeIfPresent(
+      WorkflowTemplatePlacement.self, forKey: .placement)
+    if let value = try container.decodeIfPresent([OrderedJob].self, forKey: .jobs) {
+      self.jobs = value
+    }
+    if let value = try container.decodeIfPresent([TemplateParameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    self.dagTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .dagTimeout)
+    self.encryptionConfig = try container.decodeIfPresent(
+      WorkflowTemplate.EncryptionConfig.self, forKey: .encryptionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.placement, forKey: .placement)
+    try container.encode(self.jobs, forKey: .jobs)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encodeIfPresent(self.dagTimeout, forKey: .dagTimeout)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Encryption settings for encrypting workflow template job arguments.
@@ -143,6 +233,8 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///   scriptVariables and queryList.queries
     public var kmsKey: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EncryptionConfig`.
     public init() {}
 
@@ -157,6 +249,38 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kmsKey = CodingKeys(stringValue: "kmsKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kmsKey"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+        self.kmsKey = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kmsKey, forKey: .kmsKey)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

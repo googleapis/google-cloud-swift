@@ -51,6 +51,8 @@ public struct ProductDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `purchase-complete` event types.
   public var quantity: GoogleCloudWKT.Int32Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProductDetail`.
   public init() {}
 
@@ -65,6 +67,40 @@ public struct ProductDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let product = CodingKeys(stringValue: "product")
+    static let quantity = CodingKeys(stringValue: "quantity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "product",
+      "quantity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.product = try container.decodeIfPresent(Product.self, forKey: .product)
+    self.quantity = try container.decodeIfPresent(GoogleCloudWKT.Int32Value.self, forKey: .quantity)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.product, forKey: .product)
+    try container.encodeIfPresent(self.quantity, forKey: .quantity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

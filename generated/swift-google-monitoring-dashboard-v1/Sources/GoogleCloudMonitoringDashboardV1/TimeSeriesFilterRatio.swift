@@ -36,6 +36,8 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// computing the ratio.
   public var outputFilter: OneOf_OutputFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeSeriesFilterRatio`.
   public init() {}
 
@@ -52,12 +54,25 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case numerator = "numerator"
-    case denominator = "denominator"
-    case secondaryAggregation = "secondaryAggregation"
-    case pickTimeSeriesFilter = "pickTimeSeriesFilter"
-    case statisticalTimeSeriesFilter = "statisticalTimeSeriesFilter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let numerator = CodingKeys(stringValue: "numerator")
+    static let denominator = CodingKeys(stringValue: "denominator")
+    static let secondaryAggregation = CodingKeys(stringValue: "secondaryAggregation")
+    static let pickTimeSeriesFilter = CodingKeys(stringValue: "pickTimeSeriesFilter")
+    static let statisticalTimeSeriesFilter = CodingKeys(stringValue: "statisticalTimeSeriesFilter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "numerator",
+      "denominator",
+      "secondaryAggregation",
+      "pickTimeSeriesFilter",
+      "statisticalTimeSeriesFilter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -90,13 +105,17 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
       try outputFilterCheckAndSet(.statisticalTimeSeriesFilter(statisticalTimeSeriesFilter))
     }
     self.outputFilter = outputFilter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.numerator, forKey: .numerator)
-    try container.encode(self.denominator, forKey: .denominator)
-    try container.encode(self.secondaryAggregation, forKey: .secondaryAggregation)
+    try container.encodeIfPresent(self.numerator, forKey: .numerator)
+    try container.encodeIfPresent(self.denominator, forKey: .denominator)
+    try container.encodeIfPresent(self.secondaryAggregation, forKey: .secondaryAggregation)
 
     if let choice = self.outputFilter {
       switch choice {
@@ -105,6 +124,9 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .statisticalTimeSeriesFilter(let value):
         try container.encode(value, forKey: .statisticalTimeSeriesFilter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -123,6 +145,8 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// data.
     public var aggregation: Aggregation? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RatioPart`.
     public init() {}
 
@@ -137,6 +161,42 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filter = CodingKeys(stringValue: "filter")
+      static let aggregation = CodingKeys(stringValue: "aggregation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filter",
+        "aggregation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      self.aggregation = try container.decodeIfPresent(Aggregation.self, forKey: .aggregation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encodeIfPresent(self.aggregation, forKey: .aggregation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

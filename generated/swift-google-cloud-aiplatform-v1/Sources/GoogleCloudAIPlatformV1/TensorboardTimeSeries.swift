@@ -57,6 +57,8 @@
     /// TensorboardTimeSeries.
     public var metadata: TensorboardTimeSeries.Metadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TensorboardTimeSeries`.
     public init() {}
 
@@ -71,6 +73,91 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let valueType = CodingKeys(stringValue: "valueType")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let pluginName = CodingKeys(stringValue: "pluginName")
+      static let pluginData = CodingKeys(stringValue: "pluginData")
+      static let metadata = CodingKeys(stringValue: "metadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "valueType",
+        "createTime",
+        "updateTime",
+        "etag",
+        "pluginName",
+        "pluginData",
+        "metadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(
+        TensorboardTimeSeries.ValueType.self, forKey: .valueType)
+      {
+        self.valueType = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluginName) {
+        self.pluginName = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .pluginData) {
+        self.pluginData = value
+      }
+      self.metadata = try container.decodeIfPresent(
+        TensorboardTimeSeries.Metadata.self, forKey: .metadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.valueType, forKey: .valueType)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.pluginName, forKey: .pluginName)
+      try container.encode(self.pluginData, forKey: .pluginData)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes metadata for a TensorboardTimeSeries.
@@ -89,6 +176,8 @@
       /// data points in this time series, if its ValueType is BLOB_SEQUENCE.
       public var maxBlobSequenceLength: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Metadata`.
       public init() {}
 
@@ -103,6 +192,51 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let maxStep = CodingKeys(stringValue: "maxStep")
+        static let maxWallTime = CodingKeys(stringValue: "maxWallTime")
+        static let maxBlobSequenceLength = CodingKeys(stringValue: "maxBlobSequenceLength")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "maxStep",
+          "maxWallTime",
+          "maxBlobSequenceLength",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxStep) {
+          self.maxStep = value
+        }
+        self.maxWallTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .maxWallTime)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .maxBlobSequenceLength)
+        {
+          self.maxBlobSequenceLength = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.maxStep, forKey: .maxStep)
+        try container.encodeIfPresent(self.maxWallTime, forKey: .maxWallTime)
+        try container.encode(self.maxBlobSequenceLength, forKey: .maxBlobSequenceLength)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -33,6 +33,8 @@ public struct Property: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Value type of the property.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Property`.
   public init() {}
 
@@ -49,19 +51,37 @@ public struct Property: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValue = "stringValue"
-    case intValue = "intValue"
-    case boolValue = "boolValue"
-    case doubleValue = "doubleValue"
-    case name = "name"
-    case description = "description"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let intValue = CodingKeys(stringValue: "intValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let doubleValue = CodingKeys(stringValue: "doubleValue")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValue",
+      "intValue",
+      "boolValue",
+      "doubleValue",
+      "name",
+      "description",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -86,6 +106,10 @@ public struct Property: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.doubleValue(doubleValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +128,9 @@ public struct Property: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .doubleValue(let value):
         try container.encode(value, forKey: .doubleValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

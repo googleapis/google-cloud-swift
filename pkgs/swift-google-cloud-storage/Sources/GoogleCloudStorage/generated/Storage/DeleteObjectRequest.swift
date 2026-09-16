@@ -56,6 +56,8 @@ public struct DeleteObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// object.
   public var commonObjectRequestParams: CommonObjectRequestParams? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeleteObjectRequest`.
   public init() {}
 
@@ -70,6 +72,76 @@ public struct DeleteObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let object = CodingKeys(stringValue: "object")
+    static let generation = CodingKeys(stringValue: "generation")
+    static let ifGenerationMatch = CodingKeys(stringValue: "ifGenerationMatch")
+    static let ifGenerationNotMatch = CodingKeys(stringValue: "ifGenerationNotMatch")
+    static let ifMetagenerationMatch = CodingKeys(stringValue: "ifMetagenerationMatch")
+    static let ifMetagenerationNotMatch = CodingKeys(stringValue: "ifMetagenerationNotMatch")
+    static let commonObjectRequestParams = CodingKeys(stringValue: "commonObjectRequestParams")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucket",
+      "object",
+      "generation",
+      "ifGenerationMatch",
+      "ifGenerationNotMatch",
+      "ifMetagenerationMatch",
+      "ifMetagenerationNotMatch",
+      "commonObjectRequestParams",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .object) {
+      self.object = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    self.ifGenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationMatch)
+    self.ifGenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationNotMatch)
+    self.ifMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationMatch)
+    self.ifMetagenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationNotMatch)
+    self.commonObjectRequestParams = try container.decodeIfPresent(
+      CommonObjectRequestParams.self, forKey: .commonObjectRequestParams)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.object, forKey: .object)
+    try container.encode(self.generation, forKey: .generation)
+    try container.encodeIfPresent(self.ifGenerationMatch, forKey: .ifGenerationMatch)
+    try container.encodeIfPresent(self.ifGenerationNotMatch, forKey: .ifGenerationNotMatch)
+    try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)
+    try container.encodeIfPresent(self.ifMetagenerationNotMatch, forKey: .ifMetagenerationNotMatch)
+    try container.encodeIfPresent(
+      self.commonObjectRequestParams, forKey: .commonObjectRequestParams)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

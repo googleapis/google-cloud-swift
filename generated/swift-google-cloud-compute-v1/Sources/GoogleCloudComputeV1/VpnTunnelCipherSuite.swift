@@ -25,6 +25,8 @@
 
     public var phase2: VpnTunnelPhase2Algorithms? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpnTunnelCipherSuite`.
     public init() {}
 
@@ -39,6 +41,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let phase1 = CodingKeys(stringValue: "phase1")
+      static let phase2 = CodingKeys(stringValue: "phase2")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "phase1",
+        "phase2",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.phase1 = try container.decodeIfPresent(VpnTunnelPhase1Algorithms.self, forKey: .phase1)
+      self.phase2 = try container.decodeIfPresent(VpnTunnelPhase2Algorithms.self, forKey: .phase2)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.phase1, forKey: .phase1)
+      try container.encodeIfPresent(self.phase2, forKey: .phase2)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

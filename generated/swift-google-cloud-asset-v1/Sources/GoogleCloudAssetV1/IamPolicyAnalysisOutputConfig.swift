@@ -24,6 +24,8 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
   /// IAM policy analysis export destination.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IamPolicyAnalysisOutputConfig`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDestination = "gcsDestination"
-    case bigqueryDestination = "bigqueryDestination"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+    static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDestination",
+      "bigqueryDestination",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
       try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
       case .bigqueryDestination(let value):
         try container.encode(value, forKey: .bigqueryDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -99,6 +118,8 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
     /// overwritten with the analysis result.
     public var uri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsDestination`.
     public init() {}
 
@@ -113,6 +134,38 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -168,6 +221,8 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
     /// https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file.
     public var writeDisposition: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BigQueryDestination`.
     public init() {}
 
@@ -182,6 +237,58 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataset = CodingKeys(stringValue: "dataset")
+      static let tablePrefix = CodingKeys(stringValue: "tablePrefix")
+      static let partitionKey = CodingKeys(stringValue: "partitionKey")
+      static let writeDisposition = CodingKeys(stringValue: "writeDisposition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataset",
+        "tablePrefix",
+        "partitionKey",
+        "writeDisposition",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+        self.dataset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tablePrefix) {
+        self.tablePrefix = value
+      }
+      if let value = try container.decodeIfPresent(
+        IamPolicyAnalysisOutputConfig.BigQueryDestination.PartitionKey.self, forKey: .partitionKey)
+      {
+        self.partitionKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .writeDisposition) {
+        self.writeDisposition = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataset, forKey: .dataset)
+      try container.encode(self.tablePrefix, forKey: .tablePrefix)
+      try container.encode(self.partitionKey, forKey: .partitionKey)
+      try container.encode(self.writeDisposition, forKey: .writeDisposition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// This enum determines the partition key column for the bigquery tables.

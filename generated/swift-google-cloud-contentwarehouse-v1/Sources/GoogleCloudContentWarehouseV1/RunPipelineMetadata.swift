@@ -37,6 +37,8 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The pipeline metadata.
   public var pipelineMetadata: OneOf_PipelineMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RunPipelineMetadata`.
   public init() {}
 
@@ -53,23 +55,46 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case totalFileCount = "totalFileCount"
-    case failedFileCount = "failedFileCount"
-    case userInfo = "userInfo"
-    case gcsIngestPipelineMetadata = "gcsIngestPipelineMetadata"
-    case exportToCdwPipelineMetadata = "exportToCdwPipelineMetadata"
-    case processWithDocAiPipelineMetadata = "processWithDocAiPipelineMetadata"
-    case individualDocumentStatuses = "individualDocumentStatuses"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalFileCount = CodingKeys(stringValue: "totalFileCount")
+    static let failedFileCount = CodingKeys(stringValue: "failedFileCount")
+    static let userInfo = CodingKeys(stringValue: "userInfo")
+    static let gcsIngestPipelineMetadata = CodingKeys(stringValue: "gcsIngestPipelineMetadata")
+    static let exportToCdwPipelineMetadata = CodingKeys(stringValue: "exportToCdwPipelineMetadata")
+    static let processWithDocAiPipelineMetadata = CodingKeys(
+      stringValue: "processWithDocAiPipelineMetadata")
+    static let individualDocumentStatuses = CodingKeys(stringValue: "individualDocumentStatuses")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalFileCount",
+      "failedFileCount",
+      "userInfo",
+      "gcsIngestPipelineMetadata",
+      "exportToCdwPipelineMetadata",
+      "processWithDocAiPipelineMetadata",
+      "individualDocumentStatuses",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.totalFileCount = try container.decode(Swift.Int32.self, forKey: .totalFileCount)
-    self.failedFileCount = try container.decode(Swift.Int32.self, forKey: .failedFileCount)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalFileCount) {
+      self.totalFileCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failedFileCount) {
+      self.failedFileCount = value
+    }
     self.userInfo = try container.decodeIfPresent(UserInfo.self, forKey: .userInfo)
-    self.individualDocumentStatuses = try container.decode(
+    if let value = try container.decodeIfPresent(
       [RunPipelineMetadata.IndividualDocumentStatus].self, forKey: .individualDocumentStatuses)
+    {
+      self.individualDocumentStatuses = value
+    }
 
     var pipelineMetadata: OneOf_PipelineMetadata? = nil
     let pipelineMetadataCheckAndSet = {
@@ -99,13 +124,17 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
         .processWithDocAiPipelineMetadata(processWithDocAiPipelineMetadata))
     }
     self.pipelineMetadata = pipelineMetadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.totalFileCount, forKey: .totalFileCount)
     try container.encode(self.failedFileCount, forKey: .failedFileCount)
-    try container.encode(self.userInfo, forKey: .userInfo)
+    try container.encodeIfPresent(self.userInfo, forKey: .userInfo)
     try container.encode(self.individualDocumentStatuses, forKey: .individualDocumentStatuses)
 
     if let choice = self.pipelineMetadata {
@@ -118,6 +147,9 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
         try container.encode(value, forKey: .processWithDocAiPipelineMetadata)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The metadata message for GcsIngest pipeline.
@@ -127,6 +159,8 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The input Cloud Storage folder in this pipeline.
     /// Format: `gs://<bucket-name>/<folder-name>`.
     public var inputPath: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `GcsIngestPipelineMetadata`.
     public init() {}
@@ -142,6 +176,38 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputPath = CodingKeys(stringValue: "inputPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputPath"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputPath) {
+        self.inputPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputPath, forKey: .inputPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -169,6 +235,8 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The output Cloud Storage folder in this pipeline.
     public var outputPath: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportToCdwPipelineMetadata`.
     public init() {}
 
@@ -183,6 +251,50 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let documents = CodingKeys(stringValue: "documents")
+      static let docAiDataset = CodingKeys(stringValue: "docAiDataset")
+      static let outputPath = CodingKeys(stringValue: "outputPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "documents",
+        "docAiDataset",
+        "outputPath",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documents) {
+        self.documents = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .docAiDataset) {
+        self.docAiDataset = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputPath) {
+        self.outputPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.documents, forKey: .documents)
+      try container.encode(self.docAiDataset, forKey: .docAiDataset)
+      try container.encode(self.outputPath, forKey: .outputPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -208,6 +320,8 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The DocAI processor to process the documents with.
     public var processorInfo: ProcessorInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProcessWithDocAiPipelineMetadata`.
     public init() {}
 
@@ -222,6 +336,42 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let documents = CodingKeys(stringValue: "documents")
+      static let processorInfo = CodingKeys(stringValue: "processorInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "documents",
+        "processorInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documents) {
+        self.documents = value
+      }
+      self.processorInfo = try container.decodeIfPresent(ProcessorInfo.self, forKey: .processorInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.documents, forKey: .documents)
+      try container.encodeIfPresent(self.processorInfo, forKey: .processorInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -246,6 +396,8 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The status processing the document.
     public var status: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndividualDocumentStatus`.
     public init() {}
 
@@ -260,6 +412,42 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let documentId = CodingKeys(stringValue: "documentId")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "documentId",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentId) {
+        self.documentId = value
+      }
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.documentId, forKey: .documentId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

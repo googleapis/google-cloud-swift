@@ -105,6 +105,8 @@
     /// Annotations of model error analysis results.
     public var errorAnalysisAnnotations: [ErrorAnalysisAnnotation] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluatedAnnotation`.
     public init() {}
 
@@ -119,6 +121,85 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let predictions = CodingKeys(stringValue: "predictions")
+      static let groundTruths = CodingKeys(stringValue: "groundTruths")
+      static let dataItemPayload = CodingKeys(stringValue: "dataItemPayload")
+      static let evaluatedDataItemViewId = CodingKeys(stringValue: "evaluatedDataItemViewId")
+      static let explanations = CodingKeys(stringValue: "explanations")
+      static let errorAnalysisAnnotations = CodingKeys(stringValue: "errorAnalysisAnnotations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "predictions",
+        "groundTruths",
+        "dataItemPayload",
+        "evaluatedDataItemViewId",
+        "explanations",
+        "errorAnalysisAnnotations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        EvaluatedAnnotation.EvaluatedAnnotationType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Value].self, forKey: .predictions)
+      {
+        self.predictions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudWKT.Value].self, forKey: .groundTruths)
+      {
+        self.groundTruths = value
+      }
+      self.dataItemPayload = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .dataItemPayload)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .evaluatedDataItemViewId)
+      {
+        self.evaluatedDataItemViewId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [EvaluatedAnnotationExplanation].self, forKey: .explanations)
+      {
+        self.explanations = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ErrorAnalysisAnnotation].self, forKey: .errorAnalysisAnnotations)
+      {
+        self.errorAnalysisAnnotations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.predictions, forKey: .predictions)
+      try container.encode(self.groundTruths, forKey: .groundTruths)
+      try container.encodeIfPresent(self.dataItemPayload, forKey: .dataItemPayload)
+      try container.encode(self.evaluatedDataItemViewId, forKey: .evaluatedDataItemViewId)
+      try container.encode(self.explanations, forKey: .explanations)
+      try container.encode(self.errorAnalysisAnnotations, forKey: .errorAnalysisAnnotations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes the type of the EvaluatedAnnotation. The type is determined

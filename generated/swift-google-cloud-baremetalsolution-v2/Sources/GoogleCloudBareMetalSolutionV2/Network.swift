@@ -75,6 +75,8 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Gateway ip address.
   public var gatewayIp: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Network`.
   public init() {}
 
@@ -89,6 +91,129 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let type = CodingKeys(stringValue: "type")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let macAddress = CodingKeys(stringValue: "macAddress")
+    static let state = CodingKeys(stringValue: "state")
+    static let vlanId = CodingKeys(stringValue: "vlanId")
+    static let cidr = CodingKeys(stringValue: "cidr")
+    static let vrf = CodingKeys(stringValue: "vrf")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let servicesCidr = CodingKeys(stringValue: "servicesCidr")
+    static let reservations = CodingKeys(stringValue: "reservations")
+    static let pod = CodingKeys(stringValue: "pod")
+    static let mountPoints = CodingKeys(stringValue: "mountPoints")
+    static let jumboFramesEnabled = CodingKeys(stringValue: "jumboFramesEnabled")
+    static let gatewayIp = CodingKeys(stringValue: "gatewayIp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "type",
+      "ipAddress",
+      "macAddress",
+      "state",
+      "vlanId",
+      "cidr",
+      "vrf",
+      "labels",
+      "servicesCidr",
+      "reservations",
+      "pod",
+      "mountPoints",
+      "jumboFramesEnabled",
+      "gatewayIp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Network.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .macAddress) {
+      self.macAddress = value
+    }
+    if let value = try container.decodeIfPresent(Network.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vlanId) {
+      self.vlanId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidr) {
+      self.cidr = value
+    }
+    self.vrf = try container.decodeIfPresent(VRF.self, forKey: .vrf)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesCidr) {
+      self.servicesCidr = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NetworkAddressReservation].self, forKey: .reservations)
+    {
+      self.reservations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pod) {
+      self.pod = value
+    }
+    if let value = try container.decodeIfPresent([NetworkMountPoint].self, forKey: .mountPoints) {
+      self.mountPoints = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .jumboFramesEnabled) {
+      self.jumboFramesEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gatewayIp) {
+      self.gatewayIp = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.macAddress, forKey: .macAddress)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.vlanId, forKey: .vlanId)
+    try container.encode(self.cidr, forKey: .cidr)
+    try container.encodeIfPresent(self.vrf, forKey: .vrf)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.servicesCidr, forKey: .servicesCidr)
+    try container.encode(self.reservations, forKey: .reservations)
+    try container.encode(self.pod, forKey: .pod)
+    try container.encode(self.mountPoints, forKey: .mountPoints)
+    try container.encode(self.jumboFramesEnabled, forKey: .jumboFramesEnabled)
+    try container.encode(self.gatewayIp, forKey: .gatewayIp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Network type.

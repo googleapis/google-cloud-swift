@@ -75,6 +75,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Immutable after creation.
   public var constraintType: OneOf_ConstraintType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Constraint`.
   public init() {}
 
@@ -91,29 +93,60 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case constraintDefault = "constraintDefault"
-    case listConstraint = "listConstraint"
-    case booleanConstraint = "booleanConstraint"
-    case supportsDryRun = "supportsDryRun"
-    case equivalentConstraint = "equivalentConstraint"
-    case supportsSimulation = "supportsSimulation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let constraintDefault = CodingKeys(stringValue: "constraintDefault")
+    static let listConstraint = CodingKeys(stringValue: "listConstraint")
+    static let booleanConstraint = CodingKeys(stringValue: "booleanConstraint")
+    static let supportsDryRun = CodingKeys(stringValue: "supportsDryRun")
+    static let equivalentConstraint = CodingKeys(stringValue: "equivalentConstraint")
+    static let supportsSimulation = CodingKeys(stringValue: "supportsSimulation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "constraintDefault",
+      "listConstraint",
+      "booleanConstraint",
+      "supportsDryRun",
+      "equivalentConstraint",
+      "supportsSimulation",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.constraintDefault = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
       Constraint.ConstraintDefault.self, forKey: .constraintDefault)
-    self.supportsDryRun = try container.decode(Swift.Bool.self, forKey: .supportsDryRun)
-    self.equivalentConstraint = try container.decode(
-      Swift.String.self, forKey: .equivalentConstraint)
-    self.supportsSimulation = try container.decode(Swift.Bool.self, forKey: .supportsSimulation)
+    {
+      self.constraintDefault = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsDryRun) {
+      self.supportsDryRun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .equivalentConstraint) {
+      self.equivalentConstraint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsSimulation) {
+      self.supportsSimulation = value
+    }
 
     var constraintType: OneOf_ConstraintType? = nil
     let constraintTypeCheckAndSet = {
@@ -136,6 +169,10 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try constraintTypeCheckAndSet(.booleanConstraint(booleanConstraint))
     }
     self.constraintType = constraintType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -155,6 +192,9 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .booleanConstraint(let value):
         try container.encode(value, forKey: .booleanConstraint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -177,6 +217,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// 'folders/123' folder.
     public var supportsUnder: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ListConstraint`.
     public init() {}
 
@@ -191,6 +233,44 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let supportsIn = CodingKeys(stringValue: "supportsIn")
+      static let supportsUnder = CodingKeys(stringValue: "supportsUnder")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "supportsIn",
+        "supportsUnder",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsIn) {
+        self.supportsIn = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsUnder) {
+        self.supportsUnder = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.supportsIn, forKey: .supportsIn)
+      try container.encode(self.supportsUnder, forKey: .supportsUnder)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -236,6 +316,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition.Parameter]: <doc:Constraint/CustomConstraintDefinition/Parameter>
     public var parameters: [Swift.String: Constraint.CustomConstraintDefinition.Parameter] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomConstraintDefinition`.
     public init() {}
 
@@ -250,6 +332,68 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceTypes = CodingKeys(stringValue: "resourceTypes")
+      static let methodTypes = CodingKeys(stringValue: "methodTypes")
+      static let condition = CodingKeys(stringValue: "condition")
+      static let actionType = CodingKeys(stringValue: "actionType")
+      static let parameters = CodingKeys(stringValue: "parameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceTypes",
+        "methodTypes",
+        "condition",
+        "actionType",
+        "parameters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceTypes) {
+        self.resourceTypes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Constraint.CustomConstraintDefinition.MethodType].self, forKey: .methodTypes)
+      {
+        self.methodTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+        self.condition = value
+      }
+      if let value = try container.decodeIfPresent(
+        Constraint.CustomConstraintDefinition.ActionType.self, forKey: .actionType)
+      {
+        self.actionType = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Constraint.CustomConstraintDefinition.Parameter].self, forKey: .parameters)
+      {
+        self.parameters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceTypes, forKey: .resourceTypes)
+      try container.encode(self.methodTypes, forKey: .methodTypes)
+      try container.encode(self.condition, forKey: .condition)
+      try container.encode(self.actionType, forKey: .actionType)
+      try container.encode(self.parameters, forKey: .parameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines a parameter structure.
@@ -278,6 +422,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public var item: Constraint.CustomConstraintDefinition.Parameter.Type_ = Constraint
         .CustomConstraintDefinition.Parameter.Type_()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Parameter`.
       public init() {}
 
@@ -294,6 +440,64 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let type = CodingKeys(stringValue: "type")
+        static let defaultValue = CodingKeys(stringValue: "defaultValue")
+        static let validValuesExpr = CodingKeys(stringValue: "validValuesExpr")
+        static let metadata = CodingKeys(stringValue: "metadata")
+        static let item = CodingKeys(stringValue: "item")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "type",
+          "defaultValue",
+          "validValuesExpr",
+          "metadata",
+          "item",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Constraint.CustomConstraintDefinition.Parameter.Type_.self, forKey: .type)
+        {
+          self.type = value
+        }
+        self.defaultValue = try container.decodeIfPresent(
+          GoogleCloudWKT.Value.self, forKey: .defaultValue)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validValuesExpr) {
+          self.validValuesExpr = value
+        }
+        self.metadata = try container.decodeIfPresent(
+          Constraint.CustomConstraintDefinition.Parameter.Metadata.self, forKey: .metadata)
+        if let value = try container.decodeIfPresent(
+          Constraint.CustomConstraintDefinition.Parameter.Type_.self, forKey: .item)
+        {
+          self.item = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.type, forKey: .type)
+        try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
+        try container.encode(self.validValuesExpr, forKey: .validValuesExpr)
+        try container.encodeIfPresent(self.metadata, forKey: .metadata)
+        try container.encode(self.item, forKey: .item)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Defines Metadata structure.
       public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -301,6 +505,9 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         /// Detailed description of what this `parameter` is and use of it.
         /// Mutable.
         public var description: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Metadata`.
         public init() {}
@@ -316,6 +523,38 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let description = CodingKeys(stringValue: "description")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "description"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+            self.description = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.description, forKey: .description)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -719,6 +958,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Custom constraint definition. Defines this as a managed constraint.
     public var customConstraintDefinition: Constraint.CustomConstraintDefinition? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BooleanConstraint`.
     public init() {}
 
@@ -733,6 +974,38 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customConstraintDefinition = CodingKeys(stringValue: "customConstraintDefinition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customConstraintDefinition"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.customConstraintDefinition = try container.decodeIfPresent(
+        Constraint.CustomConstraintDefinition.self, forKey: .customConstraintDefinition)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.customConstraintDefinition, forKey: .customConstraintDefinition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

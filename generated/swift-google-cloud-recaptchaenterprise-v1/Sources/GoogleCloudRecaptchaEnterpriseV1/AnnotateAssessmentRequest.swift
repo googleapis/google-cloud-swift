@@ -53,6 +53,8 @@ public struct AnnotateAssessmentRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// provide phone authentication details for fraud detection purposes.
   public var phoneAuthenticationEvent: PhoneAuthenticationEvent? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotateAssessmentRequest`.
   public init() {}
 
@@ -67,6 +69,76 @@ public struct AnnotateAssessmentRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let annotation = CodingKeys(stringValue: "annotation")
+    static let reasons = CodingKeys(stringValue: "reasons")
+    static let accountId = CodingKeys(stringValue: "accountId")
+    static let hashedAccountId = CodingKeys(stringValue: "hashedAccountId")
+    static let transactionEvent = CodingKeys(stringValue: "transactionEvent")
+    static let phoneAuthenticationEvent = CodingKeys(stringValue: "phoneAuthenticationEvent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "annotation",
+      "reasons",
+      "accountId",
+      "hashedAccountId",
+      "transactionEvent",
+      "phoneAuthenticationEvent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      AnnotateAssessmentRequest.Annotation.self, forKey: .annotation)
+    {
+      self.annotation = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AnnotateAssessmentRequest.Reason].self, forKey: .reasons)
+    {
+      self.reasons = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
+      self.accountId = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .hashedAccountId) {
+      self.hashedAccountId = value
+    }
+    self.transactionEvent = try container.decodeIfPresent(
+      TransactionEvent.self, forKey: .transactionEvent)
+    self.phoneAuthenticationEvent = try container.decodeIfPresent(
+      PhoneAuthenticationEvent.self, forKey: .phoneAuthenticationEvent)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.annotation, forKey: .annotation)
+    try container.encode(self.reasons, forKey: .reasons)
+    try container.encode(self.accountId, forKey: .accountId)
+    try container.encode(self.hashedAccountId, forKey: .hashedAccountId)
+    try container.encodeIfPresent(self.transactionEvent, forKey: .transactionEvent)
+    try container.encodeIfPresent(self.phoneAuthenticationEvent, forKey: .phoneAuthenticationEvent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum that represents the types of annotations.

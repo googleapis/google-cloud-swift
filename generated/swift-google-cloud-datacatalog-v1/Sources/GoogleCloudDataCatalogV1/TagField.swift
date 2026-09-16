@@ -41,6 +41,8 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The value of this field.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TagField`.
   public init() {}
 
@@ -57,21 +59,41 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case displayName = "displayName"
-    case doubleValue = "doubleValue"
-    case stringValue = "stringValue"
-    case boolValue = "boolValue"
-    case timestampValue = "timestampValue"
-    case enumValue = "enumValue"
-    case richtextValue = "richtextValue"
-    case order = "order"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let doubleValue = CodingKeys(stringValue: "doubleValue")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let timestampValue = CodingKeys(stringValue: "timestampValue")
+    static let enumValue = CodingKeys(stringValue: "enumValue")
+    static let richtextValue = CodingKeys(stringValue: "richtextValue")
+    static let order = CodingKeys(stringValue: "order")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "doubleValue",
+      "stringValue",
+      "boolValue",
+      "timestampValue",
+      "enumValue",
+      "richtextValue",
+      "order",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.order = try container.decode(Swift.Int32.self, forKey: .order)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .order) {
+      self.order = value
+    }
 
     var kind: OneOf_Kind? = nil
     let kindCheckAndSet = {
@@ -105,6 +127,10 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try kindCheckAndSet(.richtextValue(richtextValue))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -128,6 +154,9 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .richtextValue)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum value.
@@ -136,6 +165,8 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// The display name of the enum value.
     public var displayName: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EnumValue`.
     public init() {}
@@ -151,6 +182,38 @@ public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.displayName, forKey: .displayName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

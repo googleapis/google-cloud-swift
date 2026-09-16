@@ -37,6 +37,8 @@
     /// machine.
     public var humanLabelingBudget: OneOf_HumanLabelingBudget? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ActiveLearningConfig`.
     public init() {}
 
@@ -53,11 +55,23 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case maxDataItemCount = "maxDataItemCount"
-      case maxDataItemPercentage = "maxDataItemPercentage"
-      case sampleConfig = "sampleConfig"
-      case trainingConfig = "trainingConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDataItemCount = CodingKeys(stringValue: "maxDataItemCount")
+      static let maxDataItemPercentage = CodingKeys(stringValue: "maxDataItemPercentage")
+      static let sampleConfig = CodingKeys(stringValue: "sampleConfig")
+      static let trainingConfig = CodingKeys(stringValue: "trainingConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDataItemCount",
+        "maxDataItemPercentage",
+        "sampleConfig",
+        "trainingConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -87,12 +101,16 @@
         try humanLabelingBudgetCheckAndSet(.maxDataItemPercentage(maxDataItemPercentage))
       }
       self.humanLabelingBudget = humanLabelingBudget
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sampleConfig, forKey: .sampleConfig)
-      try container.encode(self.trainingConfig, forKey: .trainingConfig)
+      try container.encodeIfPresent(self.sampleConfig, forKey: .sampleConfig)
+      try container.encodeIfPresent(self.trainingConfig, forKey: .trainingConfig)
 
       if let choice = self.humanLabelingBudget {
         switch choice {
@@ -101,6 +119,9 @@
         case .maxDataItemPercentage(let value):
           try container.encode(value, forKey: .maxDataItemPercentage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

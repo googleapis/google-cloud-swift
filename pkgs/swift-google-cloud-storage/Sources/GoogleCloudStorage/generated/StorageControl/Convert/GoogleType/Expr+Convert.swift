@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension GoogleType.Expr {
@@ -31,6 +31,7 @@ extension GoogleType.Expr {
     self.title = proto.title
     self.description = proto.description_p
     self.location = proto.location
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -39,6 +40,9 @@ extension GoogleType.Expr {
     proto.title = self.title
     proto.description_p = self.description
     proto.location = self.location
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

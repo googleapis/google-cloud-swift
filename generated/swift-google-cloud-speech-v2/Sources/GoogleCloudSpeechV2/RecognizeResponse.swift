@@ -31,6 +31,8 @@ public struct RecognizeResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Metadata about the recognition.
   public var metadata: RecognitionResponseMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognizeResponse`.
   public init() {}
 
@@ -45,6 +47,43 @@ public struct RecognizeResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let results = CodingKeys(stringValue: "results")
+    static let metadata = CodingKeys(stringValue: "metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "results",
+      "metadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([SpeechRecognitionResult].self, forKey: .results) {
+      self.results = value
+    }
+    self.metadata = try container.decodeIfPresent(
+      RecognitionResponseMetadata.self, forKey: .metadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.results, forKey: .results)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

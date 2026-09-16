@@ -29,6 +29,8 @@
     /// request
     public var response: OneOf_Response? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeleteFeatureValuesResponse`.
     public init() {}
 
@@ -45,9 +47,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case selectEntity = "selectEntity"
-      case selectTimeRangeAndFeature = "selectTimeRangeAndFeature"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let selectEntity = CodingKeys(stringValue: "selectEntity")
+      static let selectTimeRangeAndFeature = CodingKeys(stringValue: "selectTimeRangeAndFeature")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "selectEntity",
+        "selectTimeRangeAndFeature",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -75,6 +87,10 @@
         try responseCheckAndSet(.selectTimeRangeAndFeature(selectTimeRangeAndFeature))
       }
       self.response = response
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -87,6 +103,9 @@
         case .selectTimeRangeAndFeature(let value):
           try container.encode(value, forKey: .selectTimeRangeAndFeature)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -103,6 +122,8 @@
       /// Each entity ID corresponds to one entity.
       public var onlineStorageDeletedEntityCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SelectEntity`.
       public init() {}
 
@@ -117,6 +138,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let offlineStorageDeletedEntityRowCount = CodingKeys(
+          stringValue: "offlineStorageDeletedEntityRowCount")
+        static let onlineStorageDeletedEntityCount = CodingKeys(
+          stringValue: "onlineStorageDeletedEntityCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "offlineStorageDeletedEntityRowCount",
+          "onlineStorageDeletedEntityCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .offlineStorageDeletedEntityRowCount)
+        {
+          self.offlineStorageDeletedEntityRowCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .onlineStorageDeletedEntityCount)
+        {
+          self.onlineStorageDeletedEntityCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.offlineStorageDeletedEntityRowCount, forKey: .offlineStorageDeletedEntityRowCount)
+        try container.encode(
+          self.onlineStorageDeletedEntityCount, forKey: .onlineStorageDeletedEntityCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -152,6 +219,8 @@
       /// deleted.
       public var onlineStorageModifiedEntityCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SelectTimeRangeAndFeature`.
       public init() {}
 
@@ -166,6 +235,60 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let impactedFeatureCount = CodingKeys(stringValue: "impactedFeatureCount")
+        static let offlineStorageModifiedEntityRowCount = CodingKeys(
+          stringValue: "offlineStorageModifiedEntityRowCount")
+        static let onlineStorageModifiedEntityCount = CodingKeys(
+          stringValue: "onlineStorageModifiedEntityCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "impactedFeatureCount",
+          "offlineStorageModifiedEntityRowCount",
+          "onlineStorageModifiedEntityCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .impactedFeatureCount)
+        {
+          self.impactedFeatureCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .offlineStorageModifiedEntityRowCount)
+        {
+          self.offlineStorageModifiedEntityRowCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .onlineStorageModifiedEntityCount)
+        {
+          self.onlineStorageModifiedEntityCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.impactedFeatureCount, forKey: .impactedFeatureCount)
+        try container.encode(
+          self.offlineStorageModifiedEntityRowCount, forKey: .offlineStorageModifiedEntityRowCount)
+        try container.encode(
+          self.onlineStorageModifiedEntityCount, forKey: .onlineStorageModifiedEntityCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -68,6 +68,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Operation to be performed on the objects.
   public var transformation: OneOf_Transformation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -84,30 +86,59 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case bucketList = "bucketList"
-    case putObjectHold = "putObjectHold"
-    case deleteObject = "deleteObject"
-    case putMetadata = "putMetadata"
-    case rewriteObject = "rewriteObject"
-    case updateObjectCustomContext = "updateObjectCustomContext"
-    case loggingConfig = "loggingConfig"
-    case createTime = "createTime"
-    case scheduleTime = "scheduleTime"
-    case completeTime = "completeTime"
-    case counters = "counters"
-    case errorSummaries = "errorSummaries"
-    case state = "state"
-    case dryRun = "dryRun"
-    case isMultiBucketJob = "isMultiBucketJob"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let bucketList = CodingKeys(stringValue: "bucketList")
+    static let putObjectHold = CodingKeys(stringValue: "putObjectHold")
+    static let deleteObject = CodingKeys(stringValue: "deleteObject")
+    static let putMetadata = CodingKeys(stringValue: "putMetadata")
+    static let rewriteObject = CodingKeys(stringValue: "rewriteObject")
+    static let updateObjectCustomContext = CodingKeys(stringValue: "updateObjectCustomContext")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let scheduleTime = CodingKeys(stringValue: "scheduleTime")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let counters = CodingKeys(stringValue: "counters")
+    static let errorSummaries = CodingKeys(stringValue: "errorSummaries")
+    static let state = CodingKeys(stringValue: "state")
+    static let dryRun = CodingKeys(stringValue: "dryRun")
+    static let isMultiBucketJob = CodingKeys(stringValue: "isMultiBucketJob")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "bucketList",
+      "putObjectHold",
+      "deleteObject",
+      "putMetadata",
+      "rewriteObject",
+      "updateObjectCustomContext",
+      "loggingConfig",
+      "createTime",
+      "scheduleTime",
+      "completeTime",
+      "counters",
+      "errorSummaries",
+      "state",
+      "dryRun",
+      "isMultiBucketJob",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
@@ -116,10 +147,18 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.completeTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
     self.counters = try container.decodeIfPresent(Counters.self, forKey: .counters)
-    self.errorSummaries = try container.decode([ErrorSummary].self, forKey: .errorSummaries)
-    self.state = try container.decode(Job.State.self, forKey: .state)
-    self.dryRun = try container.decode(Swift.Bool.self, forKey: .dryRun)
-    self.isMultiBucketJob = try container.decode(Swift.Bool.self, forKey: .isMultiBucketJob)
+    if let value = try container.decodeIfPresent([ErrorSummary].self, forKey: .errorSummaries) {
+      self.errorSummaries = value
+    }
+    if let value = try container.decodeIfPresent(Job.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
+      self.dryRun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isMultiBucketJob) {
+      self.isMultiBucketJob = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -168,17 +207,21 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try transformationCheckAndSet(.updateObjectCustomContext(updateObjectCustomContext))
     }
     self.transformation = transformation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.loggingConfig, forKey: .loggingConfig)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.scheduleTime, forKey: .scheduleTime)
-    try container.encode(self.completeTime, forKey: .completeTime)
-    try container.encode(self.counters, forKey: .counters)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+    try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.dryRun, forKey: .dryRun)
@@ -204,6 +247,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .updateObjectCustomContext(let value):
         try container.encode(value, forKey: .updateObjectCustomContext)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

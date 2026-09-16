@@ -36,6 +36,8 @@ public struct AdStitchDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The metadata of the chosen media file for the ad.
   public var media: [Swift.String: GoogleCloudWKT.Value] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdStitchDetail`.
   public init() {}
 
@@ -50,6 +52,63 @@ public struct AdStitchDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adBreakId = CodingKeys(stringValue: "adBreakId")
+    static let adId = CodingKeys(stringValue: "adId")
+    static let adTimeOffset = CodingKeys(stringValue: "adTimeOffset")
+    static let skipReason = CodingKeys(stringValue: "skipReason")
+    static let media = CodingKeys(stringValue: "media")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adBreakId",
+      "adId",
+      "adTimeOffset",
+      "skipReason",
+      "media",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adBreakId) {
+      self.adBreakId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adId) {
+      self.adId = value
+    }
+    self.adTimeOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .adTimeOffset)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skipReason) {
+      self.skipReason = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.Value].self, forKey: .media)
+    {
+      self.media = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.adBreakId, forKey: .adBreakId)
+    try container.encode(self.adId, forKey: .adId)
+    try container.encodeIfPresent(self.adTimeOffset, forKey: .adTimeOffset)
+    try container.encode(self.skipReason, forKey: .skipReason)
+    try container.encode(self.media, forKey: .media)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

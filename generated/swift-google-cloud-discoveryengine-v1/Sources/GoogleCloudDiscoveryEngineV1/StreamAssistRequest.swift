@@ -62,6 +62,8 @@
     /// Optional. Specification of the generation configuration for the request.
     public var generationSpec: StreamAssistRequest.GenerationSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamAssistRequest`.
     public init() {}
 
@@ -78,12 +80,76 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let query = CodingKeys(stringValue: "query")
+      static let session = CodingKeys(stringValue: "session")
+      static let userMetadata = CodingKeys(stringValue: "userMetadata")
+      static let agentsSpec = CodingKeys(stringValue: "agentsSpec")
+      static let toolsSpec = CodingKeys(stringValue: "toolsSpec")
+      static let generationSpec = CodingKeys(stringValue: "generationSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "query",
+        "session",
+        "userMetadata",
+        "agentsSpec",
+        "toolsSpec",
+        "generationSpec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.query = try container.decodeIfPresent(Query.self, forKey: .query)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+        self.session = value
+      }
+      self.userMetadata = try container.decodeIfPresent(
+        AssistUserMetadata.self, forKey: .userMetadata)
+      self.agentsSpec = try container.decodeIfPresent(
+        StreamAssistRequest.AgentsSpec.self, forKey: .agentsSpec)
+      self.toolsSpec = try container.decodeIfPresent(
+        StreamAssistRequest.ToolsSpec.self, forKey: .toolsSpec)
+      self.generationSpec = try container.decodeIfPresent(
+        StreamAssistRequest.GenerationSpec.self, forKey: .generationSpec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.session, forKey: .session)
+      try container.encodeIfPresent(self.userMetadata, forKey: .userMetadata)
+      try container.encodeIfPresent(self.agentsSpec, forKey: .agentsSpec)
+      try container.encodeIfPresent(self.toolsSpec, forKey: .toolsSpec)
+      try container.encodeIfPresent(self.generationSpec, forKey: .generationSpec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Specification of agents that are used to serve the request.
     public struct AgentsSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Specification of agents that are used to serve the request.
       public var agentSpecs: [StreamAssistRequest.AgentsSpec.AgentSpec] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `AgentsSpec`.
       public init() {}
@@ -101,6 +167,40 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let agentSpecs = CodingKeys(stringValue: "agentSpecs")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "agentSpecs"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [StreamAssistRequest.AgentsSpec.AgentSpec].self, forKey: .agentSpecs)
+        {
+          self.agentSpecs = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.agentSpecs, forKey: .agentSpecs)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Specification of an agent.
       public struct AgentSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -111,6 +211,9 @@
         /// [RFC-1034](https://tools.ietf.org/html/rfc1034)
         /// with a length limit of 63 characters.
         public var agentId: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `AgentSpec`.
         public init() {}
@@ -126,6 +229,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let agentId = CodingKeys(stringValue: "agentId")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "agentId"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
+            self.agentId = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.agentId, forKey: .agentId)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -171,6 +306,8 @@
       /// Optional. Specification of the video generation tool.
       public var videoGenerationSpec: StreamAssistRequest.ToolsSpec.VideoGenerationSpec? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ToolsSpec`.
       public init() {}
 
@@ -185,6 +322,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let vertexAiSearchSpec = CodingKeys(stringValue: "vertexAiSearchSpec")
+        static let webGroundingSpec = CodingKeys(stringValue: "webGroundingSpec")
+        static let imageGenerationSpec = CodingKeys(stringValue: "imageGenerationSpec")
+        static let videoGenerationSpec = CodingKeys(stringValue: "videoGenerationSpec")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "vertexAiSearchSpec",
+          "webGroundingSpec",
+          "imageGenerationSpec",
+          "videoGenerationSpec",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.vertexAiSearchSpec = try container.decodeIfPresent(
+          StreamAssistRequest.ToolsSpec.VertexAiSearchSpec.self, forKey: .vertexAiSearchSpec)
+        self.webGroundingSpec = try container.decodeIfPresent(
+          StreamAssistRequest.ToolsSpec.WebGroundingSpec.self, forKey: .webGroundingSpec)
+        self.imageGenerationSpec = try container.decodeIfPresent(
+          StreamAssistRequest.ToolsSpec.ImageGenerationSpec.self, forKey: .imageGenerationSpec)
+        self.videoGenerationSpec = try container.decodeIfPresent(
+          StreamAssistRequest.ToolsSpec.VideoGenerationSpec.self, forKey: .videoGenerationSpec)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.vertexAiSearchSpec, forKey: .vertexAiSearchSpec)
+        try container.encodeIfPresent(self.webGroundingSpec, forKey: .webGroundingSpec)
+        try container.encodeIfPresent(self.imageGenerationSpec, forKey: .imageGenerationSpec)
+        try container.encodeIfPresent(self.videoGenerationSpec, forKey: .videoGenerationSpec)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Specification of the Vertex AI Search tool.
@@ -218,6 +401,9 @@
         /// [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
         public var filter: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `VertexAiSearchSpec`.
         public init() {}
 
@@ -232,6 +418,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let dataStoreSpecs = CodingKeys(stringValue: "dataStoreSpecs")
+          static let filter = CodingKeys(stringValue: "filter")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "dataStoreSpecs",
+            "filter",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [SearchRequest.DataStoreSpec].self, forKey: .dataStoreSpecs)
+          {
+            self.dataStoreSpecs = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+            self.filter = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.dataStoreSpecs, forKey: .dataStoreSpecs)
+          try container.encode(self.filter, forKey: .filter)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -250,6 +476,9 @@
       public struct WebGroundingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `WebGroundingSpec`.
         public init() {}
 
@@ -264,6 +493,30 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let _knownKeys: Set<Swift.String> = []
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -282,6 +535,9 @@
       public struct ImageGenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ImageGenerationSpec`.
         public init() {}
 
@@ -296,6 +552,30 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let _knownKeys: Set<Swift.String> = []
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -314,6 +594,9 @@
       public struct VideoGenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `VideoGenerationSpec`.
         public init() {}
 
@@ -328,6 +611,30 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let _knownKeys: Set<Swift.String> = []
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -363,6 +670,8 @@
       /// set, the default Assistant model will be used.
       public var modelId: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GenerationSpec`.
       public init() {}
 
@@ -377,6 +686,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let modelId = CodingKeys(stringValue: "modelId")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "modelId"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+          self.modelId = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.modelId, forKey: .modelId)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

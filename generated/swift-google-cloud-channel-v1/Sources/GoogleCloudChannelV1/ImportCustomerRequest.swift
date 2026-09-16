@@ -57,6 +57,8 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// option is valid.
   public var customerIdentity: OneOf_CustomerIdentity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportCustomerRequest`.
   public init() {}
 
@@ -73,24 +75,50 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case domain = "domain"
-    case cloudIdentityId = "cloudIdentityId"
-    case primaryAdminEmail = "primaryAdminEmail"
-    case parent = "parent"
-    case authToken = "authToken"
-    case overwriteIfExists = "overwriteIfExists"
-    case channelPartnerId = "channelPartnerId"
-    case customer = "customer"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let domain = CodingKeys(stringValue: "domain")
+    static let cloudIdentityId = CodingKeys(stringValue: "cloudIdentityId")
+    static let primaryAdminEmail = CodingKeys(stringValue: "primaryAdminEmail")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let authToken = CodingKeys(stringValue: "authToken")
+    static let overwriteIfExists = CodingKeys(stringValue: "overwriteIfExists")
+    static let channelPartnerId = CodingKeys(stringValue: "channelPartnerId")
+    static let customer = CodingKeys(stringValue: "customer")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "domain",
+      "cloudIdentityId",
+      "primaryAdminEmail",
+      "parent",
+      "authToken",
+      "overwriteIfExists",
+      "channelPartnerId",
+      "customer",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.authToken = try container.decode(Swift.String.self, forKey: .authToken)
-    self.overwriteIfExists = try container.decode(Swift.Bool.self, forKey: .overwriteIfExists)
-    self.channelPartnerId = try container.decode(Swift.String.self, forKey: .channelPartnerId)
-    self.customer = try container.decode(Swift.String.self, forKey: .customer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authToken) {
+      self.authToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .overwriteIfExists) {
+      self.overwriteIfExists = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channelPartnerId) {
+      self.channelPartnerId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customer) {
+      self.customer = value
+    }
 
     var customerIdentity: OneOf_CustomerIdentity? = nil
     let customerIdentityCheckAndSet = {
@@ -116,6 +144,10 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try customerIdentityCheckAndSet(.primaryAdminEmail(primaryAdminEmail))
     }
     self.customerIdentity = customerIdentity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -135,6 +167,9 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .primaryAdminEmail(let value):
         try container.encode(value, forKey: .primaryAdminEmail)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

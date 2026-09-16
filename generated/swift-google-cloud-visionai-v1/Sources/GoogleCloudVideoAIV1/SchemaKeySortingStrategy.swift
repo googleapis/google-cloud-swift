@@ -24,6 +24,8 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Options in the front have high priority than those in the back.
   public var options: [SchemaKeySortingStrategy.Option] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchemaKeySortingStrategy`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let options = CodingKeys(stringValue: "options")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "options"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SchemaKeySortingStrategy.Option].self, forKey: .options)
+    {
+      self.options = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.options, forKey: .options)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Option for one data schema key.
   public struct Option: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +89,8 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleCloudWKT._AnyP
 
     /// Aggregate method for the current data schema key.
     public var aggregateMethod: SchemaKeySortingStrategy.Option.AggregateMethod? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Option`.
     public init() {}
@@ -68,6 +106,49 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataSchemaKey = CodingKeys(stringValue: "dataSchemaKey")
+      static let sortDecreasing = CodingKeys(stringValue: "sortDecreasing")
+      static let aggregateMethod = CodingKeys(stringValue: "aggregateMethod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataSchemaKey",
+        "sortDecreasing",
+        "aggregateMethod",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSchemaKey) {
+        self.dataSchemaKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .sortDecreasing) {
+        self.sortDecreasing = value
+      }
+      self.aggregateMethod = try container.decodeIfPresent(
+        SchemaKeySortingStrategy.Option.AggregateMethod.self, forKey: .aggregateMethod)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataSchemaKey, forKey: .dataSchemaKey)
+      try container.encode(self.sortDecreasing, forKey: .sortDecreasing)
+      try container.encodeIfPresent(self.aggregateMethod, forKey: .aggregateMethod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// When one result has multiple values with the same key, specify

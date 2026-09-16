@@ -49,6 +49,8 @@ public struct AdjustByMatchingInfoTypes: Codable, Equatable, GoogleCloudWKT._Any
   /// infoType specified in this adjustment rule.
   public var matchingType: MatchingType = MatchingType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdjustByMatchingInfoTypes`.
   public init() {}
 
@@ -63,6 +65,50 @@ public struct AdjustByMatchingInfoTypes: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoTypes = CodingKeys(stringValue: "infoTypes")
+    static let minLikelihood = CodingKeys(stringValue: "minLikelihood")
+    static let matchingType = CodingKeys(stringValue: "matchingType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoTypes",
+      "minLikelihood",
+      "matchingType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
+      self.infoTypes = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .minLikelihood) {
+      self.minLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(MatchingType.self, forKey: .matchingType) {
+      self.matchingType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.infoTypes, forKey: .infoTypes)
+    try container.encode(self.minLikelihood, forKey: .minLikelihood)
+    try container.encode(self.matchingType, forKey: .matchingType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

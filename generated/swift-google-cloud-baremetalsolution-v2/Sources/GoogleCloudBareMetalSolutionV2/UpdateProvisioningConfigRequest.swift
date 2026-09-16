@@ -31,6 +31,8 @@ public struct UpdateProvisioningConfigRequest: Codable, Equatable, GoogleCloudWK
   /// to.
   public var email: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateProvisioningConfigRequest`.
   public init() {}
 
@@ -45,6 +47,48 @@ public struct UpdateProvisioningConfigRequest: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let provisioningConfig = CodingKeys(stringValue: "provisioningConfig")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let email = CodingKeys(stringValue: "email")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "provisioningConfig",
+      "updateMask",
+      "email",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.provisioningConfig = try container.decodeIfPresent(
+      ProvisioningConfig.self, forKey: .provisioningConfig)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+      self.email = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.provisioningConfig, forKey: .provisioningConfig)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encode(self.email, forKey: .email)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

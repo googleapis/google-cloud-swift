@@ -41,6 +41,8 @@
     /// Optional. If set, it will contain the cert valid duration.
     public var validDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerateEphemeralCertRequest`.
     public init() {}
 
@@ -57,25 +59,51 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case instance = "instance"
-      case project = "project"
-      case publicKey = "public_key"
-      case accessToken = "access_token"
-      case readTime = "readTime"
-      case validDuration = "validDuration"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let publicKey = CodingKeys(stringValue: "public_key")
+      static let accessToken = CodingKeys(stringValue: "access_token")
+      static let readTime = CodingKeys(stringValue: "readTime")
+      static let validDuration = CodingKeys(stringValue: "validDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "project",
+        "public_key",
+        "access_token",
+        "readTime",
+        "validDuration",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
-      self.publicKey = try container.decode(Swift.String.self, forKey: .publicKey)
-      self.accessToken = try container.decode(Swift.String.self, forKey: .accessToken)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicKey) {
+        self.publicKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessToken) {
+        self.accessToken = value
+      }
       self.readTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .readTime)
       self.validDuration = try container.decodeIfPresent(
         GoogleCloudWKT.Duration.self, forKey: .validDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -84,8 +112,11 @@
       try container.encode(self.project, forKey: .project)
       try container.encode(self.publicKey, forKey: .publicKey)
       try container.encode(self.accessToken, forKey: .accessToken)
-      try container.encode(self.readTime, forKey: .readTime)
-      try container.encode(self.validDuration, forKey: .validDuration)
+      try container.encodeIfPresent(self.readTime, forKey: .readTime)
+      try container.encodeIfPresent(self.validDuration, forKey: .validDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

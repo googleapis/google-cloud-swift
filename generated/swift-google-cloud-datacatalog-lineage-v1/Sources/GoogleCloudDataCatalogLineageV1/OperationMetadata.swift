@@ -42,6 +42,8 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// success. This field is unset if the operation is still ongoing.
   public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
 
@@ -56,6 +58,67 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let operationType = CodingKeys(stringValue: "operationType")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let resourceUuid = CodingKeys(stringValue: "resourceUuid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "operationType",
+      "resource",
+      "resourceUuid",
+      "createTime",
+      "endTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(OperationMetadata.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      OperationMetadata.Type_.self, forKey: .operationType)
+    {
+      self.operationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUuid) {
+      self.resourceUuid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.operationType, forKey: .operationType)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.resourceUuid, forKey: .resourceUuid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum with the state of the operation.

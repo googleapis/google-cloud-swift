@@ -25,6 +25,8 @@ public struct ManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// and FullManagementConfig
   public var oneofConfig: OneOf_OneofConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagementConfig`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct ManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case standardManagementConfig = "standardManagementConfig"
-    case fullManagementConfig = "fullManagementConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let standardManagementConfig = CodingKeys(stringValue: "standardManagementConfig")
+    static let fullManagementConfig = CodingKeys(stringValue: "fullManagementConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "standardManagementConfig",
+      "fullManagementConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@ public struct ManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try oneofConfigCheckAndSet(.fullManagementConfig(fullManagementConfig))
     }
     self.oneofConfig = oneofConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@ public struct ManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .fullManagementConfig(let value):
         try container.encode(value, forKey: .fullManagementConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

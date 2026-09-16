@@ -57,6 +57,8 @@ public struct TransferSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var intermediateDataLocation: OneOf_IntermediateDataLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferSpec`.
   public init() {}
 
@@ -73,22 +75,45 @@ public struct TransferSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDataSink = "gcsDataSink"
-    case posixDataSink = "posixDataSink"
-    case gcsDataSource = "gcsDataSource"
-    case awsS3DataSource = "awsS3DataSource"
-    case httpDataSource = "httpDataSource"
-    case posixDataSource = "posixDataSource"
-    case azureBlobStorageDataSource = "azureBlobStorageDataSource"
-    case awsS3CompatibleDataSource = "awsS3CompatibleDataSource"
-    case hdfsDataSource = "hdfsDataSource"
-    case gcsIntermediateDataLocation = "gcsIntermediateDataLocation"
-    case objectConditions = "objectConditions"
-    case transferOptions = "transferOptions"
-    case transferManifest = "transferManifest"
-    case sourceAgentPoolName = "sourceAgentPoolName"
-    case sinkAgentPoolName = "sinkAgentPoolName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDataSink = CodingKeys(stringValue: "gcsDataSink")
+    static let posixDataSink = CodingKeys(stringValue: "posixDataSink")
+    static let gcsDataSource = CodingKeys(stringValue: "gcsDataSource")
+    static let awsS3DataSource = CodingKeys(stringValue: "awsS3DataSource")
+    static let httpDataSource = CodingKeys(stringValue: "httpDataSource")
+    static let posixDataSource = CodingKeys(stringValue: "posixDataSource")
+    static let azureBlobStorageDataSource = CodingKeys(stringValue: "azureBlobStorageDataSource")
+    static let awsS3CompatibleDataSource = CodingKeys(stringValue: "awsS3CompatibleDataSource")
+    static let hdfsDataSource = CodingKeys(stringValue: "hdfsDataSource")
+    static let gcsIntermediateDataLocation = CodingKeys(stringValue: "gcsIntermediateDataLocation")
+    static let objectConditions = CodingKeys(stringValue: "objectConditions")
+    static let transferOptions = CodingKeys(stringValue: "transferOptions")
+    static let transferManifest = CodingKeys(stringValue: "transferManifest")
+    static let sourceAgentPoolName = CodingKeys(stringValue: "sourceAgentPoolName")
+    static let sinkAgentPoolName = CodingKeys(stringValue: "sinkAgentPoolName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDataSink",
+      "posixDataSink",
+      "gcsDataSource",
+      "awsS3DataSource",
+      "httpDataSource",
+      "posixDataSource",
+      "azureBlobStorageDataSource",
+      "awsS3CompatibleDataSource",
+      "hdfsDataSource",
+      "gcsIntermediateDataLocation",
+      "objectConditions",
+      "transferOptions",
+      "transferManifest",
+      "sourceAgentPoolName",
+      "sinkAgentPoolName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -99,8 +124,12 @@ public struct TransferSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       TransferOptions.self, forKey: .transferOptions)
     self.transferManifest = try container.decodeIfPresent(
       TransferManifest.self, forKey: .transferManifest)
-    self.sourceAgentPoolName = try container.decode(Swift.String.self, forKey: .sourceAgentPoolName)
-    self.sinkAgentPoolName = try container.decode(Swift.String.self, forKey: .sinkAgentPoolName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceAgentPoolName) {
+      self.sourceAgentPoolName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sinkAgentPoolName) {
+      self.sinkAgentPoolName = value
+    }
 
     var dataSink: OneOf_DataSink? = nil
     let dataSinkCheckAndSet = {
@@ -180,13 +209,17 @@ public struct TransferSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .gcsIntermediateDataLocation(gcsIntermediateDataLocation))
     }
     self.intermediateDataLocation = intermediateDataLocation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.objectConditions, forKey: .objectConditions)
-    try container.encode(self.transferOptions, forKey: .transferOptions)
-    try container.encode(self.transferManifest, forKey: .transferManifest)
+    try container.encodeIfPresent(self.objectConditions, forKey: .objectConditions)
+    try container.encodeIfPresent(self.transferOptions, forKey: .transferOptions)
+    try container.encodeIfPresent(self.transferManifest, forKey: .transferManifest)
     try container.encode(self.sourceAgentPoolName, forKey: .sourceAgentPoolName)
     try container.encode(self.sinkAgentPoolName, forKey: .sinkAgentPoolName)
 
@@ -223,6 +256,9 @@ public struct TransferSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsIntermediateDataLocation(let value):
         try container.encode(value, forKey: .gcsIntermediateDataLocation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

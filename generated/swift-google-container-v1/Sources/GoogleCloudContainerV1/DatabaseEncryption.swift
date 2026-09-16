@@ -41,6 +41,8 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// operations.
   public var lastOperationErrors: [DatabaseEncryption.OperationError] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseEncryption`.
   public init() {}
 
@@ -57,6 +59,63 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let keyName = CodingKeys(stringValue: "keyName")
+    static let state = CodingKeys(stringValue: "state")
+    static let currentState = CodingKeys(stringValue: "currentState")
+    static let decryptionKeys = CodingKeys(stringValue: "decryptionKeys")
+    static let lastOperationErrors = CodingKeys(stringValue: "lastOperationErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "keyName",
+      "state",
+      "currentState",
+      "decryptionKeys",
+      "lastOperationErrors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyName) {
+      self.keyName = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEncryption.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.currentState = try container.decodeIfPresent(
+      DatabaseEncryption.CurrentState.self, forKey: .currentState)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .decryptionKeys) {
+      self.decryptionKeys = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DatabaseEncryption.OperationError].self, forKey: .lastOperationErrors)
+    {
+      self.lastOperationErrors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.keyName, forKey: .keyName)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.currentState, forKey: .currentState)
+    try container.encode(self.decryptionKeys, forKey: .decryptionKeys)
+    try container.encode(self.lastOperationErrors, forKey: .lastOperationErrors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// OperationError records errors seen from CloudKMS keys
   /// encountered during updates to DatabaseEncryption configuration.
   public struct OperationError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -70,6 +129,8 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
     /// Time when the CloudKMS error was seen.
     public var timestamp: GoogleCloudWKT.Timestamp? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `OperationError`.
     public init() {}
@@ -85,6 +146,49 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let keyName = CodingKeys(stringValue: "keyName")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+      static let timestamp = CodingKeys(stringValue: "timestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "keyName",
+        "errorMessage",
+        "timestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyName) {
+        self.keyName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      self.timestamp = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .timestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.keyName, forKey: .keyName)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

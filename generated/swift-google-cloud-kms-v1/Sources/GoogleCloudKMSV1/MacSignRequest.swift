@@ -58,6 +58,8 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.MacSignRequest.data_crc32c]: <doc:MacSignRequest/dataCrc32C>
   public var dataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MacSignRequest`.
   public init() {}
 
@@ -74,25 +76,47 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case data = "data"
-    case dataCrc32C = "dataCrc32c"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let data = CodingKeys(stringValue: "data")
+    static let dataCrc32C = CodingKeys(stringValue: "dataCrc32c")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "data",
+      "dataCrc32c",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.data = try container.decode(Foundation.Data.self, forKey: .data)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
+      self.data = value
+    }
     self.dataCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .dataCrc32C)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.data, forKey: .data)
-    try container.encode(self.dataCrc32C, forKey: .dataCrc32C)
+    try container.encodeIfPresent(self.dataCrc32C, forKey: .dataCrc32C)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

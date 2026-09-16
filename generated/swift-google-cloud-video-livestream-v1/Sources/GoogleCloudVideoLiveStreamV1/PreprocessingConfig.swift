@@ -30,6 +30,8 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Specify the video pad filter configuration.
   public var pad: PreprocessingConfig.Pad? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PreprocessingConfig`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let audio = CodingKeys(stringValue: "audio")
+    static let crop = CodingKeys(stringValue: "crop")
+    static let pad = CodingKeys(stringValue: "pad")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "audio",
+      "crop",
+      "pad",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.audio = try container.decodeIfPresent(PreprocessingConfig.Audio.self, forKey: .audio)
+    self.crop = try container.decodeIfPresent(PreprocessingConfig.Crop.self, forKey: .crop)
+    self.pad = try container.decodeIfPresent(PreprocessingConfig.Pad.self, forKey: .pad)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.audio, forKey: .audio)
+    try container.encodeIfPresent(self.crop, forKey: .crop)
+    try container.encodeIfPresent(self.pad, forKey: .pad)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Audio preprocessing configuration.
@@ -63,6 +103,8 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// - 0 disables normalization. The default is 0.
     public var lufs: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Audio`.
     public init() {}
 
@@ -77,6 +119,38 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lufs = CodingKeys(stringValue: "lufs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lufs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .lufs) {
+        self.lufs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lufs, forKey: .lufs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -107,6 +181,8 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The number of pixels to crop from the right. The default is 0.
     public var rightPixels: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Crop`.
     public init() {}
 
@@ -121,6 +197,56 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let topPixels = CodingKeys(stringValue: "topPixels")
+      static let bottomPixels = CodingKeys(stringValue: "bottomPixels")
+      static let leftPixels = CodingKeys(stringValue: "leftPixels")
+      static let rightPixels = CodingKeys(stringValue: "rightPixels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "topPixels",
+        "bottomPixels",
+        "leftPixels",
+        "rightPixels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topPixels) {
+        self.topPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bottomPixels) {
+        self.bottomPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .leftPixels) {
+        self.leftPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rightPixels) {
+        self.rightPixels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.topPixels, forKey: .topPixels)
+      try container.encode(self.bottomPixels, forKey: .bottomPixels)
+      try container.encode(self.leftPixels, forKey: .leftPixels)
+      try container.encode(self.rightPixels, forKey: .rightPixels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -151,6 +277,8 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The number of pixels to add to the right. The default is 0.
     public var rightPixels: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Pad`.
     public init() {}
 
@@ -165,6 +293,56 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let topPixels = CodingKeys(stringValue: "topPixels")
+      static let bottomPixels = CodingKeys(stringValue: "bottomPixels")
+      static let leftPixels = CodingKeys(stringValue: "leftPixels")
+      static let rightPixels = CodingKeys(stringValue: "rightPixels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "topPixels",
+        "bottomPixels",
+        "leftPixels",
+        "rightPixels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topPixels) {
+        self.topPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bottomPixels) {
+        self.bottomPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .leftPixels) {
+        self.leftPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rightPixels) {
+        self.rightPixels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.topPixels, forKey: .topPixels)
+      try container.encode(self.bottomPixels, forKey: .bottomPixels)
+      try container.encode(self.leftPixels, forKey: .leftPixels)
+      try container.encode(self.rightPixels, forKey: .rightPixels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

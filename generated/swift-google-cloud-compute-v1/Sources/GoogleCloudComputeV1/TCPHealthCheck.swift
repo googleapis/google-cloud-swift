@@ -68,6 +68,8 @@
     /// https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-ssl-tcp
     public var response: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TCPHealthCheck`.
     public init() {}
 
@@ -82,6 +84,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let port = CodingKeys(stringValue: "port")
+      static let portName = CodingKeys(stringValue: "portName")
+      static let portSpecification = CodingKeys(stringValue: "portSpecification")
+      static let proxyHeader = CodingKeys(stringValue: "proxyHeader")
+      static let request = CodingKeys(stringValue: "request")
+      static let response = CodingKeys(stringValue: "response")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "port",
+        "portName",
+        "portSpecification",
+        "proxyHeader",
+        "request",
+        "response",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
+      self.portName = try container.decodeIfPresent(Swift.String.self, forKey: .portName)
+      self.portSpecification = try container.decodeIfPresent(
+        TCPHealthCheck.PortSpecification.self, forKey: .portSpecification)
+      self.proxyHeader = try container.decodeIfPresent(
+        TCPHealthCheck.ProxyHeader.self, forKey: .proxyHeader)
+      self.request = try container.decodeIfPresent(Swift.String.self, forKey: .request)
+      self.response = try container.decodeIfPresent(Swift.String.self, forKey: .response)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      try container.encodeIfPresent(self.portName, forKey: .portName)
+      try container.encodeIfPresent(self.portSpecification, forKey: .portSpecification)
+      try container.encodeIfPresent(self.proxyHeader, forKey: .proxyHeader)
+      try container.encodeIfPresent(self.request, forKey: .request)
+      try container.encodeIfPresent(self.response, forKey: .response)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [portSpecification][google.cloud.compute.v1.TCPHealthCheck.portSpecification] field.

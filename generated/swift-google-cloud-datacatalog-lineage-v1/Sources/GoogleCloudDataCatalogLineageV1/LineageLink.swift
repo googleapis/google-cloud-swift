@@ -39,6 +39,8 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The location where the LineageEvent that created the link is stored.
   public var location: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LineageLink`.
   public init() {}
 
@@ -55,12 +57,76 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let source = CodingKeys(stringValue: "source")
+    static let target = CodingKeys(stringValue: "target")
+    static let processes = CodingKeys(stringValue: "processes")
+    static let dependencyInfo = CodingKeys(stringValue: "dependencyInfo")
+    static let depth = CodingKeys(stringValue: "depth")
+    static let location = CodingKeys(stringValue: "location")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "source",
+      "target",
+      "processes",
+      "dependencyInfo",
+      "depth",
+      "location",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.source = try container.decodeIfPresent(EntityReference.self, forKey: .source)
+    self.target = try container.decodeIfPresent(EntityReference.self, forKey: .target)
+    if let value = try container.decodeIfPresent(
+      [LineageLink.LineageProcess].self, forKey: .processes)
+    {
+      self.processes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LineageLink.DependencyInfo].self, forKey: .dependencyInfo)
+    {
+      self.dependencyInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .depth) {
+      self.depth = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encodeIfPresent(self.target, forKey: .target)
+    try container.encode(self.processes, forKey: .processes)
+    try container.encode(self.dependencyInfo, forKey: .dependencyInfo)
+    try container.encode(self.depth, forKey: .depth)
+    try container.encode(self.location, forKey: .location)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Process metadata for the link.
   public struct LineageProcess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Process that created the link.
     public var process: Process? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LineageProcess`.
     public init() {}
@@ -76,6 +142,36 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let process = CodingKeys(stringValue: "process")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "process"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.process = try container.decodeIfPresent(Process.self, forKey: .process)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.process, forKey: .process)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -96,6 +192,8 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The type of dependency.
     public var dependencyType: DependencyType = DependencyType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DependencyInfo`.
     public init() {}
 
@@ -110,6 +208,38 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dependencyType = CodingKeys(stringValue: "dependencyType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dependencyType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(DependencyType.self, forKey: .dependencyType) {
+        self.dependencyType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dependencyType, forKey: .dependencyType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
   /// Output only. Account takeover risk assessment for this request.
   public var accountTakeoverVerdict: AccountDefenderAssessment.AccountTakeoverVerdict? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccountDefenderAssessment`.
   public init() {}
 
@@ -41,6 +43,45 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labels = CodingKeys(stringValue: "labels")
+    static let accountTakeoverVerdict = CodingKeys(stringValue: "accountTakeoverVerdict")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labels",
+      "accountTakeoverVerdict",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [AccountDefenderAssessment.AccountDefenderLabel].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.accountTakeoverVerdict = try container.decodeIfPresent(
+      AccountDefenderAssessment.AccountTakeoverVerdict.self, forKey: .accountTakeoverVerdict)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.accountTakeoverVerdict, forKey: .accountTakeoverVerdict)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Account takeover risk assessment.
@@ -61,6 +102,8 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
     /// can still have some trust signals.
     public var trustReasons: [AccountDefenderAssessment.AccountTrustReason] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccountTakeoverVerdict`.
     public init() {}
 
@@ -75,6 +118,54 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let risk = CodingKeys(stringValue: "risk")
+      static let riskReasons = CodingKeys(stringValue: "riskReasons")
+      static let trustReasons = CodingKeys(stringValue: "trustReasons")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "risk",
+        "riskReasons",
+        "trustReasons",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .risk) {
+        self.risk = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AccountDefenderAssessment.AccountRiskReason].self, forKey: .riskReasons)
+      {
+        self.riskReasons = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AccountDefenderAssessment.AccountTrustReason].self, forKey: .trustReasons)
+      {
+        self.trustReasons = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.risk, forKey: .risk)
+      try container.encode(self.riskReasons, forKey: .riskReasons)
+      try container.encode(self.trustReasons, forKey: .trustReasons)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -97,6 +188,8 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
     public var reason: AccountDefenderAssessment.AccountRiskReason.RiskReason =
       AccountDefenderAssessment.AccountRiskReason.RiskReason()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccountRiskReason`.
     public init() {}
 
@@ -111,6 +204,40 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reason = CodingKeys(stringValue: "reason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reason"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        AccountDefenderAssessment.AccountRiskReason.RiskReason.self, forKey: .reason)
+      {
+        self.reason = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.reason, forKey: .reason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Risk explainability reasons for Account defense.
@@ -263,6 +390,8 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
     public var reason: AccountDefenderAssessment.AccountTrustReason.TrustReason =
       AccountDefenderAssessment.AccountTrustReason.TrustReason()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AccountTrustReason`.
     public init() {}
 
@@ -277,6 +406,40 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reason = CodingKeys(stringValue: "reason")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reason"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        AccountDefenderAssessment.AccountTrustReason.TrustReason.self, forKey: .reason)
+      {
+        self.reason = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.reason, forKey: .reason)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Trust explainability reasons for Account defense.

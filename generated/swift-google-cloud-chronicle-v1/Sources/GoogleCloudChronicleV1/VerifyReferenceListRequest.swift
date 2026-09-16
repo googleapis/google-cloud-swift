@@ -33,6 +33,8 @@ public struct VerifyReferenceListRequest: Codable, Equatable, GoogleCloudWKT._An
   /// Each line may be either an item in the list or a comment.
   public var entries: [ReferenceListEntry] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VerifyReferenceListRequest`.
   public init() {}
 
@@ -47,6 +49,51 @@ public struct VerifyReferenceListRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instance = CodingKeys(stringValue: "instance")
+    static let syntaxType = CodingKeys(stringValue: "syntaxType")
+    static let entries = CodingKeys(stringValue: "entries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instance",
+      "syntaxType",
+      "entries",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(ReferenceListSyntaxType.self, forKey: .syntaxType)
+    {
+      self.syntaxType = value
+    }
+    if let value = try container.decodeIfPresent([ReferenceListEntry].self, forKey: .entries) {
+      self.entries = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.syntaxType, forKey: .syntaxType)
+    try container.encode(self.entries, forKey: .entries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

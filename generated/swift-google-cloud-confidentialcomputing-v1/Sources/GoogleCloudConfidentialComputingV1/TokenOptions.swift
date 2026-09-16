@@ -36,6 +36,8 @@ public struct TokenOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// An optional additional configuration per token type.
   public var tokenTypeOptions: OneOf_TokenTypeOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TokenOptions`.
   public init() {}
 
@@ -52,18 +54,36 @@ public struct TokenOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case awsPrincipalTagsOptions = "awsPrincipalTagsOptions"
-    case audience = "audience"
-    case nonce = "nonce"
-    case tokenType = "tokenType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let awsPrincipalTagsOptions = CodingKeys(stringValue: "awsPrincipalTagsOptions")
+    static let audience = CodingKeys(stringValue: "audience")
+    static let nonce = CodingKeys(stringValue: "nonce")
+    static let tokenType = CodingKeys(stringValue: "tokenType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "awsPrincipalTagsOptions",
+      "audience",
+      "nonce",
+      "tokenType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.audience = try container.decode(Swift.String.self, forKey: .audience)
-    self.nonce = try container.decode([Swift.String].self, forKey: .nonce)
-    self.tokenType = try container.decode(TokenType.self, forKey: .tokenType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+      self.audience = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nonce) {
+      self.nonce = value
+    }
+    if let value = try container.decodeIfPresent(TokenType.self, forKey: .tokenType) {
+      self.tokenType = value
+    }
 
     var tokenTypeOptions: OneOf_TokenTypeOptions? = nil
     let tokenTypeOptionsCheckAndSet = {
@@ -81,6 +101,10 @@ public struct TokenOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try tokenTypeOptionsCheckAndSet(.awsPrincipalTagsOptions(awsPrincipalTagsOptions))
     }
     self.tokenTypeOptions = tokenTypeOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +118,9 @@ public struct TokenOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .awsPrincipalTagsOptions(let value):
         try container.encode(value, forKey: .awsPrincipalTagsOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

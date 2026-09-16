@@ -59,6 +59,8 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the chosen wrapper. When unset, `PubsubWrapper` is used.
   public var wrapper: OneOf_Wrapper? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PushConfig`.
   public init() {}
 
@@ -75,18 +77,37 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oidcToken = "oidcToken"
-    case pubsubWrapper = "pubsubWrapper"
-    case noWrapper = "noWrapper"
-    case pushEndpoint = "pushEndpoint"
-    case attributes = "attributes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oidcToken = CodingKeys(stringValue: "oidcToken")
+    static let pubsubWrapper = CodingKeys(stringValue: "pubsubWrapper")
+    static let noWrapper = CodingKeys(stringValue: "noWrapper")
+    static let pushEndpoint = CodingKeys(stringValue: "pushEndpoint")
+    static let attributes = CodingKeys(stringValue: "attributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oidcToken",
+      "pubsubWrapper",
+      "noWrapper",
+      "pushEndpoint",
+      "attributes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.pushEndpoint = try container.decode(Swift.String.self, forKey: .pushEndpoint)
-    self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pushEndpoint) {
+      self.pushEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
 
     var authenticationMethod: OneOf_AuthenticationMethod? = nil
     let authenticationMethodCheckAndSet = {
@@ -124,6 +145,10 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try wrapperCheckAndSet(.noWrapper(noWrapper))
     }
     self.wrapper = wrapper
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -145,6 +170,9 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .noWrapper(let value):
         try container.encode(value, forKey: .noWrapper)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -170,6 +198,8 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// the Push endpoint URL will be used.
     public var audience: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OidcToken`.
     public init() {}
 
@@ -184,6 +214,45 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+      static let audience = CodingKeys(stringValue: "audience")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "serviceAccountEmail",
+        "audience",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail)
+      {
+        self.serviceAccountEmail = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+        self.audience = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
+      try container.encode(self.audience, forKey: .audience)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -203,6 +272,8 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct PubsubWrapper: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PubsubWrapper`.
     public init() {}
 
@@ -217,6 +288,30 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -239,6 +334,8 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Pub/Sub message attributes to `<KEY>:<VAL>` headers of the HTTP request.
     public var writeMetadata: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NoWrapper`.
     public init() {}
 
@@ -253,6 +350,38 @@ public struct PushConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let writeMetadata = CodingKeys(stringValue: "writeMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "writeMetadata"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .writeMetadata) {
+        self.writeMetadata = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.writeMetadata, forKey: .writeMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

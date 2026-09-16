@@ -65,6 +65,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// resources will be restored.
   public var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreConfig`.
   public init() {}
 
@@ -81,34 +83,70 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case volumeDataRestorePolicy = "volumeDataRestorePolicy"
-    case clusterResourceConflictPolicy = "clusterResourceConflictPolicy"
-    case namespacedResourceRestoreMode = "namespacedResourceRestoreMode"
-    case clusterResourceRestoreScope = "clusterResourceRestoreScope"
-    case allNamespaces = "allNamespaces"
-    case selectedNamespaces = "selectedNamespaces"
-    case selectedApplications = "selectedApplications"
-    case noNamespaces = "noNamespaces"
-    case excludedNamespaces = "excludedNamespaces"
-    case substitutionRules = "substitutionRules"
-    case transformationRules = "transformationRules"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let volumeDataRestorePolicy = CodingKeys(stringValue: "volumeDataRestorePolicy")
+    static let clusterResourceConflictPolicy = CodingKeys(
+      stringValue: "clusterResourceConflictPolicy")
+    static let namespacedResourceRestoreMode = CodingKeys(
+      stringValue: "namespacedResourceRestoreMode")
+    static let clusterResourceRestoreScope = CodingKeys(stringValue: "clusterResourceRestoreScope")
+    static let allNamespaces = CodingKeys(stringValue: "allNamespaces")
+    static let selectedNamespaces = CodingKeys(stringValue: "selectedNamespaces")
+    static let selectedApplications = CodingKeys(stringValue: "selectedApplications")
+    static let noNamespaces = CodingKeys(stringValue: "noNamespaces")
+    static let excludedNamespaces = CodingKeys(stringValue: "excludedNamespaces")
+    static let substitutionRules = CodingKeys(stringValue: "substitutionRules")
+    static let transformationRules = CodingKeys(stringValue: "transformationRules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "volumeDataRestorePolicy",
+      "clusterResourceConflictPolicy",
+      "namespacedResourceRestoreMode",
+      "clusterResourceRestoreScope",
+      "allNamespaces",
+      "selectedNamespaces",
+      "selectedApplications",
+      "noNamespaces",
+      "excludedNamespaces",
+      "substitutionRules",
+      "transformationRules",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.volumeDataRestorePolicy = try container.decode(
+    if let value = try container.decodeIfPresent(
       RestoreConfig.VolumeDataRestorePolicy.self, forKey: .volumeDataRestorePolicy)
-    self.clusterResourceConflictPolicy = try container.decode(
+    {
+      self.volumeDataRestorePolicy = value
+    }
+    if let value = try container.decodeIfPresent(
       RestoreConfig.ClusterResourceConflictPolicy.self, forKey: .clusterResourceConflictPolicy)
-    self.namespacedResourceRestoreMode = try container.decode(
+    {
+      self.clusterResourceConflictPolicy = value
+    }
+    if let value = try container.decodeIfPresent(
       RestoreConfig.NamespacedResourceRestoreMode.self, forKey: .namespacedResourceRestoreMode)
+    {
+      self.namespacedResourceRestoreMode = value
+    }
     self.clusterResourceRestoreScope = try container.decodeIfPresent(
       RestoreConfig.ClusterResourceRestoreScope.self, forKey: .clusterResourceRestoreScope)
-    self.substitutionRules = try container.decode(
+    if let value = try container.decodeIfPresent(
       [RestoreConfig.SubstitutionRule].self, forKey: .substitutionRules)
-    self.transformationRules = try container.decode(
+    {
+      self.substitutionRules = value
+    }
+    if let value = try container.decodeIfPresent(
       [RestoreConfig.TransformationRule].self, forKey: .transformationRules)
+    {
+      self.transformationRules = value
+    }
 
     var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
     let namespacedResourceRestoreScopeCheckAndSet = {
@@ -142,6 +180,10 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try namespacedResourceRestoreScopeCheckAndSet(.excludedNamespaces(excludedNamespaces))
     }
     self.namespacedResourceRestoreScope = namespacedResourceRestoreScope
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -149,7 +191,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.volumeDataRestorePolicy, forKey: .volumeDataRestorePolicy)
     try container.encode(self.clusterResourceConflictPolicy, forKey: .clusterResourceConflictPolicy)
     try container.encode(self.namespacedResourceRestoreMode, forKey: .namespacedResourceRestoreMode)
-    try container.encode(self.clusterResourceRestoreScope, forKey: .clusterResourceRestoreScope)
+    try container.encodeIfPresent(
+      self.clusterResourceRestoreScope, forKey: .clusterResourceRestoreScope)
     try container.encode(self.substitutionRules, forKey: .substitutionRules)
     try container.encode(self.transformationRules, forKey: .transformationRules)
 
@@ -166,6 +209,9 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .excludedNamespaces(let value):
         try container.encode(value, forKey: .excludedNamespaces)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -184,6 +230,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// "CustomResourceDefinition", "StorageClass", etc.
     public var resourceKind: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroupKind`.
     public init() {}
 
@@ -198,6 +246,44 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceGroup = CodingKeys(stringValue: "resourceGroup")
+      static let resourceKind = CodingKeys(stringValue: "resourceKind")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceGroup",
+        "resourceKind",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceGroup) {
+        self.resourceGroup = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceKind) {
+        self.resourceKind = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceGroup, forKey: .resourceGroup)
+      try container.encode(self.resourceKind, forKey: .resourceKind)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -253,6 +339,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Mutually exclusive to any other field in the message.
     public var noGroupKinds: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClusterResourceRestoreScope`.
     public init() {}
 
@@ -267,6 +355,60 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let selectedGroupKinds = CodingKeys(stringValue: "selectedGroupKinds")
+      static let excludedGroupKinds = CodingKeys(stringValue: "excludedGroupKinds")
+      static let allGroupKinds = CodingKeys(stringValue: "allGroupKinds")
+      static let noGroupKinds = CodingKeys(stringValue: "noGroupKinds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "selectedGroupKinds",
+        "excludedGroupKinds",
+        "allGroupKinds",
+        "noGroupKinds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RestoreConfig.GroupKind].self, forKey: .selectedGroupKinds)
+      {
+        self.selectedGroupKinds = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RestoreConfig.GroupKind].self, forKey: .excludedGroupKinds)
+      {
+        self.excludedGroupKinds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allGroupKinds) {
+        self.allGroupKinds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noGroupKinds) {
+        self.noGroupKinds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.selectedGroupKinds, forKey: .selectedGroupKinds)
+      try container.encode(self.excludedGroupKinds, forKey: .excludedGroupKinds)
+      try container.encode(self.allGroupKinds, forKey: .allGroupKinds)
+      try container.encode(self.noGroupKinds, forKey: .noGroupKinds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -328,6 +470,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// leave this field unspecified, or set it to the empty string ("").
     public var newValue: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubstitutionRule`.
     public init() {}
 
@@ -342,6 +486,65 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let targetNamespaces = CodingKeys(stringValue: "targetNamespaces")
+      static let targetGroupKinds = CodingKeys(stringValue: "targetGroupKinds")
+      static let targetJsonPath = CodingKeys(stringValue: "targetJsonPath")
+      static let originalValuePattern = CodingKeys(stringValue: "originalValuePattern")
+      static let newValue = CodingKeys(stringValue: "newValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "targetNamespaces",
+        "targetGroupKinds",
+        "targetJsonPath",
+        "originalValuePattern",
+        "newValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetNamespaces) {
+        self.targetNamespaces = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RestoreConfig.GroupKind].self, forKey: .targetGroupKinds)
+      {
+        self.targetGroupKinds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetJsonPath) {
+        self.targetJsonPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .originalValuePattern)
+      {
+        self.originalValuePattern = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newValue) {
+        self.newValue = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.targetNamespaces, forKey: .targetNamespaces)
+      try container.encode(self.targetGroupKinds, forKey: .targetGroupKinds)
+      try container.encode(self.targetJsonPath, forKey: .targetJsonPath)
+      try container.encode(self.originalValuePattern, forKey: .originalValuePattern)
+      try container.encode(self.newValue, forKey: .newValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -376,6 +579,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// use for transformation.
     public var value: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransformationRuleAction`.
     public init() {}
 
@@ -390,6 +595,58 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let op = CodingKeys(stringValue: "op")
+      static let fromPath = CodingKeys(stringValue: "fromPath")
+      static let path = CodingKeys(stringValue: "path")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "op",
+        "fromPath",
+        "path",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        RestoreConfig.TransformationRuleAction.Op.self, forKey: .op)
+      {
+        self.op = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fromPath) {
+        self.fromPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.op, forKey: .op)
+      try container.encode(self.fromPath, forKey: .fromPath)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Possible values for operations of a transformation rule action.
@@ -576,6 +833,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// transformation).
     public var jsonPath: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceFilter`.
     public init() {}
 
@@ -590,6 +849,52 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let namespaces = CodingKeys(stringValue: "namespaces")
+      static let groupKinds = CodingKeys(stringValue: "groupKinds")
+      static let jsonPath = CodingKeys(stringValue: "jsonPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "namespaces",
+        "groupKinds",
+        "jsonPath",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .namespaces) {
+        self.namespaces = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RestoreConfig.GroupKind].self, forKey: .groupKinds)
+      {
+        self.groupKinds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jsonPath) {
+        self.jsonPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.namespaces, forKey: .namespaces)
+      try container.encode(self.groupKinds, forKey: .groupKinds)
+      try container.encode(self.jsonPath, forKey: .jsonPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -625,6 +930,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// transformation rule.
     public var description: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransformationRule`.
     public init() {}
 
@@ -639,6 +946,51 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fieldActions = CodingKeys(stringValue: "fieldActions")
+      static let resourceFilter = CodingKeys(stringValue: "resourceFilter")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fieldActions",
+        "resourceFilter",
+        "description",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [RestoreConfig.TransformationRuleAction].self, forKey: .fieldActions)
+      {
+        self.fieldActions = value
+      }
+      self.resourceFilter = try container.decodeIfPresent(
+        RestoreConfig.ResourceFilter.self, forKey: .resourceFilter)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.fieldActions, forKey: .fieldActions)
+      try container.encodeIfPresent(self.resourceFilter, forKey: .resourceFilter)
+      try container.encode(self.description, forKey: .description)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

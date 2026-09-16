@@ -45,6 +45,8 @@
     /// replica(s) under it.
     public var cascadableReplica: GoogleCloudWKT.BoolValue? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReplicaConfiguration`.
     public init() {}
 
@@ -59,6 +61,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let mysqlReplicaConfiguration = CodingKeys(stringValue: "mysqlReplicaConfiguration")
+      static let failoverTarget = CodingKeys(stringValue: "failoverTarget")
+      static let cascadableReplica = CodingKeys(stringValue: "cascadableReplica")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "mysqlReplicaConfiguration",
+        "failoverTarget",
+        "cascadableReplica",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.mysqlReplicaConfiguration = try container.decodeIfPresent(
+        MySqlReplicaConfiguration.self, forKey: .mysqlReplicaConfiguration)
+      self.failoverTarget = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .failoverTarget)
+      self.cascadableReplica = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .cascadableReplica)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(
+        self.mysqlReplicaConfiguration, forKey: .mysqlReplicaConfiguration)
+      try container.encodeIfPresent(self.failoverTarget, forKey: .failoverTarget)
+      try container.encodeIfPresent(self.cascadableReplica, forKey: .cascadableReplica)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

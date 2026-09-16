@@ -33,6 +33,8 @@ public struct Nsx: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Fully qualified domain name of the appliance.
   public var fqdn: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Nsx`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct Nsx: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let version = CodingKeys(stringValue: "version")
+    static let state = CodingKeys(stringValue: "state")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "internalIp",
+      "version",
+      "state",
+      "fqdn",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Nsx.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the appliance

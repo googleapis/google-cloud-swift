@@ -105,6 +105,8 @@
     /// or CUSTOMER_MANAGED_CAS_CA.
     public var serverCertificateRotationMode: IpConfiguration.ServerCertificateRotationMode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IpConfiguration`.
     public init() {}
 
@@ -119,6 +121,104 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipv4Enabled = CodingKeys(stringValue: "ipv4Enabled")
+      static let privateNetwork = CodingKeys(stringValue: "privateNetwork")
+      static let requireSsl = CodingKeys(stringValue: "requireSsl")
+      static let authorizedNetworks = CodingKeys(stringValue: "authorizedNetworks")
+      static let allocatedIpRange = CodingKeys(stringValue: "allocatedIpRange")
+      static let enablePrivatePathForGoogleCloudServices = CodingKeys(
+        stringValue: "enablePrivatePathForGoogleCloudServices")
+      static let sslMode = CodingKeys(stringValue: "sslMode")
+      static let pscConfig = CodingKeys(stringValue: "pscConfig")
+      static let serverCaMode = CodingKeys(stringValue: "serverCaMode")
+      static let customSubjectAlternativeNames = CodingKeys(
+        stringValue: "customSubjectAlternativeNames")
+      static let serverCaPool = CodingKeys(stringValue: "serverCaPool")
+      static let serverCertificateRotationMode = CodingKeys(
+        stringValue: "serverCertificateRotationMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipv4Enabled",
+        "privateNetwork",
+        "requireSsl",
+        "authorizedNetworks",
+        "allocatedIpRange",
+        "enablePrivatePathForGoogleCloudServices",
+        "sslMode",
+        "pscConfig",
+        "serverCaMode",
+        "customSubjectAlternativeNames",
+        "serverCaPool",
+        "serverCertificateRotationMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipv4Enabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .ipv4Enabled)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateNetwork) {
+        self.privateNetwork = value
+      }
+      self.requireSsl = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .requireSsl)
+      if let value = try container.decodeIfPresent([AclEntry].self, forKey: .authorizedNetworks) {
+        self.authorizedNetworks = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allocatedIpRange) {
+        self.allocatedIpRange = value
+      }
+      self.enablePrivatePathForGoogleCloudServices = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .enablePrivatePathForGoogleCloudServices)
+      if let value = try container.decodeIfPresent(IpConfiguration.SslMode.self, forKey: .sslMode) {
+        self.sslMode = value
+      }
+      self.pscConfig = try container.decodeIfPresent(PscConfig.self, forKey: .pscConfig)
+      self.serverCaMode = try container.decodeIfPresent(
+        IpConfiguration.CaMode.self, forKey: .serverCaMode)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .customSubjectAlternativeNames)
+      {
+        self.customSubjectAlternativeNames = value
+      }
+      self.serverCaPool = try container.decodeIfPresent(Swift.String.self, forKey: .serverCaPool)
+      self.serverCertificateRotationMode = try container.decodeIfPresent(
+        IpConfiguration.ServerCertificateRotationMode.self, forKey: .serverCertificateRotationMode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipv4Enabled, forKey: .ipv4Enabled)
+      try container.encode(self.privateNetwork, forKey: .privateNetwork)
+      try container.encodeIfPresent(self.requireSsl, forKey: .requireSsl)
+      try container.encode(self.authorizedNetworks, forKey: .authorizedNetworks)
+      try container.encode(self.allocatedIpRange, forKey: .allocatedIpRange)
+      try container.encodeIfPresent(
+        self.enablePrivatePathForGoogleCloudServices,
+        forKey: .enablePrivatePathForGoogleCloudServices)
+      try container.encode(self.sslMode, forKey: .sslMode)
+      try container.encodeIfPresent(self.pscConfig, forKey: .pscConfig)
+      try container.encodeIfPresent(self.serverCaMode, forKey: .serverCaMode)
+      try container.encode(
+        self.customSubjectAlternativeNames, forKey: .customSubjectAlternativeNames)
+      try container.encodeIfPresent(self.serverCaPool, forKey: .serverCaPool)
+      try container.encodeIfPresent(
+        self.serverCertificateRotationMode, forKey: .serverCertificateRotationMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The SSL options for database connections.

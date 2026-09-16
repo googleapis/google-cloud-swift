@@ -57,6 +57,8 @@ public struct GenerateConnectManifestRequest: Codable, Equatable, GoogleCloudWKT
   /// Optional. The image pull secret content for the registry, if not public.
   public var imagePullSecretContent: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateConnectManifestRequest`.
   public init() {}
 
@@ -71,6 +73,76 @@ public struct GenerateConnectManifestRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let namespace = CodingKeys(stringValue: "namespace")
+    static let proxy = CodingKeys(stringValue: "proxy")
+    static let version = CodingKeys(stringValue: "version")
+    static let isUpgrade = CodingKeys(stringValue: "isUpgrade")
+    static let registry = CodingKeys(stringValue: "registry")
+    static let imagePullSecretContent = CodingKeys(stringValue: "imagePullSecretContent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "namespace",
+      "proxy",
+      "version",
+      "isUpgrade",
+      "registry",
+      "imagePullSecretContent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+      self.namespace = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .proxy) {
+      self.proxy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isUpgrade) {
+      self.isUpgrade = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .registry) {
+      self.registry = value
+    }
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .imagePullSecretContent)
+    {
+      self.imagePullSecretContent = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.namespace, forKey: .namespace)
+    try container.encode(self.proxy, forKey: .proxy)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.isUpgrade, forKey: .isUpgrade)
+    try container.encode(self.registry, forKey: .registry)
+    try container.encode(self.imagePullSecretContent, forKey: .imagePullSecretContent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudW
   /// Output only. Statistics for BulkUploadFeedbackLabels operation.
   public var uploadStats: BulkUploadFeedbackLabelsMetadata.UploadStats? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BulkUploadFeedbackLabelsMetadata`.
   public init() {}
 
@@ -54,6 +56,57 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudW
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let request = CodingKeys(stringValue: "request")
+    static let partialErrors = CodingKeys(stringValue: "partialErrors")
+    static let uploadStats = CodingKeys(stringValue: "uploadStats")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "request",
+      "partialErrors",
+      "uploadStats",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.request = try container.decodeIfPresent(
+      BulkUploadFeedbackLabelsRequest.self, forKey: .request)
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .partialErrors) {
+      self.partialErrors = value
+    }
+    self.uploadStats = try container.decodeIfPresent(
+      BulkUploadFeedbackLabelsMetadata.UploadStats.self, forKey: .uploadStats)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.request, forKey: .request)
+    try container.encode(self.partialErrors, forKey: .partialErrors)
+    try container.encodeIfPresent(self.uploadStats, forKey: .uploadStats)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Statistics for BulkUploadFeedbackLabels operation.
   public struct UploadStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -66,6 +119,8 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudW
 
     /// The number of new feedback labels added during this ingest operation.
     public var successfulUploadCount: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UploadStats`.
     public init() {}
@@ -81,6 +136,53 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudW
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let processedObjectCount = CodingKeys(stringValue: "processedObjectCount")
+      static let failedValidationCount = CodingKeys(stringValue: "failedValidationCount")
+      static let successfulUploadCount = CodingKeys(stringValue: "successfulUploadCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "processedObjectCount",
+        "failedValidationCount",
+        "successfulUploadCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .processedObjectCount)
+      {
+        self.processedObjectCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failedValidationCount)
+      {
+        self.failedValidationCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successfulUploadCount)
+      {
+        self.successfulUploadCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.processedObjectCount, forKey: .processedObjectCount)
+      try container.encode(self.failedValidationCount, forKey: .failedValidationCount)
+      try container.encode(self.successfulUploadCount, forKey: .successfulUploadCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

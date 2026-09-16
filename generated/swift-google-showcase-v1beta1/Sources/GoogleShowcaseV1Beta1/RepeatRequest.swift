@@ -45,6 +45,8 @@ public struct RepeatRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var pDouble: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepeatRequest`.
   public init() {}
 
@@ -59,6 +61,83 @@ public struct RepeatRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let info = CodingKeys(stringValue: "info")
+    static let serverVerify = CodingKeys(stringValue: "serverVerify")
+    static let intendedBindingUri = CodingKeys(stringValue: "intendedBindingUri")
+    static let fInt32 = CodingKeys(stringValue: "fInt32")
+    static let fInt64 = CodingKeys(stringValue: "fInt64")
+    static let fDouble = CodingKeys(stringValue: "fDouble")
+    static let pInt32 = CodingKeys(stringValue: "pInt32")
+    static let pInt64 = CodingKeys(stringValue: "pInt64")
+    static let pDouble = CodingKeys(stringValue: "pDouble")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "info",
+      "serverVerify",
+      "intendedBindingUri",
+      "fInt32",
+      "fInt64",
+      "fDouble",
+      "pInt32",
+      "pInt64",
+      "pDouble",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.info = try container.decodeIfPresent(ComplianceData.self, forKey: .info)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .serverVerify) {
+      self.serverVerify = value
+    }
+    self.intendedBindingUri = try container.decodeIfPresent(
+      Swift.String.self, forKey: .intendedBindingUri)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fInt32) {
+      self.fInt32 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .fInt64) {
+      self.fInt64 = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .fDouble) {
+      self.fDouble = value
+    }
+    self.pInt32 = try container.decodeIfPresent(Swift.Int32.self, forKey: .pInt32)
+    self.pInt64 = try container.decodeIfPresent(Swift.Int64.self, forKey: .pInt64)
+    self.pDouble = try container.decodeIfPresent(Swift.Double.self, forKey: .pDouble)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.info, forKey: .info)
+    try container.encode(self.serverVerify, forKey: .serverVerify)
+    try container.encodeIfPresent(self.intendedBindingUri, forKey: .intendedBindingUri)
+    try container.encode(self.fInt32, forKey: .fInt32)
+    try container.encode(self.fInt64, forKey: .fInt64)
+    try container.encode(self.fDouble, forKey: .fDouble)
+    try container.encodeIfPresent(self.pInt32, forKey: .pInt32)
+    try container.encodeIfPresent(self.pInt64, forKey: .pInt64)
+    try container.encodeIfPresent(self.pDouble, forKey: .pDouble)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

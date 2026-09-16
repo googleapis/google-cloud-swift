@@ -23,6 +23,8 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
 {
   public var request: OneOf_Request? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReceiveEventsRequest`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case setupRequest = "setupRequest"
-    case commitRequest = "commitRequest"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let setupRequest = CodingKeys(stringValue: "setupRequest")
+    static let commitRequest = CodingKeys(stringValue: "commitRequest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "setupRequest",
+      "commitRequest",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try requestCheckAndSet(.commitRequest(commitRequest))
     }
     self.request = request
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .commitRequest(let value):
         try container.encode(value, forKey: .commitRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -118,6 +137,8 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// A system default will be chosen if unset.
     public var writesDoneGracePeriod: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SetupRequest`.
     public init() {}
 
@@ -132,6 +153,65 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cluster = CodingKeys(stringValue: "cluster")
+      static let stream = CodingKeys(stringValue: "stream")
+      static let receiver = CodingKeys(stringValue: "receiver")
+      static let controlledMode = CodingKeys(stringValue: "controlledMode")
+      static let heartbeatInterval = CodingKeys(stringValue: "heartbeatInterval")
+      static let writesDoneGracePeriod = CodingKeys(stringValue: "writesDoneGracePeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cluster",
+        "stream",
+        "receiver",
+        "controlledMode",
+        "heartbeatInterval",
+        "writesDoneGracePeriod",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+        self.cluster = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stream) {
+        self.stream = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .receiver) {
+        self.receiver = value
+      }
+      self.controlledMode = try container.decodeIfPresent(
+        ControlledMode.self, forKey: .controlledMode)
+      self.heartbeatInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .heartbeatInterval)
+      self.writesDoneGracePeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .writesDoneGracePeriod)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cluster, forKey: .cluster)
+      try container.encode(self.stream, forKey: .stream)
+      try container.encode(self.receiver, forKey: .receiver)
+      try container.encodeIfPresent(self.controlledMode, forKey: .controlledMode)
+      try container.encodeIfPresent(self.heartbeatInterval, forKey: .heartbeatInterval)
+      try container.encodeIfPresent(self.writesDoneGracePeriod, forKey: .writesDoneGracePeriod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

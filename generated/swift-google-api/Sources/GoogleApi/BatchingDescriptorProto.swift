@@ -37,6 +37,8 @@ public struct BatchingDescriptorProto: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// together.
   public var subresponseField: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchingDescriptorProto`.
   public init() {}
 
@@ -51,6 +53,51 @@ public struct BatchingDescriptorProto: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let batchedField = CodingKeys(stringValue: "batchedField")
+    static let discriminatorFields = CodingKeys(stringValue: "discriminatorFields")
+    static let subresponseField = CodingKeys(stringValue: "subresponseField")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "batchedField",
+      "discriminatorFields",
+      "subresponseField",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .batchedField) {
+      self.batchedField = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .discriminatorFields)
+    {
+      self.discriminatorFields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subresponseField) {
+      self.subresponseField = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.batchedField, forKey: .batchedField)
+    try container.encode(self.discriminatorFields, forKey: .discriminatorFields)
+    try container.encode(self.subresponseField, forKey: .subresponseField)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

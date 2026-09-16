@@ -54,6 +54,8 @@ public struct HiveMetastoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// the last character, which cannot be a hyphen.
   public var auxiliaryVersions: [Swift.String: AuxiliaryVersionConfig] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HiveMetastoreConfig`.
   public init() {}
 
@@ -68,6 +70,67 @@ public struct HiveMetastoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let configOverrides = CodingKeys(stringValue: "configOverrides")
+    static let kerberosConfig = CodingKeys(stringValue: "kerberosConfig")
+    static let endpointProtocol = CodingKeys(stringValue: "endpointProtocol")
+    static let auxiliaryVersions = CodingKeys(stringValue: "auxiliaryVersions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "configOverrides",
+      "kerberosConfig",
+      "endpointProtocol",
+      "auxiliaryVersions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .configOverrides)
+    {
+      self.configOverrides = value
+    }
+    self.kerberosConfig = try container.decodeIfPresent(
+      KerberosConfig.self, forKey: .kerberosConfig)
+    if let value = try container.decodeIfPresent(
+      HiveMetastoreConfig.EndpointProtocol.self, forKey: .endpointProtocol)
+    {
+      self.endpointProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AuxiliaryVersionConfig].self, forKey: .auxiliaryVersions)
+    {
+      self.auxiliaryVersions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.configOverrides, forKey: .configOverrides)
+    try container.encodeIfPresent(self.kerberosConfig, forKey: .kerberosConfig)
+    try container.encode(self.endpointProtocol, forKey: .endpointProtocol)
+    try container.encode(self.auxiliaryVersions, forKey: .auxiliaryVersions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Protocols available for serving the metastore service endpoint.

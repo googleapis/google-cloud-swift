@@ -24,6 +24,8 @@ public struct SearchCapabilitySetting: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The metadata of search capability to enable.
   public var searchCapabilities: [SearchCapability] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchCapabilitySetting`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct SearchCapabilitySetting: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let searchCapabilities = CodingKeys(stringValue: "searchCapabilities")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "searchCapabilities"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SearchCapability].self, forKey: .searchCapabilities)
+    {
+      self.searchCapabilities = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.searchCapabilities, forKey: .searchCapabilities)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

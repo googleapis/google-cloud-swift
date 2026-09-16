@@ -32,6 +32,8 @@
     /// Required. The source to import.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportTestCasesRequest`.
     public init() {}
 
@@ -48,15 +50,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case gcsUri = "gcsUri"
-      case content = "content"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+      static let content = CodingKeys(stringValue: "content")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "gcsUri",
+        "content",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -75,6 +90,10 @@
         try sourceCheckAndSet(.content(content))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@
         case .content(let value):
           try container.encode(value, forKey: .content)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

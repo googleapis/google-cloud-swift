@@ -30,6 +30,8 @@ public struct AutoMlImageClassificationMetadata: Codable, Equatable, GoogleCloud
   public var successfulStopReason: AutoMlImageClassificationMetadata.SuccessfulStopReason =
     AutoMlImageClassificationMetadata.SuccessfulStopReason()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoMlImageClassificationMetadata`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct AutoMlImageClassificationMetadata: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let costMilliNodeHours = CodingKeys(stringValue: "costMilliNodeHours")
+    static let successfulStopReason = CodingKeys(stringValue: "successfulStopReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "costMilliNodeHours",
+      "successfulStopReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .costMilliNodeHours) {
+      self.costMilliNodeHours = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutoMlImageClassificationMetadata.SuccessfulStopReason.self, forKey: .successfulStopReason)
+    {
+      self.successfulStopReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.costMilliNodeHours, forKey: .costMilliNodeHours)
+    try container.encode(self.successfulStopReason, forKey: .successfulStopReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public enum SuccessfulStopReason: Codable, Equatable, Sendable {

@@ -38,6 +38,8 @@
     /// password. This flag is supported only for MySQL.
     public var enablePasswordVerification: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UserPasswordValidationPolicy`.
     public init() {}
 
@@ -52,6 +54,65 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowedFailedAttempts = CodingKeys(stringValue: "allowedFailedAttempts")
+      static let passwordExpirationDuration = CodingKeys(stringValue: "passwordExpirationDuration")
+      static let enableFailedAttemptsCheck = CodingKeys(stringValue: "enableFailedAttemptsCheck")
+      static let status = CodingKeys(stringValue: "status")
+      static let enablePasswordVerification = CodingKeys(stringValue: "enablePasswordVerification")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowedFailedAttempts",
+        "passwordExpirationDuration",
+        "enableFailedAttemptsCheck",
+        "status",
+        "enablePasswordVerification",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .allowedFailedAttempts)
+      {
+        self.allowedFailedAttempts = value
+      }
+      self.passwordExpirationDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .passwordExpirationDuration)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableFailedAttemptsCheck)
+      {
+        self.enableFailedAttemptsCheck = value
+      }
+      self.status = try container.decodeIfPresent(PasswordStatus.self, forKey: .status)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePasswordVerification)
+      {
+        self.enablePasswordVerification = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allowedFailedAttempts, forKey: .allowedFailedAttempts)
+      try container.encodeIfPresent(
+        self.passwordExpirationDuration, forKey: .passwordExpirationDuration)
+      try container.encode(self.enableFailedAttemptsCheck, forKey: .enableFailedAttemptsCheck)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encode(self.enablePasswordVerification, forKey: .enablePasswordVerification)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

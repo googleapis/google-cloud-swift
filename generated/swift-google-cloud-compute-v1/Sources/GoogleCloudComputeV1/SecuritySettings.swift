@@ -53,6 +53,8 @@
     /// mode).
     public var subjectAltNames: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecuritySettings`.
     public init() {}
 
@@ -67,6 +69,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let awsV4Authentication = CodingKeys(stringValue: "awsV4Authentication")
+      static let clientTlsPolicy = CodingKeys(stringValue: "clientTlsPolicy")
+      static let subjectAltNames = CodingKeys(stringValue: "subjectAltNames")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "awsV4Authentication",
+        "clientTlsPolicy",
+        "subjectAltNames",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.awsV4Authentication = try container.decodeIfPresent(
+        AWSV4Signature.self, forKey: .awsV4Authentication)
+      self.clientTlsPolicy = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientTlsPolicy)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subjectAltNames) {
+        self.subjectAltNames = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.awsV4Authentication, forKey: .awsV4Authentication)
+      try container.encodeIfPresent(self.clientTlsPolicy, forKey: .clientTlsPolicy)
+      try container.encode(self.subjectAltNames, forKey: .subjectAltNames)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

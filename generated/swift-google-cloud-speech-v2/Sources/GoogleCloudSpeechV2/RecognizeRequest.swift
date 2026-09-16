@@ -66,6 +66,8 @@ public struct RecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Storage URI.
   public var audioSource: OneOf_AudioSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognizeRequest`.
   public init() {}
 
@@ -82,17 +84,32 @@ public struct RecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case recognizer = "recognizer"
-    case config = "config"
-    case configMask = "configMask"
-    case content = "content"
-    case uri = "uri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let recognizer = CodingKeys(stringValue: "recognizer")
+    static let config = CodingKeys(stringValue: "config")
+    static let configMask = CodingKeys(stringValue: "configMask")
+    static let content = CodingKeys(stringValue: "content")
+    static let uri = CodingKeys(stringValue: "uri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "recognizer",
+      "config",
+      "configMask",
+      "content",
+      "uri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.recognizer = try container.decode(Swift.String.self, forKey: .recognizer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recognizer) {
+      self.recognizer = value
+    }
     self.config = try container.decodeIfPresent(RecognitionConfig.self, forKey: .config)
     self.configMask = try container.decodeIfPresent(
       GoogleCloudWKT.FieldMask.self, forKey: .configMask)
@@ -114,13 +131,17 @@ public struct RecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try audioSourceCheckAndSet(.uri(uri))
     }
     self.audioSource = audioSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.recognizer, forKey: .recognizer)
-    try container.encode(self.config, forKey: .config)
-    try container.encode(self.configMask, forKey: .configMask)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.configMask, forKey: .configMask)
 
     if let choice = self.audioSource {
       switch choice {
@@ -129,6 +150,9 @@ public struct RecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .uri(let value):
         try container.encode(value, forKey: .uri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

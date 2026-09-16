@@ -60,6 +60,8 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// must be set to false.
   public var reset: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzerOrgPolicy`.
   public init() {}
 
@@ -74,6 +76,62 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let attachedResource = CodingKeys(stringValue: "attachedResource")
+    static let appliedResource = CodingKeys(stringValue: "appliedResource")
+    static let rules = CodingKeys(stringValue: "rules")
+    static let inheritFromParent = CodingKeys(stringValue: "inheritFromParent")
+    static let reset = CodingKeys(stringValue: "reset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "attachedResource",
+      "appliedResource",
+      "rules",
+      "inheritFromParent",
+      "reset",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attachedResource) {
+      self.attachedResource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appliedResource) {
+      self.appliedResource = value
+    }
+    if let value = try container.decodeIfPresent([AnalyzerOrgPolicy.Rule].self, forKey: .rules) {
+      self.rules = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inheritFromParent) {
+      self.inheritFromParent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reset) {
+      self.reset = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.attachedResource, forKey: .attachedResource)
+    try container.encode(self.appliedResource, forKey: .appliedResource)
+    try container.encode(self.rules, forKey: .rules)
+    try container.encode(self.inheritFromParent, forKey: .inheritFromParent)
+    try container.encode(self.reset, forKey: .reset)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// This rule message is a customized version of the one defined in the
@@ -110,6 +168,8 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     public var kind: OneOf_Kind? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Rule`.
     public init() {}
 
@@ -126,13 +186,27 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case values = "values"
-      case allowAll = "allowAll"
-      case denyAll = "denyAll"
-      case enforce = "enforce"
-      case condition = "condition"
-      case conditionEvaluation = "conditionEvaluation"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let values = CodingKeys(stringValue: "values")
+      static let allowAll = CodingKeys(stringValue: "allowAll")
+      static let denyAll = CodingKeys(stringValue: "denyAll")
+      static let enforce = CodingKeys(stringValue: "enforce")
+      static let condition = CodingKeys(stringValue: "condition")
+      static let conditionEvaluation = CodingKeys(stringValue: "conditionEvaluation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "values",
+        "allowAll",
+        "denyAll",
+        "enforce",
+        "condition",
+        "conditionEvaluation",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -166,12 +240,16 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try kindCheckAndSet(.enforce(enforce))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.condition, forKey: .condition)
-      try container.encode(self.conditionEvaluation, forKey: .conditionEvaluation)
+      try container.encodeIfPresent(self.condition, forKey: .condition)
+      try container.encodeIfPresent(self.conditionEvaluation, forKey: .conditionEvaluation)
 
       if let choice = self.kind {
         switch choice {
@@ -185,6 +263,9 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
           try container.encode(value, forKey: .enforce)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The string values for the list constraints.
@@ -196,6 +277,8 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
       /// List of values denied at this resource.
       public var deniedValues: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `StringValues`.
       public init() {}
@@ -211,6 +294,44 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let allowedValues = CodingKeys(stringValue: "allowedValues")
+        static let deniedValues = CodingKeys(stringValue: "deniedValues")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "allowedValues",
+          "deniedValues",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
+          self.allowedValues = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .deniedValues) {
+          self.deniedValues = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.allowedValues, forKey: .allowedValues)
+        try container.encode(self.deniedValues, forKey: .deniedValues)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

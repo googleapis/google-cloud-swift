@@ -38,6 +38,8 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleCloudWKT._A
   /// Output only. Statistics for IngestConversations operation.
   public var ingestConversationsStats: IngestConversationsMetadata.IngestConversationsStats? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IngestConversationsMetadata`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let request = CodingKeys(stringValue: "request")
+    static let partialErrors = CodingKeys(stringValue: "partialErrors")
+    static let ingestConversationsStats = CodingKeys(stringValue: "ingestConversationsStats")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "request",
+      "partialErrors",
+      "ingestConversationsStats",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.request = try container.decodeIfPresent(IngestConversationsRequest.self, forKey: .request)
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .partialErrors) {
+      self.partialErrors = value
+    }
+    self.ingestConversationsStats = try container.decodeIfPresent(
+      IngestConversationsMetadata.IngestConversationsStats.self, forKey: .ingestConversationsStats)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.request, forKey: .request)
+    try container.encode(self.partialErrors, forKey: .partialErrors)
+    try container.encodeIfPresent(self.ingestConversationsStats, forKey: .ingestConversationsStats)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Statistics for IngestConversations operation.
@@ -73,6 +125,8 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleCloudWKT._A
     /// to errors. The errors are populated in the partial_errors field.
     public var failedIngestCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IngestConversationsStats`.
     public init() {}
 
@@ -87,6 +141,60 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let processedObjectCount = CodingKeys(stringValue: "processedObjectCount")
+      static let duplicatesSkippedCount = CodingKeys(stringValue: "duplicatesSkippedCount")
+      static let successfulIngestCount = CodingKeys(stringValue: "successfulIngestCount")
+      static let failedIngestCount = CodingKeys(stringValue: "failedIngestCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "processedObjectCount",
+        "duplicatesSkippedCount",
+        "successfulIngestCount",
+        "failedIngestCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .processedObjectCount)
+      {
+        self.processedObjectCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .duplicatesSkippedCount)
+      {
+        self.duplicatesSkippedCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .successfulIngestCount)
+      {
+        self.successfulIngestCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failedIngestCount) {
+        self.failedIngestCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.processedObjectCount, forKey: .processedObjectCount)
+      try container.encode(self.duplicatesSkippedCount, forKey: .duplicatesSkippedCount)
+      try container.encode(self.successfulIngestCount, forKey: .successfulIngestCount)
+      try container.encode(self.failedIngestCount, forKey: .failedIngestCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

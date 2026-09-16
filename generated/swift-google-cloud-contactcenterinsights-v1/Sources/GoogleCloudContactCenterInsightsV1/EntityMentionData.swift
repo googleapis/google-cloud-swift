@@ -32,6 +32,8 @@ public struct EntityMentionData: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Sentiment expressed for this mention of the entity.
   public var sentiment: SentimentData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntityMentionData`.
   public init() {}
 
@@ -46,6 +48,49 @@ public struct EntityMentionData: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entityUniqueId = CodingKeys(stringValue: "entityUniqueId")
+    static let type = CodingKeys(stringValue: "type")
+    static let sentiment = CodingKeys(stringValue: "sentiment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entityUniqueId",
+      "type",
+      "sentiment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityUniqueId) {
+      self.entityUniqueId = value
+    }
+    if let value = try container.decodeIfPresent(EntityMentionData.MentionType.self, forKey: .type)
+    {
+      self.type = value
+    }
+    self.sentiment = try container.decodeIfPresent(SentimentData.self, forKey: .sentiment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entityUniqueId, forKey: .entityUniqueId)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.sentiment, forKey: .sentiment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The supported types of mentions.

@@ -53,6 +53,8 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The query content.
   public var content: SavedQuery.QueryContent? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SavedQuery`.
   public init() {}
 
@@ -69,11 +71,84 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+    static let lastUpdater = CodingKeys(stringValue: "lastUpdater")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let content = CodingKeys(stringValue: "content")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "creator",
+      "lastUpdateTime",
+      "lastUpdater",
+      "labels",
+      "content",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    self.lastUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastUpdater) {
+      self.lastUpdater = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.content = try container.decodeIfPresent(SavedQuery.QueryContent.self, forKey: .content)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.creator, forKey: .creator)
+    try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
+    try container.encode(self.lastUpdater, forKey: .lastUpdater)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.content, forKey: .content)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The query content.
   public struct QueryContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var queryContent: OneOf_QueryContent? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `QueryContent`.
     public init() {}
@@ -91,8 +166,17 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case iamPolicyAnalysisQuery = "iamPolicyAnalysisQuery"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let iamPolicyAnalysisQuery = CodingKeys(stringValue: "iamPolicyAnalysisQuery")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "iamPolicyAnalysisQuery"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -114,6 +198,10 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try queryContentCheckAndSet(.iamPolicyAnalysisQuery(iamPolicyAnalysisQuery))
       }
       self.queryContent = queryContent
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,6 +212,9 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .iamPolicyAnalysisQuery(let value):
           try container.encode(value, forKey: .iamPolicyAnalysisQuery)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

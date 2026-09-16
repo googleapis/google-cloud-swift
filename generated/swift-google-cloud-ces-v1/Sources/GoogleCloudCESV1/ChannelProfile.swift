@@ -53,6 +53,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration specific to Instagram deployments.
   public var instagramConfig: ChannelProfile.InstagramConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChannelProfile`.
   public init() {}
 
@@ -69,6 +71,85 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let profileId = CodingKeys(stringValue: "profileId")
+    static let channelType = CodingKeys(stringValue: "channelType")
+    static let personaProperty = CodingKeys(stringValue: "personaProperty")
+    static let disableDtmf = CodingKeys(stringValue: "disableDtmf")
+    static let disableBargeInControl = CodingKeys(stringValue: "disableBargeInControl")
+    static let webWidgetConfig = CodingKeys(stringValue: "webWidgetConfig")
+    static let noiseSuppressionLevel = CodingKeys(stringValue: "noiseSuppressionLevel")
+    static let whatsappConfig = CodingKeys(stringValue: "whatsappConfig")
+    static let instagramConfig = CodingKeys(stringValue: "instagramConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "profileId",
+      "channelType",
+      "personaProperty",
+      "disableDtmf",
+      "disableBargeInControl",
+      "webWidgetConfig",
+      "noiseSuppressionLevel",
+      "whatsappConfig",
+      "instagramConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profileId) {
+      self.profileId = value
+    }
+    if let value = try container.decodeIfPresent(
+      ChannelProfile.ChannelType.self, forKey: .channelType)
+    {
+      self.channelType = value
+    }
+    self.personaProperty = try container.decodeIfPresent(
+      ChannelProfile.PersonaProperty.self, forKey: .personaProperty)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableDtmf) {
+      self.disableDtmf = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableBargeInControl) {
+      self.disableBargeInControl = value
+    }
+    self.webWidgetConfig = try container.decodeIfPresent(
+      ChannelProfile.WebWidgetConfig.self, forKey: .webWidgetConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .noiseSuppressionLevel)
+    {
+      self.noiseSuppressionLevel = value
+    }
+    self.whatsappConfig = try container.decodeIfPresent(
+      ChannelProfile.WhatsAppConfig.self, forKey: .whatsappConfig)
+    self.instagramConfig = try container.decodeIfPresent(
+      ChannelProfile.InstagramConfig.self, forKey: .instagramConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.profileId, forKey: .profileId)
+    try container.encode(self.channelType, forKey: .channelType)
+    try container.encodeIfPresent(self.personaProperty, forKey: .personaProperty)
+    try container.encode(self.disableDtmf, forKey: .disableDtmf)
+    try container.encode(self.disableBargeInControl, forKey: .disableBargeInControl)
+    try container.encodeIfPresent(self.webWidgetConfig, forKey: .webWidgetConfig)
+    try container.encode(self.noiseSuppressionLevel, forKey: .noiseSuppressionLevel)
+    try container.encodeIfPresent(self.whatsappConfig, forKey: .whatsappConfig)
+    try container.encodeIfPresent(self.instagramConfig, forKey: .instagramConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents the persona property of a channel.
   public struct PersonaProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -76,6 +157,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The persona of the channel.
     public var persona: ChannelProfile.PersonaProperty.Persona = ChannelProfile.PersonaProperty
       .Persona()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PersonaProperty`.
     public init() {}
@@ -91,6 +174,40 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let persona = CodingKeys(stringValue: "persona")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "persona"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ChannelProfile.PersonaProperty.Persona.self, forKey: .persona)
+      {
+        self.persona = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.persona, forKey: .persona)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The persona of the channel.
@@ -226,6 +343,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The security settings of the web widget.
     public var securitySettings: ChannelProfile.WebWidgetConfig.SecuritySettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebWidgetConfig`.
     public init() {}
 
@@ -240,6 +359,59 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modality = CodingKeys(stringValue: "modality")
+      static let theme = CodingKeys(stringValue: "theme")
+      static let webWidgetTitle = CodingKeys(stringValue: "webWidgetTitle")
+      static let securitySettings = CodingKeys(stringValue: "securitySettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modality",
+        "theme",
+        "webWidgetTitle",
+        "securitySettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ChannelProfile.WebWidgetConfig.Modality.self, forKey: .modality)
+      {
+        self.modality = value
+      }
+      if let value = try container.decodeIfPresent(
+        ChannelProfile.WebWidgetConfig.Theme.self, forKey: .theme)
+      {
+        self.theme = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webWidgetTitle) {
+        self.webWidgetTitle = value
+      }
+      self.securitySettings = try container.decodeIfPresent(
+        ChannelProfile.WebWidgetConfig.SecuritySettings.self, forKey: .securitySettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.modality, forKey: .modality)
+      try container.encode(self.theme, forKey: .theme)
+      try container.encode(self.webWidgetTitle, forKey: .webWidgetTitle)
+      try container.encodeIfPresent(self.securitySettings, forKey: .securitySettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Security settings for the web widget.
@@ -268,6 +440,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// is enabled.
       public var enableRecaptcha: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SecuritySettings`.
       public init() {}
 
@@ -282,6 +456,56 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enablePublicAccess = CodingKeys(stringValue: "enablePublicAccess")
+        static let enableOriginCheck = CodingKeys(stringValue: "enableOriginCheck")
+        static let allowedOrigins = CodingKeys(stringValue: "allowedOrigins")
+        static let enableRecaptcha = CodingKeys(stringValue: "enableRecaptcha")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enablePublicAccess",
+          "enableOriginCheck",
+          "allowedOrigins",
+          "enableRecaptcha",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePublicAccess) {
+          self.enablePublicAccess = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableOriginCheck) {
+          self.enableOriginCheck = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedOrigins) {
+          self.allowedOrigins = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRecaptcha) {
+          self.enableRecaptcha = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enablePublicAccess, forKey: .enablePublicAccess)
+        try container.encode(self.enableOriginCheck, forKey: .enableOriginCheck)
+        try container.encode(self.allowedOrigins, forKey: .allowedOrigins)
+        try container.encode(self.enableRecaptcha, forKey: .enableRecaptcha)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -553,6 +777,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The description of the Meta business page or profile.
     public var description: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WhatsAppConfig`.
     public init() {}
 
@@ -567,6 +793,68 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let wabaId = CodingKeys(stringValue: "wabaId")
+      static let phoneNumberId = CodingKeys(stringValue: "phoneNumberId")
+      static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let thumbnailUrl = CodingKeys(stringValue: "thumbnailUrl")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "wabaId",
+        "phoneNumberId",
+        "phoneNumber",
+        "displayName",
+        "thumbnailUrl",
+        "description",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .wabaId) {
+        self.wabaId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumberId) {
+        self.phoneNumberId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumber) {
+        self.phoneNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .thumbnailUrl) {
+        self.thumbnailUrl = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.wabaId, forKey: .wabaId)
+      try container.encode(self.phoneNumberId, forKey: .phoneNumberId)
+      try container.encode(self.phoneNumber, forKey: .phoneNumber)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.thumbnailUrl, forKey: .thumbnailUrl)
+      try container.encode(self.description, forKey: .description)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -596,6 +884,8 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. The description of the Meta business page or profile.
     public var description: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstagramConfig`.
     public init() {}
 
@@ -610,6 +900,56 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instagramAccountId = CodingKeys(stringValue: "instagramAccountId")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let thumbnailUrl = CodingKeys(stringValue: "thumbnailUrl")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instagramAccountId",
+        "displayName",
+        "thumbnailUrl",
+        "description",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instagramAccountId) {
+        self.instagramAccountId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .thumbnailUrl) {
+        self.thumbnailUrl = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.instagramAccountId, forKey: .instagramAccountId)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.thumbnailUrl, forKey: .thumbnailUrl)
+      try container.encode(self.description, forKey: .description)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

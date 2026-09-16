@@ -35,6 +35,8 @@
     /// this instance is consuming from.
     public var consumedReservationSubBlock: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceStatusReservationConsumptionInfo`.
     public init() {}
 
@@ -49,6 +51,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consumedReservation = CodingKeys(stringValue: "consumedReservation")
+      static let consumedReservationBlock = CodingKeys(stringValue: "consumedReservationBlock")
+      static let consumedReservationSubBlock = CodingKeys(
+        stringValue: "consumedReservationSubBlock")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consumedReservation",
+        "consumedReservationBlock",
+        "consumedReservationSubBlock",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consumedReservation = try container.decodeIfPresent(
+        Swift.String.self, forKey: .consumedReservation)
+      self.consumedReservationBlock = try container.decodeIfPresent(
+        Swift.String.self, forKey: .consumedReservationBlock)
+      self.consumedReservationSubBlock = try container.decodeIfPresent(
+        Swift.String.self, forKey: .consumedReservationSubBlock)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.consumedReservation, forKey: .consumedReservation)
+      try container.encodeIfPresent(
+        self.consumedReservationBlock, forKey: .consumedReservationBlock)
+      try container.encodeIfPresent(
+        self.consumedReservationSubBlock, forKey: .consumedReservationSubBlock)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

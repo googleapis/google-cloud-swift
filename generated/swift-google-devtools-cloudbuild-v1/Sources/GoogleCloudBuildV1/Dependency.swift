@@ -25,6 +25,8 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of dependency to fetch.
   public var dep: OneOf_Dep? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dependency`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case empty = "empty"
-    case gitSource = "gitSource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let empty = CodingKeys(stringValue: "empty")
+    static let gitSource = CodingKeys(stringValue: "gitSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "empty",
+      "gitSource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try depCheckAndSet(.gitSource(gitSource))
     }
     self.dep = dep
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gitSource(let value):
         try container.encode(value, forKey: .gitSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -109,6 +128,8 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// historical tags.
     public var fetchTags: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GitSourceDependency`.
     public init() {}
 
@@ -123,6 +144,67 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repository = CodingKeys(stringValue: "repository")
+      static let revision = CodingKeys(stringValue: "revision")
+      static let recurseSubmodules = CodingKeys(stringValue: "recurseSubmodules")
+      static let depth = CodingKeys(stringValue: "depth")
+      static let destPath = CodingKeys(stringValue: "destPath")
+      static let fetchTags = CodingKeys(stringValue: "fetchTags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repository",
+        "revision",
+        "recurseSubmodules",
+        "depth",
+        "destPath",
+        "fetchTags",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.repository = try container.decodeIfPresent(
+        Dependency.GitSourceRepository.self, forKey: .repository)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+        self.revision = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recurseSubmodules) {
+        self.recurseSubmodules = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .depth) {
+        self.depth = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destPath) {
+        self.destPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fetchTags) {
+        self.fetchTags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.repository, forKey: .repository)
+      try container.encode(self.revision, forKey: .revision)
+      try container.encode(self.recurseSubmodules, forKey: .recurseSubmodules)
+      try container.encode(self.depth, forKey: .depth)
+      try container.encode(self.destPath, forKey: .destPath)
+      try container.encode(self.fetchTags, forKey: .fetchTags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -143,6 +225,8 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The type of git source repo (url or dev connect).
     public var repotype: OneOf_Repotype? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GitSourceRepository`.
     public init() {}
 
@@ -159,9 +243,19 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case url = "url"
-      case developerConnect = "developerConnect"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let url = CodingKeys(stringValue: "url")
+      static let developerConnect = CodingKeys(stringValue: "developerConnect")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "url",
+        "developerConnect",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -186,6 +280,10 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try repotypeCheckAndSet(.developerConnect(developerConnect))
       }
       self.repotype = repotype
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -198,6 +296,9 @@ public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .developerConnect(let value):
           try container.encode(value, forKey: .developerConnect)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -32,6 +32,8 @@
     /// The timestamp when the test was completed.
     public var testTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TestError`.
     public init() {}
 
@@ -46,6 +48,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let testCase = CodingKeys(stringValue: "testCase")
+      static let status = CodingKeys(stringValue: "status")
+      static let testTime = CodingKeys(stringValue: "testTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "testCase",
+        "status",
+        "testTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .testCase) {
+        self.testCase = value
+      }
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      self.testTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .testTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.testCase, forKey: .testCase)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.testTime, forKey: .testTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

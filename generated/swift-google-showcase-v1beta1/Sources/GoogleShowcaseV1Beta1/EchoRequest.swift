@@ -42,6 +42,8 @@ public struct EchoRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var response: OneOf_Response? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EchoRequest`.
   public init() {}
 
@@ -58,22 +60,45 @@ public struct EchoRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case content = "content"
-    case error = "error"
-    case severity = "severity"
-    case header = "header"
-    case otherHeader = "otherHeader"
-    case requestId = "requestId"
-    case otherRequestId = "otherRequestId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let error = CodingKeys(stringValue: "error")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let header = CodingKeys(stringValue: "header")
+    static let otherHeader = CodingKeys(stringValue: "otherHeader")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let otherRequestId = CodingKeys(stringValue: "otherRequestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "error",
+      "severity",
+      "header",
+      "otherHeader",
+      "requestId",
+      "otherRequestId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.severity = try container.decode(Severity.self, forKey: .severity)
-    self.header = try container.decode(Swift.String.self, forKey: .header)
-    self.otherHeader = try container.decode(Swift.String.self, forKey: .otherHeader)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {
+      self.header = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .otherHeader) {
+      self.otherHeader = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
     self.otherRequestId = try container.decodeIfPresent(Swift.String.self, forKey: .otherRequestId)
 
     var response: OneOf_Response? = nil
@@ -93,6 +118,10 @@ public struct EchoRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try responseCheckAndSet(.error(error))
     }
     self.response = response
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,7 +130,7 @@ public struct EchoRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.header, forKey: .header)
     try container.encode(self.otherHeader, forKey: .otherHeader)
     try container.encode(self.requestId, forKey: .requestId)
-    try container.encode(self.otherRequestId, forKey: .otherRequestId)
+    try container.encodeIfPresent(self.otherRequestId, forKey: .otherRequestId)
 
     if let choice = self.response {
       switch choice {
@@ -110,6 +139,9 @@ public struct EchoRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .error(let value):
         try container.encode(value, forKey: .error)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

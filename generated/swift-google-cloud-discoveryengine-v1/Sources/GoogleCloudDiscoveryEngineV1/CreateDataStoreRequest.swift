@@ -69,6 +69,8 @@
     /// default CmekConfig if one is set for the project.
     public var cmekOptions: OneOf_CmekOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateDataStoreRequest`.
     public init() {}
 
@@ -85,25 +87,50 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cmekConfigName = "cmekConfigName"
-      case disableCmek = "disableCmek"
-      case parent = "parent"
-      case dataStore = "dataStore"
-      case dataStoreId = "dataStoreId"
-      case createAdvancedSiteSearch = "createAdvancedSiteSearch"
-      case skipDefaultSchemaCreation = "skipDefaultSchemaCreation"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cmekConfigName = CodingKeys(stringValue: "cmekConfigName")
+      static let disableCmek = CodingKeys(stringValue: "disableCmek")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+      static let dataStoreId = CodingKeys(stringValue: "dataStoreId")
+      static let createAdvancedSiteSearch = CodingKeys(stringValue: "createAdvancedSiteSearch")
+      static let skipDefaultSchemaCreation = CodingKeys(stringValue: "skipDefaultSchemaCreation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cmekConfigName",
+        "disableCmek",
+        "parent",
+        "dataStore",
+        "dataStoreId",
+        "createAdvancedSiteSearch",
+        "skipDefaultSchemaCreation",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
       self.dataStore = try container.decodeIfPresent(DataStore.self, forKey: .dataStore)
-      self.dataStoreId = try container.decode(Swift.String.self, forKey: .dataStoreId)
-      self.createAdvancedSiteSearch = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStoreId) {
+        self.dataStoreId = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .createAdvancedSiteSearch)
-      self.skipDefaultSchemaCreation = try container.decode(
+      {
+        self.createAdvancedSiteSearch = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .skipDefaultSchemaCreation)
+      {
+        self.skipDefaultSchemaCreation = value
+      }
 
       var cmekOptions: OneOf_CmekOptions? = nil
       let cmekOptionsCheckAndSet = {
@@ -124,12 +151,16 @@
         try cmekOptionsCheckAndSet(.disableCmek(disableCmek))
       }
       self.cmekOptions = cmekOptions
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.dataStore, forKey: .dataStore)
+      try container.encodeIfPresent(self.dataStore, forKey: .dataStore)
       try container.encode(self.dataStoreId, forKey: .dataStoreId)
       try container.encode(self.createAdvancedSiteSearch, forKey: .createAdvancedSiteSearch)
       try container.encode(self.skipDefaultSchemaCreation, forKey: .skipDefaultSchemaCreation)
@@ -141,6 +172,9 @@
         case .disableCmek(let value):
           try container.encode(value, forKey: .disableCmek)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

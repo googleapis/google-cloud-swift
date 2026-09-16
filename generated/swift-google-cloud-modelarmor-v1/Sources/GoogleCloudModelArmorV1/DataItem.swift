@@ -24,6 +24,8 @@ public struct DataItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Either of text or bytes data.
   public var dataItem: OneOf_DataItem? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataItem`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct DataItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case byteItem = "byteItem"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let byteItem = CodingKeys(stringValue: "byteItem")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "byteItem",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,6 +77,10 @@ public struct DataItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataItemCheckAndSet(.byteItem(byteItem))
     }
     self.dataItem = dataItem
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +93,9 @@ public struct DataItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .byteItem(let value):
         try container.encode(value, forKey: .byteItem)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

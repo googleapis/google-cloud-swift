@@ -46,6 +46,8 @@ public struct GenerateIdTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// token will contain `email` and `email_verified` claims.
   public var includeEmail: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateIdTokenRequest`.
   public init() {}
 
@@ -60,6 +62,56 @@ public struct GenerateIdTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let delegates = CodingKeys(stringValue: "delegates")
+    static let audience = CodingKeys(stringValue: "audience")
+    static let includeEmail = CodingKeys(stringValue: "includeEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "delegates",
+      "audience",
+      "includeEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .delegates) {
+      self.delegates = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+      self.audience = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeEmail) {
+      self.includeEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.delegates, forKey: .delegates)
+    try container.encode(self.audience, forKey: .audience)
+    try container.encode(self.includeEmail, forKey: .includeEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

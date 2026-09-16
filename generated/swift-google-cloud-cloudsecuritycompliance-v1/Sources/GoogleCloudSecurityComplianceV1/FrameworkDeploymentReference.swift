@@ -46,6 +46,8 @@ public struct FrameworkDeploymentReference: Codable, Equatable, GoogleCloudWKT._
   /// is for.
   public var frameworkDisplayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FrameworkDeploymentReference`.
   public init() {}
 
@@ -60,6 +62,49 @@ public struct FrameworkDeploymentReference: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let frameworkDeployment = CodingKeys(stringValue: "frameworkDeployment")
+    static let frameworkReference = CodingKeys(stringValue: "frameworkReference")
+    static let frameworkDisplayName = CodingKeys(stringValue: "frameworkDisplayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "frameworkDeployment",
+      "frameworkReference",
+      "frameworkDisplayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .frameworkDeployment) {
+      self.frameworkDeployment = value
+    }
+    self.frameworkReference = try container.decodeIfPresent(
+      FrameworkReference.self, forKey: .frameworkReference)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .frameworkDisplayName) {
+      self.frameworkDisplayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.frameworkDeployment, forKey: .frameworkDeployment)
+    try container.encodeIfPresent(self.frameworkReference, forKey: .frameworkReference)
+    try container.encode(self.frameworkDisplayName, forKey: .frameworkDisplayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

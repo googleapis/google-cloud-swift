@@ -104,6 +104,8 @@
 
     public var expiration: OneOf_Expiration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Backup`.
     public init() {}
 
@@ -120,57 +122,118 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case kind = "kind"
-      case selfLink = "selfLink"
-      case type = "type"
-      case description = "description"
-      case instance = "instance"
-      case location = "location"
-      case backupInterval = "backupInterval"
-      case state = "state"
-      case error = "error"
-      case kmsKey = "kmsKey"
-      case kmsKeyVersion = "kmsKeyVersion"
-      case backupKind = "backupKind"
-      case timeZone = "timeZone"
-      case ttlDays = "ttlDays"
-      case expiryTime = "expiryTime"
-      case databaseVersion = "databaseVersion"
-      case maxChargeableBytes = "maxChargeableBytes"
-      case instanceDeletionTime = "instanceDeletionTime"
-      case instanceSettings = "instanceSettings"
-      case backupRun = "backupRun"
-      case satisfiesPzs = "satisfiesPzs"
-      case satisfiesPzi = "satisfiesPzi"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let type = CodingKeys(stringValue: "type")
+      static let description = CodingKeys(stringValue: "description")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let location = CodingKeys(stringValue: "location")
+      static let backupInterval = CodingKeys(stringValue: "backupInterval")
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+      static let kmsKey = CodingKeys(stringValue: "kmsKey")
+      static let kmsKeyVersion = CodingKeys(stringValue: "kmsKeyVersion")
+      static let backupKind = CodingKeys(stringValue: "backupKind")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let ttlDays = CodingKeys(stringValue: "ttlDays")
+      static let expiryTime = CodingKeys(stringValue: "expiryTime")
+      static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+      static let maxChargeableBytes = CodingKeys(stringValue: "maxChargeableBytes")
+      static let instanceDeletionTime = CodingKeys(stringValue: "instanceDeletionTime")
+      static let instanceSettings = CodingKeys(stringValue: "instanceSettings")
+      static let backupRun = CodingKeys(stringValue: "backupRun")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "kind",
+        "selfLink",
+        "type",
+        "description",
+        "instance",
+        "location",
+        "backupInterval",
+        "state",
+        "error",
+        "kmsKey",
+        "kmsKeyVersion",
+        "backupKind",
+        "timeZone",
+        "ttlDays",
+        "expiryTime",
+        "databaseVersion",
+        "maxChargeableBytes",
+        "instanceDeletionTime",
+        "instanceSettings",
+        "backupRun",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
-      self.selfLink = try container.decode(Swift.String.self, forKey: .selfLink)
-      self.type = try container.decode(Backup.SqlBackupType.self, forKey: .type)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.location = try container.decode(Swift.String.self, forKey: .location)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      if let value = try container.decodeIfPresent(Backup.SqlBackupType.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
       self.backupInterval = try container.decodeIfPresent(
         GoogleType.Interval.self, forKey: .backupInterval)
-      self.state = try container.decode(Backup.SqlBackupState.self, forKey: .state)
+      if let value = try container.decodeIfPresent(Backup.SqlBackupState.self, forKey: .state) {
+        self.state = value
+      }
       self.error = try container.decodeIfPresent(OperationError.self, forKey: .error)
-      self.kmsKey = try container.decode(Swift.String.self, forKey: .kmsKey)
-      self.kmsKeyVersion = try container.decode(Swift.String.self, forKey: .kmsKeyVersion)
-      self.backupKind = try container.decode(SqlBackupKind.self, forKey: .backupKind)
-      self.timeZone = try container.decode(Swift.String.self, forKey: .timeZone)
-      self.databaseVersion = try container.decode(SqlDatabaseVersion.self, forKey: .databaseVersion)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+        self.kmsKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersion) {
+        self.kmsKeyVersion = value
+      }
+      if let value = try container.decodeIfPresent(SqlBackupKind.self, forKey: .backupKind) {
+        self.backupKind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlDatabaseVersion.self, forKey: .databaseVersion)
+      {
+        self.databaseVersion = value
+      }
       self.maxChargeableBytes = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .maxChargeableBytes)
       self.instanceDeletionTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .instanceDeletionTime)
       self.instanceSettings = try container.decodeIfPresent(
         DatabaseInstance.self, forKey: .instanceSettings)
-      self.backupRun = try container.decode(Swift.String.self, forKey: .backupRun)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRun) {
+        self.backupRun = value
+      }
       self.satisfiesPzs = try container.decodeIfPresent(
         GoogleCloudWKT.BoolValue.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(
@@ -195,6 +258,10 @@
         try expirationCheckAndSet(.expiryTime(expiryTime))
       }
       self.expiration = expiration
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -206,20 +273,20 @@
       try container.encode(self.description, forKey: .description)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.location, forKey: .location)
-      try container.encode(self.backupInterval, forKey: .backupInterval)
+      try container.encodeIfPresent(self.backupInterval, forKey: .backupInterval)
       try container.encode(self.state, forKey: .state)
-      try container.encode(self.error, forKey: .error)
+      try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.kmsKey, forKey: .kmsKey)
       try container.encode(self.kmsKeyVersion, forKey: .kmsKeyVersion)
       try container.encode(self.backupKind, forKey: .backupKind)
       try container.encode(self.timeZone, forKey: .timeZone)
       try container.encode(self.databaseVersion, forKey: .databaseVersion)
-      try container.encode(self.maxChargeableBytes, forKey: .maxChargeableBytes)
-      try container.encode(self.instanceDeletionTime, forKey: .instanceDeletionTime)
-      try container.encode(self.instanceSettings, forKey: .instanceSettings)
+      try container.encodeIfPresent(self.maxChargeableBytes, forKey: .maxChargeableBytes)
+      try container.encodeIfPresent(self.instanceDeletionTime, forKey: .instanceDeletionTime)
+      try container.encodeIfPresent(self.instanceSettings, forKey: .instanceSettings)
       try container.encode(self.backupRun, forKey: .backupRun)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
       if let choice = self.expiration {
         switch choice {
@@ -228,6 +295,9 @@
         case .expiryTime(let value):
           try container.encode(value, forKey: .expiryTime)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -32,6 +32,8 @@ public struct FeaturedContentNativeDashboard: Codable, Equatable, GoogleCloudWKT
   /// Optional. The dashboard content.
   public var dashboardContent: NativeDashboardWithChartsAndQueries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FeaturedContentNativeDashboard`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct FeaturedContentNativeDashboard: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let contentMetadata = CodingKeys(stringValue: "contentMetadata")
+    static let dashboardContent = CodingKeys(stringValue: "dashboardContent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "contentMetadata",
+      "dashboardContent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.contentMetadata = try container.decodeIfPresent(
+      FeaturedContentMetadata.self, forKey: .contentMetadata)
+    self.dashboardContent = try container.decodeIfPresent(
+      NativeDashboardWithChartsAndQueries.self, forKey: .dashboardContent)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.contentMetadata, forKey: .contentMetadata)
+    try container.encodeIfPresent(self.dashboardContent, forKey: .dashboardContent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -39,6 +39,8 @@ public struct ComputeEngineDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Required. The disk type to use.
   public var diskType: ComputeEngineDiskType = ComputeEngineDiskType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeEngineDisk`.
   public init() {}
 
@@ -53,6 +55,56 @@ public struct ComputeEngineDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let diskId = CodingKeys(stringValue: "diskId")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let replicaZones = CodingKeys(stringValue: "replicaZones")
+    static let diskType = CodingKeys(stringValue: "diskType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "diskId",
+      "zone",
+      "replicaZones",
+      "diskType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskId) {
+      self.diskId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+      self.replicaZones = value
+    }
+    if let value = try container.decodeIfPresent(ComputeEngineDiskType.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.diskId, forKey: .diskId)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.replicaZones, forKey: .replicaZones)
+    try container.encode(self.diskType, forKey: .diskType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

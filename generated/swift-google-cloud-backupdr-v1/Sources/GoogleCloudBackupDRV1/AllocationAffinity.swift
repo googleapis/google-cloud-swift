@@ -31,6 +31,8 @@ public struct AllocationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Optional. Corresponds to the label values of a reservation resource.
   public var values: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AllocationAffinity`.
   public init() {}
 
@@ -47,10 +49,21 @@ public struct AllocationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case consumeAllocationType = "consumeReservationType"
-    case key = "key"
-    case values = "values"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let consumeAllocationType = CodingKeys(stringValue: "consumeReservationType")
+    static let key = CodingKeys(stringValue: "key")
+    static let values = CodingKeys(stringValue: "values")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "consumeReservationType",
+      "key",
+      "values",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -58,14 +71,23 @@ public struct AllocationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     self.consumeAllocationType = try container.decodeIfPresent(
       AllocationAffinity.Type_.self, forKey: .consumeAllocationType)
     self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
-    self.values = try container.decode([Swift.String].self, forKey: .values)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+      self.values = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.consumeAllocationType, forKey: .consumeAllocationType)
-    try container.encode(self.key, forKey: .key)
+    try container.encodeIfPresent(self.consumeAllocationType, forKey: .consumeAllocationType)
+    try container.encodeIfPresent(self.key, forKey: .key)
     try container.encode(self.values, forKey: .values)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Indicates whether to consume from a reservation or not.

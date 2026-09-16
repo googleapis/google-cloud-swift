@@ -47,6 +47,8 @@ public struct DestinationDataset: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// for supported locations.
   public var replicaLocations: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DestinationDataset`.
   public init() {}
 
@@ -61,6 +63,66 @@ public struct DestinationDataset: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let datasetReference = CodingKeys(stringValue: "datasetReference")
+    static let friendlyName = CodingKeys(stringValue: "friendlyName")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let location = CodingKeys(stringValue: "location")
+    static let replicaLocations = CodingKeys(stringValue: "replicaLocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "datasetReference",
+      "friendlyName",
+      "description",
+      "labels",
+      "location",
+      "replicaLocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.datasetReference = try container.decodeIfPresent(
+      DestinationDatasetReference.self, forKey: .datasetReference)
+    self.friendlyName = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .friendlyName)
+    self.description = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .description)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaLocations) {
+      self.replicaLocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.datasetReference, forKey: .datasetReference)
+    try container.encodeIfPresent(self.friendlyName, forKey: .friendlyName)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.replicaLocations, forKey: .replicaLocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

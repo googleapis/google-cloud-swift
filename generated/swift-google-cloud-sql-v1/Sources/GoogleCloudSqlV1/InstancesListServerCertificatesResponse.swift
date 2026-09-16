@@ -36,6 +36,8 @@
     /// This is always `sql#instancesListServerCertificates`.
     public var kind: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstancesListServerCertificatesResponse`.
     public init() {}
 
@@ -50,6 +52,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let caCerts = CodingKeys(stringValue: "caCerts")
+      static let serverCerts = CodingKeys(stringValue: "serverCerts")
+      static let activeVersion = CodingKeys(stringValue: "activeVersion")
+      static let kind = CodingKeys(stringValue: "kind")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "caCerts",
+        "serverCerts",
+        "activeVersion",
+        "kind",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([SslCert].self, forKey: .caCerts) {
+        self.caCerts = value
+      }
+      if let value = try container.decodeIfPresent([SslCert].self, forKey: .serverCerts) {
+        self.serverCerts = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeVersion) {
+        self.activeVersion = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.caCerts, forKey: .caCerts)
+      try container.encode(self.serverCerts, forKey: .serverCerts)
+      try container.encode(self.activeVersion, forKey: .activeVersion)
+      try container.encode(self.kind, forKey: .kind)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

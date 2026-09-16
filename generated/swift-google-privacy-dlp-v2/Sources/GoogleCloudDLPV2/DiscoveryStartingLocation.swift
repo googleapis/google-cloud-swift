@@ -25,6 +25,8 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleCloudWKT._Any
   /// The location to be scanned.
   public var location: OneOf_Location? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryStartingLocation`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case organizationId = "organizationId"
-    case folderId = "folderId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let organizationId = CodingKeys(stringValue: "organizationId")
+    static let folderId = CodingKeys(stringValue: "folderId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "organizationId",
+      "folderId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleCloudWKT._Any
       try locationCheckAndSet(.folderId(folderId))
     }
     self.location = location
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleCloudWKT._Any
       case .folderId(let value):
         try container.encode(value, forKey: .folderId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

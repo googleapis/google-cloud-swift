@@ -94,6 +94,8 @@
     /// Optional. Type of the playbook.
     public var playbookType: Playbook.PlaybookType = Playbook.PlaybookType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Playbook`.
     public init() {}
 
@@ -110,6 +112,136 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let goal = CodingKeys(stringValue: "goal")
+      static let inputParameterDefinitions = CodingKeys(stringValue: "inputParameterDefinitions")
+      static let outputParameterDefinitions = CodingKeys(stringValue: "outputParameterDefinitions")
+      static let instruction = CodingKeys(stringValue: "instruction")
+      static let tokenCount = CodingKeys(stringValue: "tokenCount")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let referencedPlaybooks = CodingKeys(stringValue: "referencedPlaybooks")
+      static let referencedFlows = CodingKeys(stringValue: "referencedFlows")
+      static let referencedTools = CodingKeys(stringValue: "referencedTools")
+      static let inlineActions = CodingKeys(stringValue: "inlineActions")
+      static let codeBlock = CodingKeys(stringValue: "codeBlock")
+      static let llmModelSettings = CodingKeys(stringValue: "llmModelSettings")
+      static let handlers = CodingKeys(stringValue: "handlers")
+      static let playbookType = CodingKeys(stringValue: "playbookType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "goal",
+        "inputParameterDefinitions",
+        "outputParameterDefinitions",
+        "instruction",
+        "tokenCount",
+        "createTime",
+        "updateTime",
+        "referencedPlaybooks",
+        "referencedFlows",
+        "referencedTools",
+        "inlineActions",
+        "codeBlock",
+        "llmModelSettings",
+        "handlers",
+        "playbookType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .goal) {
+        self.goal = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ParameterDefinition].self, forKey: .inputParameterDefinitions)
+      {
+        self.inputParameterDefinitions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ParameterDefinition].self, forKey: .outputParameterDefinitions)
+      {
+        self.outputParameterDefinitions = value
+      }
+      self.instruction = try container.decodeIfPresent(
+        Playbook.Instruction.self, forKey: .instruction)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .tokenCount) {
+        self.tokenCount = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .referencedPlaybooks)
+      {
+        self.referencedPlaybooks = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .referencedFlows) {
+        self.referencedFlows = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .referencedTools) {
+        self.referencedTools = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inlineActions) {
+        self.inlineActions = value
+      }
+      self.codeBlock = try container.decodeIfPresent(CodeBlock.self, forKey: .codeBlock)
+      self.llmModelSettings = try container.decodeIfPresent(
+        LlmModelSettings.self, forKey: .llmModelSettings)
+      if let value = try container.decodeIfPresent([Handler].self, forKey: .handlers) {
+        self.handlers = value
+      }
+      if let value = try container.decodeIfPresent(
+        Playbook.PlaybookType.self, forKey: .playbookType)
+      {
+        self.playbookType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.goal, forKey: .goal)
+      try container.encode(self.inputParameterDefinitions, forKey: .inputParameterDefinitions)
+      try container.encode(self.outputParameterDefinitions, forKey: .outputParameterDefinitions)
+      try container.encodeIfPresent(self.instruction, forKey: .instruction)
+      try container.encode(self.tokenCount, forKey: .tokenCount)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.referencedPlaybooks, forKey: .referencedPlaybooks)
+      try container.encode(self.referencedFlows, forKey: .referencedFlows)
+      try container.encode(self.referencedTools, forKey: .referencedTools)
+      try container.encode(self.inlineActions, forKey: .inlineActions)
+      try container.encodeIfPresent(self.codeBlock, forKey: .codeBlock)
+      try container.encodeIfPresent(self.llmModelSettings, forKey: .llmModelSettings)
+      try container.encode(self.handlers, forKey: .handlers)
+      try container.encode(self.playbookType, forKey: .playbookType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Message of single step execution.
     public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -119,6 +251,8 @@
 
       /// Instruction on how to execute current step.
       public var instruction: OneOf_Instruction? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Step`.
       public init() {}
@@ -136,14 +270,26 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case text = "text"
-        case steps = "steps"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let text = CodingKeys(stringValue: "text")
+        static let steps = CodingKeys(stringValue: "steps")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "text",
+          "steps",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.steps = try container.decode([Playbook.Step].self, forKey: .steps)
+        if let value = try container.decodeIfPresent([Playbook.Step].self, forKey: .steps) {
+          self.steps = value
+        }
 
         var instruction: OneOf_Instruction? = nil
         let instructionCheckAndSet = {
@@ -159,6 +305,10 @@
           try instructionCheckAndSet(.text(text))
         }
         self.instruction = instruction
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -170,6 +320,9 @@
           case .text(let value):
             try container.encode(value, forKey: .text)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -203,6 +356,8 @@
       /// target goal.
       public var steps: [Playbook.Step] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Instruction`.
       public init() {}
 
@@ -217,6 +372,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let guidelines = CodingKeys(stringValue: "guidelines")
+        static let steps = CodingKeys(stringValue: "steps")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "guidelines",
+          "steps",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .guidelines) {
+          self.guidelines = value
+        }
+        if let value = try container.decodeIfPresent([Playbook.Step].self, forKey: .steps) {
+          self.steps = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.guidelines, forKey: .guidelines)
+        try container.encode(self.steps, forKey: .steps)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

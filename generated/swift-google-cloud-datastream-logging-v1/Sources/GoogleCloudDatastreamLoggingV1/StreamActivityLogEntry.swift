@@ -30,6 +30,8 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
 
   public var eventPayload: OneOf_EventPayload? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamActivityLogEntry`.
   public init() {}
 
@@ -46,16 +48,31 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case eventCode = "eventCode"
-    case eventMessage = "eventMessage"
-    case streamStateChange = "streamStateChange"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventCode = CodingKeys(stringValue: "eventCode")
+    static let eventMessage = CodingKeys(stringValue: "eventMessage")
+    static let streamStateChange = CodingKeys(stringValue: "streamStateChange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventCode",
+      "eventMessage",
+      "streamStateChange",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.eventCode = try container.decode(Swift.String.self, forKey: .eventCode)
-    self.eventMessage = try container.decode(Swift.String.self, forKey: .eventMessage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventCode) {
+      self.eventCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventMessage) {
+      self.eventMessage = value
+    }
 
     var eventPayload: OneOf_EventPayload? = nil
     let eventPayloadCheckAndSet = {
@@ -73,6 +90,10 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
       try eventPayloadCheckAndSet(.streamStateChange(streamStateChange))
     }
     self.eventPayload = eventPayload
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +107,9 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
         try container.encode(value, forKey: .streamStateChange)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Payload for a change in the state of a stream.
@@ -95,6 +119,8 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Output only. The new stream state.
     public var newState: GoogleCloudDatastreamV1.Stream.State = GoogleCloudDatastreamV1.Stream
       .State()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StreamStateChange`.
     public init() {}
@@ -110,6 +136,40 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let newState = CodingKeys(stringValue: "newState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "newState"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        GoogleCloudDatastreamV1.Stream.State.self, forKey: .newState)
+      {
+        self.newState = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.newState, forKey: .newState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

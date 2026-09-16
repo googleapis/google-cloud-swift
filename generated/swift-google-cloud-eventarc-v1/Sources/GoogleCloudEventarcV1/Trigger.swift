@@ -93,6 +93,8 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// client has an up-to-date value before proceeding.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Trigger`.
   public init() {}
 
@@ -109,6 +111,117 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let eventFilters = CodingKeys(stringValue: "eventFilters")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let transport = CodingKeys(stringValue: "transport")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let channel = CodingKeys(stringValue: "channel")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let eventDataContentType = CodingKeys(stringValue: "eventDataContentType")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "eventFilters",
+      "serviceAccount",
+      "destination",
+      "transport",
+      "labels",
+      "channel",
+      "conditions",
+      "eventDataContentType",
+      "satisfiesPzs",
+      "retryPolicy",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([EventFilter].self, forKey: .eventFilters) {
+      self.eventFilters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.destination = try container.decodeIfPresent(Destination.self, forKey: .destination)
+    self.transport = try container.decodeIfPresent(Transport.self, forKey: .transport)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
+      self.channel = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: StateCondition].self, forKey: .conditions)
+    {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventDataContentType) {
+      self.eventDataContentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    self.retryPolicy = try container.decodeIfPresent(Trigger.RetryPolicy.self, forKey: .retryPolicy)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.eventFilters, forKey: .eventFilters)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.destination, forKey: .destination)
+    try container.encodeIfPresent(self.transport, forKey: .transport)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.channel, forKey: .channel)
+    try container.encode(self.conditions, forKey: .conditions)
+    try container.encode(self.eventDataContentType, forKey: .eventDataContentType)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.retryPolicy, forKey: .retryPolicy)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The retry policy configuration for the Trigger.
   ///
   /// Can only be set with Cloud Run destinations.
@@ -118,6 +231,8 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The maximum number of delivery attempts for any message. The
     /// only valid value is 1.
     public var maxAttempts: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RetryPolicy`.
     public init() {}
@@ -133,6 +248,38 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxAttempts = CodingKeys(stringValue: "maxAttempts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxAttempts"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxAttempts) {
+        self.maxAttempts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxAttempts, forKey: .maxAttempts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

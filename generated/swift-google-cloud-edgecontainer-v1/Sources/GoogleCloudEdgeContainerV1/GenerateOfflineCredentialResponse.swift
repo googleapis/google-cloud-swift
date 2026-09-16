@@ -33,6 +33,8 @@ public struct GenerateOfflineCredentialResponse: Codable, Equatable, GoogleCloud
   /// Output only. Timestamp at which this credential will expire.
   public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateOfflineCredentialResponse`.
   public init() {}
 
@@ -47,6 +49,55 @@ public struct GenerateOfflineCredentialResponse: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+    static let clientKey = CodingKeys(stringValue: "clientKey")
+    static let userId = CodingKeys(stringValue: "userId")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clientCertificate",
+      "clientKey",
+      "userId",
+      "expireTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+      self.clientCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+      self.clientKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userId) {
+      self.userId = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clientCertificate, forKey: .clientCertificate)
+    try container.encode(self.clientKey, forKey: .clientKey)
+    try container.encode(self.userId, forKey: .userId)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

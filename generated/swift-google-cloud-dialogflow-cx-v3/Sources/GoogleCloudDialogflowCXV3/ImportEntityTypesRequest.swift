@@ -49,6 +49,8 @@
     /// Required. The entity types to import.
     public var entityTypes: OneOf_EntityTypes? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportEntityTypesRequest`.
     public init() {}
 
@@ -65,20 +67,40 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case entityTypesUri = "entityTypesUri"
-      case entityTypesContent = "entityTypesContent"
-      case mergeOption = "mergeOption"
-      case targetEntityType = "targetEntityType"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let entityTypesUri = CodingKeys(stringValue: "entityTypesUri")
+      static let entityTypesContent = CodingKeys(stringValue: "entityTypesContent")
+      static let mergeOption = CodingKeys(stringValue: "mergeOption")
+      static let targetEntityType = CodingKeys(stringValue: "targetEntityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "entityTypesUri",
+        "entityTypesContent",
+        "mergeOption",
+        "targetEntityType",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.mergeOption = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         ImportEntityTypesRequest.MergeOption.self, forKey: .mergeOption)
-      self.targetEntityType = try container.decode(Swift.String.self, forKey: .targetEntityType)
+      {
+        self.mergeOption = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetEntityType) {
+        self.targetEntityType = value
+      }
 
       var entityTypes: OneOf_EntityTypes? = nil
       let entityTypesCheckAndSet = {
@@ -101,6 +123,10 @@
         try entityTypesCheckAndSet(.entityTypesContent(entityTypesContent))
       }
       self.entityTypes = entityTypes
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -116,6 +142,9 @@
         case .entityTypesContent(let value):
           try container.encode(value, forKey: .entityTypesContent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

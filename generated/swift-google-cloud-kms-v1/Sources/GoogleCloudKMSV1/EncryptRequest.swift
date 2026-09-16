@@ -128,6 +128,8 @@ public struct EncryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var additionalAuthenticatedDataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptRequest`.
   public init() {}
 
@@ -144,24 +146,49 @@ public struct EncryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case plaintext = "plaintext"
-    case additionalAuthenticatedData = "additionalAuthenticatedData"
-    case plaintextCrc32C = "plaintextCrc32c"
-    case additionalAuthenticatedDataCrc32C = "additionalAuthenticatedDataCrc32c"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let plaintext = CodingKeys(stringValue: "plaintext")
+    static let additionalAuthenticatedData = CodingKeys(stringValue: "additionalAuthenticatedData")
+    static let plaintextCrc32C = CodingKeys(stringValue: "plaintextCrc32c")
+    static let additionalAuthenticatedDataCrc32C = CodingKeys(
+      stringValue: "additionalAuthenticatedDataCrc32c")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "plaintext",
+      "additionalAuthenticatedData",
+      "plaintextCrc32c",
+      "additionalAuthenticatedDataCrc32c",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.plaintext = try container.decode(Foundation.Data.self, forKey: .plaintext)
-    self.additionalAuthenticatedData = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .plaintext) {
+      self.plaintext = value
+    }
+    if let value = try container.decodeIfPresent(
       Foundation.Data.self, forKey: .additionalAuthenticatedData)
+    {
+      self.additionalAuthenticatedData = value
+    }
     self.plaintextCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .plaintextCrc32C)
     self.additionalAuthenticatedDataCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -169,9 +196,12 @@ public struct EncryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.plaintext, forKey: .plaintext)
     try container.encode(self.additionalAuthenticatedData, forKey: .additionalAuthenticatedData)
-    try container.encode(self.plaintextCrc32C, forKey: .plaintextCrc32C)
-    try container.encode(
+    try container.encodeIfPresent(self.plaintextCrc32C, forKey: .plaintextCrc32C)
+    try container.encodeIfPresent(
       self.additionalAuthenticatedDataCrc32C, forKey: .additionalAuthenticatedDataCrc32C)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

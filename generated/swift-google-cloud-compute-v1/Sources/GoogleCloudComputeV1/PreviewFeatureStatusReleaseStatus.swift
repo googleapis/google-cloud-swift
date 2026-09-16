@@ -28,6 +28,8 @@
     /// Output only. The last date when a feature transitioned between ReleaseStatuses.
     public var updateDate: Date? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PreviewFeatureStatusReleaseStatus`.
     public init() {}
 
@@ -42,6 +44,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let stage = CodingKeys(stringValue: "stage")
+      static let updateDate = CodingKeys(stringValue: "updateDate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "stage",
+        "updateDate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.stage = try container.decodeIfPresent(
+        PreviewFeatureStatusReleaseStatus.Stage.self, forKey: .stage)
+      self.updateDate = try container.decodeIfPresent(Date.self, forKey: .updateDate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.stage, forKey: .stage)
+      try container.encodeIfPresent(self.updateDate, forKey: .updateDate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [stage][google.cloud.compute.v1.PreviewFeatureStatusReleaseStatus.stage] field.

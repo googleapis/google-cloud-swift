@@ -27,6 +27,8 @@ public struct ConnectedNodePattern: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Required. Recursive matcher to match the neighbor subgraph.
   public var graph: GoogleCloudWKT.Recursive<GraphPattern>? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectedNodePattern`.
   public init() {}
 
@@ -41,6 +43,41 @@ public struct ConnectedNodePattern: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let edge = CodingKeys(stringValue: "edge")
+    static let graph = CodingKeys(stringValue: "graph")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "edge",
+      "graph",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.edge = try container.decodeIfPresent(EdgePattern.self, forKey: .edge)
+    self.graph = try container.decodeIfPresent(
+      GoogleCloudWKT.Recursive<GraphPattern>.self, forKey: .graph)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.edge, forKey: .edge)
+    try container.encodeIfPresent(self.graph, forKey: .graph)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

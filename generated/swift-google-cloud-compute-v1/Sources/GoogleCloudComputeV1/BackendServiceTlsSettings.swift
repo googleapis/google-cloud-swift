@@ -87,6 +87,8 @@
     /// balancer matches the backend certificate's SAN only to subjectAltNames[].
     public var subjectAltNames: [BackendServiceTlsSettingsSubjectAltName] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceTlsSettings`.
     public init() {}
 
@@ -101,6 +103,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let authenticationConfig = CodingKeys(stringValue: "authenticationConfig")
+      static let identity = CodingKeys(stringValue: "identity")
+      static let sni = CodingKeys(stringValue: "sni")
+      static let subjectAltNames = CodingKeys(stringValue: "subjectAltNames")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "authenticationConfig",
+        "identity",
+        "sni",
+        "subjectAltNames",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.authenticationConfig = try container.decodeIfPresent(
+        Swift.String.self, forKey: .authenticationConfig)
+      self.identity = try container.decodeIfPresent(Swift.String.self, forKey: .identity)
+      self.sni = try container.decodeIfPresent(Swift.String.self, forKey: .sni)
+      if let value = try container.decodeIfPresent(
+        [BackendServiceTlsSettingsSubjectAltName].self, forKey: .subjectAltNames)
+      {
+        self.subjectAltNames = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.authenticationConfig, forKey: .authenticationConfig)
+      try container.encodeIfPresent(self.identity, forKey: .identity)
+      try container.encodeIfPresent(self.sni, forKey: .sni)
+      try container.encode(self.subjectAltNames, forKey: .subjectAltNames)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

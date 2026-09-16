@@ -29,6 +29,8 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// ID or its Alias.
   public var revision: OneOf_Revision? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudRepoSourceContext`.
   public init() {}
 
@@ -45,11 +47,23 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case repoId = "repoId"
-    case revisionId = "revisionId"
-    case aliasName = "aliasName"
-    case aliasContext = "aliasContext"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repoId = CodingKeys(stringValue: "repoId")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let aliasName = CodingKeys(stringValue: "aliasName")
+    static let aliasContext = CodingKeys(stringValue: "aliasContext")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repoId",
+      "revisionId",
+      "aliasName",
+      "aliasContext",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,11 +90,15 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPac
       try revisionCheckAndSet(.aliasContext(aliasContext))
     }
     self.revision = revision
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.repoId, forKey: .repoId)
+    try container.encodeIfPresent(self.repoId, forKey: .repoId)
 
     if let choice = self.revision {
       switch choice {
@@ -91,6 +109,9 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .aliasContext(let value):
         try container.encode(value, forKey: .aliasContext)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

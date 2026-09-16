@@ -36,6 +36,8 @@ public struct RuleExecutionResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Number of total scanned resources.
   public var scannedResourceCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuleExecutionResult`.
   public init() {}
 
@@ -50,6 +52,62 @@ public struct RuleExecutionResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rule = CodingKeys(stringValue: "rule")
+    static let state = CodingKeys(stringValue: "state")
+    static let message = CodingKeys(stringValue: "message")
+    static let resultCount = CodingKeys(stringValue: "resultCount")
+    static let scannedResourceCount = CodingKeys(stringValue: "scannedResourceCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rule",
+      "state",
+      "message",
+      "resultCount",
+      "scannedResourceCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rule) {
+      self.rule = value
+    }
+    if let value = try container.decodeIfPresent(RuleExecutionResult.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .resultCount) {
+      self.resultCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .scannedResourceCount) {
+      self.scannedResourceCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rule, forKey: .rule)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.resultCount, forKey: .resultCount)
+    try container.encode(self.scannedResourceCount, forKey: .scannedResourceCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a rule execution like SUCCESS, FAILURE, etc.

@@ -30,6 +30,8 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// first entry before it. At most 100 entries.
   public var entries: [TranscriptNormalization.Entry] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranscriptNormalization`.
   public init() {}
 
@@ -46,6 +48,40 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entries = CodingKeys(stringValue: "entries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entries"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [TranscriptNormalization.Entry].self, forKey: .entries)
+    {
+      self.entries = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entries, forKey: .entries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A single replacement configuration.
   public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -58,6 +94,8 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWKT._AnyPa
 
     /// Whether the search is case sensitive.
     public var caseSensitive: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Entry`.
     public init() {}
@@ -73,6 +111,50 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let search = CodingKeys(stringValue: "search")
+      static let replace = CodingKeys(stringValue: "replace")
+      static let caseSensitive = CodingKeys(stringValue: "caseSensitive")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "search",
+        "replace",
+        "caseSensitive",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .search) {
+        self.search = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replace) {
+        self.replace = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .caseSensitive) {
+        self.caseSensitive = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.search, forKey: .search)
+      try container.encode(self.replace, forKey: .replace)
+      try container.encode(self.caseSensitive, forKey: .caseSensitive)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

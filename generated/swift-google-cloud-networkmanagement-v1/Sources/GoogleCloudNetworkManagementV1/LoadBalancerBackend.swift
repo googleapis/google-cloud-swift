@@ -37,6 +37,8 @@ public struct LoadBalancerBackend: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// A list of firewall rule URIs blocking probes from health check IP ranges.
   public var healthCheckBlockingFirewallRules: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoadBalancerBackend`.
   public init() {}
 
@@ -51,6 +53,72 @@ public struct LoadBalancerBackend: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let healthCheckFirewallState = CodingKeys(stringValue: "healthCheckFirewallState")
+    static let healthCheckAllowingFirewallRules = CodingKeys(
+      stringValue: "healthCheckAllowingFirewallRules")
+    static let healthCheckBlockingFirewallRules = CodingKeys(
+      stringValue: "healthCheckBlockingFirewallRules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "healthCheckFirewallState",
+      "healthCheckAllowingFirewallRules",
+      "healthCheckBlockingFirewallRules",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(
+      LoadBalancerBackend.HealthCheckFirewallState.self, forKey: .healthCheckFirewallState)
+    {
+      self.healthCheckFirewallState = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .healthCheckAllowingFirewallRules)
+    {
+      self.healthCheckAllowingFirewallRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .healthCheckBlockingFirewallRules)
+    {
+      self.healthCheckBlockingFirewallRules = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.healthCheckFirewallState, forKey: .healthCheckFirewallState)
+    try container.encode(
+      self.healthCheckAllowingFirewallRules, forKey: .healthCheckAllowingFirewallRules)
+    try container.encode(
+      self.healthCheckBlockingFirewallRules, forKey: .healthCheckBlockingFirewallRules)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of a health check firewall configuration:

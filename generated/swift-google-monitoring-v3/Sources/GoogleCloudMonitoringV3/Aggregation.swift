@@ -113,6 +113,8 @@ public struct Aggregation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// defined, this field is ignored.
   public var groupByFields: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Aggregation`.
   public init() {}
 
@@ -127,6 +129,59 @@ public struct Aggregation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let alignmentPeriod = CodingKeys(stringValue: "alignmentPeriod")
+    static let perSeriesAligner = CodingKeys(stringValue: "perSeriesAligner")
+    static let crossSeriesReducer = CodingKeys(stringValue: "crossSeriesReducer")
+    static let groupByFields = CodingKeys(stringValue: "groupByFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "alignmentPeriod",
+      "perSeriesAligner",
+      "crossSeriesReducer",
+      "groupByFields",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.alignmentPeriod = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .alignmentPeriod)
+    if let value = try container.decodeIfPresent(
+      Aggregation.Aligner.self, forKey: .perSeriesAligner)
+    {
+      self.perSeriesAligner = value
+    }
+    if let value = try container.decodeIfPresent(
+      Aggregation.Reducer.self, forKey: .crossSeriesReducer)
+    {
+      self.crossSeriesReducer = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .groupByFields) {
+      self.groupByFields = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.alignmentPeriod, forKey: .alignmentPeriod)
+    try container.encode(self.perSeriesAligner, forKey: .perSeriesAligner)
+    try container.encode(self.crossSeriesReducer, forKey: .crossSeriesReducer)
+    try container.encode(self.groupByFields, forKey: .groupByFields)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The `Aligner` specifies the operation that will be applied to the data

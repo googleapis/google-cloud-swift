@@ -62,6 +62,8 @@ public struct ReferenceList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// update, if scope_info is requested to be updated, this field must be set.
   public var scopeInfo: ScopeInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReferenceList`.
   public init() {}
 
@@ -76,6 +78,84 @@ public struct ReferenceList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let revisionCreateTime = CodingKeys(stringValue: "revisionCreateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let entries = CodingKeys(stringValue: "entries")
+    static let rules = CodingKeys(stringValue: "rules")
+    static let syntaxType = CodingKeys(stringValue: "syntaxType")
+    static let ruleAssociationsCount = CodingKeys(stringValue: "ruleAssociationsCount")
+    static let scopeInfo = CodingKeys(stringValue: "scopeInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "revisionCreateTime",
+      "description",
+      "entries",
+      "rules",
+      "syntaxType",
+      "ruleAssociationsCount",
+      "scopeInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.revisionCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([ReferenceListEntry].self, forKey: .entries) {
+      self.entries = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rules) {
+      self.rules = value
+    }
+    if let value = try container.decodeIfPresent(ReferenceListSyntaxType.self, forKey: .syntaxType)
+    {
+      self.syntaxType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ruleAssociationsCount) {
+      self.ruleAssociationsCount = value
+    }
+    self.scopeInfo = try container.decodeIfPresent(ScopeInfo.self, forKey: .scopeInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.entries, forKey: .entries)
+    try container.encode(self.rules, forKey: .rules)
+    try container.encode(self.syntaxType, forKey: .syntaxType)
+    try container.encode(self.ruleAssociationsCount, forKey: .ruleAssociationsCount)
+    try container.encodeIfPresent(self.scopeInfo, forKey: .scopeInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

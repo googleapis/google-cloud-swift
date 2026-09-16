@@ -84,6 +84,8 @@
     /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
     public var data: OneOf_Data? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Document`.
     public init() {}
 
@@ -100,27 +102,54 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case structData = "structData"
-      case jsonData = "jsonData"
-      case name = "name"
-      case id = "id"
-      case schemaId = "schemaId"
-      case content = "content"
-      case parentDocumentId = "parentDocumentId"
-      case derivedStructData = "derivedStructData"
-      case aclInfo = "aclInfo"
-      case indexTime = "indexTime"
-      case indexStatus = "indexStatus"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let structData = CodingKeys(stringValue: "structData")
+      static let jsonData = CodingKeys(stringValue: "jsonData")
+      static let name = CodingKeys(stringValue: "name")
+      static let id = CodingKeys(stringValue: "id")
+      static let schemaId = CodingKeys(stringValue: "schemaId")
+      static let content = CodingKeys(stringValue: "content")
+      static let parentDocumentId = CodingKeys(stringValue: "parentDocumentId")
+      static let derivedStructData = CodingKeys(stringValue: "derivedStructData")
+      static let aclInfo = CodingKeys(stringValue: "aclInfo")
+      static let indexTime = CodingKeys(stringValue: "indexTime")
+      static let indexStatus = CodingKeys(stringValue: "indexStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "structData",
+        "jsonData",
+        "name",
+        "id",
+        "schemaId",
+        "content",
+        "parentDocumentId",
+        "derivedStructData",
+        "aclInfo",
+        "indexTime",
+        "indexStatus",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.id = try container.decode(Swift.String.self, forKey: .id)
-      self.schemaId = try container.decode(Swift.String.self, forKey: .schemaId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaId) {
+        self.schemaId = value
+      }
       self.content = try container.decodeIfPresent(Document.Content.self, forKey: .content)
-      self.parentDocumentId = try container.decode(Swift.String.self, forKey: .parentDocumentId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentDocumentId) {
+        self.parentDocumentId = value
+      }
       self.derivedStructData = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .derivedStructData)
       self.aclInfo = try container.decodeIfPresent(Document.AclInfo.self, forKey: .aclInfo)
@@ -148,6 +177,10 @@
         try dataCheckAndSet(.jsonData(jsonData))
       }
       self.data = data
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -155,12 +188,12 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.schemaId, forKey: .schemaId)
-      try container.encode(self.content, forKey: .content)
+      try container.encodeIfPresent(self.content, forKey: .content)
       try container.encode(self.parentDocumentId, forKey: .parentDocumentId)
-      try container.encode(self.derivedStructData, forKey: .derivedStructData)
-      try container.encode(self.aclInfo, forKey: .aclInfo)
-      try container.encode(self.indexTime, forKey: .indexTime)
-      try container.encode(self.indexStatus, forKey: .indexStatus)
+      try container.encodeIfPresent(self.derivedStructData, forKey: .derivedStructData)
+      try container.encodeIfPresent(self.aclInfo, forKey: .aclInfo)
+      try container.encodeIfPresent(self.indexTime, forKey: .indexTime)
+      try container.encodeIfPresent(self.indexStatus, forKey: .indexStatus)
 
       if let choice = self.data {
         switch choice {
@@ -169,6 +202,9 @@
         case .jsonData(let value):
           try container.encode(value, forKey: .jsonData)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -204,6 +240,8 @@
       /// The content of the unstructured document.
       public var content: OneOf_Content? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Content`.
       public init() {}
 
@@ -220,15 +258,28 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case rawBytes = "rawBytes"
-        case uri = "uri"
-        case mimeType = "mimeType"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rawBytes = CodingKeys(stringValue: "rawBytes")
+        static let uri = CodingKeys(stringValue: "uri")
+        static let mimeType = CodingKeys(stringValue: "mimeType")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rawBytes",
+          "uri",
+          "mimeType",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mimeType = try container.decode(Swift.String.self, forKey: .mimeType)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+          self.mimeType = value
+        }
 
         var content: OneOf_Content? = nil
         let contentCheckAndSet = {
@@ -247,6 +298,10 @@
           try contentCheckAndSet(.uri(uri))
         }
         self.content = content
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -260,6 +315,9 @@
           case .uri(let value):
             try container.encode(value, forKey: .uri)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -298,6 +356,8 @@
       /// Readers of the document.
       public var readers: [Document.AclInfo.AccessRestriction] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AclInfo`.
       public init() {}
 
@@ -312,6 +372,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let readers = CodingKeys(stringValue: "readers")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "readers"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Document.AclInfo.AccessRestriction].self, forKey: .readers)
+        {
+          self.readers = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.readers, forKey: .readers)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// AclRestriction to model complex inheritance restrictions.
@@ -382,6 +476,9 @@
         /// All users within the Identity Provider.
         public var idpWide: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `AccessRestriction`.
         public init() {}
 
@@ -396,6 +493,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let principals = CodingKeys(stringValue: "principals")
+          static let idpWide = CodingKeys(stringValue: "idpWide")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "principals",
+            "idpWide",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Principal].self, forKey: .principals) {
+            self.principals = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .idpWide) {
+            self.idpWide = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.principals, forKey: .principals)
+          try container.encode(self.idpWide, forKey: .idpWide)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -437,6 +572,8 @@
       /// If this field is populated, the document index is pending.
       public var pendingMessage: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `IndexStatus`.
       public init() {}
 
@@ -451,6 +588,50 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let indexTime = CodingKeys(stringValue: "indexTime")
+        static let errorSamples = CodingKeys(stringValue: "errorSamples")
+        static let pendingMessage = CodingKeys(stringValue: "pendingMessage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "indexTime",
+          "errorSamples",
+          "pendingMessage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.indexTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .indexTime)
+        if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errorSamples)
+        {
+          self.errorSamples = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pendingMessage) {
+          self.pendingMessage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.indexTime, forKey: .indexTime)
+        try container.encode(self.errorSamples, forKey: .errorSamples)
+        try container.encode(self.pendingMessage, forKey: .pendingMessage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

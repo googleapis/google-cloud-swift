@@ -29,6 +29,8 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// value. [required]
   public var tag: OneOf_Tag? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuasiId`.
   public init() {}
 
@@ -45,11 +47,23 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case field = "field"
-    case infoType = "infoType"
-    case customTag = "customTag"
-    case inferred = "inferred"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let field = CodingKeys(stringValue: "field")
+    static let infoType = CodingKeys(stringValue: "infoType")
+    static let customTag = CodingKeys(stringValue: "customTag")
+    static let inferred = CodingKeys(stringValue: "inferred")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "field",
+      "infoType",
+      "customTag",
+      "inferred",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,11 +90,15 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try tagCheckAndSet(.inferred(inferred))
     }
     self.tag = tag
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.field, forKey: .field)
+    try container.encodeIfPresent(self.field, forKey: .field)
 
     if let choice = self.tag {
       switch choice {
@@ -91,6 +109,9 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .inferred(let value):
         try container.encode(value, forKey: .inferred)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

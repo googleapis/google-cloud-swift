@@ -41,6 +41,8 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Match versions newer than a duration.
   public var newerThan: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CleanupPolicyCondition`.
   public init() {}
 
@@ -55,6 +57,65 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tagState = CodingKeys(stringValue: "tagState")
+    static let tagPrefixes = CodingKeys(stringValue: "tagPrefixes")
+    static let versionNamePrefixes = CodingKeys(stringValue: "versionNamePrefixes")
+    static let packageNamePrefixes = CodingKeys(stringValue: "packageNamePrefixes")
+    static let olderThan = CodingKeys(stringValue: "olderThan")
+    static let newerThan = CodingKeys(stringValue: "newerThan")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tagState",
+      "tagPrefixes",
+      "versionNamePrefixes",
+      "packageNamePrefixes",
+      "olderThan",
+      "newerThan",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tagState = try container.decodeIfPresent(
+      CleanupPolicyCondition.TagState.self, forKey: .tagState)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagPrefixes) {
+      self.tagPrefixes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .versionNamePrefixes)
+    {
+      self.versionNamePrefixes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .packageNamePrefixes)
+    {
+      self.packageNamePrefixes = value
+    }
+    self.olderThan = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .olderThan)
+    self.newerThan = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .newerThan)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tagState, forKey: .tagState)
+    try container.encode(self.tagPrefixes, forKey: .tagPrefixes)
+    try container.encode(self.versionNamePrefixes, forKey: .versionNamePrefixes)
+    try container.encode(self.packageNamePrefixes, forKey: .packageNamePrefixes)
+    try container.encodeIfPresent(self.olderThan, forKey: .olderThan)
+    try container.encodeIfPresent(self.newerThan, forKey: .newerThan)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Statuses applying to versions.

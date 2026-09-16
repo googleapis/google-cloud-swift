@@ -78,6 +78,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StoragePoolType`.
     public init() {}
 
@@ -92,6 +94,119 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deprecated = CodingKeys(stringValue: "deprecated")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let maxPoolProvisionedCapacityGb = CodingKeys(
+        stringValue: "maxPoolProvisionedCapacityGb")
+      static let maxPoolProvisionedIops = CodingKeys(stringValue: "maxPoolProvisionedIops")
+      static let maxPoolProvisionedThroughput = CodingKeys(
+        stringValue: "maxPoolProvisionedThroughput")
+      static let minPoolProvisionedCapacityGb = CodingKeys(
+        stringValue: "minPoolProvisionedCapacityGb")
+      static let minPoolProvisionedIops = CodingKeys(stringValue: "minPoolProvisionedIops")
+      static let minPoolProvisionedThroughput = CodingKeys(
+        stringValue: "minPoolProvisionedThroughput")
+      static let minSizeGb = CodingKeys(stringValue: "minSizeGb")
+      static let name = CodingKeys(stringValue: "name")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let supportedDiskTypes = CodingKeys(stringValue: "supportedDiskTypes")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "deprecated",
+        "description",
+        "id",
+        "kind",
+        "maxPoolProvisionedCapacityGb",
+        "maxPoolProvisionedIops",
+        "maxPoolProvisionedThroughput",
+        "minPoolProvisionedCapacityGb",
+        "minPoolProvisionedIops",
+        "minPoolProvisionedThroughput",
+        "minSizeGb",
+        "name",
+        "selfLink",
+        "selfLinkWithId",
+        "supportedDiskTypes",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.deprecated = try container.decodeIfPresent(DeprecationStatus.self, forKey: .deprecated)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.maxPoolProvisionedCapacityGb = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxPoolProvisionedCapacityGb)
+      self.maxPoolProvisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxPoolProvisionedIops)
+      self.maxPoolProvisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxPoolProvisionedThroughput)
+      self.minPoolProvisionedCapacityGb = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .minPoolProvisionedCapacityGb)
+      self.minPoolProvisionedIops = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .minPoolProvisionedIops)
+      self.minPoolProvisionedThroughput = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .minPoolProvisionedThroughput)
+      self.minSizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .minSizeGb)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .supportedDiskTypes)
+      {
+        self.supportedDiskTypes = value
+      }
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deprecated, forKey: .deprecated)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(
+        self.maxPoolProvisionedCapacityGb, forKey: .maxPoolProvisionedCapacityGb)
+      try container.encodeIfPresent(self.maxPoolProvisionedIops, forKey: .maxPoolProvisionedIops)
+      try container.encodeIfPresent(
+        self.maxPoolProvisionedThroughput, forKey: .maxPoolProvisionedThroughput)
+      try container.encodeIfPresent(
+        self.minPoolProvisionedCapacityGb, forKey: .minPoolProvisionedCapacityGb)
+      try container.encodeIfPresent(self.minPoolProvisionedIops, forKey: .minPoolProvisionedIops)
+      try container.encodeIfPresent(
+        self.minPoolProvisionedThroughput, forKey: .minPoolProvisionedThroughput)
+      try container.encodeIfPresent(self.minSizeGb, forKey: .minSizeGb)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encode(self.supportedDiskTypes, forKey: .supportedDiskTypes)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

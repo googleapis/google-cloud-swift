@@ -98,6 +98,8 @@
     /// training, validation and test sets.
     public var split: OneOf_Split? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportDataConfig`.
     public init() {}
 
@@ -114,23 +116,48 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsDestination = "gcsDestination"
-      case fractionSplit = "fractionSplit"
-      case filterSplit = "filterSplit"
-      case annotationsFilter = "annotationsFilter"
-      case savedQueryId = "savedQueryId"
-      case annotationSchemaUri = "annotationSchemaUri"
-      case exportUse = "exportUse"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+      static let fractionSplit = CodingKeys(stringValue: "fractionSplit")
+      static let filterSplit = CodingKeys(stringValue: "filterSplit")
+      static let annotationsFilter = CodingKeys(stringValue: "annotationsFilter")
+      static let savedQueryId = CodingKeys(stringValue: "savedQueryId")
+      static let annotationSchemaUri = CodingKeys(stringValue: "annotationSchemaUri")
+      static let exportUse = CodingKeys(stringValue: "exportUse")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsDestination",
+        "fractionSplit",
+        "filterSplit",
+        "annotationsFilter",
+        "savedQueryId",
+        "annotationSchemaUri",
+        "exportUse",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.annotationsFilter = try container.decode(Swift.String.self, forKey: .annotationsFilter)
-      self.savedQueryId = try container.decode(Swift.String.self, forKey: .savedQueryId)
-      self.annotationSchemaUri = try container.decode(
-        Swift.String.self, forKey: .annotationSchemaUri)
-      self.exportUse = try container.decode(ExportDataConfig.ExportUse.self, forKey: .exportUse)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationsFilter) {
+        self.annotationsFilter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savedQueryId) {
+        self.savedQueryId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotationSchemaUri)
+      {
+        self.annotationSchemaUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        ExportDataConfig.ExportUse.self, forKey: .exportUse)
+      {
+        self.exportUse = value
+      }
 
       var destination: OneOf_Destination? = nil
       let destinationCheckAndSet = {
@@ -170,6 +197,10 @@
         try splitCheckAndSet(.filterSplit(filterSplit))
       }
       self.split = split
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -193,6 +224,9 @@
         case .filterSplit(let value):
           try container.encode(value, forKey: .filterSplit)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

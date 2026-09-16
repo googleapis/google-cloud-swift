@@ -83,6 +83,8 @@
     /// Required. The source of this document.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Document`.
     public init() {}
 
@@ -99,31 +101,66 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case mimeType = "mimeType"
-      case knowledgeTypes = "knowledgeTypes"
-      case contentUri = "contentUri"
-      case rawContent = "rawContent"
-      case enableAutoReload = "enableAutoReload"
-      case latestReloadStatus = "latestReloadStatus"
-      case metadata = "metadata"
-      case state = "state"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let mimeType = CodingKeys(stringValue: "mimeType")
+      static let knowledgeTypes = CodingKeys(stringValue: "knowledgeTypes")
+      static let contentUri = CodingKeys(stringValue: "contentUri")
+      static let rawContent = CodingKeys(stringValue: "rawContent")
+      static let enableAutoReload = CodingKeys(stringValue: "enableAutoReload")
+      static let latestReloadStatus = CodingKeys(stringValue: "latestReloadStatus")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "mimeType",
+        "knowledgeTypes",
+        "contentUri",
+        "rawContent",
+        "enableAutoReload",
+        "latestReloadStatus",
+        "metadata",
+        "state",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.mimeType = try container.decode(Swift.String.self, forKey: .mimeType)
-      self.knowledgeTypes = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+        self.mimeType = value
+      }
+      if let value = try container.decodeIfPresent(
         [Document.KnowledgeType].self, forKey: .knowledgeTypes)
-      self.enableAutoReload = try container.decode(Swift.Bool.self, forKey: .enableAutoReload)
+      {
+        self.knowledgeTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableAutoReload) {
+        self.enableAutoReload = value
+      }
       self.latestReloadStatus = try container.decodeIfPresent(
         Document.ReloadStatus.self, forKey: .latestReloadStatus)
-      self.metadata = try container.decode([Swift.String: Swift.String].self, forKey: .metadata)
-      self.state = try container.decode(Document.State.self, forKey: .state)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .metadata)
+      {
+        self.metadata = value
+      }
+      if let value = try container.decodeIfPresent(Document.State.self, forKey: .state) {
+        self.state = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -142,6 +179,10 @@
         try sourceCheckAndSet(.rawContent(rawContent))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,7 +192,7 @@
       try container.encode(self.mimeType, forKey: .mimeType)
       try container.encode(self.knowledgeTypes, forKey: .knowledgeTypes)
       try container.encode(self.enableAutoReload, forKey: .enableAutoReload)
-      try container.encode(self.latestReloadStatus, forKey: .latestReloadStatus)
+      try container.encodeIfPresent(self.latestReloadStatus, forKey: .latestReloadStatus)
       try container.encode(self.metadata, forKey: .metadata)
       try container.encode(self.state, forKey: .state)
 
@@ -162,6 +203,9 @@
         case .rawContent(let value):
           try container.encode(value, forKey: .rawContent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -177,6 +221,8 @@
       /// The status of a reload attempt or the initial load.
       public var status: GoogleRpc.Status? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ReloadStatus`.
       public init() {}
 
@@ -191,6 +237,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let time = CodingKeys(stringValue: "time")
+        static let status = CodingKeys(stringValue: "status")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "time",
+          "status",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.time = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .time)
+        self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.time, forKey: .time)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

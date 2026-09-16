@@ -26,6 +26,8 @@
     /// Required. The type of the reschedule the user wants.
     public var reschedule: SqlInstancesRescheduleMaintenanceRequestBody.Reschedule? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlInstancesRescheduleMaintenanceRequestBody`.
     public init() {}
 
@@ -42,6 +44,37 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reschedule = CodingKeys(stringValue: "reschedule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reschedule"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.reschedule = try container.decodeIfPresent(
+        SqlInstancesRescheduleMaintenanceRequestBody.Reschedule.self, forKey: .reschedule)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.reschedule, forKey: .reschedule)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     public struct Reschedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
@@ -54,6 +87,8 @@
       /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
       /// `2012-11-15T16:19:00.094Z`.
       public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Reschedule`.
       public init() {}
@@ -69,6 +104,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rescheduleType = CodingKeys(stringValue: "rescheduleType")
+        static let scheduleTime = CodingKeys(stringValue: "scheduleTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rescheduleType",
+          "scheduleTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          SqlInstancesRescheduleMaintenanceRequestBody.RescheduleType.self, forKey: .rescheduleType)
+        {
+          self.rescheduleType = value
+        }
+        self.scheduleTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .scheduleTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.rescheduleType, forKey: .rescheduleType)
+        try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

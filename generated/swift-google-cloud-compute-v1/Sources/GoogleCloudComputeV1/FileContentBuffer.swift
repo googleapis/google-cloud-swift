@@ -27,6 +27,8 @@
     /// The file type of source file.
     public var fileType: FileContentBuffer.FileType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FileContentBuffer`.
     public init() {}
 
@@ -43,9 +45,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case content = "content"
-      case fileType = "fileType"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let content = CodingKeys(stringValue: "content")
+      static let fileType = CodingKeys(stringValue: "fileType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "content",
+        "fileType",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -61,6 +73,10 @@
       }
       self.fileType = try container.decodeIfPresent(
         FileContentBuffer.FileType.self, forKey: .fileType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -70,7 +86,10 @@
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .content
         )
       }
-      try container.encode(self.fileType, forKey: .fileType)
+      try container.encodeIfPresent(self.fileType, forKey: .fileType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [fileType][google.cloud.compute.v1.FileContentBuffer.fileType] field.

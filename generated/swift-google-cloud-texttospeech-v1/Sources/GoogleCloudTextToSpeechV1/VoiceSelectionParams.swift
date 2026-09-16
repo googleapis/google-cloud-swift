@@ -65,6 +65,8 @@ public struct VoiceSelectionParams: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// request.
   public var multiSpeakerVoiceConfig: MultiSpeakerVoiceConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VoiceSelectionParams`.
   public init() {}
 
@@ -79,6 +81,69 @@ public struct VoiceSelectionParams: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let name = CodingKeys(stringValue: "name")
+    static let ssmlGender = CodingKeys(stringValue: "ssmlGender")
+    static let customVoice = CodingKeys(stringValue: "customVoice")
+    static let voiceClone = CodingKeys(stringValue: "voiceClone")
+    static let modelName = CodingKeys(stringValue: "modelName")
+    static let multiSpeakerVoiceConfig = CodingKeys(stringValue: "multiSpeakerVoiceConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "languageCode",
+      "name",
+      "ssmlGender",
+      "customVoice",
+      "voiceClone",
+      "modelName",
+      "multiSpeakerVoiceConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(SsmlVoiceGender.self, forKey: .ssmlGender) {
+      self.ssmlGender = value
+    }
+    self.customVoice = try container.decodeIfPresent(CustomVoiceParams.self, forKey: .customVoice)
+    self.voiceClone = try container.decodeIfPresent(VoiceCloneParams.self, forKey: .voiceClone)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelName) {
+      self.modelName = value
+    }
+    self.multiSpeakerVoiceConfig = try container.decodeIfPresent(
+      MultiSpeakerVoiceConfig.self, forKey: .multiSpeakerVoiceConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.ssmlGender, forKey: .ssmlGender)
+    try container.encodeIfPresent(self.customVoice, forKey: .customVoice)
+    try container.encodeIfPresent(self.voiceClone, forKey: .voiceClone)
+    try container.encode(self.modelName, forKey: .modelName)
+    try container.encodeIfPresent(self.multiSpeakerVoiceConfig, forKey: .multiSpeakerVoiceConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -156,6 +156,8 @@
     /// Within a given pathMatcher, you can set only one ofpathRules or routeRules.
     public var routeRules: [HttpRouteRule] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PathMatcher`.
     public init() {}
 
@@ -170,6 +172,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultCustomErrorResponsePolicy = CodingKeys(
+        stringValue: "defaultCustomErrorResponsePolicy")
+      static let defaultRouteAction = CodingKeys(stringValue: "defaultRouteAction")
+      static let defaultService = CodingKeys(stringValue: "defaultService")
+      static let defaultUrlRedirect = CodingKeys(stringValue: "defaultUrlRedirect")
+      static let description = CodingKeys(stringValue: "description")
+      static let headerAction = CodingKeys(stringValue: "headerAction")
+      static let name = CodingKeys(stringValue: "name")
+      static let pathRules = CodingKeys(stringValue: "pathRules")
+      static let routeRules = CodingKeys(stringValue: "routeRules")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultCustomErrorResponsePolicy",
+        "defaultRouteAction",
+        "defaultService",
+        "defaultUrlRedirect",
+        "description",
+        "headerAction",
+        "name",
+        "pathRules",
+        "routeRules",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.defaultCustomErrorResponsePolicy = try container.decodeIfPresent(
+        CustomErrorResponsePolicy.self, forKey: .defaultCustomErrorResponsePolicy)
+      self.defaultRouteAction = try container.decodeIfPresent(
+        HttpRouteAction.self, forKey: .defaultRouteAction)
+      self.defaultService = try container.decodeIfPresent(
+        Swift.String.self, forKey: .defaultService)
+      self.defaultUrlRedirect = try container.decodeIfPresent(
+        HttpRedirectAction.self, forKey: .defaultUrlRedirect)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.headerAction = try container.decodeIfPresent(
+        HttpHeaderAction.self, forKey: .headerAction)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent([PathRule].self, forKey: .pathRules) {
+        self.pathRules = value
+      }
+      if let value = try container.decodeIfPresent([HttpRouteRule].self, forKey: .routeRules) {
+        self.routeRules = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.defaultCustomErrorResponsePolicy, forKey: .defaultCustomErrorResponsePolicy)
+      try container.encodeIfPresent(self.defaultRouteAction, forKey: .defaultRouteAction)
+      try container.encodeIfPresent(self.defaultService, forKey: .defaultService)
+      try container.encodeIfPresent(self.defaultUrlRedirect, forKey: .defaultUrlRedirect)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.headerAction, forKey: .headerAction)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encode(self.pathRules, forKey: .pathRules)
+      try container.encode(self.routeRules, forKey: .routeRules)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

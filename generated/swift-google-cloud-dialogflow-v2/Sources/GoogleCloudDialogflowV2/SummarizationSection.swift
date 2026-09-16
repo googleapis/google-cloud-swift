@@ -32,6 +32,8 @@
     /// Optional. Type of the summarization section.
     public var type: SummarizationSection.Type_ = SummarizationSection.Type_()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SummarizationSection`.
     public init() {}
 
@@ -46,6 +48,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let key = CodingKeys(stringValue: "key")
+      static let definition = CodingKeys(stringValue: "definition")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "key",
+        "definition",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+        self.key = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .definition) {
+        self.definition = value
+      }
+      if let value = try container.decodeIfPresent(SummarizationSection.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.key, forKey: .key)
+      try container.encode(self.definition, forKey: .definition)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Type enum of the summarization sections.

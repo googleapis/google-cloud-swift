@@ -82,6 +82,8 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Specifies the type of the disk.
   public var type: AttachedDisk.DiskType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttachedDisk`.
   public init() {}
 
@@ -98,6 +100,109 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let initializeParams = CodingKeys(stringValue: "initializeParams")
+    static let deviceName = CodingKeys(stringValue: "deviceName")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let diskTypeDeprecated = CodingKeys(stringValue: "diskTypeDeprecated")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let source = CodingKeys(stringValue: "source")
+    static let index = CodingKeys(stringValue: "index")
+    static let boot = CodingKeys(stringValue: "boot")
+    static let autoDelete = CodingKeys(stringValue: "autoDelete")
+    static let license = CodingKeys(stringValue: "license")
+    static let diskInterface = CodingKeys(stringValue: "diskInterface")
+    static let guestOsFeature = CodingKeys(stringValue: "guestOsFeature")
+    static let diskEncryptionKey = CodingKeys(stringValue: "diskEncryptionKey")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let savedState = CodingKeys(stringValue: "savedState")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "initializeParams",
+      "deviceName",
+      "kind",
+      "diskTypeDeprecated",
+      "mode",
+      "source",
+      "index",
+      "boot",
+      "autoDelete",
+      "license",
+      "diskInterface",
+      "guestOsFeature",
+      "diskEncryptionKey",
+      "diskSizeGb",
+      "savedState",
+      "diskType",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.initializeParams = try container.decodeIfPresent(
+      AttachedDisk.InitializeParams.self, forKey: .initializeParams)
+    self.deviceName = try container.decodeIfPresent(Swift.String.self, forKey: .deviceName)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.diskTypeDeprecated = try container.decodeIfPresent(
+      AttachedDisk.DiskType.self, forKey: .diskTypeDeprecated)
+    self.mode = try container.decodeIfPresent(AttachedDisk.DiskMode.self, forKey: .mode)
+    self.source = try container.decodeIfPresent(Swift.String.self, forKey: .source)
+    self.index = try container.decodeIfPresent(Swift.Int64.self, forKey: .index)
+    self.boot = try container.decodeIfPresent(Swift.Bool.self, forKey: .boot)
+    self.autoDelete = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoDelete)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .license) {
+      self.license = value
+    }
+    self.diskInterface = try container.decodeIfPresent(
+      AttachedDisk.DiskInterface.self, forKey: .diskInterface)
+    if let value = try container.decodeIfPresent([GuestOsFeature].self, forKey: .guestOsFeature) {
+      self.guestOsFeature = value
+    }
+    self.diskEncryptionKey = try container.decodeIfPresent(
+      CustomerEncryptionKey.self, forKey: .diskEncryptionKey)
+    self.diskSizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb)
+    self.savedState = try container.decodeIfPresent(
+      AttachedDisk.DiskSavedState.self, forKey: .savedState)
+    self.diskType = try container.decodeIfPresent(Swift.String.self, forKey: .diskType)
+    self.type = try container.decodeIfPresent(AttachedDisk.DiskType.self, forKey: .type)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.initializeParams, forKey: .initializeParams)
+    try container.encodeIfPresent(self.deviceName, forKey: .deviceName)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.diskTypeDeprecated, forKey: .diskTypeDeprecated)
+    try container.encodeIfPresent(self.mode, forKey: .mode)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encodeIfPresent(self.index, forKey: .index)
+    try container.encodeIfPresent(self.boot, forKey: .boot)
+    try container.encodeIfPresent(self.autoDelete, forKey: .autoDelete)
+    try container.encode(self.license, forKey: .license)
+    try container.encodeIfPresent(self.diskInterface, forKey: .diskInterface)
+    try container.encode(self.guestOsFeature, forKey: .guestOsFeature)
+    try container.encodeIfPresent(self.diskEncryptionKey, forKey: .diskEncryptionKey)
+    try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encodeIfPresent(self.savedState, forKey: .savedState)
+    try container.encodeIfPresent(self.diskType, forKey: .diskType)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Specifies the parameters to initialize this disk.
   public struct InitializeParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -109,6 +214,8 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. URL of the zone where the disk should be created.
     /// Required for each regional disk associated with the instance.
     public var replicaZones: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InitializeParams`.
     public init() {}
@@ -124,6 +231,42 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let diskName = CodingKeys(stringValue: "diskName")
+      static let replicaZones = CodingKeys(stringValue: "replicaZones")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "diskName",
+        "replicaZones",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.diskName = try container.decodeIfPresent(Swift.String.self, forKey: .diskName)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+        self.replicaZones = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.diskName, forKey: .diskName)
+      try container.encode(self.replicaZones, forKey: .replicaZones)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

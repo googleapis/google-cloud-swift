@@ -76,6 +76,8 @@ public struct BDRBackupPlanJobLog: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The user readable error message. Only populated in error scenarios.
   public var errorMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BDRBackupPlanJobLog`.
   public init() {}
 
@@ -90,6 +92,147 @@ public struct BDRBackupPlanJobLog: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let jobCategory = CodingKeys(stringValue: "jobCategory")
+    static let jobStatus = CodingKeys(stringValue: "jobStatus")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let backupPlanName = CodingKeys(stringValue: "backupPlanName")
+    static let previousBackupPlanRevisionId = CodingKeys(
+      stringValue: "previousBackupPlanRevisionId")
+    static let previousBackupPlanRevisionName = CodingKeys(
+      stringValue: "previousBackupPlanRevisionName")
+    static let newBackupPlanRevisionId = CodingKeys(stringValue: "newBackupPlanRevisionId")
+    static let newBackupPlanRevisionName = CodingKeys(stringValue: "newBackupPlanRevisionName")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let workloadsAffectedCount = CodingKeys(stringValue: "workloadsAffectedCount")
+    static let previousBackupRules = CodingKeys(stringValue: "previousBackupRules")
+    static let revisedBackupRules = CodingKeys(stringValue: "revisedBackupRules")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorType = CodingKeys(stringValue: "errorType")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobId",
+      "jobCategory",
+      "jobStatus",
+      "resourceType",
+      "backupPlanName",
+      "previousBackupPlanRevisionId",
+      "previousBackupPlanRevisionName",
+      "newBackupPlanRevisionId",
+      "newBackupPlanRevisionName",
+      "startTime",
+      "endTime",
+      "workloadsAffectedCount",
+      "previousBackupRules",
+      "revisedBackupRules",
+      "errorCode",
+      "errorType",
+      "errorMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobCategory) {
+      self.jobCategory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobStatus) {
+      self.jobStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanName) {
+      self.backupPlanName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousBackupPlanRevisionId)
+    {
+      self.previousBackupPlanRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousBackupPlanRevisionName)
+    {
+      self.previousBackupPlanRevisionName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .newBackupPlanRevisionId)
+    {
+      self.newBackupPlanRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .newBackupPlanRevisionName)
+    {
+      self.newBackupPlanRevisionName = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .workloadsAffectedCount)
+    {
+      self.workloadsAffectedCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BackupRuleDetail].self, forKey: .previousBackupRules)
+    {
+      self.previousBackupRules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BackupRuleDetail].self, forKey: .revisedBackupRules)
+    {
+      self.revisedBackupRules = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCode) {
+      self.errorCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorType) {
+      self.errorType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.jobId, forKey: .jobId)
+    try container.encode(self.jobCategory, forKey: .jobCategory)
+    try container.encode(self.jobStatus, forKey: .jobStatus)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.backupPlanName, forKey: .backupPlanName)
+    try container.encode(self.previousBackupPlanRevisionId, forKey: .previousBackupPlanRevisionId)
+    try container.encode(
+      self.previousBackupPlanRevisionName, forKey: .previousBackupPlanRevisionName)
+    try container.encode(self.newBackupPlanRevisionId, forKey: .newBackupPlanRevisionId)
+    try container.encode(self.newBackupPlanRevisionName, forKey: .newBackupPlanRevisionName)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.workloadsAffectedCount, forKey: .workloadsAffectedCount)
+    try container.encode(self.previousBackupRules, forKey: .previousBackupRules)
+    try container.encode(self.revisedBackupRules, forKey: .revisedBackupRules)
+    try container.encode(self.errorCode, forKey: .errorCode)
+    try container.encode(self.errorType, forKey: .errorType)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

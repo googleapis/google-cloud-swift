@@ -54,6 +54,8 @@
     /// Output only. The sentiment analysis result for the message.
     public var sentimentAnalysis: SentimentAnalysisResult? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Message`.
     public init() {}
 
@@ -68,6 +70,83 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let content = CodingKeys(stringValue: "content")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let participant = CodingKeys(stringValue: "participant")
+      static let participantRole = CodingKeys(stringValue: "participantRole")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let sendTime = CodingKeys(stringValue: "sendTime")
+      static let messageAnnotation = CodingKeys(stringValue: "messageAnnotation")
+      static let sentimentAnalysis = CodingKeys(stringValue: "sentimentAnalysis")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "content",
+        "languageCode",
+        "participant",
+        "participantRole",
+        "createTime",
+        "sendTime",
+        "messageAnnotation",
+        "sentimentAnalysis",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+        self.content = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .participant) {
+        self.participant = value
+      }
+      if let value = try container.decodeIfPresent(Participant.Role.self, forKey: .participantRole)
+      {
+        self.participantRole = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.sendTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .sendTime)
+      self.messageAnnotation = try container.decodeIfPresent(
+        MessageAnnotation.self, forKey: .messageAnnotation)
+      self.sentimentAnalysis = try container.decodeIfPresent(
+        SentimentAnalysisResult.self, forKey: .sentimentAnalysis)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.content, forKey: .content)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encode(self.participant, forKey: .participant)
+      try container.encode(self.participantRole, forKey: .participantRole)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.sendTime, forKey: .sendTime)
+      try container.encodeIfPresent(self.messageAnnotation, forKey: .messageAnnotation)
+      try container.encodeIfPresent(self.sentimentAnalysis, forKey: .sentimentAnalysis)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

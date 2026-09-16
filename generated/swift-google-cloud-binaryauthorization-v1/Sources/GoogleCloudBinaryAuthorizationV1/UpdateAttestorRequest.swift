@@ -34,6 +34,8 @@ public struct UpdateAttestorRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// [google.cloud.binaryauthorization.v1.Attestor.name]: <doc:Attestor/name>
   public var attestor: Attestor? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateAttestorRequest`.
   public init() {}
 
@@ -48,6 +50,36 @@ public struct UpdateAttestorRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let attestor = CodingKeys(stringValue: "attestor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "attestor"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.attestor = try container.decodeIfPresent(Attestor.self, forKey: .attestor)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.attestor, forKey: .attestor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

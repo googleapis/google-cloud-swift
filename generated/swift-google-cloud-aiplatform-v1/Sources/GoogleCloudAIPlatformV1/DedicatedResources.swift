@@ -91,6 +91,8 @@
     /// VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
     public var spot: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DedicatedResources`.
     public init() {}
 
@@ -105,6 +107,69 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineSpec = CodingKeys(stringValue: "machineSpec")
+      static let minReplicaCount = CodingKeys(stringValue: "minReplicaCount")
+      static let maxReplicaCount = CodingKeys(stringValue: "maxReplicaCount")
+      static let requiredReplicaCount = CodingKeys(stringValue: "requiredReplicaCount")
+      static let autoscalingMetricSpecs = CodingKeys(stringValue: "autoscalingMetricSpecs")
+      static let spot = CodingKeys(stringValue: "spot")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineSpec",
+        "minReplicaCount",
+        "maxReplicaCount",
+        "requiredReplicaCount",
+        "autoscalingMetricSpecs",
+        "spot",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minReplicaCount) {
+        self.minReplicaCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxReplicaCount) {
+        self.maxReplicaCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredReplicaCount)
+      {
+        self.requiredReplicaCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AutoscalingMetricSpec].self, forKey: .autoscalingMetricSpecs)
+      {
+        self.autoscalingMetricSpecs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .spot) {
+        self.spot = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
+      try container.encode(self.minReplicaCount, forKey: .minReplicaCount)
+      try container.encode(self.maxReplicaCount, forKey: .maxReplicaCount)
+      try container.encode(self.requiredReplicaCount, forKey: .requiredReplicaCount)
+      try container.encode(self.autoscalingMetricSpecs, forKey: .autoscalingMetricSpecs)
+      try container.encode(self.spot, forKey: .spot)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

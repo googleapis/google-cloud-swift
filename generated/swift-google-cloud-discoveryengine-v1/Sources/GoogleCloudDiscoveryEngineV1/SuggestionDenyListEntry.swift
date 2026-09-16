@@ -32,6 +32,8 @@
     public var matchOperator: SuggestionDenyListEntry.MatchOperator =
       SuggestionDenyListEntry.MatchOperator()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuggestionDenyListEntry`.
     public init() {}
 
@@ -46,6 +48,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let blockPhrase = CodingKeys(stringValue: "blockPhrase")
+      static let matchOperator = CodingKeys(stringValue: "matchOperator")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "blockPhrase",
+        "matchOperator",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .blockPhrase) {
+        self.blockPhrase = value
+      }
+      if let value = try container.decodeIfPresent(
+        SuggestionDenyListEntry.MatchOperator.self, forKey: .matchOperator)
+      {
+        self.matchOperator = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.blockPhrase, forKey: .blockPhrase)
+      try container.encode(self.matchOperator, forKey: .matchOperator)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Operator for matching with the generated suggestions.

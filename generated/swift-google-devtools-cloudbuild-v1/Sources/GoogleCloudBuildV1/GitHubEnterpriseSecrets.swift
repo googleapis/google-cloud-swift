@@ -35,6 +35,8 @@ public struct GitHubEnterpriseSecrets: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The resource name for the OAuth client ID secret version in Secret Manager.
   public var oauthClientIdVersionName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitHubEnterpriseSecrets`.
   public init() {}
 
@@ -49,6 +51,62 @@ public struct GitHubEnterpriseSecrets: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let privateKeyVersionName = CodingKeys(stringValue: "privateKeyVersionName")
+    static let webhookSecretVersionName = CodingKeys(stringValue: "webhookSecretVersionName")
+    static let oauthSecretVersionName = CodingKeys(stringValue: "oauthSecretVersionName")
+    static let oauthClientIdVersionName = CodingKeys(stringValue: "oauthClientIdVersionName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "privateKeyVersionName",
+      "webhookSecretVersionName",
+      "oauthSecretVersionName",
+      "oauthClientIdVersionName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKeyVersionName)
+    {
+      self.privateKeyVersionName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .webhookSecretVersionName)
+    {
+      self.webhookSecretVersionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oauthSecretVersionName)
+    {
+      self.oauthSecretVersionName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .oauthClientIdVersionName)
+    {
+      self.oauthClientIdVersionName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.privateKeyVersionName, forKey: .privateKeyVersionName)
+    try container.encode(self.webhookSecretVersionName, forKey: .webhookSecretVersionName)
+    try container.encode(self.oauthSecretVersionName, forKey: .oauthSecretVersionName)
+    try container.encode(self.oauthClientIdVersionName, forKey: .oauthClientIdVersionName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

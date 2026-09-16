@@ -181,6 +181,8 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// executing user steps.
   public var dependencies: [Dependency] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Build`.
   public init() {}
 
@@ -197,6 +199,196 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusDetail = CodingKeys(stringValue: "statusDetail")
+    static let source = CodingKeys(stringValue: "source")
+    static let steps = CodingKeys(stringValue: "steps")
+    static let results = CodingKeys(stringValue: "results")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let finishTime = CodingKeys(stringValue: "finishTime")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let images = CodingKeys(stringValue: "images")
+    static let queueTtl = CodingKeys(stringValue: "queueTtl")
+    static let artifacts = CodingKeys(stringValue: "artifacts")
+    static let logsBucket = CodingKeys(stringValue: "logsBucket")
+    static let sourceProvenance = CodingKeys(stringValue: "sourceProvenance")
+    static let buildTriggerId = CodingKeys(stringValue: "buildTriggerId")
+    static let options = CodingKeys(stringValue: "options")
+    static let logUrl = CodingKeys(stringValue: "logUrl")
+    static let substitutions = CodingKeys(stringValue: "substitutions")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let secrets = CodingKeys(stringValue: "secrets")
+    static let timing = CodingKeys(stringValue: "timing")
+    static let approval = CodingKeys(stringValue: "approval")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let availableSecrets = CodingKeys(stringValue: "availableSecrets")
+    static let warnings = CodingKeys(stringValue: "warnings")
+    static let gitConfig = CodingKeys(stringValue: "gitConfig")
+    static let failureInfo = CodingKeys(stringValue: "failureInfo")
+    static let dependencies = CodingKeys(stringValue: "dependencies")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "projectId",
+      "status",
+      "statusDetail",
+      "source",
+      "steps",
+      "results",
+      "createTime",
+      "startTime",
+      "finishTime",
+      "timeout",
+      "images",
+      "queueTtl",
+      "artifacts",
+      "logsBucket",
+      "sourceProvenance",
+      "buildTriggerId",
+      "options",
+      "logUrl",
+      "substitutions",
+      "tags",
+      "secrets",
+      "timing",
+      "approval",
+      "serviceAccount",
+      "availableSecrets",
+      "warnings",
+      "gitConfig",
+      "failureInfo",
+      "dependencies",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Build.Status.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusDetail) {
+      self.statusDetail = value
+    }
+    self.source = try container.decodeIfPresent(Source.self, forKey: .source)
+    if let value = try container.decodeIfPresent([BuildStep].self, forKey: .steps) {
+      self.steps = value
+    }
+    self.results = try container.decodeIfPresent(Results.self, forKey: .results)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.finishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .finishTime)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .images) {
+      self.images = value
+    }
+    self.queueTtl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .queueTtl)
+    self.artifacts = try container.decodeIfPresent(Artifacts.self, forKey: .artifacts)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logsBucket) {
+      self.logsBucket = value
+    }
+    self.sourceProvenance = try container.decodeIfPresent(
+      SourceProvenance.self, forKey: .sourceProvenance)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildTriggerId) {
+      self.buildTriggerId = value
+    }
+    self.options = try container.decodeIfPresent(BuildOptions.self, forKey: .options)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logUrl) {
+      self.logUrl = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .substitutions)
+    {
+      self.substitutions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent([Secret].self, forKey: .secrets) {
+      self.secrets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: TimeSpan].self, forKey: .timing) {
+      self.timing = value
+    }
+    self.approval = try container.decodeIfPresent(BuildApproval.self, forKey: .approval)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.availableSecrets = try container.decodeIfPresent(Secrets.self, forKey: .availableSecrets)
+    if let value = try container.decodeIfPresent([Build.Warning].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    self.gitConfig = try container.decodeIfPresent(GitConfig.self, forKey: .gitConfig)
+    self.failureInfo = try container.decodeIfPresent(Build.FailureInfo.self, forKey: .failureInfo)
+    if let value = try container.decodeIfPresent([Dependency].self, forKey: .dependencies) {
+      self.dependencies = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.statusDetail, forKey: .statusDetail)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encode(self.steps, forKey: .steps)
+    try container.encodeIfPresent(self.results, forKey: .results)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.finishTime, forKey: .finishTime)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encode(self.images, forKey: .images)
+    try container.encodeIfPresent(self.queueTtl, forKey: .queueTtl)
+    try container.encodeIfPresent(self.artifacts, forKey: .artifacts)
+    try container.encode(self.logsBucket, forKey: .logsBucket)
+    try container.encodeIfPresent(self.sourceProvenance, forKey: .sourceProvenance)
+    try container.encode(self.buildTriggerId, forKey: .buildTriggerId)
+    try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encode(self.logUrl, forKey: .logUrl)
+    try container.encode(self.substitutions, forKey: .substitutions)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.secrets, forKey: .secrets)
+    try container.encode(self.timing, forKey: .timing)
+    try container.encodeIfPresent(self.approval, forKey: .approval)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.availableSecrets, forKey: .availableSecrets)
+    try container.encode(self.warnings, forKey: .warnings)
+    try container.encodeIfPresent(self.gitConfig, forKey: .gitConfig)
+    try container.encodeIfPresent(self.failureInfo, forKey: .failureInfo)
+    try container.encode(self.dependencies, forKey: .dependencies)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A non-fatal problem encountered during the execution of the build.
   public struct Warning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -206,6 +398,8 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The priority for this warning.
     public var priority: Build.Warning.Priority = Build.Warning.Priority()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Warning`.
     public init() {}
@@ -221,6 +415,44 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let priority = CodingKeys(stringValue: "priority")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "priority",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      if let value = try container.decodeIfPresent(Build.Warning.Priority.self, forKey: .priority) {
+        self.priority = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.text, forKey: .text)
+      try container.encode(self.priority, forKey: .priority)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The relative importance of this warning.
@@ -356,6 +588,8 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Explains the failure issue in more detail using hard-coded text.
     public var detail: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FailureInfo`.
     public init() {}
 
@@ -370,6 +604,46 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let detail = CodingKeys(stringValue: "detail")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "detail",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Build.FailureInfo.FailureType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+        self.detail = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.detail, forKey: .detail)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The name of a fatal problem encountered during the execution of the

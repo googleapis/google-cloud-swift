@@ -34,6 +34,8 @@
     /// Optional. Summarization prompt for LLM.
     public var instruction: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SummarizationVerbosityInstance`.
     public init() {}
 
@@ -48,6 +50,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let prediction = CodingKeys(stringValue: "prediction")
+      static let reference = CodingKeys(stringValue: "reference")
+      static let context = CodingKeys(stringValue: "context")
+      static let instruction = CodingKeys(stringValue: "instruction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "prediction",
+        "reference",
+        "context",
+        "instruction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.prediction = try container.decodeIfPresent(Swift.String.self, forKey: .prediction)
+      self.reference = try container.decodeIfPresent(Swift.String.self, forKey: .reference)
+      self.context = try container.decodeIfPresent(Swift.String.self, forKey: .context)
+      self.instruction = try container.decodeIfPresent(Swift.String.self, forKey: .instruction)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.prediction, forKey: .prediction)
+      try container.encodeIfPresent(self.reference, forKey: .reference)
+      try container.encodeIfPresent(self.context, forKey: .context)
+      try container.encodeIfPresent(self.instruction, forKey: .instruction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

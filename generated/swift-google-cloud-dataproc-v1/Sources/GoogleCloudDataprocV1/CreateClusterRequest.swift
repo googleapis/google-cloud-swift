@@ -50,6 +50,8 @@ public struct CreateClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Optional. Failure action when primary worker creation fails.
   public var actionOnFailedPrimaryWorkers: FailureAction = FailureAction()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateClusterRequest`.
   public init() {}
 
@@ -64,6 +66,63 @@ public struct CreateClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let region = CodingKeys(stringValue: "region")
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let actionOnFailedPrimaryWorkers = CodingKeys(
+      stringValue: "actionOnFailedPrimaryWorkers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "region",
+      "cluster",
+      "requestId",
+      "actionOnFailedPrimaryWorkers",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    self.cluster = try container.decodeIfPresent(Cluster.self, forKey: .cluster)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(
+      FailureAction.self, forKey: .actionOnFailedPrimaryWorkers)
+    {
+      self.actionOnFailedPrimaryWorkers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.region, forKey: .region)
+    try container.encodeIfPresent(self.cluster, forKey: .cluster)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.actionOnFailedPrimaryWorkers, forKey: .actionOnFailedPrimaryWorkers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -34,6 +34,8 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Logical interfaces.
   public var logicalInterfaces: [ServerNetworkTemplate.LogicalInterface] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServerNetworkTemplate`.
   public init() {}
 
@@ -48,6 +50,54 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let applicableInstanceTypes = CodingKeys(stringValue: "applicableInstanceTypes")
+    static let logicalInterfaces = CodingKeys(stringValue: "logicalInterfaces")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "applicableInstanceTypes",
+      "logicalInterfaces",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .applicableInstanceTypes)
+    {
+      self.applicableInstanceTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ServerNetworkTemplate.LogicalInterface].self, forKey: .logicalInterfaces)
+    {
+      self.logicalInterfaces = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.applicableInstanceTypes, forKey: .applicableInstanceTypes)
+    try container.encode(self.logicalInterfaces, forKey: .logicalInterfaces)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Logical interface.
@@ -68,6 +118,8 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// If true, interface must have network connected.
     public var `required`: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LogicalInterface`.
     public init() {}
 
@@ -84,18 +136,40 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case type = "type"
-      case `required` = "required"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+      static let `required` = CodingKeys(stringValue: "required")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "type",
+        "required",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.type = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
         ServerNetworkTemplate.LogicalInterface.InterfaceType.self, forKey: .type)
-      self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+        self.`required` = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -103,6 +177,9 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
       try container.encode(self.name, forKey: .name)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.`required`, forKey: .`required`)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Interface type.

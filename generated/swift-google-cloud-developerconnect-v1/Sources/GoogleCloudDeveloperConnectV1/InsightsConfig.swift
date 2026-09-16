@@ -69,6 +69,8 @@ public struct InsightsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The context of the InsightsConfig.
   public var insightsConfigContext: OneOf_InsightsConfigContext? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InsightsConfig`.
   public init() {}
 
@@ -85,35 +87,74 @@ public struct InsightsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case appHubApplication = "appHubApplication"
-    case projects = "projects"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case runtimeConfigs = "runtimeConfigs"
-    case artifactConfigs = "artifactConfigs"
-    case state = "state"
-    case annotations = "annotations"
-    case labels = "labels"
-    case reconciling = "reconciling"
-    case errors = "errors"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let appHubApplication = CodingKeys(stringValue: "appHubApplication")
+    static let projects = CodingKeys(stringValue: "projects")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let runtimeConfigs = CodingKeys(stringValue: "runtimeConfigs")
+    static let artifactConfigs = CodingKeys(stringValue: "artifactConfigs")
+    static let state = CodingKeys(stringValue: "state")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "appHubApplication",
+      "projects",
+      "name",
+      "createTime",
+      "updateTime",
+      "runtimeConfigs",
+      "artifactConfigs",
+      "state",
+      "annotations",
+      "labels",
+      "reconciling",
+      "errors",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.runtimeConfigs = try container.decode([RuntimeConfig].self, forKey: .runtimeConfigs)
-    self.artifactConfigs = try container.decode([ArtifactConfig].self, forKey: .artifactConfigs)
-    self.state = try container.decode(InsightsConfig.State.self, forKey: .state)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.reconciling = try container.decode(Swift.Bool.self, forKey: .reconciling)
-    self.errors = try container.decode([GoogleRpc.Status].self, forKey: .errors)
+    if let value = try container.decodeIfPresent([RuntimeConfig].self, forKey: .runtimeConfigs) {
+      self.runtimeConfigs = value
+    }
+    if let value = try container.decodeIfPresent([ArtifactConfig].self, forKey: .artifactConfigs) {
+      self.artifactConfigs = value
+    }
+    if let value = try container.decodeIfPresent(InsightsConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
+      self.errors = value
+    }
 
     var insightsConfigContext: OneOf_InsightsConfigContext? = nil
     let insightsConfigContextCheckAndSet = {
@@ -134,13 +175,17 @@ public struct InsightsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try insightsConfigContextCheckAndSet(.projects(projects))
     }
     self.insightsConfigContext = insightsConfigContext
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.runtimeConfigs, forKey: .runtimeConfigs)
     try container.encode(self.artifactConfigs, forKey: .artifactConfigs)
     try container.encode(self.state, forKey: .state)
@@ -156,6 +201,9 @@ public struct InsightsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .projects(let value):
         try container.encode(value, forKey: .projects)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

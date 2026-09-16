@@ -37,6 +37,8 @@ public struct VertexAutoMLVideoConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Value 0.0 means to return all the detected entities.
   public var boundingBoxSizeLimit: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VertexAutoMLVideoConfig`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct VertexAutoMLVideoConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let confidenceThreshold = CodingKeys(stringValue: "confidenceThreshold")
+    static let blockedLabels = CodingKeys(stringValue: "blockedLabels")
+    static let maxPredictions = CodingKeys(stringValue: "maxPredictions")
+    static let boundingBoxSizeLimit = CodingKeys(stringValue: "boundingBoxSizeLimit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "confidenceThreshold",
+      "blockedLabels",
+      "maxPredictions",
+      "boundingBoxSizeLimit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceThreshold) {
+      self.confidenceThreshold = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .blockedLabels) {
+      self.blockedLabels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPredictions) {
+      self.maxPredictions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .boundingBoxSizeLimit) {
+      self.boundingBoxSizeLimit = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.confidenceThreshold, forKey: .confidenceThreshold)
+    try container.encode(self.blockedLabels, forKey: .blockedLabels)
+    try container.encode(self.maxPredictions, forKey: .maxPredictions)
+    try container.encode(self.boundingBoxSizeLimit, forKey: .boundingBoxSizeLimit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

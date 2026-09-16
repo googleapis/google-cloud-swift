@@ -37,6 +37,8 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleCloudWKT._AnyP
 
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRecognizeFileResult`.
   public init() {}
 
@@ -53,13 +55,27 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case error = "error"
-    case metadata = "metadata"
-    case cloudStorageResult = "cloudStorageResult"
-    case inlineResult = "inlineResult"
-    case uri = "uri"
-    case transcript = "transcript"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let error = CodingKeys(stringValue: "error")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let cloudStorageResult = CodingKeys(stringValue: "cloudStorageResult")
+    static let inlineResult = CodingKeys(stringValue: "inlineResult")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let transcript = CodingKeys(stringValue: "transcript")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "error",
+      "metadata",
+      "cloudStorageResult",
+      "inlineResult",
+      "uri",
+      "transcript",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,7 +83,9 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleCloudWKT._AnyP
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.metadata = try container.decodeIfPresent(
       RecognitionResponseMetadata.self, forKey: .metadata)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
     self.transcript = try container.decodeIfPresent(BatchRecognizeResults.self, forKey: .transcript)
 
     var result: OneOf_Result? = nil
@@ -89,14 +107,18 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleCloudWKT._AnyP
       try resultCheckAndSet(.inlineResult(inlineResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.error, forKey: .error)
-    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
     try container.encode(self.uri, forKey: .uri)
-    try container.encode(self.transcript, forKey: .transcript)
+    try container.encodeIfPresent(self.transcript, forKey: .transcript)
 
     if let choice = self.result {
       switch choice {
@@ -105,6 +127,9 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleCloudWKT._AnyP
       case .inlineResult(let value):
         try container.encode(value, forKey: .inlineResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

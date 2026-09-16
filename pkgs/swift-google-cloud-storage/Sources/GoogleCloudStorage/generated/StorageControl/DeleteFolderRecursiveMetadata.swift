@@ -28,6 +28,8 @@ public struct DeleteFolderRecursiveMetadata: Codable, Equatable, GoogleCloudWKT.
   /// The path of the folder recursively deleted.
   public var folderId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeleteFolderRecursiveMetadata`.
   public init() {}
 
@@ -42,6 +44,43 @@ public struct DeleteFolderRecursiveMetadata: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let commonMetadata = CodingKeys(stringValue: "commonMetadata")
+    static let folderId = CodingKeys(stringValue: "folderId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "commonMetadata",
+      "folderId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.commonMetadata = try container.decodeIfPresent(
+      CommonLongRunningOperationMetadata.self, forKey: .commonMetadata)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .folderId) {
+      self.folderId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.commonMetadata, forKey: .commonMetadata)
+    try container.encode(self.folderId, forKey: .folderId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

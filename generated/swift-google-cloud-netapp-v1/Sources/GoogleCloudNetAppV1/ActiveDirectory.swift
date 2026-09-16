@@ -96,6 +96,8 @@ public struct ActiveDirectory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The state details of the Active Directory.
   public var stateDetails: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ActiveDirectory`.
   public init() {}
 
@@ -110,6 +112,164 @@ public struct ActiveDirectory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let site = CodingKeys(stringValue: "site")
+    static let dns = CodingKeys(stringValue: "dns")
+    static let netBiosPrefix = CodingKeys(stringValue: "netBiosPrefix")
+    static let organizationalUnit = CodingKeys(stringValue: "organizationalUnit")
+    static let aesEncryption = CodingKeys(stringValue: "aesEncryption")
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let backupOperators = CodingKeys(stringValue: "backupOperators")
+    static let administrators = CodingKeys(stringValue: "administrators")
+    static let securityOperators = CodingKeys(stringValue: "securityOperators")
+    static let kdcHostname = CodingKeys(stringValue: "kdcHostname")
+    static let kdcIp = CodingKeys(stringValue: "kdcIp")
+    static let nfsUsersWithLdap = CodingKeys(stringValue: "nfsUsersWithLdap")
+    static let description = CodingKeys(stringValue: "description")
+    static let ldapSigning = CodingKeys(stringValue: "ldapSigning")
+    static let encryptDcConnections = CodingKeys(stringValue: "encryptDcConnections")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "state",
+      "domain",
+      "site",
+      "dns",
+      "netBiosPrefix",
+      "organizationalUnit",
+      "aesEncryption",
+      "username",
+      "password",
+      "backupOperators",
+      "administrators",
+      "securityOperators",
+      "kdcHostname",
+      "kdcIp",
+      "nfsUsersWithLdap",
+      "description",
+      "ldapSigning",
+      "encryptDcConnections",
+      "labels",
+      "stateDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(ActiveDirectory.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .site) {
+      self.site = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dns) {
+      self.dns = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .netBiosPrefix) {
+      self.netBiosPrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organizationalUnit) {
+      self.organizationalUnit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .aesEncryption) {
+      self.aesEncryption = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .backupOperators) {
+      self.backupOperators = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .administrators) {
+      self.administrators = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .securityOperators) {
+      self.securityOperators = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kdcHostname) {
+      self.kdcHostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kdcIp) {
+      self.kdcIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nfsUsersWithLdap) {
+      self.nfsUsersWithLdap = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ldapSigning) {
+      self.ldapSigning = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .encryptDcConnections) {
+      self.encryptDcConnections = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.site, forKey: .site)
+    try container.encode(self.dns, forKey: .dns)
+    try container.encode(self.netBiosPrefix, forKey: .netBiosPrefix)
+    try container.encode(self.organizationalUnit, forKey: .organizationalUnit)
+    try container.encode(self.aesEncryption, forKey: .aesEncryption)
+    try container.encode(self.username, forKey: .username)
+    try container.encode(self.password, forKey: .password)
+    try container.encode(self.backupOperators, forKey: .backupOperators)
+    try container.encode(self.administrators, forKey: .administrators)
+    try container.encode(self.securityOperators, forKey: .securityOperators)
+    try container.encode(self.kdcHostname, forKey: .kdcHostname)
+    try container.encode(self.kdcIp, forKey: .kdcIp)
+    try container.encode(self.nfsUsersWithLdap, forKey: .nfsUsersWithLdap)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.ldapSigning, forKey: .ldapSigning)
+    try container.encode(self.encryptDcConnections, forKey: .encryptDcConnections)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Active Directory States

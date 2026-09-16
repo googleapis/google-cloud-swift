@@ -58,6 +58,8 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// An optional device attestation report.
   public var deviceAttestation: OneOf_DeviceAttestation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VerifyAttestationRequest`.
   public init() {}
 
@@ -74,22 +76,42 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tdCcel = "tdCcel"
-    case sevSnpAttestation = "sevSnpAttestation"
-    case nvidiaAttestation = "nvidiaAttestation"
-    case challenge = "challenge"
-    case gcpCredentials = "gcpCredentials"
-    case tpmAttestation = "tpmAttestation"
-    case confidentialSpaceInfo = "confidentialSpaceInfo"
-    case tokenOptions = "tokenOptions"
-    case attester = "attester"
-    case instance = "instance"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tdCcel = CodingKeys(stringValue: "tdCcel")
+    static let sevSnpAttestation = CodingKeys(stringValue: "sevSnpAttestation")
+    static let nvidiaAttestation = CodingKeys(stringValue: "nvidiaAttestation")
+    static let challenge = CodingKeys(stringValue: "challenge")
+    static let gcpCredentials = CodingKeys(stringValue: "gcpCredentials")
+    static let tpmAttestation = CodingKeys(stringValue: "tpmAttestation")
+    static let confidentialSpaceInfo = CodingKeys(stringValue: "confidentialSpaceInfo")
+    static let tokenOptions = CodingKeys(stringValue: "tokenOptions")
+    static let attester = CodingKeys(stringValue: "attester")
+    static let instance = CodingKeys(stringValue: "instance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tdCcel",
+      "sevSnpAttestation",
+      "nvidiaAttestation",
+      "challenge",
+      "gcpCredentials",
+      "tpmAttestation",
+      "confidentialSpaceInfo",
+      "tokenOptions",
+      "attester",
+      "instance",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.challenge = try container.decode(Swift.String.self, forKey: .challenge)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .challenge) {
+      self.challenge = value
+    }
     self.gcpCredentials = try container.decodeIfPresent(
       GcpCredentials.self, forKey: .gcpCredentials)
     self.tpmAttestation = try container.decodeIfPresent(
@@ -97,8 +119,12 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     self.confidentialSpaceInfo = try container.decodeIfPresent(
       ConfidentialSpaceInfo.self, forKey: .confidentialSpaceInfo)
     self.tokenOptions = try container.decodeIfPresent(TokenOptions.self, forKey: .tokenOptions)
-    self.attester = try container.decode(Swift.String.self, forKey: .attester)
-    self.instance = try container.decode(Swift.String.self, forKey: .instance)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attester) {
+      self.attester = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
 
     var teeAttestation: OneOf_TeeAttestation? = nil
     let teeAttestationCheckAndSet = {
@@ -136,15 +162,19 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       try deviceAttestationCheckAndSet(.nvidiaAttestation(nvidiaAttestation))
     }
     self.deviceAttestation = deviceAttestation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
-    try container.encode(self.gcpCredentials, forKey: .gcpCredentials)
-    try container.encode(self.tpmAttestation, forKey: .tpmAttestation)
-    try container.encode(self.confidentialSpaceInfo, forKey: .confidentialSpaceInfo)
-    try container.encode(self.tokenOptions, forKey: .tokenOptions)
+    try container.encodeIfPresent(self.gcpCredentials, forKey: .gcpCredentials)
+    try container.encodeIfPresent(self.tpmAttestation, forKey: .tpmAttestation)
+    try container.encodeIfPresent(self.confidentialSpaceInfo, forKey: .confidentialSpaceInfo)
+    try container.encodeIfPresent(self.tokenOptions, forKey: .tokenOptions)
     try container.encode(self.attester, forKey: .attester)
     try container.encode(self.instance, forKey: .instance)
 
@@ -162,6 +192,9 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       case .nvidiaAttestation(let value):
         try container.encode(value, forKey: .nvidiaAttestation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

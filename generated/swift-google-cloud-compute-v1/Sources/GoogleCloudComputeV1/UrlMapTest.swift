@@ -65,6 +65,8 @@
     /// be set if expectedRedirectResponseCode is set.
     public var service: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UrlMapTest`.
     public init() {}
 
@@ -79,6 +81,66 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let expectedOutputUrl = CodingKeys(stringValue: "expectedOutputUrl")
+      static let expectedRedirectResponseCode = CodingKeys(
+        stringValue: "expectedRedirectResponseCode")
+      static let headers = CodingKeys(stringValue: "headers")
+      static let host = CodingKeys(stringValue: "host")
+      static let path = CodingKeys(stringValue: "path")
+      static let service = CodingKeys(stringValue: "service")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "expectedOutputUrl",
+        "expectedRedirectResponseCode",
+        "headers",
+        "host",
+        "path",
+        "service",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.expectedOutputUrl = try container.decodeIfPresent(
+        Swift.String.self, forKey: .expectedOutputUrl)
+      self.expectedRedirectResponseCode = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .expectedRedirectResponseCode)
+      if let value = try container.decodeIfPresent([UrlMapTestHeader].self, forKey: .headers) {
+        self.headers = value
+      }
+      self.host = try container.decodeIfPresent(Swift.String.self, forKey: .host)
+      self.path = try container.decodeIfPresent(Swift.String.self, forKey: .path)
+      self.service = try container.decodeIfPresent(Swift.String.self, forKey: .service)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.expectedOutputUrl, forKey: .expectedOutputUrl)
+      try container.encodeIfPresent(
+        self.expectedRedirectResponseCode, forKey: .expectedRedirectResponseCode)
+      try container.encode(self.headers, forKey: .headers)
+      try container.encodeIfPresent(self.host, forKey: .host)
+      try container.encodeIfPresent(self.path, forKey: .path)
+      try container.encodeIfPresent(self.service, forKey: .service)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

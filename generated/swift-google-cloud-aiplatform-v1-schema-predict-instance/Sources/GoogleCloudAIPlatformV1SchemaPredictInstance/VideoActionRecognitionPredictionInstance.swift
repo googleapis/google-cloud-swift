@@ -43,6 +43,8 @@ public struct VideoActionRecognitionPredictionInstance: Codable, Equatable, Goog
   /// means the end of the video.
   public var timeSegmentEnd: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoActionRecognitionPredictionInstance`.
   public init() {}
 
@@ -57,6 +59,56 @@ public struct VideoActionRecognitionPredictionInstance: Codable, Equatable, Goog
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let timeSegmentStart = CodingKeys(stringValue: "timeSegmentStart")
+    static let timeSegmentEnd = CodingKeys(stringValue: "timeSegmentEnd")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "mimeType",
+      "timeSegmentStart",
+      "timeSegmentEnd",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeSegmentStart) {
+      self.timeSegmentStart = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeSegmentEnd) {
+      self.timeSegmentEnd = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    try container.encode(self.timeSegmentStart, forKey: .timeSegmentStart)
+    try container.encode(self.timeSegmentEnd, forKey: .timeSegmentEnd)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

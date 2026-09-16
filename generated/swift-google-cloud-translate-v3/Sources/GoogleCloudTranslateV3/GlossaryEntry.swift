@@ -33,6 +33,8 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// sets).
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GlossaryEntry`.
   public init() {}
 
@@ -49,17 +51,33 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case termsPair = "termsPair"
-    case termsSet = "termsSet"
-    case description = "description"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let termsPair = CodingKeys(stringValue: "termsPair")
+    static let termsSet = CodingKeys(stringValue: "termsSet")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "termsPair",
+      "termsSet",
+      "description",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var data: OneOf_Data? = nil
     let dataCheckAndSet = {
@@ -82,6 +100,10 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataCheckAndSet(.termsSet(termsSet))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +119,9 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .termsSet)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a single entry for an unidirectional glossary.
@@ -108,6 +133,8 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The term that will replace the match source term.
     public var targetTerm: GlossaryTerm? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `GlossaryTermsPair`.
     public init() {}
@@ -123,6 +150,40 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceTerm = CodingKeys(stringValue: "sourceTerm")
+      static let targetTerm = CodingKeys(stringValue: "targetTerm")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceTerm",
+        "targetTerm",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.sourceTerm = try container.decodeIfPresent(GlossaryTerm.self, forKey: .sourceTerm)
+      self.targetTerm = try container.decodeIfPresent(GlossaryTerm.self, forKey: .targetTerm)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.sourceTerm, forKey: .sourceTerm)
+      try container.encodeIfPresent(self.targetTerm, forKey: .targetTerm)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -146,6 +207,8 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// terms.
     public var terms: [GlossaryTerm] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GlossaryTermsSet`.
     public init() {}
 
@@ -160,6 +223,38 @@ public struct GlossaryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let terms = CodingKeys(stringValue: "terms")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "terms"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GlossaryTerm].self, forKey: .terms) {
+        self.terms = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.terms, forKey: .terms)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specifies type of the matcher used for this endpoint matcher.
   public var matcherType: OneOf_MatcherType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndpointMatcher`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case metadataLabelMatcher = "metadataLabelMatcher"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let metadataLabelMatcher = CodingKeys(stringValue: "metadataLabelMatcher")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "metadataLabelMatcher"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try matcherTypeCheckAndSet(.metadataLabelMatcher(metadataLabelMatcher))
     }
     self.matcherType = matcherType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .metadataLabelMatcher(let value):
         try container.encode(value, forKey: .metadataLabelMatcher)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -118,6 +136,8 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// matches any client).
     public var metadataLabels: [EndpointMatcher.MetadataLabelMatcher.MetadataLabels] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetadataLabelMatcher`.
     public init() {}
 
@@ -134,6 +154,49 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metadataLabelMatchCriteria = CodingKeys(stringValue: "metadataLabelMatchCriteria")
+      static let metadataLabels = CodingKeys(stringValue: "metadataLabels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metadataLabelMatchCriteria",
+        "metadataLabels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        EndpointMatcher.MetadataLabelMatcher.MetadataLabelMatchCriteria.self,
+        forKey: .metadataLabelMatchCriteria)
+      {
+        self.metadataLabelMatchCriteria = value
+      }
+      if let value = try container.decodeIfPresent(
+        [EndpointMatcher.MetadataLabelMatcher.MetadataLabels].self, forKey: .metadataLabels)
+      {
+        self.metadataLabels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.metadataLabelMatchCriteria, forKey: .metadataLabelMatchCriteria)
+      try container.encode(self.metadataLabels, forKey: .metadataLabels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Defines a name-pair value for a single label.
     public struct MetadataLabels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -144,6 +207,8 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Required. Label value presented as value corresponding to the above
       /// key, in xDS Node Metadata.
       public var labelValue: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MetadataLabels`.
       public init() {}
@@ -159,6 +224,44 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let labelName = CodingKeys(stringValue: "labelName")
+        static let labelValue = CodingKeys(stringValue: "labelValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "labelName",
+          "labelValue",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelName) {
+          self.labelName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelValue) {
+          self.labelValue = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.labelName, forKey: .labelName)
+        try container.encode(self.labelValue, forKey: .labelValue)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

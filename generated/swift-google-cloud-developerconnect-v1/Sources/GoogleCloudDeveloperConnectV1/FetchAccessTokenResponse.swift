@@ -33,6 +33,8 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The error resulted from exchanging OAuth tokens from the service provider.
   public var exchangeError: ExchangeError? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchAccessTokenResponse`.
   public init() {}
 
@@ -47,6 +49,53 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let token = CodingKeys(stringValue: "token")
+    static let expirationTime = CodingKeys(stringValue: "expirationTime")
+    static let scopes = CodingKeys(stringValue: "scopes")
+    static let exchangeError = CodingKeys(stringValue: "exchangeError")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "token",
+      "expirationTime",
+      "scopes",
+      "exchangeError",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .token) {
+      self.token = value
+    }
+    self.expirationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+      self.scopes = value
+    }
+    self.exchangeError = try container.decodeIfPresent(ExchangeError.self, forKey: .exchangeError)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.token, forKey: .token)
+    try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+    try container.encode(self.scopes, forKey: .scopes)
+    try container.encodeIfPresent(self.exchangeError, forKey: .exchangeError)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

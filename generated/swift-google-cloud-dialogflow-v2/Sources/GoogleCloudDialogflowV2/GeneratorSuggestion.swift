@@ -28,6 +28,8 @@
     /// The suggestion could be one of the many types
     public var suggestion: OneOf_Suggestion? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GeneratorSuggestion`.
     public init() {}
 
@@ -44,17 +46,32 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case freeFormSuggestion = "freeFormSuggestion"
-      case summarySuggestion = "summarySuggestion"
-      case agentCoachingSuggestion = "agentCoachingSuggestion"
-      case toolCallInfo = "toolCallInfo"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let freeFormSuggestion = CodingKeys(stringValue: "freeFormSuggestion")
+      static let summarySuggestion = CodingKeys(stringValue: "summarySuggestion")
+      static let agentCoachingSuggestion = CodingKeys(stringValue: "agentCoachingSuggestion")
+      static let toolCallInfo = CodingKeys(stringValue: "toolCallInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "freeFormSuggestion",
+        "summarySuggestion",
+        "agentCoachingSuggestion",
+        "toolCallInfo",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.toolCallInfo = try container.decode(
+      if let value = try container.decodeIfPresent(
         [GeneratorSuggestion.ToolCallInfo].self, forKey: .toolCallInfo)
+      {
+        self.toolCallInfo = value
+      }
 
       var suggestion: OneOf_Suggestion? = nil
       let suggestionCheckAndSet = {
@@ -82,6 +99,10 @@
         try suggestionCheckAndSet(.agentCoachingSuggestion(agentCoachingSuggestion))
       }
       self.suggestion = suggestion
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -98,6 +119,9 @@
           try container.encode(value, forKey: .agentCoachingSuggestion)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Request and response for a tool call.
@@ -109,6 +133,8 @@
 
       /// Required. Response for a tool call.
       public var toolCallResult: ToolCallResult? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ToolCallInfo`.
       public init() {}
@@ -124,6 +150,41 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let toolCall = CodingKeys(stringValue: "toolCall")
+        static let toolCallResult = CodingKeys(stringValue: "toolCallResult")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "toolCall",
+          "toolCallResult",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.toolCall = try container.decodeIfPresent(ToolCall.self, forKey: .toolCall)
+        self.toolCallResult = try container.decodeIfPresent(
+          ToolCallResult.self, forKey: .toolCallResult)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.toolCall, forKey: .toolCall)
+        try container.encodeIfPresent(self.toolCallResult, forKey: .toolCallResult)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -88,6 +88,8 @@ public struct KerberosConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not specified, the uppercased domain of hostnames will be the realm.
   public var realm: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KerberosConfig`.
   public init() {}
 
@@ -102,6 +104,131 @@ public struct KerberosConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableKerberos = CodingKeys(stringValue: "enableKerberos")
+    static let rootPrincipalPasswordUri = CodingKeys(stringValue: "rootPrincipalPasswordUri")
+    static let kmsKeyUri = CodingKeys(stringValue: "kmsKeyUri")
+    static let keystoreUri = CodingKeys(stringValue: "keystoreUri")
+    static let truststoreUri = CodingKeys(stringValue: "truststoreUri")
+    static let keystorePasswordUri = CodingKeys(stringValue: "keystorePasswordUri")
+    static let keyPasswordUri = CodingKeys(stringValue: "keyPasswordUri")
+    static let truststorePasswordUri = CodingKeys(stringValue: "truststorePasswordUri")
+    static let crossRealmTrustRealm = CodingKeys(stringValue: "crossRealmTrustRealm")
+    static let crossRealmTrustKdc = CodingKeys(stringValue: "crossRealmTrustKdc")
+    static let crossRealmTrustAdminServer = CodingKeys(stringValue: "crossRealmTrustAdminServer")
+    static let crossRealmTrustSharedPasswordUri = CodingKeys(
+      stringValue: "crossRealmTrustSharedPasswordUri")
+    static let kdcDbKeyUri = CodingKeys(stringValue: "kdcDbKeyUri")
+    static let tgtLifetimeHours = CodingKeys(stringValue: "tgtLifetimeHours")
+    static let realm = CodingKeys(stringValue: "realm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableKerberos",
+      "rootPrincipalPasswordUri",
+      "kmsKeyUri",
+      "keystoreUri",
+      "truststoreUri",
+      "keystorePasswordUri",
+      "keyPasswordUri",
+      "truststorePasswordUri",
+      "crossRealmTrustRealm",
+      "crossRealmTrustKdc",
+      "crossRealmTrustAdminServer",
+      "crossRealmTrustSharedPasswordUri",
+      "kdcDbKeyUri",
+      "tgtLifetimeHours",
+      "realm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableKerberos) {
+      self.enableKerberos = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .rootPrincipalPasswordUri)
+    {
+      self.rootPrincipalPasswordUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyUri) {
+      self.kmsKeyUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keystoreUri) {
+      self.keystoreUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .truststoreUri) {
+      self.truststoreUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keystorePasswordUri) {
+      self.keystorePasswordUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyPasswordUri) {
+      self.keyPasswordUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .truststorePasswordUri)
+    {
+      self.truststorePasswordUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossRealmTrustRealm) {
+      self.crossRealmTrustRealm = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossRealmTrustKdc) {
+      self.crossRealmTrustKdc = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .crossRealmTrustAdminServer)
+    {
+      self.crossRealmTrustAdminServer = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .crossRealmTrustSharedPasswordUri)
+    {
+      self.crossRealmTrustSharedPasswordUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kdcDbKeyUri) {
+      self.kdcDbKeyUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .tgtLifetimeHours) {
+      self.tgtLifetimeHours = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .realm) {
+      self.realm = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableKerberos, forKey: .enableKerberos)
+    try container.encode(self.rootPrincipalPasswordUri, forKey: .rootPrincipalPasswordUri)
+    try container.encode(self.kmsKeyUri, forKey: .kmsKeyUri)
+    try container.encode(self.keystoreUri, forKey: .keystoreUri)
+    try container.encode(self.truststoreUri, forKey: .truststoreUri)
+    try container.encode(self.keystorePasswordUri, forKey: .keystorePasswordUri)
+    try container.encode(self.keyPasswordUri, forKey: .keyPasswordUri)
+    try container.encode(self.truststorePasswordUri, forKey: .truststorePasswordUri)
+    try container.encode(self.crossRealmTrustRealm, forKey: .crossRealmTrustRealm)
+    try container.encode(self.crossRealmTrustKdc, forKey: .crossRealmTrustKdc)
+    try container.encode(self.crossRealmTrustAdminServer, forKey: .crossRealmTrustAdminServer)
+    try container.encode(
+      self.crossRealmTrustSharedPasswordUri, forKey: .crossRealmTrustSharedPasswordUri)
+    try container.encode(self.kdcDbKeyUri, forKey: .kdcDbKeyUri)
+    try container.encode(self.tgtLifetimeHours, forKey: .tgtLifetimeHours)
+    try container.encode(self.realm, forKey: .realm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -58,6 +58,8 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The metadata associated with the cloud provider.
   public var cloudProviderMetadata: OneOf_CloudProviderMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Resource`.
   public init() {}
 
@@ -74,30 +76,63 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case type = "type"
-    case cloudProvider = "cloudProvider"
-    case service = "service"
-    case location = "location"
-    case gcpMetadata = "gcpMetadata"
-    case awsMetadata = "awsMetadata"
-    case azureMetadata = "azureMetadata"
-    case resourcePath = "resourcePath"
-    case resourcePathString = "resourcePathString"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let type = CodingKeys(stringValue: "type")
+    static let cloudProvider = CodingKeys(stringValue: "cloudProvider")
+    static let service = CodingKeys(stringValue: "service")
+    static let location = CodingKeys(stringValue: "location")
+    static let gcpMetadata = CodingKeys(stringValue: "gcpMetadata")
+    static let awsMetadata = CodingKeys(stringValue: "awsMetadata")
+    static let azureMetadata = CodingKeys(stringValue: "azureMetadata")
+    static let resourcePath = CodingKeys(stringValue: "resourcePath")
+    static let resourcePathString = CodingKeys(stringValue: "resourcePathString")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "type",
+      "cloudProvider",
+      "service",
+      "location",
+      "gcpMetadata",
+      "awsMetadata",
+      "azureMetadata",
+      "resourcePath",
+      "resourcePathString",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.cloudProvider = try container.decode(CloudProvider.self, forKey: .cloudProvider)
-    self.service = try container.decode(Swift.String.self, forKey: .service)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(CloudProvider.self, forKey: .cloudProvider) {
+      self.cloudProvider = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
     self.resourcePath = try container.decodeIfPresent(ResourcePath.self, forKey: .resourcePath)
-    self.resourcePathString = try container.decode(Swift.String.self, forKey: .resourcePathString)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourcePathString) {
+      self.resourcePathString = value
+    }
 
     var cloudProviderMetadata: OneOf_CloudProviderMetadata? = nil
     let cloudProviderMetadataCheckAndSet = {
@@ -121,6 +156,10 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try cloudProviderMetadataCheckAndSet(.azureMetadata(azureMetadata))
     }
     self.cloudProviderMetadata = cloudProviderMetadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -131,7 +170,7 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.cloudProvider, forKey: .cloudProvider)
     try container.encode(self.service, forKey: .service)
     try container.encode(self.location, forKey: .location)
-    try container.encode(self.resourcePath, forKey: .resourcePath)
+    try container.encodeIfPresent(self.resourcePath, forKey: .resourcePath)
     try container.encode(self.resourcePathString, forKey: .resourcePathString)
 
     if let choice = self.cloudProviderMetadata {
@@ -143,6 +182,9 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .azureMetadata(let value):
         try container.encode(value, forKey: .azureMetadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

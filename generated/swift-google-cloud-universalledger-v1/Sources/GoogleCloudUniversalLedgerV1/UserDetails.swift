@@ -55,6 +55,8 @@ public struct UserDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// user.
   public var contractAccountFields: [Swift.String: Fields] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserDetails`.
   public init() {}
 
@@ -69,6 +71,84 @@ public struct UserDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accountManager = CodingKeys(stringValue: "accountManager")
+    static let accountManagerId = CodingKeys(stringValue: "accountManagerId")
+    static let tokenManager = CodingKeys(stringValue: "tokenManager")
+    static let tokenManagerId = CodingKeys(stringValue: "tokenManagerId")
+    static let roles = CodingKeys(stringValue: "roles")
+    static let accountStatus = CodingKeys(stringValue: "accountStatus")
+    static let balance = CodingKeys(stringValue: "balance")
+    static let accountFields = CodingKeys(stringValue: "accountFields")
+    static let contractAccountFields = CodingKeys(stringValue: "contractAccountFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accountManager",
+      "accountManagerId",
+      "tokenManager",
+      "tokenManagerId",
+      "roles",
+      "accountStatus",
+      "balance",
+      "accountFields",
+      "contractAccountFields",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.accountManager = try container.decodeIfPresent(Entity.self, forKey: .accountManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountManagerId) {
+      self.accountManagerId = value
+    }
+    self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenManagerId) {
+      self.tokenManagerId = value
+    }
+    if let value = try container.decodeIfPresent([Role].self, forKey: .roles) {
+      self.roles = value
+    }
+    if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
+      self.accountStatus = value
+    }
+    self.balance = try container.decodeIfPresent(CurrencyValue.self, forKey: .balance)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Fields].self, forKey: .accountFields)
+    {
+      self.accountFields = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Fields].self, forKey: .contractAccountFields)
+    {
+      self.contractAccountFields = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.accountManager, forKey: .accountManager)
+    try container.encode(self.accountManagerId, forKey: .accountManagerId)
+    try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)
+    try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
+    try container.encode(self.roles, forKey: .roles)
+    try container.encode(self.accountStatus, forKey: .accountStatus)
+    try container.encodeIfPresent(self.balance, forKey: .balance)
+    try container.encode(self.accountFields, forKey: .accountFields)
+    try container.encode(self.contractAccountFields, forKey: .contractAccountFields)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

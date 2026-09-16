@@ -43,6 +43,8 @@ public struct BackupStorageUtilizationReportLog: Codable, Equatable, GoogleCloud
   /// Required. Appliance id.
   public var applianceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupStorageUtilizationReportLog`.
   public init() {}
 
@@ -57,6 +59,75 @@ public struct BackupStorageUtilizationReportLog: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let storageType = CodingKeys(stringValue: "storageType")
+    static let poolName = CodingKeys(stringValue: "poolName")
+    static let totalCapacityInGib = CodingKeys(stringValue: "totalCapacityInGib")
+    static let usedCapacityInGib = CodingKeys(stringValue: "usedCapacityInGib")
+    static let utilizationPercentage = CodingKeys(stringValue: "utilizationPercentage")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "applianceName",
+      "storageType",
+      "poolName",
+      "totalCapacityInGib",
+      "usedCapacityInGib",
+      "utilizationPercentage",
+      "applianceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageType) {
+      self.storageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .poolName) {
+      self.poolName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .totalCapacityInGib) {
+      self.totalCapacityInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .usedCapacityInGib) {
+      self.usedCapacityInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .utilizationPercentage)
+    {
+      self.utilizationPercentage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.storageType, forKey: .storageType)
+    try container.encode(self.poolName, forKey: .poolName)
+    try container.encode(self.totalCapacityInGib, forKey: .totalCapacityInGib)
+    try container.encode(self.usedCapacityInGib, forKey: .usedCapacityInGib)
+    try container.encode(self.utilizationPercentage, forKey: .utilizationPercentage)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

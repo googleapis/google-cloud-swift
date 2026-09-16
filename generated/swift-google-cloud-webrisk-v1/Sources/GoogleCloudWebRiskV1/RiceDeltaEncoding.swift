@@ -39,6 +39,8 @@ public struct RiceDeltaEncoding: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The encoded deltas that are encoded using the Golomb-Rice coder.
   public var encodedData: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RiceDeltaEncoding`.
   public init() {}
 
@@ -53,6 +55,56 @@ public struct RiceDeltaEncoding: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let firstValue = CodingKeys(stringValue: "firstValue")
+    static let riceParameter = CodingKeys(stringValue: "riceParameter")
+    static let entryCount = CodingKeys(stringValue: "entryCount")
+    static let encodedData = CodingKeys(stringValue: "encodedData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "firstValue",
+      "riceParameter",
+      "entryCount",
+      "encodedData",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .firstValue) {
+      self.firstValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .riceParameter) {
+      self.riceParameter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .entryCount) {
+      self.entryCount = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .encodedData) {
+      self.encodedData = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.firstValue, forKey: .firstValue)
+    try container.encode(self.riceParameter, forKey: .riceParameter)
+    try container.encode(self.entryCount, forKey: .entryCount)
+    try container.encode(self.encodedData, forKey: .encodedData)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

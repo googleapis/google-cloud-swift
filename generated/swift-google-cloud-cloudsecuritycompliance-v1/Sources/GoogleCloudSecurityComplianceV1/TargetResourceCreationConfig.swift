@@ -24,6 +24,8 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleCloudWKT._
   /// The configuration that's required to create the target resource.
   public var resourceCreationConfig: OneOf_ResourceCreationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TargetResourceCreationConfig`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case folderCreationConfig = "folderCreationConfig"
-    case projectCreationConfig = "projectCreationConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let folderCreationConfig = CodingKeys(stringValue: "folderCreationConfig")
+    static let projectCreationConfig = CodingKeys(stringValue: "projectCreationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "folderCreationConfig",
+      "projectCreationConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleCloudWKT._
       try resourceCreationConfigCheckAndSet(.projectCreationConfig(projectCreationConfig))
     }
     self.resourceCreationConfig = resourceCreationConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleCloudWKT._
       case .projectCreationConfig(let value):
         try container.encode(value, forKey: .projectCreationConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

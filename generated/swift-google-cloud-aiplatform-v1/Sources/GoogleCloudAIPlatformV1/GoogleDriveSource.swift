@@ -25,6 +25,8 @@
     /// Required. Google Drive resource IDs.
     public var resourceIds: [GoogleDriveSource.ResourceId] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoogleDriveSource`.
     public init() {}
 
@@ -41,6 +43,40 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceIds = CodingKeys(stringValue: "resourceIds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceIds"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [GoogleDriveSource.ResourceId].self, forKey: .resourceIds)
+      {
+        self.resourceIds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceIds, forKey: .resourceIds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The type and ID of the Google Drive resource.
     public struct ResourceId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -51,6 +87,8 @@
 
       /// Required. The ID of the Google Drive resource.
       public var resourceId: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ResourceId`.
       public init() {}
@@ -66,6 +104,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let resourceType = CodingKeys(stringValue: "resourceType")
+        static let resourceId = CodingKeys(stringValue: "resourceId")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "resourceType",
+          "resourceId",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          GoogleDriveSource.ResourceId.ResourceType.self, forKey: .resourceType)
+        {
+          self.resourceType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceId) {
+          self.resourceId = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.resourceType, forKey: .resourceType)
+        try container.encode(self.resourceId, forKey: .resourceId)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The type of the Google Drive resource.

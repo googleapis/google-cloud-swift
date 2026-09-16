@@ -32,6 +32,8 @@ public struct Widget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Content defines the component used to populate the widget.
   public var content: OneOf_Content? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Widget`.
   public init() {}
 
@@ -48,28 +50,55 @@ public struct Widget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case title = "title"
-    case xyChart = "xyChart"
-    case scorecard = "scorecard"
-    case text = "text"
-    case blank = "blank"
-    case alertChart = "alertChart"
-    case timeSeriesTable = "timeSeriesTable"
-    case collapsibleGroup = "collapsibleGroup"
-    case logsPanel = "logsPanel"
-    case incidentList = "incidentList"
-    case pieChart = "pieChart"
-    case errorReportingPanel = "errorReportingPanel"
-    case sectionHeader = "sectionHeader"
-    case singleViewGroup = "singleViewGroup"
-    case id = "id"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let title = CodingKeys(stringValue: "title")
+    static let xyChart = CodingKeys(stringValue: "xyChart")
+    static let scorecard = CodingKeys(stringValue: "scorecard")
+    static let text = CodingKeys(stringValue: "text")
+    static let blank = CodingKeys(stringValue: "blank")
+    static let alertChart = CodingKeys(stringValue: "alertChart")
+    static let timeSeriesTable = CodingKeys(stringValue: "timeSeriesTable")
+    static let collapsibleGroup = CodingKeys(stringValue: "collapsibleGroup")
+    static let logsPanel = CodingKeys(stringValue: "logsPanel")
+    static let incidentList = CodingKeys(stringValue: "incidentList")
+    static let pieChart = CodingKeys(stringValue: "pieChart")
+    static let errorReportingPanel = CodingKeys(stringValue: "errorReportingPanel")
+    static let sectionHeader = CodingKeys(stringValue: "sectionHeader")
+    static let singleViewGroup = CodingKeys(stringValue: "singleViewGroup")
+    static let id = CodingKeys(stringValue: "id")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "title",
+      "xyChart",
+      "scorecard",
+      "text",
+      "blank",
+      "alertChart",
+      "timeSeriesTable",
+      "collapsibleGroup",
+      "logsPanel",
+      "incidentList",
+      "pieChart",
+      "errorReportingPanel",
+      "sectionHeader",
+      "singleViewGroup",
+      "id",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.title = try container.decode(Swift.String.self, forKey: .title)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
 
     var content: OneOf_Content? = nil
     let contentCheckAndSet = {
@@ -131,6 +160,10 @@ public struct Widget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try contentCheckAndSet(.singleViewGroup(singleViewGroup))
     }
     self.content = content
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -167,6 +200,9 @@ public struct Widget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .singleViewGroup(let value):
         try container.encode(value, forKey: .singleViewGroup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

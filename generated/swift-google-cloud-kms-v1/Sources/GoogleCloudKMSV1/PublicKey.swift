@@ -92,6 +92,8 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.PublicKey.public_key_format]: <doc:PublicKey/publicKeyFormat>
   public var publicKey: ChecksummedData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PublicKey`.
   public init() {}
 
@@ -108,39 +110,73 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case pem = "pem"
-    case algorithm = "algorithm"
-    case pemCrc32C = "pemCrc32c"
-    case name = "name"
-    case protectionLevel = "protectionLevel"
-    case publicKeyFormat = "publicKeyFormat"
-    case publicKey = "publicKey"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pem = CodingKeys(stringValue: "pem")
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+    static let pemCrc32C = CodingKeys(stringValue: "pemCrc32c")
+    static let name = CodingKeys(stringValue: "name")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+    static let publicKeyFormat = CodingKeys(stringValue: "publicKeyFormat")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pem",
+      "algorithm",
+      "pemCrc32c",
+      "name",
+      "protectionLevel",
+      "publicKeyFormat",
+      "publicKey",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.pem = try container.decode(Swift.String.self, forKey: .pem)
-    self.algorithm = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pem) {
+      self.pem = value
+    }
+    if let value = try container.decodeIfPresent(
       CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
+    {
+      self.algorithm = value
+    }
     self.pemCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .pemCrc32C)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
-    self.publicKeyFormat = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    if let value = try container.decodeIfPresent(
       PublicKey.PublicKeyFormat.self, forKey: .publicKeyFormat)
+    {
+      self.publicKeyFormat = value
+    }
     self.publicKey = try container.decodeIfPresent(ChecksummedData.self, forKey: .publicKey)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pem, forKey: .pem)
     try container.encode(self.algorithm, forKey: .algorithm)
-    try container.encode(self.pemCrc32C, forKey: .pemCrc32C)
+    try container.encodeIfPresent(self.pemCrc32C, forKey: .pemCrc32C)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.protectionLevel, forKey: .protectionLevel)
     try container.encode(self.publicKeyFormat, forKey: .publicKeyFormat)
-    try container.encode(self.publicKey, forKey: .publicKey)
+    try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The supported [PublicKey][google.cloud.kms.v1.PublicKey] formats.

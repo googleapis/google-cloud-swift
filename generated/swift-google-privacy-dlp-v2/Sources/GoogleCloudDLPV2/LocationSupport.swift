@@ -30,6 +30,8 @@ public struct LocationSupport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If scope is ANY_LOCATION, no regions will be listed.
   public var locations: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationSupport`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct LocationSupport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let regionalizationScope = CodingKeys(stringValue: "regionalizationScope")
+    static let locations = CodingKeys(stringValue: "locations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "regionalizationScope",
+      "locations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      LocationSupport.RegionalizationScope.self, forKey: .regionalizationScope)
+    {
+      self.regionalizationScope = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.regionalizationScope, forKey: .regionalizationScope)
+    try container.encode(self.locations, forKey: .locations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The location scope for a feature.

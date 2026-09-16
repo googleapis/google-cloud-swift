@@ -37,6 +37,8 @@ public struct QueryResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Total rows of the whole query results.
   public var totalRows: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryResult`.
   public init() {}
 
@@ -51,6 +53,54 @@ public struct QueryResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rows = CodingKeys(stringValue: "rows")
+    static let schema = CodingKeys(stringValue: "schema")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let totalRows = CodingKeys(stringValue: "totalRows")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rows",
+      "schema",
+      "nextPageToken",
+      "totalRows",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Struct].self, forKey: .rows) {
+      self.rows = value
+    }
+    self.schema = try container.decodeIfPresent(TableSchema.self, forKey: .schema)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalRows) {
+      self.totalRows = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rows, forKey: .rows)
+    try container.encodeIfPresent(self.schema, forKey: .schema)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.totalRows, forKey: .totalRows)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

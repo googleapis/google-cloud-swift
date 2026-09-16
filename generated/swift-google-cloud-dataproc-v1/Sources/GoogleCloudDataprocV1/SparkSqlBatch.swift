@@ -34,6 +34,8 @@ public struct SparkSqlBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
   public var jarFileUris: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SparkSqlBatch`.
   public init() {}
 
@@ -48,6 +50,52 @@ public struct SparkSqlBatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queryFileUri = CodingKeys(stringValue: "queryFileUri")
+    static let queryVariables = CodingKeys(stringValue: "queryVariables")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queryFileUri",
+      "queryVariables",
+      "jarFileUris",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryFileUri) {
+      self.queryFileUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .queryVariables)
+    {
+      self.queryVariables = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.queryFileUri, forKey: .queryFileUri)
+    try container.encode(self.queryVariables, forKey: .queryVariables)
+    try container.encode(self.jarFileUris, forKey: .jarFileUris)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

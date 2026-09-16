@@ -59,6 +59,8 @@ public struct HybridReplicationParameters: Codable, Equatable, GoogleCloudWKT._A
   /// Optional. Constituent volume count for large volume.
   public var largeVolumeConstituentCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HybridReplicationParameters`.
   public init() {}
 
@@ -73,6 +75,105 @@ public struct HybridReplicationParameters: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let replication = CodingKeys(stringValue: "replication")
+    static let peerVolumeName = CodingKeys(stringValue: "peerVolumeName")
+    static let peerClusterName = CodingKeys(stringValue: "peerClusterName")
+    static let peerSvmName = CodingKeys(stringValue: "peerSvmName")
+    static let peerIpAddresses = CodingKeys(stringValue: "peerIpAddresses")
+    static let clusterLocation = CodingKeys(stringValue: "clusterLocation")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let replicationSchedule = CodingKeys(stringValue: "replicationSchedule")
+    static let hybridReplicationType = CodingKeys(stringValue: "hybridReplicationType")
+    static let largeVolumeConstituentCount = CodingKeys(stringValue: "largeVolumeConstituentCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "replication",
+      "peerVolumeName",
+      "peerClusterName",
+      "peerSvmName",
+      "peerIpAddresses",
+      "clusterLocation",
+      "description",
+      "labels",
+      "replicationSchedule",
+      "hybridReplicationType",
+      "largeVolumeConstituentCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replication) {
+      self.replication = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerVolumeName) {
+      self.peerVolumeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerClusterName) {
+      self.peerClusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerSvmName) {
+      self.peerSvmName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .peerIpAddresses) {
+      self.peerIpAddresses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterLocation) {
+      self.clusterLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      HybridReplicationSchedule.self, forKey: .replicationSchedule)
+    {
+      self.replicationSchedule = value
+    }
+    if let value = try container.decodeIfPresent(
+      HybridReplicationParameters.VolumeHybridReplicationType.self, forKey: .hybridReplicationType)
+    {
+      self.hybridReplicationType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .largeVolumeConstituentCount)
+    {
+      self.largeVolumeConstituentCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.replication, forKey: .replication)
+    try container.encode(self.peerVolumeName, forKey: .peerVolumeName)
+    try container.encode(self.peerClusterName, forKey: .peerClusterName)
+    try container.encode(self.peerSvmName, forKey: .peerSvmName)
+    try container.encode(self.peerIpAddresses, forKey: .peerIpAddresses)
+    try container.encode(self.clusterLocation, forKey: .clusterLocation)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.replicationSchedule, forKey: .replicationSchedule)
+    try container.encode(self.hybridReplicationType, forKey: .hybridReplicationType)
+    try container.encode(self.largeVolumeConstituentCount, forKey: .largeVolumeConstituentCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of the volume's hybrid replication.

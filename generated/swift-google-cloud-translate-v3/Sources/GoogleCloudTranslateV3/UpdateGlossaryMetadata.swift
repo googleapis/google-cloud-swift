@@ -35,6 +35,8 @@ public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The time when the operation was submitted to the server.
   public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateGlossaryMetadata`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let glossary = CodingKeys(stringValue: "glossary")
+    static let state = CodingKeys(stringValue: "state")
+    static let submitTime = CodingKeys(stringValue: "submitTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "glossary",
+      "state",
+      "submitTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.glossary = try container.decodeIfPresent(Glossary.self, forKey: .glossary)
+    if let value = try container.decodeIfPresent(UpdateGlossaryMetadata.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    self.submitTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .submitTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.glossary, forKey: .glossary)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.submitTime, forKey: .submitTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enumerates the possible states that the update request can be in.

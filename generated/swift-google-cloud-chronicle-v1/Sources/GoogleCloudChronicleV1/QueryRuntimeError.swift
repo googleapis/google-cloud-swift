@@ -36,6 +36,8 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Reason for the error.
   public var warningReason: QueryRuntimeError.WarningReason = QueryRuntimeError.WarningReason()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryRuntimeError`.
   public init() {}
 
@@ -52,6 +54,68 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errorTitle = CodingKeys(stringValue: "errorTitle")
+    static let errorDescription = CodingKeys(stringValue: "errorDescription")
+    static let errorSeverity = CodingKeys(stringValue: "errorSeverity")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let warningReason = CodingKeys(stringValue: "warningReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errorTitle",
+      "errorDescription",
+      "errorSeverity",
+      "metadata",
+      "warningReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorTitle) {
+      self.errorTitle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorDescription) {
+      self.errorDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      QueryRuntimeError.ErrorSeverity.self, forKey: .errorSeverity)
+    {
+      self.errorSeverity = value
+    }
+    if let value = try container.decodeIfPresent(
+      [QueryRuntimeError.QueryRuntimeErrorMetadata].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    if let value = try container.decodeIfPresent(
+      QueryRuntimeError.WarningReason.self, forKey: .warningReason)
+    {
+      self.warningReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errorTitle, forKey: .errorTitle)
+    try container.encode(self.errorDescription, forKey: .errorDescription)
+    try container.encode(self.errorSeverity, forKey: .errorSeverity)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encode(self.warningReason, forKey: .warningReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Metadata for the error.
   public struct QueryRuntimeErrorMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -61,6 +125,8 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Metadata value.
     public var value: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `QueryRuntimeErrorMetadata`.
     public init() {}
@@ -76,6 +142,45 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let key = CodingKeys(stringValue: "key")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "key",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(QueryRuntimeError.MetadataKey.self, forKey: .key)
+      {
+        self.key = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.key, forKey: .key)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

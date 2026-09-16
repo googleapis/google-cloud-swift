@@ -41,6 +41,8 @@ public struct DeliverInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// applicable).
   public var googleServiceType: DeliverInfo.GoogleServiceType = DeliverInfo.GoogleServiceType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeliverInfo`.
   public init() {}
 
@@ -55,6 +57,70 @@ public struct DeliverInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let target = CodingKeys(stringValue: "target")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let storageBucket = CodingKeys(stringValue: "storageBucket")
+    static let pscGoogleApiTarget = CodingKeys(stringValue: "pscGoogleApiTarget")
+    static let googleServiceType = CodingKeys(stringValue: "googleServiceType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "target",
+      "resourceUri",
+      "ipAddress",
+      "storageBucket",
+      "pscGoogleApiTarget",
+      "googleServiceType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DeliverInfo.Target.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageBucket) {
+      self.storageBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pscGoogleApiTarget) {
+      self.pscGoogleApiTarget = value
+    }
+    if let value = try container.decodeIfPresent(
+      DeliverInfo.GoogleServiceType.self, forKey: .googleServiceType)
+    {
+      self.googleServiceType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.storageBucket, forKey: .storageBucket)
+    try container.encode(self.pscGoogleApiTarget, forKey: .pscGoogleApiTarget)
+    try container.encode(self.googleServiceType, forKey: .googleServiceType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Deliver target types:

@@ -31,6 +31,8 @@
     /// Output only. The number of shards in the Index.
     public var shardsCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndexStats`.
     public init() {}
 
@@ -45,6 +47,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let vectorsCount = CodingKeys(stringValue: "vectorsCount")
+      static let sparseVectorsCount = CodingKeys(stringValue: "sparseVectorsCount")
+      static let shardsCount = CodingKeys(stringValue: "shardsCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "vectorsCount",
+        "sparseVectorsCount",
+        "shardsCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .vectorsCount) {
+        self.vectorsCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sparseVectorsCount) {
+        self.sparseVectorsCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shardsCount) {
+        self.shardsCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.vectorsCount, forKey: .vectorsCount)
+      try container.encode(self.sparseVectorsCount, forKey: .sparseVectorsCount)
+      try container.encode(self.shardsCount, forKey: .shardsCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

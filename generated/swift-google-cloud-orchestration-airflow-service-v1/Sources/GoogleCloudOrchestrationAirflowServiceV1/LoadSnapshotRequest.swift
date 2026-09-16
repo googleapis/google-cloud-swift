@@ -45,6 +45,8 @@ public struct LoadSnapshotRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// environment's state.
   public var skipGcsDataCopying: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoadSnapshotRequest`.
   public init() {}
 
@@ -59,6 +61,77 @@ public struct LoadSnapshotRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let environment = CodingKeys(stringValue: "environment")
+    static let snapshotPath = CodingKeys(stringValue: "snapshotPath")
+    static let skipPypiPackagesInstallation = CodingKeys(
+      stringValue: "skipPypiPackagesInstallation")
+    static let skipEnvironmentVariablesSetting = CodingKeys(
+      stringValue: "skipEnvironmentVariablesSetting")
+    static let skipAirflowOverridesSetting = CodingKeys(stringValue: "skipAirflowOverridesSetting")
+    static let skipGcsDataCopying = CodingKeys(stringValue: "skipGcsDataCopying")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "environment",
+      "snapshotPath",
+      "skipPypiPackagesInstallation",
+      "skipEnvironmentVariablesSetting",
+      "skipAirflowOverridesSetting",
+      "skipGcsDataCopying",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environment) {
+      self.environment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snapshotPath) {
+      self.snapshotPath = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .skipPypiPackagesInstallation)
+    {
+      self.skipPypiPackagesInstallation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .skipEnvironmentVariablesSetting)
+    {
+      self.skipEnvironmentVariablesSetting = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .skipAirflowOverridesSetting)
+    {
+      self.skipAirflowOverridesSetting = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipGcsDataCopying) {
+      self.skipGcsDataCopying = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.environment, forKey: .environment)
+    try container.encode(self.snapshotPath, forKey: .snapshotPath)
+    try container.encode(self.skipPypiPackagesInstallation, forKey: .skipPypiPackagesInstallation)
+    try container.encode(
+      self.skipEnvironmentVariablesSetting, forKey: .skipEnvironmentVariablesSetting)
+    try container.encode(self.skipAirflowOverridesSetting, forKey: .skipAirflowOverridesSetting)
+    try container.encode(self.skipGcsDataCopying, forKey: .skipGcsDataCopying)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

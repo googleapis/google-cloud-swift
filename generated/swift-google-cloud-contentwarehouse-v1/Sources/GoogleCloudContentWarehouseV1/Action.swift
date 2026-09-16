@@ -26,6 +26,8 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var action: OneOf_Action? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Action`.
   public init() {}
 
@@ -42,20 +44,38 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case actionId = "actionId"
-    case accessControl = "accessControl"
-    case dataValidation = "dataValidation"
-    case dataUpdate = "dataUpdate"
-    case addToFolder = "addToFolder"
-    case publishToPubSub = "publishToPubSub"
-    case removeFromFolderAction = "removeFromFolderAction"
-    case deleteDocumentAction = "deleteDocumentAction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let actionId = CodingKeys(stringValue: "actionId")
+    static let accessControl = CodingKeys(stringValue: "accessControl")
+    static let dataValidation = CodingKeys(stringValue: "dataValidation")
+    static let dataUpdate = CodingKeys(stringValue: "dataUpdate")
+    static let addToFolder = CodingKeys(stringValue: "addToFolder")
+    static let publishToPubSub = CodingKeys(stringValue: "publishToPubSub")
+    static let removeFromFolderAction = CodingKeys(stringValue: "removeFromFolderAction")
+    static let deleteDocumentAction = CodingKeys(stringValue: "deleteDocumentAction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "actionId",
+      "accessControl",
+      "dataValidation",
+      "dataUpdate",
+      "addToFolder",
+      "publishToPubSub",
+      "removeFromFolderAction",
+      "deleteDocumentAction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.actionId = try container.decode(Swift.String.self, forKey: .actionId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .actionId) {
+      self.actionId = value
+    }
 
     var action: OneOf_Action? = nil
     let actionCheckAndSet = {
@@ -101,6 +121,10 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try actionCheckAndSet(.deleteDocumentAction(deleteDocumentAction))
     }
     self.action = action
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -124,6 +148,9 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .deleteDocumentAction(let value):
         try container.encode(value, forKey: .deleteDocumentAction)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

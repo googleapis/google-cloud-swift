@@ -33,6 +33,8 @@ public struct TestConnectionAssignmentError: Codable, Equatable, GoogleCloudWKT.
   /// The text describing the root cause of the reported issue.
   public var issue: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TestConnectionAssignmentError`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct TestConnectionAssignmentError: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let message = CodingKeys(stringValue: "message")
+    static let action = CodingKeys(stringValue: "action")
+    static let issue = CodingKeys(stringValue: "issue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "message",
+      "action",
+      "issue",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issue) {
+      self.issue = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.issue, forKey: .issue)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

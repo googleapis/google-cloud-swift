@@ -53,6 +53,8 @@ public struct TextStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The mapping for the input streams and text tracks.
   public var mapping: [TextStream.TextMapping] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TextStream`.
   public init() {}
 
@@ -67,6 +69,62 @@ public struct TextStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let codec = CodingKeys(stringValue: "codec")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let outputCeaChannel = CodingKeys(stringValue: "outputCeaChannel")
+    static let mapping = CodingKeys(stringValue: "mapping")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "codec",
+      "languageCode",
+      "displayName",
+      "outputCeaChannel",
+      "mapping",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codec) {
+      self.codec = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputCeaChannel) {
+      self.outputCeaChannel = value
+    }
+    if let value = try container.decodeIfPresent([TextStream.TextMapping].self, forKey: .mapping) {
+      self.mapping = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.codec, forKey: .codec)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.outputCeaChannel, forKey: .outputCeaChannel)
+    try container.encode(self.mapping, forKey: .mapping)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The mapping for the input streams and text tracks.
@@ -99,6 +157,8 @@ public struct TextStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
     public var fromLanguageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextMapping`.
     public init() {}
 
@@ -113,6 +173,56 @@ public struct TextStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputKey = CodingKeys(stringValue: "inputKey")
+      static let inputTrack = CodingKeys(stringValue: "inputTrack")
+      static let inputCeaChannel = CodingKeys(stringValue: "inputCeaChannel")
+      static let fromLanguageCode = CodingKeys(stringValue: "fromLanguageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputKey",
+        "inputTrack",
+        "inputCeaChannel",
+        "fromLanguageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputKey) {
+        self.inputKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .inputTrack) {
+        self.inputTrack = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputCeaChannel) {
+        self.inputCeaChannel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fromLanguageCode) {
+        self.fromLanguageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputKey, forKey: .inputKey)
+      try container.encode(self.inputTrack, forKey: .inputTrack)
+      try container.encode(self.inputCeaChannel, forKey: .inputCeaChannel)
+      try container.encode(self.fromLanguageCode, forKey: .fromLanguageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

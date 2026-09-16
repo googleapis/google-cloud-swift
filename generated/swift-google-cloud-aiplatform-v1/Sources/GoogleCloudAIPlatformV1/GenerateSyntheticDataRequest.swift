@@ -40,6 +40,8 @@
     /// The generation strategy to use.
     public var strategy: OneOf_Strategy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerateSyntheticDataRequest`.
     public init() {}
 
@@ -56,21 +58,43 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case taskDescription = "taskDescription"
-      case location = "location"
-      case count = "count"
-      case outputFieldSpecs = "outputFieldSpecs"
-      case examples = "examples"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let taskDescription = CodingKeys(stringValue: "taskDescription")
+      static let location = CodingKeys(stringValue: "location")
+      static let count = CodingKeys(stringValue: "count")
+      static let outputFieldSpecs = CodingKeys(stringValue: "outputFieldSpecs")
+      static let examples = CodingKeys(stringValue: "examples")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "taskDescription",
+        "location",
+        "count",
+        "outputFieldSpecs",
+        "examples",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.location = try container.decode(Swift.String.self, forKey: .location)
-      self.count = try container.decode(Swift.Int32.self, forKey: .count)
-      self.outputFieldSpecs = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+        self.count = value
+      }
+      if let value = try container.decodeIfPresent(
         [OutputFieldSpec].self, forKey: .outputFieldSpecs)
-      self.examples = try container.decode([SyntheticExample].self, forKey: .examples)
+      {
+        self.outputFieldSpecs = value
+      }
+      if let value = try container.decodeIfPresent([SyntheticExample].self, forKey: .examples) {
+        self.examples = value
+      }
 
       var strategy: OneOf_Strategy? = nil
       let strategyCheckAndSet = {
@@ -88,6 +112,10 @@
         try strategyCheckAndSet(.taskDescription(taskDescription))
       }
       self.strategy = strategy
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -102,6 +130,9 @@
         case .taskDescription(let value):
           try container.encode(value, forKey: .taskDescription)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

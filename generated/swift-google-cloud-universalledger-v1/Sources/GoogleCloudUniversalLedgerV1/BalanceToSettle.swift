@@ -40,6 +40,8 @@ public struct BalanceToSettle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The balance to settle. Must be positive.
   public var balance: CurrencyValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BalanceToSettle`.
   public init() {}
 
@@ -54,6 +56,56 @@ public struct BalanceToSettle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let balancePayer = CodingKeys(stringValue: "balancePayer")
+    static let balancePayerId = CodingKeys(stringValue: "balancePayerId")
+    static let balanceReceiver = CodingKeys(stringValue: "balanceReceiver")
+    static let balanceReceiverId = CodingKeys(stringValue: "balanceReceiverId")
+    static let balance = CodingKeys(stringValue: "balance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "balancePayer",
+      "balancePayerId",
+      "balanceReceiver",
+      "balanceReceiverId",
+      "balance",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.balancePayer = try container.decodeIfPresent(Entity.self, forKey: .balancePayer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .balancePayerId) {
+      self.balancePayerId = value
+    }
+    self.balanceReceiver = try container.decodeIfPresent(Entity.self, forKey: .balanceReceiver)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .balanceReceiverId) {
+      self.balanceReceiverId = value
+    }
+    self.balance = try container.decodeIfPresent(CurrencyValue.self, forKey: .balance)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.balancePayer, forKey: .balancePayer)
+    try container.encode(self.balancePayerId, forKey: .balancePayerId)
+    try container.encodeIfPresent(self.balanceReceiver, forKey: .balanceReceiver)
+    try container.encode(self.balanceReceiverId, forKey: .balanceReceiverId)
+    try container.encodeIfPresent(self.balance, forKey: .balance)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

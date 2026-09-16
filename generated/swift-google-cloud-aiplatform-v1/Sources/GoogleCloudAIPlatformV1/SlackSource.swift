@@ -25,6 +25,8 @@
     /// Required. The Slack channels.
     public var channels: [SlackSource.SlackChannels] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlackSource`.
     public init() {}
 
@@ -41,6 +43,40 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let channels = CodingKeys(stringValue: "channels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "channels"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [SlackSource.SlackChannels].self, forKey: .channels)
+      {
+        self.channels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.channels, forKey: .channels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// SlackChannels contains the Slack channels and corresponding access token.
     public struct SlackChannels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -53,6 +89,8 @@
       /// Slack channel access token that has access to the slack channel IDs.
       /// See: https://api.slack.com/tutorials/tracks/getting-a-token.
       public var apiKeyConfig: ApiAuth.ApiKeyConfig? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SlackChannels`.
       public init() {}
@@ -70,6 +108,45 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let channels = CodingKeys(stringValue: "channels")
+        static let apiKeyConfig = CodingKeys(stringValue: "apiKeyConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "channels",
+          "apiKeyConfig",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [SlackSource.SlackChannels.SlackChannel].self, forKey: .channels)
+        {
+          self.channels = value
+        }
+        self.apiKeyConfig = try container.decodeIfPresent(
+          ApiAuth.ApiKeyConfig.self, forKey: .apiKeyConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.channels, forKey: .channels)
+        try container.encodeIfPresent(self.apiKeyConfig, forKey: .apiKeyConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// SlackChannel contains the Slack channel ID and the time range to import.
       public struct SlackChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -82,6 +159,9 @@
 
         /// Optional. The ending timestamp for messages to import.
         public var endTime: GoogleCloudWKT.Timestamp? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `SlackChannel`.
         public init() {}
@@ -97,6 +177,48 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let channelId = CodingKeys(stringValue: "channelId")
+          static let startTime = CodingKeys(stringValue: "startTime")
+          static let endTime = CodingKeys(stringValue: "endTime")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "channelId",
+            "startTime",
+            "endTime",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channelId) {
+            self.channelId = value
+          }
+          self.startTime = try container.decodeIfPresent(
+            GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+          self.endTime = try container.decodeIfPresent(
+            GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.channelId, forKey: .channelId)
+          try container.encodeIfPresent(self.startTime, forKey: .startTime)
+          try container.encodeIfPresent(self.endTime, forKey: .endTime)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

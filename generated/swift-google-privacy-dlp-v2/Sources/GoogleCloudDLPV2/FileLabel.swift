@@ -24,6 +24,8 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of file label.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileLabel`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sensitivityLabel = "sensitivityLabel"
-    case googleDriveLabel = "googleDriveLabel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sensitivityLabel = CodingKeys(stringValue: "sensitivityLabel")
+    static let googleDriveLabel = CodingKeys(stringValue: "googleDriveLabel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sensitivityLabel",
+      "googleDriveLabel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.googleDriveLabel(googleDriveLabel))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .googleDriveLabel)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Sensitivity labels published by Microsoft.
@@ -90,6 +109,8 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Required. The GUID of the sensitivity label.
     public var guid: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SensitivityLabelMetadata`.
     public init() {}
@@ -105,6 +126,38 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let guid = CodingKeys(stringValue: "guid")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "guid"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .guid) {
+        self.guid = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.guid, forKey: .guid)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -130,6 +183,8 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The field values of the Google Drive label
     public var labelFields: [FileLabel.GoogleDriveLabelMetadata.LabelFieldMetadata] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoogleDriveLabelMetadata`.
     public init() {}
 
@@ -146,6 +201,46 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let labelId = CodingKeys(stringValue: "labelId")
+      static let labelFields = CodingKeys(stringValue: "labelFields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "labelId",
+        "labelFields",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelId) {
+        self.labelId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [FileLabel.GoogleDriveLabelMetadata.LabelFieldMetadata].self, forKey: .labelFields)
+      {
+        self.labelFields = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.labelId, forKey: .labelId)
+      try container.encode(self.labelFields, forKey: .labelFields)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The field values of the Google Drive label
     public struct LabelFieldMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -155,6 +250,8 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// The value of the Label Field.
       public var value: Value? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `LabelFieldMetadata`.
       public init() {}
@@ -170,6 +267,42 @@ public struct FileLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let value = CodingKeys(stringValue: "value")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "value",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        self.value = try container.decodeIfPresent(Value.self, forKey: .value)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encodeIfPresent(self.value, forKey: .value)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

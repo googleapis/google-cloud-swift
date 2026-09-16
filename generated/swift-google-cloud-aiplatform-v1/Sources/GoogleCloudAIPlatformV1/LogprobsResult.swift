@@ -29,6 +29,8 @@
     /// The chosen candidates may or may not be in top_candidates.
     public var chosenCandidates: [LogprobsResult.Candidate] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LogprobsResult`.
     public init() {}
 
@@ -45,6 +47,48 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let topCandidates = CodingKeys(stringValue: "topCandidates")
+      static let chosenCandidates = CodingKeys(stringValue: "chosenCandidates")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "topCandidates",
+        "chosenCandidates",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [LogprobsResult.TopCandidates].self, forKey: .topCandidates)
+      {
+        self.topCandidates = value
+      }
+      if let value = try container.decodeIfPresent(
+        [LogprobsResult.Candidate].self, forKey: .chosenCandidates)
+      {
+        self.chosenCandidates = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.topCandidates, forKey: .topCandidates)
+      try container.encode(self.chosenCandidates, forKey: .chosenCandidates)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Candidate for the logprobs token and score.
     public struct Candidate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -57,6 +101,8 @@
 
       /// The candidate's log probability.
       public var logProbability: Swift.Float? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Candidate`.
       public init() {}
@@ -72,6 +118,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let token = CodingKeys(stringValue: "token")
+        static let tokenId = CodingKeys(stringValue: "tokenId")
+        static let logProbability = CodingKeys(stringValue: "logProbability")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "token",
+          "tokenId",
+          "logProbability",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.token = try container.decodeIfPresent(Swift.String.self, forKey: .token)
+        self.tokenId = try container.decodeIfPresent(Swift.Int32.self, forKey: .tokenId)
+        self.logProbability = try container.decodeIfPresent(
+          Swift.Float.self, forKey: .logProbability)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.token, forKey: .token)
+        try container.encodeIfPresent(self.tokenId, forKey: .tokenId)
+        try container.encodeIfPresent(self.logProbability, forKey: .logProbability)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -92,6 +177,8 @@
       /// Sorted by log probability in descending order.
       public var candidates: [LogprobsResult.Candidate] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TopCandidates`.
       public init() {}
 
@@ -106,6 +193,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let candidates = CodingKeys(stringValue: "candidates")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "candidates"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [LogprobsResult.Candidate].self, forKey: .candidates)
+        {
+          self.candidates = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.candidates, forKey: .candidates)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

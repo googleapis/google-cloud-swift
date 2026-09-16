@@ -63,6 +63,8 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The CPU architecture.
   public var architecture: AzureVmDetails.VmArchitecture = AzureVmDetails.VmArchitecture()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureVmDetails`.
   public init() {}
 
@@ -79,6 +81,119 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmId = CodingKeys(stringValue: "vmId")
+    static let powerState = CodingKeys(stringValue: "powerState")
+    static let vmSize = CodingKeys(stringValue: "vmSize")
+    static let cpuCount = CodingKeys(stringValue: "cpuCount")
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let diskCount = CodingKeys(stringValue: "diskCount")
+    static let committedStorageMb = CodingKeys(stringValue: "committedStorageMb")
+    static let osDisk = CodingKeys(stringValue: "osDisk")
+    static let disks = CodingKeys(stringValue: "disks")
+    static let osDescription = CodingKeys(stringValue: "osDescription")
+    static let bootOption = CodingKeys(stringValue: "bootOption")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let computerName = CodingKeys(stringValue: "computerName")
+    static let architecture = CodingKeys(stringValue: "architecture")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmId",
+      "powerState",
+      "vmSize",
+      "cpuCount",
+      "memoryMb",
+      "diskCount",
+      "committedStorageMb",
+      "osDisk",
+      "disks",
+      "osDescription",
+      "bootOption",
+      "tags",
+      "computerName",
+      "architecture",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmId) {
+      self.vmId = value
+    }
+    if let value = try container.decodeIfPresent(
+      AzureVmDetails.PowerState.self, forKey: .powerState)
+    {
+      self.powerState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmSize) {
+      self.vmSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+      self.cpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskCount) {
+      self.diskCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .committedStorageMb) {
+      self.committedStorageMb = value
+    }
+    self.osDisk = try container.decodeIfPresent(AzureVmDetails.OSDisk.self, forKey: .osDisk)
+    if let value = try container.decodeIfPresent([AzureVmDetails.Disk].self, forKey: .disks) {
+      self.disks = value
+    }
+    self.osDescription = try container.decodeIfPresent(
+      AzureVmDetails.OSDescription.self, forKey: .osDescription)
+    if let value = try container.decodeIfPresent(
+      AzureVmDetails.BootOption.self, forKey: .bootOption)
+    {
+      self.bootOption = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .computerName) {
+      self.computerName = value
+    }
+    if let value = try container.decodeIfPresent(
+      AzureVmDetails.VmArchitecture.self, forKey: .architecture)
+    {
+      self.architecture = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmId, forKey: .vmId)
+    try container.encode(self.powerState, forKey: .powerState)
+    try container.encode(self.vmSize, forKey: .vmSize)
+    try container.encode(self.cpuCount, forKey: .cpuCount)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.diskCount, forKey: .diskCount)
+    try container.encode(self.committedStorageMb, forKey: .committedStorageMb)
+    try container.encodeIfPresent(self.osDisk, forKey: .osDisk)
+    try container.encode(self.disks, forKey: .disks)
+    try container.encodeIfPresent(self.osDescription, forKey: .osDescription)
+    try container.encode(self.bootOption, forKey: .bootOption)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.computerName, forKey: .computerName)
+    try container.encode(self.architecture, forKey: .architecture)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A message describing the OS disk.
   public struct OSDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -91,6 +206,8 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The disk's size in GB.
     public var sizeGb: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `OSDisk`.
     public init() {}
@@ -106,6 +223,50 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let name = CodingKeys(stringValue: "name")
+      static let sizeGb = CodingKeys(stringValue: "sizeGb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "name",
+        "sizeGb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+        self.sizeGb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.sizeGb, forKey: .sizeGb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -132,6 +293,8 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The disk's Logical Unit Number (LUN).
     public var lun: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Disk`.
     public init() {}
 
@@ -146,6 +309,50 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let sizeGb = CodingKeys(stringValue: "sizeGb")
+      static let lun = CodingKeys(stringValue: "lun")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "sizeGb",
+        "lun",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sizeGb) {
+        self.sizeGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lun) {
+        self.lun = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.sizeGb, forKey: .sizeGb)
+      try container.encode(self.lun, forKey: .lun)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -176,6 +383,8 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// OS plan.
     public var plan: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OSDescription`.
     public init() {}
 
@@ -190,6 +399,56 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let publisher = CodingKeys(stringValue: "publisher")
+      static let offer = CodingKeys(stringValue: "offer")
+      static let plan = CodingKeys(stringValue: "plan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "publisher",
+        "offer",
+        "plan",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publisher) {
+        self.publisher = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offer) {
+        self.offer = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .plan) {
+        self.plan = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.publisher, forKey: .publisher)
+      try container.encode(self.offer, forKey: .offer)
+      try container.encode(self.plan, forKey: .plan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

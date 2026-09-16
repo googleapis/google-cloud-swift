@@ -34,6 +34,8 @@ public struct CreateReplicationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// number, and a 63 character maximum.
   public var replicationId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateReplicationRequest`.
   public init() {}
 
@@ -48,6 +50,48 @@ public struct CreateReplicationRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let replication = CodingKeys(stringValue: "replication")
+    static let replicationId = CodingKeys(stringValue: "replicationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "replication",
+      "replicationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.replication = try container.decodeIfPresent(Replication.self, forKey: .replication)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replicationId) {
+      self.replicationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.replication, forKey: .replication)
+    try container.encode(self.replicationId, forKey: .replicationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

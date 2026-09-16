@@ -81,6 +81,8 @@
     /// datetime without a year.
     public var year: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DateTime`.
     public init() {}
 
@@ -95,6 +97,69 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let day = CodingKeys(stringValue: "day")
+      static let hours = CodingKeys(stringValue: "hours")
+      static let minutes = CodingKeys(stringValue: "minutes")
+      static let month = CodingKeys(stringValue: "month")
+      static let nanos = CodingKeys(stringValue: "nanos")
+      static let seconds = CodingKeys(stringValue: "seconds")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let utcOffset = CodingKeys(stringValue: "utcOffset")
+      static let year = CodingKeys(stringValue: "year")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "day",
+        "hours",
+        "minutes",
+        "month",
+        "nanos",
+        "seconds",
+        "timeZone",
+        "utcOffset",
+        "year",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.day = try container.decodeIfPresent(Swift.Int32.self, forKey: .day)
+      self.hours = try container.decodeIfPresent(Swift.Int32.self, forKey: .hours)
+      self.minutes = try container.decodeIfPresent(Swift.Int32.self, forKey: .minutes)
+      self.month = try container.decodeIfPresent(Swift.Int32.self, forKey: .month)
+      self.nanos = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos)
+      self.seconds = try container.decodeIfPresent(Swift.Int32.self, forKey: .seconds)
+      self.timeZone = try container.decodeIfPresent(TimeZone.self, forKey: .timeZone)
+      self.utcOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .utcOffset)
+      self.year = try container.decodeIfPresent(Swift.Int32.self, forKey: .year)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.day, forKey: .day)
+      try container.encodeIfPresent(self.hours, forKey: .hours)
+      try container.encodeIfPresent(self.minutes, forKey: .minutes)
+      try container.encodeIfPresent(self.month, forKey: .month)
+      try container.encodeIfPresent(self.nanos, forKey: .nanos)
+      try container.encodeIfPresent(self.seconds, forKey: .seconds)
+      try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.utcOffset, forKey: .utcOffset)
+      try container.encodeIfPresent(self.year, forKey: .year)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -72,6 +72,8 @@ public struct CreateAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// value is limited to 60 characters.
   public var tokenManagerId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateAccount`.
   public init() {}
 
@@ -86,6 +88,72 @@ public struct CreateAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let keyFormat = CodingKeys(stringValue: "keyFormat")
+    static let roles = CodingKeys(stringValue: "roles")
+    static let accountStatus = CodingKeys(stringValue: "accountStatus")
+    static let accountComment = CodingKeys(stringValue: "accountComment")
+    static let tokenManager = CodingKeys(stringValue: "tokenManager")
+    static let tokenManagerId = CodingKeys(stringValue: "tokenManagerId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "publicKey",
+      "keyFormat",
+      "roles",
+      "accountStatus",
+      "accountComment",
+      "tokenManager",
+      "tokenManagerId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKey) {
+      self.publicKey = value
+    }
+    if let value = try container.decodeIfPresent(KeyFormat.self, forKey: .keyFormat) {
+      self.keyFormat = value
+    }
+    if let value = try container.decodeIfPresent([Role].self, forKey: .roles) {
+      self.roles = value
+    }
+    if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
+      self.accountStatus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountComment) {
+      self.accountComment = value
+    }
+    self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenManagerId) {
+      self.tokenManagerId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.publicKey, forKey: .publicKey)
+    try container.encode(self.keyFormat, forKey: .keyFormat)
+    try container.encode(self.roles, forKey: .roles)
+    try container.encode(self.accountStatus, forKey: .accountStatus)
+    try container.encode(self.accountComment, forKey: .accountComment)
+    try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)
+    try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

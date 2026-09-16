@@ -51,6 +51,8 @@
     /// [google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse.online_store_write_time]: <doc:FeatureViewDirectWriteResponse/WriteResponse/onlineStoreWriteTime>
     public var writeResponses: [FeatureViewDirectWriteResponse.WriteResponse] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureViewDirectWriteResponse`.
     public init() {}
 
@@ -65,6 +67,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let status = CodingKeys(stringValue: "status")
+      static let writeResponses = CodingKeys(stringValue: "writeResponses")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "status",
+        "writeResponses",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      if let value = try container.decodeIfPresent(
+        [FeatureViewDirectWriteResponse.WriteResponse].self, forKey: .writeResponses)
+      {
+        self.writeResponses = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encode(self.writeResponses, forKey: .writeResponses)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Details about the write for each key.
@@ -82,6 +122,8 @@
       /// [google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.status]: <doc:FeatureViewDirectWriteResponse/status>
       public var onlineStoreWriteTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `WriteResponse`.
       public init() {}
 
@@ -96,6 +138,41 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataKey = CodingKeys(stringValue: "dataKey")
+        static let onlineStoreWriteTime = CodingKeys(stringValue: "onlineStoreWriteTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataKey",
+          "onlineStoreWriteTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.dataKey = try container.decodeIfPresent(FeatureViewDataKey.self, forKey: .dataKey)
+        self.onlineStoreWriteTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .onlineStoreWriteTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.dataKey, forKey: .dataKey)
+        try container.encodeIfPresent(self.onlineStoreWriteTime, forKey: .onlineStoreWriteTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

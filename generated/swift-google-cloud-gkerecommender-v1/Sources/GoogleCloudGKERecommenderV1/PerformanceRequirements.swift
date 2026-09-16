@@ -35,6 +35,8 @@ public struct PerformanceRequirements: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// provided, this requirement will not be enforced.
   public var targetCost: Cost? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PerformanceRequirements`.
   public init() {}
 
@@ -49,6 +51,46 @@ public struct PerformanceRequirements: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetNtpotMilliseconds = CodingKeys(stringValue: "targetNtpotMilliseconds")
+    static let targetTtftMilliseconds = CodingKeys(stringValue: "targetTtftMilliseconds")
+    static let targetCost = CodingKeys(stringValue: "targetCost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetNtpotMilliseconds",
+      "targetTtftMilliseconds",
+      "targetCost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.targetNtpotMilliseconds = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .targetNtpotMilliseconds)
+    self.targetTtftMilliseconds = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .targetTtftMilliseconds)
+    self.targetCost = try container.decodeIfPresent(Cost.self, forKey: .targetCost)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.targetNtpotMilliseconds, forKey: .targetNtpotMilliseconds)
+    try container.encodeIfPresent(self.targetTtftMilliseconds, forKey: .targetTtftMilliseconds)
+    try container.encodeIfPresent(self.targetCost, forKey: .targetCost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

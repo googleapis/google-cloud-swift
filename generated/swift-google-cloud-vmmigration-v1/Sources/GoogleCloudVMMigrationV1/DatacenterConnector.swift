@@ -79,6 +79,8 @@ public struct DatacenterConnector: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Output only. The status of the current / last upgradeAppliance operation.
   public var upgradeStatus: UpgradeStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatacenterConnector`.
   public init() {}
 
@@ -93,6 +95,114 @@ public struct DatacenterConnector: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let name = CodingKeys(stringValue: "name")
+    static let registrationId = CodingKeys(stringValue: "registrationId")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let version = CodingKeys(stringValue: "version")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateTime = CodingKeys(stringValue: "stateTime")
+    static let error = CodingKeys(stringValue: "error")
+    static let applianceInfrastructureVersion = CodingKeys(
+      stringValue: "applianceInfrastructureVersion")
+    static let applianceSoftwareVersion = CodingKeys(stringValue: "applianceSoftwareVersion")
+    static let availableVersions = CodingKeys(stringValue: "availableVersions")
+    static let upgradeStatus = CodingKeys(stringValue: "upgradeStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "updateTime",
+      "name",
+      "registrationId",
+      "serviceAccount",
+      "version",
+      "bucket",
+      "state",
+      "stateTime",
+      "error",
+      "applianceInfrastructureVersion",
+      "applianceSoftwareVersion",
+      "availableVersions",
+      "upgradeStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .registrationId) {
+      self.registrationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(DatacenterConnector.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.stateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .applianceInfrastructureVersion)
+    {
+      self.applianceInfrastructureVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .applianceSoftwareVersion)
+    {
+      self.applianceSoftwareVersion = value
+    }
+    self.availableVersions = try container.decodeIfPresent(
+      AvailableUpdates.self, forKey: .availableVersions)
+    self.upgradeStatus = try container.decodeIfPresent(UpgradeStatus.self, forKey: .upgradeStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.registrationId, forKey: .registrationId)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(
+      self.applianceInfrastructureVersion, forKey: .applianceInfrastructureVersion)
+    try container.encode(self.applianceSoftwareVersion, forKey: .applianceSoftwareVersion)
+    try container.encodeIfPresent(self.availableVersions, forKey: .availableVersions)
+    try container.encodeIfPresent(self.upgradeStatus, forKey: .upgradeStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible values of the state.

@@ -41,6 +41,8 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// if the invoker supplies this field.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ModifyOrderRequest`.
   public init() {}
 
@@ -55,6 +57,58 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let modifications = CodingKeys(stringValue: "modifications")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "modifications",
+      "displayName",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ModifyOrderRequest.Modification].self, forKey: .modifications)
+    {
+      self.modifications = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.modifications, forKey: .modifications)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Modifications to make on the order.
@@ -82,6 +136,8 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// config when this field is not specified.
     public var autoRenewalBehavior: AutoRenewalBehavior = AutoRenewalBehavior()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Modification`.
     public init() {}
 
@@ -96,6 +152,57 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lineItemId = CodingKeys(stringValue: "lineItemId")
+      static let changeType = CodingKeys(stringValue: "changeType")
+      static let newLineItemInfo = CodingKeys(stringValue: "newLineItemInfo")
+      static let autoRenewalBehavior = CodingKeys(stringValue: "autoRenewalBehavior")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lineItemId",
+        "changeType",
+        "newLineItemInfo",
+        "autoRenewalBehavior",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lineItemId) {
+        self.lineItemId = value
+      }
+      if let value = try container.decodeIfPresent(LineItemChangeType.self, forKey: .changeType) {
+        self.changeType = value
+      }
+      self.newLineItemInfo = try container.decodeIfPresent(
+        LineItemInfo.self, forKey: .newLineItemInfo)
+      if let value = try container.decodeIfPresent(
+        AutoRenewalBehavior.self, forKey: .autoRenewalBehavior)
+      {
+        self.autoRenewalBehavior = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lineItemId, forKey: .lineItemId)
+      try container.encode(self.changeType, forKey: .changeType)
+      try container.encodeIfPresent(self.newLineItemInfo, forKey: .newLineItemInfo)
+      try container.encode(self.autoRenewalBehavior, forKey: .autoRenewalBehavior)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

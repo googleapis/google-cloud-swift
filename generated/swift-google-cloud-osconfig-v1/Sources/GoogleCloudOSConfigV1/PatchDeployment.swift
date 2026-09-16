@@ -67,6 +67,8 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Schedule for the patch.
   public var schedule: OneOf_Schedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchDeployment`.
   public init() {}
 
@@ -83,25 +85,49 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case instanceFilter = "instanceFilter"
-    case patchConfig = "patchConfig"
-    case duration = "duration"
-    case oneTimeSchedule = "oneTimeSchedule"
-    case recurringSchedule = "recurringSchedule"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case lastExecuteTime = "lastExecuteTime"
-    case rollout = "rollout"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let instanceFilter = CodingKeys(stringValue: "instanceFilter")
+    static let patchConfig = CodingKeys(stringValue: "patchConfig")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let oneTimeSchedule = CodingKeys(stringValue: "oneTimeSchedule")
+    static let recurringSchedule = CodingKeys(stringValue: "recurringSchedule")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastExecuteTime = CodingKeys(stringValue: "lastExecuteTime")
+    static let rollout = CodingKeys(stringValue: "rollout")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "instanceFilter",
+      "patchConfig",
+      "duration",
+      "oneTimeSchedule",
+      "recurringSchedule",
+      "createTime",
+      "updateTime",
+      "lastExecuteTime",
+      "rollout",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.instanceFilter = try container.decodeIfPresent(
       PatchInstanceFilter.self, forKey: .instanceFilter)
     self.patchConfig = try container.decodeIfPresent(PatchConfig.self, forKey: .patchConfig)
@@ -113,7 +139,9 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.lastExecuteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastExecuteTime)
     self.rollout = try container.decodeIfPresent(PatchRollout.self, forKey: .rollout)
-    self.state = try container.decode(PatchDeployment.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(PatchDeployment.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var schedule: OneOf_Schedule? = nil
     let scheduleCheckAndSet = {
@@ -136,19 +164,23 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try scheduleCheckAndSet(.recurringSchedule(recurringSchedule))
     }
     self.schedule = schedule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.instanceFilter, forKey: .instanceFilter)
-    try container.encode(self.patchConfig, forKey: .patchConfig)
-    try container.encode(self.duration, forKey: .duration)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.lastExecuteTime, forKey: .lastExecuteTime)
-    try container.encode(self.rollout, forKey: .rollout)
+    try container.encodeIfPresent(self.instanceFilter, forKey: .instanceFilter)
+    try container.encodeIfPresent(self.patchConfig, forKey: .patchConfig)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lastExecuteTime, forKey: .lastExecuteTime)
+    try container.encodeIfPresent(self.rollout, forKey: .rollout)
     try container.encode(self.state, forKey: .state)
 
     if let choice = self.schedule {
@@ -158,6 +190,9 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .recurringSchedule(let value):
         try container.encode(value, forKey: .recurringSchedule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

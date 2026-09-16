@@ -162,6 +162,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var createExecution: OneOf_CreateExecution? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -178,42 +180,89 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case generation = "generation"
-    case labels = "labels"
-    case annotations = "annotations"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case expireTime = "expireTime"
-    case creator = "creator"
-    case lastModifier = "lastModifier"
-    case client = "client"
-    case clientVersion = "clientVersion"
-    case launchStage = "launchStage"
-    case binaryAuthorization = "binaryAuthorization"
-    case template = "template"
-    case observedGeneration = "observedGeneration"
-    case terminalCondition = "terminalCondition"
-    case conditions = "conditions"
-    case executionCount = "executionCount"
-    case latestCreatedExecution = "latestCreatedExecution"
-    case reconciling = "reconciling"
-    case satisfiesPzs = "satisfiesPzs"
-    case startExecutionToken = "startExecutionToken"
-    case runExecutionToken = "runExecutionToken"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let generation = CodingKeys(stringValue: "generation")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let lastModifier = CodingKeys(stringValue: "lastModifier")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let binaryAuthorization = CodingKeys(stringValue: "binaryAuthorization")
+    static let template = CodingKeys(stringValue: "template")
+    static let observedGeneration = CodingKeys(stringValue: "observedGeneration")
+    static let terminalCondition = CodingKeys(stringValue: "terminalCondition")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let executionCount = CodingKeys(stringValue: "executionCount")
+    static let latestCreatedExecution = CodingKeys(stringValue: "latestCreatedExecution")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let startExecutionToken = CodingKeys(stringValue: "startExecutionToken")
+    static let runExecutionToken = CodingKeys(stringValue: "runExecutionToken")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "generation",
+      "labels",
+      "annotations",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "creator",
+      "lastModifier",
+      "client",
+      "clientVersion",
+      "launchStage",
+      "binaryAuthorization",
+      "template",
+      "observedGeneration",
+      "terminalCondition",
+      "conditions",
+      "executionCount",
+      "latestCreatedExecution",
+      "reconciling",
+      "satisfiesPzs",
+      "startExecutionToken",
+      "runExecutionToken",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.generation = try container.decode(Swift.Int64.self, forKey: .generation)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -222,24 +271,46 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.expireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
-    self.creator = try container.decode(Swift.String.self, forKey: .creator)
-    self.lastModifier = try container.decode(Swift.String.self, forKey: .lastModifier)
-    self.client = try container.decode(Swift.String.self, forKey: .client)
-    self.clientVersion = try container.decode(Swift.String.self, forKey: .clientVersion)
-    self.launchStage = try container.decode(GoogleApi.LaunchStage.self, forKey: .launchStage)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastModifier) {
+      self.lastModifier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
+    if let value = try container.decodeIfPresent(GoogleApi.LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
     self.binaryAuthorization = try container.decodeIfPresent(
       BinaryAuthorization.self, forKey: .binaryAuthorization)
     self.template = try container.decodeIfPresent(ExecutionTemplate.self, forKey: .template)
-    self.observedGeneration = try container.decode(Swift.Int64.self, forKey: .observedGeneration)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .observedGeneration) {
+      self.observedGeneration = value
+    }
     self.terminalCondition = try container.decodeIfPresent(
       Condition.self, forKey: .terminalCondition)
-    self.conditions = try container.decode([Condition].self, forKey: .conditions)
-    self.executionCount = try container.decode(Swift.Int32.self, forKey: .executionCount)
+    if let value = try container.decodeIfPresent([Condition].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .executionCount) {
+      self.executionCount = value
+    }
     self.latestCreatedExecution = try container.decodeIfPresent(
       ExecutionReference.self, forKey: .latestCreatedExecution)
-    self.reconciling = try container.decode(Swift.Bool.self, forKey: .reconciling)
-    self.satisfiesPzs = try container.decode(Swift.Bool.self, forKey: .satisfiesPzs)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var createExecution: OneOf_CreateExecution? = nil
     let createExecutionCheckAndSet = {
@@ -262,6 +333,10 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try createExecutionCheckAndSet(.runExecutionToken(runExecutionToken))
     }
     self.createExecution = createExecution
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -271,22 +346,22 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.generation, forKey: .generation)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.creator, forKey: .creator)
     try container.encode(self.lastModifier, forKey: .lastModifier)
     try container.encode(self.client, forKey: .client)
     try container.encode(self.clientVersion, forKey: .clientVersion)
     try container.encode(self.launchStage, forKey: .launchStage)
-    try container.encode(self.binaryAuthorization, forKey: .binaryAuthorization)
-    try container.encode(self.template, forKey: .template)
+    try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
+    try container.encodeIfPresent(self.template, forKey: .template)
     try container.encode(self.observedGeneration, forKey: .observedGeneration)
-    try container.encode(self.terminalCondition, forKey: .terminalCondition)
+    try container.encodeIfPresent(self.terminalCondition, forKey: .terminalCondition)
     try container.encode(self.conditions, forKey: .conditions)
     try container.encode(self.executionCount, forKey: .executionCount)
-    try container.encode(self.latestCreatedExecution, forKey: .latestCreatedExecution)
+    try container.encodeIfPresent(self.latestCreatedExecution, forKey: .latestCreatedExecution)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.etag, forKey: .etag)
@@ -298,6 +373,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .runExecutionToken(let value):
         try container.encode(value, forKey: .runExecutionToken)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

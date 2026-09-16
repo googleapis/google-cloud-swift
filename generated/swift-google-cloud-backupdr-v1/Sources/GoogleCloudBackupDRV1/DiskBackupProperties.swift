@@ -55,6 +55,8 @@ public struct DiskBackupProperties: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The source disk used to create this backup.
   public var sourceDisk: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskBackupProperties`.
   public init() {}
 
@@ -69,6 +71,79 @@ public struct DiskBackupProperties: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let licenses = CodingKeys(stringValue: "licenses")
+    static let guestOsFeature = CodingKeys(stringValue: "guestOsFeature")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let type = CodingKeys(stringValue: "type")
+    static let sizeGb = CodingKeys(stringValue: "sizeGb")
+    static let region = CodingKeys(stringValue: "region")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let replicaZones = CodingKeys(stringValue: "replicaZones")
+    static let sourceDisk = CodingKeys(stringValue: "sourceDisk")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "licenses",
+      "guestOsFeature",
+      "architecture",
+      "type",
+      "sizeGb",
+      "region",
+      "zone",
+      "replicaZones",
+      "sourceDisk",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .licenses) {
+      self.licenses = value
+    }
+    if let value = try container.decodeIfPresent([GuestOsFeature].self, forKey: .guestOsFeature) {
+      self.guestOsFeature = value
+    }
+    self.architecture = try container.decodeIfPresent(
+      DiskBackupProperties.Architecture.self, forKey: .architecture)
+    self.type = try container.decodeIfPresent(Swift.String.self, forKey: .type)
+    self.sizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGb)
+    self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+    self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .replicaZones) {
+      self.replicaZones = value
+    }
+    self.sourceDisk = try container.decodeIfPresent(Swift.String.self, forKey: .sourceDisk)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encode(self.licenses, forKey: .licenses)
+    try container.encode(self.guestOsFeature, forKey: .guestOsFeature)
+    try container.encodeIfPresent(self.architecture, forKey: .architecture)
+    try container.encodeIfPresent(self.type, forKey: .type)
+    try container.encodeIfPresent(self.sizeGb, forKey: .sizeGb)
+    try container.encodeIfPresent(self.region, forKey: .region)
+    try container.encodeIfPresent(self.zone, forKey: .zone)
+    try container.encode(self.replicaZones, forKey: .replicaZones)
+    try container.encodeIfPresent(self.sourceDisk, forKey: .sourceDisk)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Architecture of the source disk.

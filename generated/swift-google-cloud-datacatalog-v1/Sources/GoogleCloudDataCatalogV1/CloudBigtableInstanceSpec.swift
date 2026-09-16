@@ -26,6 +26,8 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleCloudWKT._Any
   /// The list of clusters for the Instance.
   public var cloudBigtableClusterSpecs: [CloudBigtableInstanceSpec.CloudBigtableClusterSpec] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudBigtableInstanceSpec`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudBigtableClusterSpecs = CodingKeys(stringValue: "cloudBigtableClusterSpecs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudBigtableClusterSpecs"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [CloudBigtableInstanceSpec.CloudBigtableClusterSpec].self, forKey: .cloudBigtableClusterSpecs)
+    {
+      self.cloudBigtableClusterSpecs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cloudBigtableClusterSpecs, forKey: .cloudBigtableClusterSpecs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Spec that applies to clusters of an Instance of Cloud Bigtable.
@@ -58,6 +94,8 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleCloudWKT._Any
     /// A link back to the parent resource, in this case Instance.
     public var linkedResource: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudBigtableClusterSpec`.
     public init() {}
 
@@ -72,6 +110,56 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let location = CodingKeys(stringValue: "location")
+      static let type = CodingKeys(stringValue: "type")
+      static let linkedResource = CodingKeys(stringValue: "linkedResource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "location",
+        "type",
+        "linkedResource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .linkedResource) {
+        self.linkedResource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.location, forKey: .location)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.linkedResource, forKey: .linkedResource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

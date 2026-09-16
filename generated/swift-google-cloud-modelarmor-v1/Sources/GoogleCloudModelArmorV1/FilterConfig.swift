@@ -33,6 +33,8 @@ public struct FilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Malicious URI filter settings.
   public var maliciousUriFilterSettings: MaliciousUriFilterSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FilterConfig`.
   public init() {}
 
@@ -47,6 +49,53 @@ public struct FilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let raiSettings = CodingKeys(stringValue: "raiSettings")
+    static let sdpSettings = CodingKeys(stringValue: "sdpSettings")
+    static let piAndJailbreakFilterSettings = CodingKeys(
+      stringValue: "piAndJailbreakFilterSettings")
+    static let maliciousUriFilterSettings = CodingKeys(stringValue: "maliciousUriFilterSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "raiSettings",
+      "sdpSettings",
+      "piAndJailbreakFilterSettings",
+      "maliciousUriFilterSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.raiSettings = try container.decodeIfPresent(RaiFilterSettings.self, forKey: .raiSettings)
+    self.sdpSettings = try container.decodeIfPresent(SdpFilterSettings.self, forKey: .sdpSettings)
+    self.piAndJailbreakFilterSettings = try container.decodeIfPresent(
+      PiAndJailbreakFilterSettings.self, forKey: .piAndJailbreakFilterSettings)
+    self.maliciousUriFilterSettings = try container.decodeIfPresent(
+      MaliciousUriFilterSettings.self, forKey: .maliciousUriFilterSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
+    try container.encodeIfPresent(self.sdpSettings, forKey: .sdpSettings)
+    try container.encodeIfPresent(
+      self.piAndJailbreakFilterSettings, forKey: .piAndJailbreakFilterSettings)
+    try container.encodeIfPresent(
+      self.maliciousUriFilterSettings, forKey: .maliciousUriFilterSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

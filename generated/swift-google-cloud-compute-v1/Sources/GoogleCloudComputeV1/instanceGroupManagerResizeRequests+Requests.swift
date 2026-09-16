@@ -55,6 +55,8 @@
       /// instance group is located. The name should conform to RFC1035.
       public var zone: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CancelRequest`.
       public init() {}
 
@@ -69,6 +71,62 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceGroupManager = CodingKeys(stringValue: "instanceGroupManager")
+        static let project = CodingKeys(stringValue: "project")
+        static let requestId = CodingKeys(stringValue: "requestId")
+        static let resizeRequest = CodingKeys(stringValue: "resizeRequest")
+        static let zone = CodingKeys(stringValue: "zone")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instanceGroupManager",
+          "project",
+          "requestId",
+          "resizeRequest",
+          "zone",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .instanceGroupManager)
+        {
+          self.instanceGroupManager = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resizeRequest) {
+          self.resizeRequest = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+          self.zone = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instanceGroupManager, forKey: .instanceGroupManager)
+        try container.encode(self.project, forKey: .project)
+        try container.encodeIfPresent(self.requestId, forKey: .requestId)
+        try container.encode(self.resizeRequest, forKey: .resizeRequest)
+        try container.encode(self.zone, forKey: .zone)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -119,6 +177,8 @@
       /// instance group is located. The name should conform to RFC1035.
       public var zone: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DeleteRequest`.
       public init() {}
 
@@ -133,6 +193,62 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceGroupManager = CodingKeys(stringValue: "instanceGroupManager")
+        static let project = CodingKeys(stringValue: "project")
+        static let requestId = CodingKeys(stringValue: "requestId")
+        static let resizeRequest = CodingKeys(stringValue: "resizeRequest")
+        static let zone = CodingKeys(stringValue: "zone")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instanceGroupManager",
+          "project",
+          "requestId",
+          "resizeRequest",
+          "zone",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .instanceGroupManager)
+        {
+          self.instanceGroupManager = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resizeRequest) {
+          self.resizeRequest = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+          self.zone = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instanceGroupManager, forKey: .instanceGroupManager)
+        try container.encode(self.project, forKey: .project)
+        try container.encodeIfPresent(self.requestId, forKey: .requestId)
+        try container.encode(self.resizeRequest, forKey: .resizeRequest)
+        try container.encode(self.zone, forKey: .zone)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -168,6 +284,8 @@
       /// scoping this request. Name should conform to RFC1035.
       public var zone: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GetRequest`.
       public init() {}
 
@@ -182,6 +300,58 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceGroupManager = CodingKeys(stringValue: "instanceGroupManager")
+        static let project = CodingKeys(stringValue: "project")
+        static let resizeRequest = CodingKeys(stringValue: "resizeRequest")
+        static let zone = CodingKeys(stringValue: "zone")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instanceGroupManager",
+          "project",
+          "resizeRequest",
+          "zone",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .instanceGroupManager)
+        {
+          self.instanceGroupManager = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resizeRequest) {
+          self.resizeRequest = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+          self.zone = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instanceGroupManager, forKey: .instanceGroupManager)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.resizeRequest, forKey: .resizeRequest)
+        try container.encode(self.zone, forKey: .zone)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -235,6 +405,8 @@
       /// [google.cloud.compute.v1.instanceGroupManagerResizeRequests.insert]: <doc:InstanceGroupManagerResizeRequestsClient/insert(request:options:)>
       public var body: InstanceGroupManagerResizeRequest? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InsertRequest`.
       public init() {}
 
@@ -249,6 +421,61 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let instanceGroupManager = CodingKeys(stringValue: "instanceGroupManager")
+        static let project = CodingKeys(stringValue: "project")
+        static let requestId = CodingKeys(stringValue: "requestId")
+        static let zone = CodingKeys(stringValue: "zone")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "instanceGroupManager",
+          "project",
+          "requestId",
+          "zone",
+          "body",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .instanceGroupManager)
+        {
+          self.instanceGroupManager = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+          self.zone = value
+        }
+        self.body = try container.decodeIfPresent(
+          InstanceGroupManagerResizeRequest.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.instanceGroupManager, forKey: .instanceGroupManager)
+        try container.encode(self.project, forKey: .project)
+        try container.encodeIfPresent(self.requestId, forKey: .requestId)
+        try container.encode(self.zone, forKey: .zone)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -372,6 +599,8 @@
       /// instance group is located. The name should conform to RFC1035.
       public var zone: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ListRequest`.
       public init() {}
 
@@ -386,6 +615,73 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let filter = CodingKeys(stringValue: "filter")
+        static let instanceGroupManager = CodingKeys(stringValue: "instanceGroupManager")
+        static let maxResults = CodingKeys(stringValue: "maxResults")
+        static let orderBy = CodingKeys(stringValue: "orderBy")
+        static let pageToken = CodingKeys(stringValue: "pageToken")
+        static let project = CodingKeys(stringValue: "project")
+        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
+        static let zone = CodingKeys(stringValue: "zone")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "filter",
+          "instanceGroupManager",
+          "maxResults",
+          "orderBy",
+          "pageToken",
+          "project",
+          "returnPartialSuccess",
+          "zone",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.filter = try container.decodeIfPresent(Swift.String.self, forKey: .filter)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .instanceGroupManager)
+        {
+          self.instanceGroupManager = value
+        }
+        self.maxResults = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults)
+        self.orderBy = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy)
+        self.pageToken = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        self.returnPartialSuccess = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .returnPartialSuccess)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+          self.zone = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.filter, forKey: .filter)
+        try container.encode(self.instanceGroupManager, forKey: .instanceGroupManager)
+        try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
+        try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
+        try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
+        try container.encode(self.project, forKey: .project)
+        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
+        try container.encode(self.zone, forKey: .zone)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

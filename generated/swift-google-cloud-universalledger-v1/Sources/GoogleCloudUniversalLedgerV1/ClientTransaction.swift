@@ -67,6 +67,8 @@ public struct ClientTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The client transaction-specific message.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClientTransaction`.
   public init() {}
 
@@ -83,51 +85,120 @@ public struct ClientTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case app = "app"
-    case operational = "operational"
-    case transferPlatformOperatorTransaction = "transferPlatformOperatorTransaction"
-    case createCurrencyOperatorTransaction = "createCurrencyOperatorTransaction"
-    case transferCurrencyOperatorTransaction = "transferCurrencyOperatorTransaction"
-    case createClearinghouseTransaction = "createClearinghouseTransaction"
-    case createAccountManagerTransaction = "createAccountManagerTransaction"
-    case createTokenManagerTransaction = "createTokenManagerTransaction"
-    case increaseTokenIssuanceLimitTransaction = "increaseTokenIssuanceLimitTransaction"
-    case decreaseTokenIssuanceLimitTransaction = "decreaseTokenIssuanceLimitTransaction"
-    case settlementRequestTransaction = "settlementRequestTransaction"
-    case mintTransaction = "mintTransaction"
-    case burnTransaction = "burnTransaction"
-    case createAccountTransaction = "createAccountTransaction"
-    case deactivateAccountTransaction = "deactivateAccountTransaction"
-    case activateAccountTransaction = "activateAccountTransaction"
-    case addRolesTransaction = "addRolesTransaction"
-    case removeRolesTransaction = "removeRolesTransaction"
-    case changeAccountManagerTransaction = "changeAccountManagerTransaction"
-    case transferTransaction = "transferTransaction"
-    case createContractTransaction = "createContractTransaction"
-    case grantContractPermissionsTransaction = "grantContractPermissionsTransaction"
-    case invokeContractMethodTransaction = "invokeContractMethodTransaction"
-    case createContractTokenManagerTransaction = "createContractTokenManagerTransaction"
-    case transferContractTokenManagerTransaction = "transferContractTokenManagerTransaction"
-    case removeSigningPublicKeyTransaction = "removeSigningPublicKeyTransaction"
-    case replaceSigningPublicKeyTransaction = "replaceSigningPublicKeyTransaction"
-    case chain = "chain"
-    case source = "source"
-    case senderId = "senderId"
-    case signatories = "signatories"
-    case otherSignatoryIds = "otherSignatoryIds"
-    case sequenceNumber = "sequenceNumber"
-    case chainedUnit = "chainedUnit"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let app = CodingKeys(stringValue: "app")
+    static let operational = CodingKeys(stringValue: "operational")
+    static let transferPlatformOperatorTransaction = CodingKeys(
+      stringValue: "transferPlatformOperatorTransaction")
+    static let createCurrencyOperatorTransaction = CodingKeys(
+      stringValue: "createCurrencyOperatorTransaction")
+    static let transferCurrencyOperatorTransaction = CodingKeys(
+      stringValue: "transferCurrencyOperatorTransaction")
+    static let createClearinghouseTransaction = CodingKeys(
+      stringValue: "createClearinghouseTransaction")
+    static let createAccountManagerTransaction = CodingKeys(
+      stringValue: "createAccountManagerTransaction")
+    static let createTokenManagerTransaction = CodingKeys(
+      stringValue: "createTokenManagerTransaction")
+    static let increaseTokenIssuanceLimitTransaction = CodingKeys(
+      stringValue: "increaseTokenIssuanceLimitTransaction")
+    static let decreaseTokenIssuanceLimitTransaction = CodingKeys(
+      stringValue: "decreaseTokenIssuanceLimitTransaction")
+    static let settlementRequestTransaction = CodingKeys(
+      stringValue: "settlementRequestTransaction")
+    static let mintTransaction = CodingKeys(stringValue: "mintTransaction")
+    static let burnTransaction = CodingKeys(stringValue: "burnTransaction")
+    static let createAccountTransaction = CodingKeys(stringValue: "createAccountTransaction")
+    static let deactivateAccountTransaction = CodingKeys(
+      stringValue: "deactivateAccountTransaction")
+    static let activateAccountTransaction = CodingKeys(stringValue: "activateAccountTransaction")
+    static let addRolesTransaction = CodingKeys(stringValue: "addRolesTransaction")
+    static let removeRolesTransaction = CodingKeys(stringValue: "removeRolesTransaction")
+    static let changeAccountManagerTransaction = CodingKeys(
+      stringValue: "changeAccountManagerTransaction")
+    static let transferTransaction = CodingKeys(stringValue: "transferTransaction")
+    static let createContractTransaction = CodingKeys(stringValue: "createContractTransaction")
+    static let grantContractPermissionsTransaction = CodingKeys(
+      stringValue: "grantContractPermissionsTransaction")
+    static let invokeContractMethodTransaction = CodingKeys(
+      stringValue: "invokeContractMethodTransaction")
+    static let createContractTokenManagerTransaction = CodingKeys(
+      stringValue: "createContractTokenManagerTransaction")
+    static let transferContractTokenManagerTransaction = CodingKeys(
+      stringValue: "transferContractTokenManagerTransaction")
+    static let removeSigningPublicKeyTransaction = CodingKeys(
+      stringValue: "removeSigningPublicKeyTransaction")
+    static let replaceSigningPublicKeyTransaction = CodingKeys(
+      stringValue: "replaceSigningPublicKeyTransaction")
+    static let chain = CodingKeys(stringValue: "chain")
+    static let source = CodingKeys(stringValue: "source")
+    static let senderId = CodingKeys(stringValue: "senderId")
+    static let signatories = CodingKeys(stringValue: "signatories")
+    static let otherSignatoryIds = CodingKeys(stringValue: "otherSignatoryIds")
+    static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
+    static let chainedUnit = CodingKeys(stringValue: "chainedUnit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "app",
+      "operational",
+      "transferPlatformOperatorTransaction",
+      "createCurrencyOperatorTransaction",
+      "transferCurrencyOperatorTransaction",
+      "createClearinghouseTransaction",
+      "createAccountManagerTransaction",
+      "createTokenManagerTransaction",
+      "increaseTokenIssuanceLimitTransaction",
+      "decreaseTokenIssuanceLimitTransaction",
+      "settlementRequestTransaction",
+      "mintTransaction",
+      "burnTransaction",
+      "createAccountTransaction",
+      "deactivateAccountTransaction",
+      "activateAccountTransaction",
+      "addRolesTransaction",
+      "removeRolesTransaction",
+      "changeAccountManagerTransaction",
+      "transferTransaction",
+      "createContractTransaction",
+      "grantContractPermissionsTransaction",
+      "invokeContractMethodTransaction",
+      "createContractTokenManagerTransaction",
+      "transferContractTokenManagerTransaction",
+      "removeSigningPublicKeyTransaction",
+      "replaceSigningPublicKeyTransaction",
+      "chain",
+      "source",
+      "senderId",
+      "signatories",
+      "otherSignatoryIds",
+      "sequenceNumber",
+      "chainedUnit",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.source = try container.decodeIfPresent(Entity.self, forKey: .source)
-    self.senderId = try container.decode(Swift.String.self, forKey: .senderId)
-    self.signatories = try container.decode([Entity].self, forKey: .signatories)
-    self.otherSignatoryIds = try container.decode([Swift.String].self, forKey: .otherSignatoryIds)
-    self.sequenceNumber = try container.decode(Swift.Int64.self, forKey: .sequenceNumber)
-    self.chainedUnit = try container.decode(Swift.Bool.self, forKey: .chainedUnit)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .senderId) {
+      self.senderId = value
+    }
+    if let value = try container.decodeIfPresent([Entity].self, forKey: .signatories) {
+      self.signatories = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .otherSignatoryIds) {
+      self.otherSignatoryIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
+      self.sequenceNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .chainedUnit) {
+      self.chainedUnit = value
+    }
 
     var kind: OneOf_Kind? = nil
     let kindCheckAndSet = {
@@ -276,11 +347,15 @@ public struct ClientTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try kindCheckAndSet(.chain(chain))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.source, forKey: .source)
+    try container.encodeIfPresent(self.source, forKey: .source)
     try container.encode(self.senderId, forKey: .senderId)
     try container.encode(self.signatories, forKey: .signatories)
     try container.encode(self.otherSignatoryIds, forKey: .otherSignatoryIds)
@@ -346,6 +421,9 @@ public struct ClientTransaction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .chain(let value):
         try container.encode(value, forKey: .chain)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

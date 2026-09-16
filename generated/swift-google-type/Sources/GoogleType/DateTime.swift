@@ -79,6 +79,8 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If omitted, the DateTime is considered to be in local time.
   public var timeOffset: OneOf_TimeOffset? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DateTime`.
   public init() {}
 
@@ -95,27 +97,58 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case year = "year"
-    case month = "month"
-    case day = "day"
-    case hours = "hours"
-    case minutes = "minutes"
-    case seconds = "seconds"
-    case nanos = "nanos"
-    case utcOffset = "utcOffset"
-    case timeZone = "timeZone"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let year = CodingKeys(stringValue: "year")
+    static let month = CodingKeys(stringValue: "month")
+    static let day = CodingKeys(stringValue: "day")
+    static let hours = CodingKeys(stringValue: "hours")
+    static let minutes = CodingKeys(stringValue: "minutes")
+    static let seconds = CodingKeys(stringValue: "seconds")
+    static let nanos = CodingKeys(stringValue: "nanos")
+    static let utcOffset = CodingKeys(stringValue: "utcOffset")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "year",
+      "month",
+      "day",
+      "hours",
+      "minutes",
+      "seconds",
+      "nanos",
+      "utcOffset",
+      "timeZone",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.year = try container.decode(Swift.Int32.self, forKey: .year)
-    self.month = try container.decode(Swift.Int32.self, forKey: .month)
-    self.day = try container.decode(Swift.Int32.self, forKey: .day)
-    self.hours = try container.decode(Swift.Int32.self, forKey: .hours)
-    self.minutes = try container.decode(Swift.Int32.self, forKey: .minutes)
-    self.seconds = try container.decode(Swift.Int32.self, forKey: .seconds)
-    self.nanos = try container.decode(Swift.Int32.self, forKey: .nanos)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .year) {
+      self.year = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .month) {
+      self.month = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .day) {
+      self.day = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .hours) {
+      self.hours = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minutes) {
+      self.minutes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .seconds) {
+      self.seconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos) {
+      self.nanos = value
+    }
 
     var timeOffset: OneOf_TimeOffset? = nil
     let timeOffsetCheckAndSet = {
@@ -136,6 +169,10 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try timeOffsetCheckAndSet(.timeZone(timeZone))
     }
     self.timeOffset = timeOffset
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -155,6 +192,9 @@ public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .timeZone(let value):
         try container.encode(value, forKey: .timeZone)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

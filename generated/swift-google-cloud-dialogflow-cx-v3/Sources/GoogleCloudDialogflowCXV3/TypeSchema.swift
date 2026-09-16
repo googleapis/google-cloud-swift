@@ -26,6 +26,8 @@
     /// The encapsulated schema.
     public var schema: OneOf_Schema? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TypeSchema`.
     public init() {}
 
@@ -42,9 +44,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineSchema = "inlineSchema"
-      case schemaReference = "schemaReference"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineSchema = CodingKeys(stringValue: "inlineSchema")
+      static let schemaReference = CodingKeys(stringValue: "schemaReference")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineSchema",
+        "schemaReference",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@
         try schemaCheckAndSet(.schemaReference(schemaReference))
       }
       self.schema = schema
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@
         case .schemaReference(let value):
           try container.encode(value, forKey: .schemaReference)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -97,6 +116,8 @@
       /// The name of the schema.
       public var schema: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SchemaReference`.
       public init() {}
 
@@ -111,6 +132,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let tool = CodingKeys(stringValue: "tool")
+        static let schema = CodingKeys(stringValue: "schema")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "tool",
+          "schema",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tool) {
+          self.tool = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+          self.schema = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.tool, forKey: .tool)
+        try container.encode(self.schema, forKey: .schema)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension GetFolderRequest {
@@ -31,6 +31,7 @@ extension GetFolderRequest {
     self.ifMetagenerationNotMatch =
       proto.hasIfMetagenerationNotMatch ? proto.ifMetagenerationNotMatch : nil
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -43,6 +44,9 @@ extension GetFolderRequest {
       proto.ifMetagenerationNotMatch = ifMetagenerationNotMatch
     }
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

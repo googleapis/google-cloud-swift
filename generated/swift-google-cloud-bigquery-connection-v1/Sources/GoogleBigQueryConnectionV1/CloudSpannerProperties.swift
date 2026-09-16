@@ -62,6 +62,8 @@ public struct CloudSpannerProperties: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// contain letters, numbers, and underscores.
   public var databaseRole: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudSpannerProperties`.
   public init() {}
 
@@ -76,6 +78,68 @@ public struct CloudSpannerProperties: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let database = CodingKeys(stringValue: "database")
+    static let useParallelism = CodingKeys(stringValue: "useParallelism")
+    static let maxParallelism = CodingKeys(stringValue: "maxParallelism")
+    static let useServerlessAnalytics = CodingKeys(stringValue: "useServerlessAnalytics")
+    static let useDataBoost = CodingKeys(stringValue: "useDataBoost")
+    static let databaseRole = CodingKeys(stringValue: "databaseRole")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "database",
+      "useParallelism",
+      "maxParallelism",
+      "useServerlessAnalytics",
+      "useDataBoost",
+      "databaseRole",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useParallelism) {
+      self.useParallelism = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxParallelism) {
+      self.maxParallelism = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useServerlessAnalytics) {
+      self.useServerlessAnalytics = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useDataBoost) {
+      self.useDataBoost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseRole) {
+      self.databaseRole = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.database, forKey: .database)
+    try container.encode(self.useParallelism, forKey: .useParallelism)
+    try container.encode(self.maxParallelism, forKey: .maxParallelism)
+    try container.encode(self.useServerlessAnalytics, forKey: .useServerlessAnalytics)
+    try container.encode(self.useDataBoost, forKey: .useDataBoost)
+    try container.encode(self.databaseRole, forKey: .databaseRole)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

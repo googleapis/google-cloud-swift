@@ -49,6 +49,8 @@ public struct UnprotectedResourceReportLog: Codable, Equatable, GoogleCloudWKT._
   /// Required. Id of the Host where the application/resource resides.
   public var hostId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UnprotectedResourceReportLog`.
   public init() {}
 
@@ -63,6 +65,86 @@ public struct UnprotectedResourceReportLog: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostName = CodingKeys(stringValue: "hostName")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let instanceName = CodingKeys(stringValue: "instanceName")
+    static let discoveredOn = CodingKeys(stringValue: "discoveredOn")
+    static let discoveredBy = CodingKeys(stringValue: "discoveredBy")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+    static let resourceId = CodingKeys(stringValue: "resourceId")
+    static let hostId = CodingKeys(stringValue: "hostId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostName",
+      "resourceName",
+      "resourceType",
+      "instanceName",
+      "discoveredOn",
+      "discoveredBy",
+      "applianceId",
+      "resourceId",
+      "hostId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+      self.hostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceName) {
+      self.instanceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .discoveredOn) {
+      self.discoveredOn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .discoveredBy) {
+      self.discoveredBy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceId) {
+      self.resourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostId) {
+      self.hostId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.hostName, forKey: .hostName)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.instanceName, forKey: .instanceName)
+    try container.encode(self.discoveredOn, forKey: .discoveredOn)
+    try container.encode(self.discoveredBy, forKey: .discoveredBy)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    try container.encode(self.resourceId, forKey: .resourceId)
+    try container.encode(self.hostId, forKey: .hostId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

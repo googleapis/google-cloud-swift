@@ -34,6 +34,8 @@ public struct CommonLanguageSettings: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Note: This field should not be used in most cases.
   public var selectiveGapicGeneration: SelectiveGapicGeneration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommonLanguageSettings`.
   public init() {}
 
@@ -48,6 +50,51 @@ public struct CommonLanguageSettings: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let referenceDocsUri = CodingKeys(stringValue: "referenceDocsUri")
+    static let destinations = CodingKeys(stringValue: "destinations")
+    static let selectiveGapicGeneration = CodingKeys(stringValue: "selectiveGapicGeneration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "referenceDocsUri",
+      "destinations",
+      "selectiveGapicGeneration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referenceDocsUri) {
+      self.referenceDocsUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ClientLibraryDestination].self, forKey: .destinations)
+    {
+      self.destinations = value
+    }
+    self.selectiveGapicGeneration = try container.decodeIfPresent(
+      SelectiveGapicGeneration.self, forKey: .selectiveGapicGeneration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.referenceDocsUri, forKey: .referenceDocsUri)
+    try container.encode(self.destinations, forKey: .destinations)
+    try container.encodeIfPresent(self.selectiveGapicGeneration, forKey: .selectiveGapicGeneration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

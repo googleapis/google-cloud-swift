@@ -49,6 +49,8 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 
   public var credentialsType: OneOf_CredentialsType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureSourceDetails`.
   public init() {}
 
@@ -65,25 +67,51 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case clientSecretCreds = "clientSecretCreds"
-    case subscriptionId = "subscriptionId"
-    case azureLocation = "azureLocation"
-    case state = "state"
-    case error = "error"
-    case migrationResourcesUserTags = "migrationResourcesUserTags"
-    case resourceGroupId = "resourceGroupId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clientSecretCreds = CodingKeys(stringValue: "clientSecretCreds")
+    static let subscriptionId = CodingKeys(stringValue: "subscriptionId")
+    static let azureLocation = CodingKeys(stringValue: "azureLocation")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let migrationResourcesUserTags = CodingKeys(stringValue: "migrationResourcesUserTags")
+    static let resourceGroupId = CodingKeys(stringValue: "resourceGroupId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clientSecretCreds",
+      "subscriptionId",
+      "azureLocation",
+      "state",
+      "error",
+      "migrationResourcesUserTags",
+      "resourceGroupId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.subscriptionId = try container.decode(Swift.String.self, forKey: .subscriptionId)
-    self.azureLocation = try container.decode(Swift.String.self, forKey: .azureLocation)
-    self.state = try container.decode(AzureSourceDetails.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscriptionId) {
+      self.subscriptionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .azureLocation) {
+      self.azureLocation = value
+    }
+    if let value = try container.decodeIfPresent(AzureSourceDetails.State.self, forKey: .state) {
+      self.state = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.migrationResourcesUserTags = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .migrationResourcesUserTags)
-    self.resourceGroupId = try container.decode(Swift.String.self, forKey: .resourceGroupId)
+    {
+      self.migrationResourcesUserTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceGroupId) {
+      self.resourceGroupId = value
+    }
 
     var credentialsType: OneOf_CredentialsType? = nil
     let credentialsTypeCheckAndSet = {
@@ -101,6 +129,10 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try credentialsTypeCheckAndSet(.clientSecretCreds(clientSecretCreds))
     }
     self.credentialsType = credentialsType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,7 +140,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.subscriptionId, forKey: .subscriptionId)
     try container.encode(self.azureLocation, forKey: .azureLocation)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.migrationResourcesUserTags, forKey: .migrationResourcesUserTags)
     try container.encode(self.resourceGroupId, forKey: .resourceGroupId)
 
@@ -117,6 +149,9 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .clientSecretCreds(let value):
         try container.encode(value, forKey: .clientSecretCreds)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -133,6 +168,8 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Input only. Azure client secret.
     public var clientSecret: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClientSecretCredentials`.
     public init() {}
 
@@ -147,6 +184,50 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tenantId = CodingKeys(stringValue: "tenantId")
+      static let clientId = CodingKeys(stringValue: "clientId")
+      static let clientSecret = CodingKeys(stringValue: "clientSecret")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tenantId",
+        "clientId",
+        "clientSecret",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenantId) {
+        self.tenantId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+        self.clientId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientSecret) {
+        self.clientSecret = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tenantId, forKey: .tenantId)
+      try container.encode(self.clientId, forKey: .clientId)
+      try container.encode(self.clientSecret, forKey: .clientSecret)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

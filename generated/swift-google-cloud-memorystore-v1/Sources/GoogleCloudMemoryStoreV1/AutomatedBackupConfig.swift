@@ -35,6 +35,8 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The schedule of automated backups.
   public var schedule: OneOf_Schedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomatedBackupConfig`.
   public init() {}
 
@@ -51,16 +53,30 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fixedFrequencySchedule = "fixedFrequencySchedule"
-    case automatedBackupMode = "automatedBackupMode"
-    case retention = "retention"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fixedFrequencySchedule = CodingKeys(stringValue: "fixedFrequencySchedule")
+    static let automatedBackupMode = CodingKeys(stringValue: "automatedBackupMode")
+    static let retention = CodingKeys(stringValue: "retention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fixedFrequencySchedule",
+      "automatedBackupMode",
+      "retention",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.automatedBackupMode = try container.decode(
+    if let value = try container.decodeIfPresent(
       AutomatedBackupConfig.AutomatedBackupMode.self, forKey: .automatedBackupMode)
+    {
+      self.automatedBackupMode = value
+    }
     self.retention = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .retention)
 
     var schedule: OneOf_Schedule? = nil
@@ -79,18 +95,25 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       try scheduleCheckAndSet(.fixedFrequencySchedule(fixedFrequencySchedule))
     }
     self.schedule = schedule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.automatedBackupMode, forKey: .automatedBackupMode)
-    try container.encode(self.retention, forKey: .retention)
+    try container.encodeIfPresent(self.retention, forKey: .retention)
 
     if let choice = self.schedule {
       switch choice {
       case .fixedFrequencySchedule(let value):
         try container.encode(value, forKey: .fixedFrequencySchedule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -102,6 +125,8 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// Required. The start time of every automated backup in UTC. It must be set
     /// to the start of an hour. This field is required.
     public var startTime: GoogleType.TimeOfDay? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `FixedFrequencySchedule`.
     public init() {}
@@ -117,6 +142,36 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTime = CodingKeys(stringValue: "startTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTime"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -164,6 +164,8 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Controls the rate of automatic rotation.
   public var rotationSchedule: OneOf_RotationSchedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoKey`.
   public init() {}
 
@@ -180,37 +182,70 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case primary = "primary"
-    case purpose = "purpose"
-    case createTime = "createTime"
-    case nextRotationTime = "nextRotationTime"
-    case rotationPeriod = "rotationPeriod"
-    case versionTemplate = "versionTemplate"
-    case labels = "labels"
-    case importOnly = "importOnly"
-    case destroyScheduledDuration = "destroyScheduledDuration"
-    case cryptoKeyBackend = "cryptoKeyBackend"
-    case keyAccessJustificationsPolicy = "keyAccessJustificationsPolicy"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let primary = CodingKeys(stringValue: "primary")
+    static let purpose = CodingKeys(stringValue: "purpose")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let nextRotationTime = CodingKeys(stringValue: "nextRotationTime")
+    static let rotationPeriod = CodingKeys(stringValue: "rotationPeriod")
+    static let versionTemplate = CodingKeys(stringValue: "versionTemplate")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let importOnly = CodingKeys(stringValue: "importOnly")
+    static let destroyScheduledDuration = CodingKeys(stringValue: "destroyScheduledDuration")
+    static let cryptoKeyBackend = CodingKeys(stringValue: "cryptoKeyBackend")
+    static let keyAccessJustificationsPolicy = CodingKeys(
+      stringValue: "keyAccessJustificationsPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "primary",
+      "purpose",
+      "createTime",
+      "nextRotationTime",
+      "rotationPeriod",
+      "versionTemplate",
+      "labels",
+      "importOnly",
+      "destroyScheduledDuration",
+      "cryptoKeyBackend",
+      "keyAccessJustificationsPolicy",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.primary = try container.decodeIfPresent(CryptoKeyVersion.self, forKey: .primary)
-    self.purpose = try container.decode(CryptoKey.CryptoKeyPurpose.self, forKey: .purpose)
+    if let value = try container.decodeIfPresent(CryptoKey.CryptoKeyPurpose.self, forKey: .purpose)
+    {
+      self.purpose = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.nextRotationTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .nextRotationTime)
     self.versionTemplate = try container.decodeIfPresent(
       CryptoKeyVersionTemplate.self, forKey: .versionTemplate)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.importOnly = try container.decode(Swift.Bool.self, forKey: .importOnly)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .importOnly) {
+      self.importOnly = value
+    }
     self.destroyScheduledDuration = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .destroyScheduledDuration)
-    self.cryptoKeyBackend = try container.decode(Swift.String.self, forKey: .cryptoKeyBackend)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyBackend) {
+      self.cryptoKeyBackend = value
+    }
     self.keyAccessJustificationsPolicy = try container.decodeIfPresent(
       KeyAccessJustificationsPolicy.self, forKey: .keyAccessJustificationsPolicy)
 
@@ -230,27 +265,35 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try rotationScheduleCheckAndSet(.rotationPeriod(rotationPeriod))
     }
     self.rotationSchedule = rotationSchedule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.primary, forKey: .primary)
+    try container.encodeIfPresent(self.primary, forKey: .primary)
     try container.encode(self.purpose, forKey: .purpose)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.nextRotationTime, forKey: .nextRotationTime)
-    try container.encode(self.versionTemplate, forKey: .versionTemplate)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.nextRotationTime, forKey: .nextRotationTime)
+    try container.encodeIfPresent(self.versionTemplate, forKey: .versionTemplate)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.importOnly, forKey: .importOnly)
-    try container.encode(self.destroyScheduledDuration, forKey: .destroyScheduledDuration)
+    try container.encodeIfPresent(self.destroyScheduledDuration, forKey: .destroyScheduledDuration)
     try container.encode(self.cryptoKeyBackend, forKey: .cryptoKeyBackend)
-    try container.encode(self.keyAccessJustificationsPolicy, forKey: .keyAccessJustificationsPolicy)
+    try container.encodeIfPresent(
+      self.keyAccessJustificationsPolicy, forKey: .keyAccessJustificationsPolicy)
 
     if let choice = self.rotationSchedule {
       switch choice {
       case .rotationPeriod(let value):
         try container.encode(value, forKey: .rotationPeriod)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -52,6 +52,8 @@ public struct ProtectedResourcesSummary: Codable, Equatable, GoogleCloudWKT._Any
   /// [google.cloud.kms.inventory.v1.ProtectedResourcesSummary]: <doc:ProtectedResourcesSummary>
   public var warnings: [Warning] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProtectedResourcesSummary`.
   public init() {}
 
@@ -66,6 +68,80 @@ public struct ProtectedResourcesSummary: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resourceCount = CodingKeys(stringValue: "resourceCount")
+    static let projectCount = CodingKeys(stringValue: "projectCount")
+    static let resourceTypes = CodingKeys(stringValue: "resourceTypes")
+    static let cloudProducts = CodingKeys(stringValue: "cloudProducts")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let warnings = CodingKeys(stringValue: "warnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resourceCount",
+      "projectCount",
+      "resourceTypes",
+      "cloudProducts",
+      "locations",
+      "warnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .resourceCount) {
+      self.resourceCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .projectCount) {
+      self.projectCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int64].self, forKey: .resourceTypes)
+    {
+      self.resourceTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int64].self, forKey: .cloudProducts)
+    {
+      self.cloudProducts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.Int64].self, forKey: .locations)
+    {
+      self.locations = value
+    }
+    if let value = try container.decodeIfPresent([Warning].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.resourceCount, forKey: .resourceCount)
+    try container.encode(self.projectCount, forKey: .projectCount)
+    try container.encode(self.resourceTypes, forKey: .resourceTypes)
+    try container.encode(self.cloudProducts, forKey: .cloudProducts)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encode(self.warnings, forKey: .warnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

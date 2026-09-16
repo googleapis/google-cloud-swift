@@ -107,6 +107,8 @@
     ///      - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
     public var status: PublicAdvertisedPrefix.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublicAdvertisedPrefix`.
     public init() {}
 
@@ -123,22 +125,45 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case byoipApiVersion = "byoipApiVersion"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case dnsVerificationIp = "dnsVerificationIp"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case ipCidrRange = "ipCidrRange"
-      case ipv6AccessType = "ipv6AccessType"
-      case kind = "kind"
-      case name = "name"
-      case pdpScope = "pdpScope"
-      case publicDelegatedPrefixs = "publicDelegatedPrefixs"
-      case selfLink = "selfLink"
-      case sharedSecret = "sharedSecret"
-      case status = "status"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let byoipApiVersion = CodingKeys(stringValue: "byoipApiVersion")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let dnsVerificationIp = CodingKeys(stringValue: "dnsVerificationIp")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let pdpScope = CodingKeys(stringValue: "pdpScope")
+      static let publicDelegatedPrefixs = CodingKeys(stringValue: "publicDelegatedPrefixs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sharedSecret = CodingKeys(stringValue: "sharedSecret")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "byoipApiVersion",
+        "creationTimestamp",
+        "description",
+        "dnsVerificationIp",
+        "fingerprint",
+        "id",
+        "ipCidrRange",
+        "ipv6AccessType",
+        "kind",
+        "name",
+        "pdpScope",
+        "publicDelegatedPrefixs",
+        "selfLink",
+        "sharedSecret",
+        "status",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -167,35 +192,45 @@
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.pdpScope = try container.decodeIfPresent(
         PublicAdvertisedPrefix.PdpScope.self, forKey: .pdpScope)
-      self.publicDelegatedPrefixs = try container.decode(
+      if let value = try container.decodeIfPresent(
         [PublicAdvertisedPrefixPublicDelegatedPrefix].self, forKey: .publicDelegatedPrefixs)
+      {
+        self.publicDelegatedPrefixs = value
+      }
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.sharedSecret = try container.decodeIfPresent(Swift.String.self, forKey: .sharedSecret)
       self.status = try container.decodeIfPresent(
         PublicAdvertisedPrefix.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.byoipApiVersion, forKey: .byoipApiVersion)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.dnsVerificationIp, forKey: .dnsVerificationIp)
+      try container.encodeIfPresent(self.byoipApiVersion, forKey: .byoipApiVersion)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.dnsVerificationIp, forKey: .dnsVerificationIp)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
-      try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.pdpScope, forKey: .pdpScope)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.pdpScope, forKey: .pdpScope)
       try container.encode(self.publicDelegatedPrefixs, forKey: .publicDelegatedPrefixs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.sharedSecret, forKey: .sharedSecret)
-      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.sharedSecret, forKey: .sharedSecret)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [byoipApiVersion][google.cloud.compute.v1.PublicAdvertisedPrefix.byoipApiVersion] field.

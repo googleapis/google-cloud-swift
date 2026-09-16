@@ -102,6 +102,8 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// policy](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
   public var accessContextPolicy: OneOf_AccessContextPolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Asset`.
   public init() {}
 
@@ -118,36 +120,67 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case updateTime = "updateTime"
-    case name = "name"
-    case assetType = "assetType"
-    case resource = "resource"
-    case iamPolicy = "iamPolicy"
-    case orgPolicy = "orgPolicy"
-    case accessPolicy = "accessPolicy"
-    case accessLevel = "accessLevel"
-    case servicePerimeter = "servicePerimeter"
-    case osInventory = "osInventory"
-    case relatedAssets = "relatedAssets"
-    case relatedAsset = "relatedAsset"
-    case ancestors = "ancestors"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let name = CodingKeys(stringValue: "name")
+    static let assetType = CodingKeys(stringValue: "assetType")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let iamPolicy = CodingKeys(stringValue: "iamPolicy")
+    static let orgPolicy = CodingKeys(stringValue: "orgPolicy")
+    static let accessPolicy = CodingKeys(stringValue: "accessPolicy")
+    static let accessLevel = CodingKeys(stringValue: "accessLevel")
+    static let servicePerimeter = CodingKeys(stringValue: "servicePerimeter")
+    static let osInventory = CodingKeys(stringValue: "osInventory")
+    static let relatedAssets = CodingKeys(stringValue: "relatedAssets")
+    static let relatedAsset = CodingKeys(stringValue: "relatedAsset")
+    static let ancestors = CodingKeys(stringValue: "ancestors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateTime",
+      "name",
+      "assetType",
+      "resource",
+      "iamPolicy",
+      "orgPolicy",
+      "accessPolicy",
+      "accessLevel",
+      "servicePerimeter",
+      "osInventory",
+      "relatedAssets",
+      "relatedAsset",
+      "ancestors",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.assetType = try container.decode(Swift.String.self, forKey: .assetType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetType) {
+      self.assetType = value
+    }
     self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
     self.iamPolicy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .iamPolicy)
-    self.orgPolicy = try container.decode([GoogleCloudOrgPolicyV1.Policy].self, forKey: .orgPolicy)
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudOrgPolicyV1.Policy].self, forKey: .orgPolicy)
+    {
+      self.orgPolicy = value
+    }
     self.osInventory = try container.decodeIfPresent(
       GoogleCloudOSConfigV1.Inventory.self, forKey: .osInventory)
     self.relatedAssets = try container.decodeIfPresent(RelatedAssets.self, forKey: .relatedAssets)
     self.relatedAsset = try container.decodeIfPresent(RelatedAsset.self, forKey: .relatedAsset)
-    self.ancestors = try container.decode([Swift.String].self, forKey: .ancestors)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ancestors) {
+      self.ancestors = value
+    }
 
     var accessContextPolicy: OneOf_AccessContextPolicy? = nil
     let accessContextPolicyCheckAndSet = {
@@ -175,19 +208,23 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try accessContextPolicyCheckAndSet(.servicePerimeter(servicePerimeter))
     }
     self.accessContextPolicy = accessContextPolicy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.assetType, forKey: .assetType)
-    try container.encode(self.resource, forKey: .resource)
-    try container.encode(self.iamPolicy, forKey: .iamPolicy)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encodeIfPresent(self.iamPolicy, forKey: .iamPolicy)
     try container.encode(self.orgPolicy, forKey: .orgPolicy)
-    try container.encode(self.osInventory, forKey: .osInventory)
-    try container.encode(self.relatedAssets, forKey: .relatedAssets)
-    try container.encode(self.relatedAsset, forKey: .relatedAsset)
+    try container.encodeIfPresent(self.osInventory, forKey: .osInventory)
+    try container.encodeIfPresent(self.relatedAssets, forKey: .relatedAssets)
+    try container.encodeIfPresent(self.relatedAsset, forKey: .relatedAsset)
     try container.encode(self.ancestors, forKey: .ancestors)
 
     if let choice = self.accessContextPolicy {
@@ -199,6 +236,9 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .servicePerimeter(let value):
         try container.encode(value, forKey: .servicePerimeter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

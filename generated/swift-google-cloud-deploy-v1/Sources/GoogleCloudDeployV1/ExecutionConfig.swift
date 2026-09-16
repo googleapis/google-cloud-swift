@@ -53,6 +53,8 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Details of the environment.
   public var executionEnvironment: OneOf_ExecutionEnvironment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecutionConfig`.
   public init() {}
 
@@ -69,27 +71,54 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case usages = "usages"
-    case defaultPool = "defaultPool"
-    case privatePool = "privatePool"
-    case workerPool = "workerPool"
-    case serviceAccount = "serviceAccount"
-    case artifactStorage = "artifactStorage"
-    case executionTimeout = "executionTimeout"
-    case verbose = "verbose"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let usages = CodingKeys(stringValue: "usages")
+    static let defaultPool = CodingKeys(stringValue: "defaultPool")
+    static let privatePool = CodingKeys(stringValue: "privatePool")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let artifactStorage = CodingKeys(stringValue: "artifactStorage")
+    static let executionTimeout = CodingKeys(stringValue: "executionTimeout")
+    static let verbose = CodingKeys(stringValue: "verbose")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "usages",
+      "defaultPool",
+      "privatePool",
+      "workerPool",
+      "serviceAccount",
+      "artifactStorage",
+      "executionTimeout",
+      "verbose",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.usages = try container.decode(
+    if let value = try container.decodeIfPresent(
       [ExecutionConfig.ExecutionEnvironmentUsage].self, forKey: .usages)
-    self.workerPool = try container.decode(Swift.String.self, forKey: .workerPool)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.artifactStorage = try container.decode(Swift.String.self, forKey: .artifactStorage)
+    {
+      self.usages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactStorage) {
+      self.artifactStorage = value
+    }
     self.executionTimeout = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .executionTimeout)
-    self.verbose = try container.decode(Swift.Bool.self, forKey: .verbose)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verbose) {
+      self.verbose = value
+    }
 
     var executionEnvironment: OneOf_ExecutionEnvironment? = nil
     let executionEnvironmentCheckAndSet = {
@@ -108,6 +137,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try executionEnvironmentCheckAndSet(.privatePool(privatePool))
     }
     self.executionEnvironment = executionEnvironment
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -116,7 +149,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.workerPool, forKey: .workerPool)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.artifactStorage, forKey: .artifactStorage)
-    try container.encode(self.executionTimeout, forKey: .executionTimeout)
+    try container.encodeIfPresent(self.executionTimeout, forKey: .executionTimeout)
     try container.encode(self.verbose, forKey: .verbose)
 
     if let choice = self.executionEnvironment {
@@ -126,6 +159,9 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .privatePool(let value):
         try container.encode(value, forKey: .privatePool)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

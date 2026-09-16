@@ -196,6 +196,8 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// pools and load balancers.
   public var networkTierConfig: NetworkTierConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IPAllocationPolicy`.
   public init() {}
 
@@ -210,6 +212,180 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let useIpAliases = CodingKeys(stringValue: "useIpAliases")
+    static let createSubnetwork = CodingKeys(stringValue: "createSubnetwork")
+    static let subnetworkName = CodingKeys(stringValue: "subnetworkName")
+    static let clusterIpv4Cidr = CodingKeys(stringValue: "clusterIpv4Cidr")
+    static let nodeIpv4Cidr = CodingKeys(stringValue: "nodeIpv4Cidr")
+    static let servicesIpv4Cidr = CodingKeys(stringValue: "servicesIpv4Cidr")
+    static let clusterSecondaryRangeName = CodingKeys(stringValue: "clusterSecondaryRangeName")
+    static let servicesSecondaryRangeName = CodingKeys(stringValue: "servicesSecondaryRangeName")
+    static let clusterIpv4CidrBlock = CodingKeys(stringValue: "clusterIpv4CidrBlock")
+    static let nodeIpv4CidrBlock = CodingKeys(stringValue: "nodeIpv4CidrBlock")
+    static let servicesIpv4CidrBlock = CodingKeys(stringValue: "servicesIpv4CidrBlock")
+    static let tpuIpv4CidrBlock = CodingKeys(stringValue: "tpuIpv4CidrBlock")
+    static let useRoutes = CodingKeys(stringValue: "useRoutes")
+    static let stackType = CodingKeys(stringValue: "stackType")
+    static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+    static let podCidrOverprovisionConfig = CodingKeys(stringValue: "podCidrOverprovisionConfig")
+    static let subnetIpv6CidrBlock = CodingKeys(stringValue: "subnetIpv6CidrBlock")
+    static let servicesIpv6CidrBlock = CodingKeys(stringValue: "servicesIpv6CidrBlock")
+    static let additionalPodRangesConfig = CodingKeys(stringValue: "additionalPodRangesConfig")
+    static let defaultPodIpv4RangeUtilization = CodingKeys(
+      stringValue: "defaultPodIpv4RangeUtilization")
+    static let additionalIpRangesConfigs = CodingKeys(stringValue: "additionalIpRangesConfigs")
+    static let autoIpamConfig = CodingKeys(stringValue: "autoIpamConfig")
+    static let networkTierConfig = CodingKeys(stringValue: "networkTierConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "useIpAliases",
+      "createSubnetwork",
+      "subnetworkName",
+      "clusterIpv4Cidr",
+      "nodeIpv4Cidr",
+      "servicesIpv4Cidr",
+      "clusterSecondaryRangeName",
+      "servicesSecondaryRangeName",
+      "clusterIpv4CidrBlock",
+      "nodeIpv4CidrBlock",
+      "servicesIpv4CidrBlock",
+      "tpuIpv4CidrBlock",
+      "useRoutes",
+      "stackType",
+      "ipv6AccessType",
+      "podCidrOverprovisionConfig",
+      "subnetIpv6CidrBlock",
+      "servicesIpv6CidrBlock",
+      "additionalPodRangesConfig",
+      "defaultPodIpv4RangeUtilization",
+      "additionalIpRangesConfigs",
+      "autoIpamConfig",
+      "networkTierConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useIpAliases) {
+      self.useIpAliases = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .createSubnetwork) {
+      self.createSubnetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetworkName) {
+      self.subnetworkName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterIpv4Cidr) {
+      self.clusterIpv4Cidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeIpv4Cidr) {
+      self.nodeIpv4Cidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesIpv4Cidr) {
+      self.servicesIpv4Cidr = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .clusterSecondaryRangeName)
+    {
+      self.clusterSecondaryRangeName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .servicesSecondaryRangeName)
+    {
+      self.servicesSecondaryRangeName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterIpv4CidrBlock) {
+      self.clusterIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeIpv4CidrBlock) {
+      self.nodeIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesIpv4CidrBlock)
+    {
+      self.servicesIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tpuIpv4CidrBlock) {
+      self.tpuIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useRoutes) {
+      self.useRoutes = value
+    }
+    if let value = try container.decodeIfPresent(StackType.self, forKey: .stackType) {
+      self.stackType = value
+    }
+    if let value = try container.decodeIfPresent(IPv6AccessType.self, forKey: .ipv6AccessType) {
+      self.ipv6AccessType = value
+    }
+    self.podCidrOverprovisionConfig = try container.decodeIfPresent(
+      PodCIDROverprovisionConfig.self, forKey: .podCidrOverprovisionConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetIpv6CidrBlock) {
+      self.subnetIpv6CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesIpv6CidrBlock)
+    {
+      self.servicesIpv6CidrBlock = value
+    }
+    self.additionalPodRangesConfig = try container.decodeIfPresent(
+      AdditionalPodRangesConfig.self, forKey: .additionalPodRangesConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .defaultPodIpv4RangeUtilization)
+    {
+      self.defaultPodIpv4RangeUtilization = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AdditionalIPRangesConfig].self, forKey: .additionalIpRangesConfigs)
+    {
+      self.additionalIpRangesConfigs = value
+    }
+    self.autoIpamConfig = try container.decodeIfPresent(
+      AutoIpamConfig.self, forKey: .autoIpamConfig)
+    self.networkTierConfig = try container.decodeIfPresent(
+      NetworkTierConfig.self, forKey: .networkTierConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.useIpAliases, forKey: .useIpAliases)
+    try container.encode(self.createSubnetwork, forKey: .createSubnetwork)
+    try container.encode(self.subnetworkName, forKey: .subnetworkName)
+    try container.encode(self.clusterIpv4Cidr, forKey: .clusterIpv4Cidr)
+    try container.encode(self.nodeIpv4Cidr, forKey: .nodeIpv4Cidr)
+    try container.encode(self.servicesIpv4Cidr, forKey: .servicesIpv4Cidr)
+    try container.encode(self.clusterSecondaryRangeName, forKey: .clusterSecondaryRangeName)
+    try container.encode(self.servicesSecondaryRangeName, forKey: .servicesSecondaryRangeName)
+    try container.encode(self.clusterIpv4CidrBlock, forKey: .clusterIpv4CidrBlock)
+    try container.encode(self.nodeIpv4CidrBlock, forKey: .nodeIpv4CidrBlock)
+    try container.encode(self.servicesIpv4CidrBlock, forKey: .servicesIpv4CidrBlock)
+    try container.encode(self.tpuIpv4CidrBlock, forKey: .tpuIpv4CidrBlock)
+    try container.encode(self.useRoutes, forKey: .useRoutes)
+    try container.encode(self.stackType, forKey: .stackType)
+    try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
+    try container.encodeIfPresent(
+      self.podCidrOverprovisionConfig, forKey: .podCidrOverprovisionConfig)
+    try container.encode(self.subnetIpv6CidrBlock, forKey: .subnetIpv6CidrBlock)
+    try container.encode(self.servicesIpv6CidrBlock, forKey: .servicesIpv6CidrBlock)
+    try container.encodeIfPresent(
+      self.additionalPodRangesConfig, forKey: .additionalPodRangesConfig)
+    try container.encode(
+      self.defaultPodIpv4RangeUtilization, forKey: .defaultPodIpv4RangeUtilization)
+    try container.encode(self.additionalIpRangesConfigs, forKey: .additionalIpRangesConfigs)
+    try container.encodeIfPresent(self.autoIpamConfig, forKey: .autoIpamConfig)
+    try container.encodeIfPresent(self.networkTierConfig, forKey: .networkTierConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

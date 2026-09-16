@@ -63,6 +63,8 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.hypercomputecluster.v1.ComputeInstanceSlurmNodeSet]: <doc:ComputeInstanceSlurmNodeSet>
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SlurmNodeSet`.
   public init() {}
 
@@ -79,22 +81,46 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case computeInstance = "computeInstance"
-    case id = "id"
-    case computeId = "computeId"
-    case storageConfigs = "storageConfigs"
-    case staticNodeCount = "staticNodeCount"
-    case maxDynamicNodeCount = "maxDynamicNodeCount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let computeInstance = CodingKeys(stringValue: "computeInstance")
+    static let id = CodingKeys(stringValue: "id")
+    static let computeId = CodingKeys(stringValue: "computeId")
+    static let storageConfigs = CodingKeys(stringValue: "storageConfigs")
+    static let staticNodeCount = CodingKeys(stringValue: "staticNodeCount")
+    static let maxDynamicNodeCount = CodingKeys(stringValue: "maxDynamicNodeCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "computeInstance",
+      "id",
+      "computeId",
+      "storageConfigs",
+      "staticNodeCount",
+      "maxDynamicNodeCount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.computeId = try container.decode(Swift.String.self, forKey: .computeId)
-    self.storageConfigs = try container.decode([StorageConfig].self, forKey: .storageConfigs)
-    self.staticNodeCount = try container.decode(Swift.Int64.self, forKey: .staticNodeCount)
-    self.maxDynamicNodeCount = try container.decode(Swift.Int64.self, forKey: .maxDynamicNodeCount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .computeId) {
+      self.computeId = value
+    }
+    if let value = try container.decodeIfPresent([StorageConfig].self, forKey: .storageConfigs) {
+      self.storageConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .staticNodeCount) {
+      self.staticNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxDynamicNodeCount) {
+      self.maxDynamicNodeCount = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -112,6 +138,10 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.computeInstance(computeInstance))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -127,6 +157,9 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .computeInstance(let value):
         try container.encode(value, forKey: .computeInstance)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

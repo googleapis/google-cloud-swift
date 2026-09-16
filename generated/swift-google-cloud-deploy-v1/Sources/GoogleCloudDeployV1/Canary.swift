@@ -29,6 +29,8 @@ public struct Canary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The mode to use for the canary deployment strategy.
   public var mode: OneOf_Mode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Canary`.
   public init() {}
 
@@ -45,10 +47,21 @@ public struct Canary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case runtimeConfig = "runtimeConfig"
-    case canaryDeployment = "canaryDeployment"
-    case customCanaryDeployment = "customCanaryDeployment"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let runtimeConfig = CodingKeys(stringValue: "runtimeConfig")
+    static let canaryDeployment = CodingKeys(stringValue: "canaryDeployment")
+    static let customCanaryDeployment = CodingKeys(stringValue: "customCanaryDeployment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "runtimeConfig",
+      "canaryDeployment",
+      "customCanaryDeployment",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -76,11 +89,15 @@ public struct Canary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try modeCheckAndSet(.customCanaryDeployment(customCanaryDeployment))
     }
     self.mode = mode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.runtimeConfig, forKey: .runtimeConfig)
+    try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
 
     if let choice = self.mode {
       switch choice {
@@ -89,6 +106,9 @@ public struct Canary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .customCanaryDeployment(let value):
         try container.encode(value, forKey: .customCanaryDeployment)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

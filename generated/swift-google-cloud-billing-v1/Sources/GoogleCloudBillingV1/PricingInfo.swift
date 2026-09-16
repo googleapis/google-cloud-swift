@@ -47,6 +47,8 @@ public struct PricingInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Example: USD * currency_conversion_rate = JPY
   public var currencyConversionRate: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PricingInfo`.
   public init() {}
 
@@ -61,6 +63,60 @@ public struct PricingInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let effectiveTime = CodingKeys(stringValue: "effectiveTime")
+    static let summary = CodingKeys(stringValue: "summary")
+    static let pricingExpression = CodingKeys(stringValue: "pricingExpression")
+    static let aggregationInfo = CodingKeys(stringValue: "aggregationInfo")
+    static let currencyConversionRate = CodingKeys(stringValue: "currencyConversionRate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "effectiveTime",
+      "summary",
+      "pricingExpression",
+      "aggregationInfo",
+      "currencyConversionRate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.effectiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .effectiveTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .summary) {
+      self.summary = value
+    }
+    self.pricingExpression = try container.decodeIfPresent(
+      PricingExpression.self, forKey: .pricingExpression)
+    self.aggregationInfo = try container.decodeIfPresent(
+      AggregationInfo.self, forKey: .aggregationInfo)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .currencyConversionRate)
+    {
+      self.currencyConversionRate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
+    try container.encode(self.summary, forKey: .summary)
+    try container.encodeIfPresent(self.pricingExpression, forKey: .pricingExpression)
+    try container.encodeIfPresent(self.aggregationInfo, forKey: .aggregationInfo)
+    try container.encode(self.currencyConversionRate, forKey: .currencyConversionRate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

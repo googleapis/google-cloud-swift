@@ -37,6 +37,8 @@
     /// The upper limit of data points per write request is 5000.
     public var timeSeriesData: [TimeSeriesData] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WriteTensorboardRunDataRequest`.
     public init() {}
 
@@ -51,6 +53,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tensorboardRun = CodingKeys(stringValue: "tensorboardRun")
+      static let timeSeriesData = CodingKeys(stringValue: "timeSeriesData")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tensorboardRun",
+        "timeSeriesData",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tensorboardRun) {
+        self.tensorboardRun = value
+      }
+      if let value = try container.decodeIfPresent([TimeSeriesData].self, forKey: .timeSeriesData) {
+        self.timeSeriesData = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tensorboardRun, forKey: .tensorboardRun)
+      try container.encode(self.timeSeriesData, forKey: .timeSeriesData)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

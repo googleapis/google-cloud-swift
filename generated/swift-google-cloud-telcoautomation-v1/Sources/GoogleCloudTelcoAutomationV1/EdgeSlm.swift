@@ -51,6 +51,8 @@ public struct EdgeSlm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// created.
   public var workloadClusterType: EdgeSlm.WorkloadClusterType = EdgeSlm.WorkloadClusterType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EdgeSlm`.
   public init() {}
 
@@ -65,6 +67,81 @@ public struct EdgeSlm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let orchestrationCluster = CodingKeys(stringValue: "orchestrationCluster")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let tnaVersion = CodingKeys(stringValue: "tnaVersion")
+    static let state = CodingKeys(stringValue: "state")
+    static let workloadClusterType = CodingKeys(stringValue: "workloadClusterType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "orchestrationCluster",
+      "createTime",
+      "updateTime",
+      "labels",
+      "tnaVersion",
+      "state",
+      "workloadClusterType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orchestrationCluster) {
+      self.orchestrationCluster = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tnaVersion) {
+      self.tnaVersion = value
+    }
+    if let value = try container.decodeIfPresent(EdgeSlm.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      EdgeSlm.WorkloadClusterType.self, forKey: .workloadClusterType)
+    {
+      self.workloadClusterType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.orchestrationCluster, forKey: .orchestrationCluster)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.tnaVersion, forKey: .tnaVersion)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.workloadClusterType, forKey: .workloadClusterType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of the resource.

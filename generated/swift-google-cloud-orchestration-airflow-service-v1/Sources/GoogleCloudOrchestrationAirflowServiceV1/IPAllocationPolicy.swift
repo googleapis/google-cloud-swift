@@ -36,6 +36,8 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Configuration of allocating IP addresses for services in the GKE cluster.
   public var servicesIpAllocation: OneOf_ServicesIpAllocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IPAllocationPolicy`.
   public init() {}
 
@@ -52,17 +54,32 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case useIpAliases = "useIpAliases"
-    case clusterSecondaryRangeName = "clusterSecondaryRangeName"
-    case clusterIpv4CidrBlock = "clusterIpv4CidrBlock"
-    case servicesSecondaryRangeName = "servicesSecondaryRangeName"
-    case servicesIpv4CidrBlock = "servicesIpv4CidrBlock"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let useIpAliases = CodingKeys(stringValue: "useIpAliases")
+    static let clusterSecondaryRangeName = CodingKeys(stringValue: "clusterSecondaryRangeName")
+    static let clusterIpv4CidrBlock = CodingKeys(stringValue: "clusterIpv4CidrBlock")
+    static let servicesSecondaryRangeName = CodingKeys(stringValue: "servicesSecondaryRangeName")
+    static let servicesIpv4CidrBlock = CodingKeys(stringValue: "servicesIpv4CidrBlock")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "useIpAliases",
+      "clusterSecondaryRangeName",
+      "clusterIpv4CidrBlock",
+      "servicesSecondaryRangeName",
+      "servicesIpv4CidrBlock",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.useIpAliases = try container.decode(Swift.Bool.self, forKey: .useIpAliases)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useIpAliases) {
+      self.useIpAliases = value
+    }
 
     var clusterIpAllocation: OneOf_ClusterIpAllocation? = nil
     let clusterIpAllocationCheckAndSet = {
@@ -107,6 +124,10 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try servicesIpAllocationCheckAndSet(.servicesIpv4CidrBlock(servicesIpv4CidrBlock))
     }
     self.servicesIpAllocation = servicesIpAllocation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -129,6 +150,9 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .servicesIpv4CidrBlock(let value):
         try container.encode(value, forKey: .servicesIpv4CidrBlock)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -34,6 +34,8 @@ public struct ExecStepConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Location of the executable.
   public var executable: OneOf_Executable? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecStepConfig`.
   public init() {}
 
@@ -50,18 +52,35 @@ public struct ExecStepConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case localPath = "localPath"
-    case gcsObject = "gcsObject"
-    case allowedSuccessCodes = "allowedSuccessCodes"
-    case interpreter = "interpreter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let localPath = CodingKeys(stringValue: "localPath")
+    static let gcsObject = CodingKeys(stringValue: "gcsObject")
+    static let allowedSuccessCodes = CodingKeys(stringValue: "allowedSuccessCodes")
+    static let interpreter = CodingKeys(stringValue: "interpreter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "localPath",
+      "gcsObject",
+      "allowedSuccessCodes",
+      "interpreter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.allowedSuccessCodes = try container.decode(
-      [Swift.Int32].self, forKey: .allowedSuccessCodes)
-    self.interpreter = try container.decode(ExecStepConfig.Interpreter.self, forKey: .interpreter)
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .allowedSuccessCodes) {
+      self.allowedSuccessCodes = value
+    }
+    if let value = try container.decodeIfPresent(
+      ExecStepConfig.Interpreter.self, forKey: .interpreter)
+    {
+      self.interpreter = value
+    }
 
     var executable: OneOf_Executable? = nil
     let executableCheckAndSet = {
@@ -80,6 +99,10 @@ public struct ExecStepConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try executableCheckAndSet(.gcsObject(gcsObject))
     }
     self.executable = executable
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +117,9 @@ public struct ExecStepConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsObject(let value):
         try container.encode(value, forKey: .gcsObject)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

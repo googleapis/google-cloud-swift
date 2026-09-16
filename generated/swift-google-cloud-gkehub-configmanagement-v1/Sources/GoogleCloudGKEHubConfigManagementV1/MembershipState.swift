@@ -42,6 +42,8 @@ public struct MembershipState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Hierarchy Controller status
   public var hierarchyControllerState: HierarchyControllerState? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MembershipState`.
   public init() {}
 
@@ -56,6 +58,62 @@ public struct MembershipState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let membershipSpec = CodingKeys(stringValue: "membershipSpec")
+    static let operatorState = CodingKeys(stringValue: "operatorState")
+    static let configSyncState = CodingKeys(stringValue: "configSyncState")
+    static let policyControllerState = CodingKeys(stringValue: "policyControllerState")
+    static let hierarchyControllerState = CodingKeys(stringValue: "hierarchyControllerState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterName",
+      "membershipSpec",
+      "operatorState",
+      "configSyncState",
+      "policyControllerState",
+      "hierarchyControllerState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    self.membershipSpec = try container.decodeIfPresent(
+      MembershipSpec.self, forKey: .membershipSpec)
+    self.operatorState = try container.decodeIfPresent(OperatorState.self, forKey: .operatorState)
+    self.configSyncState = try container.decodeIfPresent(
+      ConfigSyncState.self, forKey: .configSyncState)
+    self.policyControllerState = try container.decodeIfPresent(
+      PolicyControllerState.self, forKey: .policyControllerState)
+    self.hierarchyControllerState = try container.decodeIfPresent(
+      HierarchyControllerState.self, forKey: .hierarchyControllerState)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encodeIfPresent(self.membershipSpec, forKey: .membershipSpec)
+    try container.encodeIfPresent(self.operatorState, forKey: .operatorState)
+    try container.encodeIfPresent(self.configSyncState, forKey: .configSyncState)
+    try container.encodeIfPresent(self.policyControllerState, forKey: .policyControllerState)
+    try container.encodeIfPresent(self.hierarchyControllerState, forKey: .hierarchyControllerState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

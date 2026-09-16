@@ -24,6 +24,8 @@ public struct TieredStorageRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Rules to specify what data is stored in this tier.
   public var rule: OneOf_Rule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TieredStorageRule`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct TieredStorageRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeIfOlderThan = "includeIfOlderThan"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeIfOlderThan = CodingKeys(stringValue: "includeIfOlderThan")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeIfOlderThan"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct TieredStorageRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try ruleCheckAndSet(.includeIfOlderThan(includeIfOlderThan))
     }
     self.rule = rule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct TieredStorageRule: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .includeIfOlderThan(let value):
         try container.encode(value, forKey: .includeIfOlderThan)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

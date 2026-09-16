@@ -34,6 +34,8 @@
     /// If false, 'testFailures's indicate the reason of failure.
     public var testPassed: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UrlMapValidationResult`.
     public init() {}
 
@@ -48,6 +50,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let loadErrors = CodingKeys(stringValue: "loadErrors")
+      static let loadSucceeded = CodingKeys(stringValue: "loadSucceeded")
+      static let testFailures = CodingKeys(stringValue: "testFailures")
+      static let testPassed = CodingKeys(stringValue: "testPassed")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "loadErrors",
+        "loadSucceeded",
+        "testFailures",
+        "testPassed",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .loadErrors) {
+        self.loadErrors = value
+      }
+      self.loadSucceeded = try container.decodeIfPresent(Swift.Bool.self, forKey: .loadSucceeded)
+      if let value = try container.decodeIfPresent([TestFailure].self, forKey: .testFailures) {
+        self.testFailures = value
+      }
+      self.testPassed = try container.decodeIfPresent(Swift.Bool.self, forKey: .testPassed)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.loadErrors, forKey: .loadErrors)
+      try container.encodeIfPresent(self.loadSucceeded, forKey: .loadSucceeded)
+      try container.encode(self.testFailures, forKey: .testFailures)
+      try container.encodeIfPresent(self.testPassed, forKey: .testPassed)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -39,6 +39,8 @@ public struct GetBucketRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If no mask is specified, it defaults to all fields.
   public var readMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GetBucketRequest`.
   public init() {}
 
@@ -53,6 +55,52 @@ public struct GetBucketRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let ifMetagenerationMatch = CodingKeys(stringValue: "ifMetagenerationMatch")
+    static let ifMetagenerationNotMatch = CodingKeys(stringValue: "ifMetagenerationNotMatch")
+    static let readMask = CodingKeys(stringValue: "readMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "ifMetagenerationMatch",
+      "ifMetagenerationNotMatch",
+      "readMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.ifMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationMatch)
+    self.ifMetagenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationNotMatch)
+    self.readMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .readMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)
+    try container.encodeIfPresent(self.ifMetagenerationNotMatch, forKey: .ifMetagenerationNotMatch)
+    try container.encodeIfPresent(self.readMask, forKey: .readMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

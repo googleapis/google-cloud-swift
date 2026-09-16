@@ -49,6 +49,8 @@
     /// Optional. Configuration options for model generation and outputs.
     public var generationConfig: GenerationConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoraterConfig`.
     public init() {}
 
@@ -63,6 +65,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let samplingCount = CodingKeys(stringValue: "samplingCount")
+      static let flipEnabled = CodingKeys(stringValue: "flipEnabled")
+      static let autoraterModel = CodingKeys(stringValue: "autoraterModel")
+      static let generationConfig = CodingKeys(stringValue: "generationConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "samplingCount",
+        "flipEnabled",
+        "autoraterModel",
+        "generationConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.samplingCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .samplingCount)
+      self.flipEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .flipEnabled)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .autoraterModel) {
+        self.autoraterModel = value
+      }
+      self.generationConfig = try container.decodeIfPresent(
+        GenerationConfig.self, forKey: .generationConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.samplingCount, forKey: .samplingCount)
+      try container.encodeIfPresent(self.flipEnabled, forKey: .flipEnabled)
+      try container.encode(self.autoraterModel, forKey: .autoraterModel)
+      try container.encodeIfPresent(self.generationConfig, forKey: .generationConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

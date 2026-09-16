@@ -39,6 +39,8 @@ public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Optional. The secret access key of Amazon S3.
   public var secretAccessKeySecret: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AmazonS3IcebergStorage`.
   public init() {}
 
@@ -53,6 +55,71 @@ public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schemeType = CodingKeys(stringValue: "schemeType")
+    static let accessKeyId = CodingKeys(stringValue: "accessKeyId")
+    static let region = CodingKeys(stringValue: "region")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let secretAccessKeySecret = CodingKeys(stringValue: "secretAccessKeySecret")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schemeType",
+      "accessKeyId",
+      "region",
+      "bucket",
+      "endpoint",
+      "secretAccessKeySecret",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      AmazonS3IcebergStorage.SchemeType.self, forKey: .schemeType)
+    {
+      self.schemeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accessKeyId) {
+      self.accessKeyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretAccessKeySecret)
+    {
+      self.secretAccessKeySecret = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.schemeType, forKey: .schemeType)
+    try container.encode(self.accessKeyId, forKey: .accessKeyId)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.endpoint, forKey: .endpoint)
+    try container.encode(self.secretAccessKeySecret, forKey: .secretAccessKeySecret)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for scheme type of Amazon S3.

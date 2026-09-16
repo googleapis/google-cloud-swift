@@ -31,6 +31,8 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   @available(*, deprecated)
   public var snippets: SearchEntriesResult.Snippets? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchEntriesResult`.
   public init() {}
 
@@ -47,6 +49,47 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let linkedResource = CodingKeys(stringValue: "linkedResource")
+    static let dataplexEntry = CodingKeys(stringValue: "dataplexEntry")
+    static let snippets = CodingKeys(stringValue: "snippets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "linkedResource",
+      "dataplexEntry",
+      "snippets",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .linkedResource) {
+      self.linkedResource = value
+    }
+    self.dataplexEntry = try container.decodeIfPresent(Entry.self, forKey: .dataplexEntry)
+    self.snippets = try container.decodeIfPresent(
+      SearchEntriesResult.Snippets.self, forKey: .snippets)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.linkedResource, forKey: .linkedResource)
+    try container.encodeIfPresent(self.dataplexEntry, forKey: .dataplexEntry)
+    try container.encodeIfPresent(self.snippets, forKey: .snippets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Snippets for the entry, contains HTML-style highlighting for
   /// matched tokens, will be used in UI.
   @available(*, deprecated)
@@ -56,6 +99,8 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// Entry
     @available(*, deprecated)
     public var dataplexEntry: Entry? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Snippets`.
     public init() {}
@@ -71,6 +116,36 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataplexEntry = CodingKeys(stringValue: "dataplexEntry")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataplexEntry"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.dataplexEntry = try container.decodeIfPresent(Entry.self, forKey: .dataplexEntry)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.dataplexEntry, forKey: .dataplexEntry)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

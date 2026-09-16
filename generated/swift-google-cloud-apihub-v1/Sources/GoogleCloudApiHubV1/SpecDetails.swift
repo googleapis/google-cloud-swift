@@ -27,6 +27,8 @@ public struct SpecDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpecDetails`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct SpecDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case openApiSpecDetails = "openApiSpecDetails"
-    case description = "description"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let openApiSpecDetails = CodingKeys(stringValue: "openApiSpecDetails")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "openApiSpecDetails",
+      "description",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -68,6 +82,10 @@ public struct SpecDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailsCheckAndSet(.openApiSpecDetails(openApiSpecDetails))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +97,9 @@ public struct SpecDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .openApiSpecDetails(let value):
         try container.encode(value, forKey: .openApiSpecDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

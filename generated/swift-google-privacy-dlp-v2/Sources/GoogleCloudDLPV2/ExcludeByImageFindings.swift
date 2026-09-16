@@ -42,6 +42,8 @@ public struct ExcludeByImageFindings: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// of the target finding and the context infoType findings.
   public var imageContainmentType: ImageContainmentType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExcludeByImageFindings`.
   public init() {}
 
@@ -56,6 +58,43 @@ public struct ExcludeByImageFindings: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoTypes = CodingKeys(stringValue: "infoTypes")
+    static let imageContainmentType = CodingKeys(stringValue: "imageContainmentType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoTypes",
+      "imageContainmentType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
+      self.infoTypes = value
+    }
+    self.imageContainmentType = try container.decodeIfPresent(
+      ImageContainmentType.self, forKey: .imageContainmentType)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.infoTypes, forKey: .infoTypes)
+    try container.encodeIfPresent(self.imageContainmentType, forKey: .imageContainmentType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

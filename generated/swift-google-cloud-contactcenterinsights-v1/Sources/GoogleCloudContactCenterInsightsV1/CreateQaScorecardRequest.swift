@@ -35,6 +35,8 @@ public struct CreateQaScorecardRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`.
   public var qaScorecardId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateQaScorecardRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateQaScorecardRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let qaScorecard = CodingKeys(stringValue: "qaScorecard")
+    static let qaScorecardId = CodingKeys(stringValue: "qaScorecardId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "qaScorecard",
+      "qaScorecardId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.qaScorecard = try container.decodeIfPresent(QaScorecard.self, forKey: .qaScorecard)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaScorecardId) {
+      self.qaScorecardId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.qaScorecard, forKey: .qaScorecard)
+    try container.encode(self.qaScorecardId, forKey: .qaScorecardId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

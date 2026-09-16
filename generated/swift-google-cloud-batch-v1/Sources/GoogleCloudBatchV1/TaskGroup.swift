@@ -76,6 +76,8 @@ public struct TaskGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Login](https://cloud.google.com/compute/docs/oslogin).
   public var runAsNonRoot: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskGroup`.
   public init() {}
 
@@ -90,6 +92,92 @@ public struct TaskGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let taskSpec = CodingKeys(stringValue: "taskSpec")
+    static let taskCount = CodingKeys(stringValue: "taskCount")
+    static let parallelism = CodingKeys(stringValue: "parallelism")
+    static let schedulingPolicy = CodingKeys(stringValue: "schedulingPolicy")
+    static let taskEnvironments = CodingKeys(stringValue: "taskEnvironments")
+    static let taskCountPerNode = CodingKeys(stringValue: "taskCountPerNode")
+    static let requireHostsFile = CodingKeys(stringValue: "requireHostsFile")
+    static let permissiveSsh = CodingKeys(stringValue: "permissiveSsh")
+    static let runAsNonRoot = CodingKeys(stringValue: "runAsNonRoot")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "taskSpec",
+      "taskCount",
+      "parallelism",
+      "schedulingPolicy",
+      "taskEnvironments",
+      "taskCountPerNode",
+      "requireHostsFile",
+      "permissiveSsh",
+      "runAsNonRoot",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.taskSpec = try container.decodeIfPresent(TaskSpec.self, forKey: .taskSpec)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .taskCount) {
+      self.taskCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .parallelism) {
+      self.parallelism = value
+    }
+    if let value = try container.decodeIfPresent(
+      TaskGroup.SchedulingPolicy.self, forKey: .schedulingPolicy)
+    {
+      self.schedulingPolicy = value
+    }
+    if let value = try container.decodeIfPresent([Environment].self, forKey: .taskEnvironments) {
+      self.taskEnvironments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .taskCountPerNode) {
+      self.taskCountPerNode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireHostsFile) {
+      self.requireHostsFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .permissiveSsh) {
+      self.permissiveSsh = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runAsNonRoot) {
+      self.runAsNonRoot = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.taskSpec, forKey: .taskSpec)
+    try container.encode(self.taskCount, forKey: .taskCount)
+    try container.encode(self.parallelism, forKey: .parallelism)
+    try container.encode(self.schedulingPolicy, forKey: .schedulingPolicy)
+    try container.encode(self.taskEnvironments, forKey: .taskEnvironments)
+    try container.encode(self.taskCountPerNode, forKey: .taskCountPerNode)
+    try container.encode(self.requireHostsFile, forKey: .requireHostsFile)
+    try container.encode(self.permissiveSsh, forKey: .permissiveSsh)
+    try container.encode(self.runAsNonRoot, forKey: .runAsNonRoot)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// How Tasks in the TaskGroup should be scheduled relative to each other.

@@ -102,6 +102,8 @@
     /// Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
     public var suffixMatch: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpHeaderMatch`.
     public init() {}
 
@@ -116,6 +118,64 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exactMatch = CodingKeys(stringValue: "exactMatch")
+      static let headerName = CodingKeys(stringValue: "headerName")
+      static let invertMatch = CodingKeys(stringValue: "invertMatch")
+      static let prefixMatch = CodingKeys(stringValue: "prefixMatch")
+      static let presentMatch = CodingKeys(stringValue: "presentMatch")
+      static let rangeMatch = CodingKeys(stringValue: "rangeMatch")
+      static let regexMatch = CodingKeys(stringValue: "regexMatch")
+      static let suffixMatch = CodingKeys(stringValue: "suffixMatch")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exactMatch",
+        "headerName",
+        "invertMatch",
+        "prefixMatch",
+        "presentMatch",
+        "rangeMatch",
+        "regexMatch",
+        "suffixMatch",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.exactMatch = try container.decodeIfPresent(Swift.String.self, forKey: .exactMatch)
+      self.headerName = try container.decodeIfPresent(Swift.String.self, forKey: .headerName)
+      self.invertMatch = try container.decodeIfPresent(Swift.Bool.self, forKey: .invertMatch)
+      self.prefixMatch = try container.decodeIfPresent(Swift.String.self, forKey: .prefixMatch)
+      self.presentMatch = try container.decodeIfPresent(Swift.Bool.self, forKey: .presentMatch)
+      self.rangeMatch = try container.decodeIfPresent(Int64RangeMatch.self, forKey: .rangeMatch)
+      self.regexMatch = try container.decodeIfPresent(Swift.String.self, forKey: .regexMatch)
+      self.suffixMatch = try container.decodeIfPresent(Swift.String.self, forKey: .suffixMatch)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.exactMatch, forKey: .exactMatch)
+      try container.encodeIfPresent(self.headerName, forKey: .headerName)
+      try container.encodeIfPresent(self.invertMatch, forKey: .invertMatch)
+      try container.encodeIfPresent(self.prefixMatch, forKey: .prefixMatch)
+      try container.encodeIfPresent(self.presentMatch, forKey: .presentMatch)
+      try container.encodeIfPresent(self.rangeMatch, forKey: .rangeMatch)
+      try container.encodeIfPresent(self.regexMatch, forKey: .regexMatch)
+      try container.encodeIfPresent(self.suffixMatch, forKey: .suffixMatch)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

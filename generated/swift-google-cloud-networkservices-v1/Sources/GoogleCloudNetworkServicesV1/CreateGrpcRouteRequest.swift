@@ -31,6 +31,8 @@ public struct CreateGrpcRouteRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Required. GrpcRoute resource to be created.
   public var grpcRoute: GrpcRoute? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateGrpcRouteRequest`.
   public init() {}
 
@@ -45,6 +47,48 @@ public struct CreateGrpcRouteRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let grpcRouteId = CodingKeys(stringValue: "grpcRouteId")
+    static let grpcRoute = CodingKeys(stringValue: "grpcRoute")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "grpcRouteId",
+      "grpcRoute",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .grpcRouteId) {
+      self.grpcRouteId = value
+    }
+    self.grpcRoute = try container.decodeIfPresent(GrpcRoute.self, forKey: .grpcRoute)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.grpcRouteId, forKey: .grpcRouteId)
+    try container.encodeIfPresent(self.grpcRoute, forKey: .grpcRoute)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -73,6 +73,8 @@
     /// change in implementation.
     public var confidence: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Match`.
     public init() {}
 
@@ -87,6 +89,65 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intent = CodingKeys(stringValue: "intent")
+      static let event = CodingKeys(stringValue: "event")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let resolvedInput = CodingKeys(stringValue: "resolvedInput")
+      static let matchType = CodingKeys(stringValue: "matchType")
+      static let confidence = CodingKeys(stringValue: "confidence")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intent",
+        "event",
+        "parameters",
+        "resolvedInput",
+        "matchType",
+        "confidence",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
+        self.event = value
+      }
+      self.parameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .parameters)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resolvedInput) {
+        self.resolvedInput = value
+      }
+      if let value = try container.decodeIfPresent(Match.MatchType.self, forKey: .matchType) {
+        self.matchType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+        self.confidence = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
+      try container.encode(self.event, forKey: .event)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encode(self.resolvedInput, forKey: .resolvedInput)
+      try container.encode(self.matchType, forKey: .matchType)
+      try container.encode(self.confidence, forKey: .confidence)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Type of a Match.

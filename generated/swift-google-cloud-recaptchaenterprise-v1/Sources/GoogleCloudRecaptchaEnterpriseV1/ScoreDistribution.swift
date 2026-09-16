@@ -26,6 +26,8 @@ public struct ScoreDistribution: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// but typically much lower (ie. 10).
   public var scoreBuckets: [Swift.Int32: Swift.Int64] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScoreDistribution`.
   public init() {}
 
@@ -42,15 +44,24 @@ public struct ScoreDistribution: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case scoreBuckets = "scoreBuckets"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scoreBuckets = CodingKeys(stringValue: "scoreBuckets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scoreBuckets"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.scoreBuckets = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: Swift.Int64].self, forKey: .scoreBuckets)
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: Swift.Int64].self, forKey: .scoreBuckets)
+    {
       let tuples = try stringKeyed.lazy.map { (key, value) throws -> (Swift.Int32, Swift.Int64) in
         guard let newKey = Swift.Int32(key) else {
           throw DecodingError.typeMismatch(
@@ -61,8 +72,12 @@ public struct ScoreDistribution: Codable, Equatable, GoogleCloudWKT._AnyPackable
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
+      self.scoreBuckets = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@ public struct ScoreDistribution: Codable, Equatable, GoogleCloudWKT._AnyPackable
         uniqueKeysWithValues: self.scoreBuckets.lazy.map { (Swift.String($0), $1) }
       )
       try container.encode(stringKeyed, forKey: .scoreBuckets)
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

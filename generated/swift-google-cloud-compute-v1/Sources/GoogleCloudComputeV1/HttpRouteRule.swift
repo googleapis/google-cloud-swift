@@ -135,6 +135,8 @@
     /// Not supported when the URL map is bound to a target gRPC proxy.
     public var urlRedirect: HttpRedirectAction? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpRouteRule`.
     public init() {}
 
@@ -149,6 +151,70 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customErrorResponsePolicy = CodingKeys(stringValue: "customErrorResponsePolicy")
+      static let description = CodingKeys(stringValue: "description")
+      static let headerAction = CodingKeys(stringValue: "headerAction")
+      static let matchRules = CodingKeys(stringValue: "matchRules")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let routeAction = CodingKeys(stringValue: "routeAction")
+      static let service = CodingKeys(stringValue: "service")
+      static let urlRedirect = CodingKeys(stringValue: "urlRedirect")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customErrorResponsePolicy",
+        "description",
+        "headerAction",
+        "matchRules",
+        "priority",
+        "routeAction",
+        "service",
+        "urlRedirect",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.customErrorResponsePolicy = try container.decodeIfPresent(
+        CustomErrorResponsePolicy.self, forKey: .customErrorResponsePolicy)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.headerAction = try container.decodeIfPresent(
+        HttpHeaderAction.self, forKey: .headerAction)
+      if let value = try container.decodeIfPresent([HttpRouteRuleMatch].self, forKey: .matchRules) {
+        self.matchRules = value
+      }
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
+      self.routeAction = try container.decodeIfPresent(HttpRouteAction.self, forKey: .routeAction)
+      self.service = try container.decodeIfPresent(Swift.String.self, forKey: .service)
+      self.urlRedirect = try container.decodeIfPresent(
+        HttpRedirectAction.self, forKey: .urlRedirect)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.customErrorResponsePolicy, forKey: .customErrorResponsePolicy)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.headerAction, forKey: .headerAction)
+      try container.encode(self.matchRules, forKey: .matchRules)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.routeAction, forKey: .routeAction)
+      try container.encodeIfPresent(self.service, forKey: .service)
+      try container.encodeIfPresent(self.urlRedirect, forKey: .urlRedirect)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

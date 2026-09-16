@@ -43,6 +43,8 @@
     /// ID>/flows/<Flow ID>/pages/<Page ID>`.
     public var cxCurrentPage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutomatedAgentReply`.
     public init() {}
 
@@ -57,6 +59,57 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let detectIntentResponse = CodingKeys(stringValue: "detectIntentResponse")
+      static let automatedAgentReplyType = CodingKeys(stringValue: "automatedAgentReplyType")
+      static let allowCancellation = CodingKeys(stringValue: "allowCancellation")
+      static let cxCurrentPage = CodingKeys(stringValue: "cxCurrentPage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "detectIntentResponse",
+        "automatedAgentReplyType",
+        "allowCancellation",
+        "cxCurrentPage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.detectIntentResponse = try container.decodeIfPresent(
+        DetectIntentResponse.self, forKey: .detectIntentResponse)
+      if let value = try container.decodeIfPresent(
+        AutomatedAgentReply.AutomatedAgentReplyType.self, forKey: .automatedAgentReplyType)
+      {
+        self.automatedAgentReplyType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowCancellation) {
+        self.allowCancellation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cxCurrentPage) {
+        self.cxCurrentPage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.detectIntentResponse, forKey: .detectIntentResponse)
+      try container.encode(self.automatedAgentReplyType, forKey: .automatedAgentReplyType)
+      try container.encode(self.allowCancellation, forKey: .allowCancellation)
+      try container.encode(self.cxCurrentPage, forKey: .cxCurrentPage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents different automated agent reply types.

@@ -29,6 +29,8 @@
 
     public var weeklySchedule: ResourcePolicyWeeklyCycle? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicySnapshotSchedulePolicySchedule`.
     public init() {}
 
@@ -43,6 +45,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dailySchedule = CodingKeys(stringValue: "dailySchedule")
+      static let hourlySchedule = CodingKeys(stringValue: "hourlySchedule")
+      static let weeklySchedule = CodingKeys(stringValue: "weeklySchedule")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dailySchedule",
+        "hourlySchedule",
+        "weeklySchedule",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.dailySchedule = try container.decodeIfPresent(
+        ResourcePolicyDailyCycle.self, forKey: .dailySchedule)
+      self.hourlySchedule = try container.decodeIfPresent(
+        ResourcePolicyHourlyCycle.self, forKey: .hourlySchedule)
+      self.weeklySchedule = try container.decodeIfPresent(
+        ResourcePolicyWeeklyCycle.self, forKey: .weeklySchedule)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.dailySchedule, forKey: .dailySchedule)
+      try container.encodeIfPresent(self.hourlySchedule, forKey: .hourlySchedule)
+      try container.encodeIfPresent(self.weeklySchedule, forKey: .weeklySchedule)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

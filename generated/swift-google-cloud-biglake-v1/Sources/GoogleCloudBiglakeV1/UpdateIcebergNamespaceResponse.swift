@@ -31,6 +31,8 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleCloudWKT
   /// not found.
   public var missing: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateIcebergNamespaceResponse`.
   public init() {}
 
@@ -47,17 +49,38 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case removed = "removed"
-    case updated = "added"
-    case missing = "missing"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let removed = CodingKeys(stringValue: "removed")
+    static let updated = CodingKeys(stringValue: "added")
+    static let missing = CodingKeys(stringValue: "missing")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "removed",
+      "added",
+      "missing",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.removed = try container.decode([Swift.String].self, forKey: .removed)
-    self.updated = try container.decode([Swift.String].self, forKey: .updated)
-    self.missing = try container.decode([Swift.String].self, forKey: .missing)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .removed) {
+      self.removed = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .updated) {
+      self.updated = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .missing) {
+      self.missing = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -65,6 +88,9 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleCloudWKT
     try container.encode(self.removed, forKey: .removed)
     try container.encode(self.updated, forKey: .updated)
     try container.encode(self.missing, forKey: .missing)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

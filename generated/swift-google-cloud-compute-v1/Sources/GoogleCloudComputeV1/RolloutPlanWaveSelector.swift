@@ -28,6 +28,8 @@
     /// Optional. Roll out to resources by Cloud Resource Manager resource hierarchy.
     public var resourceHierarchySelector: RolloutPlanWaveSelectorResourceHierarchySelector? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutPlanWaveSelector`.
     public init() {}
 
@@ -42,6 +44,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locationSelector = CodingKeys(stringValue: "locationSelector")
+      static let resourceHierarchySelector = CodingKeys(stringValue: "resourceHierarchySelector")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locationSelector",
+        "resourceHierarchySelector",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.locationSelector = try container.decodeIfPresent(
+        RolloutPlanWaveSelectorLocationSelector.self, forKey: .locationSelector)
+      self.resourceHierarchySelector = try container.decodeIfPresent(
+        RolloutPlanWaveSelectorResourceHierarchySelector.self, forKey: .resourceHierarchySelector)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.locationSelector, forKey: .locationSelector)
+      try container.encodeIfPresent(
+        self.resourceHierarchySelector, forKey: .resourceHierarchySelector)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

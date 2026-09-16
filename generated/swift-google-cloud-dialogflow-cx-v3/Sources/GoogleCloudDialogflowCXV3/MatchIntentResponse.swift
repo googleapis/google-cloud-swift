@@ -36,6 +36,8 @@
     /// The original conversational query.
     public var query: OneOf_Query? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MatchIntentResponse`.
     public init() {}
 
@@ -52,18 +54,34 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case triggerIntent = "triggerIntent"
-      case transcript = "transcript"
-      case triggerEvent = "triggerEvent"
-      case matches = "matches"
-      case currentPage = "currentPage"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let triggerIntent = CodingKeys(stringValue: "triggerIntent")
+      static let transcript = CodingKeys(stringValue: "transcript")
+      static let triggerEvent = CodingKeys(stringValue: "triggerEvent")
+      static let matches = CodingKeys(stringValue: "matches")
+      static let currentPage = CodingKeys(stringValue: "currentPage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "triggerIntent",
+        "transcript",
+        "triggerEvent",
+        "matches",
+        "currentPage",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.matches = try container.decode([Match].self, forKey: .matches)
+      if let value = try container.decodeIfPresent([Match].self, forKey: .matches) {
+        self.matches = value
+      }
       self.currentPage = try container.decodeIfPresent(Page.self, forKey: .currentPage)
 
       var query: OneOf_Query? = nil
@@ -92,12 +110,16 @@
         try queryCheckAndSet(.triggerEvent(triggerEvent))
       }
       self.query = query
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matches, forKey: .matches)
-      try container.encode(self.currentPage, forKey: .currentPage)
+      try container.encodeIfPresent(self.currentPage, forKey: .currentPage)
 
       if let choice = self.query {
         switch choice {
@@ -110,6 +132,9 @@
         case .triggerEvent(let value):
           try container.encode(value, forKey: .triggerEvent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

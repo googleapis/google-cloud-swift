@@ -36,6 +36,8 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Required. The Cloud IAM object to be linted.
   public var lintObject: OneOf_LintObject? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LintPolicyRequest`.
   public init() {}
 
@@ -52,14 +54,26 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fullResourceName = "fullResourceName"
-    case condition = "condition"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+    static let condition = CodingKeys(stringValue: "condition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fullResourceName",
+      "condition",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.fullResourceName = try container.decode(Swift.String.self, forKey: .fullResourceName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+      self.fullResourceName = value
+    }
 
     var lintObject: OneOf_LintObject? = nil
     let lintObjectCheckAndSet = {
@@ -75,6 +89,10 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try lintObjectCheckAndSet(.condition(condition))
     }
     self.lintObject = lintObject
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +104,9 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .condition(let value):
         try container.encode(value, forKey: .condition)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

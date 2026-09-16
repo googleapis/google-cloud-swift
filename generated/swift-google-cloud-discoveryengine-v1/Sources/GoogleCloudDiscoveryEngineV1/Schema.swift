@@ -38,6 +38,8 @@
     /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
     public var schema: OneOf_Schema? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Schema`.
     public init() {}
 
@@ -54,15 +56,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case structSchema = "structSchema"
-      case jsonSchema = "jsonSchema"
-      case name = "name"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let structSchema = CodingKeys(stringValue: "structSchema")
+      static let jsonSchema = CodingKeys(stringValue: "jsonSchema")
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "structSchema",
+        "jsonSchema",
+        "name",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
 
       var schema: OneOf_Schema? = nil
       let schemaCheckAndSet = {
@@ -83,6 +98,10 @@
         try schemaCheckAndSet(.jsonSchema(jsonSchema))
       }
       self.schema = schema
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,6 +115,9 @@
         case .jsonSchema(let value):
           try container.encode(value, forKey: .jsonSchema)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

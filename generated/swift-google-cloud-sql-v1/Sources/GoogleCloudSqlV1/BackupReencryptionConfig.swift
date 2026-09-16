@@ -28,6 +28,8 @@
     /// Type of backups users want to re-encrypt.
     public var backupType: BackupReencryptionConfig.BackupType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackupReencryptionConfig`.
     public init() {}
 
@@ -42,6 +44,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let backupLimit = CodingKeys(stringValue: "backupLimit")
+      static let backupType = CodingKeys(stringValue: "backupType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "backupLimit",
+        "backupType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.backupLimit = try container.decodeIfPresent(Swift.Int32.self, forKey: .backupLimit)
+      self.backupType = try container.decodeIfPresent(
+        BackupReencryptionConfig.BackupType.self, forKey: .backupType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.backupLimit, forKey: .backupLimit)
+      try container.encodeIfPresent(self.backupType, forKey: .backupType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Backup type for re-encryption

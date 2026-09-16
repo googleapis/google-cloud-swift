@@ -44,6 +44,8 @@ public struct OAuthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. List of client ids allowed to use IAP programmatically.
   public var programmaticClients: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OAuthSettings`.
   public init() {}
 
@@ -58,6 +60,59 @@ public struct OAuthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let loginHint = CodingKeys(stringValue: "loginHint")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let clientSecret = CodingKeys(stringValue: "clientSecret")
+    static let clientSecretSha256 = CodingKeys(stringValue: "clientSecretSha256")
+    static let programmaticClients = CodingKeys(stringValue: "programmaticClients")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "loginHint",
+      "clientId",
+      "clientSecret",
+      "clientSecretSha256",
+      "programmaticClients",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.loginHint = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .loginHint)
+    self.clientId = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .clientId)
+    self.clientSecret = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .clientSecret)
+    self.clientSecretSha256 = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .clientSecretSha256)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .programmaticClients)
+    {
+      self.programmaticClients = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.loginHint, forKey: .loginHint)
+    try container.encodeIfPresent(self.clientId, forKey: .clientId)
+    try container.encodeIfPresent(self.clientSecret, forKey: .clientSecret)
+    try container.encodeIfPresent(self.clientSecretSha256, forKey: .clientSecretSha256)
+    try container.encode(self.programmaticClients, forKey: .programmaticClients)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

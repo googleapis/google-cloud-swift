@@ -91,6 +91,8 @@ public struct CompletionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// retrieve the latest state of the Long Running Operation.
   public var lastAllowlistImportOperation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompletionConfig`.
   public init() {}
 
@@ -105,6 +107,104 @@ public struct CompletionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let matchingOrder = CodingKeys(stringValue: "matchingOrder")
+    static let maxSuggestions = CodingKeys(stringValue: "maxSuggestions")
+    static let minPrefixLength = CodingKeys(stringValue: "minPrefixLength")
+    static let autoLearning = CodingKeys(stringValue: "autoLearning")
+    static let suggestionsInputConfig = CodingKeys(stringValue: "suggestionsInputConfig")
+    static let lastSuggestionsImportOperation = CodingKeys(
+      stringValue: "lastSuggestionsImportOperation")
+    static let denylistInputConfig = CodingKeys(stringValue: "denylistInputConfig")
+    static let lastDenylistImportOperation = CodingKeys(stringValue: "lastDenylistImportOperation")
+    static let allowlistInputConfig = CodingKeys(stringValue: "allowlistInputConfig")
+    static let lastAllowlistImportOperation = CodingKeys(
+      stringValue: "lastAllowlistImportOperation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "matchingOrder",
+      "maxSuggestions",
+      "minPrefixLength",
+      "autoLearning",
+      "suggestionsInputConfig",
+      "lastSuggestionsImportOperation",
+      "denylistInputConfig",
+      "lastDenylistImportOperation",
+      "allowlistInputConfig",
+      "lastAllowlistImportOperation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .matchingOrder) {
+      self.matchingOrder = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSuggestions) {
+      self.maxSuggestions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minPrefixLength) {
+      self.minPrefixLength = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoLearning) {
+      self.autoLearning = value
+    }
+    self.suggestionsInputConfig = try container.decodeIfPresent(
+      CompletionDataInputConfig.self, forKey: .suggestionsInputConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .lastSuggestionsImportOperation)
+    {
+      self.lastSuggestionsImportOperation = value
+    }
+    self.denylistInputConfig = try container.decodeIfPresent(
+      CompletionDataInputConfig.self, forKey: .denylistInputConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .lastDenylistImportOperation)
+    {
+      self.lastDenylistImportOperation = value
+    }
+    self.allowlistInputConfig = try container.decodeIfPresent(
+      CompletionDataInputConfig.self, forKey: .allowlistInputConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .lastAllowlistImportOperation)
+    {
+      self.lastAllowlistImportOperation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.matchingOrder, forKey: .matchingOrder)
+    try container.encode(self.maxSuggestions, forKey: .maxSuggestions)
+    try container.encode(self.minPrefixLength, forKey: .minPrefixLength)
+    try container.encode(self.autoLearning, forKey: .autoLearning)
+    try container.encodeIfPresent(self.suggestionsInputConfig, forKey: .suggestionsInputConfig)
+    try container.encode(
+      self.lastSuggestionsImportOperation, forKey: .lastSuggestionsImportOperation)
+    try container.encodeIfPresent(self.denylistInputConfig, forKey: .denylistInputConfig)
+    try container.encode(self.lastDenylistImportOperation, forKey: .lastDenylistImportOperation)
+    try container.encodeIfPresent(self.allowlistInputConfig, forKey: .allowlistInputConfig)
+    try container.encode(self.lastAllowlistImportOperation, forKey: .lastAllowlistImportOperation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

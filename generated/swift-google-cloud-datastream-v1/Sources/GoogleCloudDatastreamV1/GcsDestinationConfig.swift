@@ -35,6 +35,8 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// File Format that the data should be written in.
   public var fileFormat: OneOf_FileFormat? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsDestinationConfig`.
   public init() {}
 
@@ -51,18 +53,35 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case path = "path"
-    case fileRotationMb = "fileRotationMb"
-    case fileRotationInterval = "fileRotationInterval"
-    case avroFileFormat = "avroFileFormat"
-    case jsonFileFormat = "jsonFileFormat"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let path = CodingKeys(stringValue: "path")
+    static let fileRotationMb = CodingKeys(stringValue: "fileRotationMb")
+    static let fileRotationInterval = CodingKeys(stringValue: "fileRotationInterval")
+    static let avroFileFormat = CodingKeys(stringValue: "avroFileFormat")
+    static let jsonFileFormat = CodingKeys(stringValue: "jsonFileFormat")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "path",
+      "fileRotationMb",
+      "fileRotationInterval",
+      "avroFileFormat",
+      "jsonFileFormat",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.path = try container.decode(Swift.String.self, forKey: .path)
-    self.fileRotationMb = try container.decode(Swift.Int32.self, forKey: .fileRotationMb)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .fileRotationMb) {
+      self.fileRotationMb = value
+    }
     self.fileRotationInterval = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .fileRotationInterval)
 
@@ -87,13 +106,17 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try fileFormatCheckAndSet(.jsonFileFormat(jsonFileFormat))
     }
     self.fileFormat = fileFormat
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.path, forKey: .path)
     try container.encode(self.fileRotationMb, forKey: .fileRotationMb)
-    try container.encode(self.fileRotationInterval, forKey: .fileRotationInterval)
+    try container.encodeIfPresent(self.fileRotationInterval, forKey: .fileRotationInterval)
 
     if let choice = self.fileFormat {
       switch choice {
@@ -102,6 +125,9 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .jsonFileFormat(let value):
         try container.encode(value, forKey: .jsonFileFormat)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

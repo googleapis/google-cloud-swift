@@ -63,6 +63,8 @@ public struct DecapsulateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   public var ciphertextCrc32C: GoogleCloudWKT.Int64Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DecapsulateRequest`.
   public init() {}
 
@@ -79,25 +81,47 @@ public struct DecapsulateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case ciphertext = "ciphertext"
-    case ciphertextCrc32C = "ciphertextCrc32c"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let ciphertext = CodingKeys(stringValue: "ciphertext")
+    static let ciphertextCrc32C = CodingKeys(stringValue: "ciphertextCrc32c")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "ciphertext",
+      "ciphertextCrc32c",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.ciphertext = try container.decode(Foundation.Data.self, forKey: .ciphertext)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .ciphertext) {
+      self.ciphertext = value
+    }
     self.ciphertextCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .ciphertextCrc32C)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.ciphertext, forKey: .ciphertext)
-    try container.encode(self.ciphertextCrc32C, forKey: .ciphertextCrc32C)
+    try container.encodeIfPresent(self.ciphertextCrc32C, forKey: .ciphertextCrc32C)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

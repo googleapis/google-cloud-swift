@@ -42,6 +42,8 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// of asset information in the frame.
   public var frameData: OneOf_FrameData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AssetFrame`.
   public init() {}
 
@@ -58,24 +60,50 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case machineDetails = "machineDetails"
-    case reportTime = "reportTime"
-    case labels = "labels"
-    case attributes = "attributes"
-    case performanceSamples = "performanceSamples"
-    case traceToken = "traceToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let machineDetails = CodingKeys(stringValue: "machineDetails")
+    static let reportTime = CodingKeys(stringValue: "reportTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let performanceSamples = CodingKeys(stringValue: "performanceSamples")
+    static let traceToken = CodingKeys(stringValue: "traceToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "machineDetails",
+      "reportTime",
+      "labels",
+      "attributes",
+      "performanceSamples",
+      "traceToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.reportTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .reportTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
-    self.performanceSamples = try container.decode(
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    if let value = try container.decodeIfPresent(
       [PerformanceSample].self, forKey: .performanceSamples)
-    self.traceToken = try container.decode(Swift.String.self, forKey: .traceToken)
+    {
+      self.performanceSamples = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .traceToken) {
+      self.traceToken = value
+    }
 
     var frameData: OneOf_FrameData? = nil
     let frameDataCheckAndSet = {
@@ -93,11 +121,15 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try frameDataCheckAndSet(.machineDetails(machineDetails))
     }
     self.frameData = frameData
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.reportTime, forKey: .reportTime)
+    try container.encodeIfPresent(self.reportTime, forKey: .reportTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.attributes, forKey: .attributes)
     try container.encode(self.performanceSamples, forKey: .performanceSamples)
@@ -108,6 +140,9 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .machineDetails(let value):
         try container.encode(value, forKey: .machineDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

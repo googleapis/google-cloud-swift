@@ -120,6 +120,8 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of agent.
   public var agentType: OneOf_AgentType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Agent`.
   public init() {}
 
@@ -136,57 +138,124 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case llmAgent = "llmAgent"
-    case remoteDialogflowAgent = "remoteDialogflowAgent"
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case modelSettings = "modelSettings"
-    case instruction = "instruction"
-    case tools = "tools"
-    case childAgents = "childAgents"
-    case beforeAgentCallbacks = "beforeAgentCallbacks"
-    case afterAgentCallbacks = "afterAgentCallbacks"
-    case beforeModelCallbacks = "beforeModelCallbacks"
-    case afterModelCallbacks = "afterModelCallbacks"
-    case beforeToolCallbacks = "beforeToolCallbacks"
-    case afterToolCallbacks = "afterToolCallbacks"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case guardrails = "guardrails"
-    case etag = "etag"
-    case toolsets = "toolsets"
-    case generatedSummary = "generatedSummary"
-    case transferRules = "transferRules"
-    case validationErrors = "validationErrors"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let llmAgent = CodingKeys(stringValue: "llmAgent")
+    static let remoteDialogflowAgent = CodingKeys(stringValue: "remoteDialogflowAgent")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let modelSettings = CodingKeys(stringValue: "modelSettings")
+    static let instruction = CodingKeys(stringValue: "instruction")
+    static let tools = CodingKeys(stringValue: "tools")
+    static let childAgents = CodingKeys(stringValue: "childAgents")
+    static let beforeAgentCallbacks = CodingKeys(stringValue: "beforeAgentCallbacks")
+    static let afterAgentCallbacks = CodingKeys(stringValue: "afterAgentCallbacks")
+    static let beforeModelCallbacks = CodingKeys(stringValue: "beforeModelCallbacks")
+    static let afterModelCallbacks = CodingKeys(stringValue: "afterModelCallbacks")
+    static let beforeToolCallbacks = CodingKeys(stringValue: "beforeToolCallbacks")
+    static let afterToolCallbacks = CodingKeys(stringValue: "afterToolCallbacks")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let guardrails = CodingKeys(stringValue: "guardrails")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let toolsets = CodingKeys(stringValue: "toolsets")
+    static let generatedSummary = CodingKeys(stringValue: "generatedSummary")
+    static let transferRules = CodingKeys(stringValue: "transferRules")
+    static let validationErrors = CodingKeys(stringValue: "validationErrors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "llmAgent",
+      "remoteDialogflowAgent",
+      "name",
+      "displayName",
+      "description",
+      "modelSettings",
+      "instruction",
+      "tools",
+      "childAgents",
+      "beforeAgentCallbacks",
+      "afterAgentCallbacks",
+      "beforeModelCallbacks",
+      "afterModelCallbacks",
+      "beforeToolCallbacks",
+      "afterToolCallbacks",
+      "createTime",
+      "updateTime",
+      "guardrails",
+      "etag",
+      "toolsets",
+      "generatedSummary",
+      "transferRules",
+      "validationErrors",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.modelSettings = try container.decodeIfPresent(ModelSettings.self, forKey: .modelSettings)
-    self.instruction = try container.decode(Swift.String.self, forKey: .instruction)
-    self.tools = try container.decode([Swift.String].self, forKey: .tools)
-    self.childAgents = try container.decode([Swift.String].self, forKey: .childAgents)
-    self.beforeAgentCallbacks = try container.decode([Callback].self, forKey: .beforeAgentCallbacks)
-    self.afterAgentCallbacks = try container.decode([Callback].self, forKey: .afterAgentCallbacks)
-    self.beforeModelCallbacks = try container.decode([Callback].self, forKey: .beforeModelCallbacks)
-    self.afterModelCallbacks = try container.decode([Callback].self, forKey: .afterModelCallbacks)
-    self.beforeToolCallbacks = try container.decode([Callback].self, forKey: .beforeToolCallbacks)
-    self.afterToolCallbacks = try container.decode([Callback].self, forKey: .afterToolCallbacks)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instruction) {
+      self.instruction = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tools) {
+      self.tools = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .childAgents) {
+      self.childAgents = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .beforeAgentCallbacks) {
+      self.beforeAgentCallbacks = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .afterAgentCallbacks) {
+      self.afterAgentCallbacks = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .beforeModelCallbacks) {
+      self.beforeModelCallbacks = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .afterModelCallbacks) {
+      self.afterModelCallbacks = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .beforeToolCallbacks) {
+      self.beforeToolCallbacks = value
+    }
+    if let value = try container.decodeIfPresent([Callback].self, forKey: .afterToolCallbacks) {
+      self.afterToolCallbacks = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.guardrails = try container.decode([Swift.String].self, forKey: .guardrails)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.toolsets = try container.decode([Agent.AgentToolset].self, forKey: .toolsets)
-    self.generatedSummary = try container.decode(Swift.String.self, forKey: .generatedSummary)
-    self.transferRules = try container.decode([TransferRule].self, forKey: .transferRules)
-    self.validationErrors = try container.decode([Swift.String].self, forKey: .validationErrors)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .guardrails) {
+      self.guardrails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([Agent.AgentToolset].self, forKey: .toolsets) {
+      self.toolsets = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generatedSummary) {
+      self.generatedSummary = value
+    }
+    if let value = try container.decodeIfPresent([TransferRule].self, forKey: .transferRules) {
+      self.transferRules = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .validationErrors) {
+      self.validationErrors = value
+    }
 
     var agentType: OneOf_AgentType? = nil
     let agentTypeCheckAndSet = {
@@ -207,6 +276,10 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try agentTypeCheckAndSet(.remoteDialogflowAgent(remoteDialogflowAgent))
     }
     self.agentType = agentType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -214,7 +287,7 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.modelSettings, forKey: .modelSettings)
+    try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
     try container.encode(self.instruction, forKey: .instruction)
     try container.encode(self.tools, forKey: .tools)
     try container.encode(self.childAgents, forKey: .childAgents)
@@ -224,8 +297,8 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.afterModelCallbacks, forKey: .afterModelCallbacks)
     try container.encode(self.beforeToolCallbacks, forKey: .beforeToolCallbacks)
     try container.encode(self.afterToolCallbacks, forKey: .afterToolCallbacks)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.guardrails, forKey: .guardrails)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.toolsets, forKey: .toolsets)
@@ -241,6 +314,9 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .remoteDialogflowAgent)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Default agent type. The agent uses instructions and callbacks specified in
@@ -248,6 +324,8 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct LlmAgent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LlmAgent`.
     public init() {}
 
@@ -262,6 +340,30 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -322,6 +424,8 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// code of the Dialogflow agent will be used.
     public var languageCodeVariable: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RemoteDialogflowAgent`.
     public init() {}
 
@@ -336,6 +440,83 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agent = CodingKeys(stringValue: "agent")
+      static let flowId = CodingKeys(stringValue: "flowId")
+      static let environmentId = CodingKeys(stringValue: "environmentId")
+      static let inputVariableMapping = CodingKeys(stringValue: "inputVariableMapping")
+      static let outputVariableMapping = CodingKeys(stringValue: "outputVariableMapping")
+      static let respectResponseInterruptionSettings = CodingKeys(
+        stringValue: "respectResponseInterruptionSettings")
+      static let languageCodeVariable = CodingKeys(stringValue: "languageCodeVariable")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agent",
+        "flowId",
+        "environmentId",
+        "inputVariableMapping",
+        "outputVariableMapping",
+        "respectResponseInterruptionSettings",
+        "languageCodeVariable",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+        self.agent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .flowId) {
+        self.flowId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environmentId) {
+        self.environmentId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .inputVariableMapping)
+      {
+        self.inputVariableMapping = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .outputVariableMapping)
+      {
+        self.outputVariableMapping = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .respectResponseInterruptionSettings)
+      {
+        self.respectResponseInterruptionSettings = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCodeVariable)
+      {
+        self.languageCodeVariable = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.agent, forKey: .agent)
+      try container.encode(self.flowId, forKey: .flowId)
+      try container.encode(self.environmentId, forKey: .environmentId)
+      try container.encode(self.inputVariableMapping, forKey: .inputVariableMapping)
+      try container.encode(self.outputVariableMapping, forKey: .outputVariableMapping)
+      try container.encode(
+        self.respectResponseInterruptionSettings, forKey: .respectResponseInterruptionSettings)
+      try container.encode(self.languageCodeVariable, forKey: .languageCodeVariable)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -361,6 +542,8 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The tools IDs to filter the toolset.
     public var toolIds: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AgentToolset`.
     public init() {}
 
@@ -375,6 +558,44 @@ public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let toolset = CodingKeys(stringValue: "toolset")
+      static let toolIds = CodingKeys(stringValue: "toolIds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "toolset",
+        "toolIds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .toolset) {
+        self.toolset = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .toolIds) {
+        self.toolIds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.toolset, forKey: .toolset)
+      try container.encode(self.toolIds, forKey: .toolIds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@ public struct BackupRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `BackupRule`.
   public var backupScheduleOneof: OneOf_BackupScheduleOneof? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupRule`.
   public init() {}
 
@@ -56,16 +58,31 @@ public struct BackupRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case ruleId = "ruleId"
-    case backupRetentionDays = "backupRetentionDays"
-    case standardSchedule = "standardSchedule"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ruleId = CodingKeys(stringValue: "ruleId")
+    static let backupRetentionDays = CodingKeys(stringValue: "backupRetentionDays")
+    static let standardSchedule = CodingKeys(stringValue: "standardSchedule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ruleId",
+      "backupRetentionDays",
+      "standardSchedule",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.ruleId = try container.decode(Swift.String.self, forKey: .ruleId)
-    self.backupRetentionDays = try container.decode(Swift.Int32.self, forKey: .backupRetentionDays)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleId) {
+      self.ruleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .backupRetentionDays) {
+      self.backupRetentionDays = value
+    }
 
     var backupScheduleOneof: OneOf_BackupScheduleOneof? = nil
     let backupScheduleOneofCheckAndSet = {
@@ -83,6 +100,10 @@ public struct BackupRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try backupScheduleOneofCheckAndSet(.standardSchedule(standardSchedule))
     }
     self.backupScheduleOneof = backupScheduleOneof
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -95,6 +116,9 @@ public struct BackupRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .standardSchedule(let value):
         try container.encode(value, forKey: .standardSchedule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

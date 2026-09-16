@@ -24,6 +24,8 @@ public struct AutomationRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The configuration of the Automation rule.
   public var rule: OneOf_Rule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomationRule`.
   public init() {}
 
@@ -40,11 +42,23 @@ public struct AutomationRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case promoteReleaseRule = "promoteReleaseRule"
-    case advanceRolloutRule = "advanceRolloutRule"
-    case repairRolloutRule = "repairRolloutRule"
-    case timedPromoteReleaseRule = "timedPromoteReleaseRule"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let promoteReleaseRule = CodingKeys(stringValue: "promoteReleaseRule")
+    static let advanceRolloutRule = CodingKeys(stringValue: "advanceRolloutRule")
+    static let repairRolloutRule = CodingKeys(stringValue: "repairRolloutRule")
+    static let timedPromoteReleaseRule = CodingKeys(stringValue: "timedPromoteReleaseRule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "promoteReleaseRule",
+      "advanceRolloutRule",
+      "repairRolloutRule",
+      "timedPromoteReleaseRule",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -81,6 +95,10 @@ public struct AutomationRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try ruleCheckAndSet(.timedPromoteReleaseRule(timedPromoteReleaseRule))
     }
     self.rule = rule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +115,9 @@ public struct AutomationRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .timedPromoteReleaseRule(let value):
         try container.encode(value, forKey: .timedPromoteReleaseRule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

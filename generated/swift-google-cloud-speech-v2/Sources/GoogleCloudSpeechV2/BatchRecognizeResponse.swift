@@ -32,6 +32,8 @@ public struct BatchRecognizeResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// When available, billed audio seconds for the corresponding request.
   public var totalBilledDuration: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRecognizeResponse`.
   public init() {}
 
@@ -46,6 +48,45 @@ public struct BatchRecognizeResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let results = CodingKeys(stringValue: "results")
+    static let totalBilledDuration = CodingKeys(stringValue: "totalBilledDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "results",
+      "totalBilledDuration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: BatchRecognizeFileResult].self, forKey: .results)
+    {
+      self.results = value
+    }
+    self.totalBilledDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .totalBilledDuration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.results, forKey: .results)
+    try container.encodeIfPresent(self.totalBilledDuration, forKey: .totalBilledDuration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

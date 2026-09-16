@@ -68,6 +68,8 @@ public struct PluginInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// on-ramp plugins.
   public var sourceProjectId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PluginInstance`.
   public init() {}
 
@@ -82,6 +84,90 @@ public struct PluginInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let authConfig = CodingKeys(stringValue: "authConfig")
+    static let additionalConfig = CodingKeys(stringValue: "additionalConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let actions = CodingKeys(stringValue: "actions")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let sourceProjectId = CodingKeys(stringValue: "sourceProjectId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "authConfig",
+      "additionalConfig",
+      "state",
+      "errorMessage",
+      "actions",
+      "createTime",
+      "updateTime",
+      "sourceProjectId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.authConfig = try container.decodeIfPresent(AuthConfig.self, forKey: .authConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ConfigVariable].self, forKey: .additionalConfig)
+    {
+      self.additionalConfig = value
+    }
+    if let value = try container.decodeIfPresent(PluginInstance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent([PluginInstanceAction].self, forKey: .actions) {
+      self.actions = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceProjectId) {
+      self.sourceProjectId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.authConfig, forKey: .authConfig)
+    try container.encode(self.additionalConfig, forKey: .additionalConfig)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.actions, forKey: .actions)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.sourceProjectId, forKey: .sourceProjectId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State represents the state of the plugin instance.

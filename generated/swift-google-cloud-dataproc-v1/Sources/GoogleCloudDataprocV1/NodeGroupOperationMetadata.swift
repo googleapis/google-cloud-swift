@@ -46,6 +46,8 @@ public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleCloudWKT._An
   /// Output only. Errors encountered during operation execution.
   public var warnings: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeGroupOperationMetadata`.
   public init() {}
 
@@ -60,6 +62,83 @@ public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nodeGroupId = CodingKeys(stringValue: "nodeGroupId")
+    static let clusterUuid = CodingKeys(stringValue: "clusterUuid")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusHistory = CodingKeys(stringValue: "statusHistory")
+    static let operationType = CodingKeys(stringValue: "operationType")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let warnings = CodingKeys(stringValue: "warnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nodeGroupId",
+      "clusterUuid",
+      "status",
+      "statusHistory",
+      "operationType",
+      "description",
+      "labels",
+      "warnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeGroupId) {
+      self.nodeGroupId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUuid) {
+      self.clusterUuid = value
+    }
+    self.status = try container.decodeIfPresent(ClusterOperationStatus.self, forKey: .status)
+    if let value = try container.decodeIfPresent(
+      [ClusterOperationStatus].self, forKey: .statusHistory)
+    {
+      self.statusHistory = value
+    }
+    if let value = try container.decodeIfPresent(
+      NodeGroupOperationMetadata.NodeGroupOperationType.self, forKey: .operationType)
+    {
+      self.operationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nodeGroupId, forKey: .nodeGroupId)
+    try container.encode(self.clusterUuid, forKey: .clusterUuid)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.statusHistory, forKey: .statusHistory)
+    try container.encode(self.operationType, forKey: .operationType)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.warnings, forKey: .warnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Operation type for node group resources.

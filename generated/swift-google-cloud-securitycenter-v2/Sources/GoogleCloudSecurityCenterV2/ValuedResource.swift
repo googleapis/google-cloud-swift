@@ -51,6 +51,8 @@ public struct ValuedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// of this resource. Maximum of 100.
   public var resourceValueConfigsUsed: [ResourceValueConfigMetadata] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValuedResource`.
   public init() {}
 
@@ -65,6 +67,78 @@ public struct ValuedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let resourceValue = CodingKeys(stringValue: "resourceValue")
+    static let exposedScore = CodingKeys(stringValue: "exposedScore")
+    static let resourceValueConfigsUsed = CodingKeys(stringValue: "resourceValueConfigsUsed")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resource",
+      "resourceType",
+      "displayName",
+      "resourceValue",
+      "exposedScore",
+      "resourceValueConfigsUsed",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      ValuedResource.ResourceValue.self, forKey: .resourceValue)
+    {
+      self.resourceValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .exposedScore) {
+      self.exposedScore = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ResourceValueConfigMetadata].self, forKey: .resourceValueConfigsUsed)
+    {
+      self.resourceValueConfigsUsed = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.resourceValue, forKey: .resourceValue)
+    try container.encode(self.exposedScore, forKey: .exposedScore)
+    try container.encode(self.resourceValueConfigsUsed, forKey: .resourceValueConfigsUsed)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// How valuable the resource is.

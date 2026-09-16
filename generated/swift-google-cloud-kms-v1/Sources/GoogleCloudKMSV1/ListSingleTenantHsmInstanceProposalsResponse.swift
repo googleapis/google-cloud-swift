@@ -52,6 +52,8 @@ public struct ListSingleTenantHsmInstanceProposalsResponse: Codable, Equatable, 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   public var totalSize: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListSingleTenantHsmInstanceProposalsResponse`.
   public init() {}
 
@@ -66,6 +68,54 @@ public struct ListSingleTenantHsmInstanceProposalsResponse: Codable, Equatable, 
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singleTenantHsmInstanceProposals = CodingKeys(
+      stringValue: "singleTenantHsmInstanceProposals")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let totalSize = CodingKeys(stringValue: "totalSize")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singleTenantHsmInstanceProposals",
+      "nextPageToken",
+      "totalSize",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SingleTenantHsmInstanceProposal].self, forKey: .singleTenantHsmInstanceProposals)
+    {
+      self.singleTenantHsmInstanceProposals = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalSize) {
+      self.totalSize = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.singleTenantHsmInstanceProposals, forKey: .singleTenantHsmInstanceProposals)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.totalSize, forKey: .totalSize)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

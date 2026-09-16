@@ -35,6 +35,8 @@ public struct TimeseriesPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.metric]: <doc:TimeseriesParams/metric>
   public var value: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeseriesPoint`.
   public init() {}
 
@@ -49,6 +51,40 @@ public struct TimeseriesPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let time = CodingKeys(stringValue: "time")
+    static let value = CodingKeys(stringValue: "value")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "time",
+      "value",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.time = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .time)
+    self.value = try container.decodeIfPresent(Swift.Double.self, forKey: .value)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.time, forKey: .time)
+    try container.encodeIfPresent(self.value, forKey: .value)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

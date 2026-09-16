@@ -42,6 +42,8 @@ public struct ImportRegisteredPartiesResponse: Codable, Equatable, GoogleCloudWK
   /// Number of parties that failed to be downtiered
   public var partiesFailedToDowntier: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportRegisteredPartiesResponse`.
   public init() {}
 
@@ -56,6 +58,75 @@ public struct ImportRegisteredPartiesResponse: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let partiesAdded = CodingKeys(stringValue: "partiesAdded")
+    static let partiesRemoved = CodingKeys(stringValue: "partiesRemoved")
+    static let partiesTotal = CodingKeys(stringValue: "partiesTotal")
+    static let partiesFailedToRemove = CodingKeys(stringValue: "partiesFailedToRemove")
+    static let partiesUptiered = CodingKeys(stringValue: "partiesUptiered")
+    static let partiesDowntiered = CodingKeys(stringValue: "partiesDowntiered")
+    static let partiesFailedToDowntier = CodingKeys(stringValue: "partiesFailedToDowntier")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "partiesAdded",
+      "partiesRemoved",
+      "partiesTotal",
+      "partiesFailedToRemove",
+      "partiesUptiered",
+      "partiesDowntiered",
+      "partiesFailedToDowntier",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesAdded) {
+      self.partiesAdded = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesRemoved) {
+      self.partiesRemoved = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesTotal) {
+      self.partiesTotal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesFailedToRemove) {
+      self.partiesFailedToRemove = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesUptiered) {
+      self.partiesUptiered = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesDowntiered) {
+      self.partiesDowntiered = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .partiesFailedToDowntier)
+    {
+      self.partiesFailedToDowntier = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.partiesAdded, forKey: .partiesAdded)
+    try container.encode(self.partiesRemoved, forKey: .partiesRemoved)
+    try container.encode(self.partiesTotal, forKey: .partiesTotal)
+    try container.encode(self.partiesFailedToRemove, forKey: .partiesFailedToRemove)
+    try container.encode(self.partiesUptiered, forKey: .partiesUptiered)
+    try container.encode(self.partiesDowntiered, forKey: .partiesDowntiered)
+    try container.encode(self.partiesFailedToDowntier, forKey: .partiesFailedToDowntier)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The response is either static or it is provided by a python function.
   public var toolResponse: OneOf_ToolResponse? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ToolFakeConfig`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case codeBlock = "codeBlock"
-    case enableFakeMode = "enableFakeMode"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let codeBlock = CodingKeys(stringValue: "codeBlock")
+    static let enableFakeMode = CodingKeys(stringValue: "enableFakeMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "codeBlock",
+      "enableFakeMode",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.enableFakeMode = try container.decode(Swift.Bool.self, forKey: .enableFakeMode)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableFakeMode) {
+      self.enableFakeMode = value
+    }
 
     var toolResponse: OneOf_ToolResponse? = nil
     let toolResponseCheckAndSet = {
@@ -66,6 +80,10 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try toolResponseCheckAndSet(.codeBlock(codeBlock))
     }
     self.toolResponse = toolResponse
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +95,9 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .codeBlock(let value):
         try container.encode(value, forKey: .codeBlock)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

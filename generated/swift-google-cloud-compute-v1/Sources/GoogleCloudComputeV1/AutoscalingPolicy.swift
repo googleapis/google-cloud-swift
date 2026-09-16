@@ -90,6 +90,8 @@
     /// The default stabilization period is 600 seconds.
     public var stabilizationPeriodSec: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscalingPolicy`.
     public init() {}
 
@@ -104,6 +106,86 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let coolDownPeriodSec = CodingKeys(stringValue: "coolDownPeriodSec")
+      static let cpuUtilization = CodingKeys(stringValue: "cpuUtilization")
+      static let customMetricUtilizations = CodingKeys(stringValue: "customMetricUtilizations")
+      static let loadBalancingUtilization = CodingKeys(stringValue: "loadBalancingUtilization")
+      static let maxNumReplicas = CodingKeys(stringValue: "maxNumReplicas")
+      static let minNumReplicas = CodingKeys(stringValue: "minNumReplicas")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let scaleInControl = CodingKeys(stringValue: "scaleInControl")
+      static let scalingSchedules = CodingKeys(stringValue: "scalingSchedules")
+      static let stabilizationPeriodSec = CodingKeys(stringValue: "stabilizationPeriodSec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "coolDownPeriodSec",
+        "cpuUtilization",
+        "customMetricUtilizations",
+        "loadBalancingUtilization",
+        "maxNumReplicas",
+        "minNumReplicas",
+        "mode",
+        "scaleInControl",
+        "scalingSchedules",
+        "stabilizationPeriodSec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.coolDownPeriodSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .coolDownPeriodSec)
+      self.cpuUtilization = try container.decodeIfPresent(
+        AutoscalingPolicyCpuUtilization.self, forKey: .cpuUtilization)
+      if let value = try container.decodeIfPresent(
+        [AutoscalingPolicyCustomMetricUtilization].self, forKey: .customMetricUtilizations)
+      {
+        self.customMetricUtilizations = value
+      }
+      self.loadBalancingUtilization = try container.decodeIfPresent(
+        AutoscalingPolicyLoadBalancingUtilization.self, forKey: .loadBalancingUtilization)
+      self.maxNumReplicas = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNumReplicas)
+      self.minNumReplicas = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNumReplicas)
+      self.mode = try container.decodeIfPresent(AutoscalingPolicy.Mode.self, forKey: .mode)
+      self.scaleInControl = try container.decodeIfPresent(
+        AutoscalingPolicyScaleInControl.self, forKey: .scaleInControl)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: AutoscalingPolicyScalingSchedule].self, forKey: .scalingSchedules)
+      {
+        self.scalingSchedules = value
+      }
+      self.stabilizationPeriodSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .stabilizationPeriodSec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.coolDownPeriodSec, forKey: .coolDownPeriodSec)
+      try container.encodeIfPresent(self.cpuUtilization, forKey: .cpuUtilization)
+      try container.encode(self.customMetricUtilizations, forKey: .customMetricUtilizations)
+      try container.encodeIfPresent(
+        self.loadBalancingUtilization, forKey: .loadBalancingUtilization)
+      try container.encodeIfPresent(self.maxNumReplicas, forKey: .maxNumReplicas)
+      try container.encodeIfPresent(self.minNumReplicas, forKey: .minNumReplicas)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      try container.encodeIfPresent(self.scaleInControl, forKey: .scaleInControl)
+      try container.encode(self.scalingSchedules, forKey: .scalingSchedules)
+      try container.encodeIfPresent(self.stabilizationPeriodSec, forKey: .stabilizationPeriodSec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [mode][google.cloud.compute.v1.AutoscalingPolicy.mode] field.

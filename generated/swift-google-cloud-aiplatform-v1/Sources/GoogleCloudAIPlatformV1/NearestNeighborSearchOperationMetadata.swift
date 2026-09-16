@@ -37,6 +37,8 @@
     /// The ingested data size in bytes.
     public var dataBytesCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NearestNeighborSearchOperationMetadata`.
     public init() {}
 
@@ -51,6 +53,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let contentValidationStats = CodingKeys(stringValue: "contentValidationStats")
+      static let dataBytesCount = CodingKeys(stringValue: "dataBytesCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "contentValidationStats",
+        "dataBytesCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [NearestNeighborSearchOperationMetadata.ContentValidationStats].self,
+        forKey: .contentValidationStats)
+      {
+        self.contentValidationStats = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataBytesCount) {
+        self.dataBytesCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.contentValidationStats, forKey: .contentValidationStats)
+      try container.encode(self.dataBytesCount, forKey: .dataBytesCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public struct RecordError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -74,6 +117,8 @@
       /// The original content of this record.
       public var rawRecord: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RecordError`.
       public init() {}
 
@@ -88,6 +133,65 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let errorType = CodingKeys(stringValue: "errorType")
+        static let errorMessage = CodingKeys(stringValue: "errorMessage")
+        static let sourceGcsUri = CodingKeys(stringValue: "sourceGcsUri")
+        static let embeddingId = CodingKeys(stringValue: "embeddingId")
+        static let rawRecord = CodingKeys(stringValue: "rawRecord")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "errorType",
+          "errorMessage",
+          "sourceGcsUri",
+          "embeddingId",
+          "rawRecord",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          NearestNeighborSearchOperationMetadata.RecordError.RecordErrorType.self,
+          forKey: .errorType)
+        {
+          self.errorType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+          self.errorMessage = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGcsUri) {
+          self.sourceGcsUri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .embeddingId) {
+          self.embeddingId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rawRecord) {
+          self.rawRecord = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.errorType, forKey: .errorType)
+        try container.encode(self.errorMessage, forKey: .errorMessage)
+        try container.encode(self.sourceGcsUri, forKey: .sourceGcsUri)
+        try container.encode(self.embeddingId, forKey: .embeddingId)
+        try container.encode(self.rawRecord, forKey: .rawRecord)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public enum RecordErrorType: Codable, Equatable, Sendable {
@@ -336,6 +440,8 @@
       /// Number of sparse records in this file we skipped due to validate errors.
       public var invalidSparseRecordCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ContentValidationStats`.
       public init() {}
 
@@ -350,6 +456,75 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sourceGcsUri = CodingKeys(stringValue: "sourceGcsUri")
+        static let validRecordCount = CodingKeys(stringValue: "validRecordCount")
+        static let invalidRecordCount = CodingKeys(stringValue: "invalidRecordCount")
+        static let partialErrors = CodingKeys(stringValue: "partialErrors")
+        static let validSparseRecordCount = CodingKeys(stringValue: "validSparseRecordCount")
+        static let invalidSparseRecordCount = CodingKeys(stringValue: "invalidSparseRecordCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sourceGcsUri",
+          "validRecordCount",
+          "invalidRecordCount",
+          "partialErrors",
+          "validSparseRecordCount",
+          "invalidSparseRecordCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGcsUri) {
+          self.sourceGcsUri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .validRecordCount) {
+          self.validRecordCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .invalidRecordCount)
+        {
+          self.invalidRecordCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          [NearestNeighborSearchOperationMetadata.RecordError].self, forKey: .partialErrors)
+        {
+          self.partialErrors = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .validSparseRecordCount)
+        {
+          self.validSparseRecordCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .invalidSparseRecordCount)
+        {
+          self.invalidSparseRecordCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.sourceGcsUri, forKey: .sourceGcsUri)
+        try container.encode(self.validRecordCount, forKey: .validRecordCount)
+        try container.encode(self.invalidRecordCount, forKey: .invalidRecordCount)
+        try container.encode(self.partialErrors, forKey: .partialErrors)
+        try container.encode(self.validSparseRecordCount, forKey: .validSparseRecordCount)
+        try container.encode(self.invalidSparseRecordCount, forKey: .invalidSparseRecordCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

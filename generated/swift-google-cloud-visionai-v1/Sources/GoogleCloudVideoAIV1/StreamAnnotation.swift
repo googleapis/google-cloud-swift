@@ -37,6 +37,8 @@ public struct StreamAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var annotationPayload: OneOf_AnnotationPayload? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamAnnotation`.
   public init() {}
 
@@ -53,21 +55,43 @@ public struct StreamAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case activeZone = "activeZone"
-    case crossingLine = "crossingLine"
-    case id = "id"
-    case displayName = "displayName"
-    case sourceStream = "sourceStream"
-    case type = "type"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let activeZone = CodingKeys(stringValue: "activeZone")
+    static let crossingLine = CodingKeys(stringValue: "crossingLine")
+    static let id = CodingKeys(stringValue: "id")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let sourceStream = CodingKeys(stringValue: "sourceStream")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "activeZone",
+      "crossingLine",
+      "id",
+      "displayName",
+      "sourceStream",
+      "type",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.sourceStream = try container.decode(Swift.String.self, forKey: .sourceStream)
-    self.type = try container.decode(StreamAnnotationType.self, forKey: .type)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceStream) {
+      self.sourceStream = value
+    }
+    if let value = try container.decodeIfPresent(StreamAnnotationType.self, forKey: .type) {
+      self.type = value
+    }
 
     var annotationPayload: OneOf_AnnotationPayload? = nil
     let annotationPayloadCheckAndSet = {
@@ -89,6 +113,10 @@ public struct StreamAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try annotationPayloadCheckAndSet(.crossingLine(crossingLine))
     }
     self.annotationPayload = annotationPayload
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -105,6 +133,9 @@ public struct StreamAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .crossingLine(let value):
         try container.encode(value, forKey: .crossingLine)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

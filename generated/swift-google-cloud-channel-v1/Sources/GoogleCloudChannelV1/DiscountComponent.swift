@@ -29,6 +29,8 @@ public struct DiscountComponent: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// discount.
   public var discountValue: OneOf_DiscountValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscountComponent`.
   public init() {}
 
@@ -45,15 +47,28 @@ public struct DiscountComponent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case discountPercentage = "discountPercentage"
-    case discountAbsolute = "discountAbsolute"
-    case discountType = "discountType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let discountPercentage = CodingKeys(stringValue: "discountPercentage")
+    static let discountAbsolute = CodingKeys(stringValue: "discountAbsolute")
+    static let discountType = CodingKeys(stringValue: "discountType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "discountPercentage",
+      "discountAbsolute",
+      "discountType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.discountType = try container.decode(DiscountType.self, forKey: .discountType)
+    if let value = try container.decodeIfPresent(DiscountType.self, forKey: .discountType) {
+      self.discountType = value
+    }
 
     var discountValue: OneOf_DiscountValue? = nil
     let discountValueCheckAndSet = {
@@ -76,6 +91,10 @@ public struct DiscountComponent: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try discountValueCheckAndSet(.discountAbsolute(discountAbsolute))
     }
     self.discountValue = discountValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +108,9 @@ public struct DiscountComponent: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .discountAbsolute(let value):
         try container.encode(value, forKey: .discountAbsolute)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

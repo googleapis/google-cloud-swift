@@ -32,6 +32,8 @@ public struct ChangeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Example: visibility.rules[selector='LibraryService.CreateBook'].restriction
   public var configChanges: [GoogleApi.ConfigChange] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChangeReport`.
   public init() {}
 
@@ -46,6 +48,40 @@ public struct ChangeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let configChanges = CodingKeys(stringValue: "configChanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "configChanges"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [GoogleApi.ConfigChange].self, forKey: .configChanges)
+    {
+      self.configChanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.configChanges, forKey: .configChanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

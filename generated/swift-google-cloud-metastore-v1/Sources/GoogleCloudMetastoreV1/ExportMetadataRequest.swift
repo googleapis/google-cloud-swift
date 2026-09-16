@@ -51,6 +51,8 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Required. Destination that metadata is exported to.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportMetadataRequest`.
   public init() {}
 
@@ -67,19 +69,38 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case destinationGcsFolder = "destinationGcsFolder"
-    case service = "service"
-    case requestId = "requestId"
-    case databaseDumpType = "databaseDumpType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationGcsFolder = CodingKeys(stringValue: "destinationGcsFolder")
+    static let service = CodingKeys(stringValue: "service")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let databaseDumpType = CodingKeys(stringValue: "databaseDumpType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationGcsFolder",
+      "service",
+      "requestId",
+      "databaseDumpType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.service = try container.decode(Swift.String.self, forKey: .service)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
-    self.databaseDumpType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(
       DatabaseDumpSpec.Type_.self, forKey: .databaseDumpType)
+    {
+      self.databaseDumpType = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -97,6 +118,10 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try destinationCheckAndSet(.destinationGcsFolder(destinationGcsFolder))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -110,6 +135,9 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .destinationGcsFolder(let value):
         try container.encode(value, forKey: .destinationGcsFolder)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

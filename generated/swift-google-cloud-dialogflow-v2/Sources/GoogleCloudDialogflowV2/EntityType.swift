@@ -61,6 +61,8 @@
     /// Optional. Enables fuzzy entity extraction during classification.
     public var enableFuzzyExtraction: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EntityType`.
     public init() {}
 
@@ -75,6 +77,71 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let autoExpansionMode = CodingKeys(stringValue: "autoExpansionMode")
+      static let entities = CodingKeys(stringValue: "entities")
+      static let enableFuzzyExtraction = CodingKeys(stringValue: "enableFuzzyExtraction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "kind",
+        "autoExpansionMode",
+        "entities",
+        "enableFuzzyExtraction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(EntityType.Kind.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(
+        EntityType.AutoExpansionMode.self, forKey: .autoExpansionMode)
+      {
+        self.autoExpansionMode = value
+      }
+      if let value = try container.decodeIfPresent([EntityType.Entity].self, forKey: .entities) {
+        self.entities = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableFuzzyExtraction)
+      {
+        self.enableFuzzyExtraction = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.autoExpansionMode, forKey: .autoExpansionMode)
+      try container.encode(self.entities, forKey: .entities)
+      try container.encode(self.enableFuzzyExtraction, forKey: .enableFuzzyExtraction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// An **entity entry** for an associated entity type.
@@ -104,6 +171,8 @@
       /// *   This collection must contain exactly one synonym equal to `value`.
       public var synonyms: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Entity`.
       public init() {}
 
@@ -118,6 +187,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let value = CodingKeys(stringValue: "value")
+        static let synonyms = CodingKeys(stringValue: "synonyms")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "value",
+          "synonyms",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+          self.value = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .synonyms) {
+          self.synonyms = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.value, forKey: .value)
+        try container.encode(self.synonyms, forKey: .synonyms)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Start time of the window in UTC.
   public var startTime: GoogleType.TimeOfDay? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WeeklyMaintenanceWindow`.
   public init() {}
 
@@ -42,6 +44,42 @@ public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let day = CodingKeys(stringValue: "day")
+    static let startTime = CodingKeys(stringValue: "startTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "day",
+      "startTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(GoogleType.DayOfWeek.self, forKey: .day) {
+      self.day = value
+    }
+    self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.day, forKey: .day)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

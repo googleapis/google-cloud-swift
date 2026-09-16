@@ -45,6 +45,8 @@ public struct GenerativeQuestionConfig: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Optional. Whether the question is asked at serving time.
   public var allowedInConversation: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerativeQuestionConfig`.
   public init() {}
 
@@ -59,6 +61,74 @@ public struct GenerativeQuestionConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let catalog = CodingKeys(stringValue: "catalog")
+    static let facet = CodingKeys(stringValue: "facet")
+    static let generatedQuestion = CodingKeys(stringValue: "generatedQuestion")
+    static let finalQuestion = CodingKeys(stringValue: "finalQuestion")
+    static let exampleValues = CodingKeys(stringValue: "exampleValues")
+    static let frequency = CodingKeys(stringValue: "frequency")
+    static let allowedInConversation = CodingKeys(stringValue: "allowedInConversation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "catalog",
+      "facet",
+      "generatedQuestion",
+      "finalQuestion",
+      "exampleValues",
+      "frequency",
+      "allowedInConversation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .catalog) {
+      self.catalog = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .facet) {
+      self.facet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generatedQuestion) {
+      self.generatedQuestion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .finalQuestion) {
+      self.finalQuestion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exampleValues) {
+      self.exampleValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .frequency) {
+      self.frequency = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowedInConversation) {
+      self.allowedInConversation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.catalog, forKey: .catalog)
+    try container.encode(self.facet, forKey: .facet)
+    try container.encode(self.generatedQuestion, forKey: .generatedQuestion)
+    try container.encode(self.finalQuestion, forKey: .finalQuestion)
+    try container.encode(self.exampleValues, forKey: .exampleValues)
+    try container.encode(self.frequency, forKey: .frequency)
+    try container.encode(self.allowedInConversation, forKey: .allowedInConversation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

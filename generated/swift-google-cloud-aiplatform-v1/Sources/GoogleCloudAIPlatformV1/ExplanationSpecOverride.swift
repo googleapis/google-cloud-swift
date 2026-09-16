@@ -38,6 +38,8 @@
     /// The example-based explanations parameter overrides.
     public var examplesOverride: ExamplesOverride? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExplanationSpecOverride`.
     public init() {}
 
@@ -52,6 +54,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let examplesOverride = CodingKeys(stringValue: "examplesOverride")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parameters",
+        "metadata",
+        "examplesOverride",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.parameters = try container.decodeIfPresent(
+        ExplanationParameters.self, forKey: .parameters)
+      self.metadata = try container.decodeIfPresent(
+        ExplanationMetadataOverride.self, forKey: .metadata)
+      self.examplesOverride = try container.decodeIfPresent(
+        ExamplesOverride.self, forKey: .examplesOverride)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encodeIfPresent(self.examplesOverride, forKey: .examplesOverride)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

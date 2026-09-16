@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CreateAnywhereCacheRequest {
@@ -30,6 +30,7 @@ extension CreateAnywhereCacheRequest {
     self.parent = proto.parent
     self.anywhereCache = proto.hasAnywhereCache ? try .init(proto: proto.anywhereCache) : nil
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension CreateAnywhereCacheRequest {
     proto.parent = self.parent
     if let anywhereCache = self.anywhereCache { proto.anywhereCache = try anywhereCache.toProto() }
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

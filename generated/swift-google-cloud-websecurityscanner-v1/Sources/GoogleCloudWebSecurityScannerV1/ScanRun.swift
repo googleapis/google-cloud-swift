@@ -67,6 +67,8 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. A list of warnings, if such are encountered during this scan run.
   public var warningTraces: [ScanRunWarningTrace] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScanRun`.
   public init() {}
 
@@ -81,6 +83,96 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let resultState = CodingKeys(stringValue: "resultState")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let urlsCrawledCount = CodingKeys(stringValue: "urlsCrawledCount")
+    static let urlsTestedCount = CodingKeys(stringValue: "urlsTestedCount")
+    static let hasVulnerabilities = CodingKeys(stringValue: "hasVulnerabilities")
+    static let progressPercent = CodingKeys(stringValue: "progressPercent")
+    static let errorTrace = CodingKeys(stringValue: "errorTrace")
+    static let warningTraces = CodingKeys(stringValue: "warningTraces")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "executionState",
+      "resultState",
+      "startTime",
+      "endTime",
+      "urlsCrawledCount",
+      "urlsTestedCount",
+      "hasVulnerabilities",
+      "progressPercent",
+      "errorTrace",
+      "warningTraces",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      ScanRun.ExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent(ScanRun.ResultState.self, forKey: .resultState) {
+      self.resultState = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .urlsCrawledCount) {
+      self.urlsCrawledCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .urlsTestedCount) {
+      self.urlsTestedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasVulnerabilities) {
+      self.hasVulnerabilities = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
+      self.progressPercent = value
+    }
+    self.errorTrace = try container.decodeIfPresent(ScanRunErrorTrace.self, forKey: .errorTrace)
+    if let value = try container.decodeIfPresent([ScanRunWarningTrace].self, forKey: .warningTraces)
+    {
+      self.warningTraces = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.resultState, forKey: .resultState)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.urlsCrawledCount, forKey: .urlsCrawledCount)
+    try container.encode(self.urlsTestedCount, forKey: .urlsTestedCount)
+    try container.encode(self.hasVulnerabilities, forKey: .hasVulnerabilities)
+    try container.encode(self.progressPercent, forKey: .progressPercent)
+    try container.encodeIfPresent(self.errorTrace, forKey: .errorTrace)
+    try container.encode(self.warningTraces, forKey: .warningTraces)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of ScanRun execution state.

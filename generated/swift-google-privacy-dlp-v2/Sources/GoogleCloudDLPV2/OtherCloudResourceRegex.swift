@@ -27,6 +27,8 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The type of resource regex to use.
   public var resourceRegex: OneOf_ResourceRegex? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OtherCloudResourceRegex`.
   public init() {}
 
@@ -43,8 +45,17 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case amazonS3BucketRegex = "amazonS3BucketRegex"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let amazonS3BucketRegex = CodingKeys(stringValue: "amazonS3BucketRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "amazonS3BucketRegex"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +77,10 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPa
       try resourceRegexCheckAndSet(.amazonS3BucketRegex(amazonS3BucketRegex))
     }
     self.resourceRegex = resourceRegex
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,6 +91,9 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .amazonS3BucketRegex(let value):
         try container.encode(value, forKey: .amazonS3BucketRegex)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

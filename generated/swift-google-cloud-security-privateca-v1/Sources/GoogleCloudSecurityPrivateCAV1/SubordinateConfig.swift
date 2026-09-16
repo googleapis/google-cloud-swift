@@ -28,6 +28,8 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
 {
   public var subordinateConfig: OneOf_SubordinateConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubordinateConfig`.
   public init() {}
 
@@ -44,9 +46,19 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case certificateAuthority = "certificateAuthority"
-    case pemIssuerChain = "pemIssuerChain"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let certificateAuthority = CodingKeys(stringValue: "certificateAuthority")
+    static let pemIssuerChain = CodingKeys(stringValue: "pemIssuerChain")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "certificateAuthority",
+      "pemIssuerChain",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -73,6 +85,10 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try subordinateConfigCheckAndSet(.pemIssuerChain(pemIssuerChain))
     }
     self.subordinateConfig = subordinateConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +102,9 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try container.encode(value, forKey: .pemIssuerChain)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// This message describes a subordinate CA's issuer certificate chain. This
@@ -95,6 +114,8 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   {
     /// Required. Expected to be in leaf-to-root order according to RFC 5246.
     public var pemCertificates: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SubordinateConfigChain`.
     public init() {}
@@ -110,6 +131,38 @@ public struct SubordinateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pemCertificates = CodingKeys(stringValue: "pemCertificates")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pemCertificates"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pemCertificates) {
+        self.pemCertificates = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pemCertificates, forKey: .pemCertificates)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

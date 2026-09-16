@@ -40,6 +40,8 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// deploying to the App Engine flexible environment using files or zip.
   public var cloudBuildOptions: CloudBuildOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Deployment`.
   public init() {}
 
@@ -54,6 +56,51 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let files = CodingKeys(stringValue: "files")
+    static let container = CodingKeys(stringValue: "container")
+    static let zip = CodingKeys(stringValue: "zip")
+    static let cloudBuildOptions = CodingKeys(stringValue: "cloudBuildOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "files",
+      "container",
+      "zip",
+      "cloudBuildOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String: FileInfo].self, forKey: .files) {
+      self.files = value
+    }
+    self.container = try container.decodeIfPresent(ContainerInfo.self, forKey: .container)
+    self.zip = try container.decodeIfPresent(ZipInfo.self, forKey: .zip)
+    self.cloudBuildOptions = try container.decodeIfPresent(
+      CloudBuildOptions.self, forKey: .cloudBuildOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.files, forKey: .files)
+    try container.encodeIfPresent(self.container, forKey: .container)
+    try container.encodeIfPresent(self.zip, forKey: .zip)
+    try container.encodeIfPresent(self.cloudBuildOptions, forKey: .cloudBuildOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

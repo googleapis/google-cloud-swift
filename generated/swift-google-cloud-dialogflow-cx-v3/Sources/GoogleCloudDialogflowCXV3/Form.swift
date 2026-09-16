@@ -33,6 +33,8 @@
     /// Parameters to collect from the user.
     public var parameters: [Form.Parameter] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Form`.
     public init() {}
 
@@ -47,6 +49,38 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parameters = CodingKeys(stringValue: "parameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parameters"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Form.Parameter].self, forKey: .parameters) {
+        self.parameters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parameters, forKey: .parameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents a form parameter.
@@ -95,6 +129,8 @@
       /// at the lower level overrides the settings exposed at the higher level.
       public var advancedSettings: AdvancedSettings? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Parameter`.
       public init() {}
 
@@ -111,30 +147,60 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case displayName = "displayName"
-        case `required` = "required"
-        case entityType = "entityType"
-        case isList = "isList"
-        case fillBehavior = "fillBehavior"
-        case defaultValue = "defaultValue"
-        case redact = "redact"
-        case advancedSettings = "advancedSettings"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let `required` = CodingKeys(stringValue: "required")
+        static let entityType = CodingKeys(stringValue: "entityType")
+        static let isList = CodingKeys(stringValue: "isList")
+        static let fillBehavior = CodingKeys(stringValue: "fillBehavior")
+        static let defaultValue = CodingKeys(stringValue: "defaultValue")
+        static let redact = CodingKeys(stringValue: "redact")
+        static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "displayName",
+          "required",
+          "entityType",
+          "isList",
+          "fillBehavior",
+          "defaultValue",
+          "redact",
+          "advancedSettings",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-        self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-        self.entityType = try container.decode(Swift.String.self, forKey: .entityType)
-        self.isList = try container.decode(Swift.Bool.self, forKey: .isList)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+          self.`required` = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+          self.entityType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isList) {
+          self.isList = value
+        }
         self.fillBehavior = try container.decodeIfPresent(
           Form.Parameter.FillBehavior.self, forKey: .fillBehavior)
         self.defaultValue = try container.decodeIfPresent(
           GoogleCloudWKT.Value.self, forKey: .defaultValue)
-        self.redact = try container.decode(Swift.Bool.self, forKey: .redact)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .redact) {
+          self.redact = value
+        }
         self.advancedSettings = try container.decodeIfPresent(
           AdvancedSettings.self, forKey: .advancedSettings)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -143,10 +209,13 @@
         try container.encode(self.`required`, forKey: .`required`)
         try container.encode(self.entityType, forKey: .entityType)
         try container.encode(self.isList, forKey: .isList)
-        try container.encode(self.fillBehavior, forKey: .fillBehavior)
-        try container.encode(self.defaultValue, forKey: .defaultValue)
+        try container.encodeIfPresent(self.fillBehavior, forKey: .fillBehavior)
+        try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
         try container.encode(self.redact, forKey: .redact)
-        try container.encode(self.advancedSettings, forKey: .advancedSettings)
+        try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Configuration for how the filling of a parameter should be handled.
@@ -191,6 +260,9 @@
         /// parameter, `initial_prompt_fulfillment` will be re-prompted.
         public var repromptEventHandlers: [EventHandler] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `FillBehavior`.
         public init() {}
 
@@ -205,6 +277,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let initialPromptFulfillment = CodingKeys(stringValue: "initialPromptFulfillment")
+          static let repromptEventHandlers = CodingKeys(stringValue: "repromptEventHandlers")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "initialPromptFulfillment",
+            "repromptEventHandlers",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.initialPromptFulfillment = try container.decodeIfPresent(
+            Fulfillment.self, forKey: .initialPromptFulfillment)
+          if let value = try container.decodeIfPresent(
+            [EventHandler].self, forKey: .repromptEventHandlers)
+          {
+            self.repromptEventHandlers = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(
+            self.initialPromptFulfillment, forKey: .initialPromptFulfillment)
+          try container.encode(self.repromptEventHandlers, forKey: .repromptEventHandlers)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

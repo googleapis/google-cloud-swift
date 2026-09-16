@@ -29,6 +29,8 @@
     /// The result of the upload.
     public var result: OneOf_Result? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UploadRagFileResponse`.
     public init() {}
 
@@ -45,9 +47,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ragFile = "ragFile"
-      case error = "error"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ragFile = CodingKeys(stringValue: "ragFile")
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ragFile",
+        "error",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@
         try resultCheckAndSet(.error(error))
       }
       self.result = result
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@
         case .error(let value):
           try container.encode(value, forKey: .error)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

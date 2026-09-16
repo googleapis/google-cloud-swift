@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ViewObjectFullContextRequest {
@@ -30,6 +30,7 @@ extension ViewObjectFullContextRequest {
     self.generation = proto.generation
     self.contextKey = proto.contextKey
     self.name = proto.name
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension ViewObjectFullContextRequest {
     proto.generation = self.generation
     proto.contextKey = self.contextKey
     proto.name = self.name
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

@@ -34,6 +34,8 @@ public struct FileDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The git patch containing the file changes.
   public var patch: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileDiff`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct FileDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let action = CodingKeys(stringValue: "action")
+    static let sha = CodingKeys(stringValue: "sha")
+    static let patch = CodingKeys(stringValue: "patch")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "action",
+      "sha",
+      "patch",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(FileDiff.Action.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha) {
+      self.sha = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .patch) {
+      self.patch = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.sha, forKey: .sha)
+    try container.encode(self.patch, forKey: .patch)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Action taken on the file.

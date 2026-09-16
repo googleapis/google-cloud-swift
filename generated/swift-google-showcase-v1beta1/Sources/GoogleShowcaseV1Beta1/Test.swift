@@ -37,6 +37,8 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// signal that the test case was exercised.
   public var blueprints: [Test.Blueprint] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Test`.
   public init() {}
 
@@ -51,6 +53,58 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let expectationLevel = CodingKeys(stringValue: "expectationLevel")
+    static let description = CodingKeys(stringValue: "description")
+    static let blueprints = CodingKeys(stringValue: "blueprints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "expectationLevel",
+      "description",
+      "blueprints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      Test.ExpectationLevel.self, forKey: .expectationLevel)
+    {
+      self.expectationLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Test.Blueprint].self, forKey: .blueprints) {
+      self.blueprints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.expectationLevel, forKey: .expectationLevel)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.blueprints, forKey: .blueprints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A blueprint is an explicit definition of methods and requests that are needed
@@ -72,6 +126,8 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// An ordered list of method calls that can be called to trigger this test.
     public var additionalRequests: [Test.Blueprint.Invocation] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Blueprint`.
     public init() {}
 
@@ -88,6 +144,56 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let request = CodingKeys(stringValue: "request")
+      static let additionalRequests = CodingKeys(stringValue: "additionalRequests")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "request",
+        "additionalRequests",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.request = try container.decodeIfPresent(Test.Blueprint.Invocation.self, forKey: .request)
+      if let value = try container.decodeIfPresent(
+        [Test.Blueprint.Invocation].self, forKey: .additionalRequests)
+      {
+        self.additionalRequests = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.request, forKey: .request)
+      try container.encode(self.additionalRequests, forKey: .additionalRequests)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A message representing a method invocation.
     public struct Invocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -97,6 +203,8 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// The request to be made if a specific request is necessary.
       public var serializedRequest: Foundation.Data = Foundation.Data()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Invocation`.
       public init() {}
@@ -112,6 +220,46 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let method = CodingKeys(stringValue: "method")
+        static let serializedRequest = CodingKeys(stringValue: "serializedRequest")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "method",
+          "serializedRequest",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .method) {
+          self.method = value
+        }
+        if let value = try container.decodeIfPresent(
+          Foundation.Data.self, forKey: .serializedRequest)
+        {
+          self.serializedRequest = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.method, forKey: .method)
+        try container.encode(self.serializedRequest, forKey: .serializedRequest)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

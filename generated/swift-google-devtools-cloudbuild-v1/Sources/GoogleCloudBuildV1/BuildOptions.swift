@@ -109,6 +109,8 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If true, JSON-formatted logs are parsed as structured logs.
   public var enableStructuredLogging: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildOptions`.
   public init() {}
 
@@ -123,6 +125,139 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceProvenanceHash = CodingKeys(stringValue: "sourceProvenanceHash")
+    static let requestedVerifyOption = CodingKeys(stringValue: "requestedVerifyOption")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let substitutionOption = CodingKeys(stringValue: "substitutionOption")
+    static let dynamicSubstitutions = CodingKeys(stringValue: "dynamicSubstitutions")
+    static let automapSubstitutions = CodingKeys(stringValue: "automapSubstitutions")
+    static let logStreamingOption = CodingKeys(stringValue: "logStreamingOption")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let pool = CodingKeys(stringValue: "pool")
+    static let logging = CodingKeys(stringValue: "logging")
+    static let env = CodingKeys(stringValue: "env")
+    static let secretEnv = CodingKeys(stringValue: "secretEnv")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let defaultLogsBucketBehavior = CodingKeys(stringValue: "defaultLogsBucketBehavior")
+    static let enableStructuredLogging = CodingKeys(stringValue: "enableStructuredLogging")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceProvenanceHash",
+      "requestedVerifyOption",
+      "machineType",
+      "diskSizeGb",
+      "substitutionOption",
+      "dynamicSubstitutions",
+      "automapSubstitutions",
+      "logStreamingOption",
+      "workerPool",
+      "pool",
+      "logging",
+      "env",
+      "secretEnv",
+      "volumes",
+      "defaultLogsBucketBehavior",
+      "enableStructuredLogging",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Hash.HashType].self, forKey: .sourceProvenanceHash)
+    {
+      self.sourceProvenanceHash = value
+    }
+    if let value = try container.decodeIfPresent(
+      BuildOptions.VerifyOption.self, forKey: .requestedVerifyOption)
+    {
+      self.requestedVerifyOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      BuildOptions.MachineType.self, forKey: .machineType)
+    {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      BuildOptions.SubstitutionOption.self, forKey: .substitutionOption)
+    {
+      self.substitutionOption = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dynamicSubstitutions) {
+      self.dynamicSubstitutions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .automapSubstitutions) {
+      self.automapSubstitutions = value
+    }
+    if let value = try container.decodeIfPresent(
+      BuildOptions.LogStreamingOption.self, forKey: .logStreamingOption)
+    {
+      self.logStreamingOption = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    self.pool = try container.decodeIfPresent(BuildOptions.PoolOption.self, forKey: .pool)
+    if let value = try container.decodeIfPresent(BuildOptions.LoggingMode.self, forKey: .logging) {
+      self.logging = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .env) {
+      self.env = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .secretEnv) {
+      self.secretEnv = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    if let value = try container.decodeIfPresent(
+      BuildOptions.DefaultLogsBucketBehavior.self, forKey: .defaultLogsBucketBehavior)
+    {
+      self.defaultLogsBucketBehavior = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableStructuredLogging)
+    {
+      self.enableStructuredLogging = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceProvenanceHash, forKey: .sourceProvenanceHash)
+    try container.encode(self.requestedVerifyOption, forKey: .requestedVerifyOption)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encode(self.substitutionOption, forKey: .substitutionOption)
+    try container.encode(self.dynamicSubstitutions, forKey: .dynamicSubstitutions)
+    try container.encode(self.automapSubstitutions, forKey: .automapSubstitutions)
+    try container.encode(self.logStreamingOption, forKey: .logStreamingOption)
+    try container.encode(self.workerPool, forKey: .workerPool)
+    try container.encodeIfPresent(self.pool, forKey: .pool)
+    try container.encode(self.logging, forKey: .logging)
+    try container.encode(self.env, forKey: .env)
+    try container.encode(self.secretEnv, forKey: .secretEnv)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encode(self.defaultLogsBucketBehavior, forKey: .defaultLogsBucketBehavior)
+    try container.encode(self.enableStructuredLogging, forKey: .enableStructuredLogging)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details about how a build should be executed on a `WorkerPool`.
@@ -140,6 +275,8 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
     public var name: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PoolOption`.
     public init() {}
 
@@ -154,6 +291,38 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

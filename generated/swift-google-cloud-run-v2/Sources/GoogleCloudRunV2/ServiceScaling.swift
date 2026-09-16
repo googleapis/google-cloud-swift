@@ -40,6 +40,8 @@ public struct ServiceScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// based on the percent of traffic they are receiving.
   public var manualInstanceCount: Swift.Int32? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceScaling`.
   public init() {}
 
@@ -54,6 +56,57 @@ public struct ServiceScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let minInstanceCount = CodingKeys(stringValue: "minInstanceCount")
+    static let scalingMode = CodingKeys(stringValue: "scalingMode")
+    static let maxInstanceCount = CodingKeys(stringValue: "maxInstanceCount")
+    static let manualInstanceCount = CodingKeys(stringValue: "manualInstanceCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "minInstanceCount",
+      "scalingMode",
+      "maxInstanceCount",
+      "manualInstanceCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minInstanceCount) {
+      self.minInstanceCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceScaling.ScalingMode.self, forKey: .scalingMode)
+    {
+      self.scalingMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxInstanceCount) {
+      self.maxInstanceCount = value
+    }
+    self.manualInstanceCount = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .manualInstanceCount)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.minInstanceCount, forKey: .minInstanceCount)
+    try container.encode(self.scalingMode, forKey: .scalingMode)
+    try container.encode(self.maxInstanceCount, forKey: .maxInstanceCount)
+    try container.encodeIfPresent(self.manualInstanceCount, forKey: .manualInstanceCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The scaling mode for the service. If not provided, it defaults to

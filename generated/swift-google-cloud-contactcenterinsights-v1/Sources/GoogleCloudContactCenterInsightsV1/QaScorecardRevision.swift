@@ -45,6 +45,8 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// to be used in analysis.
   public var state: QaScorecardRevision.State = QaScorecardRevision.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QaScorecardRevision`.
   public init() {}
 
@@ -59,6 +61,59 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let snapshot = CodingKeys(stringValue: "snapshot")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let alternateIds = CodingKeys(stringValue: "alternateIds")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "snapshot",
+      "createTime",
+      "alternateIds",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.snapshot = try container.decodeIfPresent(QaScorecard.self, forKey: .snapshot)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .alternateIds) {
+      self.alternateIds = value
+    }
+    if let value = try container.decodeIfPresent(QaScorecardRevision.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.snapshot, forKey: .snapshot)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.alternateIds, forKey: .alternateIds)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum representing the set of states a scorecard revision may be in.

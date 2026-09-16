@@ -30,6 +30,8 @@ public struct MultiLanguageDetectionMetadata: Codable, Equatable, GoogleCloudWKT
   /// Optional. Enable detection of multi-language prompts and responses.
   public var enableMultiLanguageDetection: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MultiLanguageDetectionMetadata`.
   public init() {}
 
@@ -44,6 +46,47 @@ public struct MultiLanguageDetectionMetadata: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceLanguage = CodingKeys(stringValue: "sourceLanguage")
+    static let enableMultiLanguageDetection = CodingKeys(
+      stringValue: "enableMultiLanguageDetection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceLanguage",
+      "enableMultiLanguageDetection",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguage) {
+      self.sourceLanguage = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableMultiLanguageDetection)
+    {
+      self.enableMultiLanguageDetection = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceLanguage, forKey: .sourceLanguage)
+    try container.encode(self.enableMultiLanguageDetection, forKey: .enableMultiLanguageDetection)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

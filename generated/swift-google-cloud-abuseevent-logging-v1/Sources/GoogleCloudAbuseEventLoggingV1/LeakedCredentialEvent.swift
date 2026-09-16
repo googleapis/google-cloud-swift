@@ -28,6 +28,8 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Indicates the type of credential leaked.
   public var credentialType: OneOf_CredentialType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LeakedCredentialEvent`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case serviceAccountCredential = "serviceAccountCredential"
-    case apiKeyCredential = "apiKeyCredential"
-    case detectedUri = "detectedUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccountCredential = CodingKeys(stringValue: "serviceAccountCredential")
+    static let apiKeyCredential = CodingKeys(stringValue: "apiKeyCredential")
+    static let detectedUri = CodingKeys(stringValue: "detectedUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccountCredential",
+      "apiKeyCredential",
+      "detectedUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.detectedUri = try container.decode(Swift.String.self, forKey: .detectedUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detectedUri) {
+      self.detectedUri = value
+    }
 
     var credentialType: OneOf_CredentialType? = nil
     let credentialTypeCheckAndSet = {
@@ -75,6 +90,10 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
       try credentialTypeCheckAndSet(.apiKeyCredential(apiKeyCredential))
     }
     self.credentialType = credentialType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .apiKeyCredential(let value):
         try container.encode(value, forKey: .apiKeyCredential)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

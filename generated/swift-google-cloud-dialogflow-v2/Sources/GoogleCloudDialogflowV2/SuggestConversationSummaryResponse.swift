@@ -46,6 +46,8 @@
     /// [google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]: <doc:SuggestConversationSummaryResponse/latestMessage>
     public var contextSize: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuggestConversationSummaryResponse`.
     public init() {}
 
@@ -60,6 +62,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let summary = CodingKeys(stringValue: "summary")
+      static let latestMessage = CodingKeys(stringValue: "latestMessage")
+      static let contextSize = CodingKeys(stringValue: "contextSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "summary",
+        "latestMessage",
+        "contextSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.summary = try container.decodeIfPresent(
+        SuggestConversationSummaryResponse.Summary.self, forKey: .summary)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestMessage) {
+        self.latestMessage = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .contextSize) {
+        self.contextSize = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.summary, forKey: .summary)
+      try container.encode(self.latestMessage, forKey: .latestMessage)
+      try container.encode(self.contextSize, forKey: .contextSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Generated summary for a conversation.
@@ -87,6 +132,8 @@
       /// a baseline model was not used to generate this summary.
       public var baselineModelVersion: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Summary`.
       public init() {}
 
@@ -103,6 +150,69 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let text = CodingKeys(stringValue: "text")
+        static let textSections = CodingKeys(stringValue: "textSections")
+        static let sortedTextSections = CodingKeys(stringValue: "sortedTextSections")
+        static let answerRecord = CodingKeys(stringValue: "answerRecord")
+        static let baselineModelVersion = CodingKeys(stringValue: "baselineModelVersion")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "text",
+          "textSections",
+          "sortedTextSections",
+          "answerRecord",
+          "baselineModelVersion",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+          self.text = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .textSections)
+        {
+          self.textSections = value
+        }
+        if let value = try container.decodeIfPresent(
+          [SuggestConversationSummaryResponse.Summary.SummarySection].self,
+          forKey: .sortedTextSections)
+        {
+          self.sortedTextSections = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
+          self.answerRecord = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .baselineModelVersion)
+        {
+          self.baselineModelVersion = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.text, forKey: .text)
+        try container.encode(self.textSections, forKey: .textSections)
+        try container.encode(self.sortedTextSections, forKey: .sortedTextSections)
+        try container.encode(self.answerRecord, forKey: .answerRecord)
+        try container.encode(self.baselineModelVersion, forKey: .baselineModelVersion)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// A component of the generated summary.
       public struct SummarySection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -112,6 +222,9 @@
 
         /// Output only. Summary text for the section.
         public var summary: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `SummarySection`.
         public init() {}
@@ -127,6 +240,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let section = CodingKeys(stringValue: "section")
+          static let summary = CodingKeys(stringValue: "summary")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "section",
+            "summary",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .section) {
+            self.section = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .summary) {
+            self.summary = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.section, forKey: .section)
+          try container.encode(self.summary, forKey: .summary)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

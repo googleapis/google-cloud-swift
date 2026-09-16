@@ -64,6 +64,8 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWKT._An
   /// Options for the report destination location.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateAuditReportRequest`.
   public init() {}
 
@@ -80,23 +82,48 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsUri = "gcsUri"
-    case scope = "scope"
-    case complianceStandard = "complianceStandard"
-    case reportFormat = "reportFormat"
-    case complianceFramework = "complianceFramework"
-    case validateOnly = "validateOnly"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsUri = CodingKeys(stringValue: "gcsUri")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
+    static let reportFormat = CodingKeys(stringValue: "reportFormat")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsUri",
+      "scope",
+      "complianceStandard",
+      "reportFormat",
+      "complianceFramework",
+      "validateOnly",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.scope = try container.decode(Swift.String.self, forKey: .scope)
-    self.complianceStandard = try container.decode(Swift.String.self, forKey: .complianceStandard)
-    self.reportFormat = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceStandard) {
+      self.complianceStandard = value
+    }
+    if let value = try container.decodeIfPresent(
       GenerateAuditReportRequest.AuditReportFormat.self, forKey: .reportFormat)
-    self.complianceFramework = try container.decode(Swift.String.self, forKey: .complianceFramework)
-    self.validateOnly = try container.decode(Swift.Bool.self, forKey: .validateOnly)
+    {
+      self.reportFormat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -112,6 +139,10 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWKT._An
       try destinationCheckAndSet(.gcsUri(gcsUri))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -127,6 +158,9 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWKT._An
       case .gcsUri(let value):
         try container.encode(value, forKey: .gcsUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

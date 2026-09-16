@@ -30,6 +30,8 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var options: OneOf_Options? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeWindow`.
   public init() {}
 
@@ -46,10 +48,21 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case maintenanceExclusionOptions = "maintenanceExclusionOptions"
-    case startTime = "startTime"
-    case endTime = "endTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maintenanceExclusionOptions = CodingKeys(stringValue: "maintenanceExclusionOptions")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maintenanceExclusionOptions",
+      "startTime",
+      "endTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -74,18 +87,25 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionsCheckAndSet(.maintenanceExclusionOptions(maintenanceExclusionOptions))
     }
     self.options = options
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
     if let choice = self.options {
       switch choice {
       case .maintenanceExclusionOptions(let value):
         try container.encode(value, forKey: .maintenanceExclusionOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

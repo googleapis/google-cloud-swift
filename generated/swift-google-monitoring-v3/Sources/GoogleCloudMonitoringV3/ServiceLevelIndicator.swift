@@ -38,6 +38,8 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// time windows
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceLevelIndicator`.
   public init() {}
 
@@ -54,10 +56,21 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case basicSli = "basicSli"
-    case requestBased = "requestBased"
-    case windowsBased = "windowsBased"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let basicSli = CodingKeys(stringValue: "basicSli")
+    static let requestBased = CodingKeys(stringValue: "requestBased")
+    static let windowsBased = CodingKeys(stringValue: "windowsBased")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "basicSli",
+      "requestBased",
+      "windowsBased",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -87,6 +100,10 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWKT._AnyPack
       try typeCheckAndSet(.windowsBased(windowsBased))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +118,9 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .windowsBased(let value):
         try container.encode(value, forKey: .windowsBased)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

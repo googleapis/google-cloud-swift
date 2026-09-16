@@ -156,6 +156,8 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT.
   /// [google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key]: <doc:ImportCryptoKeyVersionRequest/wrappedKey>
   public var wrappedKeyMaterial: OneOf_WrappedKeyMaterial? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportCryptoKeyVersionRequest`.
   public init() {}
 
@@ -172,26 +174,53 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case cryptoKeyVersion = "cryptoKeyVersion"
-    case algorithm = "algorithm"
-    case importJob = "importJob"
-    case wrappedKey = "wrappedKey"
-    case rsaAesWrappedKey = "rsaAesWrappedKey"
-    case trustedWrappingEnabled = "trustedWrappingEnabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let cryptoKeyVersion = CodingKeys(stringValue: "cryptoKeyVersion")
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+    static let importJob = CodingKeys(stringValue: "importJob")
+    static let wrappedKey = CodingKeys(stringValue: "wrappedKey")
+    static let rsaAesWrappedKey = CodingKeys(stringValue: "rsaAesWrappedKey")
+    static let trustedWrappingEnabled = CodingKeys(stringValue: "trustedWrappingEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "cryptoKeyVersion",
+      "algorithm",
+      "importJob",
+      "wrappedKey",
+      "rsaAesWrappedKey",
+      "trustedWrappingEnabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.cryptoKeyVersion = try container.decode(Swift.String.self, forKey: .cryptoKeyVersion)
-    self.algorithm = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyVersion) {
+      self.cryptoKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent(
       CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
-    self.importJob = try container.decode(Swift.String.self, forKey: .importJob)
-    self.wrappedKey = try container.decode(Foundation.Data.self, forKey: .wrappedKey)
-    self.trustedWrappingEnabled = try container.decode(
-      Swift.Bool.self, forKey: .trustedWrappingEnabled)
+    {
+      self.algorithm = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importJob) {
+      self.importJob = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .wrappedKey) {
+      self.wrappedKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trustedWrappingEnabled) {
+      self.trustedWrappingEnabled = value
+    }
 
     var wrappedKeyMaterial: OneOf_WrappedKeyMaterial? = nil
     let wrappedKeyMaterialCheckAndSet = {
@@ -209,6 +238,10 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT.
       try wrappedKeyMaterialCheckAndSet(.rsaAesWrappedKey(rsaAesWrappedKey))
     }
     self.wrappedKeyMaterial = wrappedKeyMaterial
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -225,6 +258,9 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT.
       case .rsaAesWrappedKey(let value):
         try container.encode(value, forKey: .rsaAesWrappedKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

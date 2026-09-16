@@ -41,6 +41,8 @@
     /// LLM model settings.
     public var llmModelSettings: LlmModelSettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerativeSettings`.
     public init() {}
 
@@ -57,6 +59,66 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let fallbackSettings = CodingKeys(stringValue: "fallbackSettings")
+      static let generativeSafetySettings = CodingKeys(stringValue: "generativeSafetySettings")
+      static let knowledgeConnectorSettings = CodingKeys(stringValue: "knowledgeConnectorSettings")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let llmModelSettings = CodingKeys(stringValue: "llmModelSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "fallbackSettings",
+        "generativeSafetySettings",
+        "knowledgeConnectorSettings",
+        "languageCode",
+        "llmModelSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.fallbackSettings = try container.decodeIfPresent(
+        GenerativeSettings.FallbackSettings.self, forKey: .fallbackSettings)
+      self.generativeSafetySettings = try container.decodeIfPresent(
+        SafetySettings.self, forKey: .generativeSafetySettings)
+      self.knowledgeConnectorSettings = try container.decodeIfPresent(
+        GenerativeSettings.KnowledgeConnectorSettings.self, forKey: .knowledgeConnectorSettings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      self.llmModelSettings = try container.decodeIfPresent(
+        LlmModelSettings.self, forKey: .llmModelSettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.fallbackSettings, forKey: .fallbackSettings)
+      try container.encodeIfPresent(
+        self.generativeSafetySettings, forKey: .generativeSafetySettings)
+      try container.encodeIfPresent(
+        self.knowledgeConnectorSettings, forKey: .knowledgeConnectorSettings)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encodeIfPresent(self.llmModelSettings, forKey: .llmModelSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Settings for Generative Fallback.
     public struct FallbackSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -67,6 +129,8 @@
       /// Stored prompts that can be selected, for example default templates like
       /// "conservative" or "chatty", or user defined ones.
       public var promptTemplates: [GenerativeSettings.FallbackSettings.PromptTemplate] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FallbackSettings`.
       public init() {}
@@ -82,6 +146,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let selectedPrompt = CodingKeys(stringValue: "selectedPrompt")
+        static let promptTemplates = CodingKeys(stringValue: "promptTemplates")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "selectedPrompt",
+          "promptTemplates",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectedPrompt) {
+          self.selectedPrompt = value
+        }
+        if let value = try container.decodeIfPresent(
+          [GenerativeSettings.FallbackSettings.PromptTemplate].self, forKey: .promptTemplates)
+        {
+          self.promptTemplates = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.selectedPrompt, forKey: .selectedPrompt)
+        try container.encode(self.promptTemplates, forKey: .promptTemplates)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Prompt template.
@@ -100,6 +204,9 @@
         /// users.
         public var frozen: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `PromptTemplate`.
         public init() {}
 
@@ -114,6 +221,50 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let displayName = CodingKeys(stringValue: "displayName")
+          static let promptText = CodingKeys(stringValue: "promptText")
+          static let frozen = CodingKeys(stringValue: "frozen")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "displayName",
+            "promptText",
+            "frozen",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+            self.displayName = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .promptText) {
+            self.promptText = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .frozen) {
+            self.frozen = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.displayName, forKey: .displayName)
+          try container.encode(self.promptText, forKey: .promptText)
+          try container.encode(self.frozen, forKey: .frozen)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -170,6 +321,8 @@
       /// couldn't pick a proper answer). Per default the feature is enabled.
       public var disableDataStoreFallback: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `KnowledgeConnectorSettings`.
       public init() {}
 
@@ -184,6 +337,72 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let business = CodingKeys(stringValue: "business")
+        static let agent = CodingKeys(stringValue: "agent")
+        static let agentIdentity = CodingKeys(stringValue: "agentIdentity")
+        static let businessDescription = CodingKeys(stringValue: "businessDescription")
+        static let agentScope = CodingKeys(stringValue: "agentScope")
+        static let disableDataStoreFallback = CodingKeys(stringValue: "disableDataStoreFallback")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "business",
+          "agent",
+          "agentIdentity",
+          "businessDescription",
+          "agentScope",
+          "disableDataStoreFallback",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .business) {
+          self.business = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+          self.agent = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentIdentity) {
+          self.agentIdentity = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .businessDescription)
+        {
+          self.businessDescription = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentScope) {
+          self.agentScope = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .disableDataStoreFallback)
+        {
+          self.disableDataStoreFallback = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.business, forKey: .business)
+        try container.encode(self.agent, forKey: .agent)
+        try container.encode(self.agentIdentity, forKey: .agentIdentity)
+        try container.encode(self.businessDescription, forKey: .businessDescription)
+        try container.encode(self.agentScope, forKey: .agentScope)
+        try container.encode(self.disableDataStoreFallback, forKey: .disableDataStoreFallback)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

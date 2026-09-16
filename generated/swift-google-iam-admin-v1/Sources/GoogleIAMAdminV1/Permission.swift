@@ -48,6 +48,8 @@ public struct Permission: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// an alias of, and equivalent to, the listed primary_permission.
   public var primaryPermission: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Permission`.
   public init() {}
 
@@ -62,6 +64,84 @@ public struct Permission: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let onlyInPredefinedRoles = CodingKeys(stringValue: "onlyInPredefinedRoles")
+    static let stage = CodingKeys(stringValue: "stage")
+    static let customRolesSupportLevel = CodingKeys(stringValue: "customRolesSupportLevel")
+    static let apiDisabled = CodingKeys(stringValue: "apiDisabled")
+    static let primaryPermission = CodingKeys(stringValue: "primaryPermission")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "title",
+      "description",
+      "onlyInPredefinedRoles",
+      "stage",
+      "customRolesSupportLevel",
+      "apiDisabled",
+      "primaryPermission",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .onlyInPredefinedRoles) {
+      self.onlyInPredefinedRoles = value
+    }
+    if let value = try container.decodeIfPresent(
+      Permission.PermissionLaunchStage.self, forKey: .stage)
+    {
+      self.stage = value
+    }
+    if let value = try container.decodeIfPresent(
+      Permission.CustomRolesSupportLevel.self, forKey: .customRolesSupportLevel)
+    {
+      self.customRolesSupportLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .apiDisabled) {
+      self.apiDisabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryPermission) {
+      self.primaryPermission = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.onlyInPredefinedRoles, forKey: .onlyInPredefinedRoles)
+    try container.encode(self.stage, forKey: .stage)
+    try container.encode(self.customRolesSupportLevel, forKey: .customRolesSupportLevel)
+    try container.encode(self.apiDisabled, forKey: .apiDisabled)
+    try container.encode(self.primaryPermission, forKey: .primaryPermission)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A stage representing a permission's lifecycle phase.

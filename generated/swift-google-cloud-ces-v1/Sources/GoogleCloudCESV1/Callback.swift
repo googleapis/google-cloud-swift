@@ -40,6 +40,8 @@ public struct Callback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The callback to execute.
   public var callback: OneOf_Callback? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Callback`.
   public init() {}
 
@@ -56,19 +58,38 @@ public struct Callback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case pythonCode = "pythonCode"
-    case description = "description"
-    case disabled = "disabled"
-    case proactiveExecutionEnabled = "proactiveExecutionEnabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pythonCode = CodingKeys(stringValue: "pythonCode")
+    static let description = CodingKeys(stringValue: "description")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let proactiveExecutionEnabled = CodingKeys(stringValue: "proactiveExecutionEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pythonCode",
+      "description",
+      "disabled",
+      "proactiveExecutionEnabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
-    self.proactiveExecutionEnabled = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .proactiveExecutionEnabled)
+    {
+      self.proactiveExecutionEnabled = value
+    }
 
     var callback: OneOf_Callback? = nil
     let callbackCheckAndSet = {
@@ -84,6 +105,10 @@ public struct Callback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try callbackCheckAndSet(.pythonCode(pythonCode))
     }
     self.callback = callback
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +122,9 @@ public struct Callback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .pythonCode(let value):
         try container.encode(value, forKey: .pythonCode)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

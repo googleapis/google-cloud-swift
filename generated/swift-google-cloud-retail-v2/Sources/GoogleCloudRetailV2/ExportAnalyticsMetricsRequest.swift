@@ -47,6 +47,8 @@ public struct ExportAnalyticsMetricsRequest: Codable, Equatable, GoogleCloudWKT.
   ///   * Example 2: `timestamp > "2012-04-23T18:25:43.511Z"`
   public var filter: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportAnalyticsMetricsRequest`.
   public init() {}
 
@@ -61,6 +63,48 @@ public struct ExportAnalyticsMetricsRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let catalog = CodingKeys(stringValue: "catalog")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+    static let filter = CodingKeys(stringValue: "filter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "catalog",
+      "outputConfig",
+      "filter",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .catalog) {
+      self.catalog = value
+    }
+    self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.catalog, forKey: .catalog)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+    try container.encode(self.filter, forKey: .filter)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

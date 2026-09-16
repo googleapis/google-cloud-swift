@@ -34,6 +34,8 @@
     /// The delta of field value being streamed.
     public var delta: OneOf_Delta? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PartialArg`.
     public init() {}
 
@@ -50,19 +52,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case nullValue = "nullValue"
-      case numberValue = "numberValue"
-      case stringValue = "stringValue"
-      case boolValue = "boolValue"
-      case jsonPath = "jsonPath"
-      case willContinue = "willContinue"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nullValue = CodingKeys(stringValue: "nullValue")
+      static let numberValue = CodingKeys(stringValue: "numberValue")
+      static let stringValue = CodingKeys(stringValue: "stringValue")
+      static let boolValue = CodingKeys(stringValue: "boolValue")
+      static let jsonPath = CodingKeys(stringValue: "jsonPath")
+      static let willContinue = CodingKeys(stringValue: "willContinue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nullValue",
+        "numberValue",
+        "stringValue",
+        "boolValue",
+        "jsonPath",
+        "willContinue",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.jsonPath = try container.decode(Swift.String.self, forKey: .jsonPath)
-      self.willContinue = try container.decode(Swift.Bool.self, forKey: .willContinue)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jsonPath) {
+        self.jsonPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .willContinue) {
+        self.willContinue = value
+      }
 
       var delta: OneOf_Delta? = nil
       let deltaCheckAndSet = {
@@ -89,6 +109,10 @@
         try deltaCheckAndSet(.boolValue(boolValue))
       }
       self.delta = delta
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,6 +131,9 @@
         case .boolValue(let value):
           try container.encode(value, forKey: .boolValue)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

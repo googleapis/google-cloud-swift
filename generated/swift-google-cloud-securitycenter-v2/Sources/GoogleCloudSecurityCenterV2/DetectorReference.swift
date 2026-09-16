@@ -41,6 +41,8 @@ public struct DetectorReference: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// adjustments, or further diagnostic procedures.
   public var recommendation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DetectorReference`.
   public init() {}
 
@@ -55,6 +57,63 @@ public struct DetectorReference: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let severity = CodingKeys(stringValue: "severity")
+    static let detectorId = CodingKeys(stringValue: "detectorId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let explanation = CodingKeys(stringValue: "explanation")
+    static let recommendation = CodingKeys(stringValue: "recommendation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "severity",
+      "detectorId",
+      "displayName",
+      "explanation",
+      "recommendation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DetectorReference.Severity.self, forKey: .severity)
+    {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detectorId) {
+      self.detectorId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .explanation) {
+      self.explanation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recommendation) {
+      self.recommendation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.detectorId, forKey: .detectorId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.explanation, forKey: .explanation)
+    try container.encode(self.recommendation, forKey: .recommendation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Severity levels for detectors.

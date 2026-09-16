@@ -31,6 +31,8 @@
     /// EvaluationRequest.instances.
     public var evaluationResults: OneOf_EvaluationResults? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluateInstancesResponse`.
     public init() {}
 
@@ -47,38 +49,84 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case exactMatchResults = "exactMatchResults"
-      case bleuResults = "bleuResults"
-      case rougeResults = "rougeResults"
-      case fluencyResult = "fluencyResult"
-      case coherenceResult = "coherenceResult"
-      case safetyResult = "safetyResult"
-      case groundednessResult = "groundednessResult"
-      case fulfillmentResult = "fulfillmentResult"
-      case summarizationQualityResult = "summarizationQualityResult"
-      case pairwiseSummarizationQualityResult = "pairwiseSummarizationQualityResult"
-      case summarizationHelpfulnessResult = "summarizationHelpfulnessResult"
-      case summarizationVerbosityResult = "summarizationVerbosityResult"
-      case questionAnsweringQualityResult = "questionAnsweringQualityResult"
-      case pairwiseQuestionAnsweringQualityResult = "pairwiseQuestionAnsweringQualityResult"
-      case questionAnsweringRelevanceResult = "questionAnsweringRelevanceResult"
-      case questionAnsweringHelpfulnessResult = "questionAnsweringHelpfulnessResult"
-      case questionAnsweringCorrectnessResult = "questionAnsweringCorrectnessResult"
-      case pointwiseMetricResult = "pointwiseMetricResult"
-      case pairwiseMetricResult = "pairwiseMetricResult"
-      case toolCallValidResults = "toolCallValidResults"
-      case toolNameMatchResults = "toolNameMatchResults"
-      case toolParameterKeyMatchResults = "toolParameterKeyMatchResults"
-      case toolParameterKvMatchResults = "toolParameterKvMatchResults"
-      case cometResult = "cometResult"
-      case metricxResult = "metricxResult"
-      case metricResults = "metricResults"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let exactMatchResults = CodingKeys(stringValue: "exactMatchResults")
+      static let bleuResults = CodingKeys(stringValue: "bleuResults")
+      static let rougeResults = CodingKeys(stringValue: "rougeResults")
+      static let fluencyResult = CodingKeys(stringValue: "fluencyResult")
+      static let coherenceResult = CodingKeys(stringValue: "coherenceResult")
+      static let safetyResult = CodingKeys(stringValue: "safetyResult")
+      static let groundednessResult = CodingKeys(stringValue: "groundednessResult")
+      static let fulfillmentResult = CodingKeys(stringValue: "fulfillmentResult")
+      static let summarizationQualityResult = CodingKeys(stringValue: "summarizationQualityResult")
+      static let pairwiseSummarizationQualityResult = CodingKeys(
+        stringValue: "pairwiseSummarizationQualityResult")
+      static let summarizationHelpfulnessResult = CodingKeys(
+        stringValue: "summarizationHelpfulnessResult")
+      static let summarizationVerbosityResult = CodingKeys(
+        stringValue: "summarizationVerbosityResult")
+      static let questionAnsweringQualityResult = CodingKeys(
+        stringValue: "questionAnsweringQualityResult")
+      static let pairwiseQuestionAnsweringQualityResult = CodingKeys(
+        stringValue: "pairwiseQuestionAnsweringQualityResult")
+      static let questionAnsweringRelevanceResult = CodingKeys(
+        stringValue: "questionAnsweringRelevanceResult")
+      static let questionAnsweringHelpfulnessResult = CodingKeys(
+        stringValue: "questionAnsweringHelpfulnessResult")
+      static let questionAnsweringCorrectnessResult = CodingKeys(
+        stringValue: "questionAnsweringCorrectnessResult")
+      static let pointwiseMetricResult = CodingKeys(stringValue: "pointwiseMetricResult")
+      static let pairwiseMetricResult = CodingKeys(stringValue: "pairwiseMetricResult")
+      static let toolCallValidResults = CodingKeys(stringValue: "toolCallValidResults")
+      static let toolNameMatchResults = CodingKeys(stringValue: "toolNameMatchResults")
+      static let toolParameterKeyMatchResults = CodingKeys(
+        stringValue: "toolParameterKeyMatchResults")
+      static let toolParameterKvMatchResults = CodingKeys(
+        stringValue: "toolParameterKvMatchResults")
+      static let cometResult = CodingKeys(stringValue: "cometResult")
+      static let metricxResult = CodingKeys(stringValue: "metricxResult")
+      static let metricResults = CodingKeys(stringValue: "metricResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "exactMatchResults",
+        "bleuResults",
+        "rougeResults",
+        "fluencyResult",
+        "coherenceResult",
+        "safetyResult",
+        "groundednessResult",
+        "fulfillmentResult",
+        "summarizationQualityResult",
+        "pairwiseSummarizationQualityResult",
+        "summarizationHelpfulnessResult",
+        "summarizationVerbosityResult",
+        "questionAnsweringQualityResult",
+        "pairwiseQuestionAnsweringQualityResult",
+        "questionAnsweringRelevanceResult",
+        "questionAnsweringHelpfulnessResult",
+        "questionAnsweringCorrectnessResult",
+        "pointwiseMetricResult",
+        "pairwiseMetricResult",
+        "toolCallValidResults",
+        "toolNameMatchResults",
+        "toolParameterKeyMatchResults",
+        "toolParameterKvMatchResults",
+        "cometResult",
+        "metricxResult",
+        "metricResults",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.metricResults = try container.decode([MetricResult].self, forKey: .metricResults)
+      if let value = try container.decodeIfPresent([MetricResult].self, forKey: .metricResults) {
+        self.metricResults = value
+      }
 
       var evaluationResults: OneOf_EvaluationResults? = nil
       let evaluationResultsCheckAndSet = {
@@ -220,6 +268,10 @@
         try evaluationResultsCheckAndSet(.metricxResult(metricxResult))
       }
       self.evaluationResults = evaluationResults
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -279,6 +331,9 @@
         case .metricxResult(let value):
           try container.encode(value, forKey: .metricxResult)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

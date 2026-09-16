@@ -138,6 +138,8 @@ public struct BuildStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// in BuildOption.
   public var automapSubstitutions: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildStep`.
   public init() {}
 
@@ -152,6 +154,133 @@ public struct BuildStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let env = CodingKeys(stringValue: "env")
+    static let args = CodingKeys(stringValue: "args")
+    static let dir = CodingKeys(stringValue: "dir")
+    static let id = CodingKeys(stringValue: "id")
+    static let waitFor = CodingKeys(stringValue: "waitFor")
+    static let entrypoint = CodingKeys(stringValue: "entrypoint")
+    static let secretEnv = CodingKeys(stringValue: "secretEnv")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let timing = CodingKeys(stringValue: "timing")
+    static let pullTiming = CodingKeys(stringValue: "pullTiming")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let status = CodingKeys(stringValue: "status")
+    static let allowFailure = CodingKeys(stringValue: "allowFailure")
+    static let exitCode = CodingKeys(stringValue: "exitCode")
+    static let allowExitCodes = CodingKeys(stringValue: "allowExitCodes")
+    static let script = CodingKeys(stringValue: "script")
+    static let automapSubstitutions = CodingKeys(stringValue: "automapSubstitutions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "env",
+      "args",
+      "dir",
+      "id",
+      "waitFor",
+      "entrypoint",
+      "secretEnv",
+      "volumes",
+      "timing",
+      "pullTiming",
+      "timeout",
+      "status",
+      "allowFailure",
+      "exitCode",
+      "allowExitCodes",
+      "script",
+      "automapSubstitutions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .env) {
+      self.env = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dir) {
+      self.dir = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .waitFor) {
+      self.waitFor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entrypoint) {
+      self.entrypoint = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .secretEnv) {
+      self.secretEnv = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    self.timing = try container.decodeIfPresent(TimeSpan.self, forKey: .timing)
+    self.pullTiming = try container.decodeIfPresent(TimeSpan.self, forKey: .pullTiming)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    if let value = try container.decodeIfPresent(Build.Status.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowFailure) {
+      self.allowFailure = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .exitCode) {
+      self.exitCode = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .allowExitCodes) {
+      self.allowExitCodes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .script) {
+      self.script = value
+    }
+    self.automapSubstitutions = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .automapSubstitutions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.env, forKey: .env)
+    try container.encode(self.args, forKey: .args)
+    try container.encode(self.dir, forKey: .dir)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.waitFor, forKey: .waitFor)
+    try container.encode(self.entrypoint, forKey: .entrypoint)
+    try container.encode(self.secretEnv, forKey: .secretEnv)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encodeIfPresent(self.timing, forKey: .timing)
+    try container.encodeIfPresent(self.pullTiming, forKey: .pullTiming)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.allowFailure, forKey: .allowFailure)
+    try container.encode(self.exitCode, forKey: .exitCode)
+    try container.encode(self.allowExitCodes, forKey: .allowExitCodes)
+    try container.encode(self.script, forKey: .script)
+    try container.encodeIfPresent(self.automapSubstitutions, forKey: .automapSubstitutions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

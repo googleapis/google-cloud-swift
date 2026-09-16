@@ -32,6 +32,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
   public var materials: [SlsaProvenanceZeroTwo.SlsaMaterial] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SlsaProvenanceZeroTwo`.
   public init() {}
 
@@ -48,12 +50,74 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let builder = CodingKeys(stringValue: "builder")
+    static let buildType = CodingKeys(stringValue: "buildType")
+    static let invocation = CodingKeys(stringValue: "invocation")
+    static let buildConfig = CodingKeys(stringValue: "buildConfig")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let materials = CodingKeys(stringValue: "materials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "builder",
+      "buildType",
+      "invocation",
+      "buildConfig",
+      "metadata",
+      "materials",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.builder = try container.decodeIfPresent(
+      SlsaProvenanceZeroTwo.SlsaBuilder.self, forKey: .builder)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildType) {
+      self.buildType = value
+    }
+    self.invocation = try container.decodeIfPresent(
+      SlsaProvenanceZeroTwo.SlsaInvocation.self, forKey: .invocation)
+    self.buildConfig = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .buildConfig)
+    self.metadata = try container.decodeIfPresent(
+      SlsaProvenanceZeroTwo.SlsaMetadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent(
+      [SlsaProvenanceZeroTwo.SlsaMaterial].self, forKey: .materials)
+    {
+      self.materials = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.builder, forKey: .builder)
+    try container.encode(self.buildType, forKey: .buildType)
+    try container.encodeIfPresent(self.invocation, forKey: .invocation)
+    try container.encodeIfPresent(self.buildConfig, forKey: .buildConfig)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.materials, forKey: .materials)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Identifies the entity that executed the recipe, which is trusted to have
   /// correctly performed the operation and populated this provenance.
   public struct SlsaBuilder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var id: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SlsaBuilder`.
     public init() {}
@@ -69,6 +133,38 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -91,6 +187,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
     public var digest: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlsaMaterial`.
     public init() {}
 
@@ -105,6 +203,46 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let digest = CodingKeys(stringValue: "digest")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "digest",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .digest)
+      {
+        self.digest = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.digest, forKey: .digest)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -128,6 +266,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
     public var environment: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlsaInvocation`.
     public init() {}
 
@@ -142,6 +282,47 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let configSource = CodingKeys(stringValue: "configSource")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let environment = CodingKeys(stringValue: "environment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "configSource",
+        "parameters",
+        "environment",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.configSource = try container.decodeIfPresent(
+        SlsaProvenanceZeroTwo.SlsaConfigSource.self, forKey: .configSource)
+      self.parameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .parameters)
+      self.environment = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .environment)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.configSource, forKey: .configSource)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encodeIfPresent(self.environment, forKey: .environment)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -166,6 +347,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
     public var entryPoint: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlsaConfigSource`.
     public init() {}
 
@@ -180,6 +363,52 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let digest = CodingKeys(stringValue: "digest")
+      static let entryPoint = CodingKeys(stringValue: "entryPoint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "digest",
+        "entryPoint",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .digest)
+      {
+        self.digest = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entryPoint) {
+        self.entryPoint = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.digest, forKey: .digest)
+      try container.encode(self.entryPoint, forKey: .entryPoint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -207,6 +436,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
     public var reproducible: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlsaMetadata`.
     public init() {}
 
@@ -221,6 +452,59 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let buildInvocationId = CodingKeys(stringValue: "buildInvocationId")
+      static let buildStartedOn = CodingKeys(stringValue: "buildStartedOn")
+      static let buildFinishedOn = CodingKeys(stringValue: "buildFinishedOn")
+      static let completeness = CodingKeys(stringValue: "completeness")
+      static let reproducible = CodingKeys(stringValue: "reproducible")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "buildInvocationId",
+        "buildStartedOn",
+        "buildFinishedOn",
+        "completeness",
+        "reproducible",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildInvocationId) {
+        self.buildInvocationId = value
+      }
+      self.buildStartedOn = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .buildStartedOn)
+      self.buildFinishedOn = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .buildFinishedOn)
+      self.completeness = try container.decodeIfPresent(
+        SlsaProvenanceZeroTwo.SlsaCompleteness.self, forKey: .completeness)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reproducible) {
+        self.reproducible = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.buildInvocationId, forKey: .buildInvocationId)
+      try container.encodeIfPresent(self.buildStartedOn, forKey: .buildStartedOn)
+      try container.encodeIfPresent(self.buildFinishedOn, forKey: .buildFinishedOn)
+      try container.encodeIfPresent(self.completeness, forKey: .completeness)
+      try container.encode(self.reproducible, forKey: .reproducible)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -245,6 +529,8 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
 
     public var materials: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SlsaCompleteness`.
     public init() {}
 
@@ -259,6 +545,50 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let environment = CodingKeys(stringValue: "environment")
+      static let materials = CodingKeys(stringValue: "materials")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parameters",
+        "environment",
+        "materials",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .parameters) {
+        self.parameters = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .environment) {
+        self.environment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .materials) {
+        self.materials = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parameters, forKey: .parameters)
+      try container.encode(self.environment, forKey: .environment)
+      try container.encode(self.materials, forKey: .materials)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

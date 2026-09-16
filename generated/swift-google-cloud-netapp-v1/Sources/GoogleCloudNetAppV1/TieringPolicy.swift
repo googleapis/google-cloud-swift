@@ -33,6 +33,8 @@ public struct TieringPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// is false. This is only applicable to Flex service level.
   public var hotTierBypassModeEnabled: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TieringPolicy`.
   public init() {}
 
@@ -47,6 +49,47 @@ public struct TieringPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tierAction = CodingKeys(stringValue: "tierAction")
+    static let coolingThresholdDays = CodingKeys(stringValue: "coolingThresholdDays")
+    static let hotTierBypassModeEnabled = CodingKeys(stringValue: "hotTierBypassModeEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tierAction",
+      "coolingThresholdDays",
+      "hotTierBypassModeEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tierAction = try container.decodeIfPresent(
+      TieringPolicy.TierAction.self, forKey: .tierAction)
+    self.coolingThresholdDays = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .coolingThresholdDays)
+    self.hotTierBypassModeEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .hotTierBypassModeEnabled)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tierAction, forKey: .tierAction)
+    try container.encodeIfPresent(self.coolingThresholdDays, forKey: .coolingThresholdDays)
+    try container.encodeIfPresent(self.hotTierBypassModeEnabled, forKey: .hotTierBypassModeEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Tier action for the volume.

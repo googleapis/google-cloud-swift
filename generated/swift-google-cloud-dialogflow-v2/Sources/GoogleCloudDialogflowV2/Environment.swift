@@ -75,6 +75,8 @@
     /// Optional. The fulfillment settings to use for this environment.
     public var fulfillment: Fulfillment? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Environment`.
     public init() {}
 
@@ -89,6 +91,70 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let agentVersion = CodingKeys(stringValue: "agentVersion")
+      static let state = CodingKeys(stringValue: "state")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let textToSpeechSettings = CodingKeys(stringValue: "textToSpeechSettings")
+      static let fulfillment = CodingKeys(stringValue: "fulfillment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "agentVersion",
+        "state",
+        "updateTime",
+        "textToSpeechSettings",
+        "fulfillment",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentVersion) {
+        self.agentVersion = value
+      }
+      if let value = try container.decodeIfPresent(Environment.State.self, forKey: .state) {
+        self.state = value
+      }
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.textToSpeechSettings = try container.decodeIfPresent(
+        TextToSpeechSettings.self, forKey: .textToSpeechSettings)
+      self.fulfillment = try container.decodeIfPresent(Fulfillment.self, forKey: .fulfillment)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.agentVersion, forKey: .agentVersion)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.textToSpeechSettings, forKey: .textToSpeechSettings)
+      try container.encodeIfPresent(self.fulfillment, forKey: .fulfillment)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents an environment state. When an environment is pointed to a new

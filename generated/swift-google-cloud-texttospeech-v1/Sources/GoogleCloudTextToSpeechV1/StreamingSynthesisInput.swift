@@ -26,6 +26,8 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPa
 
   public var inputSource: OneOf_InputSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StreamingSynthesisInput`.
   public init() {}
 
@@ -42,11 +44,23 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case markup = "markup"
-    case multiSpeakerMarkup = "multiSpeakerMarkup"
-    case prompt = "prompt"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let markup = CodingKeys(stringValue: "markup")
+    static let multiSpeakerMarkup = CodingKeys(stringValue: "multiSpeakerMarkup")
+    static let prompt = CodingKeys(stringValue: "prompt")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "markup",
+      "multiSpeakerMarkup",
+      "prompt",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -75,11 +89,15 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPa
       try inputSourceCheckAndSet(.multiSpeakerMarkup(multiSpeakerMarkup))
     }
     self.inputSource = inputSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.prompt, forKey: .prompt)
+    try container.encodeIfPresent(self.prompt, forKey: .prompt)
 
     if let choice = self.inputSource {
       switch choice {
@@ -90,6 +108,9 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .multiSpeakerMarkup(let value):
         try container.encode(value, forKey: .multiSpeakerMarkup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

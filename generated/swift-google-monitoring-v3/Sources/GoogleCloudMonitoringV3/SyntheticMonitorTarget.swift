@@ -25,6 +25,8 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Specifies a Synthetic Monitor's execution stack.
   public var target: OneOf_Target? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SyntheticMonitorTarget`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudFunctionV2 = "cloudFunctionV2"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudFunctionV2 = CodingKeys(stringValue: "cloudFunctionV2")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudFunctionV2"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
       try targetCheckAndSet(.cloudFunctionV2(cloudFunctionV2))
     }
     self.target = target
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .cloudFunctionV2(let value):
         try container.encode(value, forKey: .cloudFunctionV2)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -92,6 +110,8 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// only.
     public var cloudRunRevision: GoogleApi.MonitoredResource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudFunctionV2Target`.
     public init() {}
 
@@ -106,6 +126,43 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let cloudRunRevision = CodingKeys(stringValue: "cloudRunRevision")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "cloudRunRevision",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.cloudRunRevision = try container.decodeIfPresent(
+        GoogleApi.MonitoredResource.self, forKey: .cloudRunRevision)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.cloudRunRevision, forKey: .cloudRunRevision)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -33,6 +33,8 @@
 
     public var resource: OneOf_Resource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MigratableResource`.
     public init() {}
 
@@ -49,13 +51,27 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case mlEngineModelVersion = "mlEngineModelVersion"
-      case automlModel = "automlModel"
-      case automlDataset = "automlDataset"
-      case dataLabelingDataset = "dataLabelingDataset"
-      case lastMigrateTime = "lastMigrateTime"
-      case lastUpdateTime = "lastUpdateTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mlEngineModelVersion = CodingKeys(stringValue: "mlEngineModelVersion")
+      static let automlModel = CodingKeys(stringValue: "automlModel")
+      static let automlDataset = CodingKeys(stringValue: "automlDataset")
+      static let dataLabelingDataset = CodingKeys(stringValue: "dataLabelingDataset")
+      static let lastMigrateTime = CodingKeys(stringValue: "lastMigrateTime")
+      static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mlEngineModelVersion",
+        "automlModel",
+        "automlDataset",
+        "dataLabelingDataset",
+        "lastMigrateTime",
+        "lastUpdateTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -96,12 +112,16 @@
         try resourceCheckAndSet(.dataLabelingDataset(dataLabelingDataset))
       }
       self.resource = resource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.lastMigrateTime, forKey: .lastMigrateTime)
-      try container.encode(self.lastUpdateTime, forKey: .lastUpdateTime)
+      try container.encodeIfPresent(self.lastMigrateTime, forKey: .lastMigrateTime)
+      try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
 
       if let choice = self.resource {
         switch choice {
@@ -114,6 +134,9 @@
         case .dataLabelingDataset(let value):
           try container.encode(value, forKey: .dataLabelingDataset)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -135,6 +158,8 @@
       /// Format: `projects/{project}/models/{model}/versions/{version}`.
       public var version: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MlEngineModelVersion`.
       public init() {}
 
@@ -149,6 +174,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let endpoint = CodingKeys(stringValue: "endpoint")
+        static let version = CodingKeys(stringValue: "version")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "endpoint",
+          "version",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+          self.endpoint = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+          self.version = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.endpoint, forKey: .endpoint)
+        try container.encode(self.version, forKey: .version)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -175,6 +238,8 @@
       /// The Model's display name in automl.googleapis.com.
       public var modelDisplayName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AutomlModel`.
       public init() {}
 
@@ -189,6 +254,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let model = CodingKeys(stringValue: "model")
+        static let modelDisplayName = CodingKeys(stringValue: "modelDisplayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "model",
+          "modelDisplayName",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+          self.model = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelDisplayName) {
+          self.modelDisplayName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.model, forKey: .model)
+        try container.encode(self.modelDisplayName, forKey: .modelDisplayName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -214,6 +317,8 @@
       /// The Dataset's display name in automl.googleapis.com.
       public var datasetDisplayName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AutomlDataset`.
       public init() {}
 
@@ -228,6 +333,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataset = CodingKeys(stringValue: "dataset")
+        static let datasetDisplayName = CodingKeys(stringValue: "datasetDisplayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataset",
+          "datasetDisplayName",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+          self.dataset = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetDisplayName)
+        {
+          self.datasetDisplayName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataset, forKey: .dataset)
+        try container.encode(self.datasetDisplayName, forKey: .datasetDisplayName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -258,6 +402,8 @@
       public var dataLabelingAnnotatedDatasets:
         [MigratableResource.DataLabelingDataset.DataLabelingAnnotatedDataset] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DataLabelingDataset`.
       public init() {}
 
@@ -274,6 +420,56 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataset = CodingKeys(stringValue: "dataset")
+        static let datasetDisplayName = CodingKeys(stringValue: "datasetDisplayName")
+        static let dataLabelingAnnotatedDatasets = CodingKeys(
+          stringValue: "dataLabelingAnnotatedDatasets")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataset",
+          "datasetDisplayName",
+          "dataLabelingAnnotatedDatasets",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+          self.dataset = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetDisplayName)
+        {
+          self.datasetDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(
+          [MigratableResource.DataLabelingDataset.DataLabelingAnnotatedDataset].self,
+          forKey: .dataLabelingAnnotatedDatasets)
+        {
+          self.dataLabelingAnnotatedDatasets = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataset, forKey: .dataset)
+        try container.encode(self.datasetDisplayName, forKey: .datasetDisplayName)
+        try container.encode(
+          self.dataLabelingAnnotatedDatasets, forKey: .dataLabelingAnnotatedDatasets)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Represents one AnnotatedDataset in datalabeling.googleapis.com.
       public struct DataLabelingAnnotatedDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -285,6 +481,9 @@
 
         /// The AnnotatedDataset's display name in datalabeling.googleapis.com.
         public var annotatedDatasetDisplayName: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `DataLabelingAnnotatedDataset`.
         public init() {}
@@ -300,6 +499,49 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let annotatedDataset = CodingKeys(stringValue: "annotatedDataset")
+          static let annotatedDatasetDisplayName = CodingKeys(
+            stringValue: "annotatedDatasetDisplayName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "annotatedDataset",
+            "annotatedDatasetDisplayName",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotatedDataset)
+          {
+            self.annotatedDataset = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.String.self, forKey: .annotatedDatasetDisplayName)
+          {
+            self.annotatedDatasetDisplayName = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.annotatedDataset, forKey: .annotatedDataset)
+          try container.encode(
+            self.annotatedDatasetDisplayName, forKey: .annotatedDatasetDisplayName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

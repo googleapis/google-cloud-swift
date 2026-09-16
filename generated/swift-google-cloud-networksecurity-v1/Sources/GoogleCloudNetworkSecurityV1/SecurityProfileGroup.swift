@@ -65,6 +65,8 @@ public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// configuration.
   public var urlFilteringProfile: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityProfileGroup`.
   public init() {}
 
@@ -79,6 +81,101 @@ public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let dataPathId = CodingKeys(stringValue: "dataPathId")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let threatPreventionProfile = CodingKeys(stringValue: "threatPreventionProfile")
+    static let customMirroringProfile = CodingKeys(stringValue: "customMirroringProfile")
+    static let customInterceptProfile = CodingKeys(stringValue: "customInterceptProfile")
+    static let urlFilteringProfile = CodingKeys(stringValue: "urlFilteringProfile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "etag",
+      "dataPathId",
+      "labels",
+      "threatPreventionProfile",
+      "customMirroringProfile",
+      "customInterceptProfile",
+      "urlFilteringProfile",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .dataPathId) {
+      self.dataPathId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .threatPreventionProfile)
+    {
+      self.threatPreventionProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customMirroringProfile)
+    {
+      self.customMirroringProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customInterceptProfile)
+    {
+      self.customInterceptProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .urlFilteringProfile) {
+      self.urlFilteringProfile = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.dataPathId, forKey: .dataPathId)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.threatPreventionProfile, forKey: .threatPreventionProfile)
+    try container.encode(self.customMirroringProfile, forKey: .customMirroringProfile)
+    try container.encode(self.customInterceptProfile, forKey: .customInterceptProfile)
+    try container.encode(self.urlFilteringProfile, forKey: .urlFilteringProfile)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

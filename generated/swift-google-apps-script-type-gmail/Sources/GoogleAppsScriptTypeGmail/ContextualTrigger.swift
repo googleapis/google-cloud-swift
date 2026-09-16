@@ -31,6 +31,8 @@ public struct ContextualTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// add-on.
   public var trigger: OneOf_Trigger? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContextualTrigger`.
   public init() {}
 
@@ -47,14 +49,26 @@ public struct ContextualTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case unconditional = "unconditional"
-    case onTriggerFunction = "onTriggerFunction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let unconditional = CodingKeys(stringValue: "unconditional")
+    static let onTriggerFunction = CodingKeys(stringValue: "onTriggerFunction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "unconditional",
+      "onTriggerFunction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.onTriggerFunction = try container.decode(Swift.String.self, forKey: .onTriggerFunction)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .onTriggerFunction) {
+      self.onTriggerFunction = value
+    }
 
     var trigger: OneOf_Trigger? = nil
     let triggerCheckAndSet = {
@@ -72,6 +86,10 @@ public struct ContextualTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try triggerCheckAndSet(.unconditional(unconditional))
     }
     self.trigger = trigger
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +101,9 @@ public struct ContextualTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .unconditional(let value):
         try container.encode(value, forKey: .unconditional)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

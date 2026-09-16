@@ -31,6 +31,8 @@
     /// Lifetime of the cookie.
     public var ttl: Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceHttpCookie`.
     public init() {}
 
@@ -45,6 +47,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let path = CodingKeys(stringValue: "path")
+      static let ttl = CodingKeys(stringValue: "ttl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "path",
+        "ttl",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.path = try container.decodeIfPresent(Swift.String.self, forKey: .path)
+      self.ttl = try container.decodeIfPresent(Duration.self, forKey: .ttl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.path, forKey: .path)
+      try container.encodeIfPresent(self.ttl, forKey: .ttl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

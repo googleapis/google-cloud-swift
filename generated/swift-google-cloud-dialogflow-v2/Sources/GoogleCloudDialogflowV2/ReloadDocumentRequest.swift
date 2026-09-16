@@ -48,6 +48,8 @@
     /// please delete the existing document and create a new one instead.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReloadDocumentRequest`.
     public init() {}
 
@@ -64,20 +66,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case contentUri = "contentUri"
-      case importGcsCustomMetadata = "importGcsCustomMetadata"
-      case smartMessagingPartialUpdate = "smartMessagingPartialUpdate"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let contentUri = CodingKeys(stringValue: "contentUri")
+      static let importGcsCustomMetadata = CodingKeys(stringValue: "importGcsCustomMetadata")
+      static let smartMessagingPartialUpdate = CodingKeys(
+        stringValue: "smartMessagingPartialUpdate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "contentUri",
+        "importGcsCustomMetadata",
+        "smartMessagingPartialUpdate",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.importGcsCustomMetadata = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .importGcsCustomMetadata)
-      self.smartMessagingPartialUpdate = try container.decode(
+      {
+        self.importGcsCustomMetadata = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .smartMessagingPartialUpdate)
+      {
+        self.smartMessagingPartialUpdate = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -93,6 +116,10 @@
         try sourceCheckAndSet(.contentUri(contentUri))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -106,6 +133,9 @@
         case .contentUri(let value):
           try container.encode(value, forKey: .contentUri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

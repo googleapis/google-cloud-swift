@@ -32,6 +32,8 @@ public struct BucketMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var request: OneOf_Request? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BucketMetadata`.
   public init() {}
 
@@ -48,12 +50,25 @@ public struct BucketMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case state = "state"
-    case createBucketRequest = "createBucketRequest"
-    case updateBucketRequest = "updateBucketRequest"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let createBucketRequest = CodingKeys(stringValue: "createBucketRequest")
+    static let updateBucketRequest = CodingKeys(stringValue: "updateBucketRequest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startTime",
+      "endTime",
+      "state",
+      "createBucketRequest",
+      "updateBucketRequest",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,7 +76,9 @@ public struct BucketMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.state = try container.decode(OperationState.self, forKey: .state)
+    if let value = try container.decodeIfPresent(OperationState.self, forKey: .state) {
+      self.state = value
+    }
 
     var request: OneOf_Request? = nil
     let requestCheckAndSet = {
@@ -84,12 +101,16 @@ public struct BucketMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try requestCheckAndSet(.updateBucketRequest(updateBucketRequest))
     }
     self.request = request
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.state, forKey: .state)
 
     if let choice = self.request {
@@ -99,6 +120,9 @@ public struct BucketMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .updateBucketRequest(let value):
         try container.encode(value, forKey: .updateBucketRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

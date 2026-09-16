@@ -29,6 +29,8 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
   /// detected or reported.
   public var findings: [CheckOnboardingStatusResponse.Finding] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckOnboardingStatusResponse`.
   public init() {}
 
@@ -45,12 +47,54 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let findings = CodingKeys(stringValue: "findings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccount",
+      "findings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CheckOnboardingStatusResponse.Finding].self, forKey: .findings)
+    {
+      self.findings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.findings, forKey: .findings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Finding represents an issue which prevents PAM from functioning properly
   /// for this resource.
   public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var findingType: OneOf_FindingType? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Finding`.
     public init() {}
@@ -68,8 +112,17 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case iamAccessDenied = "iamAccessDenied"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let iamAccessDenied = CodingKeys(stringValue: "iamAccessDenied")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "iamAccessDenied"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -91,6 +144,10 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
         try findingTypeCheckAndSet(.iamAccessDenied(iamAccessDenied))
       }
       self.findingType = findingType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -101,6 +158,9 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
         case .iamAccessDenied(let value):
           try container.encode(value, forKey: .iamAccessDenied)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -113,6 +173,8 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
     {
       /// List of permissions that are being denied.
       public var missingPermissions: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `IAMAccessDenied`.
       public init() {}
@@ -128,6 +190,40 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT.
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let missingPermissions = CodingKeys(stringValue: "missingPermissions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "missingPermissions"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .missingPermissions)
+        {
+          self.missingPermissions = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.missingPermissions, forKey: .missingPermissions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

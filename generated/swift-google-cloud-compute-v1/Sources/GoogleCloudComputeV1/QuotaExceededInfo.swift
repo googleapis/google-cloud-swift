@@ -42,6 +42,8 @@
     /// Rollout status of the future quota limit.
     public var rolloutStatus: QuotaExceededInfo.RolloutStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QuotaExceededInfo`.
     public init() {}
 
@@ -56,6 +58,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dimensions = CodingKeys(stringValue: "dimensions")
+      static let futureLimit = CodingKeys(stringValue: "futureLimit")
+      static let limit = CodingKeys(stringValue: "limit")
+      static let limitName = CodingKeys(stringValue: "limitName")
+      static let metricName = CodingKeys(stringValue: "metricName")
+      static let rolloutStatus = CodingKeys(stringValue: "rolloutStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dimensions",
+        "futureLimit",
+        "limit",
+        "limitName",
+        "metricName",
+        "rolloutStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .dimensions)
+      {
+        self.dimensions = value
+      }
+      self.futureLimit = try container.decodeIfPresent(Swift.Double.self, forKey: .futureLimit)
+      self.limit = try container.decodeIfPresent(Swift.Double.self, forKey: .limit)
+      self.limitName = try container.decodeIfPresent(Swift.String.self, forKey: .limitName)
+      self.metricName = try container.decodeIfPresent(Swift.String.self, forKey: .metricName)
+      self.rolloutStatus = try container.decodeIfPresent(
+        QuotaExceededInfo.RolloutStatus.self, forKey: .rolloutStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dimensions, forKey: .dimensions)
+      try container.encodeIfPresent(self.futureLimit, forKey: .futureLimit)
+      try container.encodeIfPresent(self.limit, forKey: .limit)
+      try container.encodeIfPresent(self.limitName, forKey: .limitName)
+      try container.encodeIfPresent(self.metricName, forKey: .metricName)
+      try container.encodeIfPresent(self.rolloutStatus, forKey: .rolloutStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [rolloutStatus][google.cloud.compute.v1.QuotaExceededInfo.rolloutStatus] field.

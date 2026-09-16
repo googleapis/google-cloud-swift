@@ -72,6 +72,8 @@ public struct CustomAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Default is false.
   public var keywordSearchable: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomAttribute`.
   public init() {}
 
@@ -86,6 +88,56 @@ public struct CustomAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValues = CodingKeys(stringValue: "stringValues")
+    static let longValues = CodingKeys(stringValue: "longValues")
+    static let filterable = CodingKeys(stringValue: "filterable")
+    static let keywordSearchable = CodingKeys(stringValue: "keywordSearchable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValues",
+      "longValues",
+      "filterable",
+      "keywordSearchable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .stringValues) {
+      self.stringValues = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .longValues) {
+      self.longValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .filterable) {
+      self.filterable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .keywordSearchable) {
+      self.keywordSearchable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.stringValues, forKey: .stringValues)
+    try container.encode(self.longValues, forKey: .longValues)
+    try container.encode(self.filterable, forKey: .filterable)
+    try container.encode(self.keywordSearchable, forKey: .keywordSearchable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

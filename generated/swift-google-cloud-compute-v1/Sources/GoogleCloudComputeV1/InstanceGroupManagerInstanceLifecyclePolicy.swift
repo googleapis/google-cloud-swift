@@ -65,6 +65,8 @@
     /// Configuration for VM repairs in the MIG.
     public var onRepair: InstanceGroupManagerInstanceLifecyclePolicyOnRepair? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerInstanceLifecyclePolicy`.
     public init() {}
 
@@ -79,6 +81,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultActionOnFailure = CodingKeys(stringValue: "defaultActionOnFailure")
+      static let forceUpdateOnRepair = CodingKeys(stringValue: "forceUpdateOnRepair")
+      static let onFailedHealthCheck = CodingKeys(stringValue: "onFailedHealthCheck")
+      static let onRepair = CodingKeys(stringValue: "onRepair")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultActionOnFailure",
+        "forceUpdateOnRepair",
+        "onFailedHealthCheck",
+        "onRepair",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.defaultActionOnFailure = try container.decodeIfPresent(
+        InstanceGroupManagerInstanceLifecyclePolicy.DefaultActionOnFailure.self,
+        forKey: .defaultActionOnFailure)
+      self.forceUpdateOnRepair = try container.decodeIfPresent(
+        InstanceGroupManagerInstanceLifecyclePolicy.ForceUpdateOnRepair.self,
+        forKey: .forceUpdateOnRepair)
+      self.onFailedHealthCheck = try container.decodeIfPresent(
+        InstanceGroupManagerInstanceLifecyclePolicy.OnFailedHealthCheck.self,
+        forKey: .onFailedHealthCheck)
+      self.onRepair = try container.decodeIfPresent(
+        InstanceGroupManagerInstanceLifecyclePolicyOnRepair.self, forKey: .onRepair)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.defaultActionOnFailure, forKey: .defaultActionOnFailure)
+      try container.encodeIfPresent(self.forceUpdateOnRepair, forKey: .forceUpdateOnRepair)
+      try container.encodeIfPresent(self.onFailedHealthCheck, forKey: .onFailedHealthCheck)
+      try container.encodeIfPresent(self.onRepair, forKey: .onRepair)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [defaultActionOnFailure][google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.defaultActionOnFailure] field.

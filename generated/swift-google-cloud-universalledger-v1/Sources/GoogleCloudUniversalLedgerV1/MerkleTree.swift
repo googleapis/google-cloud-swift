@@ -37,6 +37,8 @@ public struct MerkleTree: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The number of transactions in the tree.
   public var numTransactions: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MerkleTree`.
   public init() {}
 
@@ -51,6 +53,50 @@ public struct MerkleTree: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rootHashHex = CodingKeys(stringValue: "rootHashHex")
+    static let rootDigestHex = CodingKeys(stringValue: "rootDigestHex")
+    static let numTransactions = CodingKeys(stringValue: "numTransactions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rootHashHex",
+      "rootDigestHex",
+      "numTransactions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootHashHex) {
+      self.rootHashHex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootDigestHex) {
+      self.rootDigestHex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .numTransactions) {
+      self.numTransactions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rootHashHex, forKey: .rootHashHex)
+    try container.encode(self.rootDigestHex, forKey: .rootDigestHex)
+    try container.encode(self.numTransactions, forKey: .numTransactions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

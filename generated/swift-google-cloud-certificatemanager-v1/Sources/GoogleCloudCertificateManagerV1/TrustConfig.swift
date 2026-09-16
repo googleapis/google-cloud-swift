@@ -51,6 +51,8 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only one TrustStore specified is currently allowed.
   public var trustStores: [TrustConfig.TrustStore] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrustConfig`.
   public init() {}
 
@@ -67,11 +69,82 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let trustStores = CodingKeys(stringValue: "trustStores")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "etag",
+      "trustStores",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TrustConfig.TrustStore].self, forKey: .trustStores)
+    {
+      self.trustStores = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.trustStores, forKey: .trustStores)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Defines a trust anchor.
   public struct TrustAnchor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var kind: OneOf_Kind? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TrustAnchor`.
     public init() {}
@@ -89,8 +162,17 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case pemCertificate = "pemCertificate"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pemCertificate = CodingKeys(stringValue: "pemCertificate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pemCertificate"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -112,6 +194,10 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try kindCheckAndSet(.pemCertificate(pemCertificate))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,6 +208,9 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .pemCertificate(let value):
           try container.encode(value, forKey: .pemCertificate)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -149,6 +238,8 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     public var kind: OneOf_Kind? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IntermediateCA`.
     public init() {}
 
@@ -165,8 +256,17 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case pemCertificate = "pemCertificate"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pemCertificate = CodingKeys(stringValue: "pemCertificate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pemCertificate"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -188,6 +288,10 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try kindCheckAndSet(.pemCertificate(pemCertificate))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -198,6 +302,9 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .pemCertificate(let value):
           try container.encode(value, forKey: .pemCertificate)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -235,6 +342,8 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// workload certificate feature.
     public var intermediateCas: [TrustConfig.IntermediateCA] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TrustStore`.
     public init() {}
 
@@ -249,6 +358,48 @@ public struct TrustConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trustAnchors = CodingKeys(stringValue: "trustAnchors")
+      static let intermediateCas = CodingKeys(stringValue: "intermediateCas")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trustAnchors",
+        "intermediateCas",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [TrustConfig.TrustAnchor].self, forKey: .trustAnchors)
+      {
+        self.trustAnchors = value
+      }
+      if let value = try container.decodeIfPresent(
+        [TrustConfig.IntermediateCA].self, forKey: .intermediateCas)
+      {
+        self.intermediateCas = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trustAnchors, forKey: .trustAnchors)
+      try container.encode(self.intermediateCas, forKey: .intermediateCas)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

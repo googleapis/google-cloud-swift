@@ -31,6 +31,8 @@ public struct PersonalProtectiveEquipmentDetectionConfig: Codable, Equatable, Go
   /// Whether to enable hands coverage detection.
   public var enableHandsCoverageDetection: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PersonalProtectiveEquipmentDetectionConfig`.
   public init() {}
 
@@ -45,6 +47,57 @@ public struct PersonalProtectiveEquipmentDetectionConfig: Codable, Equatable, Go
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableFaceCoverageDetection = CodingKeys(stringValue: "enableFaceCoverageDetection")
+    static let enableHeadCoverageDetection = CodingKeys(stringValue: "enableHeadCoverageDetection")
+    static let enableHandsCoverageDetection = CodingKeys(
+      stringValue: "enableHandsCoverageDetection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableFaceCoverageDetection",
+      "enableHeadCoverageDetection",
+      "enableHandsCoverageDetection",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableFaceCoverageDetection)
+    {
+      self.enableFaceCoverageDetection = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableHeadCoverageDetection)
+    {
+      self.enableHeadCoverageDetection = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableHandsCoverageDetection)
+    {
+      self.enableHandsCoverageDetection = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableFaceCoverageDetection, forKey: .enableFaceCoverageDetection)
+    try container.encode(self.enableHeadCoverageDetection, forKey: .enableHeadCoverageDetection)
+    try container.encode(self.enableHandsCoverageDetection, forKey: .enableHandsCoverageDetection)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

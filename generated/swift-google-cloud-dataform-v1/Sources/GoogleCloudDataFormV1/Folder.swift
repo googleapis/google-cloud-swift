@@ -56,6 +56,8 @@ public struct Folder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The IAM principal identifier of the creator of the Folder.
   public var creatorIamPrincipal: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Folder`.
   public init() {}
 
@@ -70,6 +72,76 @@ public struct Folder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let containingFolder = CodingKeys(stringValue: "containingFolder")
+    static let teamFolderName = CodingKeys(stringValue: "teamFolderName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+    static let creatorIamPrincipal = CodingKeys(stringValue: "creatorIamPrincipal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "containingFolder",
+      "teamFolderName",
+      "createTime",
+      "updateTime",
+      "internalMetadata",
+      "creatorIamPrincipal",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containingFolder) {
+      self.containingFolder = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .teamFolderName) {
+      self.teamFolderName = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.internalMetadata = try container.decodeIfPresent(
+      Swift.String.self, forKey: .internalMetadata)
+    self.creatorIamPrincipal = try container.decodeIfPresent(
+      Swift.String.self, forKey: .creatorIamPrincipal)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.containingFolder, forKey: .containingFolder)
+    try container.encode(self.teamFolderName, forKey: .teamFolderName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    try container.encodeIfPresent(self.creatorIamPrincipal, forKey: .creatorIamPrincipal)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

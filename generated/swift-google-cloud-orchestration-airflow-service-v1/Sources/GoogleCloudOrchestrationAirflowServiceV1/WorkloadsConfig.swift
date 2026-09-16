@@ -41,6 +41,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// composer-3-airflow-*.*.*-build.* and newer.
   public var dagProcessor: WorkloadsConfig.DagProcessorResource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkloadsConfig`.
   public init() {}
 
@@ -55,6 +57,57 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scheduler = CodingKeys(stringValue: "scheduler")
+    static let webServer = CodingKeys(stringValue: "webServer")
+    static let worker = CodingKeys(stringValue: "worker")
+    static let triggerer = CodingKeys(stringValue: "triggerer")
+    static let dagProcessor = CodingKeys(stringValue: "dagProcessor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scheduler",
+      "webServer",
+      "worker",
+      "triggerer",
+      "dagProcessor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.scheduler = try container.decodeIfPresent(
+      WorkloadsConfig.SchedulerResource.self, forKey: .scheduler)
+    self.webServer = try container.decodeIfPresent(
+      WorkloadsConfig.WebServerResource.self, forKey: .webServer)
+    self.worker = try container.decodeIfPresent(
+      WorkloadsConfig.WorkerResource.self, forKey: .worker)
+    self.triggerer = try container.decodeIfPresent(
+      WorkloadsConfig.TriggererResource.self, forKey: .triggerer)
+    self.dagProcessor = try container.decodeIfPresent(
+      WorkloadsConfig.DagProcessorResource.self, forKey: .dagProcessor)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.scheduler, forKey: .scheduler)
+    try container.encodeIfPresent(self.webServer, forKey: .webServer)
+    try container.encodeIfPresent(self.worker, forKey: .worker)
+    try container.encodeIfPresent(self.triggerer, forKey: .triggerer)
+    try container.encodeIfPresent(self.dagProcessor, forKey: .dagProcessor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for resources used by Airflow schedulers.
@@ -75,6 +128,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The number of schedulers.
     public var count: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SchedulerResource`.
     public init() {}
 
@@ -89,6 +144,56 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpu = CodingKeys(stringValue: "cpu")
+      static let memoryGb = CodingKeys(stringValue: "memoryGb")
+      static let storageGb = CodingKeys(stringValue: "storageGb")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpu",
+        "memoryGb",
+        "storageGb",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cpu) {
+        self.cpu = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .memoryGb) {
+        self.memoryGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .storageGb) {
+        self.storageGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cpu, forKey: .cpu)
+      try container.encode(self.memoryGb, forKey: .memoryGb)
+      try container.encode(self.storageGb, forKey: .storageGb)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -116,6 +221,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Storage (GB) request and limit for Airflow web server.
     public var storageGb: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WebServerResource`.
     public init() {}
 
@@ -130,6 +237,50 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpu = CodingKeys(stringValue: "cpu")
+      static let memoryGb = CodingKeys(stringValue: "memoryGb")
+      static let storageGb = CodingKeys(stringValue: "storageGb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpu",
+        "memoryGb",
+        "storageGb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cpu) {
+        self.cpu = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .memoryGb) {
+        self.memoryGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .storageGb) {
+        self.storageGb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cpu, forKey: .cpu)
+      try container.encode(self.memoryGb, forKey: .memoryGb)
+      try container.encode(self.storageGb, forKey: .storageGb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -165,6 +316,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Maximum number of workers for autoscaling.
     public var maxCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkerResource`.
     public init() {}
 
@@ -179,6 +332,62 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpu = CodingKeys(stringValue: "cpu")
+      static let memoryGb = CodingKeys(stringValue: "memoryGb")
+      static let storageGb = CodingKeys(stringValue: "storageGb")
+      static let minCount = CodingKeys(stringValue: "minCount")
+      static let maxCount = CodingKeys(stringValue: "maxCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpu",
+        "memoryGb",
+        "storageGb",
+        "minCount",
+        "maxCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cpu) {
+        self.cpu = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .memoryGb) {
+        self.memoryGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .storageGb) {
+        self.storageGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minCount) {
+        self.minCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxCount) {
+        self.maxCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cpu, forKey: .cpu)
+      try container.encode(self.memoryGb, forKey: .memoryGb)
+      try container.encode(self.storageGb, forKey: .storageGb)
+      try container.encode(self.minCount, forKey: .minCount)
+      try container.encode(self.maxCount, forKey: .maxCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -207,6 +416,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// replica.
     public var memoryGb: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TriggererResource`.
     public init() {}
 
@@ -221,6 +432,50 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let count = CodingKeys(stringValue: "count")
+      static let cpu = CodingKeys(stringValue: "cpu")
+      static let memoryGb = CodingKeys(stringValue: "memoryGb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "count",
+        "cpu",
+        "memoryGb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+        self.count = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cpu) {
+        self.cpu = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .memoryGb) {
+        self.memoryGb = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.count, forKey: .count)
+      try container.encode(self.cpu, forKey: .cpu)
+      try container.encode(self.memoryGb, forKey: .memoryGb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -258,6 +513,8 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// single DAG processor instance will be created.
     public var count: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DagProcessorResource`.
     public init() {}
 
@@ -272,6 +529,56 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cpu = CodingKeys(stringValue: "cpu")
+      static let memoryGb = CodingKeys(stringValue: "memoryGb")
+      static let storageGb = CodingKeys(stringValue: "storageGb")
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cpu",
+        "memoryGb",
+        "storageGb",
+        "count",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .cpu) {
+        self.cpu = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .memoryGb) {
+        self.memoryGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .storageGb) {
+        self.storageGb = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cpu, forKey: .cpu)
+      try container.encode(self.memoryGb, forKey: .memoryGb)
+      try container.encode(self.storageGb, forKey: .storageGb)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

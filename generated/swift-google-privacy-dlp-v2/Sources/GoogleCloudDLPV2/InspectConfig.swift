@@ -97,6 +97,8 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// supported for the `metadata_key_value_expression` CustomInfoType.
   public var ruleSet: [InspectionRuleSet] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InspectConfig`.
   public init() {}
 
@@ -111,6 +113,86 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoTypes = CodingKeys(stringValue: "infoTypes")
+    static let minLikelihood = CodingKeys(stringValue: "minLikelihood")
+    static let minLikelihoodPerInfoType = CodingKeys(stringValue: "minLikelihoodPerInfoType")
+    static let limits = CodingKeys(stringValue: "limits")
+    static let includeQuote = CodingKeys(stringValue: "includeQuote")
+    static let excludeInfoTypes = CodingKeys(stringValue: "excludeInfoTypes")
+    static let customInfoTypes = CodingKeys(stringValue: "customInfoTypes")
+    static let contentOptions = CodingKeys(stringValue: "contentOptions")
+    static let ruleSet = CodingKeys(stringValue: "ruleSet")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoTypes",
+      "minLikelihood",
+      "minLikelihoodPerInfoType",
+      "limits",
+      "includeQuote",
+      "excludeInfoTypes",
+      "customInfoTypes",
+      "contentOptions",
+      "ruleSet",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
+      self.infoTypes = value
+    }
+    if let value = try container.decodeIfPresent(Likelihood.self, forKey: .minLikelihood) {
+      self.minLikelihood = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InspectConfig.InfoTypeLikelihood].self, forKey: .minLikelihoodPerInfoType)
+    {
+      self.minLikelihoodPerInfoType = value
+    }
+    self.limits = try container.decodeIfPresent(InspectConfig.FindingLimits.self, forKey: .limits)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeQuote) {
+      self.includeQuote = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .excludeInfoTypes) {
+      self.excludeInfoTypes = value
+    }
+    if let value = try container.decodeIfPresent([CustomInfoType].self, forKey: .customInfoTypes) {
+      self.customInfoTypes = value
+    }
+    if let value = try container.decodeIfPresent([ContentOption].self, forKey: .contentOptions) {
+      self.contentOptions = value
+    }
+    if let value = try container.decodeIfPresent([InspectionRuleSet].self, forKey: .ruleSet) {
+      self.ruleSet = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.infoTypes, forKey: .infoTypes)
+    try container.encode(self.minLikelihood, forKey: .minLikelihood)
+    try container.encode(self.minLikelihoodPerInfoType, forKey: .minLikelihoodPerInfoType)
+    try container.encodeIfPresent(self.limits, forKey: .limits)
+    try container.encode(self.includeQuote, forKey: .includeQuote)
+    try container.encode(self.excludeInfoTypes, forKey: .excludeInfoTypes)
+    try container.encode(self.customInfoTypes, forKey: .customInfoTypes)
+    try container.encode(self.contentOptions, forKey: .contentOptions)
+    try container.encode(self.ruleSet, forKey: .ruleSet)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for setting a minimum likelihood per infotype. Used to
@@ -130,6 +212,8 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// required or else the configuration fails.
     public var minLikelihood: Likelihood = Likelihood()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InfoTypeLikelihood`.
     public init() {}
 
@@ -144,6 +228,42 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let infoType = CodingKeys(stringValue: "infoType")
+      static let minLikelihood = CodingKeys(stringValue: "minLikelihood")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "infoType",
+        "minLikelihood",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
+      if let value = try container.decodeIfPresent(Likelihood.self, forKey: .minLikelihood) {
+        self.minLikelihood = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.infoType, forKey: .infoType)
+      try container.encode(self.minLikelihood, forKey: .minLikelihood)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -202,6 +322,8 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Configuration of findings limit given for specified infoTypes.
     public var maxFindingsPerInfoType: [InspectConfig.FindingLimits.InfoTypeLimit] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FindingLimits`.
     public init() {}
 
@@ -218,6 +340,53 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxFindingsPerItem = CodingKeys(stringValue: "maxFindingsPerItem")
+      static let maxFindingsPerRequest = CodingKeys(stringValue: "maxFindingsPerRequest")
+      static let maxFindingsPerInfoType = CodingKeys(stringValue: "maxFindingsPerInfoType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxFindingsPerItem",
+        "maxFindingsPerRequest",
+        "maxFindingsPerInfoType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFindingsPerItem) {
+        self.maxFindingsPerItem = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFindingsPerRequest)
+      {
+        self.maxFindingsPerRequest = value
+      }
+      if let value = try container.decodeIfPresent(
+        [InspectConfig.FindingLimits.InfoTypeLimit].self, forKey: .maxFindingsPerInfoType)
+      {
+        self.maxFindingsPerInfoType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxFindingsPerItem, forKey: .maxFindingsPerItem)
+      try container.encode(self.maxFindingsPerRequest, forKey: .maxFindingsPerRequest)
+      try container.encode(self.maxFindingsPerInfoType, forKey: .maxFindingsPerInfoType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Max findings configuration per infoType, per content item or long
     /// running DlpJob.
     public struct InfoTypeLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -231,6 +400,8 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Max findings limit for the given infoType.
       public var maxFindings: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `InfoTypeLimit`.
       public init() {}
@@ -246,6 +417,42 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let infoType = CodingKeys(stringValue: "infoType")
+        static let maxFindings = CodingKeys(stringValue: "maxFindings")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "infoType",
+          "maxFindings",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFindings) {
+          self.maxFindings = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.infoType, forKey: .infoType)
+        try container.encode(self.maxFindings, forKey: .maxFindings)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

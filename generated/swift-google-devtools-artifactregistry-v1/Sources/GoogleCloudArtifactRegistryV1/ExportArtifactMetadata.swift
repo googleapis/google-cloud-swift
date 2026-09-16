@@ -24,6 +24,8 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The exported artifact files.
   public var exportedFiles: [ExportArtifactMetadata.ExportedFile] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportArtifactMetadata`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exportedFiles = CodingKeys(stringValue: "exportedFiles")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exportedFiles"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ExportArtifactMetadata.ExportedFile].self, forKey: .exportedFiles)
+    {
+      self.exportedFiles = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.exportedFiles, forKey: .exportedFiles)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The exported artifact file.
   public struct ExportedFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +89,8 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
 
     /// The destination the file was exported to.
     public var destination: OneOf_Destination? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ExportedFile`.
     public init() {}
@@ -70,16 +108,31 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsObjectPath = "gcsObjectPath"
-      case name = "name"
-      case hashes = "hashes"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsObjectPath = CodingKeys(stringValue: "gcsObjectPath")
+      static let name = CodingKeys(stringValue: "name")
+      static let hashes = CodingKeys(stringValue: "hashes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsObjectPath",
+        "name",
+        "hashes",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.hashes = try container.decode([Hash].self, forKey: .hashes)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([Hash].self, forKey: .hashes) {
+        self.hashes = value
+      }
 
       var destination: OneOf_Destination? = nil
       let destinationCheckAndSet = {
@@ -97,6 +150,10 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
         try destinationCheckAndSet(.gcsObjectPath(gcsObjectPath))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -109,6 +166,9 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .gcsObjectPath(let value):
           try container.encode(value, forKey: .gcsObjectPath)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

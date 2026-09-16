@@ -152,6 +152,8 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// composer-3-airflow-*.*.*-build.* and newer.
   public var composerInternalIpv4CidrBlock: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeConfig`.
   public init() {}
 
@@ -166,6 +168,108 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let location = CodingKeys(stringValue: "location")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let network = CodingKeys(stringValue: "network")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let oauthScopes = CodingKeys(stringValue: "oauthScopes")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let ipAllocationPolicy = CodingKeys(stringValue: "ipAllocationPolicy")
+    static let enableIpMasqAgent = CodingKeys(stringValue: "enableIpMasqAgent")
+    static let composerNetworkAttachment = CodingKeys(stringValue: "composerNetworkAttachment")
+    static let composerInternalIpv4CidrBlock = CodingKeys(
+      stringValue: "composerInternalIpv4CidrBlock")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "location",
+      "machineType",
+      "network",
+      "subnetwork",
+      "diskSizeGb",
+      "oauthScopes",
+      "serviceAccount",
+      "tags",
+      "ipAllocationPolicy",
+      "enableIpMasqAgent",
+      "composerNetworkAttachment",
+      "composerInternalIpv4CidrBlock",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .oauthScopes) {
+      self.oauthScopes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    self.ipAllocationPolicy = try container.decodeIfPresent(
+      IPAllocationPolicy.self, forKey: .ipAllocationPolicy)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpMasqAgent) {
+      self.enableIpMasqAgent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .composerNetworkAttachment)
+    {
+      self.composerNetworkAttachment = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .composerInternalIpv4CidrBlock)
+    {
+      self.composerInternalIpv4CidrBlock = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encode(self.oauthScopes, forKey: .oauthScopes)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encodeIfPresent(self.ipAllocationPolicy, forKey: .ipAllocationPolicy)
+    try container.encode(self.enableIpMasqAgent, forKey: .enableIpMasqAgent)
+    try container.encode(self.composerNetworkAttachment, forKey: .composerNetworkAttachment)
+    try container.encode(self.composerInternalIpv4CidrBlock, forKey: .composerInternalIpv4CidrBlock)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The list of the persistent column settings for the table.
   public var columnSettings: [TimeSeriesTable.ColumnSettings] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeSeriesTable`.
   public init() {}
 
@@ -45,6 +47,56 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataSets = CodingKeys(stringValue: "dataSets")
+    static let metricVisualization = CodingKeys(stringValue: "metricVisualization")
+    static let columnSettings = CodingKeys(stringValue: "columnSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataSets",
+      "metricVisualization",
+      "columnSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [TimeSeriesTable.TableDataSet].self, forKey: .dataSets)
+    {
+      self.dataSets = value
+    }
+    if let value = try container.decodeIfPresent(
+      TimeSeriesTable.MetricVisualization.self, forKey: .metricVisualization)
+    {
+      self.metricVisualization = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TimeSeriesTable.ColumnSettings].self, forKey: .columnSettings)
+    {
+      self.columnSettings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dataSets, forKey: .dataSets)
+    try container.encode(self.metricVisualization, forKey: .metricVisualization)
+    try container.encode(self.columnSettings, forKey: .columnSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Groups a time series query definition with table options.
@@ -72,6 +124,8 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// rendered.
     public var tableDisplayOptions: TableDisplayOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TableDataSet`.
     public init() {}
 
@@ -86,6 +140,53 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeSeriesQuery = CodingKeys(stringValue: "timeSeriesQuery")
+      static let tableTemplate = CodingKeys(stringValue: "tableTemplate")
+      static let minAlignmentPeriod = CodingKeys(stringValue: "minAlignmentPeriod")
+      static let tableDisplayOptions = CodingKeys(stringValue: "tableDisplayOptions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeSeriesQuery",
+        "tableTemplate",
+        "minAlignmentPeriod",
+        "tableDisplayOptions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.timeSeriesQuery = try container.decodeIfPresent(
+        TimeSeriesQuery.self, forKey: .timeSeriesQuery)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableTemplate) {
+        self.tableTemplate = value
+      }
+      self.minAlignmentPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minAlignmentPeriod)
+      self.tableDisplayOptions = try container.decodeIfPresent(
+        TableDisplayOptions.self, forKey: .tableDisplayOptions)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
+      try container.encode(self.tableTemplate, forKey: .tableTemplate)
+      try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
+      try container.encodeIfPresent(self.tableDisplayOptions, forKey: .tableDisplayOptions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -109,6 +210,8 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Whether the column should be visible on page load.
     public var visible: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ColumnSettings`.
     public init() {}
 
@@ -123,6 +226,44 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let column = CodingKeys(stringValue: "column")
+      static let visible = CodingKeys(stringValue: "visible")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "column",
+        "visible",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+        self.column = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .visible) {
+        self.visible = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.column, forKey: .column)
+      try container.encode(self.visible, forKey: .visible)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

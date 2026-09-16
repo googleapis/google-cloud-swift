@@ -43,6 +43,8 @@ public struct AclEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Kafka.
   public var host: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AclEntry`.
   public init() {}
 
@@ -57,6 +59,56 @@ public struct AclEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let principal = CodingKeys(stringValue: "principal")
+    static let permissionType = CodingKeys(stringValue: "permissionType")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let host = CodingKeys(stringValue: "host")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "principal",
+      "permissionType",
+      "operation",
+      "host",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principal) {
+      self.principal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .permissionType) {
+      self.permissionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operation) {
+      self.operation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.principal, forKey: .principal)
+    try container.encode(self.permissionType, forKey: .permissionType)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encode(self.host, forKey: .host)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

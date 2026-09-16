@@ -44,6 +44,8 @@ public struct ListTimeSeriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// "{not_a_unit}".
   public var unit: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListTimeSeriesResponse`.
   public init() {}
 
@@ -58,6 +60,57 @@ public struct ListTimeSeriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeSeries = CodingKeys(stringValue: "timeSeries")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let executionErrors = CodingKeys(stringValue: "executionErrors")
+    static let unit = CodingKeys(stringValue: "unit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeSeries",
+      "nextPageToken",
+      "executionErrors",
+      "unit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([TimeSeries].self, forKey: .timeSeries) {
+      self.timeSeries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .executionErrors)
+    {
+      self.executionErrors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unit) {
+      self.unit = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.timeSeries, forKey: .timeSeries)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.executionErrors, forKey: .executionErrors)
+    try container.encode(self.unit, forKey: .unit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

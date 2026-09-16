@@ -115,6 +115,8 @@ public struct ClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The node group settings.
   public var auxiliaryNodeGroups: [AuxiliaryNodeGroup] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClusterConfig`.
   public init() {}
 
@@ -129,6 +131,142 @@ public struct ClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterType = CodingKeys(stringValue: "clusterType")
+    static let clusterTier = CodingKeys(stringValue: "clusterTier")
+    static let engine = CodingKeys(stringValue: "engine")
+    static let configBucket = CodingKeys(stringValue: "configBucket")
+    static let tempBucket = CodingKeys(stringValue: "tempBucket")
+    static let gceClusterConfig = CodingKeys(stringValue: "gceClusterConfig")
+    static let masterConfig = CodingKeys(stringValue: "masterConfig")
+    static let workerConfig = CodingKeys(stringValue: "workerConfig")
+    static let secondaryWorkerConfig = CodingKeys(stringValue: "secondaryWorkerConfig")
+    static let softwareConfig = CodingKeys(stringValue: "softwareConfig")
+    static let initializationActions = CodingKeys(stringValue: "initializationActions")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+    static let autoscalingConfig = CodingKeys(stringValue: "autoscalingConfig")
+    static let securityConfig = CodingKeys(stringValue: "securityConfig")
+    static let lifecycleConfig = CodingKeys(stringValue: "lifecycleConfig")
+    static let endpointConfig = CodingKeys(stringValue: "endpointConfig")
+    static let metastoreConfig = CodingKeys(stringValue: "metastoreConfig")
+    static let dataprocMetricConfig = CodingKeys(stringValue: "dataprocMetricConfig")
+    static let auxiliaryNodeGroups = CodingKeys(stringValue: "auxiliaryNodeGroups")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterType",
+      "clusterTier",
+      "engine",
+      "configBucket",
+      "tempBucket",
+      "gceClusterConfig",
+      "masterConfig",
+      "workerConfig",
+      "secondaryWorkerConfig",
+      "softwareConfig",
+      "initializationActions",
+      "encryptionConfig",
+      "autoscalingConfig",
+      "securityConfig",
+      "lifecycleConfig",
+      "endpointConfig",
+      "metastoreConfig",
+      "dataprocMetricConfig",
+      "auxiliaryNodeGroups",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ClusterConfig.ClusterType.self, forKey: .clusterType)
+    {
+      self.clusterType = value
+    }
+    if let value = try container.decodeIfPresent(
+      ClusterConfig.ClusterTier.self, forKey: .clusterTier)
+    {
+      self.clusterTier = value
+    }
+    if let value = try container.decodeIfPresent(ClusterConfig.Engine.self, forKey: .engine) {
+      self.engine = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .configBucket) {
+      self.configBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tempBucket) {
+      self.tempBucket = value
+    }
+    self.gceClusterConfig = try container.decodeIfPresent(
+      GceClusterConfig.self, forKey: .gceClusterConfig)
+    self.masterConfig = try container.decodeIfPresent(
+      InstanceGroupConfig.self, forKey: .masterConfig)
+    self.workerConfig = try container.decodeIfPresent(
+      InstanceGroupConfig.self, forKey: .workerConfig)
+    self.secondaryWorkerConfig = try container.decodeIfPresent(
+      InstanceGroupConfig.self, forKey: .secondaryWorkerConfig)
+    self.softwareConfig = try container.decodeIfPresent(
+      SoftwareConfig.self, forKey: .softwareConfig)
+    if let value = try container.decodeIfPresent(
+      [NodeInitializationAction].self, forKey: .initializationActions)
+    {
+      self.initializationActions = value
+    }
+    self.encryptionConfig = try container.decodeIfPresent(
+      EncryptionConfig.self, forKey: .encryptionConfig)
+    self.autoscalingConfig = try container.decodeIfPresent(
+      AutoscalingConfig.self, forKey: .autoscalingConfig)
+    self.securityConfig = try container.decodeIfPresent(
+      SecurityConfig.self, forKey: .securityConfig)
+    self.lifecycleConfig = try container.decodeIfPresent(
+      LifecycleConfig.self, forKey: .lifecycleConfig)
+    self.endpointConfig = try container.decodeIfPresent(
+      EndpointConfig.self, forKey: .endpointConfig)
+    self.metastoreConfig = try container.decodeIfPresent(
+      MetastoreConfig.self, forKey: .metastoreConfig)
+    self.dataprocMetricConfig = try container.decodeIfPresent(
+      DataprocMetricConfig.self, forKey: .dataprocMetricConfig)
+    if let value = try container.decodeIfPresent(
+      [AuxiliaryNodeGroup].self, forKey: .auxiliaryNodeGroups)
+    {
+      self.auxiliaryNodeGroups = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterType, forKey: .clusterType)
+    try container.encode(self.clusterTier, forKey: .clusterTier)
+    try container.encode(self.engine, forKey: .engine)
+    try container.encode(self.configBucket, forKey: .configBucket)
+    try container.encode(self.tempBucket, forKey: .tempBucket)
+    try container.encodeIfPresent(self.gceClusterConfig, forKey: .gceClusterConfig)
+    try container.encodeIfPresent(self.masterConfig, forKey: .masterConfig)
+    try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
+    try container.encodeIfPresent(self.secondaryWorkerConfig, forKey: .secondaryWorkerConfig)
+    try container.encodeIfPresent(self.softwareConfig, forKey: .softwareConfig)
+    try container.encode(self.initializationActions, forKey: .initializationActions)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    try container.encodeIfPresent(self.autoscalingConfig, forKey: .autoscalingConfig)
+    try container.encodeIfPresent(self.securityConfig, forKey: .securityConfig)
+    try container.encodeIfPresent(self.lifecycleConfig, forKey: .lifecycleConfig)
+    try container.encodeIfPresent(self.endpointConfig, forKey: .endpointConfig)
+    try container.encodeIfPresent(self.metastoreConfig, forKey: .metastoreConfig)
+    try container.encodeIfPresent(self.dataprocMetricConfig, forKey: .dataprocMetricConfig)
+    try container.encode(self.auxiliaryNodeGroups, forKey: .auxiliaryNodeGroups)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the cluster.

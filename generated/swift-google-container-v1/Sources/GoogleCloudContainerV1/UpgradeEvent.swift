@@ -47,6 +47,8 @@ public struct UpgradeEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the relative path of the node pool.
   public var resource: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeEvent`.
   public init() {}
 
@@ -61,6 +63,81 @@ public struct UpgradeEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let operationStartTime = CodingKeys(stringValue: "operationStartTime")
+    static let currentVersion = CodingKeys(stringValue: "currentVersion")
+    static let targetVersion = CodingKeys(stringValue: "targetVersion")
+    static let currentEmulatedVersion = CodingKeys(stringValue: "currentEmulatedVersion")
+    static let targetEmulatedVersion = CodingKeys(stringValue: "targetEmulatedVersion")
+    static let resource = CodingKeys(stringValue: "resource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceType",
+      "operation",
+      "operationStartTime",
+      "currentVersion",
+      "targetVersion",
+      "currentEmulatedVersion",
+      "targetEmulatedVersion",
+      "resource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(UpgradeResourceType.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operation) {
+      self.operation = value
+    }
+    self.operationStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .operationStartTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentVersion) {
+      self.currentVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetVersion) {
+      self.targetVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentEmulatedVersion)
+    {
+      self.currentEmulatedVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetEmulatedVersion)
+    {
+      self.targetEmulatedVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encodeIfPresent(self.operationStartTime, forKey: .operationStartTime)
+    try container.encode(self.currentVersion, forKey: .currentVersion)
+    try container.encode(self.targetVersion, forKey: .targetVersion)
+    try container.encode(self.currentEmulatedVersion, forKey: .currentEmulatedVersion)
+    try container.encode(self.targetEmulatedVersion, forKey: .targetEmulatedVersion)
+    try container.encode(self.resource, forKey: .resource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

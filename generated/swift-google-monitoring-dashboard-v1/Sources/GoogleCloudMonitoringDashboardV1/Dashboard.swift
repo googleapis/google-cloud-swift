@@ -46,6 +46,8 @@ public struct Dashboard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A dashboard's root container element that defines the layout style.
   public var layout: OneOf_Layout? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dashboard`.
   public init() {}
 
@@ -62,25 +64,54 @@ public struct Dashboard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case etag = "etag"
-    case gridLayout = "gridLayout"
-    case mosaicLayout = "mosaicLayout"
-    case rowLayout = "rowLayout"
-    case columnLayout = "columnLayout"
-    case dashboardFilters = "dashboardFilters"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let gridLayout = CodingKeys(stringValue: "gridLayout")
+    static let mosaicLayout = CodingKeys(stringValue: "mosaicLayout")
+    static let rowLayout = CodingKeys(stringValue: "rowLayout")
+    static let columnLayout = CodingKeys(stringValue: "columnLayout")
+    static let dashboardFilters = CodingKeys(stringValue: "dashboardFilters")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "etag",
+      "gridLayout",
+      "mosaicLayout",
+      "rowLayout",
+      "columnLayout",
+      "dashboardFilters",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.dashboardFilters = try container.decode([DashboardFilter].self, forKey: .dashboardFilters)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([DashboardFilter].self, forKey: .dashboardFilters)
+    {
+      self.dashboardFilters = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var layout: OneOf_Layout? = nil
     let layoutCheckAndSet = {
@@ -105,6 +136,10 @@ public struct Dashboard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try layoutCheckAndSet(.columnLayout(columnLayout))
     }
     self.layout = layout
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,6 +161,9 @@ public struct Dashboard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .columnLayout(let value):
         try container.encode(value, forKey: .columnLayout)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -51,6 +51,8 @@ public struct ColumnMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether the column is unselected in the final response.
   public var unselected: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ColumnMetadata`.
   public init() {}
 
@@ -65,6 +67,91 @@ public struct ColumnMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let column = CodingKeys(stringValue: "column")
+    static let fieldPath = CodingKeys(stringValue: "fieldPath")
+    static let functionName = CodingKeys(stringValue: "functionName")
+    static let functionModule = CodingKeys(stringValue: "functionModule")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let timestampMetadata = CodingKeys(stringValue: "timestampMetadata")
+    static let longitude = CodingKeys(stringValue: "longitude")
+    static let latitude = CodingKeys(stringValue: "latitude")
+    static let selected = CodingKeys(stringValue: "selected")
+    static let unselected = CodingKeys(stringValue: "unselected")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "column",
+      "fieldPath",
+      "functionName",
+      "functionModule",
+      "dataSource",
+      "timestampMetadata",
+      "longitude",
+      "latitude",
+      "selected",
+      "unselected",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+      self.column = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldPath) {
+      self.fieldPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .functionName) {
+      self.functionName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .functionModule) {
+      self.functionModule = value
+    }
+    if let value = try container.decodeIfPresent(DataSource.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    self.timestampMetadata = try container.decodeIfPresent(
+      TimestampMetadata.self, forKey: .timestampMetadata)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .longitude) {
+      self.longitude = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .latitude) {
+      self.latitude = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .selected) {
+      self.selected = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .unselected) {
+      self.unselected = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.column, forKey: .column)
+    try container.encode(self.fieldPath, forKey: .fieldPath)
+    try container.encode(self.functionName, forKey: .functionName)
+    try container.encode(self.functionModule, forKey: .functionModule)
+    try container.encode(self.dataSource, forKey: .dataSource)
+    try container.encodeIfPresent(self.timestampMetadata, forKey: .timestampMetadata)
+    try container.encode(self.longitude, forKey: .longitude)
+    try container.encode(self.latitude, forKey: .latitude)
+    try container.encode(self.selected, forKey: .selected)
+    try container.encode(self.unselected, forKey: .unselected)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@ public struct UptimeCheckIp: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// interpreting this field in either IPv4 or IPv6 format.
   public var ipAddress: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UptimeCheckIp`.
   public init() {}
 
@@ -51,6 +53,50 @@ public struct UptimeCheckIp: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let region = CodingKeys(stringValue: "region")
+    static let location = CodingKeys(stringValue: "location")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "region",
+      "location",
+      "ipAddress",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(UptimeCheckRegion.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

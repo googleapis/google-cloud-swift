@@ -35,6 +35,8 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleCloudWKT._
   /// claims.
   public var teeAttestation: OneOf_TeeAttestation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VerifyConfidentialGkeRequest`.
   public init() {}
 
@@ -51,15 +53,28 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tpmAttestation = "tpmAttestation"
-    case challenge = "challenge"
-    case options = "options"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tpmAttestation = CodingKeys(stringValue: "tpmAttestation")
+    static let challenge = CodingKeys(stringValue: "challenge")
+    static let options = CodingKeys(stringValue: "options")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tpmAttestation",
+      "challenge",
+      "options",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.challenge = try container.decode(Swift.String.self, forKey: .challenge)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .challenge) {
+      self.challenge = value
+    }
     self.options = try container.decodeIfPresent(
       VerifyConfidentialGkeRequest.ConfidentialGkeOptions.self, forKey: .options)
 
@@ -79,18 +94,25 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleCloudWKT._
       try teeAttestationCheckAndSet(.tpmAttestation(tpmAttestation))
     }
     self.teeAttestation = teeAttestation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
-    try container.encode(self.options, forKey: .options)
+    try container.encodeIfPresent(self.options, forKey: .options)
 
     if let choice = self.teeAttestation {
       switch choice {
       case .tpmAttestation(let value):
         try container.encode(value, forKey: .tpmAttestation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -111,6 +133,8 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleCloudWKT._
     /// Defaults to SIGNATURE_TYPE_OIDC if unspecified.
     public var signatureType: SignatureType = SignatureType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConfidentialGkeOptions`.
     public init() {}
 
@@ -125,6 +149,50 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audience = CodingKeys(stringValue: "audience")
+      static let nonce = CodingKeys(stringValue: "nonce")
+      static let signatureType = CodingKeys(stringValue: "signatureType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audience",
+        "nonce",
+        "signatureType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+        self.audience = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nonce) {
+        self.nonce = value
+      }
+      if let value = try container.decodeIfPresent(SignatureType.self, forKey: .signatureType) {
+        self.signatureType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.audience, forKey: .audience)
+      try container.encode(self.nonce, forKey: .nonce)
+      try container.encode(self.signatureType, forKey: .signatureType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

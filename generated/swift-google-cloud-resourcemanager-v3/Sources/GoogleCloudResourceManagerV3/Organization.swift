@@ -58,6 +58,8 @@ public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// descendants will be deleted.
   public var owner: OneOf_Owner? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Organization`.
   public init() {}
 
@@ -74,29 +76,53 @@ public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case directoryCustomerId = "directoryCustomerId"
-    case state = "state"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let directoryCustomerId = CodingKeys(stringValue: "directoryCustomerId")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "directoryCustomerId",
+      "state",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.state = try container.decode(Organization.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Organization.State.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var owner: OneOf_Owner? = nil
     let ownerCheckAndSet = {
@@ -114,6 +140,10 @@ public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try ownerCheckAndSet(.directoryCustomerId(directoryCustomerId))
     }
     self.owner = owner
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -121,9 +151,9 @@ public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.owner {
@@ -131,6 +161,9 @@ public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .directoryCustomerId(let value):
         try container.encode(value, forKey: .directoryCustomerId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

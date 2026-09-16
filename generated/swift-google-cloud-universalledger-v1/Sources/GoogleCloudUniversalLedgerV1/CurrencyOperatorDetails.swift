@@ -68,6 +68,8 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// operator.
   public var clearinghouseId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CurrencyOperatorDetails`.
   public init() {}
 
@@ -82,6 +84,91 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let currency = CodingKeys(stringValue: "currency")
+    static let currencyCode = CodingKeys(stringValue: "currencyCode")
+    static let accountStatus = CodingKeys(stringValue: "accountStatus")
+    static let previousEntityId = CodingKeys(stringValue: "previousEntityId")
+    static let previousCurrencyOperatorId = CodingKeys(stringValue: "previousCurrencyOperatorId")
+    static let platformOperatorEntityId = CodingKeys(stringValue: "platformOperatorEntityId")
+    static let platformOperatorId = CodingKeys(stringValue: "platformOperatorId")
+    static let contractTokenManager = CodingKeys(stringValue: "contractTokenManager")
+    static let contractTokenManagerId = CodingKeys(stringValue: "contractTokenManagerId")
+    static let clearinghouseId = CodingKeys(stringValue: "clearinghouseId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "currency",
+      "currencyCode",
+      "accountStatus",
+      "previousEntityId",
+      "previousCurrencyOperatorId",
+      "platformOperatorEntityId",
+      "platformOperatorId",
+      "contractTokenManager",
+      "contractTokenManagerId",
+      "clearinghouseId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currency) {
+      self.currency = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
+      self.currencyCode = value
+    }
+    if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
+      self.accountStatus = value
+    }
+    self.previousEntityId = try container.decodeIfPresent(Entity.self, forKey: .previousEntityId)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousCurrencyOperatorId)
+    {
+      self.previousCurrencyOperatorId = value
+    }
+    self.platformOperatorEntityId = try container.decodeIfPresent(
+      Entity.self, forKey: .platformOperatorEntityId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .platformOperatorId) {
+      self.platformOperatorId = value
+    }
+    self.contractTokenManager = try container.decodeIfPresent(
+      Entity.self, forKey: .contractTokenManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractTokenManagerId)
+    {
+      self.contractTokenManagerId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clearinghouseId) {
+      self.clearinghouseId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.currency, forKey: .currency)
+    try container.encode(self.currencyCode, forKey: .currencyCode)
+    try container.encode(self.accountStatus, forKey: .accountStatus)
+    try container.encodeIfPresent(self.previousEntityId, forKey: .previousEntityId)
+    try container.encode(self.previousCurrencyOperatorId, forKey: .previousCurrencyOperatorId)
+    try container.encodeIfPresent(self.platformOperatorEntityId, forKey: .platformOperatorEntityId)
+    try container.encode(self.platformOperatorId, forKey: .platformOperatorId)
+    try container.encodeIfPresent(self.contractTokenManager, forKey: .contractTokenManager)
+    try container.encode(self.contractTokenManagerId, forKey: .contractTokenManagerId)
+    try container.encode(self.clearinghouseId, forKey: .clearinghouseId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

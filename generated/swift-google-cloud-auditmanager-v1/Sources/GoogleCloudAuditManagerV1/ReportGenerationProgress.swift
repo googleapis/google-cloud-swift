@@ -49,6 +49,8 @@ public struct ReportGenerationProgress: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. Name of the audit report.
   public var auditReport: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportGenerationProgress`.
   public init() {}
 
@@ -63,6 +65,84 @@ public struct ReportGenerationProgress: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let failureReason = CodingKeys(stringValue: "failureReason")
+    static let evaluationPercentComplete = CodingKeys(stringValue: "evaluationPercentComplete")
+    static let reportGenerationPercentComplete = CodingKeys(
+      stringValue: "reportGenerationPercentComplete")
+    static let reportUploadingPercentComplete = CodingKeys(
+      stringValue: "reportUploadingPercentComplete")
+    static let destinationGcsBucket = CodingKeys(stringValue: "destinationGcsBucket")
+    static let auditReport = CodingKeys(stringValue: "auditReport")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "failureReason",
+      "evaluationPercentComplete",
+      "reportGenerationPercentComplete",
+      "reportUploadingPercentComplete",
+      "destinationGcsBucket",
+      "auditReport",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(OperationState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureReason) {
+      self.failureReason = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .evaluationPercentComplete)
+    {
+      self.evaluationPercentComplete = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .reportGenerationPercentComplete)
+    {
+      self.reportGenerationPercentComplete = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .reportUploadingPercentComplete)
+    {
+      self.reportUploadingPercentComplete = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationGcsBucket) {
+      self.destinationGcsBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .auditReport) {
+      self.auditReport = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.failureReason, forKey: .failureReason)
+    try container.encode(self.evaluationPercentComplete, forKey: .evaluationPercentComplete)
+    try container.encode(
+      self.reportGenerationPercentComplete, forKey: .reportGenerationPercentComplete)
+    try container.encode(
+      self.reportUploadingPercentComplete, forKey: .reportUploadingPercentComplete)
+    try container.encode(self.destinationGcsBucket, forKey: .destinationGcsBucket)
+    try container.encode(self.auditReport, forKey: .auditReport)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

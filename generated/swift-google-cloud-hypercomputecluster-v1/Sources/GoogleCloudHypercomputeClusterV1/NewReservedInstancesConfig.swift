@@ -29,6 +29,8 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleCloudWKT._An
   /// Source of the reservation
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NewReservedInstancesConfig`.
   public init() {}
 
@@ -45,8 +47,17 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case reservation = "reservation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let reservation = CodingKeys(stringValue: "reservation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "reservation"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +77,10 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleCloudWKT._An
       try sourceCheckAndSet(.reservation(reservation))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,6 +91,9 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleCloudWKT._An
       case .reservation(let value):
         try container.encode(value, forKey: .reservation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

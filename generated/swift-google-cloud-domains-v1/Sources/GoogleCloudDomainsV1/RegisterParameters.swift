@@ -39,6 +39,8 @@ public struct RegisterParameters: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Price to register or renew the domain for one year.
   public var yearlyPrice: GoogleType.Money? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RegisterParameters`.
   public init() {}
 
@@ -53,6 +55,62 @@ public struct RegisterParameters: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let domainName = CodingKeys(stringValue: "domainName")
+    static let availability = CodingKeys(stringValue: "availability")
+    static let supportedPrivacy = CodingKeys(stringValue: "supportedPrivacy")
+    static let domainNotices = CodingKeys(stringValue: "domainNotices")
+    static let yearlyPrice = CodingKeys(stringValue: "yearlyPrice")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "domainName",
+      "availability",
+      "supportedPrivacy",
+      "domainNotices",
+      "yearlyPrice",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domainName) {
+      self.domainName = value
+    }
+    if let value = try container.decodeIfPresent(
+      RegisterParameters.Availability.self, forKey: .availability)
+    {
+      self.availability = value
+    }
+    if let value = try container.decodeIfPresent([ContactPrivacy].self, forKey: .supportedPrivacy) {
+      self.supportedPrivacy = value
+    }
+    if let value = try container.decodeIfPresent([DomainNotice].self, forKey: .domainNotices) {
+      self.domainNotices = value
+    }
+    self.yearlyPrice = try container.decodeIfPresent(GoogleType.Money.self, forKey: .yearlyPrice)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.domainName, forKey: .domainName)
+    try container.encode(self.availability, forKey: .availability)
+    try container.encode(self.supportedPrivacy, forKey: .supportedPrivacy)
+    try container.encode(self.domainNotices, forKey: .domainNotices)
+    try container.encodeIfPresent(self.yearlyPrice, forKey: .yearlyPrice)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible availability states of a domain name.

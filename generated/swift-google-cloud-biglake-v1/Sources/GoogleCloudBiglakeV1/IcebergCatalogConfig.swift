@@ -33,6 +33,8 @@ public struct IcebergCatalogConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Output only. Endpoints, required, must not be empty.
   public var endpoints: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IcebergCatalogConfig`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct IcebergCatalogConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let overrides = CodingKeys(stringValue: "overrides")
+    static let defaults = CodingKeys(stringValue: "defaults")
+    static let endpoints = CodingKeys(stringValue: "endpoints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "overrides",
+      "defaults",
+      "endpoints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .overrides)
+    {
+      self.overrides = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .defaults)
+    {
+      self.defaults = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .endpoints) {
+      self.endpoints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.overrides, forKey: .overrides)
+    try container.encode(self.defaults, forKey: .defaults)
+    try container.encode(self.endpoints, forKey: .endpoints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

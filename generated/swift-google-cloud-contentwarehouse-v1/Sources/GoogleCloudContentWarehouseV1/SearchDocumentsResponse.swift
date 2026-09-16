@@ -60,6 +60,8 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Question answer from the query against the document.
   public var questionAnswer: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchDocumentsResponse`.
   public init() {}
 
@@ -74,6 +76,70 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let matchingDocuments = CodingKeys(stringValue: "matchingDocuments")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let totalSize = CodingKeys(stringValue: "totalSize")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let histogramQueryResults = CodingKeys(stringValue: "histogramQueryResults")
+    static let questionAnswer = CodingKeys(stringValue: "questionAnswer")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "matchingDocuments",
+      "nextPageToken",
+      "totalSize",
+      "metadata",
+      "histogramQueryResults",
+      "questionAnswer",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SearchDocumentsResponse.MatchingDocument].self, forKey: .matchingDocuments)
+    {
+      self.matchingDocuments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalSize) {
+      self.totalSize = value
+    }
+    self.metadata = try container.decodeIfPresent(ResponseMetadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent(
+      [HistogramQueryResult].self, forKey: .histogramQueryResults)
+    {
+      self.histogramQueryResults = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .questionAnswer) {
+      self.questionAnswer = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.matchingDocuments, forKey: .matchingDocuments)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.totalSize, forKey: .totalSize)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.histogramQueryResults, forKey: .histogramQueryResults)
+    try container.encode(self.questionAnswer, forKey: .questionAnswer)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Document entry with metadata inside
@@ -112,6 +178,8 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// matched tokens.
     public var matchedTokenPageIndices: [Swift.Int64] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MatchingDocument`.
     public init() {}
 
@@ -126,6 +194,54 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let document = CodingKeys(stringValue: "document")
+      static let searchTextSnippet = CodingKeys(stringValue: "searchTextSnippet")
+      static let qaResult = CodingKeys(stringValue: "qaResult")
+      static let matchedTokenPageIndices = CodingKeys(stringValue: "matchedTokenPageIndices")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "document",
+        "searchTextSnippet",
+        "qaResult",
+        "matchedTokenPageIndices",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchTextSnippet) {
+        self.searchTextSnippet = value
+      }
+      self.qaResult = try container.decodeIfPresent(QAResult.self, forKey: .qaResult)
+      if let value = try container.decodeIfPresent(
+        [Swift.Int64].self, forKey: .matchedTokenPageIndices)
+      {
+        self.matchedTokenPageIndices = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.document, forKey: .document)
+      try container.encode(self.searchTextSnippet, forKey: .searchTextSnippet)
+      try container.encodeIfPresent(self.qaResult, forKey: .qaResult)
+      try container.encode(self.matchedTokenPageIndices, forKey: .matchedTokenPageIndices)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

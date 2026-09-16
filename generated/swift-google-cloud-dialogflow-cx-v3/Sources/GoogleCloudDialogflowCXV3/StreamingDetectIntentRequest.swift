@@ -108,6 +108,8 @@
     /// [google.cloud.dialogflow.cx.v3.QueryResult]: <doc:QueryResult>
     public var responseView: DetectIntentResponseView = DetectIntentResponseView()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamingDetectIntentRequest`.
     public init() {}
 
@@ -122,6 +124,72 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let session = CodingKeys(stringValue: "session")
+      static let queryParams = CodingKeys(stringValue: "queryParams")
+      static let queryInput = CodingKeys(stringValue: "queryInput")
+      static let outputAudioConfig = CodingKeys(stringValue: "outputAudioConfig")
+      static let enablePartialResponse = CodingKeys(stringValue: "enablePartialResponse")
+      static let enableDebuggingInfo = CodingKeys(stringValue: "enableDebuggingInfo")
+      static let responseView = CodingKeys(stringValue: "responseView")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "session",
+        "queryParams",
+        "queryInput",
+        "outputAudioConfig",
+        "enablePartialResponse",
+        "enableDebuggingInfo",
+        "responseView",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+        self.session = value
+      }
+      self.queryParams = try container.decodeIfPresent(QueryParameters.self, forKey: .queryParams)
+      self.queryInput = try container.decodeIfPresent(QueryInput.self, forKey: .queryInput)
+      self.outputAudioConfig = try container.decodeIfPresent(
+        OutputAudioConfig.self, forKey: .outputAudioConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePartialResponse)
+      {
+        self.enablePartialResponse = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableDebuggingInfo) {
+        self.enableDebuggingInfo = value
+      }
+      if let value = try container.decodeIfPresent(
+        DetectIntentResponseView.self, forKey: .responseView)
+      {
+        self.responseView = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.session, forKey: .session)
+      try container.encodeIfPresent(self.queryParams, forKey: .queryParams)
+      try container.encodeIfPresent(self.queryInput, forKey: .queryInput)
+      try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
+      try container.encode(self.enablePartialResponse, forKey: .enablePartialResponse)
+      try container.encode(self.enableDebuggingInfo, forKey: .enableDebuggingInfo)
+      try container.encode(self.responseView, forKey: .responseView)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

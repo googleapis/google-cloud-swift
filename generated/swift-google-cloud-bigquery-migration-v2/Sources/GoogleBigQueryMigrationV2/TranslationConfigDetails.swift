@@ -50,6 +50,8 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyP
   /// desired output.
   public var outputNameMapping: OneOf_OutputNameMapping? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TranslationConfigDetails`.
   public init() {}
 
@@ -66,15 +68,31 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsSourcePath = "gcsSourcePath"
-    case gcsTargetPath = "gcsTargetPath"
-    case nameMappingList = "nameMappingList"
-    case sourceDialect = "sourceDialect"
-    case targetDialect = "targetDialect"
-    case sourceEnv = "sourceEnv"
-    case requestSource = "requestSource"
-    case targetTypes = "targetTypes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSourcePath = CodingKeys(stringValue: "gcsSourcePath")
+    static let gcsTargetPath = CodingKeys(stringValue: "gcsTargetPath")
+    static let nameMappingList = CodingKeys(stringValue: "nameMappingList")
+    static let sourceDialect = CodingKeys(stringValue: "sourceDialect")
+    static let targetDialect = CodingKeys(stringValue: "targetDialect")
+    static let sourceEnv = CodingKeys(stringValue: "sourceEnv")
+    static let requestSource = CodingKeys(stringValue: "requestSource")
+    static let targetTypes = CodingKeys(stringValue: "targetTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSourcePath",
+      "gcsTargetPath",
+      "nameMappingList",
+      "sourceDialect",
+      "targetDialect",
+      "sourceEnv",
+      "requestSource",
+      "targetTypes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -82,8 +100,12 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyP
     self.sourceDialect = try container.decodeIfPresent(Dialect.self, forKey: .sourceDialect)
     self.targetDialect = try container.decodeIfPresent(Dialect.self, forKey: .targetDialect)
     self.sourceEnv = try container.decodeIfPresent(SourceEnv.self, forKey: .sourceEnv)
-    self.requestSource = try container.decode(Swift.String.self, forKey: .requestSource)
-    self.targetTypes = try container.decode([Swift.String].self, forKey: .targetTypes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestSource) {
+      self.requestSource = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetTypes) {
+      self.targetTypes = value
+    }
 
     var sourceLocation: OneOf_SourceLocation? = nil
     let sourceLocationCheckAndSet = {
@@ -133,13 +155,17 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyP
       try outputNameMappingCheckAndSet(.nameMappingList(nameMappingList))
     }
     self.outputNameMapping = outputNameMapping
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.sourceDialect, forKey: .sourceDialect)
-    try container.encode(self.targetDialect, forKey: .targetDialect)
-    try container.encode(self.sourceEnv, forKey: .sourceEnv)
+    try container.encodeIfPresent(self.sourceDialect, forKey: .sourceDialect)
+    try container.encodeIfPresent(self.targetDialect, forKey: .targetDialect)
+    try container.encodeIfPresent(self.sourceEnv, forKey: .sourceEnv)
     try container.encode(self.requestSource, forKey: .requestSource)
     try container.encode(self.targetTypes, forKey: .targetTypes)
 
@@ -162,6 +188,9 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyP
       case .nameMappingList(let value):
         try container.encode(value, forKey: .nameMappingList)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

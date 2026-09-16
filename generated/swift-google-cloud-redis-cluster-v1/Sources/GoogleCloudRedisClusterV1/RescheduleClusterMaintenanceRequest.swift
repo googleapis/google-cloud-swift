@@ -36,6 +36,8 @@ public struct RescheduleClusterMaintenanceRequest: Codable, Equatable, GoogleClo
   /// example `2012-11-15T16:19:00.094Z`.
   public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RescheduleClusterMaintenanceRequest`.
   public init() {}
 
@@ -50,6 +52,51 @@ public struct RescheduleClusterMaintenanceRequest: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let rescheduleType = CodingKeys(stringValue: "rescheduleType")
+    static let scheduleTime = CodingKeys(stringValue: "scheduleTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "rescheduleType",
+      "scheduleTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      RescheduleClusterMaintenanceRequest.RescheduleType.self, forKey: .rescheduleType)
+    {
+      self.rescheduleType = value
+    }
+    self.scheduleTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .scheduleTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.rescheduleType, forKey: .rescheduleType)
+    try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Reschedule options.

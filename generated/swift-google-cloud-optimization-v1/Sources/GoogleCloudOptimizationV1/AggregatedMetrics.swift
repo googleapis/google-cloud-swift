@@ -96,6 +96,8 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable
   @available(*, deprecated)
   public var totalCost: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AggregatedMetrics`.
   public init() {}
 
@@ -110,6 +112,96 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let performedShipmentCount = CodingKeys(stringValue: "performedShipmentCount")
+    static let travelDuration = CodingKeys(stringValue: "travelDuration")
+    static let waitDuration = CodingKeys(stringValue: "waitDuration")
+    static let delayDuration = CodingKeys(stringValue: "delayDuration")
+    static let breakDuration = CodingKeys(stringValue: "breakDuration")
+    static let visitDuration = CodingKeys(stringValue: "visitDuration")
+    static let totalDuration = CodingKeys(stringValue: "totalDuration")
+    static let travelDistanceMeters = CodingKeys(stringValue: "travelDistanceMeters")
+    static let maxLoads = CodingKeys(stringValue: "maxLoads")
+    static let costs = CodingKeys(stringValue: "costs")
+    static let totalCost = CodingKeys(stringValue: "totalCost")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "performedShipmentCount",
+      "travelDuration",
+      "waitDuration",
+      "delayDuration",
+      "breakDuration",
+      "visitDuration",
+      "totalDuration",
+      "travelDistanceMeters",
+      "maxLoads",
+      "costs",
+      "totalCost",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .performedShipmentCount)
+    {
+      self.performedShipmentCount = value
+    }
+    self.travelDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .travelDuration)
+    self.waitDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .waitDuration)
+    self.delayDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .delayDuration)
+    self.breakDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .breakDuration)
+    self.visitDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .visitDuration)
+    self.totalDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .totalDuration)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .travelDistanceMeters) {
+      self.travelDistanceMeters = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ShipmentRoute.VehicleLoad].self, forKey: .maxLoads)
+    {
+      self.maxLoads = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.Double].self, forKey: .costs)
+    {
+      self.costs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .totalCost) {
+      self.totalCost = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.performedShipmentCount, forKey: .performedShipmentCount)
+    try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)
+    try container.encodeIfPresent(self.waitDuration, forKey: .waitDuration)
+    try container.encodeIfPresent(self.delayDuration, forKey: .delayDuration)
+    try container.encodeIfPresent(self.breakDuration, forKey: .breakDuration)
+    try container.encodeIfPresent(self.visitDuration, forKey: .visitDuration)
+    try container.encodeIfPresent(self.totalDuration, forKey: .totalDuration)
+    try container.encode(self.travelDistanceMeters, forKey: .travelDistanceMeters)
+    try container.encode(self.maxLoads, forKey: .maxLoads)
+    try container.encode(self.costs, forKey: .costs)
+    try container.encode(self.totalCost, forKey: .totalCost)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

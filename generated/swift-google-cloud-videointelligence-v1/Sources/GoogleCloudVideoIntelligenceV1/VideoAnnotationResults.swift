@@ -90,6 +90,8 @@ public struct VideoAnnotationResults: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// some videos may succeed and some may fail.
   public var error: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoAnnotationResults`.
   public init() {}
 
@@ -104,6 +106,152 @@ public struct VideoAnnotationResults: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputUri = CodingKeys(stringValue: "inputUri")
+    static let segment = CodingKeys(stringValue: "segment")
+    static let segmentLabelAnnotations = CodingKeys(stringValue: "segmentLabelAnnotations")
+    static let segmentPresenceLabelAnnotations = CodingKeys(
+      stringValue: "segmentPresenceLabelAnnotations")
+    static let shotLabelAnnotations = CodingKeys(stringValue: "shotLabelAnnotations")
+    static let shotPresenceLabelAnnotations = CodingKeys(
+      stringValue: "shotPresenceLabelAnnotations")
+    static let frameLabelAnnotations = CodingKeys(stringValue: "frameLabelAnnotations")
+    static let faceAnnotations = CodingKeys(stringValue: "faceAnnotations")
+    static let faceDetectionAnnotations = CodingKeys(stringValue: "faceDetectionAnnotations")
+    static let shotAnnotations = CodingKeys(stringValue: "shotAnnotations")
+    static let explicitAnnotation = CodingKeys(stringValue: "explicitAnnotation")
+    static let speechTranscriptions = CodingKeys(stringValue: "speechTranscriptions")
+    static let textAnnotations = CodingKeys(stringValue: "textAnnotations")
+    static let objectAnnotations = CodingKeys(stringValue: "objectAnnotations")
+    static let logoRecognitionAnnotations = CodingKeys(stringValue: "logoRecognitionAnnotations")
+    static let personDetectionAnnotations = CodingKeys(stringValue: "personDetectionAnnotations")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputUri",
+      "segment",
+      "segmentLabelAnnotations",
+      "segmentPresenceLabelAnnotations",
+      "shotLabelAnnotations",
+      "shotPresenceLabelAnnotations",
+      "frameLabelAnnotations",
+      "faceAnnotations",
+      "faceDetectionAnnotations",
+      "shotAnnotations",
+      "explicitAnnotation",
+      "speechTranscriptions",
+      "textAnnotations",
+      "objectAnnotations",
+      "logoRecognitionAnnotations",
+      "personDetectionAnnotations",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputUri) {
+      self.inputUri = value
+    }
+    self.segment = try container.decodeIfPresent(VideoSegment.self, forKey: .segment)
+    if let value = try container.decodeIfPresent(
+      [LabelAnnotation].self, forKey: .segmentLabelAnnotations)
+    {
+      self.segmentLabelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LabelAnnotation].self, forKey: .segmentPresenceLabelAnnotations)
+    {
+      self.segmentPresenceLabelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LabelAnnotation].self, forKey: .shotLabelAnnotations)
+    {
+      self.shotLabelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LabelAnnotation].self, forKey: .shotPresenceLabelAnnotations)
+    {
+      self.shotPresenceLabelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LabelAnnotation].self, forKey: .frameLabelAnnotations)
+    {
+      self.frameLabelAnnotations = value
+    }
+    if let value = try container.decodeIfPresent([FaceAnnotation].self, forKey: .faceAnnotations) {
+      self.faceAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FaceDetectionAnnotation].self, forKey: .faceDetectionAnnotations)
+    {
+      self.faceDetectionAnnotations = value
+    }
+    if let value = try container.decodeIfPresent([VideoSegment].self, forKey: .shotAnnotations) {
+      self.shotAnnotations = value
+    }
+    self.explicitAnnotation = try container.decodeIfPresent(
+      ExplicitContentAnnotation.self, forKey: .explicitAnnotation)
+    if let value = try container.decodeIfPresent(
+      [SpeechTranscription].self, forKey: .speechTranscriptions)
+    {
+      self.speechTranscriptions = value
+    }
+    if let value = try container.decodeIfPresent([TextAnnotation].self, forKey: .textAnnotations) {
+      self.textAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ObjectTrackingAnnotation].self, forKey: .objectAnnotations)
+    {
+      self.objectAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LogoRecognitionAnnotation].self, forKey: .logoRecognitionAnnotations)
+    {
+      self.logoRecognitionAnnotations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PersonDetectionAnnotation].self, forKey: .personDetectionAnnotations)
+    {
+      self.personDetectionAnnotations = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputUri, forKey: .inputUri)
+    try container.encodeIfPresent(self.segment, forKey: .segment)
+    try container.encode(self.segmentLabelAnnotations, forKey: .segmentLabelAnnotations)
+    try container.encode(
+      self.segmentPresenceLabelAnnotations, forKey: .segmentPresenceLabelAnnotations)
+    try container.encode(self.shotLabelAnnotations, forKey: .shotLabelAnnotations)
+    try container.encode(self.shotPresenceLabelAnnotations, forKey: .shotPresenceLabelAnnotations)
+    try container.encode(self.frameLabelAnnotations, forKey: .frameLabelAnnotations)
+    try container.encode(self.faceAnnotations, forKey: .faceAnnotations)
+    try container.encode(self.faceDetectionAnnotations, forKey: .faceDetectionAnnotations)
+    try container.encode(self.shotAnnotations, forKey: .shotAnnotations)
+    try container.encodeIfPresent(self.explicitAnnotation, forKey: .explicitAnnotation)
+    try container.encode(self.speechTranscriptions, forKey: .speechTranscriptions)
+    try container.encode(self.textAnnotations, forKey: .textAnnotations)
+    try container.encode(self.objectAnnotations, forKey: .objectAnnotations)
+    try container.encode(self.logoRecognitionAnnotations, forKey: .logoRecognitionAnnotations)
+    try container.encode(self.personDetectionAnnotations, forKey: .personDetectionAnnotations)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -26,6 +26,8 @@
     /// backend.  NONE or PROXY_V1 are allowed.
     public var proxyHeader: TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetTcpProxiesSetProxyHeaderRequest`.
     public init() {}
 
@@ -40,6 +42,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let proxyHeader = CodingKeys(stringValue: "proxyHeader")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "proxyHeader"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.proxyHeader = try container.decodeIfPresent(
+        TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader.self, forKey: .proxyHeader)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.proxyHeader, forKey: .proxyHeader)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [proxyHeader][google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.proxyHeader] field.

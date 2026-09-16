@@ -31,6 +31,8 @@ public struct TimeSeriesData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The points in the time series.
   public var pointData: [TimeSeriesData.PointData] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TimeSeriesData`.
   public init() {}
 
@@ -47,6 +49,46 @@ public struct TimeSeriesData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labelValues = CodingKeys(stringValue: "labelValues")
+    static let pointData = CodingKeys(stringValue: "pointData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labelValues",
+      "pointData",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([LabelValue].self, forKey: .labelValues) {
+      self.labelValues = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TimeSeriesData.PointData].self, forKey: .pointData)
+    {
+      self.pointData = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.labelValues, forKey: .labelValues)
+    try container.encode(self.pointData, forKey: .pointData)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A point's value columns and time interval. Each point has one or more
   /// point values corresponding to the entries in `point_descriptors` field in
   /// the TimeSeriesDescriptor associated with this object.
@@ -58,6 +100,8 @@ public struct TimeSeriesData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The time interval associated with the point.
     public var timeInterval: TimeInterval? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PointData`.
     public init() {}
@@ -73,6 +117,42 @@ public struct TimeSeriesData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let values = CodingKeys(stringValue: "values")
+      static let timeInterval = CodingKeys(stringValue: "timeInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "values",
+        "timeInterval",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([TypedValue].self, forKey: .values) {
+        self.values = value
+      }
+      self.timeInterval = try container.decodeIfPresent(TimeInterval.self, forKey: .timeInterval)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.values, forKey: .values)
+      try container.encodeIfPresent(self.timeInterval, forKey: .timeInterval)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

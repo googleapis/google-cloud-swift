@@ -31,6 +31,8 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
   public var zone: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ZoneDistributionConfig`.
   public init() {}
 
@@ -45,6 +47,46 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+    static let zone = CodingKeys(stringValue: "zone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode",
+      "zone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ZoneDistributionConfig.ZoneDistributionMode.self, forKey: .mode)
+    {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encode(self.zone, forKey: .zone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines various modes of zone distribution.

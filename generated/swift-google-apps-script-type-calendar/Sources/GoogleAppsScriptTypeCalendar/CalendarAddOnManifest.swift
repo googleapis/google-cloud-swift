@@ -47,6 +47,8 @@ public struct CalendarAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPack
   public var currentEventAccess: CalendarAddOnManifest.EventAccess =
     CalendarAddOnManifest.EventAccess()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CalendarAddOnManifest`.
   public init() {}
 
@@ -61,6 +63,71 @@ public struct CalendarAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let homepageTrigger = CodingKeys(stringValue: "homepageTrigger")
+    static let conferenceSolution = CodingKeys(stringValue: "conferenceSolution")
+    static let createSettingsUrlFunction = CodingKeys(stringValue: "createSettingsUrlFunction")
+    static let eventOpenTrigger = CodingKeys(stringValue: "eventOpenTrigger")
+    static let eventUpdateTrigger = CodingKeys(stringValue: "eventUpdateTrigger")
+    static let currentEventAccess = CodingKeys(stringValue: "currentEventAccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "homepageTrigger",
+      "conferenceSolution",
+      "createSettingsUrlFunction",
+      "eventOpenTrigger",
+      "eventUpdateTrigger",
+      "currentEventAccess",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.homepageTrigger = try container.decodeIfPresent(
+      GoogleAppsScriptType.HomepageExtensionPoint.self, forKey: .homepageTrigger)
+    if let value = try container.decodeIfPresent(
+      [ConferenceSolution].self, forKey: .conferenceSolution)
+    {
+      self.conferenceSolution = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .createSettingsUrlFunction)
+    {
+      self.createSettingsUrlFunction = value
+    }
+    self.eventOpenTrigger = try container.decodeIfPresent(
+      CalendarExtensionPoint.self, forKey: .eventOpenTrigger)
+    self.eventUpdateTrigger = try container.decodeIfPresent(
+      CalendarExtensionPoint.self, forKey: .eventUpdateTrigger)
+    if let value = try container.decodeIfPresent(
+      CalendarAddOnManifest.EventAccess.self, forKey: .currentEventAccess)
+    {
+      self.currentEventAccess = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.homepageTrigger, forKey: .homepageTrigger)
+    try container.encode(self.conferenceSolution, forKey: .conferenceSolution)
+    try container.encode(self.createSettingsUrlFunction, forKey: .createSettingsUrlFunction)
+    try container.encodeIfPresent(self.eventOpenTrigger, forKey: .eventOpenTrigger)
+    try container.encodeIfPresent(self.eventUpdateTrigger, forKey: .eventUpdateTrigger)
+    try container.encode(self.currentEventAccess, forKey: .currentEventAccess)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum defining the level of data access event triggers require.

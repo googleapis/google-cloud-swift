@@ -43,6 +43,8 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Platform hosting this deployment.
   public var platform: DeploymentOccurrence.Platform = DeploymentOccurrence.Platform()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentOccurrence`.
   public init() {}
 
@@ -57,6 +59,74 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userEmail = CodingKeys(stringValue: "userEmail")
+    static let deployTime = CodingKeys(stringValue: "deployTime")
+    static let undeployTime = CodingKeys(stringValue: "undeployTime")
+    static let config = CodingKeys(stringValue: "config")
+    static let address = CodingKeys(stringValue: "address")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let platform = CodingKeys(stringValue: "platform")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userEmail",
+      "deployTime",
+      "undeployTime",
+      "config",
+      "address",
+      "resourceUri",
+      "platform",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEmail) {
+      self.userEmail = value
+    }
+    self.deployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deployTime)
+    self.undeployTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .undeployTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .config) {
+      self.config = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+      self.address = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      DeploymentOccurrence.Platform.self, forKey: .platform)
+    {
+      self.platform = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.userEmail, forKey: .userEmail)
+    try container.encodeIfPresent(self.deployTime, forKey: .deployTime)
+    try container.encodeIfPresent(self.undeployTime, forKey: .undeployTime)
+    try container.encode(self.config, forKey: .config)
+    try container.encode(self.address, forKey: .address)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.platform, forKey: .platform)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of platforms.

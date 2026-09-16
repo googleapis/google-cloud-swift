@@ -36,6 +36,8 @@ public struct DiscoveredWorkload: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// the Workload. These are immutable.
   public var workloadProperties: WorkloadProperties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveredWorkload`.
   public init() {}
 
@@ -50,6 +52,48 @@ public struct DiscoveredWorkload: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let workloadReference = CodingKeys(stringValue: "workloadReference")
+    static let workloadProperties = CodingKeys(stringValue: "workloadProperties")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "workloadReference",
+      "workloadProperties",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.workloadReference = try container.decodeIfPresent(
+      WorkloadReference.self, forKey: .workloadReference)
+    self.workloadProperties = try container.decodeIfPresent(
+      WorkloadProperties.self, forKey: .workloadProperties)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.workloadReference, forKey: .workloadReference)
+    try container.encodeIfPresent(self.workloadProperties, forKey: .workloadProperties)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

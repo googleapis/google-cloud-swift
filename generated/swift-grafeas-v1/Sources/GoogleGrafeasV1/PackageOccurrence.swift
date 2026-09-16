@@ -47,6 +47,8 @@ public struct PackageOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The version of the package.
   public var version: Version? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PackageOccurrence`.
   public init() {}
 
@@ -61,6 +63,70 @@ public struct PackageOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let location = CodingKeys(stringValue: "location")
+    static let packageType = CodingKeys(stringValue: "packageType")
+    static let cpeUri = CodingKeys(stringValue: "cpeUri")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let license = CodingKeys(stringValue: "license")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "location",
+      "packageType",
+      "cpeUri",
+      "architecture",
+      "license",
+      "version",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Location].self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageType) {
+      self.packageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpeUri) {
+      self.cpeUri = value
+    }
+    if let value = try container.decodeIfPresent(Architecture.self, forKey: .architecture) {
+      self.architecture = value
+    }
+    self.license = try container.decodeIfPresent(License.self, forKey: .license)
+    self.version = try container.decodeIfPresent(Version.self, forKey: .version)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.packageType, forKey: .packageType)
+    try container.encode(self.cpeUri, forKey: .cpeUri)
+    try container.encode(self.architecture, forKey: .architecture)
+    try container.encodeIfPresent(self.license, forKey: .license)
+    try container.encodeIfPresent(self.version, forKey: .version)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

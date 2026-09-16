@@ -41,6 +41,8 @@ public struct LogsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// set this field to configure additional settings for Cloud Logging.
   public var cloudLoggingOption: LogsPolicy.CloudLoggingOption? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogsPolicy`.
   public init() {}
 
@@ -55,6 +57,50 @@ public struct LogsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destination = CodingKeys(stringValue: "destination")
+    static let logsPath = CodingKeys(stringValue: "logsPath")
+    static let cloudLoggingOption = CodingKeys(stringValue: "cloudLoggingOption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destination",
+      "logsPath",
+      "cloudLoggingOption",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(LogsPolicy.Destination.self, forKey: .destination)
+    {
+      self.destination = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logsPath) {
+      self.logsPath = value
+    }
+    self.cloudLoggingOption = try container.decodeIfPresent(
+      LogsPolicy.CloudLoggingOption.self, forKey: .cloudLoggingOption)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.destination, forKey: .destination)
+    try container.encode(self.logsPath, forKey: .logsPath)
+    try container.encodeIfPresent(self.cloudLoggingOption, forKey: .cloudLoggingOption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `CloudLoggingOption` contains additional settings for Cloud Logging logs
@@ -72,6 +118,8 @@ public struct LogsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// type.
     public var useGenericTaskMonitoredResource: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudLoggingOption`.
     public init() {}
 
@@ -86,6 +134,42 @@ public struct LogsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let useGenericTaskMonitoredResource = CodingKeys(
+        stringValue: "useGenericTaskMonitoredResource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "useGenericTaskMonitoredResource"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .useGenericTaskMonitoredResource)
+      {
+        self.useGenericTaskMonitoredResource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.useGenericTaskMonitoredResource, forKey: .useGenericTaskMonitoredResource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

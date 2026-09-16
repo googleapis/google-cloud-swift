@@ -47,6 +47,8 @@ public struct CreateFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// format, but other formats are still accepted.
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateFolderRequest`.
   public init() {}
 
@@ -61,6 +63,60 @@ public struct CreateFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let folder = CodingKeys(stringValue: "folder")
+    static let folderId = CodingKeys(stringValue: "folderId")
+    static let recursive = CodingKeys(stringValue: "recursive")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "folder",
+      "folderId",
+      "recursive",
+      "requestId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.folder = try container.decodeIfPresent(Folder.self, forKey: .folder)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .folderId) {
+      self.folderId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recursive) {
+      self.recursive = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.folder, forKey: .folder)
+    try container.encode(self.folderId, forKey: .folderId)
+    try container.encode(self.recursive, forKey: .recursive)
+    try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

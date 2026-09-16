@@ -80,6 +80,8 @@ public struct Blueprint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// rolled back.
   public var rollbackSupport: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Blueprint`.
   public init() {}
 
@@ -94,6 +96,116 @@ public struct Blueprint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let sourceBlueprint = CodingKeys(stringValue: "sourceBlueprint")
+    static let revisionCreateTime = CodingKeys(stringValue: "revisionCreateTime")
+    static let approvalState = CodingKeys(stringValue: "approvalState")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let repository = CodingKeys(stringValue: "repository")
+    static let files = CodingKeys(stringValue: "files")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let sourceProvider = CodingKeys(stringValue: "sourceProvider")
+    static let deploymentLevel = CodingKeys(stringValue: "deploymentLevel")
+    static let rollbackSupport = CodingKeys(stringValue: "rollbackSupport")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "revisionId",
+      "sourceBlueprint",
+      "revisionCreateTime",
+      "approvalState",
+      "displayName",
+      "repository",
+      "files",
+      "labels",
+      "createTime",
+      "updateTime",
+      "sourceProvider",
+      "deploymentLevel",
+      "rollbackSupport",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceBlueprint) {
+      self.sourceBlueprint = value
+    }
+    self.revisionCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
+    if let value = try container.decodeIfPresent(
+      Blueprint.ApprovalState.self, forKey: .approvalState)
+    {
+      self.approvalState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+      self.repository = value
+    }
+    if let value = try container.decodeIfPresent([File].self, forKey: .files) {
+      self.files = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceProvider) {
+      self.sourceProvider = value
+    }
+    if let value = try container.decodeIfPresent(DeploymentLevel.self, forKey: .deploymentLevel) {
+      self.deploymentLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rollbackSupport) {
+      self.rollbackSupport = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.revisionId, forKey: .revisionId)
+    try container.encode(self.sourceBlueprint, forKey: .sourceBlueprint)
+    try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
+    try container.encode(self.approvalState, forKey: .approvalState)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.repository, forKey: .repository)
+    try container.encode(self.files, forKey: .files)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.sourceProvider, forKey: .sourceProvider)
+    try container.encode(self.deploymentLevel, forKey: .deploymentLevel)
+    try container.encode(self.rollbackSupport, forKey: .rollbackSupport)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Approval state indicates the state of a Blueprint in its approval

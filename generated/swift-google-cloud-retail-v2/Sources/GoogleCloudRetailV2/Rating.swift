@@ -51,6 +51,8 @@ public struct Rating: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   public var ratingHistogram: [Swift.Int32] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rating`.
   public init() {}
 
@@ -65,6 +67,50 @@ public struct Rating: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ratingCount = CodingKeys(stringValue: "ratingCount")
+    static let averageRating = CodingKeys(stringValue: "averageRating")
+    static let ratingHistogram = CodingKeys(stringValue: "ratingHistogram")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ratingCount",
+      "averageRating",
+      "ratingHistogram",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ratingCount) {
+      self.ratingCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .averageRating) {
+      self.averageRating = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .ratingHistogram) {
+      self.ratingHistogram = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ratingCount, forKey: .ratingCount)
+    try container.encode(self.averageRating, forKey: .averageRating)
+    try container.encode(self.ratingHistogram, forKey: .ratingHistogram)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Template that UI can use to provide helper text to customers.
   public var helperTextTemplate: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RoleGrant`.
   public init() {}
 
@@ -53,6 +55,54 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let principal = CodingKeys(stringValue: "principal")
+    static let roles = CodingKeys(stringValue: "roles")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let helperTextTemplate = CodingKeys(stringValue: "helperTextTemplate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "principal",
+      "roles",
+      "resource",
+      "helperTextTemplate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(RoleGrant.Principal.self, forKey: .principal) {
+      self.principal = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .roles) {
+      self.roles = value
+    }
+    self.resource = try container.decodeIfPresent(RoleGrant.Resource.self, forKey: .resource)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .helperTextTemplate) {
+      self.helperTextTemplate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.principal, forKey: .principal)
+    try container.encode(self.roles, forKey: .roles)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encode(self.helperTextTemplate, forKey: .helperTextTemplate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Resource definition
   public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -64,6 +114,8 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// This is a template that can have references to other values provided in
     /// the config variable template.
     public var pathTemplate: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Resource`.
     public init() {}
@@ -79,6 +131,44 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let pathTemplate = CodingKeys(stringValue: "pathTemplate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "pathTemplate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(RoleGrant.Resource.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pathTemplate) {
+        self.pathTemplate = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.pathTemplate, forKey: .pathTemplate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Resource Type definition.

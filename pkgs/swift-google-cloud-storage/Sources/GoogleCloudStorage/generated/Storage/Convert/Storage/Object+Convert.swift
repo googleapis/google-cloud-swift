@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension Object {
@@ -62,6 +62,7 @@ extension Object {
     self.softDeleteTime = proto.hasSoftDeleteTime ? try .init(proto: proto.softDeleteTime) : nil
     self.hardDeleteTime = proto.hasHardDeleteTime ? try .init(proto: proto.hardDeleteTime) : nil
     self.retention = proto.hasRetention ? try .init(proto: proto.retention) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -109,6 +110,9 @@ extension Object {
       proto.hardDeleteTime = try hardDeleteTime.toProto()
     }
     if let retention = self.retention { proto.retention = try retention.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -120,6 +124,7 @@ extension Object.Retention {
     self.init()
     self.mode = .init(proto: proto.mode)
     self.retainUntilTime = proto.hasRetainUntilTime ? try .init(proto: proto.retainUntilTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -127,6 +132,9 @@ extension Object.Retention {
     proto.mode = try self.mode.toProto()
     if let retainUntilTime = self.retainUntilTime {
       proto.retainUntilTime = try retainUntilTime.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

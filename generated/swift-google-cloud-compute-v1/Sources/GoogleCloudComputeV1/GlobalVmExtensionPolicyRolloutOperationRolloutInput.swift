@@ -65,6 +65,8 @@
     /// DELETING state, an error occurs.
     public var retryUuid: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GlobalVmExtensionPolicyRolloutOperationRolloutInput`.
     public init() {}
 
@@ -79,6 +81,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conflictBehavior = CodingKeys(stringValue: "conflictBehavior")
+      static let name = CodingKeys(stringValue: "name")
+      static let predefinedRolloutPlan = CodingKeys(stringValue: "predefinedRolloutPlan")
+      static let retryUuid = CodingKeys(stringValue: "retryUuid")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conflictBehavior",
+        "name",
+        "predefinedRolloutPlan",
+        "retryUuid",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.conflictBehavior = try container.decodeIfPresent(
+        Swift.String.self, forKey: .conflictBehavior)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.predefinedRolloutPlan = try container.decodeIfPresent(
+        GlobalVmExtensionPolicyRolloutOperationRolloutInput.PredefinedRolloutPlan.self,
+        forKey: .predefinedRolloutPlan)
+      self.retryUuid = try container.decodeIfPresent(Swift.String.self, forKey: .retryUuid)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.conflictBehavior, forKey: .conflictBehavior)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.predefinedRolloutPlan, forKey: .predefinedRolloutPlan)
+      try container.encodeIfPresent(self.retryUuid, forKey: .retryUuid)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [predefinedRolloutPlan][google.cloud.compute.v1.GlobalVmExtensionPolicyRolloutOperationRolloutInput.predefinedRolloutPlan] field.

@@ -39,6 +39,8 @@ public struct Threshold: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// allowed in a Scorecard.
   public var targetAxis: Threshold.TargetAxis = Threshold.TargetAxis()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Threshold`.
   public init() {}
 
@@ -53,6 +55,62 @@ public struct Threshold: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let label = CodingKeys(stringValue: "label")
+    static let value = CodingKeys(stringValue: "value")
+    static let color = CodingKeys(stringValue: "color")
+    static let direction = CodingKeys(stringValue: "direction")
+    static let targetAxis = CodingKeys(stringValue: "targetAxis")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "label",
+      "value",
+      "color",
+      "direction",
+      "targetAxis",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .value) {
+      self.value = value
+    }
+    if let value = try container.decodeIfPresent(Threshold.Color.self, forKey: .color) {
+      self.color = value
+    }
+    if let value = try container.decodeIfPresent(Threshold.Direction.self, forKey: .direction) {
+      self.direction = value
+    }
+    if let value = try container.decodeIfPresent(Threshold.TargetAxis.self, forKey: .targetAxis) {
+      self.targetAxis = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.value, forKey: .value)
+    try container.encode(self.color, forKey: .color)
+    try container.encode(self.direction, forKey: .direction)
+    try container.encode(self.targetAxis, forKey: .targetAxis)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The color suggests an interpretation to the viewer when actual values cross

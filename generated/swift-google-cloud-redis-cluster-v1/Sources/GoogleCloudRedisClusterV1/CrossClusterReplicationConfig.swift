@@ -51,6 +51,8 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
   /// all the member clusters participating in cross cluster replication.
   public var membership: CrossClusterReplicationConfig.Membership? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CrossClusterReplicationConfig`.
   public init() {}
 
@@ -67,6 +69,63 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterRole = CodingKeys(stringValue: "clusterRole")
+    static let primaryCluster = CodingKeys(stringValue: "primaryCluster")
+    static let secondaryClusters = CodingKeys(stringValue: "secondaryClusters")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let membership = CodingKeys(stringValue: "membership")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterRole",
+      "primaryCluster",
+      "secondaryClusters",
+      "updateTime",
+      "membership",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      CrossClusterReplicationConfig.ClusterRole.self, forKey: .clusterRole)
+    {
+      self.clusterRole = value
+    }
+    self.primaryCluster = try container.decodeIfPresent(
+      CrossClusterReplicationConfig.RemoteCluster.self, forKey: .primaryCluster)
+    if let value = try container.decodeIfPresent(
+      [CrossClusterReplicationConfig.RemoteCluster].self, forKey: .secondaryClusters)
+    {
+      self.secondaryClusters = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.membership = try container.decodeIfPresent(
+      CrossClusterReplicationConfig.Membership.self, forKey: .membership)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterRole, forKey: .clusterRole)
+    try container.encodeIfPresent(self.primaryCluster, forKey: .primaryCluster)
+    try container.encode(self.secondaryClusters, forKey: .secondaryClusters)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.membership, forKey: .membership)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details of the remote cluster associated with this cluster in a cross
   /// cluster replication setup.
   public struct RemoteCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -78,6 +137,8 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
 
     /// Output only. The unique identifier of the remote cluster.
     public var uid: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RemoteCluster`.
     public init() {}
@@ -93,6 +154,44 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cluster = CodingKeys(stringValue: "cluster")
+      static let uid = CodingKeys(stringValue: "uid")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cluster",
+        "uid",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+        self.cluster = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+        self.uid = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cluster, forKey: .cluster)
+      try container.encode(self.uid, forKey: .uid)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -120,6 +219,8 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
     /// cluster.
     public var secondaryClusters: [CrossClusterReplicationConfig.RemoteCluster] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Membership`.
     public init() {}
 
@@ -134,6 +235,45 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let primaryCluster = CodingKeys(stringValue: "primaryCluster")
+      static let secondaryClusters = CodingKeys(stringValue: "secondaryClusters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "primaryCluster",
+        "secondaryClusters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.primaryCluster = try container.decodeIfPresent(
+        CrossClusterReplicationConfig.RemoteCluster.self, forKey: .primaryCluster)
+      if let value = try container.decodeIfPresent(
+        [CrossClusterReplicationConfig.RemoteCluster].self, forKey: .secondaryClusters)
+      {
+        self.secondaryClusters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.primaryCluster, forKey: .primaryCluster)
+      try container.encode(self.secondaryClusters, forKey: .secondaryClusters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -68,6 +68,8 @@
     /// Optional. Export parameters specific to SQL Server TDE certificates
     public var tdeExportOptions: ExportContext.SqlTdeExportOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportContext`.
     public init() {}
 
@@ -82,6 +84,80 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let databases = CodingKeys(stringValue: "databases")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let sqlExportOptions = CodingKeys(stringValue: "sqlExportOptions")
+      static let csvExportOptions = CodingKeys(stringValue: "csvExportOptions")
+      static let fileType = CodingKeys(stringValue: "fileType")
+      static let offload = CodingKeys(stringValue: "offload")
+      static let bakExportOptions = CodingKeys(stringValue: "bakExportOptions")
+      static let tdeExportOptions = CodingKeys(stringValue: "tdeExportOptions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "databases",
+        "kind",
+        "sqlExportOptions",
+        "csvExportOptions",
+        "fileType",
+        "offload",
+        "bakExportOptions",
+        "tdeExportOptions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .databases) {
+        self.databases = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.sqlExportOptions = try container.decodeIfPresent(
+        ExportContext.SqlExportOptions.self, forKey: .sqlExportOptions)
+      self.csvExportOptions = try container.decodeIfPresent(
+        ExportContext.SqlCsvExportOptions.self, forKey: .csvExportOptions)
+      if let value = try container.decodeIfPresent(SqlFileType.self, forKey: .fileType) {
+        self.fileType = value
+      }
+      self.offload = try container.decodeIfPresent(GoogleCloudWKT.BoolValue.self, forKey: .offload)
+      self.bakExportOptions = try container.decodeIfPresent(
+        ExportContext.SqlBakExportOptions.self, forKey: .bakExportOptions)
+      self.tdeExportOptions = try container.decodeIfPresent(
+        ExportContext.SqlTdeExportOptions.self, forKey: .tdeExportOptions)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.databases, forKey: .databases)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.sqlExportOptions, forKey: .sqlExportOptions)
+      try container.encodeIfPresent(self.csvExportOptions, forKey: .csvExportOptions)
+      try container.encode(self.fileType, forKey: .fileType)
+      try container.encodeIfPresent(self.offload, forKey: .offload)
+      try container.encodeIfPresent(self.bakExportOptions, forKey: .bakExportOptions)
+      try container.encodeIfPresent(self.tdeExportOptions, forKey: .tdeExportOptions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public struct SqlCsvExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -105,6 +181,8 @@
       /// the rest of the columns are set to their default values.
       public var linesTerminatedBy: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlCsvExportOptions`.
       public init() {}
 
@@ -119,6 +197,64 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let selectQuery = CodingKeys(stringValue: "selectQuery")
+        static let escapeCharacter = CodingKeys(stringValue: "escapeCharacter")
+        static let quoteCharacter = CodingKeys(stringValue: "quoteCharacter")
+        static let fieldsTerminatedBy = CodingKeys(stringValue: "fieldsTerminatedBy")
+        static let linesTerminatedBy = CodingKeys(stringValue: "linesTerminatedBy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "selectQuery",
+          "escapeCharacter",
+          "quoteCharacter",
+          "fieldsTerminatedBy",
+          "linesTerminatedBy",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectQuery) {
+          self.selectQuery = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .escapeCharacter) {
+          self.escapeCharacter = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quoteCharacter) {
+          self.quoteCharacter = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldsTerminatedBy)
+        {
+          self.fieldsTerminatedBy = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .linesTerminatedBy)
+        {
+          self.linesTerminatedBy = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.selectQuery, forKey: .selectQuery)
+        try container.encode(self.escapeCharacter, forKey: .escapeCharacter)
+        try container.encode(self.quoteCharacter, forKey: .quoteCharacter)
+        try container.encode(self.fieldsTerminatedBy, forKey: .fieldsTerminatedBy)
+        try container.encode(self.linesTerminatedBy, forKey: .linesTerminatedBy)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -154,6 +290,8 @@
       /// Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
       public var postgresExportOptions: ExportContext.SqlExportOptions.PostgresExportOptions? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlExportOptions`.
       public init() {}
 
@@ -170,6 +308,63 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let tables = CodingKeys(stringValue: "tables")
+        static let schemaOnly = CodingKeys(stringValue: "schemaOnly")
+        static let mysqlExportOptions = CodingKeys(stringValue: "mysqlExportOptions")
+        static let threads = CodingKeys(stringValue: "threads")
+        static let parallel = CodingKeys(stringValue: "parallel")
+        static let postgresExportOptions = CodingKeys(stringValue: "postgresExportOptions")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "tables",
+          "schemaOnly",
+          "mysqlExportOptions",
+          "threads",
+          "parallel",
+          "postgresExportOptions",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tables) {
+          self.tables = value
+        }
+        self.schemaOnly = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .schemaOnly)
+        self.mysqlExportOptions = try container.decodeIfPresent(
+          ExportContext.SqlExportOptions.MysqlExportOptions.self, forKey: .mysqlExportOptions)
+        self.threads = try container.decodeIfPresent(
+          GoogleCloudWKT.Int32Value.self, forKey: .threads)
+        self.parallel = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .parallel)
+        self.postgresExportOptions = try container.decodeIfPresent(
+          ExportContext.SqlExportOptions.PostgresExportOptions.self, forKey: .postgresExportOptions)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.tables, forKey: .tables)
+        try container.encodeIfPresent(self.schemaOnly, forKey: .schemaOnly)
+        try container.encodeIfPresent(self.mysqlExportOptions, forKey: .mysqlExportOptions)
+        try container.encodeIfPresent(self.threads, forKey: .threads)
+        try container.encodeIfPresent(self.parallel, forKey: .parallel)
+        try container.encodeIfPresent(self.postgresExportOptions, forKey: .postgresExportOptions)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Options for exporting from MySQL.
       public struct MysqlExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -181,6 +376,9 @@
         /// has no effect. If set to any value other than `1`, --set-gtid-purged
         /// is set to OFF.
         public var masterData: GoogleCloudWKT.Int32Value? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `MysqlExportOptions`.
         public init() {}
@@ -196,6 +394,37 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let masterData = CodingKeys(stringValue: "masterData")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "masterData"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.masterData = try container.decodeIfPresent(
+            GoogleCloudWKT.Int32Value.self, forKey: .masterData)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.masterData, forKey: .masterData)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -223,6 +452,9 @@
         /// statement produced by clean.
         public var ifExists: GoogleCloudWKT.BoolValue? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `PostgresExportOptions`.
         public init() {}
 
@@ -237,6 +469,41 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let clean = CodingKeys(stringValue: "clean")
+          static let ifExists = CodingKeys(stringValue: "ifExists")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "clean",
+            "ifExists",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.clean = try container.decodeIfPresent(GoogleCloudWKT.BoolValue.self, forKey: .clean)
+          self.ifExists = try container.decodeIfPresent(
+            GoogleCloudWKT.BoolValue.self, forKey: .ifExists)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.clean, forKey: .clean)
+          try container.encodeIfPresent(self.ifExists, forKey: .ifExists)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -299,6 +566,8 @@
       /// SQL for SQL Server.
       public var exportLogEndTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlBakExportOptions`.
       public init() {}
 
@@ -313,6 +582,68 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let striped = CodingKeys(stringValue: "striped")
+        static let stripeCount = CodingKeys(stringValue: "stripeCount")
+        static let bakType = CodingKeys(stringValue: "bakType")
+        static let copyOnly = CodingKeys(stringValue: "copyOnly")
+        static let differentialBase = CodingKeys(stringValue: "differentialBase")
+        static let exportLogStartTime = CodingKeys(stringValue: "exportLogStartTime")
+        static let exportLogEndTime = CodingKeys(stringValue: "exportLogEndTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "striped",
+          "stripeCount",
+          "bakType",
+          "copyOnly",
+          "differentialBase",
+          "exportLogStartTime",
+          "exportLogEndTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.striped = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .striped)
+        self.stripeCount = try container.decodeIfPresent(
+          GoogleCloudWKT.Int32Value.self, forKey: .stripeCount)
+        if let value = try container.decodeIfPresent(BakType.self, forKey: .bakType) {
+          self.bakType = value
+        }
+        self.copyOnly = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .copyOnly)
+        self.differentialBase = try container.decodeIfPresent(
+          GoogleCloudWKT.BoolValue.self, forKey: .differentialBase)
+        self.exportLogStartTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .exportLogStartTime)
+        self.exportLogEndTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .exportLogEndTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.striped, forKey: .striped)
+        try container.encodeIfPresent(self.stripeCount, forKey: .stripeCount)
+        try container.encode(self.bakType, forKey: .bakType)
+        try container.encodeIfPresent(self.copyOnly, forKey: .copyOnly)
+        try container.encodeIfPresent(self.differentialBase, forKey: .differentialBase)
+        try container.encodeIfPresent(self.exportLogStartTime, forKey: .exportLogStartTime)
+        try container.encodeIfPresent(self.exportLogEndTime, forKey: .exportLogEndTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -348,6 +679,8 @@
       /// Applicable only for SQL Server instances.
       public var name: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SqlTdeExportOptions`.
       public init() {}
 
@@ -362,6 +695,57 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let certificatePath = CodingKeys(stringValue: "certificatePath")
+        static let privateKeyPath = CodingKeys(stringValue: "privateKeyPath")
+        static let privateKeyPassword = CodingKeys(stringValue: "privateKeyPassword")
+        static let name = CodingKeys(stringValue: "name")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "certificatePath",
+          "privateKeyPath",
+          "privateKeyPassword",
+          "name",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificatePath) {
+          self.certificatePath = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKeyPath) {
+          self.privateKeyPath = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKeyPassword)
+        {
+          self.privateKeyPassword = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.certificatePath, forKey: .certificatePath)
+        try container.encode(self.privateKeyPath, forKey: .privateKeyPath)
+        try container.encode(self.privateKeyPassword, forKey: .privateKeyPassword)
+        try container.encode(self.name, forKey: .name)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

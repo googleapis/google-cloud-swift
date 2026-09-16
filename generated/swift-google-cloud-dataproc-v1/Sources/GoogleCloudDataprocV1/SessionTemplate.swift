@@ -58,6 +58,8 @@ public struct SessionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The session configuration.
   public var sessionConfig: OneOf_SessionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionTemplate`.
   public init() {}
 
@@ -74,34 +76,64 @@ public struct SessionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case createTime = "createTime"
-    case jupyterSession = "jupyterSession"
-    case sparkConnectSession = "sparkConnectSession"
-    case creator = "creator"
-    case labels = "labels"
-    case runtimeConfig = "runtimeConfig"
-    case environmentConfig = "environmentConfig"
-    case updateTime = "updateTime"
-    case uuid = "uuid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let jupyterSession = CodingKeys(stringValue: "jupyterSession")
+    static let sparkConnectSession = CodingKeys(stringValue: "sparkConnectSession")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let runtimeConfig = CodingKeys(stringValue: "runtimeConfig")
+    static let environmentConfig = CodingKeys(stringValue: "environmentConfig")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let uuid = CodingKeys(stringValue: "uuid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "jupyterSession",
+      "sparkConnectSession",
+      "creator",
+      "labels",
+      "runtimeConfig",
+      "environmentConfig",
+      "updateTime",
+      "uuid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.creator = try container.decode(Swift.String.self, forKey: .creator)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.runtimeConfig = try container.decodeIfPresent(RuntimeConfig.self, forKey: .runtimeConfig)
     self.environmentConfig = try container.decodeIfPresent(
       EnvironmentConfig.self, forKey: .environmentConfig)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.uuid = try container.decode(Swift.String.self, forKey: .uuid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+      self.uuid = value
+    }
 
     var sessionConfig: OneOf_SessionConfig? = nil
     let sessionConfigCheckAndSet = {
@@ -124,18 +156,22 @@ public struct SessionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sessionConfigCheckAndSet(.sparkConnectSession(sparkConnectSession))
     }
     self.sessionConfig = sessionConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.creator, forKey: .creator)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.runtimeConfig, forKey: .runtimeConfig)
-    try container.encode(self.environmentConfig, forKey: .environmentConfig)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
+    try container.encodeIfPresent(self.environmentConfig, forKey: .environmentConfig)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.uuid, forKey: .uuid)
 
     if let choice = self.sessionConfig {
@@ -145,6 +181,9 @@ public struct SessionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .sparkConnectSession(let value):
         try container.encode(value, forKey: .sparkConnectSession)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

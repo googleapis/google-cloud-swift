@@ -75,6 +75,8 @@ public struct ListTimeSeriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// method to return additional results from the previous method call.
   public var pageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListTimeSeriesRequest`.
   public init() {}
 
@@ -89,6 +91,83 @@ public struct ListTimeSeriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let interval = CodingKeys(stringValue: "interval")
+    static let aggregation = CodingKeys(stringValue: "aggregation")
+    static let secondaryAggregation = CodingKeys(stringValue: "secondaryAggregation")
+    static let orderBy = CodingKeys(stringValue: "orderBy")
+    static let view = CodingKeys(stringValue: "view")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "filter",
+      "interval",
+      "aggregation",
+      "secondaryAggregation",
+      "orderBy",
+      "view",
+      "pageSize",
+      "pageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    self.interval = try container.decodeIfPresent(TimeInterval.self, forKey: .interval)
+    self.aggregation = try container.decodeIfPresent(Aggregation.self, forKey: .aggregation)
+    self.secondaryAggregation = try container.decodeIfPresent(
+      Aggregation.self, forKey: .secondaryAggregation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+      self.orderBy = value
+    }
+    if let value = try container.decodeIfPresent(
+      ListTimeSeriesRequest.TimeSeriesView.self, forKey: .view)
+    {
+      self.view = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.interval, forKey: .interval)
+    try container.encodeIfPresent(self.aggregation, forKey: .aggregation)
+    try container.encodeIfPresent(self.secondaryAggregation, forKey: .secondaryAggregation)
+    try container.encode(self.orderBy, forKey: .orderBy)
+    try container.encode(self.view, forKey: .view)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Controls which fields are returned by `ListTimeSeries*`.

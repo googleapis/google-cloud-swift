@@ -39,6 +39,8 @@ public struct SubscribeDataExchangeRequest: Codable, Equatable, GoogleCloudWKT._
   /// Email of the subscriber.
   public var subscriberContact: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubscribeDataExchangeRequest`.
   public init() {}
 
@@ -53,6 +55,61 @@ public struct SubscribeDataExchangeRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let destinationDataset = CodingKeys(stringValue: "destinationDataset")
+    static let subscription = CodingKeys(stringValue: "subscription")
+    static let subscriberContact = CodingKeys(stringValue: "subscriberContact")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "destination",
+      "destinationDataset",
+      "subscription",
+      "subscriberContact",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
+      self.destination = value
+    }
+    self.destinationDataset = try container.decodeIfPresent(
+      DestinationDataset.self, forKey: .destinationDataset)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscription) {
+      self.subscription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscriberContact) {
+      self.subscriberContact = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.destination, forKey: .destination)
+    try container.encodeIfPresent(self.destinationDataset, forKey: .destinationDataset)
+    try container.encode(self.subscription, forKey: .subscription)
+    try container.encode(self.subscriberContact, forKey: .subscriberContact)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

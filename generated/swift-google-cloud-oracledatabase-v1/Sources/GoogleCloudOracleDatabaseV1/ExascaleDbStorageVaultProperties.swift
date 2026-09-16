@@ -62,6 +62,8 @@ public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleCloudW
   /// attached to the ExascaleDbStorageVault.
   public var availableShapeAttributes: [ExascaleDbStorageVaultProperties.ShapeAttribute] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExascaleDbStorageVaultProperties`.
   public init() {}
 
@@ -76,6 +78,103 @@ public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let exascaleDbStorageDetails = CodingKeys(stringValue: "exascaleDbStorageDetails")
+    static let state = CodingKeys(stringValue: "state")
+    static let description = CodingKeys(stringValue: "description")
+    static let vmClusterIds = CodingKeys(stringValue: "vmClusterIds")
+    static let vmClusterCount = CodingKeys(stringValue: "vmClusterCount")
+    static let additionalFlashCachePercent = CodingKeys(stringValue: "additionalFlashCachePercent")
+    static let ociUri = CodingKeys(stringValue: "ociUri")
+    static let attachedShapeAttributes = CodingKeys(stringValue: "attachedShapeAttributes")
+    static let availableShapeAttributes = CodingKeys(stringValue: "availableShapeAttributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "timeZone",
+      "exascaleDbStorageDetails",
+      "state",
+      "description",
+      "vmClusterIds",
+      "vmClusterCount",
+      "additionalFlashCachePercent",
+      "ociUri",
+      "attachedShapeAttributes",
+      "availableShapeAttributes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
+    self.exascaleDbStorageDetails = try container.decodeIfPresent(
+      ExascaleDbStorageDetails.self, forKey: .exascaleDbStorageDetails)
+    if let value = try container.decodeIfPresent(
+      ExascaleDbStorageVaultProperties.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .vmClusterIds) {
+      self.vmClusterIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmClusterCount) {
+      self.vmClusterCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .additionalFlashCachePercent)
+    {
+      self.additionalFlashCachePercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUri) {
+      self.ociUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ExascaleDbStorageVaultProperties.ShapeAttribute].self, forKey: .attachedShapeAttributes)
+    {
+      self.attachedShapeAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ExascaleDbStorageVaultProperties.ShapeAttribute].self, forKey: .availableShapeAttributes)
+    {
+      self.availableShapeAttributes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    try container.encodeIfPresent(self.exascaleDbStorageDetails, forKey: .exascaleDbStorageDetails)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.vmClusterIds, forKey: .vmClusterIds)
+    try container.encode(self.vmClusterCount, forKey: .vmClusterCount)
+    try container.encode(self.additionalFlashCachePercent, forKey: .additionalFlashCachePercent)
+    try container.encode(self.ociUri, forKey: .ociUri)
+    try container.encode(self.attachedShapeAttributes, forKey: .attachedShapeAttributes)
+    try container.encode(self.availableShapeAttributes, forKey: .availableShapeAttributes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the ExascaleDbStorageVault.

@@ -90,6 +90,8 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Ssl config of a connection
   public var sslConfig: SslConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Connection`.
   public init() {}
 
@@ -104,6 +106,131 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let connectorVersion = CodingKeys(stringValue: "connectorVersion")
+    static let status = CodingKeys(stringValue: "status")
+    static let configVariables = CodingKeys(stringValue: "configVariables")
+    static let authConfig = CodingKeys(stringValue: "authConfig")
+    static let lockConfig = CodingKeys(stringValue: "lockConfig")
+    static let destinationConfigs = CodingKeys(stringValue: "destinationConfigs")
+    static let imageLocation = CodingKeys(stringValue: "imageLocation")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let serviceDirectory = CodingKeys(stringValue: "serviceDirectory")
+    static let envoyImageLocation = CodingKeys(stringValue: "envoyImageLocation")
+    static let suspended = CodingKeys(stringValue: "suspended")
+    static let nodeConfig = CodingKeys(stringValue: "nodeConfig")
+    static let sslConfig = CodingKeys(stringValue: "sslConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "connectorVersion",
+      "status",
+      "configVariables",
+      "authConfig",
+      "lockConfig",
+      "destinationConfigs",
+      "imageLocation",
+      "serviceAccount",
+      "serviceDirectory",
+      "envoyImageLocation",
+      "suspended",
+      "nodeConfig",
+      "sslConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectorVersion) {
+      self.connectorVersion = value
+    }
+    self.status = try container.decodeIfPresent(ConnectionStatus.self, forKey: .status)
+    if let value = try container.decodeIfPresent([ConfigVariable].self, forKey: .configVariables) {
+      self.configVariables = value
+    }
+    self.authConfig = try container.decodeIfPresent(AuthConfig.self, forKey: .authConfig)
+    self.lockConfig = try container.decodeIfPresent(LockConfig.self, forKey: .lockConfig)
+    if let value = try container.decodeIfPresent(
+      [DestinationConfig].self, forKey: .destinationConfigs)
+    {
+      self.destinationConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageLocation) {
+      self.imageLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceDirectory) {
+      self.serviceDirectory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .envoyImageLocation) {
+      self.envoyImageLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .suspended) {
+      self.suspended = value
+    }
+    self.nodeConfig = try container.decodeIfPresent(NodeConfig.self, forKey: .nodeConfig)
+    self.sslConfig = try container.decodeIfPresent(SslConfig.self, forKey: .sslConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.connectorVersion, forKey: .connectorVersion)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.configVariables, forKey: .configVariables)
+    try container.encodeIfPresent(self.authConfig, forKey: .authConfig)
+    try container.encodeIfPresent(self.lockConfig, forKey: .lockConfig)
+    try container.encode(self.destinationConfigs, forKey: .destinationConfigs)
+    try container.encode(self.imageLocation, forKey: .imageLocation)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.serviceDirectory, forKey: .serviceDirectory)
+    try container.encode(self.envoyImageLocation, forKey: .envoyImageLocation)
+    try container.encode(self.suspended, forKey: .suspended)
+    try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
+    try container.encodeIfPresent(self.sslConfig, forKey: .sslConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

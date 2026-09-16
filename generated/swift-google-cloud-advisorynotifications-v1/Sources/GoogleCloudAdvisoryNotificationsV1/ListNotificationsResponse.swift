@@ -33,6 +33,8 @@ public struct ListNotificationsResponse: Codable, Equatable, GoogleCloudWKT._Any
   /// Estimation of a total number of notifications.
   public var totalSize: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListNotificationsResponse`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct ListNotificationsResponse: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let notifications = CodingKeys(stringValue: "notifications")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let totalSize = CodingKeys(stringValue: "totalSize")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "notifications",
+      "nextPageToken",
+      "totalSize",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Notification].self, forKey: .notifications) {
+      self.notifications = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalSize) {
+      self.totalSize = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.notifications, forKey: .notifications)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.totalSize, forKey: .totalSize)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

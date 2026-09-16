@@ -49,6 +49,8 @@
     public var additionalSuggestedQueryResults:
       [KnowledgeAssistAnswer.AdditionalSuggestedQueryResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuggestKnowledgeAssistResponse`.
     public init() {}
 
@@ -63,6 +65,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let knowledgeAssistAnswer = CodingKeys(stringValue: "knowledgeAssistAnswer")
+      static let latestMessage = CodingKeys(stringValue: "latestMessage")
+      static let contextSize = CodingKeys(stringValue: "contextSize")
+      static let additionalSuggestedQueryResults = CodingKeys(
+        stringValue: "additionalSuggestedQueryResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "knowledgeAssistAnswer",
+        "latestMessage",
+        "contextSize",
+        "additionalSuggestedQueryResults",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.knowledgeAssistAnswer = try container.decodeIfPresent(
+        KnowledgeAssistAnswer.self, forKey: .knowledgeAssistAnswer)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestMessage) {
+        self.latestMessage = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .contextSize) {
+        self.contextSize = value
+      }
+      if let value = try container.decodeIfPresent(
+        [KnowledgeAssistAnswer.AdditionalSuggestedQueryResult].self,
+        forKey: .additionalSuggestedQueryResults)
+      {
+        self.additionalSuggestedQueryResults = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.knowledgeAssistAnswer, forKey: .knowledgeAssistAnswer)
+      try container.encode(self.latestMessage, forKey: .latestMessage)
+      try container.encode(self.contextSize, forKey: .contextSize)
+      try container.encode(
+        self.additionalSuggestedQueryResults, forKey: .additionalSuggestedQueryResults)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

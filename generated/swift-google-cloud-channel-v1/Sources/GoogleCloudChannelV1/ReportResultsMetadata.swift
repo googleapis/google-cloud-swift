@@ -45,6 +45,8 @@ public struct ReportResultsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// June 16-30.
   public var precedingDateRange: DateRange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportResultsMetadata`.
   public init() {}
 
@@ -59,6 +61,51 @@ public struct ReportResultsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let report = CodingKeys(stringValue: "report")
+    static let rowCount = CodingKeys(stringValue: "rowCount")
+    static let dateRange = CodingKeys(stringValue: "dateRange")
+    static let precedingDateRange = CodingKeys(stringValue: "precedingDateRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "report",
+      "rowCount",
+      "dateRange",
+      "precedingDateRange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.report = try container.decodeIfPresent(Report.self, forKey: .report)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
+      self.rowCount = value
+    }
+    self.dateRange = try container.decodeIfPresent(DateRange.self, forKey: .dateRange)
+    self.precedingDateRange = try container.decodeIfPresent(
+      DateRange.self, forKey: .precedingDateRange)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.report, forKey: .report)
+    try container.encode(self.rowCount, forKey: .rowCount)
+    try container.encodeIfPresent(self.dateRange, forKey: .dateRange)
+    try container.encodeIfPresent(self.precedingDateRange, forKey: .precedingDateRange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

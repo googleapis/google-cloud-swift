@@ -37,6 +37,8 @@ public struct ListAppProfilesResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Values are of the form `projects/<project>/locations/<zone_id>`
   public var failedLocations: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListAppProfilesResponse`.
   public init() {}
 
@@ -51,6 +53,50 @@ public struct ListAppProfilesResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let appProfiles = CodingKeys(stringValue: "appProfiles")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let failedLocations = CodingKeys(stringValue: "failedLocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "appProfiles",
+      "nextPageToken",
+      "failedLocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([AppProfile].self, forKey: .appProfiles) {
+      self.appProfiles = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedLocations) {
+      self.failedLocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.appProfiles, forKey: .appProfiles)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.failedLocations, forKey: .failedLocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

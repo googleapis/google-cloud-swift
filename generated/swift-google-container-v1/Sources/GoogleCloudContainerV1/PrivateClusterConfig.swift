@@ -92,6 +92,8 @@ public struct PrivateClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   @available(*, deprecated)
   public var privateEndpointSubnetwork: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivateClusterConfig`.
   public init() {}
 
@@ -106,6 +108,81 @@ public struct PrivateClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enablePrivateNodes = CodingKeys(stringValue: "enablePrivateNodes")
+    static let enablePrivateEndpoint = CodingKeys(stringValue: "enablePrivateEndpoint")
+    static let masterIpv4CidrBlock = CodingKeys(stringValue: "masterIpv4CidrBlock")
+    static let privateEndpoint = CodingKeys(stringValue: "privateEndpoint")
+    static let publicEndpoint = CodingKeys(stringValue: "publicEndpoint")
+    static let peeringName = CodingKeys(stringValue: "peeringName")
+    static let masterGlobalAccessConfig = CodingKeys(stringValue: "masterGlobalAccessConfig")
+    static let privateEndpointSubnetwork = CodingKeys(stringValue: "privateEndpointSubnetwork")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enablePrivateNodes",
+      "enablePrivateEndpoint",
+      "masterIpv4CidrBlock",
+      "privateEndpoint",
+      "publicEndpoint",
+      "peeringName",
+      "masterGlobalAccessConfig",
+      "privateEndpointSubnetwork",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePrivateNodes) {
+      self.enablePrivateNodes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePrivateEndpoint) {
+      self.enablePrivateEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterIpv4CidrBlock) {
+      self.masterIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateEndpoint) {
+      self.privateEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicEndpoint) {
+      self.publicEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peeringName) {
+      self.peeringName = value
+    }
+    self.masterGlobalAccessConfig = try container.decodeIfPresent(
+      PrivateClusterMasterGlobalAccessConfig.self, forKey: .masterGlobalAccessConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .privateEndpointSubnetwork)
+    {
+      self.privateEndpointSubnetwork = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enablePrivateNodes, forKey: .enablePrivateNodes)
+    try container.encode(self.enablePrivateEndpoint, forKey: .enablePrivateEndpoint)
+    try container.encode(self.masterIpv4CidrBlock, forKey: .masterIpv4CidrBlock)
+    try container.encode(self.privateEndpoint, forKey: .privateEndpoint)
+    try container.encode(self.publicEndpoint, forKey: .publicEndpoint)
+    try container.encode(self.peeringName, forKey: .peeringName)
+    try container.encodeIfPresent(self.masterGlobalAccessConfig, forKey: .masterGlobalAccessConfig)
+    try container.encode(self.privateEndpointSubnetwork, forKey: .privateEndpointSubnetwork)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

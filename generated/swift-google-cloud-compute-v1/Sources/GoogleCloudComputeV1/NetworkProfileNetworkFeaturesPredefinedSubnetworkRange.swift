@@ -28,6 +28,8 @@
     /// The naming prefix of the predefined subnetwork.
     public var namePrefix: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkProfileNetworkFeaturesPredefinedSubnetworkRange`.
     public init() {}
 
@@ -42,6 +44,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipv6Range = CodingKeys(stringValue: "ipv6Range")
+      static let namePrefix = CodingKeys(stringValue: "namePrefix")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipv6Range",
+        "namePrefix",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipv6Range = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Range)
+      self.namePrefix = try container.decodeIfPresent(Swift.String.self, forKey: .namePrefix)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipv6Range, forKey: .ipv6Range)
+      try container.encodeIfPresent(self.namePrefix, forKey: .namePrefix)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

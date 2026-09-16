@@ -63,6 +63,8 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Autoscaling algorithm for policy.
   public var algorithm: OneOf_Algorithm? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoscalingPolicy`.
   public init() {}
 
@@ -79,27 +81,52 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case name = "name"
-    case basicAlgorithm = "basicAlgorithm"
-    case workerConfig = "workerConfig"
-    case secondaryWorkerConfig = "secondaryWorkerConfig"
-    case labels = "labels"
-    case clusterType = "clusterType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let name = CodingKeys(stringValue: "name")
+    static let basicAlgorithm = CodingKeys(stringValue: "basicAlgorithm")
+    static let workerConfig = CodingKeys(stringValue: "workerConfig")
+    static let secondaryWorkerConfig = CodingKeys(stringValue: "secondaryWorkerConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let clusterType = CodingKeys(stringValue: "clusterType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "name",
+      "basicAlgorithm",
+      "workerConfig",
+      "secondaryWorkerConfig",
+      "labels",
+      "clusterType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.workerConfig = try container.decodeIfPresent(
       InstanceGroupAutoscalingPolicyConfig.self, forKey: .workerConfig)
     self.secondaryWorkerConfig = try container.decodeIfPresent(
       InstanceGroupAutoscalingPolicyConfig.self, forKey: .secondaryWorkerConfig)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.clusterType = try container.decode(
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
       AutoscalingPolicy.ClusterType.self, forKey: .clusterType)
+    {
+      self.clusterType = value
+    }
 
     var algorithm: OneOf_Algorithm? = nil
     let algorithmCheckAndSet = {
@@ -117,14 +144,18 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try algorithmCheckAndSet(.basicAlgorithm(basicAlgorithm))
     }
     self.algorithm = algorithm
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.workerConfig, forKey: .workerConfig)
-    try container.encode(self.secondaryWorkerConfig, forKey: .secondaryWorkerConfig)
+    try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
+    try container.encodeIfPresent(self.secondaryWorkerConfig, forKey: .secondaryWorkerConfig)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.clusterType, forKey: .clusterType)
 
@@ -133,6 +164,9 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .basicAlgorithm(let value):
         try container.encode(value, forKey: .basicAlgorithm)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -35,6 +35,8 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// boot option is EFI, and vTPM is enabled.
   public var enableIntegrityMonitoring: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ShieldedInstanceConfig`.
   public init() {}
 
@@ -49,6 +51,54 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let secureBoot = CodingKeys(stringValue: "secureBoot")
+    static let enableVtpm = CodingKeys(stringValue: "enableVtpm")
+    static let enableIntegrityMonitoring = CodingKeys(stringValue: "enableIntegrityMonitoring")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "secureBoot",
+      "enableVtpm",
+      "enableIntegrityMonitoring",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ShieldedInstanceConfig.SecureBoot.self, forKey: .secureBoot)
+    {
+      self.secureBoot = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableVtpm) {
+      self.enableVtpm = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableIntegrityMonitoring)
+    {
+      self.enableIntegrityMonitoring = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.secureBoot, forKey: .secureBoot)
+    try container.encode(self.enableVtpm, forKey: .enableVtpm)
+    try container.encode(self.enableIntegrityMonitoring, forKey: .enableIntegrityMonitoring)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values for secure boot.

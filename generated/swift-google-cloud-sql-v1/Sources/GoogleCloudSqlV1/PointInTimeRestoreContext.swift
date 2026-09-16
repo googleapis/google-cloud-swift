@@ -70,6 +70,8 @@
     /// restored. For example: "us-central1".
     public var region: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PointInTimeRestoreContext`.
     public init() {}
 
@@ -84,6 +86,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datasource = CodingKeys(stringValue: "datasource")
+      static let pointInTime = CodingKeys(stringValue: "pointInTime")
+      static let targetInstance = CodingKeys(stringValue: "targetInstance")
+      static let privateNetwork = CodingKeys(stringValue: "privateNetwork")
+      static let allocatedIpRange = CodingKeys(stringValue: "allocatedIpRange")
+      static let preferredZone = CodingKeys(stringValue: "preferredZone")
+      static let preferredSecondaryZone = CodingKeys(stringValue: "preferredSecondaryZone")
+      static let targetInstanceSettings = CodingKeys(stringValue: "targetInstanceSettings")
+      static let targetInstanceClearSettingsFieldNames = CodingKeys(
+        stringValue: "targetInstanceClearSettingsFieldNames")
+      static let region = CodingKeys(stringValue: "region")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datasource",
+        "pointInTime",
+        "targetInstance",
+        "privateNetwork",
+        "allocatedIpRange",
+        "preferredZone",
+        "preferredSecondaryZone",
+        "targetInstanceSettings",
+        "targetInstanceClearSettingsFieldNames",
+        "region",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.datasource = try container.decodeIfPresent(Swift.String.self, forKey: .datasource)
+      self.pointInTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .pointInTime)
+      self.targetInstance = try container.decodeIfPresent(
+        Swift.String.self, forKey: .targetInstance)
+      self.privateNetwork = try container.decodeIfPresent(
+        Swift.String.self, forKey: .privateNetwork)
+      self.allocatedIpRange = try container.decodeIfPresent(
+        Swift.String.self, forKey: .allocatedIpRange)
+      self.preferredZone = try container.decodeIfPresent(Swift.String.self, forKey: .preferredZone)
+      self.preferredSecondaryZone = try container.decodeIfPresent(
+        Swift.String.self, forKey: .preferredSecondaryZone)
+      self.targetInstanceSettings = try container.decodeIfPresent(
+        DatabaseInstance.self, forKey: .targetInstanceSettings)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .targetInstanceClearSettingsFieldNames)
+      {
+        self.targetInstanceClearSettingsFieldNames = value
+      }
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.datasource, forKey: .datasource)
+      try container.encodeIfPresent(self.pointInTime, forKey: .pointInTime)
+      try container.encodeIfPresent(self.targetInstance, forKey: .targetInstance)
+      try container.encodeIfPresent(self.privateNetwork, forKey: .privateNetwork)
+      try container.encodeIfPresent(self.allocatedIpRange, forKey: .allocatedIpRange)
+      try container.encodeIfPresent(self.preferredZone, forKey: .preferredZone)
+      try container.encodeIfPresent(self.preferredSecondaryZone, forKey: .preferredSecondaryZone)
+      try container.encodeIfPresent(self.targetInstanceSettings, forKey: .targetInstanceSettings)
+      try container.encode(
+        self.targetInstanceClearSettingsFieldNames, forKey: .targetInstanceClearSettingsFieldNames)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

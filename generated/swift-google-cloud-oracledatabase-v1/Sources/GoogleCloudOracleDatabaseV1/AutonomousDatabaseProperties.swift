@@ -288,6 +288,8 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
   /// from its source database.
   public var refreshableClone: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutonomousDatabaseProperties`.
   public init() {}
 
@@ -302,6 +304,476 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let computeCount = CodingKeys(stringValue: "computeCount")
+    static let cpuCoreCount = CodingKeys(stringValue: "cpuCoreCount")
+    static let dataStorageSizeTb = CodingKeys(stringValue: "dataStorageSizeTb")
+    static let dataStorageSizeGb = CodingKeys(stringValue: "dataStorageSizeGb")
+    static let dbWorkload = CodingKeys(stringValue: "dbWorkload")
+    static let dbEdition = CodingKeys(stringValue: "dbEdition")
+    static let characterSet = CodingKeys(stringValue: "characterSet")
+    static let nCharacterSet = CodingKeys(stringValue: "nCharacterSet")
+    static let privateEndpointIp = CodingKeys(stringValue: "privateEndpointIp")
+    static let privateEndpointLabel = CodingKeys(stringValue: "privateEndpointLabel")
+    static let dbVersion = CodingKeys(stringValue: "dbVersion")
+    static let isAutoScalingEnabled = CodingKeys(stringValue: "isAutoScalingEnabled")
+    static let isStorageAutoScalingEnabled = CodingKeys(stringValue: "isStorageAutoScalingEnabled")
+    static let licenseType = CodingKeys(stringValue: "licenseType")
+    static let customerContacts = CodingKeys(stringValue: "customerContacts")
+    static let secretId = CodingKeys(stringValue: "secretId")
+    static let vaultId = CodingKeys(stringValue: "vaultId")
+    static let maintenanceScheduleType = CodingKeys(stringValue: "maintenanceScheduleType")
+    static let mtlsConnectionRequired = CodingKeys(stringValue: "mtlsConnectionRequired")
+    static let backupRetentionPeriodDays = CodingKeys(stringValue: "backupRetentionPeriodDays")
+    static let actualUsedDataStorageSizeTb = CodingKeys(stringValue: "actualUsedDataStorageSizeTb")
+    static let allocatedStorageSizeTb = CodingKeys(stringValue: "allocatedStorageSizeTb")
+    static let apexDetails = CodingKeys(stringValue: "apexDetails")
+    static let arePrimaryAllowlistedIpsUsed = CodingKeys(
+      stringValue: "arePrimaryAllowlistedIpsUsed")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let state = CodingKeys(stringValue: "state")
+    static let autonomousContainerDatabaseId = CodingKeys(
+      stringValue: "autonomousContainerDatabaseId")
+    static let availableUpgradeVersions = CodingKeys(stringValue: "availableUpgradeVersions")
+    static let connectionStrings = CodingKeys(stringValue: "connectionStrings")
+    static let connectionUrls = CodingKeys(stringValue: "connectionUrls")
+    static let failedDataRecoveryDuration = CodingKeys(stringValue: "failedDataRecoveryDuration")
+    static let memoryTableGbs = CodingKeys(stringValue: "memoryTableGbs")
+    static let isLocalDataGuardEnabled = CodingKeys(stringValue: "isLocalDataGuardEnabled")
+    static let localAdgAutoFailoverMaxDataLossLimit = CodingKeys(
+      stringValue: "localAdgAutoFailoverMaxDataLossLimit")
+    static let localStandbyDb = CodingKeys(stringValue: "localStandbyDb")
+    static let memoryPerOracleComputeUnitGbs = CodingKeys(
+      stringValue: "memoryPerOracleComputeUnitGbs")
+    static let localDisasterRecoveryType = CodingKeys(stringValue: "localDisasterRecoveryType")
+    static let dataSafeState = CodingKeys(stringValue: "dataSafeState")
+    static let databaseManagementState = CodingKeys(stringValue: "databaseManagementState")
+    static let openMode = CodingKeys(stringValue: "openMode")
+    static let operationsInsightsState = CodingKeys(stringValue: "operationsInsightsState")
+    static let peerDbIds = CodingKeys(stringValue: "peerDbIds")
+    static let permissionLevel = CodingKeys(stringValue: "permissionLevel")
+    static let privateEndpoint = CodingKeys(stringValue: "privateEndpoint")
+    static let refreshableMode = CodingKeys(stringValue: "refreshableMode")
+    static let refreshableState = CodingKeys(stringValue: "refreshableState")
+    static let role = CodingKeys(stringValue: "role")
+    static let scheduledOperationDetails = CodingKeys(stringValue: "scheduledOperationDetails")
+    static let sqlWebDeveloperUrl = CodingKeys(stringValue: "sqlWebDeveloperUrl")
+    static let supportedCloneRegions = CodingKeys(stringValue: "supportedCloneRegions")
+    static let usedDataStorageSizeTbs = CodingKeys(stringValue: "usedDataStorageSizeTbs")
+    static let ociUrl = CodingKeys(stringValue: "ociUrl")
+    static let totalAutoBackupStorageSizeGbs = CodingKeys(
+      stringValue: "totalAutoBackupStorageSizeGbs")
+    static let nextLongTermBackupTime = CodingKeys(stringValue: "nextLongTermBackupTime")
+    static let dataGuardRoleChangedTime = CodingKeys(stringValue: "dataGuardRoleChangedTime")
+    static let disasterRecoveryRoleChangedTime = CodingKeys(
+      stringValue: "disasterRecoveryRoleChangedTime")
+    static let maintenanceBeginTime = CodingKeys(stringValue: "maintenanceBeginTime")
+    static let maintenanceEndTime = CodingKeys(stringValue: "maintenanceEndTime")
+    static let allowlistedIps = CodingKeys(stringValue: "allowlistedIps")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let encryptionKeyHistoryEntries = CodingKeys(stringValue: "encryptionKeyHistoryEntries")
+    static let serviceAgentEmail = CodingKeys(stringValue: "serviceAgentEmail")
+    static let localDataGuardEnabled = CodingKeys(stringValue: "localDataGuardEnabled")
+    static let localAdgAutoFailoverMaxDataLossLimitDuration = CodingKeys(
+      stringValue: "localAdgAutoFailoverMaxDataLossLimitDuration")
+    static let refreshableClone = CodingKeys(stringValue: "refreshableClone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "computeCount",
+      "cpuCoreCount",
+      "dataStorageSizeTb",
+      "dataStorageSizeGb",
+      "dbWorkload",
+      "dbEdition",
+      "characterSet",
+      "nCharacterSet",
+      "privateEndpointIp",
+      "privateEndpointLabel",
+      "dbVersion",
+      "isAutoScalingEnabled",
+      "isStorageAutoScalingEnabled",
+      "licenseType",
+      "customerContacts",
+      "secretId",
+      "vaultId",
+      "maintenanceScheduleType",
+      "mtlsConnectionRequired",
+      "backupRetentionPeriodDays",
+      "actualUsedDataStorageSizeTb",
+      "allocatedStorageSizeTb",
+      "apexDetails",
+      "arePrimaryAllowlistedIpsUsed",
+      "lifecycleDetails",
+      "state",
+      "autonomousContainerDatabaseId",
+      "availableUpgradeVersions",
+      "connectionStrings",
+      "connectionUrls",
+      "failedDataRecoveryDuration",
+      "memoryTableGbs",
+      "isLocalDataGuardEnabled",
+      "localAdgAutoFailoverMaxDataLossLimit",
+      "localStandbyDb",
+      "memoryPerOracleComputeUnitGbs",
+      "localDisasterRecoveryType",
+      "dataSafeState",
+      "databaseManagementState",
+      "openMode",
+      "operationsInsightsState",
+      "peerDbIds",
+      "permissionLevel",
+      "privateEndpoint",
+      "refreshableMode",
+      "refreshableState",
+      "role",
+      "scheduledOperationDetails",
+      "sqlWebDeveloperUrl",
+      "supportedCloneRegions",
+      "usedDataStorageSizeTbs",
+      "ociUrl",
+      "totalAutoBackupStorageSizeGbs",
+      "nextLongTermBackupTime",
+      "dataGuardRoleChangedTime",
+      "disasterRecoveryRoleChangedTime",
+      "maintenanceBeginTime",
+      "maintenanceEndTime",
+      "allowlistedIps",
+      "encryptionKey",
+      "encryptionKeyHistoryEntries",
+      "serviceAgentEmail",
+      "localDataGuardEnabled",
+      "localAdgAutoFailoverMaxDataLossLimitDuration",
+      "refreshableClone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .computeCount) {
+      self.computeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCoreCount) {
+      self.cpuCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dataStorageSizeTb) {
+      self.dataStorageSizeTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dataStorageSizeGb) {
+      self.dataStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(DBWorkload.self, forKey: .dbWorkload) {
+      self.dbWorkload = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.DatabaseEdition.self, forKey: .dbEdition)
+    {
+      self.dbEdition = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .characterSet) {
+      self.characterSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nCharacterSet) {
+      self.nCharacterSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateEndpointIp) {
+      self.privateEndpointIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateEndpointLabel) {
+      self.privateEndpointLabel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbVersion) {
+      self.dbVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isAutoScalingEnabled) {
+      self.isAutoScalingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isStorageAutoScalingEnabled)
+    {
+      self.isStorageAutoScalingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.LicenseType.self, forKey: .licenseType)
+    {
+      self.licenseType = value
+    }
+    if let value = try container.decodeIfPresent([CustomerContact].self, forKey: .customerContacts)
+    {
+      self.customerContacts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretId) {
+      self.secretId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vaultId) {
+      self.vaultId = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.MaintenanceScheduleType.self, forKey: .maintenanceScheduleType)
+    {
+      self.maintenanceScheduleType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .mtlsConnectionRequired) {
+      self.mtlsConnectionRequired = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .backupRetentionPeriodDays)
+    {
+      self.backupRetentionPeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .actualUsedDataStorageSizeTb)
+    {
+      self.actualUsedDataStorageSizeTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .allocatedStorageSizeTb)
+    {
+      self.allocatedStorageSizeTb = value
+    }
+    self.apexDetails = try container.decodeIfPresent(
+      AutonomousDatabaseApex.self, forKey: .apexDetails)
+    self.arePrimaryAllowlistedIpsUsed = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .arePrimaryAllowlistedIpsUsed)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .autonomousContainerDatabaseId)
+    {
+      self.autonomousContainerDatabaseId = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .availableUpgradeVersions)
+    {
+      self.availableUpgradeVersions = value
+    }
+    self.connectionStrings = try container.decodeIfPresent(
+      AutonomousDatabaseConnectionStrings.self, forKey: .connectionStrings)
+    self.connectionUrls = try container.decodeIfPresent(
+      AutonomousDatabaseConnectionUrls.self, forKey: .connectionUrls)
+    self.failedDataRecoveryDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .failedDataRecoveryDuration)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryTableGbs) {
+      self.memoryTableGbs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isLocalDataGuardEnabled)
+    {
+      self.isLocalDataGuardEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .localAdgAutoFailoverMaxDataLossLimit)
+    {
+      self.localAdgAutoFailoverMaxDataLossLimit = value
+    }
+    self.localStandbyDb = try container.decodeIfPresent(
+      AutonomousDatabaseStandbySummary.self, forKey: .localStandbyDb)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .memoryPerOracleComputeUnitGbs)
+    {
+      self.memoryPerOracleComputeUnitGbs = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.LocalDisasterRecoveryType.self,
+      forKey: .localDisasterRecoveryType)
+    {
+      self.localDisasterRecoveryType = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.DataSafeState.self, forKey: .dataSafeState)
+    {
+      self.dataSafeState = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.DatabaseManagementState.self, forKey: .databaseManagementState)
+    {
+      self.databaseManagementState = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.OpenMode.self, forKey: .openMode)
+    {
+      self.openMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      OperationsInsightsState.self, forKey: .operationsInsightsState)
+    {
+      self.operationsInsightsState = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .peerDbIds) {
+      self.peerDbIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.PermissionLevel.self, forKey: .permissionLevel)
+    {
+      self.permissionLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateEndpoint) {
+      self.privateEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.RefreshableMode.self, forKey: .refreshableMode)
+    {
+      self.refreshableMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.RefreshableState.self, forKey: .refreshableState)
+    {
+      self.refreshableState = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.Role.self, forKey: .role)
+    {
+      self.role = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ScheduledOperationDetails].self, forKey: .scheduledOperationDetails)
+    {
+      self.scheduledOperationDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sqlWebDeveloperUrl) {
+      self.sqlWebDeveloperUrl = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .supportedCloneRegions)
+    {
+      self.supportedCloneRegions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .usedDataStorageSizeTbs)
+    {
+      self.usedDataStorageSizeTbs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUrl) {
+      self.ociUrl = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .totalAutoBackupStorageSizeGbs)
+    {
+      self.totalAutoBackupStorageSizeGbs = value
+    }
+    self.nextLongTermBackupTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextLongTermBackupTime)
+    self.dataGuardRoleChangedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .dataGuardRoleChangedTime)
+    self.disasterRecoveryRoleChangedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .disasterRecoveryRoleChangedTime)
+    self.maintenanceBeginTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceBeginTime)
+    self.maintenanceEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceEndTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowlistedIps) {
+      self.allowlistedIps = value
+    }
+    self.encryptionKey = try container.decodeIfPresent(EncryptionKey.self, forKey: .encryptionKey)
+    if let value = try container.decodeIfPresent(
+      [EncryptionKeyHistoryEntry].self, forKey: .encryptionKeyHistoryEntries)
+    {
+      self.encryptionKeyHistoryEntries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAgentEmail) {
+      self.serviceAgentEmail = value
+    }
+    self.localDataGuardEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .localDataGuardEnabled)
+    self.localAdgAutoFailoverMaxDataLossLimitDuration = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .localAdgAutoFailoverMaxDataLossLimitDuration)
+    self.refreshableClone = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .refreshableClone)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.computeCount, forKey: .computeCount)
+    try container.encode(self.cpuCoreCount, forKey: .cpuCoreCount)
+    try container.encode(self.dataStorageSizeTb, forKey: .dataStorageSizeTb)
+    try container.encode(self.dataStorageSizeGb, forKey: .dataStorageSizeGb)
+    try container.encode(self.dbWorkload, forKey: .dbWorkload)
+    try container.encode(self.dbEdition, forKey: .dbEdition)
+    try container.encode(self.characterSet, forKey: .characterSet)
+    try container.encode(self.nCharacterSet, forKey: .nCharacterSet)
+    try container.encode(self.privateEndpointIp, forKey: .privateEndpointIp)
+    try container.encode(self.privateEndpointLabel, forKey: .privateEndpointLabel)
+    try container.encode(self.dbVersion, forKey: .dbVersion)
+    try container.encode(self.isAutoScalingEnabled, forKey: .isAutoScalingEnabled)
+    try container.encode(self.isStorageAutoScalingEnabled, forKey: .isStorageAutoScalingEnabled)
+    try container.encode(self.licenseType, forKey: .licenseType)
+    try container.encode(self.customerContacts, forKey: .customerContacts)
+    try container.encode(self.secretId, forKey: .secretId)
+    try container.encode(self.vaultId, forKey: .vaultId)
+    try container.encode(self.maintenanceScheduleType, forKey: .maintenanceScheduleType)
+    try container.encode(self.mtlsConnectionRequired, forKey: .mtlsConnectionRequired)
+    try container.encode(self.backupRetentionPeriodDays, forKey: .backupRetentionPeriodDays)
+    try container.encode(self.actualUsedDataStorageSizeTb, forKey: .actualUsedDataStorageSizeTb)
+    try container.encode(self.allocatedStorageSizeTb, forKey: .allocatedStorageSizeTb)
+    try container.encodeIfPresent(self.apexDetails, forKey: .apexDetails)
+    try container.encodeIfPresent(
+      self.arePrimaryAllowlistedIpsUsed, forKey: .arePrimaryAllowlistedIpsUsed)
+    try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.autonomousContainerDatabaseId, forKey: .autonomousContainerDatabaseId)
+    try container.encode(self.availableUpgradeVersions, forKey: .availableUpgradeVersions)
+    try container.encodeIfPresent(self.connectionStrings, forKey: .connectionStrings)
+    try container.encodeIfPresent(self.connectionUrls, forKey: .connectionUrls)
+    try container.encodeIfPresent(
+      self.failedDataRecoveryDuration, forKey: .failedDataRecoveryDuration)
+    try container.encode(self.memoryTableGbs, forKey: .memoryTableGbs)
+    try container.encode(self.isLocalDataGuardEnabled, forKey: .isLocalDataGuardEnabled)
+    try container.encode(
+      self.localAdgAutoFailoverMaxDataLossLimit, forKey: .localAdgAutoFailoverMaxDataLossLimit)
+    try container.encodeIfPresent(self.localStandbyDb, forKey: .localStandbyDb)
+    try container.encode(self.memoryPerOracleComputeUnitGbs, forKey: .memoryPerOracleComputeUnitGbs)
+    try container.encode(self.localDisasterRecoveryType, forKey: .localDisasterRecoveryType)
+    try container.encode(self.dataSafeState, forKey: .dataSafeState)
+    try container.encode(self.databaseManagementState, forKey: .databaseManagementState)
+    try container.encode(self.openMode, forKey: .openMode)
+    try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    try container.encode(self.peerDbIds, forKey: .peerDbIds)
+    try container.encode(self.permissionLevel, forKey: .permissionLevel)
+    try container.encode(self.privateEndpoint, forKey: .privateEndpoint)
+    try container.encode(self.refreshableMode, forKey: .refreshableMode)
+    try container.encode(self.refreshableState, forKey: .refreshableState)
+    try container.encode(self.role, forKey: .role)
+    try container.encode(self.scheduledOperationDetails, forKey: .scheduledOperationDetails)
+    try container.encode(self.sqlWebDeveloperUrl, forKey: .sqlWebDeveloperUrl)
+    try container.encode(self.supportedCloneRegions, forKey: .supportedCloneRegions)
+    try container.encode(self.usedDataStorageSizeTbs, forKey: .usedDataStorageSizeTbs)
+    try container.encode(self.ociUrl, forKey: .ociUrl)
+    try container.encode(self.totalAutoBackupStorageSizeGbs, forKey: .totalAutoBackupStorageSizeGbs)
+    try container.encodeIfPresent(self.nextLongTermBackupTime, forKey: .nextLongTermBackupTime)
+    try container.encodeIfPresent(self.dataGuardRoleChangedTime, forKey: .dataGuardRoleChangedTime)
+    try container.encodeIfPresent(
+      self.disasterRecoveryRoleChangedTime, forKey: .disasterRecoveryRoleChangedTime)
+    try container.encodeIfPresent(self.maintenanceBeginTime, forKey: .maintenanceBeginTime)
+    try container.encodeIfPresent(self.maintenanceEndTime, forKey: .maintenanceEndTime)
+    try container.encode(self.allowlistedIps, forKey: .allowlistedIps)
+    try container.encodeIfPresent(self.encryptionKey, forKey: .encryptionKey)
+    try container.encode(self.encryptionKeyHistoryEntries, forKey: .encryptionKeyHistoryEntries)
+    try container.encode(self.serviceAgentEmail, forKey: .serviceAgentEmail)
+    try container.encodeIfPresent(self.localDataGuardEnabled, forKey: .localDataGuardEnabled)
+    try container.encodeIfPresent(
+      self.localAdgAutoFailoverMaxDataLossLimitDuration,
+      forKey: .localAdgAutoFailoverMaxDataLossLimitDuration)
+    try container.encodeIfPresent(self.refreshableClone, forKey: .refreshableClone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The editions available for the Autonomous Database.

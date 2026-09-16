@@ -44,6 +44,8 @@ public struct Price: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This will be empty if there is no discount present.
   public var discountComponents: [DiscountComponent] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Price`.
   public init() {}
 
@@ -58,6 +60,65 @@ public struct Price: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let basePrice = CodingKeys(stringValue: "basePrice")
+    static let discount = CodingKeys(stringValue: "discount")
+    static let effectivePrice = CodingKeys(stringValue: "effectivePrice")
+    static let pricePeriod = CodingKeys(stringValue: "pricePeriod")
+    static let externalPriceUri = CodingKeys(stringValue: "externalPriceUri")
+    static let discountComponents = CodingKeys(stringValue: "discountComponents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "basePrice",
+      "discount",
+      "effectivePrice",
+      "pricePeriod",
+      "externalPriceUri",
+      "discountComponents",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.basePrice = try container.decodeIfPresent(GoogleType.Money.self, forKey: .basePrice)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .discount) {
+      self.discount = value
+    }
+    self.effectivePrice = try container.decodeIfPresent(
+      GoogleType.Money.self, forKey: .effectivePrice)
+    self.pricePeriod = try container.decodeIfPresent(Period.self, forKey: .pricePeriod)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalPriceUri) {
+      self.externalPriceUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DiscountComponent].self, forKey: .discountComponents)
+    {
+      self.discountComponents = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.basePrice, forKey: .basePrice)
+    try container.encode(self.discount, forKey: .discount)
+    try container.encodeIfPresent(self.effectivePrice, forKey: .effectivePrice)
+    try container.encodeIfPresent(self.pricePeriod, forKey: .pricePeriod)
+    try container.encode(self.externalPriceUri, forKey: .externalPriceUri)
+    try container.encode(self.discountComponents, forKey: .discountComponents)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

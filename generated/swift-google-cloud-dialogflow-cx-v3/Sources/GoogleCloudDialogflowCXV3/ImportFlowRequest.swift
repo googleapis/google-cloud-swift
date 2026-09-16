@@ -39,6 +39,8 @@
     /// Required. The flow to import.
     public var flow: OneOf_Flow? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportFlowRequest`.
     public init() {}
 
@@ -55,19 +57,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case flowUri = "flowUri"
-      case flowContent = "flowContent"
-      case importOption = "importOption"
-      case flowImportStrategy = "flowImportStrategy"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let flowUri = CodingKeys(stringValue: "flowUri")
+      static let flowContent = CodingKeys(stringValue: "flowContent")
+      static let importOption = CodingKeys(stringValue: "importOption")
+      static let flowImportStrategy = CodingKeys(stringValue: "flowImportStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "flowUri",
+        "flowContent",
+        "importOption",
+        "flowImportStrategy",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.importOption = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         ImportFlowRequest.ImportOption.self, forKey: .importOption)
+      {
+        self.importOption = value
+      }
       self.flowImportStrategy = try container.decodeIfPresent(
         FlowImportStrategy.self, forKey: .flowImportStrategy)
 
@@ -89,13 +109,17 @@
         try flowCheckAndSet(.flowContent(flowContent))
       }
       self.flow = flow
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.importOption, forKey: .importOption)
-      try container.encode(self.flowImportStrategy, forKey: .flowImportStrategy)
+      try container.encodeIfPresent(self.flowImportStrategy, forKey: .flowImportStrategy)
 
       if let choice = self.flow {
         switch choice {
@@ -104,6 +128,9 @@
         case .flowContent(let value):
           try container.encode(value, forKey: .flowContent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

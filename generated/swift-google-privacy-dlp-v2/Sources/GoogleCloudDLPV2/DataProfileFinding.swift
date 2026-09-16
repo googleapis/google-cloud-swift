@@ -59,6 +59,8 @@ public struct DataProfileFinding: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The type of the resource that was profiled.
   public var dataSourceType: DataSourceType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProfileFinding`.
   public init() {}
 
@@ -73,6 +75,89 @@ public struct DataProfileFinding: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let quote = CodingKeys(stringValue: "quote")
+    static let infotype = CodingKeys(stringValue: "infotype")
+    static let quoteInfo = CodingKeys(stringValue: "quoteInfo")
+    static let dataProfileResourceName = CodingKeys(stringValue: "dataProfileResourceName")
+    static let findingId = CodingKeys(stringValue: "findingId")
+    static let timestamp = CodingKeys(stringValue: "timestamp")
+    static let location = CodingKeys(stringValue: "location")
+    static let resourceVisibility = CodingKeys(stringValue: "resourceVisibility")
+    static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+    static let dataSourceType = CodingKeys(stringValue: "dataSourceType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "quote",
+      "infotype",
+      "quoteInfo",
+      "dataProfileResourceName",
+      "findingId",
+      "timestamp",
+      "location",
+      "resourceVisibility",
+      "fullResourceName",
+      "dataSourceType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quote) {
+      self.quote = value
+    }
+    self.infotype = try container.decodeIfPresent(InfoType.self, forKey: .infotype)
+    self.quoteInfo = try container.decodeIfPresent(QuoteInfo.self, forKey: .quoteInfo)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .dataProfileResourceName)
+    {
+      self.dataProfileResourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingId) {
+      self.findingId = value
+    }
+    self.timestamp = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .timestamp)
+    self.location = try container.decodeIfPresent(
+      DataProfileFindingLocation.self, forKey: .location)
+    if let value = try container.decodeIfPresent(
+      ResourceVisibility.self, forKey: .resourceVisibility)
+    {
+      self.resourceVisibility = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+      self.fullResourceName = value
+    }
+    self.dataSourceType = try container.decodeIfPresent(
+      DataSourceType.self, forKey: .dataSourceType)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.quote, forKey: .quote)
+    try container.encodeIfPresent(self.infotype, forKey: .infotype)
+    try container.encodeIfPresent(self.quoteInfo, forKey: .quoteInfo)
+    try container.encode(self.dataProfileResourceName, forKey: .dataProfileResourceName)
+    try container.encode(self.findingId, forKey: .findingId)
+    try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+    try container.encodeIfPresent(self.location, forKey: .location)
+    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    try container.encode(self.fullResourceName, forKey: .fullResourceName)
+    try container.encodeIfPresent(self.dataSourceType, forKey: .dataSourceType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

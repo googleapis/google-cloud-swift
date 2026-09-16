@@ -44,6 +44,8 @@ public struct PrincipalAccessBoundaryPolicyRule: Codable, Equatable, GoogleCloud
   public var effect: PrincipalAccessBoundaryPolicyRule.Effect =
     PrincipalAccessBoundaryPolicyRule.Effect()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrincipalAccessBoundaryPolicyRule`.
   public init() {}
 
@@ -58,6 +60,52 @@ public struct PrincipalAccessBoundaryPolicyRule: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let resources = CodingKeys(stringValue: "resources")
+    static let effect = CodingKeys(stringValue: "effect")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "resources",
+      "effect",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
+      self.resources = value
+    }
+    if let value = try container.decodeIfPresent(
+      PrincipalAccessBoundaryPolicyRule.Effect.self, forKey: .effect)
+    {
+      self.effect = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.resources, forKey: .resources)
+    try container.encode(self.effect, forKey: .effect)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An effect to describe the access relationship.

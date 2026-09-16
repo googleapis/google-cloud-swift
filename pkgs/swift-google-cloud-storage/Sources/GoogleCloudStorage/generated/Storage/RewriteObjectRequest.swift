@@ -148,6 +148,8 @@ public struct RewriteObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// the destination object after rewriting.
   public var objectChecksums: ObjectChecksums? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RewriteObjectRequest`.
   public init() {}
 
@@ -162,6 +164,177 @@ public struct RewriteObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationName = CodingKeys(stringValue: "destinationName")
+    static let destinationBucket = CodingKeys(stringValue: "destinationBucket")
+    static let destinationKmsKey = CodingKeys(stringValue: "destinationKmsKey")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let sourceBucket = CodingKeys(stringValue: "sourceBucket")
+    static let sourceObject = CodingKeys(stringValue: "sourceObject")
+    static let sourceGeneration = CodingKeys(stringValue: "sourceGeneration")
+    static let rewriteToken = CodingKeys(stringValue: "rewriteToken")
+    static let destinationPredefinedAcl = CodingKeys(stringValue: "destinationPredefinedAcl")
+    static let ifGenerationMatch = CodingKeys(stringValue: "ifGenerationMatch")
+    static let ifGenerationNotMatch = CodingKeys(stringValue: "ifGenerationNotMatch")
+    static let ifMetagenerationMatch = CodingKeys(stringValue: "ifMetagenerationMatch")
+    static let ifMetagenerationNotMatch = CodingKeys(stringValue: "ifMetagenerationNotMatch")
+    static let ifSourceGenerationMatch = CodingKeys(stringValue: "ifSourceGenerationMatch")
+    static let ifSourceGenerationNotMatch = CodingKeys(stringValue: "ifSourceGenerationNotMatch")
+    static let ifSourceMetagenerationMatch = CodingKeys(stringValue: "ifSourceMetagenerationMatch")
+    static let ifSourceMetagenerationNotMatch = CodingKeys(
+      stringValue: "ifSourceMetagenerationNotMatch")
+    static let maxBytesRewrittenPerCall = CodingKeys(stringValue: "maxBytesRewrittenPerCall")
+    static let copySourceEncryptionAlgorithm = CodingKeys(
+      stringValue: "copySourceEncryptionAlgorithm")
+    static let copySourceEncryptionKeyBytes = CodingKeys(
+      stringValue: "copySourceEncryptionKeyBytes")
+    static let copySourceEncryptionKeySha256Bytes = CodingKeys(
+      stringValue: "copySourceEncryptionKeySha256Bytes")
+    static let commonObjectRequestParams = CodingKeys(stringValue: "commonObjectRequestParams")
+    static let objectChecksums = CodingKeys(stringValue: "objectChecksums")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationName",
+      "destinationBucket",
+      "destinationKmsKey",
+      "destination",
+      "sourceBucket",
+      "sourceObject",
+      "sourceGeneration",
+      "rewriteToken",
+      "destinationPredefinedAcl",
+      "ifGenerationMatch",
+      "ifGenerationNotMatch",
+      "ifMetagenerationMatch",
+      "ifMetagenerationNotMatch",
+      "ifSourceGenerationMatch",
+      "ifSourceGenerationNotMatch",
+      "ifSourceMetagenerationMatch",
+      "ifSourceMetagenerationNotMatch",
+      "maxBytesRewrittenPerCall",
+      "copySourceEncryptionAlgorithm",
+      "copySourceEncryptionKeyBytes",
+      "copySourceEncryptionKeySha256Bytes",
+      "commonObjectRequestParams",
+      "objectChecksums",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationName) {
+      self.destinationName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationBucket) {
+      self.destinationBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationKmsKey) {
+      self.destinationKmsKey = value
+    }
+    self.destination = try container.decodeIfPresent(Object.self, forKey: .destination)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceBucket) {
+      self.sourceBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceObject) {
+      self.sourceObject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sourceGeneration) {
+      self.sourceGeneration = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rewriteToken) {
+      self.rewriteToken = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .destinationPredefinedAcl)
+    {
+      self.destinationPredefinedAcl = value
+    }
+    self.ifGenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationMatch)
+    self.ifGenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationNotMatch)
+    self.ifMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationMatch)
+    self.ifMetagenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationNotMatch)
+    self.ifSourceGenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifSourceGenerationMatch)
+    self.ifSourceGenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifSourceGenerationNotMatch)
+    self.ifSourceMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifSourceMetagenerationMatch)
+    self.ifSourceMetagenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifSourceMetagenerationNotMatch)
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .maxBytesRewrittenPerCall)
+    {
+      self.maxBytesRewrittenPerCall = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .copySourceEncryptionAlgorithm)
+    {
+      self.copySourceEncryptionAlgorithm = value
+    }
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .copySourceEncryptionKeyBytes)
+    {
+      self.copySourceEncryptionKeyBytes = value
+    }
+    if let value = try container.decodeIfPresent(
+      Foundation.Data.self, forKey: .copySourceEncryptionKeySha256Bytes)
+    {
+      self.copySourceEncryptionKeySha256Bytes = value
+    }
+    self.commonObjectRequestParams = try container.decodeIfPresent(
+      CommonObjectRequestParams.self, forKey: .commonObjectRequestParams)
+    self.objectChecksums = try container.decodeIfPresent(
+      ObjectChecksums.self, forKey: .objectChecksums)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.destinationName, forKey: .destinationName)
+    try container.encode(self.destinationBucket, forKey: .destinationBucket)
+    try container.encode(self.destinationKmsKey, forKey: .destinationKmsKey)
+    try container.encodeIfPresent(self.destination, forKey: .destination)
+    try container.encode(self.sourceBucket, forKey: .sourceBucket)
+    try container.encode(self.sourceObject, forKey: .sourceObject)
+    try container.encode(self.sourceGeneration, forKey: .sourceGeneration)
+    try container.encode(self.rewriteToken, forKey: .rewriteToken)
+    try container.encode(self.destinationPredefinedAcl, forKey: .destinationPredefinedAcl)
+    try container.encodeIfPresent(self.ifGenerationMatch, forKey: .ifGenerationMatch)
+    try container.encodeIfPresent(self.ifGenerationNotMatch, forKey: .ifGenerationNotMatch)
+    try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)
+    try container.encodeIfPresent(self.ifMetagenerationNotMatch, forKey: .ifMetagenerationNotMatch)
+    try container.encodeIfPresent(self.ifSourceGenerationMatch, forKey: .ifSourceGenerationMatch)
+    try container.encodeIfPresent(
+      self.ifSourceGenerationNotMatch, forKey: .ifSourceGenerationNotMatch)
+    try container.encodeIfPresent(
+      self.ifSourceMetagenerationMatch, forKey: .ifSourceMetagenerationMatch)
+    try container.encodeIfPresent(
+      self.ifSourceMetagenerationNotMatch, forKey: .ifSourceMetagenerationNotMatch)
+    try container.encode(self.maxBytesRewrittenPerCall, forKey: .maxBytesRewrittenPerCall)
+    try container.encode(self.copySourceEncryptionAlgorithm, forKey: .copySourceEncryptionAlgorithm)
+    try container.encode(self.copySourceEncryptionKeyBytes, forKey: .copySourceEncryptionKeyBytes)
+    try container.encode(
+      self.copySourceEncryptionKeySha256Bytes, forKey: .copySourceEncryptionKeySha256Bytes)
+    try container.encodeIfPresent(
+      self.commonObjectRequestParams, forKey: .commonObjectRequestParams)
+    try container.encodeIfPresent(self.objectChecksums, forKey: .objectChecksums)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

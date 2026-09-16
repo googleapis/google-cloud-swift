@@ -52,6 +52,8 @@
     /// [google.cloud.dialogflow.cx.v3.WebhookResponse]: <doc:WebhookResponse>
     public var parameters: [Swift.String: GoogleCloudWKT.Value] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SessionInfo`.
     public init() {}
 
@@ -66,6 +68,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let session = CodingKeys(stringValue: "session")
+      static let parameters = CodingKeys(stringValue: "parameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "session",
+        "parameters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+        self.session = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: GoogleCloudWKT.Value].self, forKey: .parameters)
+      {
+        self.parameters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.session, forKey: .session)
+      try container.encode(self.parameters, forKey: .parameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

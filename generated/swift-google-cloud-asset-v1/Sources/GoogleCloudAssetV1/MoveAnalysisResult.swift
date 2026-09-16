@@ -30,6 +30,8 @@ public struct MoveAnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// information and configuration changes, but will not block moves at runtime.
   public var warnings: [MoveImpact] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MoveAnalysisResult`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct MoveAnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let blockers = CodingKeys(stringValue: "blockers")
+    static let warnings = CodingKeys(stringValue: "warnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "blockers",
+      "warnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MoveImpact].self, forKey: .blockers) {
+      self.blockers = value
+    }
+    if let value = try container.decodeIfPresent([MoveImpact].self, forKey: .warnings) {
+      self.warnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.blockers, forKey: .blockers)
+    try container.encode(self.warnings, forKey: .warnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

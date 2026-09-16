@@ -56,6 +56,8 @@
     /// Manager.
     public var versionTarget: InstanceGroupManagerStatusVersionTarget? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerStatus`.
     public init() {}
 
@@ -70,6 +72,74 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allInstancesConfig = CodingKeys(stringValue: "allInstancesConfig")
+      static let appliedAcceleratorTopologies = CodingKeys(
+        stringValue: "appliedAcceleratorTopologies")
+      static let autoscaler = CodingKeys(stringValue: "autoscaler")
+      static let bulkInstanceOperation = CodingKeys(stringValue: "bulkInstanceOperation")
+      static let currentInstanceStatuses = CodingKeys(stringValue: "currentInstanceStatuses")
+      static let isStable = CodingKeys(stringValue: "isStable")
+      static let stateful = CodingKeys(stringValue: "stateful")
+      static let versionTarget = CodingKeys(stringValue: "versionTarget")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allInstancesConfig",
+        "appliedAcceleratorTopologies",
+        "autoscaler",
+        "bulkInstanceOperation",
+        "currentInstanceStatuses",
+        "isStable",
+        "stateful",
+        "versionTarget",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.allInstancesConfig = try container.decodeIfPresent(
+        InstanceGroupManagerStatusAllInstancesConfig.self, forKey: .allInstancesConfig)
+      if let value = try container.decodeIfPresent(
+        [InstanceGroupManagerStatusAcceleratorTopology].self, forKey: .appliedAcceleratorTopologies)
+      {
+        self.appliedAcceleratorTopologies = value
+      }
+      self.autoscaler = try container.decodeIfPresent(Swift.String.self, forKey: .autoscaler)
+      self.bulkInstanceOperation = try container.decodeIfPresent(
+        InstanceGroupManagerStatusBulkInstanceOperation.self, forKey: .bulkInstanceOperation)
+      self.currentInstanceStatuses = try container.decodeIfPresent(
+        InstanceGroupManagerStatusInstanceStatusSummary.self, forKey: .currentInstanceStatuses)
+      self.isStable = try container.decodeIfPresent(Swift.Bool.self, forKey: .isStable)
+      self.stateful = try container.decodeIfPresent(
+        InstanceGroupManagerStatusStateful.self, forKey: .stateful)
+      self.versionTarget = try container.decodeIfPresent(
+        InstanceGroupManagerStatusVersionTarget.self, forKey: .versionTarget)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.allInstancesConfig, forKey: .allInstancesConfig)
+      try container.encode(self.appliedAcceleratorTopologies, forKey: .appliedAcceleratorTopologies)
+      try container.encodeIfPresent(self.autoscaler, forKey: .autoscaler)
+      try container.encodeIfPresent(self.bulkInstanceOperation, forKey: .bulkInstanceOperation)
+      try container.encodeIfPresent(self.currentInstanceStatuses, forKey: .currentInstanceStatuses)
+      try container.encodeIfPresent(self.isStable, forKey: .isStable)
+      try container.encodeIfPresent(self.stateful, forKey: .stateful)
+      try container.encodeIfPresent(self.versionTarget, forKey: .versionTarget)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

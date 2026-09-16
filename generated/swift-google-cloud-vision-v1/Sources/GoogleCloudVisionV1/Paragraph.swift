@@ -47,6 +47,8 @@ public struct Paragraph: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Confidence of the OCR results for the paragraph. Range [0, 1].
   public var confidence: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Paragraph`.
   public init() {}
 
@@ -61,6 +63,53 @@ public struct Paragraph: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let property = CodingKeys(stringValue: "property")
+    static let boundingBox = CodingKeys(stringValue: "boundingBox")
+    static let words = CodingKeys(stringValue: "words")
+    static let confidence = CodingKeys(stringValue: "confidence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "property",
+      "boundingBox",
+      "words",
+      "confidence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.property = try container.decodeIfPresent(
+      TextAnnotation.TextProperty.self, forKey: .property)
+    self.boundingBox = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingBox)
+    if let value = try container.decodeIfPresent([Word].self, forKey: .words) {
+      self.words = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.property, forKey: .property)
+    try container.encodeIfPresent(self.boundingBox, forKey: .boundingBox)
+    try container.encode(self.words, forKey: .words)
+    try container.encode(self.confidence, forKey: .confidence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

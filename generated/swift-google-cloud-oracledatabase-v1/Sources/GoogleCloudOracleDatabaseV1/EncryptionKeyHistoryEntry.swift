@@ -28,6 +28,8 @@ public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWKT._Any
   /// Autonomous Database..
   public var activationTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptionKeyHistoryEntry`.
   public init() {}
 
@@ -42,6 +44,41 @@ public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let activationTime = CodingKeys(stringValue: "activationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "encryptionKey",
+      "activationTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.encryptionKey = try container.decodeIfPresent(EncryptionKey.self, forKey: .encryptionKey)
+    self.activationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .activationTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.encryptionKey, forKey: .encryptionKey)
+    try container.encodeIfPresent(self.activationTime, forKey: .activationTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

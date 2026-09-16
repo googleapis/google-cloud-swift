@@ -41,6 +41,8 @@ public struct RewriteResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// is present in the response only when copying completes.
   public var resource: Object? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RewriteResponse`.
   public init() {}
 
@@ -55,6 +57,60 @@ public struct RewriteResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalBytesRewritten = CodingKeys(stringValue: "totalBytesRewritten")
+    static let objectSize = CodingKeys(stringValue: "objectSize")
+    static let done = CodingKeys(stringValue: "done")
+    static let rewriteToken = CodingKeys(stringValue: "rewriteToken")
+    static let resource = CodingKeys(stringValue: "resource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalBytesRewritten",
+      "objectSize",
+      "done",
+      "rewriteToken",
+      "resource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBytesRewritten) {
+      self.totalBytesRewritten = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .objectSize) {
+      self.objectSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .done) {
+      self.done = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rewriteToken) {
+      self.rewriteToken = value
+    }
+    self.resource = try container.decodeIfPresent(Object.self, forKey: .resource)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalBytesRewritten, forKey: .totalBytesRewritten)
+    try container.encode(self.objectSize, forKey: .objectSize)
+    try container.encode(self.done, forKey: .done)
+    try container.encode(self.rewriteToken, forKey: .rewriteToken)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

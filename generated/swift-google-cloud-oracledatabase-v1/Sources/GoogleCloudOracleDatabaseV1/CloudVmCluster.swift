@@ -84,6 +84,8 @@ public struct CloudVmCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
   public var exascaleDbStorageVault: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudVmCluster`.
   public init() {}
 
@@ -98,6 +100,122 @@ public struct CloudVmCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let exadataInfrastructure = CodingKeys(stringValue: "exadataInfrastructure")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let cidr = CodingKeys(stringValue: "cidr")
+    static let backupSubnetCidr = CodingKeys(stringValue: "backupSubnetCidr")
+    static let network = CodingKeys(stringValue: "network")
+    static let gcpOracleZone = CodingKeys(stringValue: "gcpOracleZone")
+    static let odbNetwork = CodingKeys(stringValue: "odbNetwork")
+    static let odbSubnet = CodingKeys(stringValue: "odbSubnet")
+    static let backupOdbSubnet = CodingKeys(stringValue: "backupOdbSubnet")
+    static let identityConnector = CodingKeys(stringValue: "identityConnector")
+    static let exascaleDbStorageVault = CodingKeys(stringValue: "exascaleDbStorageVault")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "exadataInfrastructure",
+      "displayName",
+      "properties",
+      "labels",
+      "createTime",
+      "cidr",
+      "backupSubnetCidr",
+      "network",
+      "gcpOracleZone",
+      "odbNetwork",
+      "odbSubnet",
+      "backupOdbSubnet",
+      "identityConnector",
+      "exascaleDbStorageVault",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exadataInfrastructure)
+    {
+      self.exadataInfrastructure = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.properties = try container.decodeIfPresent(
+      CloudVmClusterProperties.self, forKey: .properties)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidr) {
+      self.cidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupSubnetCidr) {
+      self.backupSubnetCidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleZone) {
+      self.gcpOracleZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbNetwork) {
+      self.odbNetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbSubnet) {
+      self.odbSubnet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupOdbSubnet) {
+      self.backupOdbSubnet = value
+    }
+    self.identityConnector = try container.decodeIfPresent(
+      IdentityConnector.self, forKey: .identityConnector)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exascaleDbStorageVault)
+    {
+      self.exascaleDbStorageVault = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.exadataInfrastructure, forKey: .exadataInfrastructure)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.properties, forKey: .properties)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.cidr, forKey: .cidr)
+    try container.encode(self.backupSubnetCidr, forKey: .backupSubnetCidr)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
+    try container.encode(self.odbNetwork, forKey: .odbNetwork)
+    try container.encode(self.odbSubnet, forKey: .odbSubnet)
+    try container.encode(self.backupOdbSubnet, forKey: .backupOdbSubnet)
+    try container.encodeIfPresent(self.identityConnector, forKey: .identityConnector)
+    try container.encode(self.exascaleDbStorageVault, forKey: .exascaleDbStorageVault)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

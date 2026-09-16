@@ -31,6 +31,8 @@ public struct AssetStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// attached resources.
   public var securityPolicyApplyingAssets: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AssetStatus`.
   public init() {}
 
@@ -45,6 +47,52 @@ public struct AssetStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let activeAssets = CodingKeys(stringValue: "activeAssets")
+    static let securityPolicyApplyingAssets = CodingKeys(
+      stringValue: "securityPolicyApplyingAssets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateTime",
+      "activeAssets",
+      "securityPolicyApplyingAssets",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .activeAssets) {
+      self.activeAssets = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .securityPolicyApplyingAssets)
+    {
+      self.securityPolicyApplyingAssets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.activeAssets, forKey: .activeAssets)
+    try container.encode(self.securityPolicyApplyingAssets, forKey: .securityPolicyApplyingAssets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

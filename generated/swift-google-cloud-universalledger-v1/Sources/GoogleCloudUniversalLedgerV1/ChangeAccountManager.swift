@@ -51,6 +51,8 @@ public struct ChangeAccountManager: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// to 60 characters.
   public var nextManagerId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChangeAccountManager`.
   public init() {}
 
@@ -65,6 +67,52 @@ public struct ChangeAccountManager: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let account = CodingKeys(stringValue: "account")
+    static let accountId = CodingKeys(stringValue: "accountId")
+    static let nextManager = CodingKeys(stringValue: "nextManager")
+    static let nextManagerId = CodingKeys(stringValue: "nextManagerId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "account",
+      "accountId",
+      "nextManager",
+      "nextManagerId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.account = try container.decodeIfPresent(Entity.self, forKey: .account)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
+      self.accountId = value
+    }
+    self.nextManager = try container.decodeIfPresent(Entity.self, forKey: .nextManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextManagerId) {
+      self.nextManagerId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.account, forKey: .account)
+    try container.encode(self.accountId, forKey: .accountId)
+    try container.encodeIfPresent(self.nextManager, forKey: .nextManager)
+    try container.encode(self.nextManagerId, forKey: .nextManagerId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

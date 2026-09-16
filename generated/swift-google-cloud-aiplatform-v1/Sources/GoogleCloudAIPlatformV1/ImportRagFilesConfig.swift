@@ -56,6 +56,8 @@
     /// failures are written to the sink.
     public var importResultSink: OneOf_ImportResultSink? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportRagFilesConfig`.
     public init() {}
 
@@ -72,20 +74,42 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
-      case googleDriveSource = "googleDriveSource"
-      case slackSource = "slackSource"
-      case jiraSource = "jiraSource"
-      case sharePointSources = "sharePointSources"
-      case partialFailureGcsSink = "partialFailureGcsSink"
-      case partialFailureBigquerySink = "partialFailureBigquerySink"
-      case importResultGcsSink = "importResultGcsSink"
-      case importResultBigquerySink = "importResultBigquerySink"
-      case ragFileTransformationConfig = "ragFileTransformationConfig"
-      case ragFileParsingConfig = "ragFileParsingConfig"
-      case maxEmbeddingRequestsPerMin = "maxEmbeddingRequestsPerMin"
-      case rebuildAnnIndex = "rebuildAnnIndex"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let googleDriveSource = CodingKeys(stringValue: "googleDriveSource")
+      static let slackSource = CodingKeys(stringValue: "slackSource")
+      static let jiraSource = CodingKeys(stringValue: "jiraSource")
+      static let sharePointSources = CodingKeys(stringValue: "sharePointSources")
+      static let partialFailureGcsSink = CodingKeys(stringValue: "partialFailureGcsSink")
+      static let partialFailureBigquerySink = CodingKeys(stringValue: "partialFailureBigquerySink")
+      static let importResultGcsSink = CodingKeys(stringValue: "importResultGcsSink")
+      static let importResultBigquerySink = CodingKeys(stringValue: "importResultBigquerySink")
+      static let ragFileTransformationConfig = CodingKeys(
+        stringValue: "ragFileTransformationConfig")
+      static let ragFileParsingConfig = CodingKeys(stringValue: "ragFileParsingConfig")
+      static let maxEmbeddingRequestsPerMin = CodingKeys(stringValue: "maxEmbeddingRequestsPerMin")
+      static let rebuildAnnIndex = CodingKeys(stringValue: "rebuildAnnIndex")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource",
+        "googleDriveSource",
+        "slackSource",
+        "jiraSource",
+        "sharePointSources",
+        "partialFailureGcsSink",
+        "partialFailureBigquerySink",
+        "importResultGcsSink",
+        "importResultBigquerySink",
+        "ragFileTransformationConfig",
+        "ragFileParsingConfig",
+        "maxEmbeddingRequestsPerMin",
+        "rebuildAnnIndex",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -94,9 +118,14 @@
         RagFileTransformationConfig.self, forKey: .ragFileTransformationConfig)
       self.ragFileParsingConfig = try container.decodeIfPresent(
         RagFileParsingConfig.self, forKey: .ragFileParsingConfig)
-      self.maxEmbeddingRequestsPerMin = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .maxEmbeddingRequestsPerMin)
-      self.rebuildAnnIndex = try container.decode(Swift.Bool.self, forKey: .rebuildAnnIndex)
+      {
+        self.maxEmbeddingRequestsPerMin = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .rebuildAnnIndex) {
+        self.rebuildAnnIndex = value
+      }
 
       var importSource: OneOf_ImportSource? = nil
       let importSourceCheckAndSet = {
@@ -172,12 +201,17 @@
         try importResultSinkCheckAndSet(.importResultBigquerySink(importResultBigquerySink))
       }
       self.importResultSink = importResultSink
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.ragFileTransformationConfig, forKey: .ragFileTransformationConfig)
-      try container.encode(self.ragFileParsingConfig, forKey: .ragFileParsingConfig)
+      try container.encodeIfPresent(
+        self.ragFileTransformationConfig, forKey: .ragFileTransformationConfig)
+      try container.encodeIfPresent(self.ragFileParsingConfig, forKey: .ragFileParsingConfig)
       try container.encode(self.maxEmbeddingRequestsPerMin, forKey: .maxEmbeddingRequestsPerMin)
       try container.encode(self.rebuildAnnIndex, forKey: .rebuildAnnIndex)
 
@@ -212,6 +246,9 @@
         case .importResultBigquerySink(let value):
           try container.encode(value, forKey: .importResultBigquerySink)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

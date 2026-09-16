@@ -65,6 +65,8 @@ public struct GoldengateDeploymentType: Codable, Equatable, GoogleCloudWKT._AnyP
   /// resource.
   public var defaultUsername: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDeploymentType`.
   public init() {}
 
@@ -79,6 +81,106 @@ public struct GoldengateDeploymentType: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let deploymentType = CodingKeys(stringValue: "deploymentType")
+    static let category = CodingKeys(stringValue: "category")
+    static let connectionTypes = CodingKeys(stringValue: "connectionTypes")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let oggVersion = CodingKeys(stringValue: "oggVersion")
+    static let sourceTechnologies = CodingKeys(stringValue: "sourceTechnologies")
+    static let supportedCapabilities = CodingKeys(stringValue: "supportedCapabilities")
+    static let supportedTechnologiesUrl = CodingKeys(stringValue: "supportedTechnologiesUrl")
+    static let targetTechnologies = CodingKeys(stringValue: "targetTechnologies")
+    static let defaultUsername = CodingKeys(stringValue: "defaultUsername")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "deploymentType",
+      "category",
+      "connectionTypes",
+      "displayName",
+      "oggVersion",
+      "sourceTechnologies",
+      "supportedCapabilities",
+      "supportedTechnologiesUrl",
+      "targetTechnologies",
+      "defaultUsername",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentType.DeploymentType.self, forKey: .deploymentType)
+    {
+      self.deploymentType = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentType.DeploymentCategory.self, forKey: .category)
+    {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .connectionTypes) {
+      self.connectionTypes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oggVersion) {
+      self.oggVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceTechnologies) {
+      self.sourceTechnologies = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .supportedCapabilities)
+    {
+      self.supportedCapabilities = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .supportedTechnologiesUrl)
+    {
+      self.supportedTechnologiesUrl = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetTechnologies) {
+      self.targetTechnologies = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultUsername) {
+      self.defaultUsername = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.deploymentType, forKey: .deploymentType)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.connectionTypes, forKey: .connectionTypes)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.oggVersion, forKey: .oggVersion)
+    try container.encode(self.sourceTechnologies, forKey: .sourceTechnologies)
+    try container.encode(self.supportedCapabilities, forKey: .supportedCapabilities)
+    try container.encode(self.supportedTechnologiesUrl, forKey: .supportedTechnologiesUrl)
+    try container.encode(self.targetTechnologies, forKey: .targetTechnologies)
+    try container.encode(self.defaultUsername, forKey: .defaultUsername)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The deployment type of the Goldengate Deployment Type resource.

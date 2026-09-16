@@ -52,6 +52,8 @@
     /// read permissions (to Google Cloud Storage, Artifact Registry, etc.).
     public var serviceAccount: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UploadModelRequest`.
     public init() {}
 
@@ -66,6 +68,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let parentModel = CodingKeys(stringValue: "parentModel")
+      static let modelId = CodingKeys(stringValue: "modelId")
+      static let model = CodingKeys(stringValue: "model")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "parentModel",
+        "modelId",
+        "model",
+        "serviceAccount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentModel) {
+        self.parentModel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+        self.modelId = value
+      }
+      self.model = try container.decodeIfPresent(Model.self, forKey: .model)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encode(self.parentModel, forKey: .parentModel)
+      try container.encode(self.modelId, forKey: .modelId)
+      try container.encodeIfPresent(self.model, forKey: .model)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

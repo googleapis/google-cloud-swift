@@ -24,6 +24,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Type of action to execute when a profile is generated.
   public var action: OneOf_Action? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProfileAction`.
   public init() {}
 
@@ -40,13 +42,27 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case exportData = "exportData"
-    case pubSubNotification = "pubSubNotification"
-    case publishToChronicle = "publishToChronicle"
-    case publishToScc = "publishToScc"
-    case tagResources = "tagResources"
-    case publishToDataplexCatalog = "publishToDataplexCatalog"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exportData = CodingKeys(stringValue: "exportData")
+    static let pubSubNotification = CodingKeys(stringValue: "pubSubNotification")
+    static let publishToChronicle = CodingKeys(stringValue: "publishToChronicle")
+    static let publishToScc = CodingKeys(stringValue: "publishToScc")
+    static let tagResources = CodingKeys(stringValue: "tagResources")
+    static let publishToDataplexCatalog = CodingKeys(stringValue: "publishToDataplexCatalog")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exportData",
+      "pubSubNotification",
+      "publishToChronicle",
+      "publishToScc",
+      "tagResources",
+      "publishToDataplexCatalog",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,6 +109,10 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try actionCheckAndSet(.publishToDataplexCatalog(publishToDataplexCatalog))
     }
     self.action = action
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -113,6 +133,9 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .publishToDataplexCatalog(let value):
         try container.encode(value, forKey: .publishToDataplexCatalog)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -160,6 +183,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// [google.privacy.dlp.v2.DataProfileFinding]: <doc:DataProfileFinding>
     public var sampleFindingsTable: BigQueryTable? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Export`.
     public init() {}
 
@@ -174,6 +199,41 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let profileTable = CodingKeys(stringValue: "profileTable")
+      static let sampleFindingsTable = CodingKeys(stringValue: "sampleFindingsTable")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "profileTable",
+        "sampleFindingsTable",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.profileTable = try container.decodeIfPresent(BigQueryTable.self, forKey: .profileTable)
+      self.sampleFindingsTable = try container.decodeIfPresent(
+        BigQueryTable.self, forKey: .sampleFindingsTable)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.profileTable, forKey: .profileTable)
+      try container.encodeIfPresent(self.sampleFindingsTable, forKey: .sampleFindingsTable)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -211,6 +271,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public var detailOfMessage: DataProfileAction.PubSubNotification.DetailLevel = DataProfileAction
       .PubSubNotification.DetailLevel()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PubSubNotification`.
     public init() {}
 
@@ -225,6 +287,58 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let topic = CodingKeys(stringValue: "topic")
+      static let event = CodingKeys(stringValue: "event")
+      static let pubsubCondition = CodingKeys(stringValue: "pubsubCondition")
+      static let detailOfMessage = CodingKeys(stringValue: "detailOfMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "topic",
+        "event",
+        "pubsubCondition",
+        "detailOfMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .topic) {
+        self.topic = value
+      }
+      if let value = try container.decodeIfPresent(DataProfileAction.EventType.self, forKey: .event)
+      {
+        self.event = value
+      }
+      self.pubsubCondition = try container.decodeIfPresent(
+        DataProfilePubSubCondition.self, forKey: .pubsubCondition)
+      if let value = try container.decodeIfPresent(
+        DataProfileAction.PubSubNotification.DetailLevel.self, forKey: .detailOfMessage)
+      {
+        self.detailOfMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.topic, forKey: .topic)
+      try container.encode(self.event, forKey: .event)
+      try container.encodeIfPresent(self.pubsubCondition, forKey: .pubsubCondition)
+      try container.encode(self.detailOfMessage, forKey: .detailOfMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The levels of detail that can be included in the Pub/Sub message.
@@ -354,6 +468,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public struct PublishToChronicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublishToChronicle`.
     public init() {}
 
@@ -368,6 +484,30 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -386,6 +526,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public struct PublishToSecurityCommandCenter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublishToSecurityCommandCenter`.
     public init() {}
 
@@ -400,6 +542,30 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -429,6 +595,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// profiles.
     public var lowerDataRiskToLow: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublishToDataplexCatalog`.
     public init() {}
 
@@ -443,6 +611,38 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lowerDataRiskToLow = CodingKeys(stringValue: "lowerDataRiskToLow")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lowerDataRiskToLow"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .lowerDataRiskToLow) {
+        self.lowerDataRiskToLow = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lowerDataRiskToLow, forKey: .lowerDataRiskToLow)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -486,6 +686,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// constituent column data profiles.
     public var lowerDataRiskToLow: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TagResources`.
     public init() {}
 
@@ -502,6 +704,54 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tagConditions = CodingKeys(stringValue: "tagConditions")
+      static let profileGenerationsToTag = CodingKeys(stringValue: "profileGenerationsToTag")
+      static let lowerDataRiskToLow = CodingKeys(stringValue: "lowerDataRiskToLow")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tagConditions",
+        "profileGenerationsToTag",
+        "lowerDataRiskToLow",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DataProfileAction.TagResources.TagCondition].self, forKey: .tagConditions)
+      {
+        self.tagConditions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ProfileGeneration].self, forKey: .profileGenerationsToTag)
+      {
+        self.profileGenerationsToTag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .lowerDataRiskToLow) {
+        self.lowerDataRiskToLow = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tagConditions, forKey: .tagConditions)
+      try container.encode(self.profileGenerationsToTag, forKey: .profileGenerationsToTag)
+      try container.encode(self.lowerDataRiskToLow, forKey: .lowerDataRiskToLow)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The tag to attach to profiles matching the condition. At most one
     /// `TagCondition` can be specified per sensitivity level.
     public struct TagCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -512,6 +762,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
       /// The type of condition on which attaching the tag will be predicated.
       public var type: OneOf_Type? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `TagCondition`.
       public init() {}
@@ -529,9 +781,19 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case tag = "tag"
-        case sensitivityScore = "sensitivityScore"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let tag = CodingKeys(stringValue: "tag")
+        static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "tag",
+          "sensitivityScore",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -555,17 +817,24 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
           try typeCheckAndSet(.sensitivityScore(sensitivityScore))
         }
         self.type = type
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.tag, forKey: .tag)
+        try container.encodeIfPresent(self.tag, forKey: .tag)
 
         if let choice = self.type {
           switch choice {
           case .sensitivityScore(let value):
             try container.encode(value, forKey: .sensitivityScore)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -595,6 +864,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       /// The format of the tag value.
       public var format: OneOf_Format? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TagValue`.
       public init() {}
 
@@ -611,8 +882,17 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case namespacedValue = "namespacedValue"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let namespacedValue = CodingKeys(stringValue: "namespacedValue")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "namespacedValue"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -634,6 +914,10 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
           try formatCheckAndSet(.namespacedValue(namespacedValue))
         }
         self.format = format
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -644,6 +928,9 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
           case .namespacedValue(let value):
             try container.encode(value, forKey: .namespacedValue)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

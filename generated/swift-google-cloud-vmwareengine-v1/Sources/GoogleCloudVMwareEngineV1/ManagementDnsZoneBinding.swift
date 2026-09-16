@@ -52,6 +52,8 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleCloudWKT._AnyP
   /// VMware engine network.
   public var bindNetwork: OneOf_BindNetwork? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManagementDnsZoneBinding`.
   public init() {}
 
@@ -68,27 +70,53 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case state = "state"
-    case description = "description"
-    case vpcNetwork = "vpcNetwork"
-    case vmwareEngineNetwork = "vmwareEngineNetwork"
-    case uid = "uid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let description = CodingKeys(stringValue: "description")
+    static let vpcNetwork = CodingKeys(stringValue: "vpcNetwork")
+    static let vmwareEngineNetwork = CodingKeys(stringValue: "vmwareEngineNetwork")
+    static let uid = CodingKeys(stringValue: "uid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "state",
+      "description",
+      "vpcNetwork",
+      "vmwareEngineNetwork",
+      "uid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.state = try container.decode(ManagementDnsZoneBinding.State.self, forKey: .state)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(
+      ManagementDnsZoneBinding.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
 
     var bindNetwork: OneOf_BindNetwork? = nil
     let bindNetworkCheckAndSet = {
@@ -109,13 +137,17 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleCloudWKT._AnyP
       try bindNetworkCheckAndSet(.vmwareEngineNetwork(vmwareEngineNetwork))
     }
     self.bindNetwork = bindNetwork
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.uid, forKey: .uid)
@@ -127,6 +159,9 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleCloudWKT._AnyP
       case .vmwareEngineNetwork(let value):
         try container.encode(value, forKey: .vmwareEngineNetwork)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

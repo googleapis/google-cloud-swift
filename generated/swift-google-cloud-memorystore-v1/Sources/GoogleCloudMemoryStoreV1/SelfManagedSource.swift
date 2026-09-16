@@ -43,6 +43,8 @@ public struct SelfManagedSource: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// projects/{project}/regions/{region}/networkAttachments/{network_attachment}
   public var networkAttachment: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SelfManagedSource`.
   public init() {}
 
@@ -57,6 +59,50 @@ public struct SelfManagedSource: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let port = CodingKeys(stringValue: "port")
+    static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipAddress",
+      "port",
+      "networkAttachment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkAttachment) {
+      self.networkAttachment = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    try container.encode(self.port, forKey: .port)
+    try container.encode(self.networkAttachment, forKey: .networkAttachment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

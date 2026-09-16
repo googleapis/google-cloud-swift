@@ -43,6 +43,8 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Potential impact of the suggested remediation
   public var potentialImpact: OneOf_PotentialImpact? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComplianceNote`.
   public init() {}
 
@@ -59,25 +61,53 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case title = "title"
-    case description = "description"
-    case version = "version"
-    case rationale = "rationale"
-    case remediation = "remediation"
-    case cisBenchmark = "cisBenchmark"
-    case scanInstructions = "scanInstructions"
-    case impact = "impact"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let version = CodingKeys(stringValue: "version")
+    static let rationale = CodingKeys(stringValue: "rationale")
+    static let remediation = CodingKeys(stringValue: "remediation")
+    static let cisBenchmark = CodingKeys(stringValue: "cisBenchmark")
+    static let scanInstructions = CodingKeys(stringValue: "scanInstructions")
+    static let impact = CodingKeys(stringValue: "impact")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "title",
+      "description",
+      "version",
+      "rationale",
+      "remediation",
+      "cisBenchmark",
+      "scanInstructions",
+      "impact",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.title = try container.decode(Swift.String.self, forKey: .title)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.version = try container.decode([ComplianceVersion].self, forKey: .version)
-    self.rationale = try container.decode(Swift.String.self, forKey: .rationale)
-    self.remediation = try container.decode(Swift.String.self, forKey: .remediation)
-    self.scanInstructions = try container.decode(Foundation.Data.self, forKey: .scanInstructions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([ComplianceVersion].self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rationale) {
+      self.rationale = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remediation) {
+      self.remediation = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .scanInstructions) {
+      self.scanInstructions = value
+    }
 
     var complianceType: OneOf_ComplianceType? = nil
     let complianceTypeCheckAndSet = {
@@ -110,6 +140,10 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try potentialImpactCheckAndSet(.impact(impact))
     }
     self.potentialImpact = potentialImpact
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -134,6 +168,9 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .impact)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A compliance check that is a CIS benchmark.
@@ -143,6 +180,8 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var profileLevel: Swift.Int32 = Swift.Int32()
 
     public var severity: Severity = Severity()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CisBenchmark`.
     public init() {}
@@ -158,6 +197,44 @@ public struct ComplianceNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let profileLevel = CodingKeys(stringValue: "profileLevel")
+      static let severity = CodingKeys(stringValue: "severity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "profileLevel",
+        "severity",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .profileLevel) {
+        self.profileLevel = value
+      }
+      if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+        self.severity = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.profileLevel, forKey: .profileLevel)
+      try container.encode(self.severity, forKey: .severity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

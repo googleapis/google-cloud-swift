@@ -31,6 +31,8 @@ public struct ClearingHouseDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Output only. The settlement mode of this clearinghouse.
   public var settlementMode: SettlementMode = SettlementMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClearingHouseDetails`.
   public init() {}
 
@@ -45,6 +47,50 @@ public struct ClearingHouseDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accountStatus = CodingKeys(stringValue: "accountStatus")
+    static let balances = CodingKeys(stringValue: "balances")
+    static let settlementMode = CodingKeys(stringValue: "settlementMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accountStatus",
+      "balances",
+      "settlementMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
+      self.accountStatus = value
+    }
+    if let value = try container.decodeIfPresent([BalanceToSettle].self, forKey: .balances) {
+      self.balances = value
+    }
+    if let value = try container.decodeIfPresent(SettlementMode.self, forKey: .settlementMode) {
+      self.settlementMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.accountStatus, forKey: .accountStatus)
+    try container.encode(self.balances, forKey: .balances)
+    try container.encode(self.settlementMode, forKey: .settlementMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

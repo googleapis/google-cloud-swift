@@ -113,6 +113,8 @@
     /// User-specified ID is not supported in the request template.
     public var request: OneOf_Request? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Schedule`.
     public init() {}
 
@@ -129,39 +131,79 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cron = "cron"
-      case createPipelineJobRequest = "createPipelineJobRequest"
-      case createNotebookExecutionJobRequest = "createNotebookExecutionJobRequest"
-      case name = "name"
-      case displayName = "displayName"
-      case startTime = "startTime"
-      case endTime = "endTime"
-      case maxRunCount = "maxRunCount"
-      case startedRunCount = "startedRunCount"
-      case state = "state"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case nextRunTime = "nextRunTime"
-      case lastPauseTime = "lastPauseTime"
-      case lastResumeTime = "lastResumeTime"
-      case maxConcurrentRunCount = "maxConcurrentRunCount"
-      case maxConcurrentActiveRunCount = "maxConcurrentActiveRunCount"
-      case allowQueueing = "allowQueueing"
-      case catchUp = "catchUp"
-      case lastScheduledRunResponse = "lastScheduledRunResponse"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cron = CodingKeys(stringValue: "cron")
+      static let createPipelineJobRequest = CodingKeys(stringValue: "createPipelineJobRequest")
+      static let createNotebookExecutionJobRequest = CodingKeys(
+        stringValue: "createNotebookExecutionJobRequest")
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let maxRunCount = CodingKeys(stringValue: "maxRunCount")
+      static let startedRunCount = CodingKeys(stringValue: "startedRunCount")
+      static let state = CodingKeys(stringValue: "state")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let nextRunTime = CodingKeys(stringValue: "nextRunTime")
+      static let lastPauseTime = CodingKeys(stringValue: "lastPauseTime")
+      static let lastResumeTime = CodingKeys(stringValue: "lastResumeTime")
+      static let maxConcurrentRunCount = CodingKeys(stringValue: "maxConcurrentRunCount")
+      static let maxConcurrentActiveRunCount = CodingKeys(
+        stringValue: "maxConcurrentActiveRunCount")
+      static let allowQueueing = CodingKeys(stringValue: "allowQueueing")
+      static let catchUp = CodingKeys(stringValue: "catchUp")
+      static let lastScheduledRunResponse = CodingKeys(stringValue: "lastScheduledRunResponse")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cron",
+        "createPipelineJobRequest",
+        "createNotebookExecutionJobRequest",
+        "name",
+        "displayName",
+        "startTime",
+        "endTime",
+        "maxRunCount",
+        "startedRunCount",
+        "state",
+        "createTime",
+        "updateTime",
+        "nextRunTime",
+        "lastPauseTime",
+        "lastResumeTime",
+        "maxConcurrentRunCount",
+        "maxConcurrentActiveRunCount",
+        "allowQueueing",
+        "catchUp",
+        "lastScheduledRunResponse",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.startTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .startTime)
       self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-      self.maxRunCount = try container.decode(Swift.Int64.self, forKey: .maxRunCount)
-      self.startedRunCount = try container.decode(Swift.Int64.self, forKey: .startedRunCount)
-      self.state = try container.decode(Schedule.State.self, forKey: .state)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxRunCount) {
+        self.maxRunCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .startedRunCount) {
+        self.startedRunCount = value
+      }
+      if let value = try container.decodeIfPresent(Schedule.State.self, forKey: .state) {
+        self.state = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
@@ -172,12 +214,21 @@
         GoogleCloudWKT.Timestamp.self, forKey: .lastPauseTime)
       self.lastResumeTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .lastResumeTime)
-      self.maxConcurrentRunCount = try container.decode(
-        Swift.Int64.self, forKey: .maxConcurrentRunCount)
-      self.maxConcurrentActiveRunCount = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxConcurrentRunCount)
+      {
+        self.maxConcurrentRunCount = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .maxConcurrentActiveRunCount)
-      self.allowQueueing = try container.decode(Swift.Bool.self, forKey: .allowQueueing)
-      self.catchUp = try container.decode(Swift.Bool.self, forKey: .catchUp)
+      {
+        self.maxConcurrentActiveRunCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowQueueing) {
+        self.allowQueueing = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .catchUp) {
+        self.catchUp = value
+      }
       self.lastScheduledRunResponse = try container.decodeIfPresent(
         Schedule.RunResponse.self, forKey: .lastScheduledRunResponse)
 
@@ -218,27 +269,32 @@
           .createNotebookExecutionJobRequest(createNotebookExecutionJobRequest))
       }
       self.request = request
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.startTime, forKey: .startTime)
-      try container.encode(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encode(self.maxRunCount, forKey: .maxRunCount)
       try container.encode(self.startedRunCount, forKey: .startedRunCount)
       try container.encode(self.state, forKey: .state)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
-      try container.encode(self.nextRunTime, forKey: .nextRunTime)
-      try container.encode(self.lastPauseTime, forKey: .lastPauseTime)
-      try container.encode(self.lastResumeTime, forKey: .lastResumeTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)
+      try container.encodeIfPresent(self.lastPauseTime, forKey: .lastPauseTime)
+      try container.encodeIfPresent(self.lastResumeTime, forKey: .lastResumeTime)
       try container.encode(self.maxConcurrentRunCount, forKey: .maxConcurrentRunCount)
       try container.encode(self.maxConcurrentActiveRunCount, forKey: .maxConcurrentActiveRunCount)
       try container.encode(self.allowQueueing, forKey: .allowQueueing)
       try container.encode(self.catchUp, forKey: .catchUp)
-      try container.encode(self.lastScheduledRunResponse, forKey: .lastScheduledRunResponse)
+      try container.encodeIfPresent(
+        self.lastScheduledRunResponse, forKey: .lastScheduledRunResponse)
 
       if let choice = self.timeSpecification {
         switch choice {
@@ -255,6 +311,9 @@
           try container.encode(value, forKey: .createNotebookExecutionJobRequest)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Status of a scheduled run.
@@ -266,6 +325,8 @@
 
       /// The response of the scheduled run.
       public var runResponse: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RunResponse`.
       public init() {}
@@ -281,6 +342,43 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let scheduledRunTime = CodingKeys(stringValue: "scheduledRunTime")
+        static let runResponse = CodingKeys(stringValue: "runResponse")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "scheduledRunTime",
+          "runResponse",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.scheduledRunTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .scheduledRunTime)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .runResponse) {
+          self.runResponse = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.scheduledRunTime, forKey: .scheduledRunTime)
+        try container.encode(self.runResponse, forKey: .runResponse)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

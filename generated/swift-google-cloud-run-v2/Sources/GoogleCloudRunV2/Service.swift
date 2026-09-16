@@ -231,6 +231,8 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Service`.
   public init() {}
 
@@ -247,6 +249,253 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let generation = CodingKeys(stringValue: "generation")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let lastModifier = CodingKeys(stringValue: "lastModifier")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
+    static let ingress = CodingKeys(stringValue: "ingress")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let binaryAuthorization = CodingKeys(stringValue: "binaryAuthorization")
+    static let template = CodingKeys(stringValue: "template")
+    static let traffic = CodingKeys(stringValue: "traffic")
+    static let scaling = CodingKeys(stringValue: "scaling")
+    static let invokerIamDisabled = CodingKeys(stringValue: "invokerIamDisabled")
+    static let defaultUriDisabled = CodingKeys(stringValue: "defaultUriDisabled")
+    static let urls = CodingKeys(stringValue: "urls")
+    static let iapEnabled = CodingKeys(stringValue: "iapEnabled")
+    static let multiRegionSettings = CodingKeys(stringValue: "multiRegionSettings")
+    static let customAudiences = CodingKeys(stringValue: "customAudiences")
+    static let observedGeneration = CodingKeys(stringValue: "observedGeneration")
+    static let terminalCondition = CodingKeys(stringValue: "terminalCondition")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let latestReadyRevision = CodingKeys(stringValue: "latestReadyRevision")
+    static let latestCreatedRevision = CodingKeys(stringValue: "latestCreatedRevision")
+    static let trafficStatuses = CodingKeys(stringValue: "trafficStatuses")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let threatDetectionEnabled = CodingKeys(stringValue: "threatDetectionEnabled")
+    static let buildConfig = CodingKeys(stringValue: "buildConfig")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "uid",
+      "generation",
+      "labels",
+      "annotations",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "creator",
+      "lastModifier",
+      "client",
+      "clientVersion",
+      "ingress",
+      "launchStage",
+      "binaryAuthorization",
+      "template",
+      "traffic",
+      "scaling",
+      "invokerIamDisabled",
+      "defaultUriDisabled",
+      "urls",
+      "iapEnabled",
+      "multiRegionSettings",
+      "customAudiences",
+      "observedGeneration",
+      "terminalCondition",
+      "conditions",
+      "latestReadyRevision",
+      "latestCreatedRevision",
+      "trafficStatuses",
+      "uri",
+      "satisfiesPzs",
+      "threatDetectionEnabled",
+      "buildConfig",
+      "reconciling",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastModifier) {
+      self.lastModifier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
+    if let value = try container.decodeIfPresent(IngressTraffic.self, forKey: .ingress) {
+      self.ingress = value
+    }
+    if let value = try container.decodeIfPresent(GoogleApi.LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    self.binaryAuthorization = try container.decodeIfPresent(
+      BinaryAuthorization.self, forKey: .binaryAuthorization)
+    self.template = try container.decodeIfPresent(RevisionTemplate.self, forKey: .template)
+    if let value = try container.decodeIfPresent([TrafficTarget].self, forKey: .traffic) {
+      self.traffic = value
+    }
+    self.scaling = try container.decodeIfPresent(ServiceScaling.self, forKey: .scaling)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invokerIamDisabled) {
+      self.invokerIamDisabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .defaultUriDisabled) {
+      self.defaultUriDisabled = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .urls) {
+      self.urls = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .iapEnabled) {
+      self.iapEnabled = value
+    }
+    self.multiRegionSettings = try container.decodeIfPresent(
+      Service.MultiRegionSettings.self, forKey: .multiRegionSettings)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .customAudiences) {
+      self.customAudiences = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .observedGeneration) {
+      self.observedGeneration = value
+    }
+    self.terminalCondition = try container.decodeIfPresent(
+      Condition.self, forKey: .terminalCondition)
+    if let value = try container.decodeIfPresent([Condition].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestReadyRevision) {
+      self.latestReadyRevision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestCreatedRevision)
+    {
+      self.latestCreatedRevision = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TrafficTargetStatus].self, forKey: .trafficStatuses)
+    {
+      self.trafficStatuses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .threatDetectionEnabled) {
+      self.threatDetectionEnabled = value
+    }
+    self.buildConfig = try container.decodeIfPresent(BuildConfig.self, forKey: .buildConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.generation, forKey: .generation)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.creator, forKey: .creator)
+    try container.encode(self.lastModifier, forKey: .lastModifier)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
+    try container.encode(self.ingress, forKey: .ingress)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
+    try container.encodeIfPresent(self.template, forKey: .template)
+    try container.encode(self.traffic, forKey: .traffic)
+    try container.encodeIfPresent(self.scaling, forKey: .scaling)
+    try container.encode(self.invokerIamDisabled, forKey: .invokerIamDisabled)
+    try container.encode(self.defaultUriDisabled, forKey: .defaultUriDisabled)
+    try container.encode(self.urls, forKey: .urls)
+    try container.encode(self.iapEnabled, forKey: .iapEnabled)
+    try container.encodeIfPresent(self.multiRegionSettings, forKey: .multiRegionSettings)
+    try container.encode(self.customAudiences, forKey: .customAudiences)
+    try container.encode(self.observedGeneration, forKey: .observedGeneration)
+    try container.encodeIfPresent(self.terminalCondition, forKey: .terminalCondition)
+    try container.encode(self.conditions, forKey: .conditions)
+    try container.encode(self.latestReadyRevision, forKey: .latestReadyRevision)
+    try container.encode(self.latestCreatedRevision, forKey: .latestCreatedRevision)
+    try container.encode(self.trafficStatuses, forKey: .trafficStatuses)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.threatDetectionEnabled, forKey: .threatDetectionEnabled)
+    try container.encodeIfPresent(self.buildConfig, forKey: .buildConfig)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Settings for multi-region deployment.
   public struct MultiRegionSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -256,6 +505,8 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. System-generated unique id for the multi-region Service.
     public var multiRegionId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `MultiRegionSettings`.
     public init() {}
@@ -271,6 +522,44 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let regions = CodingKeys(stringValue: "regions")
+      static let multiRegionId = CodingKeys(stringValue: "multiRegionId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "regions",
+        "multiRegionId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .regions) {
+        self.regions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .multiRegionId) {
+        self.multiRegionId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.regions, forKey: .regions)
+      try container.encode(self.multiRegionId, forKey: .multiRegionId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

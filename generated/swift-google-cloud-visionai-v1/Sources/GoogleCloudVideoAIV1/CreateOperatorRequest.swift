@@ -45,6 +45,8 @@ public struct CreateOperatorRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// not supported (00000000-0000-0000-0000-000000000000).
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateOperatorRequest`.
   public init() {}
 
@@ -61,27 +63,52 @@ public struct CreateOperatorRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case operatorId = "operatorId"
-    case `operator` = "operator"
-    case requestId = "requestId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let operatorId = CodingKeys(stringValue: "operatorId")
+    static let `operator` = CodingKeys(stringValue: "operator")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "operatorId",
+      "operator",
+      "requestId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.operatorId = try container.decode(Swift.String.self, forKey: .operatorId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operatorId) {
+      self.operatorId = value
+    }
     self.`operator` = try container.decodeIfPresent(Operator.self, forKey: .`operator`)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.operatorId, forKey: .operatorId)
-    try container.encode(self.`operator`, forKey: .`operator`)
+    try container.encodeIfPresent(self.`operator`, forKey: .`operator`)
     try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -103,6 +103,8 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Condition evaluation state for this role binding.
   public var conditionExplanation: ConditionExplanation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DenyRuleExplanation`.
   public init() {}
 
@@ -119,6 +121,111 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let denyAccessState = CodingKeys(stringValue: "denyAccessState")
+    static let combinedDeniedPermission = CodingKeys(stringValue: "combinedDeniedPermission")
+    static let deniedPermissions = CodingKeys(stringValue: "deniedPermissions")
+    static let combinedExceptionPermission = CodingKeys(stringValue: "combinedExceptionPermission")
+    static let exceptionPermissions = CodingKeys(stringValue: "exceptionPermissions")
+    static let combinedDeniedPrincipal = CodingKeys(stringValue: "combinedDeniedPrincipal")
+    static let deniedPrincipals = CodingKeys(stringValue: "deniedPrincipals")
+    static let combinedExceptionPrincipal = CodingKeys(stringValue: "combinedExceptionPrincipal")
+    static let exceptionPrincipals = CodingKeys(stringValue: "exceptionPrincipals")
+    static let relevance = CodingKeys(stringValue: "relevance")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let conditionExplanation = CodingKeys(stringValue: "conditionExplanation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "denyAccessState",
+      "combinedDeniedPermission",
+      "deniedPermissions",
+      "combinedExceptionPermission",
+      "exceptionPermissions",
+      "combinedDeniedPrincipal",
+      "deniedPrincipals",
+      "combinedExceptionPrincipal",
+      "exceptionPrincipals",
+      "relevance",
+      "condition",
+      "conditionExplanation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DenyAccessState.self, forKey: .denyAccessState) {
+      self.denyAccessState = value
+    }
+    self.combinedDeniedPermission = try container.decodeIfPresent(
+      DenyRuleExplanation.AnnotatedPermissionMatching.self, forKey: .combinedDeniedPermission)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: DenyRuleExplanation.AnnotatedPermissionMatching].self,
+      forKey: .deniedPermissions)
+    {
+      self.deniedPermissions = value
+    }
+    self.combinedExceptionPermission = try container.decodeIfPresent(
+      DenyRuleExplanation.AnnotatedPermissionMatching.self, forKey: .combinedExceptionPermission)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: DenyRuleExplanation.AnnotatedPermissionMatching].self,
+      forKey: .exceptionPermissions)
+    {
+      self.exceptionPermissions = value
+    }
+    self.combinedDeniedPrincipal = try container.decodeIfPresent(
+      DenyRuleExplanation.AnnotatedDenyPrincipalMatching.self, forKey: .combinedDeniedPrincipal)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: DenyRuleExplanation.AnnotatedDenyPrincipalMatching].self,
+      forKey: .deniedPrincipals)
+    {
+      self.deniedPrincipals = value
+    }
+    self.combinedExceptionPrincipal = try container.decodeIfPresent(
+      DenyRuleExplanation.AnnotatedDenyPrincipalMatching.self, forKey: .combinedExceptionPrincipal)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: DenyRuleExplanation.AnnotatedDenyPrincipalMatching].self,
+      forKey: .exceptionPrincipals)
+    {
+      self.exceptionPrincipals = value
+    }
+    if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+    self.conditionExplanation = try container.decodeIfPresent(
+      ConditionExplanation.self, forKey: .conditionExplanation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.denyAccessState, forKey: .denyAccessState)
+    try container.encodeIfPresent(self.combinedDeniedPermission, forKey: .combinedDeniedPermission)
+    try container.encode(self.deniedPermissions, forKey: .deniedPermissions)
+    try container.encodeIfPresent(
+      self.combinedExceptionPermission, forKey: .combinedExceptionPermission)
+    try container.encode(self.exceptionPermissions, forKey: .exceptionPermissions)
+    try container.encodeIfPresent(self.combinedDeniedPrincipal, forKey: .combinedDeniedPrincipal)
+    try container.encode(self.deniedPrincipals, forKey: .deniedPrincipals)
+    try container.encodeIfPresent(
+      self.combinedExceptionPrincipal, forKey: .combinedExceptionPrincipal)
+    try container.encode(self.exceptionPrincipals, forKey: .exceptionPrincipals)
+    try container.encode(self.relevance, forKey: .relevance)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encodeIfPresent(self.conditionExplanation, forKey: .conditionExplanation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details about whether the permission in the request is denied by the
   /// deny rule.
   public struct AnnotatedPermissionMatching: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -132,6 +239,8 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// The relevance of the permission status to the overall determination for
     /// the rule.
     public var relevance: HeuristicRelevance = HeuristicRelevance()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AnnotatedPermissionMatching`.
     public init() {}
@@ -147,6 +256,46 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let permissionMatchingState = CodingKeys(stringValue: "permissionMatchingState")
+      static let relevance = CodingKeys(stringValue: "relevance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "permissionMatchingState",
+        "relevance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        PermissionPatternMatchingState.self, forKey: .permissionMatchingState)
+      {
+        self.permissionMatchingState = value
+      }
+      if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+        self.relevance = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.permissionMatchingState, forKey: .permissionMatchingState)
+      try container.encode(self.relevance, forKey: .relevance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -175,6 +324,8 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// the role binding.
     public var relevance: HeuristicRelevance = HeuristicRelevance()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnnotatedDenyPrincipalMatching`.
     public init() {}
 
@@ -189,6 +340,46 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let membership = CodingKeys(stringValue: "membership")
+      static let relevance = CodingKeys(stringValue: "relevance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "membership",
+        "relevance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MembershipMatchingState.self, forKey: .membership)
+      {
+        self.membership = value
+      }
+      if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+        self.relevance = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.membership, forKey: .membership)
+      try container.encode(self.relevance, forKey: .relevance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -67,6 +67,8 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Stream backfill strategy.
   public var backfillStrategy: OneOf_BackfillStrategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Stream`.
   public init() {}
 
@@ -83,38 +85,73 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case displayName = "displayName"
-    case sourceConfig = "sourceConfig"
-    case destinationConfig = "destinationConfig"
-    case state = "state"
-    case backfillAll = "backfillAll"
-    case backfillNone = "backfillNone"
-    case errors = "errors"
-    case customerManagedEncryptionKey = "customerManagedEncryptionKey"
-    case lastRecoveryTime = "lastRecoveryTime"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let sourceConfig = CodingKeys(stringValue: "sourceConfig")
+    static let destinationConfig = CodingKeys(stringValue: "destinationConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let backfillAll = CodingKeys(stringValue: "backfillAll")
+    static let backfillNone = CodingKeys(stringValue: "backfillNone")
+    static let errors = CodingKeys(stringValue: "errors")
+    static let customerManagedEncryptionKey = CodingKeys(
+      stringValue: "customerManagedEncryptionKey")
+    static let lastRecoveryTime = CodingKeys(stringValue: "lastRecoveryTime")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "sourceConfig",
+      "destinationConfig",
+      "state",
+      "backfillAll",
+      "backfillNone",
+      "errors",
+      "customerManagedEncryptionKey",
+      "lastRecoveryTime",
+      "satisfiesPzs",
+      "satisfiesPzi",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.sourceConfig = try container.decodeIfPresent(SourceConfig.self, forKey: .sourceConfig)
     self.destinationConfig = try container.decodeIfPresent(
       DestinationConfig.self, forKey: .destinationConfig)
-    self.state = try container.decode(Stream.State.self, forKey: .state)
-    self.errors = try container.decode([Error].self, forKey: .errors)
+    if let value = try container.decodeIfPresent(Stream.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
+      self.errors = value
+    }
     self.customerManagedEncryptionKey = try container.decodeIfPresent(
       Swift.String.self, forKey: .customerManagedEncryptionKey)
     self.lastRecoveryTime = try container.decodeIfPresent(
@@ -143,23 +180,28 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try backfillStrategyCheckAndSet(.backfillNone(backfillNone))
     }
     self.backfillStrategy = backfillStrategy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.sourceConfig, forKey: .sourceConfig)
-    try container.encode(self.destinationConfig, forKey: .destinationConfig)
+    try container.encodeIfPresent(self.sourceConfig, forKey: .sourceConfig)
+    try container.encodeIfPresent(self.destinationConfig, forKey: .destinationConfig)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.errors, forKey: .errors)
-    try container.encode(self.customerManagedEncryptionKey, forKey: .customerManagedEncryptionKey)
-    try container.encode(self.lastRecoveryTime, forKey: .lastRecoveryTime)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(
+      self.customerManagedEncryptionKey, forKey: .customerManagedEncryptionKey)
+    try container.encodeIfPresent(self.lastRecoveryTime, forKey: .lastRecoveryTime)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
     if let choice = self.backfillStrategy {
       switch choice {
@@ -168,6 +210,9 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backfillNone(let value):
         try container.encode(value, forKey: .backfillNone)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -178,6 +223,8 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// List of objects to exclude.
     public var excludedObjects: OneOf_ExcludedObjects? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BackfillAllStrategy`.
     public init() {}
@@ -195,13 +242,27 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case oracleExcludedObjects = "oracleExcludedObjects"
-      case mysqlExcludedObjects = "mysqlExcludedObjects"
-      case postgresqlExcludedObjects = "postgresqlExcludedObjects"
-      case sqlServerExcludedObjects = "sqlServerExcludedObjects"
-      case salesforceExcludedObjects = "salesforceExcludedObjects"
-      case mongodbExcludedObjects = "mongodbExcludedObjects"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let oracleExcludedObjects = CodingKeys(stringValue: "oracleExcludedObjects")
+      static let mysqlExcludedObjects = CodingKeys(stringValue: "mysqlExcludedObjects")
+      static let postgresqlExcludedObjects = CodingKeys(stringValue: "postgresqlExcludedObjects")
+      static let sqlServerExcludedObjects = CodingKeys(stringValue: "sqlServerExcludedObjects")
+      static let salesforceExcludedObjects = CodingKeys(stringValue: "salesforceExcludedObjects")
+      static let mongodbExcludedObjects = CodingKeys(stringValue: "mongodbExcludedObjects")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "oracleExcludedObjects",
+        "mysqlExcludedObjects",
+        "postgresqlExcludedObjects",
+        "sqlServerExcludedObjects",
+        "salesforceExcludedObjects",
+        "mongodbExcludedObjects",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -248,6 +309,10 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try excludedObjectsCheckAndSet(.mongodbExcludedObjects(mongodbExcludedObjects))
       }
       self.excludedObjects = excludedObjects
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -268,6 +333,9 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .mongodbExcludedObjects(let value):
           try container.encode(value, forKey: .mongodbExcludedObjects)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -302,6 +370,8 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct BackfillNoneStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackfillNoneStrategy`.
     public init() {}
 
@@ -316,6 +386,30 @@ public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

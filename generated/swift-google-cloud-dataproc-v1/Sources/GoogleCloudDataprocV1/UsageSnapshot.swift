@@ -51,6 +51,8 @@ public struct UsageSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The timestamp of the usage snapshot.
   public var snapshotTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UsageSnapshot`.
   public init() {}
 
@@ -65,6 +67,74 @@ public struct UsageSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let milliDcu = CodingKeys(stringValue: "milliDcu")
+    static let shuffleStorageGb = CodingKeys(stringValue: "shuffleStorageGb")
+    static let milliDcuPremium = CodingKeys(stringValue: "milliDcuPremium")
+    static let shuffleStorageGbPremium = CodingKeys(stringValue: "shuffleStorageGbPremium")
+    static let milliAccelerator = CodingKeys(stringValue: "milliAccelerator")
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let snapshotTime = CodingKeys(stringValue: "snapshotTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "milliDcu",
+      "shuffleStorageGb",
+      "milliDcuPremium",
+      "shuffleStorageGbPremium",
+      "milliAccelerator",
+      "acceleratorType",
+      "snapshotTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .milliDcu) {
+      self.milliDcu = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .shuffleStorageGb) {
+      self.shuffleStorageGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .milliDcuPremium) {
+      self.milliDcuPremium = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .shuffleStorageGbPremium)
+    {
+      self.shuffleStorageGbPremium = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .milliAccelerator) {
+      self.milliAccelerator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+      self.acceleratorType = value
+    }
+    self.snapshotTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .snapshotTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.milliDcu, forKey: .milliDcu)
+    try container.encode(self.shuffleStorageGb, forKey: .shuffleStorageGb)
+    try container.encode(self.milliDcuPremium, forKey: .milliDcuPremium)
+    try container.encode(self.shuffleStorageGbPremium, forKey: .shuffleStorageGbPremium)
+    try container.encode(self.milliAccelerator, forKey: .milliAccelerator)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encodeIfPresent(self.snapshotTime, forKey: .snapshotTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -68,6 +68,8 @@ public struct DbSystemShape: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Core count increment.
   public var coreCountIncrement: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbSystemShape`.
   public init() {}
 
@@ -82,6 +84,129 @@ public struct DbSystemShape: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let shape = CodingKeys(stringValue: "shape")
+    static let minNodeCount = CodingKeys(stringValue: "minNodeCount")
+    static let maxNodeCount = CodingKeys(stringValue: "maxNodeCount")
+    static let minStorageCount = CodingKeys(stringValue: "minStorageCount")
+    static let maxStorageCount = CodingKeys(stringValue: "maxStorageCount")
+    static let availableCoreCountPerNode = CodingKeys(stringValue: "availableCoreCountPerNode")
+    static let availableMemoryPerNodeGb = CodingKeys(stringValue: "availableMemoryPerNodeGb")
+    static let availableDataStorageTb = CodingKeys(stringValue: "availableDataStorageTb")
+    static let minCoreCountPerNode = CodingKeys(stringValue: "minCoreCountPerNode")
+    static let minMemoryPerNodeGb = CodingKeys(stringValue: "minMemoryPerNodeGb")
+    static let minDbNodeStoragePerNodeGb = CodingKeys(stringValue: "minDbNodeStoragePerNodeGb")
+    static let minimumCoreCount = CodingKeys(stringValue: "minimumCoreCount")
+    static let availableCoreCount = CodingKeys(stringValue: "availableCoreCount")
+    static let coreCountIncrement = CodingKeys(stringValue: "coreCountIncrement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "shape",
+      "minNodeCount",
+      "maxNodeCount",
+      "minStorageCount",
+      "maxStorageCount",
+      "availableCoreCountPerNode",
+      "availableMemoryPerNodeGb",
+      "availableDataStorageTb",
+      "minCoreCountPerNode",
+      "minMemoryPerNodeGb",
+      "minDbNodeStoragePerNodeGb",
+      "minimumCoreCount",
+      "availableCoreCount",
+      "coreCountIncrement",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shape) {
+      self.shape = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount) {
+      self.minNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodeCount) {
+      self.maxNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minStorageCount) {
+      self.minStorageCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxStorageCount) {
+      self.maxStorageCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .availableCoreCountPerNode)
+    {
+      self.availableCoreCountPerNode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .availableMemoryPerNodeGb)
+    {
+      self.availableMemoryPerNodeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .availableDataStorageTb)
+    {
+      self.availableDataStorageTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minCoreCountPerNode) {
+      self.minCoreCountPerNode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minMemoryPerNodeGb) {
+      self.minMemoryPerNodeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .minDbNodeStoragePerNodeGb)
+    {
+      self.minDbNodeStoragePerNodeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minimumCoreCount) {
+      self.minimumCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .availableCoreCount) {
+      self.availableCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .coreCountIncrement) {
+      self.coreCountIncrement = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.shape, forKey: .shape)
+    try container.encode(self.minNodeCount, forKey: .minNodeCount)
+    try container.encode(self.maxNodeCount, forKey: .maxNodeCount)
+    try container.encode(self.minStorageCount, forKey: .minStorageCount)
+    try container.encode(self.maxStorageCount, forKey: .maxStorageCount)
+    try container.encode(self.availableCoreCountPerNode, forKey: .availableCoreCountPerNode)
+    try container.encode(self.availableMemoryPerNodeGb, forKey: .availableMemoryPerNodeGb)
+    try container.encode(self.availableDataStorageTb, forKey: .availableDataStorageTb)
+    try container.encode(self.minCoreCountPerNode, forKey: .minCoreCountPerNode)
+    try container.encode(self.minMemoryPerNodeGb, forKey: .minMemoryPerNodeGb)
+    try container.encode(self.minDbNodeStoragePerNodeGb, forKey: .minDbNodeStoragePerNodeGb)
+    try container.encode(self.minimumCoreCount, forKey: .minimumCoreCount)
+    try container.encode(self.availableCoreCount, forKey: .availableCoreCount)
+    try container.encode(self.coreCountIncrement, forKey: .coreCountIncrement)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

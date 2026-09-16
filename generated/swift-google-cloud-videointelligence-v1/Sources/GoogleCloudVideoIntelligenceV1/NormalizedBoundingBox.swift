@@ -35,6 +35,8 @@ public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Bottom Y coordinate.
   public var bottom: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NormalizedBoundingBox`.
   public init() {}
 
@@ -51,19 +53,43 @@ public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `left` = "left"
-    case top = "top"
-    case `right` = "right"
-    case bottom = "bottom"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `left` = CodingKeys(stringValue: "left")
+    static let top = CodingKeys(stringValue: "top")
+    static let `right` = CodingKeys(stringValue: "right")
+    static let bottom = CodingKeys(stringValue: "bottom")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "left",
+      "top",
+      "right",
+      "bottom",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`left` = try container.decode(Swift.Float.self, forKey: .`left`)
-    self.top = try container.decode(Swift.Float.self, forKey: .top)
-    self.`right` = try container.decode(Swift.Float.self, forKey: .`right`)
-    self.bottom = try container.decode(Swift.Float.self, forKey: .bottom)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .`left`) {
+      self.`left` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .top) {
+      self.top = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .`right`) {
+      self.`right` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .bottom) {
+      self.bottom = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +98,9 @@ public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPack
     try container.encode(self.top, forKey: .top)
     try container.encode(self.`right`, forKey: .`right`)
     try container.encode(self.bottom, forKey: .bottom)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

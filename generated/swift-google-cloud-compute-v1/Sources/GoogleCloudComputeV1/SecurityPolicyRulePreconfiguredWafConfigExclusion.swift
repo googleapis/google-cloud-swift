@@ -52,6 +52,8 @@
     /// Target WAF rule set to apply the preconfigured WAF exclusion.
     public var targetRuleSet: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyRulePreconfiguredWafConfigExclusion`.
     public init() {}
 
@@ -66,6 +68,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let requestCookiesToExclude = CodingKeys(stringValue: "requestCookiesToExclude")
+      static let requestHeadersToExclude = CodingKeys(stringValue: "requestHeadersToExclude")
+      static let requestQueryParamsToExclude = CodingKeys(
+        stringValue: "requestQueryParamsToExclude")
+      static let requestUrisToExclude = CodingKeys(stringValue: "requestUrisToExclude")
+      static let targetRuleIds = CodingKeys(stringValue: "targetRuleIds")
+      static let targetRuleSet = CodingKeys(stringValue: "targetRuleSet")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "requestCookiesToExclude",
+        "requestHeadersToExclude",
+        "requestQueryParamsToExclude",
+        "requestUrisToExclude",
+        "targetRuleIds",
+        "targetRuleSet",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
+        forKey: .requestCookiesToExclude)
+      {
+        self.requestCookiesToExclude = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
+        forKey: .requestHeadersToExclude)
+      {
+        self.requestHeadersToExclude = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
+        forKey: .requestQueryParamsToExclude)
+      {
+        self.requestQueryParamsToExclude = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
+        forKey: .requestUrisToExclude)
+      {
+        self.requestUrisToExclude = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetRuleIds) {
+        self.targetRuleIds = value
+      }
+      self.targetRuleSet = try container.decodeIfPresent(Swift.String.self, forKey: .targetRuleSet)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.requestCookiesToExclude, forKey: .requestCookiesToExclude)
+      try container.encode(self.requestHeadersToExclude, forKey: .requestHeadersToExclude)
+      try container.encode(self.requestQueryParamsToExclude, forKey: .requestQueryParamsToExclude)
+      try container.encode(self.requestUrisToExclude, forKey: .requestUrisToExclude)
+      try container.encode(self.targetRuleIds, forKey: .targetRuleIds)
+      try container.encodeIfPresent(self.targetRuleSet, forKey: .targetRuleSet)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

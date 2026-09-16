@@ -73,6 +73,8 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// [google.cloud.backupdr.v1.BackupConfigDetails.type]: <doc:BackupConfigDetails/type>
   public var planSpecificConfig: OneOf_PlanSpecificConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupConfigDetails`.
   public init() {}
 
@@ -89,33 +91,68 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case backupConfigSource = "backupConfigSource"
-    case backupConfigSourceDisplayName = "backupConfigSourceDisplayName"
-    case type = "type"
-    case state = "state"
-    case pitrSettings = "pitrSettings"
-    case latestSuccessfulBackupTime = "latestSuccessfulBackupTime"
-    case applicableResource = "applicableResource"
-    case backupVault = "backupVault"
-    case backupLocations = "backupLocations"
-    case backupDrPlanConfig = "backupDrPlanConfig"
-    case backupDrTemplateConfig = "backupDrTemplateConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupConfigSource = CodingKeys(stringValue: "backupConfigSource")
+    static let backupConfigSourceDisplayName = CodingKeys(
+      stringValue: "backupConfigSourceDisplayName")
+    static let type = CodingKeys(stringValue: "type")
+    static let state = CodingKeys(stringValue: "state")
+    static let pitrSettings = CodingKeys(stringValue: "pitrSettings")
+    static let latestSuccessfulBackupTime = CodingKeys(stringValue: "latestSuccessfulBackupTime")
+    static let applicableResource = CodingKeys(stringValue: "applicableResource")
+    static let backupVault = CodingKeys(stringValue: "backupVault")
+    static let backupLocations = CodingKeys(stringValue: "backupLocations")
+    static let backupDrPlanConfig = CodingKeys(stringValue: "backupDrPlanConfig")
+    static let backupDrTemplateConfig = CodingKeys(stringValue: "backupDrTemplateConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupConfigSource",
+      "backupConfigSourceDisplayName",
+      "type",
+      "state",
+      "pitrSettings",
+      "latestSuccessfulBackupTime",
+      "applicableResource",
+      "backupVault",
+      "backupLocations",
+      "backupDrPlanConfig",
+      "backupDrTemplateConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.backupConfigSource = try container.decode(Swift.String.self, forKey: .backupConfigSource)
-    self.backupConfigSourceDisplayName = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupConfigSource) {
+      self.backupConfigSource = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .backupConfigSourceDisplayName)
-    self.type = try container.decode(BackupConfigDetails.Type_.self, forKey: .type)
-    self.state = try container.decode(BackupConfigDetails.State.self, forKey: .state)
+    {
+      self.backupConfigSourceDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(BackupConfigDetails.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(BackupConfigDetails.State.self, forKey: .state) {
+      self.state = value
+    }
     self.pitrSettings = try container.decodeIfPresent(PitrSettings.self, forKey: .pitrSettings)
     self.latestSuccessfulBackupTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .latestSuccessfulBackupTime)
-    self.applicableResource = try container.decode(Swift.String.self, forKey: .applicableResource)
-    self.backupVault = try container.decode(Swift.String.self, forKey: .backupVault)
-    self.backupLocations = try container.decode([BackupLocation].self, forKey: .backupLocations)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applicableResource) {
+      self.applicableResource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupVault) {
+      self.backupVault = value
+    }
+    if let value = try container.decodeIfPresent([BackupLocation].self, forKey: .backupLocations) {
+      self.backupLocations = value
+    }
 
     var planSpecificConfig: OneOf_PlanSpecificConfig? = nil
     let planSpecificConfigCheckAndSet = {
@@ -138,6 +175,10 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try planSpecificConfigCheckAndSet(.backupDrTemplateConfig(backupDrTemplateConfig))
     }
     self.planSpecificConfig = planSpecificConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -146,8 +187,9 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.backupConfigSourceDisplayName, forKey: .backupConfigSourceDisplayName)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.pitrSettings, forKey: .pitrSettings)
-    try container.encode(self.latestSuccessfulBackupTime, forKey: .latestSuccessfulBackupTime)
+    try container.encodeIfPresent(self.pitrSettings, forKey: .pitrSettings)
+    try container.encodeIfPresent(
+      self.latestSuccessfulBackupTime, forKey: .latestSuccessfulBackupTime)
     try container.encode(self.applicableResource, forKey: .applicableResource)
     try container.encode(self.backupVault, forKey: .backupVault)
     try container.encode(self.backupLocations, forKey: .backupLocations)
@@ -159,6 +201,9 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .backupDrTemplateConfig(let value):
         try container.encode(value, forKey: .backupDrTemplateConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

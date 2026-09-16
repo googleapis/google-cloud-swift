@@ -50,6 +50,8 @@ public struct PatchRollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// VMs in the next zone fail to patch, the patch job stops.
   public var disruptionBudget: FixedOrPercent? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchRollout`.
   public init() {}
 
@@ -64,6 +66,43 @@ public struct PatchRollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+    static let disruptionBudget = CodingKeys(stringValue: "disruptionBudget")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode",
+      "disruptionBudget",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(PatchRollout.Mode.self, forKey: .mode) {
+      self.mode = value
+    }
+    self.disruptionBudget = try container.decodeIfPresent(
+      FixedOrPercent.self, forKey: .disruptionBudget)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encodeIfPresent(self.disruptionBudget, forKey: .disruptionBudget)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of the rollout.

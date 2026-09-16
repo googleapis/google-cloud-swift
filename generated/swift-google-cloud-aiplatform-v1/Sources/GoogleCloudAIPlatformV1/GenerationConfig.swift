@@ -144,6 +144,8 @@
     /// Optional. Config for image generation features.
     public var imageConfig: ImageConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerationConfig`.
     public init() {}
 
@@ -160,12 +162,140 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let temperature = CodingKeys(stringValue: "temperature")
+      static let topP = CodingKeys(stringValue: "topP")
+      static let topK = CodingKeys(stringValue: "topK")
+      static let candidateCount = CodingKeys(stringValue: "candidateCount")
+      static let maxOutputTokens = CodingKeys(stringValue: "maxOutputTokens")
+      static let stopSequences = CodingKeys(stringValue: "stopSequences")
+      static let responseLogprobs = CodingKeys(stringValue: "responseLogprobs")
+      static let logprobs = CodingKeys(stringValue: "logprobs")
+      static let presencePenalty = CodingKeys(stringValue: "presencePenalty")
+      static let frequencyPenalty = CodingKeys(stringValue: "frequencyPenalty")
+      static let seed = CodingKeys(stringValue: "seed")
+      static let responseMimeType = CodingKeys(stringValue: "responseMimeType")
+      static let responseSchema = CodingKeys(stringValue: "responseSchema")
+      static let responseJsonSchema = CodingKeys(stringValue: "responseJsonSchema")
+      static let routingConfig = CodingKeys(stringValue: "routingConfig")
+      static let audioTimestamp = CodingKeys(stringValue: "audioTimestamp")
+      static let responseModalities = CodingKeys(stringValue: "responseModalities")
+      static let mediaResolution = CodingKeys(stringValue: "mediaResolution")
+      static let speechConfig = CodingKeys(stringValue: "speechConfig")
+      static let thinkingConfig = CodingKeys(stringValue: "thinkingConfig")
+      static let imageConfig = CodingKeys(stringValue: "imageConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "temperature",
+        "topP",
+        "topK",
+        "candidateCount",
+        "maxOutputTokens",
+        "stopSequences",
+        "responseLogprobs",
+        "logprobs",
+        "presencePenalty",
+        "frequencyPenalty",
+        "seed",
+        "responseMimeType",
+        "responseSchema",
+        "responseJsonSchema",
+        "routingConfig",
+        "audioTimestamp",
+        "responseModalities",
+        "mediaResolution",
+        "speechConfig",
+        "thinkingConfig",
+        "imageConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.temperature = try container.decodeIfPresent(Swift.Float.self, forKey: .temperature)
+      self.topP = try container.decodeIfPresent(Swift.Float.self, forKey: .topP)
+      self.topK = try container.decodeIfPresent(Swift.Float.self, forKey: .topK)
+      self.candidateCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .candidateCount)
+      self.maxOutputTokens = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxOutputTokens)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .stopSequences) {
+        self.stopSequences = value
+      }
+      self.responseLogprobs = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .responseLogprobs)
+      self.logprobs = try container.decodeIfPresent(Swift.Int32.self, forKey: .logprobs)
+      self.presencePenalty = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .presencePenalty)
+      self.frequencyPenalty = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .frequencyPenalty)
+      self.seed = try container.decodeIfPresent(Swift.Int32.self, forKey: .seed)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseMimeType) {
+        self.responseMimeType = value
+      }
+      self.responseSchema = try container.decodeIfPresent(Schema.self, forKey: .responseSchema)
+      self.responseJsonSchema = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .responseJsonSchema)
+      self.routingConfig = try container.decodeIfPresent(
+        GenerationConfig.RoutingConfig.self, forKey: .routingConfig)
+      self.audioTimestamp = try container.decodeIfPresent(Swift.Bool.self, forKey: .audioTimestamp)
+      if let value = try container.decodeIfPresent(
+        [GenerationConfig.Modality].self, forKey: .responseModalities)
+      {
+        self.responseModalities = value
+      }
+      self.mediaResolution = try container.decodeIfPresent(
+        GenerationConfig.MediaResolution.self, forKey: .mediaResolution)
+      self.speechConfig = try container.decodeIfPresent(SpeechConfig.self, forKey: .speechConfig)
+      self.thinkingConfig = try container.decodeIfPresent(
+        GenerationConfig.ThinkingConfig.self, forKey: .thinkingConfig)
+      self.imageConfig = try container.decodeIfPresent(ImageConfig.self, forKey: .imageConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.temperature, forKey: .temperature)
+      try container.encodeIfPresent(self.topP, forKey: .topP)
+      try container.encodeIfPresent(self.topK, forKey: .topK)
+      try container.encodeIfPresent(self.candidateCount, forKey: .candidateCount)
+      try container.encodeIfPresent(self.maxOutputTokens, forKey: .maxOutputTokens)
+      try container.encode(self.stopSequences, forKey: .stopSequences)
+      try container.encodeIfPresent(self.responseLogprobs, forKey: .responseLogprobs)
+      try container.encodeIfPresent(self.logprobs, forKey: .logprobs)
+      try container.encodeIfPresent(self.presencePenalty, forKey: .presencePenalty)
+      try container.encodeIfPresent(self.frequencyPenalty, forKey: .frequencyPenalty)
+      try container.encodeIfPresent(self.seed, forKey: .seed)
+      try container.encode(self.responseMimeType, forKey: .responseMimeType)
+      try container.encodeIfPresent(self.responseSchema, forKey: .responseSchema)
+      try container.encodeIfPresent(self.responseJsonSchema, forKey: .responseJsonSchema)
+      try container.encodeIfPresent(self.routingConfig, forKey: .routingConfig)
+      try container.encodeIfPresent(self.audioTimestamp, forKey: .audioTimestamp)
+      try container.encode(self.responseModalities, forKey: .responseModalities)
+      try container.encodeIfPresent(self.mediaResolution, forKey: .mediaResolution)
+      try container.encodeIfPresent(self.speechConfig, forKey: .speechConfig)
+      try container.encodeIfPresent(self.thinkingConfig, forKey: .thinkingConfig)
+      try container.encodeIfPresent(self.imageConfig, forKey: .imageConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The configuration for routing the request to a specific model.
     public struct RoutingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Routing mode.
       public var routingConfig: OneOf_RoutingConfig? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RoutingConfig`.
       public init() {}
@@ -183,9 +313,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case autoMode = "autoMode"
-        case manualMode = "manualMode"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let autoMode = CodingKeys(stringValue: "autoMode")
+        static let manualMode = CodingKeys(stringValue: "manualMode")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "autoMode",
+          "manualMode",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -212,6 +352,10 @@
           try routingConfigCheckAndSet(.manualMode(manualMode))
         }
         self.routingConfig = routingConfig
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -225,6 +369,9 @@
             try container.encode(value, forKey: .manualMode)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// When automated routing is specified, the routing will be determined by
@@ -236,6 +383,9 @@
         /// The model routing preference.
         public var modelRoutingPreference:
           GenerationConfig.RoutingConfig.AutoRoutingMode.ModelRoutingPreference? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `AutoRoutingMode`.
         public init() {}
@@ -251,6 +401,39 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelRoutingPreference = CodingKeys(stringValue: "modelRoutingPreference")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelRoutingPreference"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.modelRoutingPreference = try container.decodeIfPresent(
+            GenerationConfig.RoutingConfig.AutoRoutingMode.ModelRoutingPreference.self,
+            forKey: .modelRoutingPreference)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(
+            self.modelRoutingPreference, forKey: .modelRoutingPreference)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// The model routing preference.
@@ -385,6 +568,9 @@
         /// 'gemini-1.5-pro-001'.
         public var modelName: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ManualRoutingMode`.
         public init() {}
 
@@ -399,6 +585,36 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelName = CodingKeys(stringValue: "modelName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelName"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.modelName = try container.decodeIfPresent(Swift.String.self, forKey: .modelName)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.modelName, forKey: .modelName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -447,6 +663,8 @@
       /// Optional. The number of thoughts tokens that the model should generate.
       public var thinkingLevel: GenerationConfig.ThinkingConfig.ThinkingLevel? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ThinkingConfig`.
       public init() {}
 
@@ -461,6 +679,47 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let includeThoughts = CodingKeys(stringValue: "includeThoughts")
+        static let thinkingBudget = CodingKeys(stringValue: "thinkingBudget")
+        static let thinkingLevel = CodingKeys(stringValue: "thinkingLevel")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "includeThoughts",
+          "thinkingBudget",
+          "thinkingLevel",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.includeThoughts = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .includeThoughts)
+        self.thinkingBudget = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .thinkingBudget)
+        self.thinkingLevel = try container.decodeIfPresent(
+          GenerationConfig.ThinkingConfig.ThinkingLevel.self, forKey: .thinkingLevel)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.includeThoughts, forKey: .includeThoughts)
+        try container.encodeIfPresent(self.thinkingBudget, forKey: .thinkingBudget)
+        try container.encodeIfPresent(self.thinkingLevel, forKey: .thinkingLevel)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The thinking level for the model.

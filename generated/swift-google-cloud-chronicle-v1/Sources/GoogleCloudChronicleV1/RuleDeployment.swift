@@ -72,6 +72,8 @@ public struct RuleDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the alert status was changed to false.
   public var lastAlertStatusChangeTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuleDeployment`.
   public init() {}
 
@@ -86,6 +88,93 @@ public struct RuleDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let alerting = CodingKeys(stringValue: "alerting")
+    static let archived = CodingKeys(stringValue: "archived")
+    static let archiveTime = CodingKeys(stringValue: "archiveTime")
+    static let runFrequency = CodingKeys(stringValue: "runFrequency")
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let producerRules = CodingKeys(stringValue: "producerRules")
+    static let consumerRules = CodingKeys(stringValue: "consumerRules")
+    static let lastAlertStatusChangeTime = CodingKeys(stringValue: "lastAlertStatusChangeTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "enabled",
+      "alerting",
+      "archived",
+      "archiveTime",
+      "runFrequency",
+      "executionState",
+      "producerRules",
+      "consumerRules",
+      "lastAlertStatusChangeTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .alerting) {
+      self.alerting = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .archived) {
+      self.archived = value
+    }
+    self.archiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .archiveTime)
+    if let value = try container.decodeIfPresent(RunFrequency.self, forKey: .runFrequency) {
+      self.runFrequency = value
+    }
+    if let value = try container.decodeIfPresent(
+      RuleDeployment.ExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .producerRules) {
+      self.producerRules = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .consumerRules) {
+      self.consumerRules = value
+    }
+    self.lastAlertStatusChangeTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastAlertStatusChangeTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encode(self.alerting, forKey: .alerting)
+    try container.encode(self.archived, forKey: .archived)
+    try container.encodeIfPresent(self.archiveTime, forKey: .archiveTime)
+    try container.encode(self.runFrequency, forKey: .runFrequency)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.producerRules, forKey: .producerRules)
+    try container.encode(self.consumerRules, forKey: .consumerRules)
+    try container.encodeIfPresent(
+      self.lastAlertStatusChangeTime, forKey: .lastAlertStatusChangeTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible execution states the rule deployment can be in.

@@ -33,6 +33,8 @@ public struct ErrorResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Group/version/kind of the resource that is causing an error
   public var resourceGvk: GroupVersionKind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ErrorResource`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct ErrorResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourcePath = CodingKeys(stringValue: "sourcePath")
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let resourceNamespace = CodingKeys(stringValue: "resourceNamespace")
+    static let resourceGvk = CodingKeys(stringValue: "resourceGvk")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourcePath",
+      "resourceName",
+      "resourceNamespace",
+      "resourceGvk",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourcePath) {
+      self.sourcePath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceNamespace) {
+      self.resourceNamespace = value
+    }
+    self.resourceGvk = try container.decodeIfPresent(GroupVersionKind.self, forKey: .resourceGvk)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourcePath, forKey: .sourcePath)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.resourceNamespace, forKey: .resourceNamespace)
+    try container.encodeIfPresent(self.resourceGvk, forKey: .resourceGvk)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

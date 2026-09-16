@@ -39,6 +39,8 @@ public struct MoveTableToDatabaseRequest: Codable, Equatable, GoogleCloudWKT._An
   /// Required. The name of the database where the table should be moved.
   public var destinationDbName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MoveTableToDatabaseRequest`.
   public init() {}
 
@@ -53,6 +55,56 @@ public struct MoveTableToDatabaseRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let service = CodingKeys(stringValue: "service")
+    static let tableName = CodingKeys(stringValue: "tableName")
+    static let dbName = CodingKeys(stringValue: "dbName")
+    static let destinationDbName = CodingKeys(stringValue: "destinationDbName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "service",
+      "tableName",
+      "dbName",
+      "destinationDbName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableName) {
+      self.tableName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbName) {
+      self.dbName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationDbName) {
+      self.destinationDbName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.tableName, forKey: .tableName)
+    try container.encode(self.dbName, forKey: .dbName)
+    try container.encode(self.destinationDbName, forKey: .destinationDbName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

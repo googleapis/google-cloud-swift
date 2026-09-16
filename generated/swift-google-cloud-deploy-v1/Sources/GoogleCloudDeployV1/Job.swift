@@ -38,6 +38,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of Job.
   public var jobType: OneOf_JobType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -54,25 +56,51 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case state = "state"
-    case skipMessage = "skipMessage"
-    case jobRun = "jobRun"
-    case deployJob = "deployJob"
-    case verifyJob = "verifyJob"
-    case predeployJob = "predeployJob"
-    case postdeployJob = "postdeployJob"
-    case createChildRolloutJob = "createChildRolloutJob"
-    case advanceChildRolloutJob = "advanceChildRolloutJob"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let state = CodingKeys(stringValue: "state")
+    static let skipMessage = CodingKeys(stringValue: "skipMessage")
+    static let jobRun = CodingKeys(stringValue: "jobRun")
+    static let deployJob = CodingKeys(stringValue: "deployJob")
+    static let verifyJob = CodingKeys(stringValue: "verifyJob")
+    static let predeployJob = CodingKeys(stringValue: "predeployJob")
+    static let postdeployJob = CodingKeys(stringValue: "postdeployJob")
+    static let createChildRolloutJob = CodingKeys(stringValue: "createChildRolloutJob")
+    static let advanceChildRolloutJob = CodingKeys(stringValue: "advanceChildRolloutJob")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "state",
+      "skipMessage",
+      "jobRun",
+      "deployJob",
+      "verifyJob",
+      "predeployJob",
+      "postdeployJob",
+      "createChildRolloutJob",
+      "advanceChildRolloutJob",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.state = try container.decode(Job.State.self, forKey: .state)
-    self.skipMessage = try container.decode(Swift.String.self, forKey: .skipMessage)
-    self.jobRun = try container.decode(Swift.String.self, forKey: .jobRun)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Job.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skipMessage) {
+      self.skipMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobRun) {
+      self.jobRun = value
+    }
 
     var jobType: OneOf_JobType? = nil
     let jobTypeCheckAndSet = {
@@ -109,6 +137,10 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobTypeCheckAndSet(.advanceChildRolloutJob(advanceChildRolloutJob))
     }
     self.jobType = jobType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -133,6 +165,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .advanceChildRolloutJob(let value):
         try container.encode(value, forKey: .advanceChildRolloutJob)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

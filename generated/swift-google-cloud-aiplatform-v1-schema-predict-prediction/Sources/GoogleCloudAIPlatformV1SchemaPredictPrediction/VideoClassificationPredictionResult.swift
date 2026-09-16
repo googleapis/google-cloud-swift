@@ -56,6 +56,8 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
   /// value means higher confidence.
   public var confidence: GoogleCloudWKT.FloatValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoClassificationPredictionResult`.
   public init() {}
 
@@ -70,6 +72,65 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let type = CodingKeys(stringValue: "type")
+    static let timeSegmentStart = CodingKeys(stringValue: "timeSegmentStart")
+    static let timeSegmentEnd = CodingKeys(stringValue: "timeSegmentEnd")
+    static let confidence = CodingKeys(stringValue: "confidence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "displayName",
+      "type",
+      "timeSegmentStart",
+      "timeSegmentEnd",
+      "confidence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    self.timeSegmentStart = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .timeSegmentStart)
+    self.timeSegmentEnd = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .timeSegmentEnd)
+    self.confidence = try container.decodeIfPresent(
+      GoogleCloudWKT.FloatValue.self, forKey: .confidence)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.timeSegmentStart, forKey: .timeSegmentStart)
+    try container.encodeIfPresent(self.timeSegmentEnd, forKey: .timeSegmentEnd)
+    try container.encodeIfPresent(self.confidence, forKey: .confidence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

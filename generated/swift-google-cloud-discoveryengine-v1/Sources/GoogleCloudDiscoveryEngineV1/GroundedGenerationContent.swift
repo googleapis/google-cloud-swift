@@ -31,6 +31,8 @@
     /// Ordered `Parts` that constitute a single message.
     public var parts: [GroundedGenerationContent.Part] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroundedGenerationContent`.
     public init() {}
 
@@ -47,12 +49,54 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let role = CodingKeys(stringValue: "role")
+      static let parts = CodingKeys(stringValue: "parts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "role",
+        "parts",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+        self.role = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GroundedGenerationContent.Part].self, forKey: .parts)
+      {
+        self.parts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.role, forKey: .role)
+      try container.encode(self.parts, forKey: .parts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Single part of content.
     public struct Part: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Holder of data. It only supports text for now.
       public var data: OneOf_Data? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Part`.
       public init() {}
@@ -70,8 +114,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case text = "text"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let text = CodingKeys(stringValue: "text")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "text"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -91,6 +144,10 @@
           try dataCheckAndSet(.text(text))
         }
         self.data = data
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -101,6 +158,9 @@
           case .text(let value):
             try container.encode(value, forKey: .text)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

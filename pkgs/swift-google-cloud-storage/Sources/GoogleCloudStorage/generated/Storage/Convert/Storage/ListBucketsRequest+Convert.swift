@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ListBucketsRequest {
@@ -32,6 +32,7 @@ extension ListBucketsRequest {
     self.`prefix` = proto.`prefix`
     self.readMask = proto.hasReadMask ? try .init(proto: proto.readMask) : nil
     self.returnPartialSuccess = proto.returnPartialSuccess
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -42,6 +43,9 @@ extension ListBucketsRequest {
     proto.`prefix` = self.`prefix`
     if let readMask = self.readMask { proto.readMask = try readMask.toProto() }
     proto.returnPartialSuccess = self.returnPartialSuccess
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

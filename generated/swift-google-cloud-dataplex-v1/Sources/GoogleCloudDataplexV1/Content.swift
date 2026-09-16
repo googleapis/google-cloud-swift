@@ -53,6 +53,8 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Types of content
   public var content: OneOf_Content? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Content`.
   public init() {}
 
@@ -69,30 +71,59 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case path = "path"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case description = "description"
-    case dataText = "dataText"
-    case sqlScript = "sqlScript"
-    case notebook = "notebook"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let path = CodingKeys(stringValue: "path")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let dataText = CodingKeys(stringValue: "dataText")
+    static let sqlScript = CodingKeys(stringValue: "sqlScript")
+    static let notebook = CodingKeys(stringValue: "notebook")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "path",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "dataText",
+      "sqlScript",
+      "notebook",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.path = try container.decode(Swift.String.self, forKey: .path)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var data: OneOf_Data? = nil
     let dataCheckAndSet = {
@@ -126,6 +157,10 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try contentCheckAndSet(.notebook(notebook))
     }
     self.content = content
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -133,8 +168,8 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.path, forKey: .path)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
 
@@ -153,6 +188,9 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .notebook)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for the Sql Script content.
@@ -161,6 +199,8 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Required. Query Engine to be used for the Sql Query.
     public var engine: Content.SqlScript.QueryEngine = Content.SqlScript.QueryEngine()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SqlScript`.
     public init() {}
@@ -176,6 +216,40 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let engine = CodingKeys(stringValue: "engine")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "engine"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Content.SqlScript.QueryEngine.self, forKey: .engine)
+      {
+        self.engine = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.engine, forKey: .engine)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Query Engine Type of the SQL Script.
@@ -294,6 +368,8 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Kernel Type of the notebook.
     public var kernelType: Content.Notebook.KernelType = Content.Notebook.KernelType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Notebook`.
     public init() {}
 
@@ -308,6 +384,40 @@ public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kernelType = CodingKeys(stringValue: "kernelType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kernelType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Content.Notebook.KernelType.self, forKey: .kernelType)
+      {
+        self.kernelType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kernelType, forKey: .kernelType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Kernel Type of the Jupyter notebook.

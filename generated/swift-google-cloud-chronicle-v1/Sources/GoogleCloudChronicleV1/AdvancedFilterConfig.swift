@@ -51,6 +51,8 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Required. Source of the values for the filter.
   public var valueSource: AdvancedFilterConfig.ValueSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdvancedFilterConfig`.
   public init() {}
 
@@ -67,28 +69,62 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case token = "token"
-    case `prefix` = "prefix"
-    case suffix = "suffix"
-    case separator = "separator"
-    case multipleAllowed = "multipleAllowed"
-    case defaultValues = "defaultValues"
-    case skipDefaultAffixes = "skipDefaultAffixes"
-    case valueSource = "valueSource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let token = CodingKeys(stringValue: "token")
+    static let `prefix` = CodingKeys(stringValue: "prefix")
+    static let suffix = CodingKeys(stringValue: "suffix")
+    static let separator = CodingKeys(stringValue: "separator")
+    static let multipleAllowed = CodingKeys(stringValue: "multipleAllowed")
+    static let defaultValues = CodingKeys(stringValue: "defaultValues")
+    static let skipDefaultAffixes = CodingKeys(stringValue: "skipDefaultAffixes")
+    static let valueSource = CodingKeys(stringValue: "valueSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "token",
+      "prefix",
+      "suffix",
+      "separator",
+      "multipleAllowed",
+      "defaultValues",
+      "skipDefaultAffixes",
+      "valueSource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.token = try container.decode(Swift.String.self, forKey: .token)
-    self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-    self.suffix = try container.decode(Swift.String.self, forKey: .suffix)
-    self.separator = try container.decode(Swift.String.self, forKey: .separator)
-    self.multipleAllowed = try container.decode(Swift.Bool.self, forKey: .multipleAllowed)
-    self.defaultValues = try container.decode([Swift.String].self, forKey: .defaultValues)
-    self.skipDefaultAffixes = try container.decode(Swift.Bool.self, forKey: .skipDefaultAffixes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .token) {
+      self.token = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+      self.`prefix` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suffix) {
+      self.suffix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .separator) {
+      self.separator = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .multipleAllowed) {
+      self.multipleAllowed = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .defaultValues) {
+      self.defaultValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipDefaultAffixes) {
+      self.skipDefaultAffixes = value
+    }
     self.valueSource = try container.decodeIfPresent(
       AdvancedFilterConfig.ValueSource.self, forKey: .valueSource)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -100,7 +136,10 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     try container.encode(self.multipleAllowed, forKey: .multipleAllowed)
     try container.encode(self.defaultValues, forKey: .defaultValues)
     try container.encode(self.skipDefaultAffixes, forKey: .skipDefaultAffixes)
-    try container.encode(self.valueSource, forKey: .valueSource)
+    try container.encodeIfPresent(self.valueSource, forKey: .valueSource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Source of the values for the filter.
@@ -109,6 +148,8 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   {
     /// Source of the values for the filter.
     public var source: OneOf_Source? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ValueSource`.
     public init() {}
@@ -126,9 +167,19 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case manualOptions = "manualOptions"
-      case queryOptions = "queryOptions"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let manualOptions = CodingKeys(stringValue: "manualOptions")
+      static let queryOptions = CodingKeys(stringValue: "queryOptions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "manualOptions",
+        "queryOptions",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -155,6 +206,10 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         try sourceCheckAndSet(.queryOptions(queryOptions))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,6 +222,9 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         case .queryOptions(let value):
           try container.encode(value, forKey: .queryOptions)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -198,6 +256,8 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// The max number of options is limited to 10000.
     public var options: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManualOptions`.
     public init() {}
 
@@ -212,6 +272,38 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let options = CodingKeys(stringValue: "options")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "options"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .options) {
+        self.options = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.options, forKey: .options)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -243,6 +335,8 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// query.
     public var input: DashboardQuery.Input? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryOptions`.
     public init() {}
 
@@ -257,6 +351,56 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let query = CodingKeys(stringValue: "query")
+      static let column = CodingKeys(stringValue: "column")
+      static let globalTimeFilterEnabled = CodingKeys(stringValue: "globalTimeFilterEnabled")
+      static let input = CodingKeys(stringValue: "input")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "query",
+        "column",
+        "globalTimeFilterEnabled",
+        "input",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+        self.query = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+        self.column = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .globalTimeFilterEnabled)
+      {
+        self.globalTimeFilterEnabled = value
+      }
+      self.input = try container.decodeIfPresent(DashboardQuery.Input.self, forKey: .input)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.query, forKey: .query)
+      try container.encode(self.column, forKey: .column)
+      try container.encode(self.globalTimeFilterEnabled, forKey: .globalTimeFilterEnabled)
+      try container.encodeIfPresent(self.input, forKey: .input)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

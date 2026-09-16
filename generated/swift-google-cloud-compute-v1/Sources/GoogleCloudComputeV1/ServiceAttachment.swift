@@ -160,6 +160,8 @@
     /// attachment.
     public var targetService: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ServiceAttachment`.
     public init() {}
 
@@ -176,45 +178,86 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case connectedEndpoints = "connectedEndpoints"
-      case connectionPreference = "connectionPreference"
-      case consumerAcceptLists = "consumerAcceptLists"
-      case consumerRejectLists = "consumerRejectLists"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case domainNames = "domainNames"
-      case enableProxyProtocol = "enableProxyProtocol"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case metadata = "metadata"
-      case name = "name"
-      case natIpsPerEndpoint = "natIpsPerEndpoint"
-      case natSubnets = "natSubnets"
-      case producerForwardingRule = "producerForwardingRule"
-      case propagatedConnectionLimit = "propagatedConnectionLimit"
-      case pscServiceAttachmentId = "pscServiceAttachmentId"
-      case reconcileConnections = "reconcileConnections"
-      case region = "region"
-      case selfLink = "selfLink"
-      case targetService = "targetService"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let connectedEndpoints = CodingKeys(stringValue: "connectedEndpoints")
+      static let connectionPreference = CodingKeys(stringValue: "connectionPreference")
+      static let consumerAcceptLists = CodingKeys(stringValue: "consumerAcceptLists")
+      static let consumerRejectLists = CodingKeys(stringValue: "consumerRejectLists")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let domainNames = CodingKeys(stringValue: "domainNames")
+      static let enableProxyProtocol = CodingKeys(stringValue: "enableProxyProtocol")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let name = CodingKeys(stringValue: "name")
+      static let natIpsPerEndpoint = CodingKeys(stringValue: "natIpsPerEndpoint")
+      static let natSubnets = CodingKeys(stringValue: "natSubnets")
+      static let producerForwardingRule = CodingKeys(stringValue: "producerForwardingRule")
+      static let propagatedConnectionLimit = CodingKeys(stringValue: "propagatedConnectionLimit")
+      static let pscServiceAttachmentId = CodingKeys(stringValue: "pscServiceAttachmentId")
+      static let reconcileConnections = CodingKeys(stringValue: "reconcileConnections")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let targetService = CodingKeys(stringValue: "targetService")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "connectedEndpoints",
+        "connectionPreference",
+        "consumerAcceptLists",
+        "consumerRejectLists",
+        "creationTimestamp",
+        "description",
+        "domainNames",
+        "enableProxyProtocol",
+        "fingerprint",
+        "id",
+        "kind",
+        "metadata",
+        "name",
+        "natIpsPerEndpoint",
+        "natSubnets",
+        "producerForwardingRule",
+        "propagatedConnectionLimit",
+        "pscServiceAttachmentId",
+        "reconcileConnections",
+        "region",
+        "selfLink",
+        "targetService",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.connectedEndpoints = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ServiceAttachmentConnectedEndpoint].self, forKey: .connectedEndpoints)
+      {
+        self.connectedEndpoints = value
+      }
       self.connectionPreference = try container.decodeIfPresent(
         ServiceAttachment.ConnectionPreference.self, forKey: .connectionPreference)
-      self.consumerAcceptLists = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ServiceAttachmentConsumerProjectLimit].self, forKey: .consumerAcceptLists)
-      self.consumerRejectLists = try container.decode(
+      {
+        self.consumerAcceptLists = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .consumerRejectLists)
+      {
+        self.consumerRejectLists = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-      self.domainNames = try container.decode([Swift.String].self, forKey: .domainNames)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domainNames) {
+        self.domainNames = value
+      }
       self.enableProxyProtocol = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableProxyProtocol)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
@@ -228,11 +271,17 @@
       }
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
-      self.metadata = try container.decode([Swift.String: Swift.String].self, forKey: .metadata)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .metadata)
+      {
+        self.metadata = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.natIpsPerEndpoint = try container.decodeIfPresent(
         Swift.UInt32.self, forKey: .natIpsPerEndpoint)
-      self.natSubnets = try container.decode([Swift.String].self, forKey: .natSubnets)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .natSubnets) {
+        self.natSubnets = value
+      }
       self.producerForwardingRule = try container.decodeIfPresent(
         Swift.String.self, forKey: .producerForwardingRule)
       self.propagatedConnectionLimit = try container.decodeIfPresent(
@@ -244,36 +293,44 @@
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.targetService = try container.decodeIfPresent(Swift.String.self, forKey: .targetService)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.connectedEndpoints, forKey: .connectedEndpoints)
-      try container.encode(self.connectionPreference, forKey: .connectionPreference)
+      try container.encodeIfPresent(self.connectionPreference, forKey: .connectionPreference)
       try container.encode(self.consumerAcceptLists, forKey: .consumerAcceptLists)
       try container.encode(self.consumerRejectLists, forKey: .consumerRejectLists)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       try container.encode(self.domainNames, forKey: .domainNames)
-      try container.encode(self.enableProxyProtocol, forKey: .enableProxyProtocol)
+      try container.encodeIfPresent(self.enableProxyProtocol, forKey: .enableProxyProtocol)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       try container.encode(self.metadata, forKey: .metadata)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.natIpsPerEndpoint, forKey: .natIpsPerEndpoint)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.natIpsPerEndpoint, forKey: .natIpsPerEndpoint)
       try container.encode(self.natSubnets, forKey: .natSubnets)
-      try container.encode(self.producerForwardingRule, forKey: .producerForwardingRule)
-      try container.encode(self.propagatedConnectionLimit, forKey: .propagatedConnectionLimit)
-      try container.encode(self.pscServiceAttachmentId, forKey: .pscServiceAttachmentId)
-      try container.encode(self.reconcileConnections, forKey: .reconcileConnections)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.targetService, forKey: .targetService)
+      try container.encodeIfPresent(self.producerForwardingRule, forKey: .producerForwardingRule)
+      try container.encodeIfPresent(
+        self.propagatedConnectionLimit, forKey: .propagatedConnectionLimit)
+      try container.encodeIfPresent(self.pscServiceAttachmentId, forKey: .pscServiceAttachmentId)
+      try container.encodeIfPresent(self.reconcileConnections, forKey: .reconcileConnections)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.targetService, forKey: .targetService)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [connectionPreference][google.cloud.compute.v1.ServiceAttachment.connectionPreference] field.

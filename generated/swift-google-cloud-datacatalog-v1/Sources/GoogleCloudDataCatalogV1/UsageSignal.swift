@@ -41,6 +41,8 @@ public struct UsageSignal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Favorite count in the source system.
   public var favoriteCount: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UsageSignal`.
   public init() {}
 
@@ -55,6 +57,57 @@ public struct UsageSignal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let usageWithinTimeRange = CodingKeys(stringValue: "usageWithinTimeRange")
+    static let commonUsageWithinTimeRange = CodingKeys(stringValue: "commonUsageWithinTimeRange")
+    static let favoriteCount = CodingKeys(stringValue: "favoriteCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateTime",
+      "usageWithinTimeRange",
+      "commonUsageWithinTimeRange",
+      "favoriteCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: UsageStats].self, forKey: .usageWithinTimeRange)
+    {
+      self.usageWithinTimeRange = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CommonUsageStats].self, forKey: .commonUsageWithinTimeRange)
+    {
+      self.commonUsageWithinTimeRange = value
+    }
+    self.favoriteCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .favoriteCount)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.usageWithinTimeRange, forKey: .usageWithinTimeRange)
+    try container.encode(self.commonUsageWithinTimeRange, forKey: .commonUsageWithinTimeRange)
+    try container.encodeIfPresent(self.favoriteCount, forKey: .favoriteCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

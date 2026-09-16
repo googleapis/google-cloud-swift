@@ -93,6 +93,8 @@
     /// The list of VPN interfaces associated with this VPN gateway.
     public var vpnInterfaces: [VpnGatewayVpnGatewayInterface] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpnGateway`.
     public init() {}
 
@@ -109,21 +111,43 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case gatewayIpVersion = "gatewayIpVersion"
-      case id = "id"
-      case kind = "kind"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case name = "name"
-      case network = "network"
-      case params = "params"
-      case region = "region"
-      case selfLink = "selfLink"
-      case stackType = "stackType"
-      case vpnInterfaces = "vpnInterfaces"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let gatewayIpVersion = CodingKeys(stringValue: "gatewayIpVersion")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let params = CodingKeys(stringValue: "params")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let vpnInterfaces = CodingKeys(stringValue: "vpnInterfaces")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "gatewayIpVersion",
+        "id",
+        "kind",
+        "labelFingerprint",
+        "labels",
+        "name",
+        "network",
+        "params",
+        "region",
+        "selfLink",
+        "stackType",
+        "vpnInterfaces",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -144,37 +168,51 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
       self.params = try container.decodeIfPresent(VpnGatewayParams.self, forKey: .params)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.stackType = try container.decodeIfPresent(VpnGateway.StackType.self, forKey: .stackType)
-      self.vpnInterfaces = try container.decode(
+      if let value = try container.decodeIfPresent(
         [VpnGatewayVpnGatewayInterface].self, forKey: .vpnInterfaces)
+      {
+        self.vpnInterfaces = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.gatewayIpVersion, forKey: .gatewayIpVersion)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.gatewayIpVersion, forKey: .gatewayIpVersion)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
       try container.encode(self.vpnInterfaces, forKey: .vpnInterfaces)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [gatewayIpVersion][google.cloud.compute.v1.VpnGateway.gatewayIpVersion] field.

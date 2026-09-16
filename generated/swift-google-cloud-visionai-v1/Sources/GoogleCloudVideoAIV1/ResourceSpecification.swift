@@ -78,6 +78,8 @@ public struct ResourceSpecification: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// cpu/gpu/memory to achieve that.
   public var latencyBudgetMs: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceSpecification`.
   public init() {}
 
@@ -92,6 +94,68 @@ public struct ResourceSpecification: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpu = CodingKeys(stringValue: "cpu")
+    static let cpuLimits = CodingKeys(stringValue: "cpuLimits")
+    static let memory = CodingKeys(stringValue: "memory")
+    static let memoryLimits = CodingKeys(stringValue: "memoryLimits")
+    static let gpus = CodingKeys(stringValue: "gpus")
+    static let latencyBudgetMs = CodingKeys(stringValue: "latencyBudgetMs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpu",
+      "cpuLimits",
+      "memory",
+      "memoryLimits",
+      "gpus",
+      "latencyBudgetMs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpu) {
+      self.cpu = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cpuLimits) {
+      self.cpuLimits = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .memory) {
+      self.memory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .memoryLimits) {
+      self.memoryLimits = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .gpus) {
+      self.gpus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .latencyBudgetMs) {
+      self.latencyBudgetMs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpu, forKey: .cpu)
+    try container.encode(self.cpuLimits, forKey: .cpuLimits)
+    try container.encode(self.memory, forKey: .memory)
+    try container.encode(self.memoryLimits, forKey: .memoryLimits)
+    try container.encode(self.gpus, forKey: .gpus)
+    try container.encode(self.latencyBudgetMs, forKey: .latencyBudgetMs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

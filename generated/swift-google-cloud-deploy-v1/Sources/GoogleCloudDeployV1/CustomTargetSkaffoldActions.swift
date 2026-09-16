@@ -34,6 +34,8 @@ public struct CustomTargetSkaffoldActions: Codable, Equatable, GoogleCloudWKT._A
   /// Skaffold Config as required before performing diagnose.
   public var includeSkaffoldModules: [SkaffoldModules] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomTargetSkaffoldActions`.
   public init() {}
 
@@ -48,6 +50,52 @@ public struct CustomTargetSkaffoldActions: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let renderAction = CodingKeys(stringValue: "renderAction")
+    static let deployAction = CodingKeys(stringValue: "deployAction")
+    static let includeSkaffoldModules = CodingKeys(stringValue: "includeSkaffoldModules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "renderAction",
+      "deployAction",
+      "includeSkaffoldModules",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .renderAction) {
+      self.renderAction = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployAction) {
+      self.deployAction = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SkaffoldModules].self, forKey: .includeSkaffoldModules)
+    {
+      self.includeSkaffoldModules = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.renderAction, forKey: .renderAction)
+    try container.encode(self.deployAction, forKey: .deployAction)
+    try container.encode(self.includeSkaffoldModules, forKey: .includeSkaffoldModules)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

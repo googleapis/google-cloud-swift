@@ -30,6 +30,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Supported auth types.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthConfig`.
   public init() {}
 
@@ -46,20 +48,39 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case authType = "authType"
-    case userPassword = "userPassword"
-    case oauth2JwtBearer = "oauth2JwtBearer"
-    case oauth2ClientCredentials = "oauth2ClientCredentials"
-    case sshPublicKey = "sshPublicKey"
-    case additionalVariables = "additionalVariables"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let authType = CodingKeys(stringValue: "authType")
+    static let userPassword = CodingKeys(stringValue: "userPassword")
+    static let oauth2JwtBearer = CodingKeys(stringValue: "oauth2JwtBearer")
+    static let oauth2ClientCredentials = CodingKeys(stringValue: "oauth2ClientCredentials")
+    static let sshPublicKey = CodingKeys(stringValue: "sshPublicKey")
+    static let additionalVariables = CodingKeys(stringValue: "additionalVariables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "authType",
+      "userPassword",
+      "oauth2JwtBearer",
+      "oauth2ClientCredentials",
+      "sshPublicKey",
+      "additionalVariables",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.authType = try container.decode(AuthType.self, forKey: .authType)
-    self.additionalVariables = try container.decode(
+    if let value = try container.decodeIfPresent(AuthType.self, forKey: .authType) {
+      self.authType = value
+    }
+    if let value = try container.decodeIfPresent(
       [ConfigVariable].self, forKey: .additionalVariables)
+    {
+      self.additionalVariables = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -92,6 +113,10 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.sshPublicKey(sshPublicKey))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -111,6 +136,9 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .sshPublicKey)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Parameters to support Username and Password Authentication.
@@ -122,6 +150,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Secret version reference containing the password.
     public var password: Secret? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UserPassword`.
     public init() {}
@@ -137,6 +167,42 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let username = CodingKeys(stringValue: "username")
+      static let password = CodingKeys(stringValue: "password")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "username",
+        "password",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      self.password = try container.decodeIfPresent(Secret.self, forKey: .password)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.username, forKey: .username)
+      try container.encodeIfPresent(self.password, forKey: .password)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -165,6 +231,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// JwtClaims providers fields to generate the token.
     public var jwtClaims: AuthConfig.Oauth2JwtBearer.JwtClaims? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Oauth2JwtBearer`.
     public init() {}
 
@@ -181,6 +249,41 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+      static let jwtClaims = CodingKeys(stringValue: "jwtClaims")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientKey",
+        "jwtClaims",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientKey = try container.decodeIfPresent(Secret.self, forKey: .clientKey)
+      self.jwtClaims = try container.decodeIfPresent(
+        AuthConfig.Oauth2JwtBearer.JwtClaims.self, forKey: .jwtClaims)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientKey, forKey: .clientKey)
+      try container.encodeIfPresent(self.jwtClaims, forKey: .jwtClaims)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// JWT claims used for the jwt-bearer authorization grant.
     public struct JwtClaims: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -193,6 +296,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Value for the "aud" claim.
       public var audience: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `JwtClaims`.
       public init() {}
@@ -208,6 +313,50 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let issuer = CodingKeys(stringValue: "issuer")
+        static let subject = CodingKeys(stringValue: "subject")
+        static let audience = CodingKeys(stringValue: "audience")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "issuer",
+          "subject",
+          "audience",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
+          self.issuer = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+          self.subject = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+          self.audience = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.issuer, forKey: .issuer)
+        try container.encode(self.subject, forKey: .subject)
+        try container.encode(self.audience, forKey: .audience)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -243,6 +392,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Secret version reference containing the client secret.
     public var clientSecret: Secret? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Oauth2ClientCredentials`.
     public init() {}
 
@@ -257,6 +408,42 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientId = CodingKeys(stringValue: "clientId")
+      static let clientSecret = CodingKeys(stringValue: "clientSecret")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientId",
+        "clientSecret",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+        self.clientId = value
+      }
+      self.clientSecret = try container.decodeIfPresent(Secret.self, forKey: .clientSecret)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clientId, forKey: .clientId)
+      try container.encodeIfPresent(self.clientSecret, forKey: .clientSecret)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -286,6 +473,8 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Password (passphrase) for ssh client certificate if it has one.
     public var sshClientCertPass: Secret? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SshPublicKey`.
     public init() {}
 
@@ -300,6 +489,53 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let username = CodingKeys(stringValue: "username")
+      static let sshClientCert = CodingKeys(stringValue: "sshClientCert")
+      static let certType = CodingKeys(stringValue: "certType")
+      static let sshClientCertPass = CodingKeys(stringValue: "sshClientCertPass")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "username",
+        "sshClientCert",
+        "certType",
+        "sshClientCertPass",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      self.sshClientCert = try container.decodeIfPresent(Secret.self, forKey: .sshClientCert)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certType) {
+        self.certType = value
+      }
+      self.sshClientCertPass = try container.decodeIfPresent(
+        Secret.self, forKey: .sshClientCertPass)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.username, forKey: .username)
+      try container.encodeIfPresent(self.sshClientCert, forKey: .sshClientCert)
+      try container.encode(self.certType, forKey: .certType)
+      try container.encodeIfPresent(self.sshClientCertPass, forKey: .sshClientCertPass)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

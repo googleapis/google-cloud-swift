@@ -61,6 +61,8 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleClo
   /// The KeyStore password.
   public var keyStorePasswordOptions: OneOf_KeyStorePasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateRedisConnectionProperties`.
   public init() {}
 
@@ -77,35 +79,77 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case trustStorePassword = "trustStorePassword"
-    case trustStorePasswordSecretVersion = "trustStorePasswordSecretVersion"
-    case keyStorePassword = "keyStorePassword"
-    case keyStorePasswordSecretVersion = "keyStorePasswordSecretVersion"
-    case technologyType = "technologyType"
-    case servers = "servers"
-    case securityProtocol = "securityProtocol"
-    case authenticationType = "authenticationType"
-    case username = "username"
-    case redisClusterId = "redisClusterId"
-    case trustStoreFile = "trustStoreFile"
-    case keyStoreFile = "keyStoreFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let trustStorePassword = CodingKeys(stringValue: "trustStorePassword")
+    static let trustStorePasswordSecretVersion = CodingKeys(
+      stringValue: "trustStorePasswordSecretVersion")
+    static let keyStorePassword = CodingKeys(stringValue: "keyStorePassword")
+    static let keyStorePasswordSecretVersion = CodingKeys(
+      stringValue: "keyStorePasswordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let servers = CodingKeys(stringValue: "servers")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let username = CodingKeys(stringValue: "username")
+    static let redisClusterId = CodingKeys(stringValue: "redisClusterId")
+    static let trustStoreFile = CodingKeys(stringValue: "trustStoreFile")
+    static let keyStoreFile = CodingKeys(stringValue: "keyStoreFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "trustStorePassword",
+      "trustStorePasswordSecretVersion",
+      "keyStorePassword",
+      "keyStorePasswordSecretVersion",
+      "technologyType",
+      "servers",
+      "securityProtocol",
+      "authenticationType",
+      "username",
+      "redisClusterId",
+      "trustStoreFile",
+      "keyStoreFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.servers = try container.decode(Swift.String.self, forKey: .servers)
-    self.securityProtocol = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servers) {
+      self.servers = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateRedisConnectionProperties.RedisSecurityProtocol.self, forKey: .securityProtocol)
-    self.authenticationType = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateRedisConnectionProperties.RedisAuthenticationType.self, forKey: .authenticationType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.redisClusterId = try container.decode(Swift.String.self, forKey: .redisClusterId)
-    self.trustStoreFile = try container.decode(Swift.String.self, forKey: .trustStoreFile)
-    self.keyStoreFile = try container.decode(Swift.String.self, forKey: .keyStoreFile)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .redisClusterId) {
+      self.redisClusterId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustStoreFile) {
+      self.trustStoreFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreFile) {
+      self.keyStoreFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -172,6 +216,10 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleClo
         .keyStorePasswordSecretVersion(keyStorePasswordSecretVersion))
     }
     self.keyStorePasswordOptions = keyStorePasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -210,6 +258,9 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleClo
       case .keyStorePasswordSecretVersion(let value):
         try container.encode(value, forKey: .keyStorePasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

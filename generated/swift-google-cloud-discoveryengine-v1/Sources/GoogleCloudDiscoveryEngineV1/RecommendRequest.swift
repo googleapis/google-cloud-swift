@@ -157,6 +157,8 @@
     /// for more details.
     public var userLabels: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RecommendRequest`.
     public init() {}
 
@@ -171,6 +173,76 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let servingConfig = CodingKeys(stringValue: "servingConfig")
+      static let userEvent = CodingKeys(stringValue: "userEvent")
+      static let pageSize = CodingKeys(stringValue: "pageSize")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let validateOnly = CodingKeys(stringValue: "validateOnly")
+      static let params = CodingKeys(stringValue: "params")
+      static let userLabels = CodingKeys(stringValue: "userLabels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "servingConfig",
+        "userEvent",
+        "pageSize",
+        "filter",
+        "validateOnly",
+        "params",
+        "userLabels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servingConfig) {
+        self.servingConfig = value
+      }
+      self.userEvent = try container.decodeIfPresent(UserEvent.self, forKey: .userEvent)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+        self.pageSize = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+        self.validateOnly = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: GoogleCloudWKT.Value].self, forKey: .params)
+      {
+        self.params = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .userLabels)
+      {
+        self.userLabels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.servingConfig, forKey: .servingConfig)
+      try container.encodeIfPresent(self.userEvent, forKey: .userEvent)
+      try container.encode(self.pageSize, forKey: .pageSize)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encode(self.validateOnly, forKey: .validateOnly)
+      try container.encode(self.params, forKey: .params)
+      try container.encode(self.userLabels, forKey: .userLabels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

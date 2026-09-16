@@ -73,6 +73,8 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time when the next update can be expected.
   public var nextUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Event`.
   public init() {}
 
@@ -87,6 +89,119 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let category = CodingKeys(stringValue: "category")
+    static let detailedCategory = CodingKeys(stringValue: "detailedCategory")
+    static let state = CodingKeys(stringValue: "state")
+    static let detailedState = CodingKeys(stringValue: "detailedState")
+    static let eventImpacts = CodingKeys(stringValue: "eventImpacts")
+    static let relevance = CodingKeys(stringValue: "relevance")
+    static let updates = CodingKeys(stringValue: "updates")
+    static let parentEvent = CodingKeys(stringValue: "parentEvent")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let nextUpdateTime = CodingKeys(stringValue: "nextUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "title",
+      "description",
+      "category",
+      "detailedCategory",
+      "state",
+      "detailedState",
+      "eventImpacts",
+      "relevance",
+      "updates",
+      "parentEvent",
+      "updateTime",
+      "startTime",
+      "endTime",
+      "nextUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Event.EventCategory.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(
+      Event.DetailedCategory.self, forKey: .detailedCategory)
+    {
+      self.detailedCategory = value
+    }
+    if let value = try container.decodeIfPresent(Event.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Event.DetailedState.self, forKey: .detailedState) {
+      self.detailedState = value
+    }
+    if let value = try container.decodeIfPresent([EventImpact].self, forKey: .eventImpacts) {
+      self.eventImpacts = value
+    }
+    if let value = try container.decodeIfPresent(Event.Relevance.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    if let value = try container.decodeIfPresent([EventUpdate].self, forKey: .updates) {
+      self.updates = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentEvent) {
+      self.parentEvent = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.nextUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .nextUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.detailedCategory, forKey: .detailedCategory)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.detailedState, forKey: .detailedState)
+    try container.encode(self.eventImpacts, forKey: .eventImpacts)
+    try container.encode(self.relevance, forKey: .relevance)
+    try container.encode(self.updates, forKey: .updates)
+    try container.encode(self.parentEvent, forKey: .parentEvent)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.nextUpdateTime, forKey: .nextUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The category of the event. This enum lists all possible categories of

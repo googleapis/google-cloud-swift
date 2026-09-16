@@ -34,6 +34,8 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Describes all quota violations.
   public var violations: [QuotaFailure.Violation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaFailure`.
   public init() {}
 
@@ -48,6 +50,39 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let violations = CodingKeys(stringValue: "violations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "violations"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([QuotaFailure.Violation].self, forKey: .violations)
+    {
+      self.violations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.violations, forKey: .violations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A message type used to describe a single quota violation.  For example, a
@@ -134,6 +169,8 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// this field.
     public var futureQuotaValue: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Violation`.
     public init() {}
 
@@ -148,6 +185,81 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subject = CodingKeys(stringValue: "subject")
+      static let description = CodingKeys(stringValue: "description")
+      static let apiService = CodingKeys(stringValue: "apiService")
+      static let quotaMetric = CodingKeys(stringValue: "quotaMetric")
+      static let quotaId = CodingKeys(stringValue: "quotaId")
+      static let quotaDimensions = CodingKeys(stringValue: "quotaDimensions")
+      static let quotaValue = CodingKeys(stringValue: "quotaValue")
+      static let futureQuotaValue = CodingKeys(stringValue: "futureQuotaValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subject",
+        "description",
+        "apiService",
+        "quotaMetric",
+        "quotaId",
+        "quotaDimensions",
+        "quotaValue",
+        "futureQuotaValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+        self.subject = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiService) {
+        self.apiService = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaMetric) {
+        self.quotaMetric = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaId) {
+        self.quotaId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .quotaDimensions)
+      {
+        self.quotaDimensions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .quotaValue) {
+        self.quotaValue = value
+      }
+      self.futureQuotaValue = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .futureQuotaValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.subject, forKey: .subject)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.apiService, forKey: .apiService)
+      try container.encode(self.quotaMetric, forKey: .quotaMetric)
+      try container.encode(self.quotaId, forKey: .quotaId)
+      try container.encode(self.quotaDimensions, forKey: .quotaDimensions)
+      try container.encode(self.quotaValue, forKey: .quotaValue)
+      try container.encodeIfPresent(self.futureQuotaValue, forKey: .futureQuotaValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

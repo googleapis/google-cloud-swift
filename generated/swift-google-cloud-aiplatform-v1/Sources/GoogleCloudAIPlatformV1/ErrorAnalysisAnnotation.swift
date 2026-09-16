@@ -36,6 +36,8 @@
     /// The threshold used to determine if this annotation is an outlier or not.
     public var outlierThreshold: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ErrorAnalysisAnnotation`.
     public init() {}
 
@@ -52,6 +54,60 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let attributedItems = CodingKeys(stringValue: "attributedItems")
+      static let queryType = CodingKeys(stringValue: "queryType")
+      static let outlierScore = CodingKeys(stringValue: "outlierScore")
+      static let outlierThreshold = CodingKeys(stringValue: "outlierThreshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "attributedItems",
+        "queryType",
+        "outlierScore",
+        "outlierThreshold",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [ErrorAnalysisAnnotation.AttributedItem].self, forKey: .attributedItems)
+      {
+        self.attributedItems = value
+      }
+      if let value = try container.decodeIfPresent(
+        ErrorAnalysisAnnotation.QueryType.self, forKey: .queryType)
+      {
+        self.queryType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .outlierScore) {
+        self.outlierScore = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .outlierThreshold) {
+        self.outlierThreshold = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.attributedItems, forKey: .attributedItems)
+      try container.encode(self.queryType, forKey: .queryType)
+      try container.encode(self.outlierScore, forKey: .outlierScore)
+      try container.encode(self.outlierThreshold, forKey: .outlierThreshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Attributed items for a given annotation, typically representing neighbors
     /// from the training sets constrained by the query type.
     public struct AttributedItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -63,6 +119,8 @@
 
       /// The distance of this item to the annotation.
       public var distance: Swift.Double = Swift.Double()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `AttributedItem`.
       public init() {}
@@ -78,6 +136,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let annotationResourceName = CodingKeys(stringValue: "annotationResourceName")
+        static let distance = CodingKeys(stringValue: "distance")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "annotationResourceName",
+          "distance",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .annotationResourceName)
+        {
+          self.annotationResourceName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .distance) {
+          self.distance = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.annotationResourceName, forKey: .annotationResourceName)
+        try container.encode(self.distance, forKey: .distance)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

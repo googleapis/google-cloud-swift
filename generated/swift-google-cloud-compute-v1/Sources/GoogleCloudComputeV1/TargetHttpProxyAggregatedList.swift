@@ -46,6 +46,8 @@
     /// Output only. [Output Only] Unreachable resources.
     public var unreachables: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetHttpProxyAggregatedList`.
     public init() {}
 
@@ -60,6 +62,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let items = CodingKeys(stringValue: "items")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let unreachables = CodingKeys(stringValue: "unreachables")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "items",
+        "kind",
+        "nextPageToken",
+        "selfLink",
+        "unreachables",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.id = try container.decodeIfPresent(Swift.String.self, forKey: .id)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: TargetHttpProxiesScopedList].self, forKey: .items)
+      {
+        self.items = value
+      }
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.nextPageToken = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachables) {
+        self.unreachables = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encode(self.items, forKey: .items)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.nextPageToken, forKey: .nextPageToken)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encode(self.unreachables, forKey: .unreachables)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension Bucket {
@@ -62,6 +62,7 @@ extension Bucket {
       proto.hasSoftDeletePolicy ? try .init(proto: proto.softDeletePolicy) : nil
     self.objectRetention = proto.hasObjectRetention ? try .init(proto: proto.objectRetention) : nil
     self.ipFilter = proto.hasIpFilter ? try .init(proto: proto.ipFilter) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -108,6 +109,9 @@ extension Bucket {
       proto.objectRetention = try objectRetention.toProto()
     }
     if let ipFilter = self.ipFilter { proto.ipFilter = try ipFilter.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -118,11 +122,15 @@ extension Bucket.Billing {
   internal init(proto: ProtoType) throws {
     self.init()
     self.requesterPays = proto.requesterPays
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.requesterPays = self.requesterPays
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -136,6 +144,7 @@ extension Bucket.Cors {
     self.method = proto.method
     self.responseHeader = proto.responseHeader
     self.maxAgeSeconds = proto.maxAgeSeconds
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -144,6 +153,9 @@ extension Bucket.Cors {
     proto.method = self.method
     proto.responseHeader = self.responseHeader
     proto.maxAgeSeconds = self.maxAgeSeconds
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -163,6 +175,7 @@ extension Bucket.Encryption {
     self.customerSuppliedEncryptionEnforcementConfig =
       proto.hasCustomerSuppliedEncryptionEnforcementConfig
       ? try .init(proto: proto.customerSuppliedEncryptionEnforcementConfig) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -185,6 +198,9 @@ extension Bucket.Encryption {
       proto.customerSuppliedEncryptionEnforcementConfig =
         try customerSuppliedEncryptionEnforcementConfig.toProto()
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -197,12 +213,16 @@ extension Bucket.Encryption.GoogleManagedEncryptionEnforcementConfig {
     self.init()
     self.restrictionMode = proto.hasRestrictionMode ? proto.restrictionMode : nil
     self.effectiveTime = proto.hasEffectiveTime ? try .init(proto: proto.effectiveTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let restrictionMode = self.restrictionMode { proto.restrictionMode = restrictionMode }
     if let effectiveTime = self.effectiveTime { proto.effectiveTime = try effectiveTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -215,12 +235,16 @@ extension Bucket.Encryption.CustomerManagedEncryptionEnforcementConfig {
     self.init()
     self.restrictionMode = proto.hasRestrictionMode ? proto.restrictionMode : nil
     self.effectiveTime = proto.hasEffectiveTime ? try .init(proto: proto.effectiveTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let restrictionMode = self.restrictionMode { proto.restrictionMode = restrictionMode }
     if let effectiveTime = self.effectiveTime { proto.effectiveTime = try effectiveTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -233,12 +257,16 @@ extension Bucket.Encryption.CustomerSuppliedEncryptionEnforcementConfig {
     self.init()
     self.restrictionMode = proto.hasRestrictionMode ? proto.restrictionMode : nil
     self.effectiveTime = proto.hasEffectiveTime ? try .init(proto: proto.effectiveTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let restrictionMode = self.restrictionMode { proto.restrictionMode = restrictionMode }
     if let effectiveTime = self.effectiveTime { proto.effectiveTime = try effectiveTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -251,6 +279,7 @@ extension Bucket.IamConfig {
     self.uniformBucketLevelAccess =
       proto.hasUniformBucketLevelAccess ? try .init(proto: proto.uniformBucketLevelAccess) : nil
     self.publicAccessPrevention = proto.publicAccessPrevention
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -259,6 +288,9 @@ extension Bucket.IamConfig {
       proto.uniformBucketLevelAccess = try uniformBucketLevelAccess.toProto()
     }
     proto.publicAccessPrevention = self.publicAccessPrevention
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -271,12 +303,16 @@ extension Bucket.IamConfig.UniformBucketLevelAccess {
     self.init()
     self.enabled = proto.enabled
     self.lockTime = proto.hasLockTime ? try .init(proto: proto.lockTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
     if let lockTime = self.lockTime { proto.lockTime = try lockTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -287,11 +323,15 @@ extension Bucket.Lifecycle {
   internal init(proto: ProtoType) throws {
     self.init()
     self.rule = try proto.rule.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.rule = try self.rule.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -303,12 +343,16 @@ extension Bucket.Lifecycle.Rule {
     self.init()
     self.action = proto.hasAction ? try .init(proto: proto.action) : nil
     self.condition = proto.hasCondition ? try .init(proto: proto.condition) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let action = self.action { proto.action = try action.toProto() }
     if let condition = self.condition { proto.condition = try condition.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -320,12 +364,16 @@ extension Bucket.Lifecycle.Rule.Action {
     self.init()
     self.type = proto.type
     self.storageClass = proto.storageClass
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.type = self.type
     proto.storageClass = self.storageClass
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -349,6 +397,7 @@ extension Bucket.Lifecycle.Rule.Condition {
       proto.hasNoncurrentTimeBefore ? try .init(proto: proto.noncurrentTimeBefore) : nil
     self.matchesPrefix = proto.matchesPrefix
     self.matchesSuffix = proto.matchesSuffix
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -372,6 +421,9 @@ extension Bucket.Lifecycle.Rule.Condition {
     }
     proto.matchesPrefix = self.matchesPrefix
     proto.matchesSuffix = self.matchesSuffix
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -383,12 +435,16 @@ extension Bucket.Logging {
     self.init()
     self.logBucket = proto.logBucket
     self.logObjectPrefix = proto.logObjectPrefix
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.logBucket = self.logBucket
     proto.logObjectPrefix = self.logObjectPrefix
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -399,11 +455,15 @@ extension Bucket.ObjectRetention {
   internal init(proto: ProtoType) throws {
     self.init()
     self.enabled = proto.enabled
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -417,6 +477,7 @@ extension Bucket.RetentionPolicy {
     self.isLocked = proto.isLocked
     self.retentionDuration =
       proto.hasRetentionDuration ? try .init(proto: proto.retentionDuration) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -425,6 +486,9 @@ extension Bucket.RetentionPolicy {
     proto.isLocked = self.isLocked
     if let retentionDuration = self.retentionDuration {
       proto.retentionDuration = try retentionDuration.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }
@@ -438,6 +502,7 @@ extension Bucket.SoftDeletePolicy {
     self.retentionDuration =
       proto.hasRetentionDuration ? try .init(proto: proto.retentionDuration) : nil
     self.effectiveTime = proto.hasEffectiveTime ? try .init(proto: proto.effectiveTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -446,6 +511,9 @@ extension Bucket.SoftDeletePolicy {
       proto.retentionDuration = try retentionDuration.toProto()
     }
     if let effectiveTime = self.effectiveTime { proto.effectiveTime = try effectiveTime.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -456,11 +524,15 @@ extension Bucket.Versioning {
   internal init(proto: ProtoType) throws {
     self.init()
     self.enabled = proto.enabled
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -472,12 +544,16 @@ extension Bucket.Website {
     self.init()
     self.mainPageSuffix = proto.mainPageSuffix
     self.notFoundPage = proto.notFoundPage
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.mainPageSuffix = self.mainPageSuffix
     proto.notFoundPage = self.notFoundPage
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -488,11 +564,15 @@ extension Bucket.CustomPlacementConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.dataLocations = proto.dataLocations
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.dataLocations = self.dataLocations
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -508,6 +588,7 @@ extension Bucket.Autoclass {
     self.terminalStorageClassUpdateTime =
       proto.hasTerminalStorageClassUpdateTime
       ? try .init(proto: proto.terminalStorageClassUpdateTime) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -519,6 +600,9 @@ extension Bucket.Autoclass {
     }
     if let terminalStorageClassUpdateTime = self.terminalStorageClassUpdateTime {
       proto.terminalStorageClassUpdateTime = try terminalStorageClassUpdateTime.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }
@@ -536,6 +620,7 @@ extension Bucket.IpFilter {
     self.allowCrossOrgVpcs = proto.allowCrossOrgVpcs
     self.allowAllServiceAgentAccess =
       proto.hasAllowAllServiceAgentAccess ? proto.allowAllServiceAgentAccess : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -549,6 +634,9 @@ extension Bucket.IpFilter {
     if let allowAllServiceAgentAccess = self.allowAllServiceAgentAccess {
       proto.allowAllServiceAgentAccess = allowAllServiceAgentAccess
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -559,11 +647,15 @@ extension Bucket.IpFilter.PublicNetworkSource {
   internal init(proto: ProtoType) throws {
     self.init()
     self.allowedIpCidrRanges = proto.allowedIpCidrRanges
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.allowedIpCidrRanges = self.allowedIpCidrRanges
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -575,12 +667,16 @@ extension Bucket.IpFilter.VpcNetworkSource {
     self.init()
     self.network = proto.hasNetwork ? proto.network : nil
     self.allowedIpCidrRanges = proto.allowedIpCidrRanges
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let network = self.network { proto.network = network }
     proto.allowedIpCidrRanges = self.allowedIpCidrRanges
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -591,11 +687,15 @@ extension Bucket.HierarchicalNamespace {
   internal init(proto: ProtoType) throws {
     self.init()
     self.enabled = proto.enabled
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

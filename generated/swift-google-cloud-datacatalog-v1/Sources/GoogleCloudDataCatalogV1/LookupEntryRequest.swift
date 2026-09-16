@@ -38,6 +38,8 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Google Cloud Platform resource.
   public var targetName: OneOf_TargetName? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LookupEntryRequest`.
   public init() {}
 
@@ -54,18 +56,35 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case linkedResource = "linkedResource"
-    case sqlResource = "sqlResource"
-    case fullyQualifiedName = "fullyQualifiedName"
-    case project = "project"
-    case location = "location"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let linkedResource = CodingKeys(stringValue: "linkedResource")
+    static let sqlResource = CodingKeys(stringValue: "sqlResource")
+    static let fullyQualifiedName = CodingKeys(stringValue: "fullyQualifiedName")
+    static let project = CodingKeys(stringValue: "project")
+    static let location = CodingKeys(stringValue: "location")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "linkedResource",
+      "sqlResource",
+      "fullyQualifiedName",
+      "project",
+      "location",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.project = try container.decode(Swift.String.self, forKey: .project)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
 
     var targetName: OneOf_TargetName? = nil
     let targetNameCheckAndSet = {
@@ -91,6 +110,10 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try targetNameCheckAndSet(.fullyQualifiedName(fullyQualifiedName))
     }
     self.targetName = targetName
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -107,6 +130,9 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .fullyQualifiedName(let value):
         try container.encode(value, forKey: .fullyQualifiedName)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

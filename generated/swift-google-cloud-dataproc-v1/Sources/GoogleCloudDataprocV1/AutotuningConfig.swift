@@ -24,6 +24,8 @@ public struct AutotuningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Scenarios for which tunings are applied.
   public var scenarios: [AutotuningConfig.Scenario] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutotuningConfig`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct AutotuningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scenarios = CodingKeys(stringValue: "scenarios")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scenarios"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [AutotuningConfig.Scenario].self, forKey: .scenarios)
+    {
+      self.scenarios = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scenarios, forKey: .scenarios)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Scenario represents a specific goal that autotuning will attempt to achieve

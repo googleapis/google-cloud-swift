@@ -24,6 +24,8 @@ public struct SdpFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Either of Sensitive Data Protection Inspect result or Deidentify result.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpFilterResult`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct SdpFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inspectResult = "inspectResult"
-    case deidentifyResult = "deidentifyResult"
-    case redactResult = "redactResult"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inspectResult = CodingKeys(stringValue: "inspectResult")
+    static let deidentifyResult = CodingKeys(stringValue: "deidentifyResult")
+    static let redactResult = CodingKeys(stringValue: "redactResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inspectResult",
+      "deidentifyResult",
+      "redactResult",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -75,6 +88,10 @@ public struct SdpFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.redactResult(redactResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +106,9 @@ public struct SdpFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .redactResult(let value):
         try container.encode(value, forKey: .redactResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

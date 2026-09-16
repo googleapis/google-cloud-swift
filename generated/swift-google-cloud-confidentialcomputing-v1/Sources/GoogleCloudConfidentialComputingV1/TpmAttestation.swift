@@ -43,6 +43,8 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// chain back to a trusted Root Certificate.
   public var certChain: [Foundation.Data] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TpmAttestation`.
   public init() {}
 
@@ -57,6 +59,62 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let quotes = CodingKeys(stringValue: "quotes")
+    static let tcgEventLog = CodingKeys(stringValue: "tcgEventLog")
+    static let canonicalEventLog = CodingKeys(stringValue: "canonicalEventLog")
+    static let akCert = CodingKeys(stringValue: "akCert")
+    static let certChain = CodingKeys(stringValue: "certChain")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "quotes",
+      "tcgEventLog",
+      "canonicalEventLog",
+      "akCert",
+      "certChain",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([TpmAttestation.Quote].self, forKey: .quotes) {
+      self.quotes = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .tcgEventLog) {
+      self.tcgEventLog = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .canonicalEventLog) {
+      self.canonicalEventLog = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .akCert) {
+      self.akCert = value
+    }
+    if let value = try container.decodeIfPresent([Foundation.Data].self, forKey: .certChain) {
+      self.certChain = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.quotes, forKey: .quotes)
+    try container.encode(self.tcgEventLog, forKey: .tcgEventLog)
+    try container.encode(self.canonicalEventLog, forKey: .canonicalEventLog)
+    try container.encode(self.akCert, forKey: .akCert)
+    try container.encode(self.certChain, forKey: .certChain)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Information about Platform Control Registers (PCRs) including a signature
@@ -76,6 +134,8 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// TPM2 signature, encoded as a TPMT_SIGNATURE
     public var rawSignature: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Quote`.
     public init() {}
 
@@ -92,19 +152,33 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case hashAlgo = "hashAlgo"
-      case pcrValues = "pcrValues"
-      case rawQuote = "rawQuote"
-      case rawSignature = "rawSignature"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let hashAlgo = CodingKeys(stringValue: "hashAlgo")
+      static let pcrValues = CodingKeys(stringValue: "pcrValues")
+      static let rawQuote = CodingKeys(stringValue: "rawQuote")
+      static let rawSignature = CodingKeys(stringValue: "rawSignature")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "hashAlgo",
+        "pcrValues",
+        "rawQuote",
+        "rawSignature",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.hashAlgo = try container.decode(Swift.Int32.self, forKey: .hashAlgo)
-      self.pcrValues = try { () throws in
-        let stringKeyed = try container.decode(
-          [Swift.String: Foundation.Data].self, forKey: .pcrValues)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .hashAlgo) {
+        self.hashAlgo = value
+      }
+      if let stringKeyed = try container.decodeIfPresent(
+        [Swift.String: Foundation.Data].self, forKey: .pcrValues)
+      {
         let tuples = try stringKeyed.lazy.map {
           (key, value) throws -> (Swift.Int32, Foundation.Data) in
           guard let newKey = Swift.Int32(key) else {
@@ -116,10 +190,18 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           }
           return (newKey, value)
         }
-        return Dictionary(uniqueKeysWithValues: tuples)
-      }()
-      self.rawQuote = try container.decode(Foundation.Data.self, forKey: .rawQuote)
-      self.rawSignature = try container.decode(Foundation.Data.self, forKey: .rawSignature)
+        self.pcrValues = Dictionary(uniqueKeysWithValues: tuples)
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .rawQuote) {
+        self.rawQuote = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .rawSignature) {
+        self.rawSignature = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -133,6 +215,9 @@ public struct TpmAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       }
       try container.encode(self.rawQuote, forKey: .rawQuote)
       try container.encode(self.rawSignature, forKey: .rawSignature)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

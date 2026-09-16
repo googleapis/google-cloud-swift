@@ -35,6 +35,8 @@ public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// access will be granted from the time of approval until the expiration time.
   public var requestedExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessApprovalRequest`.
   public init() {}
 
@@ -49,6 +51,53 @@ public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let requestTime = CodingKeys(stringValue: "requestTime")
+    static let requestedReason = CodingKeys(stringValue: "requestedReason")
+    static let requestedExpirationTime = CodingKeys(stringValue: "requestedExpirationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "requestTime",
+      "requestedReason",
+      "requestedExpirationTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.requestTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .requestTime)
+    self.requestedReason = try container.decodeIfPresent(
+      AccessReason.self, forKey: .requestedReason)
+    self.requestedExpirationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .requestedExpirationTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
+    try container.encodeIfPresent(self.requestedReason, forKey: .requestedReason)
+    try container.encodeIfPresent(self.requestedExpirationTime, forKey: .requestedExpirationTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -41,6 +41,8 @@
     /// The source of the intent batch.
     public var intentBatch: OneOf_IntentBatch? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchUpdateIntentsRequest`.
     public init() {}
 
@@ -57,22 +59,42 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case intentBatchUri = "intentBatchUri"
-      case intentBatchInline = "intentBatchInline"
-      case languageCode = "languageCode"
-      case updateMask = "updateMask"
-      case intentView = "intentView"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let intentBatchUri = CodingKeys(stringValue: "intentBatchUri")
+      static let intentBatchInline = CodingKeys(stringValue: "intentBatchInline")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let updateMask = CodingKeys(stringValue: "updateMask")
+      static let intentView = CodingKeys(stringValue: "intentView")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "intentBatchUri",
+        "intentBatchInline",
+        "languageCode",
+        "updateMask",
+        "intentView",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
       self.updateMask = try container.decodeIfPresent(
         GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
-      self.intentView = try container.decode(IntentView.self, forKey: .intentView)
+      if let value = try container.decodeIfPresent(IntentView.self, forKey: .intentView) {
+        self.intentView = value
+      }
 
       var intentBatch: OneOf_IntentBatch? = nil
       let intentBatchCheckAndSet = {
@@ -95,13 +117,17 @@
         try intentBatchCheckAndSet(.intentBatchInline(intentBatchInline))
       }
       self.intentBatch = intentBatch
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.updateMask, forKey: .updateMask)
+      try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
       try container.encode(self.intentView, forKey: .intentView)
 
       if let choice = self.intentBatch {
@@ -111,6 +137,9 @@
         case .intentBatchInline(let value):
           try container.encode(value, forKey: .intentBatchInline)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -40,6 +40,8 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Substages of an operation or a stage.
   public var stages: [OperationProgress] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationProgress`.
   public init() {}
 
@@ -56,6 +58,57 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let status = CodingKeys(stringValue: "status")
+    static let metrics = CodingKeys(stringValue: "metrics")
+    static let stages = CodingKeys(stringValue: "stages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "status",
+      "metrics",
+      "stages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Operation.Status.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent([OperationProgress.Metric].self, forKey: .metrics)
+    {
+      self.metrics = value
+    }
+    if let value = try container.decodeIfPresent([OperationProgress].self, forKey: .stages) {
+      self.stages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.metrics, forKey: .metrics)
+    try container.encode(self.stages, forKey: .stages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Progress metric is (string, int|float|string) pair.
   public struct Metric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -65,6 +118,8 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Strictly one of the values is required.
     public var value: OneOf_Value? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Metric`.
     public init() {}
@@ -82,16 +137,30 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case intValue = "intValue"
-      case doubleValue = "doubleValue"
-      case stringValue = "stringValue"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let intValue = CodingKeys(stringValue: "intValue")
+      static let doubleValue = CodingKeys(stringValue: "doubleValue")
+      static let stringValue = CodingKeys(stringValue: "stringValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "intValue",
+        "doubleValue",
+        "stringValue",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
 
       var value: OneOf_Value? = nil
       let valueCheckAndSet = {
@@ -113,6 +182,10 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try valueCheckAndSet(.stringValue(stringValue))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,6 +201,9 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable
         case .stringValue(let value):
           try container.encode(value, forKey: .stringValue)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

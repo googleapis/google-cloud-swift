@@ -44,6 +44,8 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The current state of runtime schema.
   public var state: ConnectionSchemaMetadata.State = ConnectionSchemaMetadata.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectionSchemaMetadata`.
   public init() {}
 
@@ -58,6 +60,68 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entities = CodingKeys(stringValue: "entities")
+    static let actions = CodingKeys(stringValue: "actions")
+    static let name = CodingKeys(stringValue: "name")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let refreshTime = CodingKeys(stringValue: "refreshTime")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entities",
+      "actions",
+      "name",
+      "updateTime",
+      "refreshTime",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entities) {
+      self.entities = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .actions) {
+      self.actions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.refreshTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .refreshTime)
+    if let value = try container.decodeIfPresent(
+      ConnectionSchemaMetadata.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entities, forKey: .entities)
+    try container.encode(self.actions, forKey: .actions)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.refreshTime, forKey: .refreshTime)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of connection runtime schema.

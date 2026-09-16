@@ -34,6 +34,8 @@ public struct NetworkAddressReservation: Codable, Equatable, GoogleCloudWKT._Any
   /// A note about this reservation, intended for human consumption.
   public var note: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkAddressReservation`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct NetworkAddressReservation: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startAddress = CodingKeys(stringValue: "startAddress")
+    static let endAddress = CodingKeys(stringValue: "endAddress")
+    static let note = CodingKeys(stringValue: "note")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startAddress",
+      "endAddress",
+      "note",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startAddress) {
+      self.startAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endAddress) {
+      self.endAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .note) {
+      self.note = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.startAddress, forKey: .startAddress)
+    try container.encode(self.endAddress, forKey: .endAddress)
+    try container.encode(self.note, forKey: .note)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -112,6 +112,8 @@
     /// "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
     public var type: SslCertificate.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SslCertificate`.
     public init() {}
 
@@ -126,6 +128,95 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let certificate = CodingKeys(stringValue: "certificate")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let expireTime = CodingKeys(stringValue: "expireTime")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let managed = CodingKeys(stringValue: "managed")
+      static let name = CodingKeys(stringValue: "name")
+      static let privateKey = CodingKeys(stringValue: "privateKey")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfManaged = CodingKeys(stringValue: "selfManaged")
+      static let subjectAlternativeNames = CodingKeys(stringValue: "subjectAlternativeNames")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "certificate",
+        "creationTimestamp",
+        "description",
+        "expireTime",
+        "id",
+        "kind",
+        "managed",
+        "name",
+        "privateKey",
+        "region",
+        "selfLink",
+        "selfManaged",
+        "subjectAlternativeNames",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.certificate = try container.decodeIfPresent(Swift.String.self, forKey: .certificate)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.expireTime = try container.decodeIfPresent(Swift.String.self, forKey: .expireTime)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.managed = try container.decodeIfPresent(
+        SslCertificateManagedSslCertificate.self, forKey: .managed)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.privateKey = try container.decodeIfPresent(Swift.String.self, forKey: .privateKey)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfManaged = try container.decodeIfPresent(
+        SslCertificateSelfManagedSslCertificate.self, forKey: .selfManaged)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .subjectAlternativeNames)
+      {
+        self.subjectAlternativeNames = value
+      }
+      self.type = try container.decodeIfPresent(SslCertificate.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.certificate, forKey: .certificate)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.managed, forKey: .managed)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.privateKey, forKey: .privateKey)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfManaged, forKey: .selfManaged)
+      try container.encode(self.subjectAlternativeNames, forKey: .subjectAlternativeNames)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.SslCertificate.type] field.

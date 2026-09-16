@@ -41,6 +41,8 @@ public struct EstablishPeeringRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// destination volume.
   public var peerVolumeName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EstablishPeeringRequest`.
   public init() {}
 
@@ -55,6 +57,62 @@ public struct EstablishPeeringRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let peerClusterName = CodingKeys(stringValue: "peerClusterName")
+    static let peerSvmName = CodingKeys(stringValue: "peerSvmName")
+    static let peerIpAddresses = CodingKeys(stringValue: "peerIpAddresses")
+    static let peerVolumeName = CodingKeys(stringValue: "peerVolumeName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "peerClusterName",
+      "peerSvmName",
+      "peerIpAddresses",
+      "peerVolumeName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerClusterName) {
+      self.peerClusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerSvmName) {
+      self.peerSvmName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .peerIpAddresses) {
+      self.peerIpAddresses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerVolumeName) {
+      self.peerVolumeName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.peerClusterName, forKey: .peerClusterName)
+    try container.encode(self.peerSvmName, forKey: .peerSvmName)
+    try container.encode(self.peerIpAddresses, forKey: .peerIpAddresses)
+    try container.encode(self.peerVolumeName, forKey: .peerVolumeName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

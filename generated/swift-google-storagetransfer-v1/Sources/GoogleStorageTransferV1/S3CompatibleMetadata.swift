@@ -41,6 +41,8 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Transfer Service will attempt to determine the right API to use.
   public var listApi: S3CompatibleMetadata.ListApi = S3CompatibleMetadata.ListApi()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `S3CompatibleMetadata`.
   public init() {}
 
@@ -57,22 +59,51 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case authMethod = "authMethod"
-    case requestModel = "requestModel"
-    case `protocol` = "protocol"
-    case listApi = "listApi"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let authMethod = CodingKeys(stringValue: "authMethod")
+    static let requestModel = CodingKeys(stringValue: "requestModel")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let listApi = CodingKeys(stringValue: "listApi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "authMethod",
+      "requestModel",
+      "protocol",
+      "listApi",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.authMethod = try container.decode(
+    if let value = try container.decodeIfPresent(
       S3CompatibleMetadata.AuthMethod.self, forKey: .authMethod)
-    self.requestModel = try container.decode(
+    {
+      self.authMethod = value
+    }
+    if let value = try container.decodeIfPresent(
       S3CompatibleMetadata.RequestModel.self, forKey: .requestModel)
-    self.`protocol` = try container.decode(
+    {
+      self.requestModel = value
+    }
+    if let value = try container.decodeIfPresent(
       S3CompatibleMetadata.NetworkProtocol.self, forKey: .`protocol`)
-    self.listApi = try container.decode(S3CompatibleMetadata.ListApi.self, forKey: .listApi)
+    {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(
+      S3CompatibleMetadata.ListApi.self, forKey: .listApi)
+    {
+      self.listApi = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +112,9 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     try container.encode(self.requestModel, forKey: .requestModel)
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.listApi, forKey: .listApi)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The authentication and authorization method used by the storage service.

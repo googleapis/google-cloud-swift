@@ -38,6 +38,8 @@ public struct ReleaseNotificationEvent: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Type of this notification, e.g. for a Pub/Sub failure.
   public var type: Type_ = Type_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReleaseNotificationEvent`.
   public init() {}
 
@@ -52,6 +54,62 @@ public struct ReleaseNotificationEvent: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let pipelineUid = CodingKeys(stringValue: "pipelineUid")
+    static let releaseUid = CodingKeys(stringValue: "releaseUid")
+    static let release = CodingKeys(stringValue: "release")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "pipelineUid",
+      "releaseUid",
+      "release",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pipelineUid) {
+      self.pipelineUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseUid) {
+      self.releaseUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .release) {
+      self.release = value
+    }
+    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+      self.type = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.pipelineUid, forKey: .pipelineUid)
+    try container.encode(self.releaseUid, forKey: .releaseUid)
+    try container.encode(self.release, forKey: .release)
+    try container.encode(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

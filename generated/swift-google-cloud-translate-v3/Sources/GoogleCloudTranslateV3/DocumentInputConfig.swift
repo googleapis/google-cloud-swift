@@ -42,6 +42,8 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// - application/pdf
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentInputConfig`.
   public init() {}
 
@@ -58,15 +60,28 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case content = "content"
-    case gcsSource = "gcsSource"
-    case mimeType = "mimeType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "gcsSource",
+      "mimeType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.mimeType = try container.decode(Swift.String.self, forKey: .mimeType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -85,6 +100,10 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,6 +117,9 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .gcsSource(let value):
         try container.encode(value, forKey: .gcsSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

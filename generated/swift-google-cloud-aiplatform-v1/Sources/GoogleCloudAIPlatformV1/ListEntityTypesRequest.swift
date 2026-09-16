@@ -80,6 +80,8 @@
     /// Mask specifying which fields to read.
     public var readMask: GoogleCloudWKT.FieldMask? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ListEntityTypesRequest`.
     public init() {}
 
@@ -94,6 +96,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let pageSize = CodingKeys(stringValue: "pageSize")
+      static let pageToken = CodingKeys(stringValue: "pageToken")
+      static let orderBy = CodingKeys(stringValue: "orderBy")
+      static let readMask = CodingKeys(stringValue: "readMask")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "filter",
+        "pageSize",
+        "pageToken",
+        "orderBy",
+        "readMask",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+        self.pageSize = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+        self.pageToken = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+        self.orderBy = value
+      }
+      self.readMask = try container.decodeIfPresent(
+        GoogleCloudWKT.FieldMask.self, forKey: .readMask)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encode(self.pageSize, forKey: .pageSize)
+      try container.encode(self.pageToken, forKey: .pageToken)
+      try container.encode(self.orderBy, forKey: .orderBy)
+      try container.encodeIfPresent(self.readMask, forKey: .readMask)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -91,6 +91,8 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleClou
   /// Optional. The OCID of the vault.
   public var vaultId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutonomousDatabaseBackupProperties`.
   public init() {}
 
@@ -105,6 +107,152 @@ public struct AutonomousDatabaseBackupProperties: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let retentionPeriodDays = CodingKeys(stringValue: "retentionPeriodDays")
+    static let compartmentId = CodingKeys(stringValue: "compartmentId")
+    static let databaseSizeTb = CodingKeys(stringValue: "databaseSizeTb")
+    static let dbVersion = CodingKeys(stringValue: "dbVersion")
+    static let isLongTermBackup = CodingKeys(stringValue: "isLongTermBackup")
+    static let isAutomaticBackup = CodingKeys(stringValue: "isAutomaticBackup")
+    static let isRestorable = CodingKeys(stringValue: "isRestorable")
+    static let keyStoreId = CodingKeys(stringValue: "keyStoreId")
+    static let keyStoreWallet = CodingKeys(stringValue: "keyStoreWallet")
+    static let kmsKeyId = CodingKeys(stringValue: "kmsKeyId")
+    static let kmsKeyVersionId = CodingKeys(stringValue: "kmsKeyVersionId")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let sizeTb = CodingKeys(stringValue: "sizeTb")
+    static let availableTillTime = CodingKeys(stringValue: "availableTillTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let type = CodingKeys(stringValue: "type")
+    static let vaultId = CodingKeys(stringValue: "vaultId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "retentionPeriodDays",
+      "compartmentId",
+      "databaseSizeTb",
+      "dbVersion",
+      "isLongTermBackup",
+      "isAutomaticBackup",
+      "isRestorable",
+      "keyStoreId",
+      "keyStoreWallet",
+      "kmsKeyId",
+      "kmsKeyVersionId",
+      "lifecycleDetails",
+      "lifecycleState",
+      "sizeTb",
+      "availableTillTime",
+      "endTime",
+      "startTime",
+      "type",
+      "vaultId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retentionPeriodDays) {
+      self.retentionPeriodDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .compartmentId) {
+      self.compartmentId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .databaseSizeTb) {
+      self.databaseSizeTb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbVersion) {
+      self.dbVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isLongTermBackup) {
+      self.isLongTermBackup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isAutomaticBackup) {
+      self.isAutomaticBackup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRestorable) {
+      self.isRestorable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreId) {
+      self.keyStoreId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreWallet) {
+      self.keyStoreWallet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyId) {
+      self.kmsKeyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersionId) {
+      self.kmsKeyVersionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseBackupProperties.State.self, forKey: .lifecycleState)
+    {
+      self.lifecycleState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .sizeTb) {
+      self.sizeTb = value
+    }
+    self.availableTillTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .availableTillTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    if let value = try container.decodeIfPresent(
+      AutonomousDatabaseBackupProperties.Type_.self, forKey: .type)
+    {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vaultId) {
+      self.vaultId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.retentionPeriodDays, forKey: .retentionPeriodDays)
+    try container.encode(self.compartmentId, forKey: .compartmentId)
+    try container.encode(self.databaseSizeTb, forKey: .databaseSizeTb)
+    try container.encode(self.dbVersion, forKey: .dbVersion)
+    try container.encode(self.isLongTermBackup, forKey: .isLongTermBackup)
+    try container.encode(self.isAutomaticBackup, forKey: .isAutomaticBackup)
+    try container.encode(self.isRestorable, forKey: .isRestorable)
+    try container.encode(self.keyStoreId, forKey: .keyStoreId)
+    try container.encode(self.keyStoreWallet, forKey: .keyStoreWallet)
+    try container.encode(self.kmsKeyId, forKey: .kmsKeyId)
+    try container.encode(self.kmsKeyVersionId, forKey: .kmsKeyVersionId)
+    try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
+    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    try container.encode(self.sizeTb, forKey: .sizeTb)
+    try container.encodeIfPresent(self.availableTillTime, forKey: .availableTillTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.vaultId, forKey: .vaultId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// // The various lifecycle states of the Autonomous Database Backup.

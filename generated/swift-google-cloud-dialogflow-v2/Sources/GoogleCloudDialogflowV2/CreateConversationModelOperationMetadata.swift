@@ -42,6 +42,8 @@
     /// The time when the operation finished.
     public var doneTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateConversationModelOperationMetadata`.
     public init() {}
 
@@ -56,6 +58,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversationModel = CodingKeys(stringValue: "conversationModel")
+      static let state = CodingKeys(stringValue: "state")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let doneTime = CodingKeys(stringValue: "doneTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversationModel",
+        "state",
+        "createTime",
+        "doneTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationModel) {
+        self.conversationModel = value
+      }
+      if let value = try container.decodeIfPresent(
+        CreateConversationModelOperationMetadata.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.doneTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .doneTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.conversationModel, forKey: .conversationModel)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// State of CreateConversationModel operation.

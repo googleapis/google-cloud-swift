@@ -34,6 +34,8 @@ public struct CallAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The data in the annotation.
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CallAnnotation`.
   public init() {}
 
@@ -50,23 +52,44 @@ public struct CallAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case interruptionData = "interruptionData"
-    case sentimentData = "sentimentData"
-    case silenceData = "silenceData"
-    case holdData = "holdData"
-    case entityMentionData = "entityMentionData"
-    case intentMatchData = "intentMatchData"
-    case phraseMatchData = "phraseMatchData"
-    case issueMatchData = "issueMatchData"
-    case channelTag = "channelTag"
-    case annotationStartBoundary = "annotationStartBoundary"
-    case annotationEndBoundary = "annotationEndBoundary"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let interruptionData = CodingKeys(stringValue: "interruptionData")
+    static let sentimentData = CodingKeys(stringValue: "sentimentData")
+    static let silenceData = CodingKeys(stringValue: "silenceData")
+    static let holdData = CodingKeys(stringValue: "holdData")
+    static let entityMentionData = CodingKeys(stringValue: "entityMentionData")
+    static let intentMatchData = CodingKeys(stringValue: "intentMatchData")
+    static let phraseMatchData = CodingKeys(stringValue: "phraseMatchData")
+    static let issueMatchData = CodingKeys(stringValue: "issueMatchData")
+    static let channelTag = CodingKeys(stringValue: "channelTag")
+    static let annotationStartBoundary = CodingKeys(stringValue: "annotationStartBoundary")
+    static let annotationEndBoundary = CodingKeys(stringValue: "annotationEndBoundary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "interruptionData",
+      "sentimentData",
+      "silenceData",
+      "holdData",
+      "entityMentionData",
+      "intentMatchData",
+      "phraseMatchData",
+      "issueMatchData",
+      "channelTag",
+      "annotationStartBoundary",
+      "annotationEndBoundary",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.channelTag = try container.decode(Swift.Int32.self, forKey: .channelTag)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelTag) {
+      self.channelTag = value
+    }
     self.annotationStartBoundary = try container.decodeIfPresent(
       AnnotationBoundary.self, forKey: .annotationStartBoundary)
     self.annotationEndBoundary = try container.decodeIfPresent(
@@ -119,13 +142,17 @@ public struct CallAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataCheckAndSet(.issueMatchData(issueMatchData))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.channelTag, forKey: .channelTag)
-    try container.encode(self.annotationStartBoundary, forKey: .annotationStartBoundary)
-    try container.encode(self.annotationEndBoundary, forKey: .annotationEndBoundary)
+    try container.encodeIfPresent(self.annotationStartBoundary, forKey: .annotationStartBoundary)
+    try container.encodeIfPresent(self.annotationEndBoundary, forKey: .annotationEndBoundary)
 
     if let choice = self.data {
       switch choice {
@@ -146,6 +173,9 @@ public struct CallAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .issueMatchData(let value):
         try container.encode(value, forKey: .issueMatchData)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

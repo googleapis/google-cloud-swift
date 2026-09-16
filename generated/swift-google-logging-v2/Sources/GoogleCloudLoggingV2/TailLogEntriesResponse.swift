@@ -33,6 +33,8 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// suppressed entries since the last streamed response.
   public var suppressionInfo: [TailLogEntriesResponse.SuppressionInfo] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TailLogEntriesResponse`.
   public init() {}
 
@@ -49,6 +51,46 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entries = CodingKeys(stringValue: "entries")
+    static let suppressionInfo = CodingKeys(stringValue: "suppressionInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entries",
+      "suppressionInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([LogEntry].self, forKey: .entries) {
+      self.entries = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TailLogEntriesResponse.SuppressionInfo].self, forKey: .suppressionInfo)
+    {
+      self.suppressionInfo = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entries, forKey: .entries)
+    try container.encode(self.suppressionInfo, forKey: .suppressionInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Information about entries that were omitted from the session.
   public struct SuppressionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +101,8 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
 
     /// A lower bound on the count of entries omitted due to `reason`.
     public var suppressedCount: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SuppressionInfo`.
     public init() {}
@@ -74,6 +118,46 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let reason = CodingKeys(stringValue: "reason")
+      static let suppressedCount = CodingKeys(stringValue: "suppressedCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "reason",
+        "suppressedCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        TailLogEntriesResponse.SuppressionInfo.Reason.self, forKey: .reason)
+      {
+        self.reason = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .suppressedCount) {
+        self.suppressedCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.reason, forKey: .reason)
+      try container.encode(self.suppressedCount, forKey: .suppressedCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// An indicator of why entries were omitted.

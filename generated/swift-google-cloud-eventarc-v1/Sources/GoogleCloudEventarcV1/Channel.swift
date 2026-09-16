@@ -69,6 +69,8 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var transport: OneOf_Transport? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Channel`.
   public init() {}
 
@@ -85,34 +87,70 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case provider = "provider"
-    case pubsubTopic = "pubsubTopic"
-    case state = "state"
-    case activationToken = "activationToken"
-    case cryptoKeyName = "cryptoKeyName"
-    case satisfiesPzs = "satisfiesPzs"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let provider = CodingKeys(stringValue: "provider")
+    static let pubsubTopic = CodingKeys(stringValue: "pubsubTopic")
+    static let state = CodingKeys(stringValue: "state")
+    static let activationToken = CodingKeys(stringValue: "activationToken")
+    static let cryptoKeyName = CodingKeys(stringValue: "cryptoKeyName")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "provider",
+      "pubsubTopic",
+      "state",
+      "activationToken",
+      "cryptoKeyName",
+      "satisfiesPzs",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.provider = try container.decode(Swift.String.self, forKey: .provider)
-    self.state = try container.decode(Channel.State.self, forKey: .state)
-    self.activationToken = try container.decode(Swift.String.self, forKey: .activationToken)
-    self.cryptoKeyName = try container.decode(Swift.String.self, forKey: .cryptoKeyName)
-    self.satisfiesPzs = try container.decode(Swift.Bool.self, forKey: .satisfiesPzs)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .provider) {
+      self.provider = value
+    }
+    if let value = try container.decodeIfPresent(Channel.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activationToken) {
+      self.activationToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyName) {
+      self.cryptoKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var transport: OneOf_Transport? = nil
     let transportCheckAndSet = {
@@ -128,14 +166,18 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try transportCheckAndSet(.pubsubTopic(pubsubTopic))
     }
     self.transport = transport
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.provider, forKey: .provider)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.activationToken, forKey: .activationToken)
@@ -148,6 +190,9 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .pubsubTopic(let value):
         try container.encode(value, forKey: .pubsubTopic)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

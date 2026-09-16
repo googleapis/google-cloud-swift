@@ -31,6 +31,8 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The unique identifier for the label.
   public var label: OneOf_Label? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataAccessLabelReference`.
   public init() {}
 
@@ -47,17 +49,32 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dataAccessLabel = "dataAccessLabel"
-    case logType = "logType"
-    case assetNamespace = "assetNamespace"
-    case ingestionLabel = "ingestionLabel"
-    case displayName = "displayName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataAccessLabel = CodingKeys(stringValue: "dataAccessLabel")
+    static let logType = CodingKeys(stringValue: "logType")
+    static let assetNamespace = CodingKeys(stringValue: "assetNamespace")
+    static let ingestionLabel = CodingKeys(stringValue: "ingestionLabel")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataAccessLabel",
+      "logType",
+      "assetNamespace",
+      "ingestionLabel",
+      "displayName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
 
     var label: OneOf_Label? = nil
     let labelCheckAndSet = {
@@ -88,6 +105,10 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleCloudWKT._AnyP
       try labelCheckAndSet(.ingestionLabel(ingestionLabel))
     }
     self.label = label
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -105,6 +126,9 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleCloudWKT._AnyP
       case .ingestionLabel(let value):
         try container.encode(value, forKey: .ingestionLabel)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

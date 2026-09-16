@@ -60,6 +60,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not provided, the connect mode defaults to DIRECT_PEERING.
   public var connectMode: NetworkConfig.ConnectMode = NetworkConfig.ConnectMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -74,6 +76,64 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let modes = CodingKeys(stringValue: "modes")
+    static let reservedIpRange = CodingKeys(stringValue: "reservedIpRange")
+    static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+    static let connectMode = CodingKeys(stringValue: "connectMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "modes",
+      "reservedIpRange",
+      "ipAddresses",
+      "connectMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent([NetworkConfig.AddressMode].self, forKey: .modes) {
+      self.modes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reservedIpRange) {
+      self.reservedIpRange = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipAddresses) {
+      self.ipAddresses = value
+    }
+    if let value = try container.decodeIfPresent(
+      NetworkConfig.ConnectMode.self, forKey: .connectMode)
+    {
+      self.connectMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.modes, forKey: .modes)
+    try container.encode(self.reservedIpRange, forKey: .reservedIpRange)
+    try container.encode(self.ipAddresses, forKey: .ipAddresses)
+    try container.encode(self.connectMode, forKey: .connectMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Internet protocol versions supported by Filestore.

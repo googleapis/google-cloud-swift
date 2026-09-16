@@ -29,6 +29,8 @@ public struct Tile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The attribute key and value for the tile.
   public var productAttribute: OneOf_ProductAttribute? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Tile`.
   public init() {}
 
@@ -45,16 +47,30 @@ public struct Tile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case productAttributeValue = "productAttributeValue"
-    case productAttributeInterval = "productAttributeInterval"
-    case representativeProductId = "representativeProductId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let productAttributeValue = CodingKeys(stringValue: "productAttributeValue")
+    static let productAttributeInterval = CodingKeys(stringValue: "productAttributeInterval")
+    static let representativeProductId = CodingKeys(stringValue: "representativeProductId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "productAttributeValue",
+      "productAttributeInterval",
+      "representativeProductId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.representativeProductId = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .representativeProductId)
+    {
+      self.representativeProductId = value
+    }
 
     var productAttribute: OneOf_ProductAttribute? = nil
     let productAttributeCheckAndSet = {
@@ -77,6 +93,10 @@ public struct Tile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try productAttributeCheckAndSet(.productAttributeInterval(productAttributeInterval))
     }
     self.productAttribute = productAttribute
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +110,9 @@ public struct Tile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .productAttributeInterval(let value):
         try container.encode(value, forKey: .productAttributeInterval)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

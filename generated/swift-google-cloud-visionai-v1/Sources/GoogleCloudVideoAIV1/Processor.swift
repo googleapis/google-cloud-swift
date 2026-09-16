@@ -70,6 +70,8 @@ public struct Processor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// STREAMING_PREDICTION.
   public var supportedInstanceTypes: [Instance.InstanceType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Processor`.
   public init() {}
 
@@ -84,6 +86,126 @@ public struct Processor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let processorType = CodingKeys(stringValue: "processorType")
+    static let modelType = CodingKeys(stringValue: "modelType")
+    static let customProcessorSourceInfo = CodingKeys(stringValue: "customProcessorSourceInfo")
+    static let state = CodingKeys(stringValue: "state")
+    static let processorIoSpec = CodingKeys(stringValue: "processorIoSpec")
+    static let configurationTypeurl = CodingKeys(stringValue: "configurationTypeurl")
+    static let supportedAnnotationTypes = CodingKeys(stringValue: "supportedAnnotationTypes")
+    static let supportsPostProcessing = CodingKeys(stringValue: "supportsPostProcessing")
+    static let supportedInstanceTypes = CodingKeys(stringValue: "supportedInstanceTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "description",
+      "processorType",
+      "modelType",
+      "customProcessorSourceInfo",
+      "state",
+      "processorIoSpec",
+      "configurationTypeurl",
+      "supportedAnnotationTypes",
+      "supportsPostProcessing",
+      "supportedInstanceTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      Processor.ProcessorType.self, forKey: .processorType)
+    {
+      self.processorType = value
+    }
+    if let value = try container.decodeIfPresent(ModelType.self, forKey: .modelType) {
+      self.modelType = value
+    }
+    self.customProcessorSourceInfo = try container.decodeIfPresent(
+      CustomProcessorSourceInfo.self, forKey: .customProcessorSourceInfo)
+    if let value = try container.decodeIfPresent(Processor.ProcessorState.self, forKey: .state) {
+      self.state = value
+    }
+    self.processorIoSpec = try container.decodeIfPresent(
+      ProcessorIOSpec.self, forKey: .processorIoSpec)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .configurationTypeurl) {
+      self.configurationTypeurl = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StreamAnnotationType].self, forKey: .supportedAnnotationTypes)
+    {
+      self.supportedAnnotationTypes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsPostProcessing) {
+      self.supportsPostProcessing = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Instance.InstanceType].self, forKey: .supportedInstanceTypes)
+    {
+      self.supportedInstanceTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.processorType, forKey: .processorType)
+    try container.encode(self.modelType, forKey: .modelType)
+    try container.encodeIfPresent(
+      self.customProcessorSourceInfo, forKey: .customProcessorSourceInfo)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.processorIoSpec, forKey: .processorIoSpec)
+    try container.encode(self.configurationTypeurl, forKey: .configurationTypeurl)
+    try container.encode(self.supportedAnnotationTypes, forKey: .supportedAnnotationTypes)
+    try container.encode(self.supportsPostProcessing, forKey: .supportsPostProcessing)
+    try container.encode(self.supportedInstanceTypes, forKey: .supportedInstanceTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type

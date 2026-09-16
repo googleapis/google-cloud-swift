@@ -32,6 +32,8 @@
     /// Instructs the speech synthesizer how to generate output audio.
     public var outputAudioConfig: OutputAudioConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FulfillIntentRequest`.
     public init() {}
 
@@ -46,6 +48,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let matchIntentRequest = CodingKeys(stringValue: "matchIntentRequest")
+      static let match = CodingKeys(stringValue: "match")
+      static let outputAudioConfig = CodingKeys(stringValue: "outputAudioConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "matchIntentRequest",
+        "match",
+        "outputAudioConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.matchIntentRequest = try container.decodeIfPresent(
+        MatchIntentRequest.self, forKey: .matchIntentRequest)
+      self.match = try container.decodeIfPresent(Match.self, forKey: .match)
+      self.outputAudioConfig = try container.decodeIfPresent(
+        OutputAudioConfig.self, forKey: .outputAudioConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.matchIntentRequest, forKey: .matchIntentRequest)
+      try container.encodeIfPresent(self.match, forKey: .match)
+      try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

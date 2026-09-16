@@ -46,6 +46,8 @@ public struct VmwareEnginePreferences: Codable, Equatable, GoogleCloudWKT._AnyPa
   public var commitmentPlan: VmwareEnginePreferences.CommitmentPlan =
     VmwareEnginePreferences.CommitmentPlan()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmwareEnginePreferences`.
   public init() {}
 
@@ -60,6 +62,63 @@ public struct VmwareEnginePreferences: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuOvercommitRatio = CodingKeys(stringValue: "cpuOvercommitRatio")
+    static let memoryOvercommitRatio = CodingKeys(stringValue: "memoryOvercommitRatio")
+    static let storageDeduplicationCompressionRatio = CodingKeys(
+      stringValue: "storageDeduplicationCompressionRatio")
+    static let commitmentPlan = CodingKeys(stringValue: "commitmentPlan")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuOvercommitRatio",
+      "memoryOvercommitRatio",
+      "storageDeduplicationCompressionRatio",
+      "commitmentPlan",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .cpuOvercommitRatio) {
+      self.cpuOvercommitRatio = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .memoryOvercommitRatio)
+    {
+      self.memoryOvercommitRatio = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .storageDeduplicationCompressionRatio)
+    {
+      self.storageDeduplicationCompressionRatio = value
+    }
+    if let value = try container.decodeIfPresent(
+      VmwareEnginePreferences.CommitmentPlan.self, forKey: .commitmentPlan)
+    {
+      self.commitmentPlan = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuOvercommitRatio, forKey: .cpuOvercommitRatio)
+    try container.encode(self.memoryOvercommitRatio, forKey: .memoryOvercommitRatio)
+    try container.encode(
+      self.storageDeduplicationCompressionRatio, forKey: .storageDeduplicationCompressionRatio)
+    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of committed use discount.

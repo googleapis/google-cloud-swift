@@ -30,6 +30,8 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
   public var errors:
     [ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValidateEventThreatDetectionCustomModuleResponse`.
   public init() {}
 
@@ -44,6 +46,41 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errors"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError].self,
+      forKey: .errors)
+    {
+      self.errors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errors, forKey: .errors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An error encountered while validating the uploaded configuration of an
@@ -69,6 +106,8 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     /// computed.
     public var end: ValidateEventThreatDetectionCustomModuleResponse.Position? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomModuleValidationError`.
     public init() {}
 
@@ -83,6 +122,54 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let fieldPath = CodingKeys(stringValue: "fieldPath")
+      static let start = CodingKeys(stringValue: "start")
+      static let end = CodingKeys(stringValue: "end")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "fieldPath",
+        "start",
+        "end",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldPath) {
+        self.fieldPath = value
+      }
+      self.start = try container.decodeIfPresent(
+        ValidateEventThreatDetectionCustomModuleResponse.Position.self, forKey: .start)
+      self.end = try container.decodeIfPresent(
+        ValidateEventThreatDetectionCustomModuleResponse.Position.self, forKey: .end)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.fieldPath, forKey: .fieldPath)
+      try container.encodeIfPresent(self.start, forKey: .start)
+      try container.encodeIfPresent(self.end, forKey: .end)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -107,6 +194,8 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     /// The column position in the line.
     public var columnNumber: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Position`.
     public init() {}
 
@@ -121,6 +210,44 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let lineNumber = CodingKeys(stringValue: "lineNumber")
+      static let columnNumber = CodingKeys(stringValue: "columnNumber")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "lineNumber",
+        "columnNumber",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
+        self.lineNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .columnNumber) {
+        self.columnNumber = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.lineNumber, forKey: .lineNumber)
+      try container.encode(self.columnNumber, forKey: .columnNumber)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

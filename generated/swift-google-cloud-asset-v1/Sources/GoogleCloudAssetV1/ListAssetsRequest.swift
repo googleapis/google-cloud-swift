@@ -85,6 +85,8 @@ public struct ListAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// for all supported asset types and relationship types.
   public var relationshipTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListAssetsRequest`.
   public init() {}
 
@@ -99,6 +101,72 @@ public struct ListAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let readTime = CodingKeys(stringValue: "readTime")
+    static let assetTypes = CodingKeys(stringValue: "assetTypes")
+    static let contentType = CodingKeys(stringValue: "contentType")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let relationshipTypes = CodingKeys(stringValue: "relationshipTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "readTime",
+      "assetTypes",
+      "contentType",
+      "pageSize",
+      "pageToken",
+      "relationshipTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.readTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .readTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assetTypes) {
+      self.assetTypes = value
+    }
+    if let value = try container.decodeIfPresent(ContentType.self, forKey: .contentType) {
+      self.contentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relationshipTypes) {
+      self.relationshipTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.readTime, forKey: .readTime)
+    try container.encode(self.assetTypes, forKey: .assetTypes)
+    try container.encode(self.contentType, forKey: .contentType)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.relationshipTypes, forKey: .relationshipTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

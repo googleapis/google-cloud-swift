@@ -28,6 +28,8 @@ public struct TagRecognizerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Configuration to customize how tags are parsed.
   public var tagParsingConfig: TagParsingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TagRecognizerConfig`.
   public init() {}
 
@@ -42,6 +44,47 @@ public struct TagRecognizerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entityDetectionConfidenceThreshold = CodingKeys(
+      stringValue: "entityDetectionConfidenceThreshold")
+    static let tagParsingConfig = CodingKeys(stringValue: "tagParsingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entityDetectionConfidenceThreshold",
+      "tagParsingConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .entityDetectionConfidenceThreshold)
+    {
+      self.entityDetectionConfidenceThreshold = value
+    }
+    self.tagParsingConfig = try container.decodeIfPresent(
+      TagParsingConfig.self, forKey: .tagParsingConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.entityDetectionConfidenceThreshold, forKey: .entityDetectionConfidenceThreshold)
+    try container.encodeIfPresent(self.tagParsingConfig, forKey: .tagParsingConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

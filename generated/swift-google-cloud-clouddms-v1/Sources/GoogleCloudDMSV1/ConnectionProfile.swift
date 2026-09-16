@@ -58,6 +58,8 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The connection profile definition.
   public var connectionProfile: OneOf_ConnectionProfile? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectionProfile`.
   public init() {}
 
@@ -74,34 +76,66 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case state = "state"
-    case displayName = "displayName"
-    case mysql = "mysql"
-    case postgresql = "postgresql"
-    case oracle = "oracle"
-    case cloudsql = "cloudsql"
-    case alloydb = "alloydb"
-    case error = "error"
-    case provider = "provider"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let mysql = CodingKeys(stringValue: "mysql")
+    static let postgresql = CodingKeys(stringValue: "postgresql")
+    static let oracle = CodingKeys(stringValue: "oracle")
+    static let cloudsql = CodingKeys(stringValue: "cloudsql")
+    static let alloydb = CodingKeys(stringValue: "alloydb")
+    static let error = CodingKeys(stringValue: "error")
+    static let provider = CodingKeys(stringValue: "provider")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "state",
+      "displayName",
+      "mysql",
+      "postgresql",
+      "oracle",
+      "cloudsql",
+      "alloydb",
+      "error",
+      "provider",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.state = try container.decode(ConnectionProfile.State.self, forKey: .state)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(ConnectionProfile.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
-    self.provider = try container.decode(DatabaseProvider.self, forKey: .provider)
+    if let value = try container.decodeIfPresent(DatabaseProvider.self, forKey: .provider) {
+      self.provider = value
+    }
 
     var connectionProfile: OneOf_ConnectionProfile? = nil
     let connectionProfileCheckAndSet = {
@@ -134,17 +168,21 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try connectionProfileCheckAndSet(.alloydb(alloydb))
     }
     self.connectionProfile = connectionProfile
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.provider, forKey: .provider)
 
     if let choice = self.connectionProfile {
@@ -160,6 +198,9 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .alloydb(let value):
         try container.encode(value, forKey: .alloydb)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

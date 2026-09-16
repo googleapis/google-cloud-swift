@@ -29,6 +29,8 @@ public struct RecordTransformations: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// match any suppression rule are omitted from the output.
   public var recordSuppressions: [RecordSuppression] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecordTransformations`.
   public init() {}
 
@@ -43,6 +45,48 @@ public struct RecordTransformations: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fieldTransformations = CodingKeys(stringValue: "fieldTransformations")
+    static let recordSuppressions = CodingKeys(stringValue: "recordSuppressions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fieldTransformations",
+      "recordSuppressions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [FieldTransformation].self, forKey: .fieldTransformations)
+    {
+      self.fieldTransformations = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RecordSuppression].self, forKey: .recordSuppressions)
+    {
+      self.recordSuppressions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.fieldTransformations, forKey: .fieldTransformations)
+    try container.encode(self.recordSuppressions, forKey: .recordSuppressions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

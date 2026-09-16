@@ -36,6 +36,8 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// REQUIRED Contains addiional metadata about the detected abuse event.
   public var eventType: OneOf_EventType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AbuseEvent`.
   public init() {}
 
@@ -52,25 +54,53 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case detectionType = "detectionType"
-    case reason = "reason"
-    case action = "action"
-    case cryptoMiningEvent = "cryptoMiningEvent"
-    case leakedCredentialEvent = "leakedCredentialEvent"
-    case harmfulContentEvent = "harmfulContentEvent"
-    case reinstatementEvent = "reinstatementEvent"
-    case decisionEscalationEvent = "decisionEscalationEvent"
-    case intrusionAttemptEvent = "intrusionAttemptEvent"
-    case remediationLink = "remediationLink"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let detectionType = CodingKeys(stringValue: "detectionType")
+    static let reason = CodingKeys(stringValue: "reason")
+    static let action = CodingKeys(stringValue: "action")
+    static let cryptoMiningEvent = CodingKeys(stringValue: "cryptoMiningEvent")
+    static let leakedCredentialEvent = CodingKeys(stringValue: "leakedCredentialEvent")
+    static let harmfulContentEvent = CodingKeys(stringValue: "harmfulContentEvent")
+    static let reinstatementEvent = CodingKeys(stringValue: "reinstatementEvent")
+    static let decisionEscalationEvent = CodingKeys(stringValue: "decisionEscalationEvent")
+    static let intrusionAttemptEvent = CodingKeys(stringValue: "intrusionAttemptEvent")
+    static let remediationLink = CodingKeys(stringValue: "remediationLink")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "detectionType",
+      "reason",
+      "action",
+      "cryptoMiningEvent",
+      "leakedCredentialEvent",
+      "harmfulContentEvent",
+      "reinstatementEvent",
+      "decisionEscalationEvent",
+      "intrusionAttemptEvent",
+      "remediationLink",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.detectionType = try container.decode(AbuseEvent.DetectionType.self, forKey: .detectionType)
-    self.reason = try container.decode(Swift.String.self, forKey: .reason)
-    self.action = try container.decode(AbuseEvent.ActionType.self, forKey: .action)
-    self.remediationLink = try container.decode(Swift.String.self, forKey: .remediationLink)
+    if let value = try container.decodeIfPresent(
+      AbuseEvent.DetectionType.self, forKey: .detectionType)
+    {
+      self.detectionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reason) {
+      self.reason = value
+    }
+    if let value = try container.decodeIfPresent(AbuseEvent.ActionType.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remediationLink) {
+      self.remediationLink = value
+    }
 
     var eventType: OneOf_EventType? = nil
     let eventTypeCheckAndSet = {
@@ -113,6 +143,10 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try eventTypeCheckAndSet(.intrusionAttemptEvent(intrusionAttemptEvent))
     }
     self.eventType = eventType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -137,6 +171,9 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .intrusionAttemptEvent(let value):
         try container.encode(value, forKey: .intrusionAttemptEvent)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

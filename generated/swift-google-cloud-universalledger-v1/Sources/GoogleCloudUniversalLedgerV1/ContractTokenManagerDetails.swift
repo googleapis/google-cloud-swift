@@ -44,6 +44,8 @@ public struct ContractTokenManagerDetails: Codable, Equatable, GoogleCloudWKT._A
   /// Output only. The status of this account.
   public var accountStatus: AccountStatus = AccountStatus()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContractTokenManagerDetails`.
   public init() {}
 
@@ -58,6 +60,56 @@ public struct ContractTokenManagerDetails: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let issuanceLimit = CodingKeys(stringValue: "issuanceLimit")
+    static let issuedTokens = CodingKeys(stringValue: "issuedTokens")
+    static let previousContractTokenManagerId = CodingKeys(
+      stringValue: "previousContractTokenManagerId")
+    static let accountStatus = CodingKeys(stringValue: "accountStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "issuanceLimit",
+      "issuedTokens",
+      "previousContractTokenManagerId",
+      "accountStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.issuanceLimit = try container.decodeIfPresent(CurrencyValue.self, forKey: .issuanceLimit)
+    self.issuedTokens = try container.decodeIfPresent(CurrencyValue.self, forKey: .issuedTokens)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .previousContractTokenManagerId)
+    {
+      self.previousContractTokenManagerId = value
+    }
+    if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
+      self.accountStatus = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.issuanceLimit, forKey: .issuanceLimit)
+    try container.encodeIfPresent(self.issuedTokens, forKey: .issuedTokens)
+    try container.encode(
+      self.previousContractTokenManagerId, forKey: .previousContractTokenManagerId)
+    try container.encode(self.accountStatus, forKey: .accountStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

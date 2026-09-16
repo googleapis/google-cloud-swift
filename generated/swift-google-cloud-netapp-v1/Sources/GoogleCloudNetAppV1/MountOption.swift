@@ -36,6 +36,8 @@ public struct MountOption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. IP Address.
   public var ipAddress: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MountOption`.
   public init() {}
 
@@ -52,21 +54,48 @@ public struct MountOption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case export = "export"
-    case exportFull = "exportFull"
-    case `protocol` = "protocol"
-    case instructions = "instructions"
-    case ipAddress = "ipAddress"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let export = CodingKeys(stringValue: "export")
+    static let exportFull = CodingKeys(stringValue: "exportFull")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let instructions = CodingKeys(stringValue: "instructions")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "export",
+      "exportFull",
+      "protocol",
+      "instructions",
+      "ipAddress",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.export = try container.decode(Swift.String.self, forKey: .export)
-    self.exportFull = try container.decode(Swift.String.self, forKey: .exportFull)
-    self.`protocol` = try container.decode(Protocols.self, forKey: .`protocol`)
-    self.instructions = try container.decode(Swift.String.self, forKey: .instructions)
-    self.ipAddress = try container.decode(Swift.String.self, forKey: .ipAddress)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .export) {
+      self.export = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exportFull) {
+      self.exportFull = value
+    }
+    if let value = try container.decodeIfPresent(Protocols.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instructions) {
+      self.instructions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,6 +105,9 @@ public struct MountOption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.instructions, forKey: .instructions)
     try container.encode(self.ipAddress, forKey: .ipAddress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -42,6 +42,8 @@ public struct Replay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Summary statistics about the replayed log entries.
   public var resultsSummary: Replay.ResultsSummary? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Replay`.
   public init() {}
 
@@ -56,6 +58,53 @@ public struct Replay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let config = CodingKeys(stringValue: "config")
+    static let resultsSummary = CodingKeys(stringValue: "resultsSummary")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "config",
+      "resultsSummary",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Replay.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.config = try container.decodeIfPresent(ReplayConfig.self, forKey: .config)
+    self.resultsSummary = try container.decodeIfPresent(
+      Replay.ResultsSummary.self, forKey: .resultsSummary)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.resultsSummary, forKey: .resultsSummary)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Summary statistics about the replayed log entries.
@@ -82,6 +131,8 @@ public struct Replay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The date of the newest log entry replayed.
     public var newestDate: GoogleType.Date? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResultsSummary`.
     public init() {}
 
@@ -96,6 +147,64 @@ public struct Replay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let logCount = CodingKeys(stringValue: "logCount")
+      static let unchangedCount = CodingKeys(stringValue: "unchangedCount")
+      static let differenceCount = CodingKeys(stringValue: "differenceCount")
+      static let errorCount = CodingKeys(stringValue: "errorCount")
+      static let oldestDate = CodingKeys(stringValue: "oldestDate")
+      static let newestDate = CodingKeys(stringValue: "newestDate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "logCount",
+        "unchangedCount",
+        "differenceCount",
+        "errorCount",
+        "oldestDate",
+        "newestDate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .logCount) {
+        self.logCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .unchangedCount) {
+        self.unchangedCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .differenceCount) {
+        self.differenceCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCount) {
+        self.errorCount = value
+      }
+      self.oldestDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .oldestDate)
+      self.newestDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .newestDate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.logCount, forKey: .logCount)
+      try container.encode(self.unchangedCount, forKey: .unchangedCount)
+      try container.encode(self.differenceCount, forKey: .differenceCount)
+      try container.encode(self.errorCount, forKey: .errorCount)
+      try container.encodeIfPresent(self.oldestDate, forKey: .oldestDate)
+      try container.encodeIfPresent(self.newestDate, forKey: .newestDate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

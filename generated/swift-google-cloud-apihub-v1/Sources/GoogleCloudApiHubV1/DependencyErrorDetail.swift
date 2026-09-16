@@ -27,6 +27,8 @@ public struct DependencyErrorDetail: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Optional. Timestamp at which the error was found.
   public var errorTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DependencyErrorDetail`.
   public init() {}
 
@@ -41,6 +43,43 @@ public struct DependencyErrorDetail: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let error = CodingKeys(stringValue: "error")
+    static let errorTime = CodingKeys(stringValue: "errorTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "error",
+      "errorTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DependencyErrorDetail.Error.self, forKey: .error) {
+      self.error = value
+    }
+    self.errorTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .errorTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.errorTime, forKey: .errorTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values representing an error in the dependency.

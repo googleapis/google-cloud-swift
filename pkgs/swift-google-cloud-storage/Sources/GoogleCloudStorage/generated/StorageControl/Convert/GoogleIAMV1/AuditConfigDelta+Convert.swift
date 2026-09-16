@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleIAMV1
 internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.AuditConfigDelta {
@@ -31,6 +31,7 @@ extension GoogleIAMV1.AuditConfigDelta {
     self.service = proto.service
     self.exemptedMember = proto.exemptedMember
     self.logType = proto.logType
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -39,6 +40,9 @@ extension GoogleIAMV1.AuditConfigDelta {
     proto.service = self.service
     proto.exemptedMember = self.exemptedMember
     proto.logType = self.logType
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

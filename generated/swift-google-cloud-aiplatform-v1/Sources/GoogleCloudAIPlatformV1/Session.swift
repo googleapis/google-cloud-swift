@@ -54,6 +54,8 @@
     /// The expiration of the session.
     public var expiration: OneOf_Expiration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Session`.
     public init() {}
 
@@ -70,30 +72,57 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case expireTime = "expireTime"
-      case ttl = "ttl"
-      case name = "name"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case displayName = "displayName"
-      case labels = "labels"
-      case sessionState = "sessionState"
-      case userId = "userId"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expireTime = CodingKeys(stringValue: "expireTime")
+      static let ttl = CodingKeys(stringValue: "ttl")
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let sessionState = CodingKeys(stringValue: "sessionState")
+      static let userId = CodingKeys(stringValue: "userId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expireTime",
+        "ttl",
+        "name",
+        "createTime",
+        "updateTime",
+        "displayName",
+        "labels",
+        "sessionState",
+        "userId",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.sessionState = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .sessionState)
-      self.userId = try container.decode(Swift.String.self, forKey: .userId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userId) {
+        self.userId = value
+      }
 
       var expiration: OneOf_Expiration? = nil
       let expirationCheckAndSet = {
@@ -114,16 +143,20 @@
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.sessionState, forKey: .sessionState)
+      try container.encodeIfPresent(self.sessionState, forKey: .sessionState)
       try container.encode(self.userId, forKey: .userId)
 
       if let choice = self.expiration {
@@ -133,6 +166,9 @@
         case .ttl(let value):
           try container.encode(value, forKey: .ttl)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

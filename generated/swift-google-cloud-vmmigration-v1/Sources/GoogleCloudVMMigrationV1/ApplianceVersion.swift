@@ -33,6 +33,8 @@ public struct ApplianceVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Link to a page that contains the version release notes.
   public var releaseNotesUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApplianceVersion`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct ApplianceVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let critical = CodingKeys(stringValue: "critical")
+    static let releaseNotesUri = CodingKeys(stringValue: "releaseNotesUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "uri",
+      "critical",
+      "releaseNotesUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .critical) {
+      self.critical = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseNotesUri) {
+      self.releaseNotesUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.critical, forKey: .critical)
+    try container.encode(self.releaseNotesUri, forKey: .releaseNotesUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

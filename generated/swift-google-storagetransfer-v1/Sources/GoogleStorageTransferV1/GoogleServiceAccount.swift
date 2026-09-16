@@ -27,6 +27,8 @@ public struct GoogleServiceAccount: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Unique identifier for the service account.
   public var subjectId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleServiceAccount`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct GoogleServiceAccount: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accountEmail = CodingKeys(stringValue: "accountEmail")
+    static let subjectId = CodingKeys(stringValue: "subjectId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accountEmail",
+      "subjectId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountEmail) {
+      self.accountEmail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subjectId) {
+      self.subjectId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.accountEmail, forKey: .accountEmail)
+    try container.encode(self.subjectId, forKey: .subjectId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -122,6 +122,8 @@
     /// Optional. Knowledge connector configuration.
     public var knowledgeConnectorSettings: KnowledgeConnectorSettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Page`.
     public init() {}
 
@@ -136,6 +138,92 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let entryFulfillment = CodingKeys(stringValue: "entryFulfillment")
+      static let form = CodingKeys(stringValue: "form")
+      static let transitionRouteGroups = CodingKeys(stringValue: "transitionRouteGroups")
+      static let transitionRoutes = CodingKeys(stringValue: "transitionRoutes")
+      static let eventHandlers = CodingKeys(stringValue: "eventHandlers")
+      static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
+      static let knowledgeConnectorSettings = CodingKeys(stringValue: "knowledgeConnectorSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "entryFulfillment",
+        "form",
+        "transitionRouteGroups",
+        "transitionRoutes",
+        "eventHandlers",
+        "advancedSettings",
+        "knowledgeConnectorSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.entryFulfillment = try container.decodeIfPresent(
+        Fulfillment.self, forKey: .entryFulfillment)
+      self.form = try container.decodeIfPresent(Form.self, forKey: .form)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .transitionRouteGroups)
+      {
+        self.transitionRouteGroups = value
+      }
+      if let value = try container.decodeIfPresent(
+        [TransitionRoute].self, forKey: .transitionRoutes)
+      {
+        self.transitionRoutes = value
+      }
+      if let value = try container.decodeIfPresent([EventHandler].self, forKey: .eventHandlers) {
+        self.eventHandlers = value
+      }
+      self.advancedSettings = try container.decodeIfPresent(
+        AdvancedSettings.self, forKey: .advancedSettings)
+      self.knowledgeConnectorSettings = try container.decodeIfPresent(
+        KnowledgeConnectorSettings.self, forKey: .knowledgeConnectorSettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.entryFulfillment, forKey: .entryFulfillment)
+      try container.encodeIfPresent(self.form, forKey: .form)
+      try container.encode(self.transitionRouteGroups, forKey: .transitionRouteGroups)
+      try container.encode(self.transitionRoutes, forKey: .transitionRoutes)
+      try container.encode(self.eventHandlers, forKey: .eventHandlers)
+      try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
+      try container.encodeIfPresent(
+        self.knowledgeConnectorSettings, forKey: .knowledgeConnectorSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

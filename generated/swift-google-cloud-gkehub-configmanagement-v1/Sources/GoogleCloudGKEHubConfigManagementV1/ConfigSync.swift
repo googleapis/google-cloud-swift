@@ -53,6 +53,8 @@ public struct ConfigSync: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `config-management-monitoring` should be bound to the GSA.
   public var metricsGcpServiceAccountEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigSync`.
   public init() {}
 
@@ -67,6 +69,65 @@ public struct ConfigSync: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let git = CodingKeys(stringValue: "git")
+    static let sourceFormat = CodingKeys(stringValue: "sourceFormat")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let preventDrift = CodingKeys(stringValue: "preventDrift")
+    static let oci = CodingKeys(stringValue: "oci")
+    static let metricsGcpServiceAccountEmail = CodingKeys(
+      stringValue: "metricsGcpServiceAccountEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "git",
+      "sourceFormat",
+      "enabled",
+      "preventDrift",
+      "oci",
+      "metricsGcpServiceAccountEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.git = try container.decodeIfPresent(GitConfig.self, forKey: .git)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceFormat) {
+      self.sourceFormat = value
+    }
+    self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preventDrift) {
+      self.preventDrift = value
+    }
+    self.oci = try container.decodeIfPresent(OciConfig.self, forKey: .oci)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .metricsGcpServiceAccountEmail)
+    {
+      self.metricsGcpServiceAccountEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.git, forKey: .git)
+    try container.encode(self.sourceFormat, forKey: .sourceFormat)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encode(self.preventDrift, forKey: .preventDrift)
+    try container.encodeIfPresent(self.oci, forKey: .oci)
+    try container.encode(self.metricsGcpServiceAccountEmail, forKey: .metricsGcpServiceAccountEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

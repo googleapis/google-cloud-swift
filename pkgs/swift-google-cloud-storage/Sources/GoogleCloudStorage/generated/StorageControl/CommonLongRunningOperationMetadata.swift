@@ -42,6 +42,8 @@ public struct CommonLongRunningOperationMetadata: Codable, Equatable, GoogleClou
   /// 100]. The value -1 means the progress is unknown.
   public var progressPercent: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommonLongRunningOperationMetadata`.
   public init() {}
 
@@ -56,6 +58,64 @@ public struct CommonLongRunningOperationMetadata: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let type = CodingKeys(stringValue: "type")
+    static let requestedCancellation = CodingKeys(stringValue: "requestedCancellation")
+    static let progressPercent = CodingKeys(stringValue: "progressPercent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "updateTime",
+      "type",
+      "requestedCancellation",
+      "progressPercent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requestedCancellation) {
+      self.requestedCancellation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
+      self.progressPercent = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.requestedCancellation, forKey: .requestedCancellation)
+    try container.encode(self.progressPercent, forKey: .progressPercent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

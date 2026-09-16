@@ -54,6 +54,8 @@ public struct JavaSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Some settings.
   public var common: CommonLanguageSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JavaSettings`.
   public init() {}
 
@@ -68,6 +70,50 @@ public struct JavaSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let libraryPackage = CodingKeys(stringValue: "libraryPackage")
+    static let serviceClassNames = CodingKeys(stringValue: "serviceClassNames")
+    static let common = CodingKeys(stringValue: "common")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "libraryPackage",
+      "serviceClassNames",
+      "common",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .libraryPackage) {
+      self.libraryPackage = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .serviceClassNames)
+    {
+      self.serviceClassNames = value
+    }
+    self.common = try container.decodeIfPresent(CommonLanguageSettings.self, forKey: .common)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.libraryPackage, forKey: .libraryPackage)
+    try container.encode(self.serviceClassNames, forKey: .serviceClassNames)
+    try container.encodeIfPresent(self.common, forKey: .common)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

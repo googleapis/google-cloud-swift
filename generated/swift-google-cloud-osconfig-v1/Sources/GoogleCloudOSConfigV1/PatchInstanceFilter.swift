@@ -47,6 +47,8 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// example prefix="prod-".
   public var instanceNamePrefixes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchInstanceFilter`.
   public init() {}
 
@@ -61,6 +63,65 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let all = CodingKeys(stringValue: "all")
+    static let groupLabels = CodingKeys(stringValue: "groupLabels")
+    static let zones = CodingKeys(stringValue: "zones")
+    static let instances = CodingKeys(stringValue: "instances")
+    static let instanceNamePrefixes = CodingKeys(stringValue: "instanceNamePrefixes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "all",
+      "groupLabels",
+      "zones",
+      "instances",
+      "instanceNamePrefixes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .all) {
+      self.all = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PatchInstanceFilter.GroupLabel].self, forKey: .groupLabels)
+    {
+      self.groupLabels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+      self.zones = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+      self.instances = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instanceNamePrefixes)
+    {
+      self.instanceNamePrefixes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.all, forKey: .all)
+    try container.encode(self.groupLabels, forKey: .groupLabels)
+    try container.encode(self.zones, forKey: .zones)
+    try container.encode(self.instances, forKey: .instances)
+    try container.encode(self.instanceNamePrefixes, forKey: .instanceNamePrefixes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Targets a group of VM instances by using their [assigned
@@ -78,6 +139,8 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// instance to be targeted by this filter.
     public var labels: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroupLabel`.
     public init() {}
 
@@ -92,6 +155,40 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let labels = CodingKeys(stringValue: "labels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "labels"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.labels, forKey: .labels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

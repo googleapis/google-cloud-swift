@@ -40,6 +40,8 @@ public struct DbVersionProperties: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// supported for Upgrade.
   public var isUpgradeSupported: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbVersionProperties`.
   public init() {}
 
@@ -54,6 +56,63 @@ public struct DbVersionProperties: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let isLatestForMajorVersion = CodingKeys(stringValue: "isLatestForMajorVersion")
+    static let supportsPdb = CodingKeys(stringValue: "supportsPdb")
+    static let isPreviewDbVersion = CodingKeys(stringValue: "isPreviewDbVersion")
+    static let isUpgradeSupported = CodingKeys(stringValue: "isUpgradeSupported")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "isLatestForMajorVersion",
+      "supportsPdb",
+      "isPreviewDbVersion",
+      "isUpgradeSupported",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isLatestForMajorVersion)
+    {
+      self.isLatestForMajorVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsPdb) {
+      self.supportsPdb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPreviewDbVersion) {
+      self.isPreviewDbVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isUpgradeSupported) {
+      self.isUpgradeSupported = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.isLatestForMajorVersion, forKey: .isLatestForMajorVersion)
+    try container.encode(self.supportsPdb, forKey: .supportsPdb)
+    try container.encode(self.isPreviewDbVersion, forKey: .isPreviewDbVersion)
+    try container.encode(self.isUpgradeSupported, forKey: .isUpgradeSupported)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleRpc
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleRpc
 internal import GoogleCloudWKTConvert
 
 extension GoogleRpc.Status {
@@ -30,6 +30,7 @@ extension GoogleRpc.Status {
     self.code = proto.code
     self.message = proto.message
     self.details = try proto.details.map { try .init(proto: $0) }
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension GoogleRpc.Status {
     proto.code = self.code
     proto.message = self.message
     proto.details = try self.details.map { try $0.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

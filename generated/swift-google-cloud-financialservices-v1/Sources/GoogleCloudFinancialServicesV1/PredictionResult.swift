@@ -72,6 +72,8 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// for. Determined by Model, cannot be set by user.
   public var lineOfBusiness: LineOfBusiness = LineOfBusiness()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PredictionResult`.
   public init() {}
 
@@ -88,6 +90,93 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let dataset = CodingKeys(stringValue: "dataset")
+    static let model = CodingKeys(stringValue: "model")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let predictionPeriods = CodingKeys(stringValue: "predictionPeriods")
+    static let outputs = CodingKeys(stringValue: "outputs")
+    static let lineOfBusiness = CodingKeys(stringValue: "lineOfBusiness")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "state",
+      "dataset",
+      "model",
+      "endTime",
+      "predictionPeriods",
+      "outputs",
+      "lineOfBusiness",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(PredictionResult.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+      self.dataset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .predictionPeriods) {
+      self.predictionPeriods = value
+    }
+    self.outputs = try container.decodeIfPresent(PredictionResult.Outputs.self, forKey: .outputs)
+    if let value = try container.decodeIfPresent(LineOfBusiness.self, forKey: .lineOfBusiness) {
+      self.lineOfBusiness = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.dataset, forKey: .dataset)
+    try container.encode(self.model, forKey: .model)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.predictionPeriods, forKey: .predictionPeriods)
+    try container.encodeIfPresent(self.outputs, forKey: .outputs)
+    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Outputs is a list of places where the operation will write results.
   public struct Outputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -98,6 +187,8 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The location to output explainability information.  If not specified
     /// no explainability data will be output.
     public var explainabilityDestination: BigQueryDestination? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Outputs`.
     public init() {}
@@ -113,6 +204,43 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let predictionDestination = CodingKeys(stringValue: "predictionDestination")
+      static let explainabilityDestination = CodingKeys(stringValue: "explainabilityDestination")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "predictionDestination",
+        "explainabilityDestination",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.predictionDestination = try container.decodeIfPresent(
+        BigQueryDestination.self, forKey: .predictionDestination)
+      self.explainabilityDestination = try container.decodeIfPresent(
+        BigQueryDestination.self, forKey: .explainabilityDestination)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.predictionDestination, forKey: .predictionDestination)
+      try container.encodeIfPresent(
+        self.explainabilityDestination, forKey: .explainabilityDestination)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

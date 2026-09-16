@@ -86,6 +86,8 @@ public struct StandardSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// list of valid timezone names. For e.g., Europe/Paris.
   public var timeZone: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StandardSchedule`.
   public init() {}
 
@@ -100,6 +102,79 @@ public struct StandardSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let recurrenceType = CodingKeys(stringValue: "recurrenceType")
+    static let hourlyFrequency = CodingKeys(stringValue: "hourlyFrequency")
+    static let daysOfWeek = CodingKeys(stringValue: "daysOfWeek")
+    static let daysOfMonth = CodingKeys(stringValue: "daysOfMonth")
+    static let weekDayOfMonth = CodingKeys(stringValue: "weekDayOfMonth")
+    static let months = CodingKeys(stringValue: "months")
+    static let backupWindow = CodingKeys(stringValue: "backupWindow")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "recurrenceType",
+      "hourlyFrequency",
+      "daysOfWeek",
+      "daysOfMonth",
+      "weekDayOfMonth",
+      "months",
+      "backupWindow",
+      "timeZone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      StandardSchedule.RecurrenceType.self, forKey: .recurrenceType)
+    {
+      self.recurrenceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .hourlyFrequency) {
+      self.hourlyFrequency = value
+    }
+    if let value = try container.decodeIfPresent([GoogleType.DayOfWeek].self, forKey: .daysOfWeek) {
+      self.daysOfWeek = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .daysOfMonth) {
+      self.daysOfMonth = value
+    }
+    self.weekDayOfMonth = try container.decodeIfPresent(
+      WeekDayOfMonth.self, forKey: .weekDayOfMonth)
+    if let value = try container.decodeIfPresent([GoogleType.Month].self, forKey: .months) {
+      self.months = value
+    }
+    self.backupWindow = try container.decodeIfPresent(BackupWindow.self, forKey: .backupWindow)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+      self.timeZone = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.recurrenceType, forKey: .recurrenceType)
+    try container.encode(self.hourlyFrequency, forKey: .hourlyFrequency)
+    try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
+    try container.encode(self.daysOfMonth, forKey: .daysOfMonth)
+    try container.encodeIfPresent(self.weekDayOfMonth, forKey: .weekDayOfMonth)
+    try container.encode(self.months, forKey: .months)
+    try container.encodeIfPresent(self.backupWindow, forKey: .backupWindow)
+    try container.encode(self.timeZone, forKey: .timeZone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `RecurrenceTypes` enumerates the applicable periodicity for the schedule.

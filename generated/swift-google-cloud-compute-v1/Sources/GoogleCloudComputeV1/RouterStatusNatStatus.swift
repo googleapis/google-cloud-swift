@@ -55,6 +55,8 @@
     /// They will be raw IP strings like "179.12.26.133".
     public var userAllocatedNatIps: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterStatusNatStatus`.
     public init() {}
 
@@ -69,6 +71,97 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoAllocatedNatIps = CodingKeys(stringValue: "autoAllocatedNatIps")
+      static let drainAutoAllocatedNatIps = CodingKeys(stringValue: "drainAutoAllocatedNatIps")
+      static let drainUserAllocatedNatIps = CodingKeys(stringValue: "drainUserAllocatedNatIps")
+      static let minExtraNatIpsNeeded = CodingKeys(stringValue: "minExtraNatIpsNeeded")
+      static let name = CodingKeys(stringValue: "name")
+      static let numVmEndpointsWithNatMappings = CodingKeys(
+        stringValue: "numVmEndpointsWithNatMappings")
+      static let ruleStatus = CodingKeys(stringValue: "ruleStatus")
+      static let userAllocatedNatIpResources = CodingKeys(
+        stringValue: "userAllocatedNatIpResources")
+      static let userAllocatedNatIps = CodingKeys(stringValue: "userAllocatedNatIps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoAllocatedNatIps",
+        "drainAutoAllocatedNatIps",
+        "drainUserAllocatedNatIps",
+        "minExtraNatIpsNeeded",
+        "name",
+        "numVmEndpointsWithNatMappings",
+        "ruleStatus",
+        "userAllocatedNatIpResources",
+        "userAllocatedNatIps",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .autoAllocatedNatIps)
+      {
+        self.autoAllocatedNatIps = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .drainAutoAllocatedNatIps)
+      {
+        self.drainAutoAllocatedNatIps = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .drainUserAllocatedNatIps)
+      {
+        self.drainUserAllocatedNatIps = value
+      }
+      self.minExtraNatIpsNeeded = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .minExtraNatIpsNeeded)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.numVmEndpointsWithNatMappings = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .numVmEndpointsWithNatMappings)
+      if let value = try container.decodeIfPresent(
+        [RouterStatusNatStatusNatRuleStatus].self, forKey: .ruleStatus)
+      {
+        self.ruleStatus = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .userAllocatedNatIpResources)
+      {
+        self.userAllocatedNatIpResources = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .userAllocatedNatIps)
+      {
+        self.userAllocatedNatIps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.autoAllocatedNatIps, forKey: .autoAllocatedNatIps)
+      try container.encode(self.drainAutoAllocatedNatIps, forKey: .drainAutoAllocatedNatIps)
+      try container.encode(self.drainUserAllocatedNatIps, forKey: .drainUserAllocatedNatIps)
+      try container.encodeIfPresent(self.minExtraNatIpsNeeded, forKey: .minExtraNatIpsNeeded)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(
+        self.numVmEndpointsWithNatMappings, forKey: .numVmEndpointsWithNatMappings)
+      try container.encode(self.ruleStatus, forKey: .ruleStatus)
+      try container.encode(self.userAllocatedNatIpResources, forKey: .userAllocatedNatIpResources)
+      try container.encode(self.userAllocatedNatIps, forKey: .userAllocatedNatIps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

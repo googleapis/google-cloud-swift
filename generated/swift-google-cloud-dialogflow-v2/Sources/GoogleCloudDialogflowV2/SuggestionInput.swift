@@ -39,6 +39,8 @@
     /// corresponding tool call result so that it can be identified.
     public var sendTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuggestionInput`.
     public init() {}
 
@@ -53,6 +55,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let answerRecord = CodingKeys(stringValue: "answerRecord")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let action = CodingKeys(stringValue: "action")
+      static let sendTime = CodingKeys(stringValue: "sendTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "answerRecord",
+        "parameters",
+        "action",
+        "sendTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
+        self.answerRecord = value
+      }
+      self.parameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .parameters)
+      if let value = try container.decodeIfPresent(SuggestionInput.Action.self, forKey: .action) {
+        self.action = value
+      }
+      self.sendTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .sendTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.answerRecord, forKey: .answerRecord)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encode(self.action, forKey: .action)
+      try container.encodeIfPresent(self.sendTime, forKey: .sendTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Indicate what type of action to take with the tool call.

@@ -48,6 +48,8 @@ public struct LintResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Human readable debug message associated with the issue.
   public var debugMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LintResult`.
   public init() {}
 
@@ -62,6 +64,68 @@ public struct LintResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let level = CodingKeys(stringValue: "level")
+    static let validationUnitName = CodingKeys(stringValue: "validationUnitName")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let fieldName = CodingKeys(stringValue: "fieldName")
+    static let locationOffset = CodingKeys(stringValue: "locationOffset")
+    static let debugMessage = CodingKeys(stringValue: "debugMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "level",
+      "validationUnitName",
+      "severity",
+      "fieldName",
+      "locationOffset",
+      "debugMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(LintResult.Level.self, forKey: .level) {
+      self.level = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationUnitName) {
+      self.validationUnitName = value
+    }
+    if let value = try container.decodeIfPresent(LintResult.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
+      self.fieldName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .locationOffset) {
+      self.locationOffset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .debugMessage) {
+      self.debugMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.level, forKey: .level)
+    try container.encode(self.validationUnitName, forKey: .validationUnitName)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.fieldName, forKey: .fieldName)
+    try container.encode(self.locationOffset, forKey: .locationOffset)
+    try container.encode(self.debugMessage, forKey: .debugMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible Level values of a validation unit corresponding to its domain

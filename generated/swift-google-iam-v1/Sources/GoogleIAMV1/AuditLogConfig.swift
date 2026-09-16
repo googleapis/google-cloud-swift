@@ -50,6 +50,8 @@ public struct AuditLogConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.iam.v1.Binding.members]: <doc:Binding/members>
   public var exemptedMembers: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditLogConfig`.
   public init() {}
 
@@ -64,6 +66,44 @@ public struct AuditLogConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let logType = CodingKeys(stringValue: "logType")
+    static let exemptedMembers = CodingKeys(stringValue: "exemptedMembers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "logType",
+      "exemptedMembers",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AuditLogConfig.LogType.self, forKey: .logType) {
+      self.logType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exemptedMembers) {
+      self.exemptedMembers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.logType, forKey: .logType)
+    try container.encode(self.exemptedMembers, forKey: .exemptedMembers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The list of valid permission types for which logging can be configured.

@@ -58,6 +58,8 @@
     /// "metadata" was set to CUSTOM_METADATA.
     public var metadataFields: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubnetworkLogConfig`.
     public init() {}
 
@@ -72,6 +74,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let aggregationInterval = CodingKeys(stringValue: "aggregationInterval")
+      static let enable = CodingKeys(stringValue: "enable")
+      static let filterExpr = CodingKeys(stringValue: "filterExpr")
+      static let flowSampling = CodingKeys(stringValue: "flowSampling")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let metadataFields = CodingKeys(stringValue: "metadataFields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "aggregationInterval",
+        "enable",
+        "filterExpr",
+        "flowSampling",
+        "metadata",
+        "metadataFields",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.aggregationInterval = try container.decodeIfPresent(
+        SubnetworkLogConfig.AggregationInterval.self, forKey: .aggregationInterval)
+      self.enable = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable)
+      self.filterExpr = try container.decodeIfPresent(Swift.String.self, forKey: .filterExpr)
+      self.flowSampling = try container.decodeIfPresent(Swift.Float.self, forKey: .flowSampling)
+      self.metadata = try container.decodeIfPresent(
+        SubnetworkLogConfig.Metadata.self, forKey: .metadata)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .metadataFields) {
+        self.metadataFields = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.aggregationInterval, forKey: .aggregationInterval)
+      try container.encodeIfPresent(self.enable, forKey: .enable)
+      try container.encodeIfPresent(self.filterExpr, forKey: .filterExpr)
+      try container.encodeIfPresent(self.flowSampling, forKey: .flowSampling)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encode(self.metadataFields, forKey: .metadataFields)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [aggregationInterval][google.cloud.compute.v1.SubnetworkLogConfig.aggregationInterval] field.

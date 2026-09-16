@@ -125,6 +125,8 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Cloud Run service.
   public var binaryAuthorizationPolicy: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceConfig`.
   public init() {}
 
@@ -139,6 +141,163 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let service = CodingKeys(stringValue: "service")
+    static let timeoutSeconds = CodingKeys(stringValue: "timeoutSeconds")
+    static let availableMemory = CodingKeys(stringValue: "availableMemory")
+    static let availableCpu = CodingKeys(stringValue: "availableCpu")
+    static let environmentVariables = CodingKeys(stringValue: "environmentVariables")
+    static let maxInstanceCount = CodingKeys(stringValue: "maxInstanceCount")
+    static let minInstanceCount = CodingKeys(stringValue: "minInstanceCount")
+    static let vpcConnector = CodingKeys(stringValue: "vpcConnector")
+    static let vpcConnectorEgressSettings = CodingKeys(stringValue: "vpcConnectorEgressSettings")
+    static let ingressSettings = CodingKeys(stringValue: "ingressSettings")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+    static let allTrafficOnLatestRevision = CodingKeys(stringValue: "allTrafficOnLatestRevision")
+    static let secretEnvironmentVariables = CodingKeys(stringValue: "secretEnvironmentVariables")
+    static let secretVolumes = CodingKeys(stringValue: "secretVolumes")
+    static let revision = CodingKeys(stringValue: "revision")
+    static let maxInstanceRequestConcurrency = CodingKeys(
+      stringValue: "maxInstanceRequestConcurrency")
+    static let securityLevel = CodingKeys(stringValue: "securityLevel")
+    static let binaryAuthorizationPolicy = CodingKeys(stringValue: "binaryAuthorizationPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "service",
+      "timeoutSeconds",
+      "availableMemory",
+      "availableCpu",
+      "environmentVariables",
+      "maxInstanceCount",
+      "minInstanceCount",
+      "vpcConnector",
+      "vpcConnectorEgressSettings",
+      "ingressSettings",
+      "uri",
+      "serviceAccountEmail",
+      "allTrafficOnLatestRevision",
+      "secretEnvironmentVariables",
+      "secretVolumes",
+      "revision",
+      "maxInstanceRequestConcurrency",
+      "securityLevel",
+      "binaryAuthorizationPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeoutSeconds) {
+      self.timeoutSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .availableMemory) {
+      self.availableMemory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .availableCpu) {
+      self.availableCpu = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .environmentVariables)
+    {
+      self.environmentVariables = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxInstanceCount) {
+      self.maxInstanceCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minInstanceCount) {
+      self.minInstanceCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vpcConnector) {
+      self.vpcConnector = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceConfig.VpcConnectorEgressSettings.self, forKey: .vpcConnectorEgressSettings)
+    {
+      self.vpcConnectorEgressSettings = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceConfig.IngressSettings.self, forKey: .ingressSettings)
+    {
+      self.ingressSettings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail) {
+      self.serviceAccountEmail = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .allTrafficOnLatestRevision)
+    {
+      self.allTrafficOnLatestRevision = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SecretEnvVar].self, forKey: .secretEnvironmentVariables)
+    {
+      self.secretEnvironmentVariables = value
+    }
+    if let value = try container.decodeIfPresent([SecretVolume].self, forKey: .secretVolumes) {
+      self.secretVolumes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .maxInstanceRequestConcurrency)
+    {
+      self.maxInstanceRequestConcurrency = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceConfig.SecurityLevel.self, forKey: .securityLevel)
+    {
+      self.securityLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .binaryAuthorizationPolicy)
+    {
+      self.binaryAuthorizationPolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.timeoutSeconds, forKey: .timeoutSeconds)
+    try container.encode(self.availableMemory, forKey: .availableMemory)
+    try container.encode(self.availableCpu, forKey: .availableCpu)
+    try container.encode(self.environmentVariables, forKey: .environmentVariables)
+    try container.encode(self.maxInstanceCount, forKey: .maxInstanceCount)
+    try container.encode(self.minInstanceCount, forKey: .minInstanceCount)
+    try container.encode(self.vpcConnector, forKey: .vpcConnector)
+    try container.encode(self.vpcConnectorEgressSettings, forKey: .vpcConnectorEgressSettings)
+    try container.encode(self.ingressSettings, forKey: .ingressSettings)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
+    try container.encode(self.allTrafficOnLatestRevision, forKey: .allTrafficOnLatestRevision)
+    try container.encode(self.secretEnvironmentVariables, forKey: .secretEnvironmentVariables)
+    try container.encode(self.secretVolumes, forKey: .secretVolumes)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.maxInstanceRequestConcurrency, forKey: .maxInstanceRequestConcurrency)
+    try container.encode(self.securityLevel, forKey: .securityLevel)
+    try container.encode(self.binaryAuthorizationPolicy, forKey: .binaryAuthorizationPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available egress settings.

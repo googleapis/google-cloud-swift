@@ -26,6 +26,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The Confidential Computing feature that the attestation is for.
   public var ccFeature: OneOf_CcFeature? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NvidiaAttestation`.
   public init() {}
 
@@ -42,10 +44,21 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case spt = "spt"
-    case ppcie = "ppcie"
-    case mpt = "mpt"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let spt = CodingKeys(stringValue: "spt")
+    static let ppcie = CodingKeys(stringValue: "ppcie")
+    static let mpt = CodingKeys(stringValue: "mpt")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "spt",
+      "ppcie",
+      "mpt",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -77,6 +90,10 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try ccFeatureCheckAndSet(.mpt(mpt))
     }
     self.ccFeature = ccFeature
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -91,6 +108,9 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .mpt(let value):
         try container.encode(value, forKey: .mpt)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -119,6 +139,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.1.0.pdf
     public var attestationReport: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GpuInfo`.
     public init() {}
 
@@ -133,6 +155,74 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uuid = CodingKeys(stringValue: "uuid")
+      static let driverVersion = CodingKeys(stringValue: "driverVersion")
+      static let vbiosVersion = CodingKeys(stringValue: "vbiosVersion")
+      static let gpuArchitectureType = CodingKeys(stringValue: "gpuArchitectureType")
+      static let attestationCertificateChain = CodingKeys(
+        stringValue: "attestationCertificateChain")
+      static let attestationReport = CodingKeys(stringValue: "attestationReport")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uuid",
+        "driverVersion",
+        "vbiosVersion",
+        "gpuArchitectureType",
+        "attestationCertificateChain",
+        "attestationReport",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+        self.uuid = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .driverVersion) {
+        self.driverVersion = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vbiosVersion) {
+        self.vbiosVersion = value
+      }
+      if let value = try container.decodeIfPresent(
+        NvidiaAttestation.GpuArchitectureType.self, forKey: .gpuArchitectureType)
+      {
+        self.gpuArchitectureType = value
+      }
+      if let value = try container.decodeIfPresent(
+        Foundation.Data.self, forKey: .attestationCertificateChain)
+      {
+        self.attestationCertificateChain = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .attestationReport)
+      {
+        self.attestationReport = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uuid, forKey: .uuid)
+      try container.encode(self.driverVersion, forKey: .driverVersion)
+      try container.encode(self.vbiosVersion, forKey: .vbiosVersion)
+      try container.encode(self.gpuArchitectureType, forKey: .gpuArchitectureType)
+      try container.encode(self.attestationCertificateChain, forKey: .attestationCertificateChain)
+      try container.encode(self.attestationReport, forKey: .attestationReport)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -161,6 +251,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.1.0.pdf
     public var attestationReport: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SwitchInfo`.
     public init() {}
 
@@ -175,6 +267,54 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uuid = CodingKeys(stringValue: "uuid")
+      static let attestationCertificateChain = CodingKeys(
+        stringValue: "attestationCertificateChain")
+      static let attestationReport = CodingKeys(stringValue: "attestationReport")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uuid",
+        "attestationCertificateChain",
+        "attestationReport",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+        self.uuid = value
+      }
+      if let value = try container.decodeIfPresent(
+        Foundation.Data.self, forKey: .attestationCertificateChain)
+      {
+        self.attestationCertificateChain = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .attestationReport)
+      {
+        self.attestationReport = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uuid, forKey: .uuid)
+      try container.encode(self.attestationCertificateChain, forKey: .attestationCertificateChain)
+      try container.encode(self.attestationReport, forKey: .attestationReport)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -196,6 +336,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Optional. Single GPU quote.
     public var gpuQuote: NvidiaAttestation.GpuInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SinglePassthroughAttestation`.
     public init() {}
 
@@ -210,6 +352,37 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gpuQuote = CodingKeys(stringValue: "gpuQuote")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gpuQuote"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.gpuQuote = try container.decodeIfPresent(
+        NvidiaAttestation.GpuInfo.self, forKey: .gpuQuote)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.gpuQuote, forKey: .gpuQuote)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -235,6 +408,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Optional. A list of SWITCH infos.
     public var switchQuotes: [NvidiaAttestation.SwitchInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProtectedPcieAttestation`.
     public init() {}
 
@@ -249,6 +424,48 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gpuQuotes = CodingKeys(stringValue: "gpuQuotes")
+      static let switchQuotes = CodingKeys(stringValue: "switchQuotes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gpuQuotes",
+        "switchQuotes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [NvidiaAttestation.GpuInfo].self, forKey: .gpuQuotes)
+      {
+        self.gpuQuotes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [NvidiaAttestation.SwitchInfo].self, forKey: .switchQuotes)
+      {
+        self.switchQuotes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.gpuQuotes, forKey: .gpuQuotes)
+      try container.encode(self.switchQuotes, forKey: .switchQuotes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -272,6 +489,8 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Optional. A list of GPU quotes.
     public var gpuQuotes: [NvidiaAttestation.GpuInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MultiGpuSecurePassthroughAttestation`.
     public init() {}
 
@@ -286,6 +505,40 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gpuQuotes = CodingKeys(stringValue: "gpuQuotes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gpuQuotes"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [NvidiaAttestation.GpuInfo].self, forKey: .gpuQuotes)
+      {
+        self.gpuQuotes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.gpuQuotes, forKey: .gpuQuotes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

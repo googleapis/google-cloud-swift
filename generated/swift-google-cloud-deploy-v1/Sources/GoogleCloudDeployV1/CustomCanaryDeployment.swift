@@ -26,6 +26,8 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// order executed.
   public var phaseConfigs: [CustomCanaryDeployment.PhaseConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomCanaryDeployment`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let phaseConfigs = CodingKeys(stringValue: "phaseConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "phaseConfigs"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [CustomCanaryDeployment.PhaseConfig].self, forKey: .phaseConfigs)
+    {
+      self.phaseConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.phaseConfigs, forKey: .phaseConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// PhaseConfig represents the configuration for a phase in the custom
@@ -74,6 +110,8 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// not configured, there will be no postdeploy job for this phase.
     public var postdeploy: Postdeploy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PhaseConfig`.
     public init() {}
 
@@ -88,6 +126,64 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let phaseId = CodingKeys(stringValue: "phaseId")
+      static let percentage = CodingKeys(stringValue: "percentage")
+      static let profiles = CodingKeys(stringValue: "profiles")
+      static let verify = CodingKeys(stringValue: "verify")
+      static let predeploy = CodingKeys(stringValue: "predeploy")
+      static let postdeploy = CodingKeys(stringValue: "postdeploy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "phaseId",
+        "percentage",
+        "profiles",
+        "verify",
+        "predeploy",
+        "postdeploy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phaseId) {
+        self.phaseId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .percentage) {
+        self.percentage = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .profiles) {
+        self.profiles = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verify) {
+        self.verify = value
+      }
+      self.predeploy = try container.decodeIfPresent(Predeploy.self, forKey: .predeploy)
+      self.postdeploy = try container.decodeIfPresent(Postdeploy.self, forKey: .postdeploy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.phaseId, forKey: .phaseId)
+      try container.encode(self.percentage, forKey: .percentage)
+      try container.encode(self.profiles, forKey: .profiles)
+      try container.encode(self.verify, forKey: .verify)
+      try container.encodeIfPresent(self.predeploy, forKey: .predeploy)
+      try container.encodeIfPresent(self.postdeploy, forKey: .postdeploy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

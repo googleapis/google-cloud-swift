@@ -37,6 +37,8 @@ public struct CacheConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var cachePrePopulateState: CacheConfig.CachePrePopulateState =
     CacheConfig.CachePrePopulateState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CacheConfig`.
   public init() {}
 
@@ -51,6 +53,55 @@ public struct CacheConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cachePrePopulate = CodingKeys(stringValue: "cachePrePopulate")
+    static let writebackEnabled = CodingKeys(stringValue: "writebackEnabled")
+    static let cifsChangeNotifyEnabled = CodingKeys(stringValue: "cifsChangeNotifyEnabled")
+    static let cachePrePopulateState = CodingKeys(stringValue: "cachePrePopulateState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cachePrePopulate",
+      "writebackEnabled",
+      "cifsChangeNotifyEnabled",
+      "cachePrePopulateState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.cachePrePopulate = try container.decodeIfPresent(
+      CachePrePopulate.self, forKey: .cachePrePopulate)
+    self.writebackEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .writebackEnabled)
+    self.cifsChangeNotifyEnabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .cifsChangeNotifyEnabled)
+    if let value = try container.decodeIfPresent(
+      CacheConfig.CachePrePopulateState.self, forKey: .cachePrePopulateState)
+    {
+      self.cachePrePopulateState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.cachePrePopulate, forKey: .cachePrePopulate)
+    try container.encodeIfPresent(self.writebackEnabled, forKey: .writebackEnabled)
+    try container.encodeIfPresent(self.cifsChangeNotifyEnabled, forKey: .cifsChangeNotifyEnabled)
+    try container.encode(self.cachePrePopulateState, forKey: .cachePrePopulateState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of the prepopulation job indicating how the prepopulation is

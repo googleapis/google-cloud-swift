@@ -45,6 +45,8 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Contains fields specific to the source system.
   public var systemSpec: OneOf_SystemSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RoutineSpec`.
   public init() {}
 
@@ -61,23 +63,49 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case routineType = "routineType"
-    case language = "language"
-    case routineArguments = "routineArguments"
-    case returnType = "returnType"
-    case definitionBody = "definitionBody"
-    case bigqueryRoutineSpec = "bigqueryRoutineSpec"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let routineType = CodingKeys(stringValue: "routineType")
+    static let language = CodingKeys(stringValue: "language")
+    static let routineArguments = CodingKeys(stringValue: "routineArguments")
+    static let returnType = CodingKeys(stringValue: "returnType")
+    static let definitionBody = CodingKeys(stringValue: "definitionBody")
+    static let bigqueryRoutineSpec = CodingKeys(stringValue: "bigqueryRoutineSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "routineType",
+      "language",
+      "routineArguments",
+      "returnType",
+      "definitionBody",
+      "bigqueryRoutineSpec",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.routineType = try container.decode(RoutineSpec.RoutineType.self, forKey: .routineType)
-    self.language = try container.decode(Swift.String.self, forKey: .language)
-    self.routineArguments = try container.decode(
+    if let value = try container.decodeIfPresent(RoutineSpec.RoutineType.self, forKey: .routineType)
+    {
+      self.routineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .language) {
+      self.language = value
+    }
+    if let value = try container.decodeIfPresent(
       [RoutineSpec.Argument].self, forKey: .routineArguments)
-    self.returnType = try container.decode(Swift.String.self, forKey: .returnType)
-    self.definitionBody = try container.decode(Swift.String.self, forKey: .definitionBody)
+    {
+      self.routineArguments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .returnType) {
+      self.returnType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .definitionBody) {
+      self.definitionBody = value
+    }
 
     var systemSpec: OneOf_SystemSpec? = nil
     let systemSpecCheckAndSet = {
@@ -95,6 +123,10 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try systemSpecCheckAndSet(.bigqueryRoutineSpec(bigqueryRoutineSpec))
     }
     self.systemSpec = systemSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -110,6 +142,9 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .bigqueryRoutineSpec(let value):
         try container.encode(value, forKey: .bigqueryRoutineSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -128,6 +163,8 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// the language.
     public var type: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Argument`.
     public init() {}
 
@@ -142,6 +179,50 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "mode",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(RoutineSpec.Argument.Mode.self, forKey: .mode) {
+        self.mode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The input or output mode of the argument.

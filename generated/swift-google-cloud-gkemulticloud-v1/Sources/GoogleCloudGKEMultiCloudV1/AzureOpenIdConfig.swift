@@ -44,6 +44,8 @@ public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Supported grant types.
   public var grantTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureOpenIdConfig`.
   public init() {}
 
@@ -60,28 +62,65 @@ public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case issuer = "issuer"
-    case jwksUri = "jwks_uri"
-    case responseTypesSupported = "response_types_supported"
-    case subjectTypesSupported = "subject_types_supported"
-    case idTokenSigningAlgValuesSupported = "id_token_signing_alg_values_supported"
-    case claimsSupported = "claims_supported"
-    case grantTypes = "grant_types"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let issuer = CodingKeys(stringValue: "issuer")
+    static let jwksUri = CodingKeys(stringValue: "jwks_uri")
+    static let responseTypesSupported = CodingKeys(stringValue: "response_types_supported")
+    static let subjectTypesSupported = CodingKeys(stringValue: "subject_types_supported")
+    static let idTokenSigningAlgValuesSupported = CodingKeys(
+      stringValue: "id_token_signing_alg_values_supported")
+    static let claimsSupported = CodingKeys(stringValue: "claims_supported")
+    static let grantTypes = CodingKeys(stringValue: "grant_types")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "issuer",
+      "jwks_uri",
+      "response_types_supported",
+      "subject_types_supported",
+      "id_token_signing_alg_values_supported",
+      "claims_supported",
+      "grant_types",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.issuer = try container.decode(Swift.String.self, forKey: .issuer)
-    self.jwksUri = try container.decode(Swift.String.self, forKey: .jwksUri)
-    self.responseTypesSupported = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
+      self.issuer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jwksUri) {
+      self.jwksUri = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .responseTypesSupported)
-    self.subjectTypesSupported = try container.decode(
+    {
+      self.responseTypesSupported = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .subjectTypesSupported)
-    self.idTokenSigningAlgValuesSupported = try container.decode(
+    {
+      self.subjectTypesSupported = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .idTokenSigningAlgValuesSupported)
-    self.claimsSupported = try container.decode([Swift.String].self, forKey: .claimsSupported)
-    self.grantTypes = try container.decode([Swift.String].self, forKey: .grantTypes)
+    {
+      self.idTokenSigningAlgValuesSupported = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .claimsSupported) {
+      self.claimsSupported = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .grantTypes) {
+      self.grantTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +133,9 @@ public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       self.idTokenSigningAlgValuesSupported, forKey: .idTokenSigningAlgValuesSupported)
     try container.encode(self.claimsSupported, forKey: .claimsSupported)
     try container.encode(self.grantTypes, forKey: .grantTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

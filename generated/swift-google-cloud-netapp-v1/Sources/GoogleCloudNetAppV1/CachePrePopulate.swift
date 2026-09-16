@@ -33,6 +33,8 @@ public struct CachePrePopulate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `path_list` need to be recursively pre-populated.
   public var recursion: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CachePrePopulate`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct CachePrePopulate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pathList = CodingKeys(stringValue: "pathList")
+    static let excludePathList = CodingKeys(stringValue: "excludePathList")
+    static let recursion = CodingKeys(stringValue: "recursion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pathList",
+      "excludePathList",
+      "recursion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .pathList) {
+      self.pathList = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludePathList) {
+      self.excludePathList = value
+    }
+    self.recursion = try container.decodeIfPresent(Swift.Bool.self, forKey: .recursion)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.pathList, forKey: .pathList)
+    try container.encode(self.excludePathList, forKey: .excludePathList)
+    try container.encodeIfPresent(self.recursion, forKey: .recursion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

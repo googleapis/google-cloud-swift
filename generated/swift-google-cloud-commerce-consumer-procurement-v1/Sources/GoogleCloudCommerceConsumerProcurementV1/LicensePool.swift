@@ -34,6 +34,8 @@ public struct LicensePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Total number of licenses in the pool.
   public var totalLicenseCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LicensePool`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct LicensePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let licenseAssignmentProtocol = CodingKeys(stringValue: "licenseAssignmentProtocol")
+    static let availableLicenseCount = CodingKeys(stringValue: "availableLicenseCount")
+    static let totalLicenseCount = CodingKeys(stringValue: "totalLicenseCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "licenseAssignmentProtocol",
+      "availableLicenseCount",
+      "totalLicenseCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.licenseAssignmentProtocol = try container.decodeIfPresent(
+      AssignmentProtocol.self, forKey: .licenseAssignmentProtocol)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .availableLicenseCount) {
+      self.availableLicenseCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalLicenseCount) {
+      self.totalLicenseCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(
+      self.licenseAssignmentProtocol, forKey: .licenseAssignmentProtocol)
+    try container.encode(self.availableLicenseCount, forKey: .availableLicenseCount)
+    try container.encode(self.totalLicenseCount, forKey: .totalLicenseCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

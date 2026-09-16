@@ -34,6 +34,8 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
   /// All of the actions identified in the time range.
   public var actions: [VideoActionRecognitionPredictionResult.IdentifiedAction] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoActionRecognitionPredictionResult`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let segmentStartTime = CodingKeys(stringValue: "segmentStartTime")
+    static let segmentEndTime = CodingKeys(stringValue: "segmentEndTime")
+    static let actions = CodingKeys(stringValue: "actions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "segmentStartTime",
+      "segmentEndTime",
+      "actions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.segmentStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .segmentStartTime)
+    self.segmentEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .segmentEndTime)
+    if let value = try container.decodeIfPresent(
+      [VideoActionRecognitionPredictionResult.IdentifiedAction].self, forKey: .actions)
+    {
+      self.actions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.segmentStartTime, forKey: .segmentStartTime)
+    try container.encodeIfPresent(self.segmentEndTime, forKey: .segmentEndTime)
+    try container.encode(self.actions, forKey: .actions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Each IdentifiedAction is one particular identification of an action
@@ -66,6 +112,8 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     /// value means higher confidence.
     public var confidence: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IdentifiedAction`.
     public init() {}
 
@@ -80,6 +128,50 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let confidence = CodingKeys(stringValue: "confidence")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "displayName",
+        "confidence",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+        self.confidence = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.confidence, forKey: .confidence)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -29,6 +29,8 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleCloudWKT.
   /// could be either a link to open or an endpoint to execute.
   public var actionType: OneOf_ActionType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UniversalActionExtensionPoint`.
   public init() {}
 
@@ -45,15 +47,28 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case label = "label"
-    case openLink = "openLink"
-    case runFunction = "runFunction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let label = CodingKeys(stringValue: "label")
+    static let openLink = CodingKeys(stringValue: "openLink")
+    static let runFunction = CodingKeys(stringValue: "runFunction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "label",
+      "openLink",
+      "runFunction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.label = try container.decode(Swift.String.self, forKey: .label)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
 
     var actionType: OneOf_ActionType? = nil
     let actionTypeCheckAndSet = {
@@ -72,6 +87,10 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleCloudWKT.
       try actionTypeCheckAndSet(.runFunction(runFunction))
     }
     self.actionType = actionType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +104,9 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleCloudWKT.
       case .runFunction(let value):
         try container.encode(value, forKey: .runFunction)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

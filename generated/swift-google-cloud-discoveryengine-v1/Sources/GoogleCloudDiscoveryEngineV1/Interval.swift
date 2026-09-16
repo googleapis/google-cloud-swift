@@ -36,6 +36,8 @@
     /// Otherwise, an `INVALID_ARGUMENT` error is returned.
     public var max: OneOf_Max? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Interval`.
     public init() {}
 
@@ -52,11 +54,23 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case minimum = "minimum"
-      case exclusiveMinimum = "exclusiveMinimum"
-      case maximum = "maximum"
-      case exclusiveMaximum = "exclusiveMaximum"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minimum = CodingKeys(stringValue: "minimum")
+      static let exclusiveMinimum = CodingKeys(stringValue: "exclusiveMinimum")
+      static let maximum = CodingKeys(stringValue: "maximum")
+      static let exclusiveMaximum = CodingKeys(stringValue: "exclusiveMaximum")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minimum",
+        "exclusiveMinimum",
+        "maximum",
+        "exclusiveMaximum",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -101,6 +115,10 @@
         try maxCheckAndSet(.exclusiveMaximum(exclusiveMaximum))
       }
       self.max = max
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,6 +140,9 @@
         case .exclusiveMaximum(let value):
           try container.encode(value, forKey: .exclusiveMaximum)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

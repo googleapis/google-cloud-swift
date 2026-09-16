@@ -29,6 +29,8 @@ public struct BinaryAuthorizationConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// Optional. Binauthz policies that apply to this cluster.
   public var policyBindings: [BinaryAuthorizationConfig.PolicyBinding] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BinaryAuthorizationConfig`.
   public init() {}
 
@@ -45,6 +47,48 @@ public struct BinaryAuthorizationConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let evaluationMode = CodingKeys(stringValue: "evaluationMode")
+    static let policyBindings = CodingKeys(stringValue: "policyBindings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "evaluationMode",
+      "policyBindings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      BinaryAuthorizationConfig.EvaluationMode.self, forKey: .evaluationMode)
+    {
+      self.evaluationMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BinaryAuthorizationConfig.PolicyBinding].self, forKey: .policyBindings)
+    {
+      self.policyBindings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.evaluationMode, forKey: .evaluationMode)
+    try container.encode(self.policyBindings, forKey: .policyBindings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Binauthz policy that applies to this cluster.
   public struct PolicyBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +97,8 @@ public struct BinaryAuthorizationConfig: Codable, Equatable, GoogleCloudWKT._Any
     /// platform policies have the following format:
     /// `projects/{project_number}/platforms/gke/policies/{policy_id}`.
     public var name: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PolicyBinding`.
     public init() {}
@@ -68,6 +114,38 @@ public struct BinaryAuthorizationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

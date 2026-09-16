@@ -30,6 +30,8 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Immutable. Private Service Connect(PSC) Network configuration for the pool.
   public var privateServiceConnect: PrivatePoolV1Config.PrivateServiceConnect? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivatePoolV1Config`.
   public init() {}
 
@@ -44,6 +46,47 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let workerConfig = CodingKeys(stringValue: "workerConfig")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let privateServiceConnect = CodingKeys(stringValue: "privateServiceConnect")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "workerConfig",
+      "networkConfig",
+      "privateServiceConnect",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.workerConfig = try container.decodeIfPresent(
+      PrivatePoolV1Config.WorkerConfig.self, forKey: .workerConfig)
+    self.networkConfig = try container.decodeIfPresent(
+      PrivatePoolV1Config.NetworkConfig.self, forKey: .networkConfig)
+    self.privateServiceConnect = try container.decodeIfPresent(
+      PrivatePoolV1Config.PrivateServiceConnect.self, forKey: .privateServiceConnect)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.privateServiceConnect, forKey: .privateServiceConnect)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the configuration to be used for creating workers in
@@ -68,6 +111,8 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// machine type. By default, nested virtualization is disabled.
     public var enableNestedVirtualization: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkerConfig`.
     public init() {}
 
@@ -82,6 +127,50 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+      static let enableNestedVirtualization = CodingKeys(stringValue: "enableNestedVirtualization")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineType",
+        "diskSizeGb",
+        "enableNestedVirtualization",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+        self.machineType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb) {
+        self.diskSizeGb = value
+      }
+      self.enableNestedVirtualization = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableNestedVirtualization)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.machineType, forKey: .machineType)
+      try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+      try container.encodeIfPresent(
+        self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -123,6 +212,8 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// If unspecified, a value of `/24` will be used.
     public var peeredNetworkIpRange: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkConfig`.
     public init() {}
 
@@ -137,6 +228,53 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let peeredNetwork = CodingKeys(stringValue: "peeredNetwork")
+      static let egressOption = CodingKeys(stringValue: "egressOption")
+      static let peeredNetworkIpRange = CodingKeys(stringValue: "peeredNetworkIpRange")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "peeredNetwork",
+        "egressOption",
+        "peeredNetworkIpRange",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peeredNetwork) {
+        self.peeredNetwork = value
+      }
+      if let value = try container.decodeIfPresent(
+        PrivatePoolV1Config.NetworkConfig.EgressOption.self, forKey: .egressOption)
+      {
+        self.egressOption = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peeredNetworkIpRange)
+      {
+        self.peeredNetworkIpRange = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.peeredNetwork, forKey: .peeredNetwork)
+      try container.encode(self.egressOption, forKey: .egressOption)
+      try container.encode(self.peeredNetworkIpRange, forKey: .peeredNetworkIpRange)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the egress option for the pool.
@@ -288,6 +426,8 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// 192.168.0.0/16) and RFC 6598 (100.64.0.0/10) through PSC interface.
     public var routeAllTraffic: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PrivateServiceConnect`.
     public init() {}
 
@@ -302,6 +442,52 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
+      static let publicIpAddressDisabled = CodingKeys(stringValue: "publicIpAddressDisabled")
+      static let routeAllTraffic = CodingKeys(stringValue: "routeAllTraffic")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "networkAttachment",
+        "publicIpAddressDisabled",
+        "routeAllTraffic",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkAttachment) {
+        self.networkAttachment = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .publicIpAddressDisabled)
+      {
+        self.publicIpAddressDisabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .routeAllTraffic) {
+        self.routeAllTraffic = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.networkAttachment, forKey: .networkAttachment)
+      try container.encode(self.publicIpAddressDisabled, forKey: .publicIpAddressDisabled)
+      try container.encode(self.routeAllTraffic, forKey: .routeAllTraffic)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

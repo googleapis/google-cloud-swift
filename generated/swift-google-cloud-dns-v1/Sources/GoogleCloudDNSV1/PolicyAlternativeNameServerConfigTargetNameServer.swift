@@ -32,6 +32,8 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
 
   public var kind: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PolicyAlternativeNameServerConfigTargetNameServer`.
   public init() {}
 
@@ -46,6 +48,50 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let forwardingPath = CodingKeys(stringValue: "forwardingPath")
+    static let ipv4Address = CodingKeys(stringValue: "ipv4Address")
+    static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+    static let kind = CodingKeys(stringValue: "kind")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "forwardingPath",
+      "ipv4Address",
+      "ipv6Address",
+      "kind",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.forwardingPath = try container.decodeIfPresent(
+      PolicyAlternativeNameServerConfigTargetNameServer.ForwardingPath.self, forKey: .forwardingPath
+    )
+    self.ipv4Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv4Address)
+    self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.forwardingPath, forKey: .forwardingPath)
+    try container.encodeIfPresent(self.ipv4Address, forKey: .ipv4Address)
+    try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [forwardingPath][.PolicyAlternativeNameServerConfigTargetNameServer.forwardingPath] field.

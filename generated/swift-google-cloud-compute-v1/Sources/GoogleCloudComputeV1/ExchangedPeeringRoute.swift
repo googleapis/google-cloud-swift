@@ -40,6 +40,8 @@
     /// The type of the peering route.
     public var type: ExchangedPeeringRoute.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExchangedPeeringRoute`.
     public init() {}
 
@@ -54,6 +56,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let destRange = CodingKeys(stringValue: "destRange")
+      static let imported = CodingKeys(stringValue: "imported")
+      static let nextHopRegion = CodingKeys(stringValue: "nextHopRegion")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "destRange",
+        "imported",
+        "nextHopRegion",
+        "priority",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.destRange = try container.decodeIfPresent(Swift.String.self, forKey: .destRange)
+      self.imported = try container.decodeIfPresent(Swift.Bool.self, forKey: .imported)
+      self.nextHopRegion = try container.decodeIfPresent(Swift.String.self, forKey: .nextHopRegion)
+      self.priority = try container.decodeIfPresent(Swift.UInt32.self, forKey: .priority)
+      self.type = try container.decodeIfPresent(ExchangedPeeringRoute.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.destRange, forKey: .destRange)
+      try container.encodeIfPresent(self.imported, forKey: .imported)
+      try container.encodeIfPresent(self.nextHopRegion, forKey: .nextHopRegion)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.ExchangedPeeringRoute.type] field.

@@ -52,6 +52,8 @@ public struct Field: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The string value of the default value of this field. Proto2 syntax only.
   public var defaultValue: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Field`.
   public init() {}
 
@@ -66,6 +68,92 @@ public struct Field: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kind = CodingKeys(stringValue: "kind")
+    static let cardinality = CodingKeys(stringValue: "cardinality")
+    static let number = CodingKeys(stringValue: "number")
+    static let name = CodingKeys(stringValue: "name")
+    static let typeUrl = CodingKeys(stringValue: "typeUrl")
+    static let oneofIndex = CodingKeys(stringValue: "oneofIndex")
+    static let packed = CodingKeys(stringValue: "packed")
+    static let options = CodingKeys(stringValue: "options")
+    static let jsonName = CodingKeys(stringValue: "jsonName")
+    static let defaultValue = CodingKeys(stringValue: "defaultValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kind",
+      "cardinality",
+      "number",
+      "name",
+      "typeUrl",
+      "oneofIndex",
+      "packed",
+      "options",
+      "jsonName",
+      "defaultValue",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Field.Kind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent(Field.Cardinality.self, forKey: .cardinality) {
+      self.cardinality = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .number) {
+      self.number = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .typeUrl) {
+      self.typeUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .oneofIndex) {
+      self.oneofIndex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .packed) {
+      self.packed = value
+    }
+    if let value = try container.decodeIfPresent([Option].self, forKey: .options) {
+      self.options = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jsonName) {
+      self.jsonName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultValue) {
+      self.defaultValue = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.kind, forKey: .kind)
+    try container.encode(self.cardinality, forKey: .cardinality)
+    try container.encode(self.number, forKey: .number)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.typeUrl, forKey: .typeUrl)
+    try container.encode(self.oneofIndex, forKey: .oneofIndex)
+    try container.encode(self.packed, forKey: .packed)
+    try container.encode(self.options, forKey: .options)
+    try container.encode(self.jsonName, forKey: .jsonName)
+    try container.encode(self.defaultValue, forKey: .defaultValue)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Basic field types.

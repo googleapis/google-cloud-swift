@@ -25,6 +25,8 @@ public struct FixedOrPercent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of the value.
   public var mode: OneOf_Mode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FixedOrPercent`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct FixedOrPercent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fixed = "fixed"
-    case percent = "percent"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fixed = CodingKeys(stringValue: "fixed")
+    static let percent = CodingKeys(stringValue: "percent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fixed",
+      "percent",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +78,10 @@ public struct FixedOrPercent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try modeCheckAndSet(.percent(percent))
     }
     self.mode = mode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +94,9 @@ public struct FixedOrPercent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .percent(let value):
         try container.encode(value, forKey: .percent)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

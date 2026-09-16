@@ -36,6 +36,8 @@ public struct CreateServiceLevelObjectiveRequest: Codable, Equatable, GoogleClou
   /// with this name.
   public var serviceLevelObjective: ServiceLevelObjective? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateServiceLevelObjectiveRequest`.
   public init() {}
 
@@ -50,6 +52,51 @@ public struct CreateServiceLevelObjectiveRequest: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let serviceLevelObjectiveId = CodingKeys(stringValue: "serviceLevelObjectiveId")
+    static let serviceLevelObjective = CodingKeys(stringValue: "serviceLevelObjective")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "serviceLevelObjectiveId",
+      "serviceLevelObjective",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .serviceLevelObjectiveId)
+    {
+      self.serviceLevelObjectiveId = value
+    }
+    self.serviceLevelObjective = try container.decodeIfPresent(
+      ServiceLevelObjective.self, forKey: .serviceLevelObjective)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.serviceLevelObjectiveId, forKey: .serviceLevelObjectiveId)
+    try container.encodeIfPresent(self.serviceLevelObjective, forKey: .serviceLevelObjective)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

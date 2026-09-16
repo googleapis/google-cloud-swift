@@ -50,6 +50,8 @@ public struct BigQueryExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The export settings for the UDM Events data source.
   public var udmEventsSettings: DataSourceExportSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryExport`.
   public init() {}
 
@@ -64,6 +66,78 @@ public struct BigQueryExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let provisioned = CodingKeys(stringValue: "provisioned")
+    static let bigQueryExportPackage = CodingKeys(stringValue: "bigQueryExportPackage")
+    static let entityGraphSettings = CodingKeys(stringValue: "entityGraphSettings")
+    static let iocMatchesSettings = CodingKeys(stringValue: "iocMatchesSettings")
+    static let ruleDetectionsSettings = CodingKeys(stringValue: "ruleDetectionsSettings")
+    static let udmEventsAggregatesSettings = CodingKeys(stringValue: "udmEventsAggregatesSettings")
+    static let udmEventsSettings = CodingKeys(stringValue: "udmEventsSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "provisioned",
+      "bigQueryExportPackage",
+      "entityGraphSettings",
+      "iocMatchesSettings",
+      "ruleDetectionsSettings",
+      "udmEventsAggregatesSettings",
+      "udmEventsSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .provisioned) {
+      self.provisioned = value
+    }
+    if let value = try container.decodeIfPresent(
+      BigQueryExportPackage.self, forKey: .bigQueryExportPackage)
+    {
+      self.bigQueryExportPackage = value
+    }
+    self.entityGraphSettings = try container.decodeIfPresent(
+      DataSourceExportSettings.self, forKey: .entityGraphSettings)
+    self.iocMatchesSettings = try container.decodeIfPresent(
+      DataSourceExportSettings.self, forKey: .iocMatchesSettings)
+    self.ruleDetectionsSettings = try container.decodeIfPresent(
+      DataSourceExportSettings.self, forKey: .ruleDetectionsSettings)
+    self.udmEventsAggregatesSettings = try container.decodeIfPresent(
+      DataSourceExportSettings.self, forKey: .udmEventsAggregatesSettings)
+    self.udmEventsSettings = try container.decodeIfPresent(
+      DataSourceExportSettings.self, forKey: .udmEventsSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.provisioned, forKey: .provisioned)
+    try container.encode(self.bigQueryExportPackage, forKey: .bigQueryExportPackage)
+    try container.encodeIfPresent(self.entityGraphSettings, forKey: .entityGraphSettings)
+    try container.encodeIfPresent(self.iocMatchesSettings, forKey: .iocMatchesSettings)
+    try container.encodeIfPresent(self.ruleDetectionsSettings, forKey: .ruleDetectionsSettings)
+    try container.encodeIfPresent(
+      self.udmEventsAggregatesSettings, forKey: .udmEventsAggregatesSettings)
+    try container.encodeIfPresent(self.udmEventsSettings, forKey: .udmEventsSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

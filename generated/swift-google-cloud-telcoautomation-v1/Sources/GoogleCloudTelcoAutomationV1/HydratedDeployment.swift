@@ -38,6 +38,8 @@ public struct HydratedDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// hydrated deployment will be deployed on.
   public var workloadCluster: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HydratedDeployment`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct HydratedDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let files = CodingKeys(stringValue: "files")
+    static let workloadCluster = CodingKeys(stringValue: "workloadCluster")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "files",
+      "workloadCluster",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(HydratedDeployment.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([File].self, forKey: .files) {
+      self.files = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workloadCluster) {
+      self.workloadCluster = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.files, forKey: .files)
+    try container.encode(self.workloadCluster, forKey: .workloadCluster)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State defines which state the current hydrated deployment is in.

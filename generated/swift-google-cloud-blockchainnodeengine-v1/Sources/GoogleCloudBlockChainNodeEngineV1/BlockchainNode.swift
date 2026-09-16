@@ -54,6 +54,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Information that is specific to a particular blockchain type.
   public var blockchainTypeDetails: OneOf_BlockchainTypeDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BlockchainNode`.
   public init() {}
 
@@ -70,33 +72,61 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case ethereumDetails = "ethereumDetails"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case blockchainType = "blockchainType"
-    case connectionInfo = "connectionInfo"
-    case state = "state"
-    case privateServiceConnectEnabled = "privateServiceConnectEnabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ethereumDetails = CodingKeys(stringValue: "ethereumDetails")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let blockchainType = CodingKeys(stringValue: "blockchainType")
+    static let connectionInfo = CodingKeys(stringValue: "connectionInfo")
+    static let state = CodingKeys(stringValue: "state")
+    static let privateServiceConnectEnabled = CodingKeys(
+      stringValue: "privateServiceConnectEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ethereumDetails",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "blockchainType",
+      "connectionInfo",
+      "state",
+      "privateServiceConnectEnabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.blockchainType = try container.decodeIfPresent(
       BlockchainNode.BlockchainType.self, forKey: .blockchainType)
     self.connectionInfo = try container.decodeIfPresent(
       BlockchainNode.ConnectionInfo.self, forKey: .connectionInfo)
-    self.state = try container.decode(BlockchainNode.State.self, forKey: .state)
-    self.privateServiceConnectEnabled = try container.decode(
+    if let value = try container.decodeIfPresent(BlockchainNode.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .privateServiceConnectEnabled)
+    {
+      self.privateServiceConnectEnabled = value
+    }
 
     var blockchainTypeDetails: OneOf_BlockchainTypeDetails? = nil
     let blockchainTypeDetailsCheckAndSet = {
@@ -114,16 +144,20 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try blockchainTypeDetailsCheckAndSet(.ethereumDetails(ethereumDetails))
     }
     self.blockchainTypeDetails = blockchainTypeDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.blockchainType, forKey: .blockchainType)
-    try container.encode(self.connectionInfo, forKey: .connectionInfo)
+    try container.encodeIfPresent(self.blockchainType, forKey: .blockchainType)
+    try container.encodeIfPresent(self.connectionInfo, forKey: .connectionInfo)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.privateServiceConnectEnabled, forKey: .privateServiceConnectEnabled)
 
@@ -132,6 +166,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .ethereumDetails(let value):
         try container.encode(value, forKey: .ethereumDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -149,6 +186,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// projects/{project}/regions/{region}/serviceAttachments/{service_attachment_name}
     public var serviceAttachment: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConnectionInfo`.
     public init() {}
 
@@ -165,6 +204,43 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let endpointInfo = CodingKeys(stringValue: "endpointInfo")
+      static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "endpointInfo",
+        "serviceAttachment",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.endpointInfo = try container.decodeIfPresent(
+        BlockchainNode.ConnectionInfo.EndpointInfo.self, forKey: .endpointInfo)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+        self.serviceAttachment = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.endpointInfo, forKey: .endpointInfo)
+      try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Contains endpoint information through which to interact with a blockchain
     /// node.
     public struct EndpointInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -175,6 +251,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Output only. The assigned URL for the node WebSockets API endpoint.
       public var websocketsApiEndpoint: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `EndpointInfo`.
       public init() {}
@@ -190,6 +268,47 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let jsonRpcApiEndpoint = CodingKeys(stringValue: "jsonRpcApiEndpoint")
+        static let websocketsApiEndpoint = CodingKeys(stringValue: "websocketsApiEndpoint")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "jsonRpcApiEndpoint",
+          "websocketsApiEndpoint",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jsonRpcApiEndpoint)
+        {
+          self.jsonRpcApiEndpoint = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .websocketsApiEndpoint)
+        {
+          self.websocketsApiEndpoint = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.jsonRpcApiEndpoint, forKey: .jsonRpcApiEndpoint)
+        try container.encode(self.websocketsApiEndpoint, forKey: .websocketsApiEndpoint)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -250,6 +369,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Options for the execution client.
     public var executionClientDetails: OneOf_ExecutionClientDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EthereumDetails`.
     public init() {}
 
@@ -266,16 +387,33 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gethDetails = "gethDetails"
-      case network = "network"
-      case nodeType = "nodeType"
-      case executionClient = "executionClient"
-      case consensusClient = "consensusClient"
-      case apiEnableAdmin = "apiEnableAdmin"
-      case apiEnableDebug = "apiEnableDebug"
-      case additionalEndpoints = "additionalEndpoints"
-      case validatorConfig = "validatorConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gethDetails = CodingKeys(stringValue: "gethDetails")
+      static let network = CodingKeys(stringValue: "network")
+      static let nodeType = CodingKeys(stringValue: "nodeType")
+      static let executionClient = CodingKeys(stringValue: "executionClient")
+      static let consensusClient = CodingKeys(stringValue: "consensusClient")
+      static let apiEnableAdmin = CodingKeys(stringValue: "apiEnableAdmin")
+      static let apiEnableDebug = CodingKeys(stringValue: "apiEnableDebug")
+      static let additionalEndpoints = CodingKeys(stringValue: "additionalEndpoints")
+      static let validatorConfig = CodingKeys(stringValue: "validatorConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gethDetails",
+        "network",
+        "nodeType",
+        "executionClient",
+        "consensusClient",
+        "apiEnableAdmin",
+        "apiEnableDebug",
+        "additionalEndpoints",
+        "validatorConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -311,24 +449,31 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try executionClientDetailsCheckAndSet(.gethDetails(gethDetails))
       }
       self.executionClientDetails = executionClientDetails
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.nodeType, forKey: .nodeType)
-      try container.encode(self.executionClient, forKey: .executionClient)
-      try container.encode(self.consensusClient, forKey: .consensusClient)
-      try container.encode(self.apiEnableAdmin, forKey: .apiEnableAdmin)
-      try container.encode(self.apiEnableDebug, forKey: .apiEnableDebug)
-      try container.encode(self.additionalEndpoints, forKey: .additionalEndpoints)
-      try container.encode(self.validatorConfig, forKey: .validatorConfig)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.nodeType, forKey: .nodeType)
+      try container.encodeIfPresent(self.executionClient, forKey: .executionClient)
+      try container.encodeIfPresent(self.consensusClient, forKey: .consensusClient)
+      try container.encodeIfPresent(self.apiEnableAdmin, forKey: .apiEnableAdmin)
+      try container.encodeIfPresent(self.apiEnableDebug, forKey: .apiEnableDebug)
+      try container.encodeIfPresent(self.additionalEndpoints, forKey: .additionalEndpoints)
+      try container.encodeIfPresent(self.validatorConfig, forKey: .validatorConfig)
 
       if let choice = self.executionClientDetails {
         switch choice {
         case .gethDetails(let value):
           try container.encode(value, forKey: .gethDetails)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -344,6 +489,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public var garbageCollectionMode:
         BlockchainNode.EthereumDetails.GethDetails.GarbageCollectionMode? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GethDetails`.
       public init() {}
 
@@ -358,6 +505,38 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let garbageCollectionMode = CodingKeys(stringValue: "garbageCollectionMode")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "garbageCollectionMode"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.garbageCollectionMode = try container.decodeIfPresent(
+          BlockchainNode.EthereumDetails.GethDetails.GarbageCollectionMode.self,
+          forKey: .garbageCollectionMode)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.garbageCollectionMode, forKey: .garbageCollectionMode)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Blockchain garbage collection modes. Only applicable when `NodeType` is
@@ -502,6 +681,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Prometheus metrics endpoint.
       public var executionClientPrometheusMetricsApiEndpoint: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `EthereumEndpoints`.
       public init() {}
 
@@ -516,6 +697,60 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let beaconApiEndpoint = CodingKeys(stringValue: "beaconApiEndpoint")
+        static let beaconPrometheusMetricsApiEndpoint = CodingKeys(
+          stringValue: "beaconPrometheusMetricsApiEndpoint")
+        static let executionClientPrometheusMetricsApiEndpoint = CodingKeys(
+          stringValue: "executionClientPrometheusMetricsApiEndpoint")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "beaconApiEndpoint",
+          "beaconPrometheusMetricsApiEndpoint",
+          "executionClientPrometheusMetricsApiEndpoint",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .beaconApiEndpoint)
+        {
+          self.beaconApiEndpoint = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .beaconPrometheusMetricsApiEndpoint)
+        {
+          self.beaconPrometheusMetricsApiEndpoint = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .executionClientPrometheusMetricsApiEndpoint)
+        {
+          self.executionClientPrometheusMetricsApiEndpoint = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.beaconApiEndpoint, forKey: .beaconApiEndpoint)
+        try container.encode(
+          self.beaconPrometheusMetricsApiEndpoint, forKey: .beaconPrometheusMetricsApiEndpoint)
+        try container.encode(
+          self.executionClientPrometheusMetricsApiEndpoint,
+          forKey: .executionClientPrometheusMetricsApiEndpoint)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -556,6 +791,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// considered enforced.
       public var beaconFeeRecipient: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ValidatorConfig`.
       public init() {}
 
@@ -570,6 +807,51 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let mevRelayUrls = CodingKeys(stringValue: "mevRelayUrls")
+        static let managedValidatorClient = CodingKeys(stringValue: "managedValidatorClient")
+        static let beaconFeeRecipient = CodingKeys(stringValue: "beaconFeeRecipient")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "mevRelayUrls",
+          "managedValidatorClient",
+          "beaconFeeRecipient",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mevRelayUrls) {
+          self.mevRelayUrls = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .managedValidatorClient)
+        {
+          self.managedValidatorClient = value
+        }
+        self.beaconFeeRecipient = try container.decodeIfPresent(
+          Swift.String.self, forKey: .beaconFeeRecipient)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mevRelayUrls, forKey: .mevRelayUrls)
+        try container.encode(self.managedValidatorClient, forKey: .managedValidatorClient)
+        try container.encodeIfPresent(self.beaconFeeRecipient, forKey: .beaconFeeRecipient)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -47,6 +47,8 @@ public struct OdbNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not specified, the system will pick a zone based on availability.
   public var gcpOracleZone: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OdbNetwork`.
   public init() {}
 
@@ -61,6 +63,74 @@ public struct OdbNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let network = CodingKeys(stringValue: "network")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let entitlementId = CodingKeys(stringValue: "entitlementId")
+    static let gcpOracleZone = CodingKeys(stringValue: "gcpOracleZone")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "network",
+      "labels",
+      "createTime",
+      "state",
+      "entitlementId",
+      "gcpOracleZone",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(OdbNetwork.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlementId) {
+      self.entitlementId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleZone) {
+      self.gcpOracleZone = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.entitlementId, forKey: .entitlementId)
+    try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the ODB Network.
