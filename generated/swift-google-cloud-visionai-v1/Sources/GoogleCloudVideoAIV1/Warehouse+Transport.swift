@@ -312,9 +312,10 @@ extension Clients {
     public func uploadAsset(
       request: UploadAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -334,7 +335,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -356,7 +357,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -365,9 +366,10 @@ extension Clients {
     public func generateRetrievalUrl(
       request: GenerateRetrievalUrlRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -387,7 +389,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -409,7 +411,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -418,9 +420,10 @@ extension Clients {
     public func analyzeAsset(
       request: AnalyzeAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -440,7 +443,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -462,7 +465,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -471,9 +474,10 @@ extension Clients {
     public func indexAsset(
       request: IndexAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -493,7 +497,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -515,7 +519,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -524,9 +528,10 @@ extension Clients {
     public func removeIndexAsset(
       request: RemoveIndexAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -546,7 +551,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -568,7 +573,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1174,9 +1179,10 @@ extension Clients {
     public func analyzeCorpus(
       request: AnalyzeCorpusRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1196,7 +1202,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1218,7 +1224,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1778,9 +1784,10 @@ extension Clients {
     public func clipAsset(
       request: ClipAssetRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ClipAssetResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1800,7 +1807,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1822,7 +1829,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ClipAssetResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1831,9 +1838,10 @@ extension Clients {
     public func generateHlsUri(
       request: GenerateHlsUriRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateHlsUriResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1853,7 +1861,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1875,7 +1883,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.GenerateHlsUriResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1884,9 +1892,10 @@ extension Clients {
     public func importAssets(
       request: ImportAssetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1906,7 +1915,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1928,7 +1937,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2494,9 +2503,10 @@ extension Clients {
     public func searchAssets(
       request: SearchAssetsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2516,7 +2526,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["corpus"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2538,7 +2548,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchAssetsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2547,9 +2557,10 @@ extension Clients {
     public func searchIndexEndpoint(
       request: SearchIndexEndpointRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2569,7 +2580,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["indexEndpoint"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2591,7 +2602,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchIndexEndpointResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2871,9 +2882,10 @@ extension Clients {
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2893,7 +2905,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["indexEndpoint"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2915,7 +2927,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2924,9 +2936,10 @@ extension Clients {
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2946,7 +2959,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["indexEndpoint"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2968,7 +2981,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3250,9 +3263,10 @@ extension Clients {
     public func addCollectionItem(
       request: AddCollectionItemRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.AddCollectionItemResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3272,7 +3286,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["item.collection"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3294,7 +3308,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.AddCollectionItemResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3303,9 +3317,10 @@ extension Clients {
     public func removeCollectionItem(
       request: RemoveCollectionItemRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3325,7 +3340,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["item.collection"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3347,7 +3362,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.RemoveCollectionItemResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3913,9 +3928,10 @@ extension Clients {
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3935,7 +3951,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3957,7 +3973,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()

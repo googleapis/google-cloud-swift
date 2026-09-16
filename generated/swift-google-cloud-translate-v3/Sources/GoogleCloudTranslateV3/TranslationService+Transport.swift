@@ -38,9 +38,10 @@ extension Clients {
     public func translateText(
       request: TranslateTextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateTextResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -59,7 +60,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -76,7 +77,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -107,7 +108,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.TranslateTextResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -116,9 +117,10 @@ extension Clients {
     public func romanizeText(
       request: RomanizeTextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.RomanizeTextResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -137,7 +139,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -154,7 +156,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -185,7 +187,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.RomanizeTextResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -194,9 +196,10 @@ extension Clients {
     public func detectLanguage(
       request: DetectLanguageRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.DetectLanguageResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -215,7 +218,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -232,7 +235,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -263,7 +266,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.DetectLanguageResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -359,9 +362,10 @@ extension Clients {
     public func translateDocument(
       request: TranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateDocumentResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -380,7 +384,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -401,7 +405,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.TranslateDocumentResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -410,9 +414,10 @@ extension Clients {
     public func batchTranslateText(
       request: BatchTranslateTextRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -431,7 +436,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -452,7 +457,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -461,9 +466,10 @@ extension Clients {
     public func batchTranslateDocument(
       request: BatchTranslateDocumentRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -482,7 +488,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -503,7 +509,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1476,9 +1482,10 @@ extension Clients {
     public func adaptiveMtTranslate(
       request: AdaptiveMtTranslateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtTranslateResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1497,7 +1504,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1518,7 +1525,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.AdaptiveMtTranslateResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1635,9 +1642,10 @@ extension Clients {
     public func importAdaptiveMtFile(
       request: ImportAdaptiveMtFileRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ImportAdaptiveMtFileResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1657,7 +1665,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1679,7 +1687,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudTranslateV3.ImportAdaptiveMtFileResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1836,9 +1844,10 @@ extension Clients {
     public func importData(
       request: ImportDataRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1858,7 +1867,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["dataset"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1880,7 +1889,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1889,9 +1898,10 @@ extension Clients {
     public func exportData(
       request: ExportDataRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1911,7 +1921,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["dataset"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1933,7 +1943,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2470,9 +2480,10 @@ extension Clients {
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2492,7 +2503,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2514,7 +2525,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
@@ -2523,9 +2534,10 @@ extension Clients {
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2545,7 +2557,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2567,7 +2579,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()

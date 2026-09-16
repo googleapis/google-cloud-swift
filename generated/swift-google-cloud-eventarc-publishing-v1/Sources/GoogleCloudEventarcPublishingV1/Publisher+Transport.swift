@@ -35,9 +35,10 @@ extension Clients {
     public func publishChannelConnectionEvents(
       request: PublishChannelConnectionEventsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -57,7 +58,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["channelConnection"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -79,7 +80,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse.self,
         timeout: options.attemptTimeout
@@ -89,9 +90,10 @@ extension Clients {
     public func publishEvents(
       request: PublishEventsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishEventsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -111,7 +113,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["channel"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -133,7 +135,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudEventarcPublishingV1.PublishEventsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -142,9 +144,10 @@ extension Clients {
     public func publish(
       request: PublishRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -164,7 +167,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["messageBus"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -186,7 +189,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudEventarcPublishingV1.PublishResponse.self, timeout: options.attemptTimeout
       ).get()

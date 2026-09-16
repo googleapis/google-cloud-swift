@@ -38,9 +38,10 @@ extension Clients {
     public func batchCreateResourceValueConfigs(
       request: BatchCreateResourceValueConfigsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -57,7 +58,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -77,7 +78,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -108,7 +109,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse.self,
         timeout: options.attemptTimeout
@@ -118,9 +119,10 @@ extension Clients {
     public func bulkMuteFindings(
       request: BulkMuteFindingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -137,7 +139,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -157,7 +159,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -174,7 +176,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -193,7 +195,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -210,7 +212,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -229,7 +231,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -304,7 +306,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1732,9 +1734,10 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1753,7 +1756,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1774,7 +1777,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
       ).get()
@@ -2249,9 +2252,10 @@ extension Clients {
     public func groupFindings(
       request: GroupFindingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2270,7 +2274,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2290,7 +2294,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2309,7 +2313,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2329,7 +2333,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2348,7 +2352,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2368,7 +2372,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2452,7 +2456,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudSecurityCenterV2.GroupFindingsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3727,9 +3731,10 @@ extension Clients {
     public func setFindingState(
       request: SetFindingStateRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3749,7 +3754,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3769,7 +3774,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3789,7 +3794,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3809,7 +3814,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3829,7 +3834,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3849,7 +3854,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3936,7 +3941,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudSecurityCenterV2.Finding.self, timeout: options.attemptTimeout
       ).get()
@@ -3945,9 +3950,10 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3966,7 +3972,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3987,7 +3993,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
       ).get()
@@ -3996,9 +4002,10 @@ extension Clients {
     public func setMute(
       request: SetMuteRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4018,7 +4025,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4038,7 +4045,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4058,7 +4065,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4078,7 +4085,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4098,7 +4105,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4118,7 +4125,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -4205,7 +4212,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudSecurityCenterV2.Finding.self, timeout: options.attemptTimeout
       ).get()
@@ -4214,9 +4221,10 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -4235,7 +4243,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -4256,7 +4264,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
       ).get()

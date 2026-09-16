@@ -316,9 +316,10 @@ extension Clients {
     public func runDataScan(
       request: RunDataScanRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.RunDataScanResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -338,7 +339,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -360,7 +361,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudDataplexV1.RunDataScanResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -479,9 +480,10 @@ extension Clients {
     public func cancelDataScanJob(
       request: CancelDataScanJobRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.CancelDataScanJobResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -501,7 +503,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -523,7 +525,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudDataplexV1.CancelDataScanJobResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -532,9 +534,10 @@ extension Clients {
     public func generateDataQualityRules(
       request: GenerateDataQualityRulesRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GenerateDataQualityRulesResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -554,7 +557,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -574,7 +577,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -609,7 +612,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudDataplexV1.GenerateDataQualityRulesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -718,9 +721,10 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -740,7 +744,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -760,7 +764,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -781,7 +785,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -801,7 +805,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -821,7 +825,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -841,7 +845,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -862,7 +866,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -882,7 +886,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -902,7 +906,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -922,7 +926,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -942,7 +946,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -962,7 +966,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -982,7 +986,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1002,7 +1006,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1023,7 +1027,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1043,7 +1047,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1063,7 +1067,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1083,7 +1087,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1103,7 +1107,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -1123,7 +1127,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -1394,7 +1398,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
       ).get()
@@ -2127,9 +2131,10 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2149,7 +2154,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2169,7 +2174,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2190,7 +2195,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2210,7 +2215,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2230,7 +2235,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2250,7 +2255,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2271,7 +2276,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2291,7 +2296,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2311,7 +2316,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2331,7 +2336,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2351,7 +2356,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2371,7 +2376,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2391,7 +2396,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2411,7 +2416,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2432,7 +2437,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2452,7 +2457,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2472,7 +2477,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2492,7 +2497,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2512,7 +2517,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -2532,7 +2537,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -2803,7 +2808,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3078,9 +3083,10 @@ extension Clients {
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleCloudGax.RequestOptions
     ) async throws {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3100,7 +3106,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -3120,7 +3126,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -3155,7 +3161,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()

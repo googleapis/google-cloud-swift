@@ -294,9 +294,10 @@
       public func completeConversation(
         request: CompleteConversationRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -316,7 +317,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -336,7 +337,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -371,7 +372,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.Conversation.self, timeout: options.attemptTimeout
         ).get()
@@ -380,9 +381,10 @@
       public func ingestContextReferences(
         request: IngestContextReferencesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.IngestContextReferencesResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -402,7 +404,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -424,7 +426,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.IngestContextReferencesResponse.self,
           timeout: options.attemptTimeout
@@ -527,9 +529,10 @@
       public func suggestConversationSummary(
         request: SuggestConversationSummaryRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -549,7 +552,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -569,7 +572,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -604,7 +607,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.SuggestConversationSummaryResponse.self,
           timeout: options.attemptTimeout
@@ -614,9 +617,10 @@
       public func generateStatelessSummary(
         request: GenerateStatelessSummaryRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSummaryResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -633,7 +637,9 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (
+              candidate.0, candidate.1, { $0.setMethod(.POST) }, ["statelessConversation.parent"]
+            )
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -652,7 +658,9 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (
+              candidate.0, candidate.1, { $0.setMethod(.POST) }, ["statelessConversation.parent"]
+            )
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -683,7 +691,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.GenerateStatelessSummaryResponse.self,
           timeout: options.attemptTimeout
@@ -693,9 +701,10 @@
       public func generateStatelessSuggestion(
         request: GenerateStatelessSuggestionRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSuggestionResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -714,7 +723,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -735,7 +744,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.GenerateStatelessSuggestionResponse.self,
           timeout: options.attemptTimeout
@@ -745,9 +754,10 @@
       public func searchKnowledge(
         request: SearchKnowledgeRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SearchKnowledgeResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -764,7 +774,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -783,7 +793,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -803,7 +813,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -823,7 +833,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -880,7 +890,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.SearchKnowledgeResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -889,9 +899,10 @@
       public func generateSuggestions(
         request: GenerateSuggestionsRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -911,7 +922,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -931,7 +942,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["conversation"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -966,7 +977,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowV2.GenerateSuggestionsResponse.self, timeout: options.attemptTimeout
         ).get()

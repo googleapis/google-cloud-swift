@@ -38,9 +38,10 @@
       public func detectIntent(
         request: DetectIntentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -60,7 +61,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -81,7 +82,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -117,7 +118,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.DetectIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -126,9 +127,10 @@
       public func serverStreamingDetectIntent(
         request: DetectIntentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -148,7 +150,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -169,7 +171,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -205,7 +207,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.DetectIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -214,9 +216,10 @@
       public func matchIntent(
         request: MatchIntentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.MatchIntentResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -236,7 +239,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -257,7 +260,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -293,7 +296,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.MatchIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -302,9 +305,10 @@
       public func fulfillIntent(
         request: FulfillIntentRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.FulfillIntentResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -324,7 +328,9 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (
+              candidate.0, candidate.1, { $0.setMethod(.POST) }, ["matchIntentRequest.session"]
+            )
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -345,7 +351,9 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (
+              candidate.0, candidate.1, { $0.setMethod(.POST) }, ["matchIntentRequest.session"]
+            )
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -381,7 +389,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.FulfillIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -390,9 +398,10 @@
       public func submitAnswerFeedback(
         request: SubmitAnswerFeedbackRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.AnswerFeedback {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -412,7 +421,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["session"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -434,7 +443,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.AnswerFeedback.self, timeout: options.attemptTimeout
         ).get()

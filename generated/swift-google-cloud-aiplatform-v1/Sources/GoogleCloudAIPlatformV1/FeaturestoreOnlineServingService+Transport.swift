@@ -39,9 +39,10 @@
       public func readFeatureValues(
         request: ReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -62,7 +63,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["entityType"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -85,7 +86,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ReadFeatureValuesResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -94,9 +95,10 @@
       public func streamingReadFeatureValues(
         request: StreamingReadFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -117,7 +119,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["entityType"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -140,7 +142,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ReadFeatureValuesResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -149,9 +151,10 @@
       public func writeFeatureValues(
         request: WriteFeatureValuesRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteFeatureValuesResponse {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -172,7 +175,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["entityType"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -195,7 +198,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.WriteFeatureValuesResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -366,9 +369,10 @@
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
-        let (path, query, configure) = try {
+        let (path, query, configure, omitted) = try {
           () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+            [Swift.String]
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -388,7 +392,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -409,7 +413,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -429,7 +433,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -449,7 +453,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -469,7 +473,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -490,7 +494,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -510,7 +514,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -531,7 +535,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -551,7 +555,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -571,7 +575,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -591,7 +595,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -611,7 +615,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -632,7 +636,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
@@ -652,7 +656,7 @@
             ]
             return (path, query)
           }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
           }
           var paths: [GoogleCloudGax.PathMismatch] = []
           do {
@@ -847,7 +851,7 @@
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
         ).get()

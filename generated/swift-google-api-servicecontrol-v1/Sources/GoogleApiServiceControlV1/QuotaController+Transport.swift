@@ -35,9 +35,10 @@ extension Clients {
     public func allocateQuota(
       request: AllocateQuotaRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.AllocateQuotaResponse {
-      let (path, query, configure) = try {
+      let (path, query, configure, omitted) = try {
         () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void,
+          [Swift.String]
         ) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
@@ -54,7 +55,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["serviceName"])
         }
         var paths: [GoogleCloudGax.PathMismatch] = []
         do {
@@ -73,7 +74,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
+      try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleApiServiceControlV1.AllocateQuotaResponse.self, timeout: options.attemptTimeout
       ).get()
