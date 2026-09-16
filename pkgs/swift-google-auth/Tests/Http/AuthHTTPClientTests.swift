@@ -79,6 +79,72 @@ import AsyncHTTPClient
     #expect(response == mockPayload)
   }
 
+  @Test func clientPerformsPostEncodesBodyInSnakeCase() async throws {
+    struct SampleRequestBody: Encodable {
+      let grantType: String
+      let clientId: String
+      let clientSecret: String
+      let refreshToken: String
+    }
+
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let mockPayload = MockTokenResponse(accessToken: "fake-post-token", expiresIn: 1800)
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedResponse = try encoder.encode(mockPayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+        #expect(request.headers["Content-Type"] == ["application/json"])
+
+        guard let buffer = try await request.body?.collect(upTo: 1024 * 1024) else {
+          Issue.record("Missing request body")
+          return HTTPClientResponse(status: .badRequest)
+        }
+        let bodyData = Data(buffer: buffer)
+        guard let json = try JSONSerialization.jsonObject(with: bodyData) as? [String: Any] else {
+          Issue.record("Failed to deserialize request body JSON")
+          return HTTPClientResponse(status: .badRequest)
+        }
+
+        // Verify snake_case field names per RFC 6749 Sections 6 & 2.3.1 and Google Identity:
+        // https://datatracker.ietf.org/doc/html/rfc6749#section-6
+        // https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1
+        // https://developers.google.com/identity/protocols/oauth2/web-server#offline
+        #expect(json["grant_type"] as? String == "refresh_token")
+        #expect(json["client_id"] as? String == "test-client-id")
+        #expect(json["client_secret"] as? String == "test-client-secret")
+        #expect(json["refresh_token"] as? String == "test-refresh-token")
+        #expect(json["grantType"] == nil)
+        #expect(json["clientId"] == nil)
+        #expect(json["clientSecret"] == nil)
+        #expect(json["refreshToken"] == nil)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedResponse)),
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let requestBody = SampleRequestBody(
+      grantType: "refresh_token",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token"
+    )
+    let response: MockTokenResponse = try await client.post(
+      url: targetURL,
+      body: requestBody
+    )
+    #expect(response == mockPayload)
+  }
+
   @Test func clientThrowsHTTPStatusCodeError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/invalid")!
     let mock = MockHTTPClient([

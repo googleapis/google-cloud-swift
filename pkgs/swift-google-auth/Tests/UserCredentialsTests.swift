@@ -127,6 +127,23 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
         guard let bodyData = try await request.body?.collect(upTo: 1024 * 1024) else {
           fatalError("Expected HTTP body")
         }
+
+        // Verify outgoing request body contains snake_case keys as required by:
+        // - RFC 6749 Section 6 (grant_type, refresh_token): https://datatracker.ietf.org/doc/html/rfc6749#section-6
+        // - RFC 6749 Section 2.3.1 (client_id, client_secret): https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1
+        // - Google Identity OAuth 2.0: https://developers.google.com/identity/protocols/oauth2/web-server#offline
+        if let jsonObject = try? JSONSerialization.jsonObject(with: bodyData) as? [String: Any] {
+          #expect(jsonObject["grant_type"] as? String == "refresh_token")
+          #expect(jsonObject["client_id"] as? String == "test-client-id")
+          #expect(jsonObject["client_secret"] as? String == "test-client-secret")
+          #expect(jsonObject["refresh_token"] as? String == "test-refresh-token")
+          #expect(jsonObject["scopes"] as? String == "scope1 scope2")
+          #expect(jsonObject["grantType"] == nil)
+          #expect(jsonObject["clientId"] == nil)
+          #expect(jsonObject["clientSecret"] == nil)
+          #expect(jsonObject["refreshToken"] == nil)
+        }
+
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {

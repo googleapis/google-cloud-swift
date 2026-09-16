@@ -181,7 +181,7 @@ struct AuthHTTPClient: Sendable {
       request.method = .POST
       request.headers = .init(headers.map { ($0.key, $0.value) })
       request.headers.add(name: "Content-Type", value: "application/json")
-      let encoder = JSONEncoder()
+      let encoder = self.makeEncoder()
       let buffer = try encoder.encodeAsByteBuffer(body, allocator: ByteBufferAllocator())
       request.body = .bytes(buffer)
 
