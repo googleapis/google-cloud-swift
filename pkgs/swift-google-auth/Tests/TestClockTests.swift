@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 // MARK: - Helper Counter
 

@@ -14,7 +14,7 @@
 
 import Foundation
 import Logging
-import GoogleCloudAuth
+import GoogleAuth
 
 /// The configuration for a new client.
 ///

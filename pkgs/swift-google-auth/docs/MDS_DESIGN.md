@@ -117,14 +117,14 @@ The provider leverages the native swift retry engine.
 
 ### Files to Add:
 
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Providers/MDSCredentials.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Providers/MDSCredentials.swift`:
     Contains `MDSCredentials` and `MDSAccessTokenProvider`.
--   `pkgs/swift-google-auth/Tests/GoogleCloudAuthTests/MDSCredentialsTests.swift`:
+-   `pkgs/swift-google-auth/Tests/GoogleAuthTests/MDSCredentialsTests.swift`:
     Contains comprehensive unit tests for MDS retrieval logic.
 
 ### Modifications to Existing Files:
 
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/ADC.swift`: Updated to probe MDS if
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/ADC.swift`: Updated to probe MDS if
     other ADC methods fail.
 
 ### Code Structures:

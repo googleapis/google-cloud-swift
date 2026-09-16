@@ -1,4 +1,4 @@
-# ``GoogleCloudAuth``
+# ``GoogleAuth``
 
 [authentication]: https://cloud.google.com/docs/authentication
 [credentials]: https://cloud.google.com/docs/authentication#credentials

@@ -1,6 +1,6 @@
 # BYOID (External Account) Live Integration Testing Guide
 
-This guide explains how to configure and execute live integration tests for the **Bring Your Own Identity (BYOID) / External Account Credentials** implementation in `GoogleCloudAuth` (`packages/swift-google-auth`).
+This guide explains how to configure and execute live integration tests for the **Bring Your Own Identity (BYOID) / External Account Credentials** implementation in `GoogleAuth` (`packages/swift-google-auth`).
 
 ______________________________________________________________________
 
@@ -20,7 +20,7 @@ Following the architecture in `google-cloud-rust`, the Swift integration tests o
               │    (authenticated via ADC)    │
               ▼                               ▼
 ┌───────────────────────────┐   ┌───────────────────────────┐
-│ Google IAM Credentials    │   │ GoogleCloudAuth           │
+│ Google IAM Credentials    │   │ GoogleAuth           │
 │ (iamcredentials.googleapis)   │ (ExternalAccountCreds)    │
 └─────────────┬─────────────┘   └─────────────┬─────────────┘
               │ Returns raw ID token (JWT)    │ 3. POST /v1/token
@@ -173,5 +173,5 @@ ______________________________________________________________________
 | :--- | :--- | :--- |
 | `PERMISSION_DENIED: Failed to impersonate testsa` | Missing `roles/iam.serviceAccountTokenCreator` binding on `testsa`. | Re-run Section 3.2 to grant the role to your authenticated gcloud user account. |
 | STS HTTP 400: `Invalid value for "audience"` | Audience resource name misspelling (e.g., using `workloadPools` instead of `workloadIdentityPools`). | Workload Identity Federation uses `//iam.googleapis.com/projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROV>`. Ensure `workloadIdentityPools` is used. |
-| STS HTTP 400: `Scope(s) must be provided` | Scopes parameter omitted during token exchange. | In `GoogleCloudAuth`, scopes default to `["https://www.googleapis.com/auth/cloud-platform"]` per AIP-4117. Ensure non-empty scopes are provided if overriding. |
+| STS HTTP 400: `Scope(s) must be provided` | Scopes parameter omitted during token exchange. | In `GoogleAuth`, scopes default to `["https://www.googleapis.com/auth/cloud-platform"]` per AIP-4117. Ensure non-empty scopes are provided if overriding. |
 | Test skipped with message `Skipping M1 test: Missing ...` | Required environment variables were not set in the shell running `swift test`. | Export `GOOGLE_CLOUD_PROJECT`, `GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE`, and `EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL` prior to executing the test. |

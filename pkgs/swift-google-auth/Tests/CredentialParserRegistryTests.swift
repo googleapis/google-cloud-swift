@@ -15,7 +15,7 @@
 import Dispatch
 import Testing
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 struct MockCredentialsProvider: CredentialsProvider {
   func headers() async throws -> [(String, String)] {

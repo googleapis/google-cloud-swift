@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudGax
 @testable import GoogleCloudStorage
 import GoogleCloudWKT

@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGaxGRPC
 

@@ -283,7 +283,7 @@ swift package --disable-sandbox preview-documentation --target UserGuide
 To preview one of the hand-crated packages use:
 
 ```bash
-swift package --disable-sandbox preview-documentation --target GoogleCloudAuth
+swift package --disable-sandbox preview-documentation --target GoogleAuth
 swift package --disable-sandbox preview-documentation --target GoogleCloudWKT
 swift package --disable-sandbox preview-documentation --target GoogleCloudGax
 ```

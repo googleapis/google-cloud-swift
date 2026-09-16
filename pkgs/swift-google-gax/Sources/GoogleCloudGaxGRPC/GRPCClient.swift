@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-import GoogleCloudAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 import SwiftProtobuf
 
@@ -40,11 +40,11 @@ import SwiftProtobuf
 public final class _GRPCClient: Sendable {
   let client: GRPCClient<HTTP2ClientTransport.Posix>
   let connectionTask: Task<Void, any Error>
-  let credentials: GoogleCloudAuth.Credentials
+  let credentials: GoogleAuth.Credentials
   let quotaProject: String?
 
   public init(from options: ClientOptions, withDefaultEndpoint defaultEndpoint: String) throws {
-    self.credentials = try options.credentials ?? GoogleCloudAuth.Credentials()
+    self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
 
     let rawEndpoint = options.endpoint ?? defaultEndpoint

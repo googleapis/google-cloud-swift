@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite("ADC Resolver Tests")
 struct ADCResolverTests {

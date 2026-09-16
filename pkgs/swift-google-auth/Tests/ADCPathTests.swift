@@ -16,7 +16,7 @@ import Foundation
 import SystemPackage
 import Testing
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite("ADC Path Resolution Tests")
 struct ADCPathTests {

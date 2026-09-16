@@ -88,7 +88,7 @@ policies, and backoff parameters:
 
 ```swift
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudGax
 
 let options = try ClientOptions().with {

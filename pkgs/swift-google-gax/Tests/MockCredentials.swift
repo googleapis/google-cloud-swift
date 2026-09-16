@@ -15,11 +15,11 @@
 import Synchronization
 import Testing
 import struct DequeModule.Deque
-import GoogleCloudAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
 
 final class MockCredentials: GoogleCloudGax._CredentialsProtocol, @unchecked Sendable {
-  typealias Handler = @Sendable () async throws -> GoogleCloudAuth.AuthHeaders
+  typealias Handler = @Sendable () async throws -> GoogleAuth.AuthHeaders
   enum MockError: Error, Sendable {
     case empty
   }
@@ -34,7 +34,7 @@ final class MockCredentials: GoogleCloudGax._CredentialsProtocol, @unchecked Sen
     #expect(handlers.withLock { $0.isEmpty })
   }
 
-  public func headers() async throws -> GoogleCloudAuth.AuthHeaders {
+  public func headers() async throws -> GoogleAuth.AuthHeaders {
     guard let handler = self.handlers.withLock({ $0.popFirst() }) else {
       throw MockError.empty
     }

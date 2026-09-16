@@ -10,7 +10,7 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.
 
 The public API includes:
 
-- **Package Products**: Swift Package Manager library products explicitly declared under `products:` in each `Package.swift` (e.g., `GoogleCloudStorage`, `GoogleCloudAuth`, `GoogleCloudGax`, `GoogleCloudWKT`).
+- **Package Products**: Swift Package Manager library products explicitly declared under `products:` in each `Package.swift` (e.g., `GoogleCloudStorage`, `GoogleAuth`, `GoogleCloudGax`, `GoogleCloudWKT`).
 - **Exported Public and Open Symbols**: Any `public` or `open` type (`struct`, `class`, `enum`, `actor`, `protocol`, `typealias`), function, initializer, property, subscript, or enum case exported by a product module, unless explicitly excluded below.
 - **Documented Environment Variables**: Environment variables documented as configuration points (e.g., `GOOGLE_APPLICATION_CREDENTIALS`, `GOOGLE_CLOUD_PROJECT`).
 

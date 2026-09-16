@@ -47,7 +47,7 @@ let package = Package(
       dependencies: [
         "CGoogleCloudGaxCRC32C",
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "Logging", package: "swift-log"),
@@ -59,7 +59,7 @@ let package = Package(
       name: "GoogleCloudGaxGRPC",
       dependencies: [
         "GoogleCloudGax",
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GRPCCore", package: "grpc-swift-2"),

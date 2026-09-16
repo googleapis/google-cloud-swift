@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage

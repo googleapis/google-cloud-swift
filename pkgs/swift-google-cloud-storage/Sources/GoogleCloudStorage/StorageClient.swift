@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 /// A client for the [Cloud Storage] data-plane operations.

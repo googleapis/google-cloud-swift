@@ -14,7 +14,7 @@
 
 import Foundation
 import Synchronization
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 /// A thread-safe, strict concurrency-compliant time source for testing token caching and expirations natively.
 final class MockTimeSource: TimeSource, Sendable {

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import struct GoogleCloudAuth.Credentials
+import struct GoogleAuth.Credentials
 import class AsyncHTTPClient.HTTPClient
 import struct AsyncHTTPClient.HTTPClientRequest
 import struct AsyncHTTPClient.HTTPClientResponse
@@ -30,7 +30,7 @@ import struct Logging.Logger
 
   // Creates a new client.
   public init(from: ClientOptions, withDefaultEndpoint: String) throws {
-    self.credentials = try from.credentials ?? GoogleCloudAuth.Credentials()
+    self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
     self.quotaProject = from.quotaProject
     let endpoint = from.endpoint ?? withDefaultEndpoint
@@ -52,7 +52,7 @@ import struct Logging.Logger
     defaultEndpoint: String? = nil
   ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
-    self.credentials = try credentials ?? GoogleCloudAuth.Credentials(configuration: .anonymous)
+    self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner

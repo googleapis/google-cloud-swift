@@ -1,6 +1,6 @@
 # Objective
 
-Design a native Swift authentication library (`GoogleCloudAuth`) inside
+Design a native Swift authentication library (`GoogleAuth`) inside
 `google-cloud-swift` (`pkgs/swift-google-auth`) to serve as the unified, type-safe, and
 thread-safe entry point for all outgoing authenticated requests in a
 Swift-idiomatic way.
@@ -251,7 +251,7 @@ Each credentials source delegates actual token storage and refreshing to a share
 ### C. Internal Network Client (AuthHTTPClient)
 
 To simplify request dispatching, JSON decoding, and error handling across our
-token providers while keeping `GoogleCloudAuth` completely isolated from
+token providers while keeping `GoogleAuth` completely isolated from
 `GoogleCloudGax`, we implement a lightweight, internal `AuthHTTPClient`.
 
 This internal client encapsulates the following networking policies:
@@ -262,7 +262,7 @@ This internal client encapsulates the following networking policies:
     post-quantum cryptography across platforms.
 - **Easier Mocking**: implement our own HTTPClientProtocol to mock `HTTPClient`.
 - **Acyclic Boundary Safety**: Performs raw network queries directly via
-    `AsyncHTTPClient.HTTPClient`, ensuring `GoogleCloudAuth` remains independent
+    `AsyncHTTPClient.HTTPClient`, ensuring `GoogleAuth` remains independent
     of `GoogleCloudGax`.
 - **Generic Decoding**: Decodes generic JSON responses using a default
     `JSONDecoder` configured with a `.convertFromSnakeCase` key decoding
@@ -352,17 +352,17 @@ specifications exactly:
 
 ### Files to Add:
 
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/ADC.swift`: Standard Google API
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/ADC.swift`: Standard Google API
     Improvement Proposal (AIP)-4110 file loading and evaluation logic.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/TokenCache.swift`: Actor-based token
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/TokenCache.swift`: Actor-based token
     caching and task-sharing implementation.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Http/AuthHTTPClient.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Http/AuthHTTPClient.swift`:
     Centralized secure and Linux-compatible HTTP request dispatcher.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Providers/UserCredentials.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Providers/UserCredentials.swift`:
     Encapsulates User OAuth2 provider facade.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Providers/ServiceAccountCredentials.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Providers/ServiceAccountCredentials.swift`:
     Encapsulates Service Account provider facade.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Providers/MDSCredentials.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Providers/MDSCredentials.swift`:
     Encapsulates Metadata Server provider facade.
 
 ### Files to Delete:
@@ -375,9 +375,9 @@ specifications exactly:
 
 -   `pkgs/swift-google-auth/Package.swift`:
     -   Remove legacy shims and declarations.
-    -   Declare `GoogleCloudAuth` as a pure Swift target depending on project
+    -   Declare `GoogleAuth` as a pure Swift target depending on project
         crypto utilities for Linux compatibility.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Credentials.swift`: Rewrite to use
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Credentials.swift`: Rewrite to use
     native providers.
 
 --------------------------------------------------------------------------------

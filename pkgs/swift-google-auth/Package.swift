@@ -17,12 +17,12 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudAuth",
+  name: "GoogleAuth",
   platforms: [
     .macOS(.v15)
   ],
   products: [
-    .library(name: "GoogleCloudAuth", targets: ["GoogleCloudAuth"])
+    .library(name: "GoogleAuth", targets: ["GoogleAuth"])
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-system.git", from: "1.0.0"),
@@ -35,7 +35,7 @@ let package = Package(
 
   targets: [
     .target(
-      name: "GoogleCloudAuth",
+      name: "GoogleAuth",
       dependencies: [
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "JWTKit", package: "jwt-kit"),
@@ -46,9 +46,9 @@ let package = Package(
       ]
     ),
     .testTarget(
-      name: "GoogleCloudAuthTests",
+      name: "GoogleAuthTests",
       dependencies: [
-        "GoogleCloudAuth",
+        "GoogleAuth",
         .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "JWTKit", package: "jwt-kit"),
       ],

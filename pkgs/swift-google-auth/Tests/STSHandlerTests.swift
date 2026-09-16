@@ -15,7 +15,7 @@
 import Foundation
 import AsyncHTTPClient
 import Testing
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite struct STSHandlerTests {
   @Test("Verifies form-urlencoded POST exchange parameters and client authentication headers")

@@ -224,10 +224,10 @@ libraries:
   - name: google-auth
     version: 0.0.0-preview
     copyright_year: "2026"
-    output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
+    output: pkgs/swift-google-auth/Sources/GoogleAuth/generated
     swift:
       modules:
-        - output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
+        - output: pkgs/swift-google-auth/Sources/GoogleAuth/generated
           api_path: ""
           module_type: package-version
   - name: google-bigtable-admin-v2

@@ -14,7 +14,7 @@
 
 import ArgumentParser
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudStorage
 
 @main

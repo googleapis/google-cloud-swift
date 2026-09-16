@@ -41,7 +41,7 @@ jobs:
             [UserGuide]=guide
             [GoogleCloudWKT]=wkt
             [GoogleCloudGax]=gax
-            [GoogleCloudAuth]=auth
+            [GoogleAuth]=auth
             [GoogleCloudStorage]=storage
             [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
           )

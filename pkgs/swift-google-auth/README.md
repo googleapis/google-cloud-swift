@@ -4,7 +4,7 @@ Google Cloud authentication and credentials management for Swift applications.
 
 ## Overview
 
-`GoogleCloudAuth` provides authentication credentials and token management for
+`GoogleAuth` provides authentication credentials and token management for
 calling Google Cloud APIs in Swift. It handles resolving, obtaining, and
 refreshing credentials across diverse environments—from local developer
 machines to Google Cloud production workloads.
@@ -46,10 +46,10 @@ Add `swift-google-auth` as a package dependency:
 swift package add-dependency https://github.com/googleapis/swift-google-auth.git --from 0.1.0
 ```
 
-Then add `GoogleCloudAuth` to your target's dependencies:
+Then add `GoogleAuth` to your target's dependencies:
 
 ```bash
-swift package add-target-dependency GoogleCloudAuth <target-name> --package swift-google-auth
+swift package add-target-dependency GoogleAuth <target-name> --package swift-google-auth
 ```
 
 ## Usage
@@ -61,7 +61,7 @@ which automatically resolves the appropriate credential source for your runtime
 environment:
 
 ```swift
-import GoogleCloudAuth
+import GoogleAuth
 
 // Automatically resolves credentials from the environment (ADC)
 let credentials = try Credentials()
@@ -77,7 +77,7 @@ let clientOptions = ClientOptions().with {
 For APIs that support API key authentication:
 
 ```swift
-import GoogleCloudAuth
+import GoogleAuth
 
 let credentials = try Credentials(configuration: .apiKey("YOUR_API_KEY"))
 ```
@@ -88,7 +88,7 @@ To authenticate explicitly using a Service Account JSON private key:
 
 ```swift
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 
 let keyData = try Data(contentsOf: URL(fileURLWithPath: "/path/to/service-account.json"))
 let credentials = try Credentials(
@@ -104,7 +104,7 @@ let credentials = try Credentials(
 You can customize ADC settings such as billing/quota project ID or scopes:
 
 ```swift
-import GoogleCloudAuth
+import GoogleAuth
 
 let credentials = try Credentials(
     configuration: .adc(
@@ -119,7 +119,7 @@ let credentials = try Credentials(
 Google Cloud Swift client libraries accept credentials via `ClientOptions`:
 
 ```swift
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudGax
 
 let credentials = try Credentials(configuration: .apiKey("YOUR_API_KEY"))

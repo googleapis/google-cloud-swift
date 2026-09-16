@@ -13,14 +13,14 @@
 // limitations under the License.
 
 import Foundation
-import struct GoogleCloudAuth.AuthHeaders
-import struct GoogleCloudAuth.Credentials
+import struct GoogleAuth.AuthHeaders
+import struct GoogleAuth.Credentials
 
 /// Dependency injection for `_HTTPClient`.
 ///
 /// Allow testing `_HTTPClient` with mock credentials.
 @_spi(GoogleCloudInternal) public protocol _CredentialsProtocol: Sendable {
-  func headers() async throws -> GoogleCloudAuth.AuthHeaders
+  func headers() async throws -> GoogleAuth.AuthHeaders
 }
 
-@_spi(GoogleCloudInternal) extension GoogleCloudAuth.Credentials: _CredentialsProtocol {}
+@_spi(GoogleCloudInternal) extension GoogleAuth.Credentials: _CredentialsProtocol {}

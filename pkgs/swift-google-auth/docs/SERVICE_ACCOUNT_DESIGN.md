@@ -1,6 +1,6 @@
 # Design Specification - Swift Service Account Authentication
 
-This document defines the design and implementation specifications for the native Swift **Service Account Authentication** feature in the `GoogleCloudAuth` package (`pkgs/swift-google-auth`). This feature enables applications to authenticate using a Google Service Account JSON key file natively in Swift, eliminating the existing Rust FFI bridge while retaining 100% feature and test parity with the Rust SDK.
+This document defines the design and implementation specifications for the native Swift **Service Account Authentication** feature in the `GoogleAuth` package (`pkgs/swift-google-auth`). This feature enables applications to authenticate using a Google Service Account JSON key file natively in Swift, eliminating the existing Rust FFI bridge while retaining 100% feature and test parity with the Rust SDK.
 
 ---
 
@@ -29,7 +29,7 @@ The following features are explicitly out-of-scope for this phase and are deferr
 
 Google Cloud client libraries require a unified, thread-safe, and performant authentication mechanism to inject credentials into outgoing HTTP requests. Currently, the `google-cloud-swift` SDK bridges to a shared Rust core `rust_auth_core` via FFI. While functional, this bridge introduces binary bloat, dynamic linking complexities, and toolchain friction in developer environments, particularly on Linux.
 
-To address this, we are transitioning `GoogleCloudAuth` to a pure Swift architecture, utilizing modern language features—such as Structured Concurrency (`async/await`) and Actors—to handle caching natively. This design specification details how to implement the **Service Account Authentication** module natively in Swift, replacing the existing FFI targets while retaining full compatibility with [DESIGN.md](DESIGN.md).
+To address this, we are transitioning `GoogleAuth` to a pure Swift architecture, utilizing modern language features—such as Structured Concurrency (`async/await`) and Actors—to handle caching natively. This design specification details how to implement the **Service Account Authentication** module natively in Swift, replacing the existing FFI targets while retaining full compatibility with [DESIGN.md](DESIGN.md).
 
 To achieve a highly maintainable, cross-platform, and compile-ready architecture without platform-specific FFI dynamic linking, we adopt a unified cryptographic strategy using Vapor's `jwt-kit` library for RSA-SHA256 signing. Since standard Google Service Account keys are issued in PKCS#8 format, `jwt-kit` seamlessly integrates native JWT payload serialization, JSON encoding, Base64URL padding, and robust RSA cryptographic signing bindings natively out-of-the-box.
 
@@ -56,37 +56,37 @@ We define functional and non-functional requirements using a binary classificati
 
 We will expand the public API defined in the parent [DESIGN.md](DESIGN.md) with explicit configuration options and types for Service Accounts.
 
-### A. Access Token Configuration ([Credentials.swift](../Sources/GoogleCloudAuth/Credentials.swift))
+### A. Access Token Configuration ([Credentials.swift](../Sources/GoogleAuth/Credentials.swift))
 
-We will add the `serviceAccount` case to `CredentialsConfiguration` inside the actual [Credentials.swift](../Sources/GoogleCloudAuth/Credentials.swift) enum. Note that we do not expose a `serviceAccountKeyFile` case, as reading files is a trivial task that application developers can perform on their own prior to loading credentials.
+We will add the `serviceAccount` case to `CredentialsConfiguration` inside the actual [Credentials.swift](../Sources/GoogleAuth/Credentials.swift) enum. Note that we do not expose a `serviceAccountKeyFile` case, as reading files is a trivial task that application developers can perform on their own prior to loading credentials.
 
-To ensure compiler safety for the existing FFI backend during the transition/experimental phase, the `RustCredentialsSource.swift` target MUST be modified to explicitly reject the new configuration by throwing `.notSupported`. See the actual implementation inside [RustCredentialsSource.swift](../Sources/GoogleCloudAuth/Providers/RustCredentialsSource.swift).
+To ensure compiler safety for the existing FFI backend during the transition/experimental phase, the `RustCredentialsSource.swift` target MUST be modified to explicitly reject the new configuration by throwing `.notSupported`. See the actual implementation inside [RustCredentialsSource.swift](../Sources/GoogleAuth/Providers/RustCredentialsSource.swift).
 
-To support this compilation path, we also modified the `CredentialsError` enum to add the new `notSupported` error case. See the actual implementation inside [MDSCredentials.swift](../Sources/GoogleCloudAuth/Providers/MDSCredentials.swift).
+To support this compilation path, we also modified the `CredentialsError` enum to add the new `notSupported` error case. See the actual implementation inside [MDSCredentials.swift](../Sources/GoogleAuth/Providers/MDSCredentials.swift).
 
 ---
 
 ## 5. Detailed Architecture & Implementation
 
-### A. Service Account Credentials ([ServiceAccountCredentials.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountCredentials.swift))
+### A. Service Account Credentials ([ServiceAccountCredentials.swift](../Sources/GoogleAuth/Providers/ServiceAccountCredentials.swift))
 
-This conforms to `CredentialsSource` inside [ServiceAccountCredentials.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountCredentials.swift). It manages token fetching and caching for Service Account access tokens. It integrates with the generic `TokenCache` actor from the codebase, explicitly specifying `ContinuousClock` as its generic type argument.
+This conforms to `CredentialsSource` inside [ServiceAccountCredentials.swift](../Sources/GoogleAuth/Providers/ServiceAccountCredentials.swift). It manages token fetching and caching for Service Account access tokens. It integrates with the generic `TokenCache` actor from the codebase, explicitly specifying `ContinuousClock` as its generic type argument.
 
-The complete thread-safe, generic `TokenCache`-backed credentials source implementation resides inside [ServiceAccountCredentials.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountCredentials.swift).
+The complete thread-safe, generic `TokenCache`-backed credentials source implementation resides inside [ServiceAccountCredentials.swift](../Sources/GoogleAuth/Providers/ServiceAccountCredentials.swift).
 
-### B. Service Account Key ([ServiceAccountKey.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountKey.swift))
+### B. Service Account Key ([ServiceAccountKey.swift](../Sources/GoogleAuth/Providers/ServiceAccountKey.swift))
 
 Represents the parsed JSON key file, encapsulates key loading, and safely censors the private key for logging. We omit the manual `init(from:)` implementation to allow the compiler to automatically synthesize both the decodable JSON initializer and the default memberwise initializer required by the tests.
 
-The complete decodable model and debug description censor logic resides inside [ServiceAccountKey.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountKey.swift).
+The complete decodable model and debug description censor logic resides inside [ServiceAccountKey.swift](../Sources/GoogleAuth/Providers/ServiceAccountKey.swift).
 
-### C. Self-Signed JWT Generation ([ServiceAccountTokenProvider.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountTokenProvider.swift))
+### C. Self-Signed JWT Generation ([ServiceAccountTokenProvider.swift](../Sources/GoogleAuth/Providers/ServiceAccountTokenProvider.swift))
 
-Natively generates JWS structures inside [JWS.swift](../Sources/GoogleCloudAuth/Crypto/JWS.swift) and performs local RSA signing using a unified, pure-Swift cryptographic utility.
+Natively generates JWS structures inside [JWS.swift](../Sources/GoogleAuth/Crypto/JWS.swift) and performs local RSA signing using a unified, pure-Swift cryptographic utility.
 
-#### 1. JWS Types ([JWS.swift](../Sources/GoogleCloudAuth/Crypto/JWS.swift))
+#### 1. JWS Types ([JWS.swift](../Sources/GoogleAuth/Crypto/JWS.swift))
 
-The formal JWS claim payload and header specifications reside inside [JWS.swift](../Sources/GoogleCloudAuth/Crypto/JWS.swift).
+The formal JWS claim payload and header specifications reside inside [JWS.swift](../Sources/GoogleAuth/Crypto/JWS.swift).
 
 #### 2. JWS Claims Serialization & Mapping Rules
 
@@ -100,11 +100,11 @@ To ensure GCP compatibility, JWS claims must be serialized following these exact
 
 #### 3. Token Generation Flow
 
-The full JWT generation, claim alignment, space-separated scopes compilation, and RSA signature delegate bindings reside inside [ServiceAccountTokenProvider.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountTokenProvider.swift).
+The full JWT generation, claim alignment, space-separated scopes compilation, and RSA signature delegate bindings reside inside [ServiceAccountTokenProvider.swift](../Sources/GoogleAuth/Providers/ServiceAccountTokenProvider.swift).
 
 ---
 
-## 6. Cryptographic Implementation Strategy ([ServiceAccountTokenProvider.swift](../Sources/GoogleCloudAuth/Providers/ServiceAccountTokenProvider.swift))
+## 6. Cryptographic Implementation Strategy ([ServiceAccountTokenProvider.swift](../Sources/GoogleAuth/Providers/ServiceAccountTokenProvider.swift))
 
 Implementing RSA-SHA256 signing natively in Swift across platforms is accomplished using Vapor's official open-source `jwt-kit` library. Specifically, we leverage the fully-supported `JWTSigner` and `JWTPayload` protocols which provide native robust support for RS256 hashing, JWT JSON claim serialization, and Base64URL encoding.
 

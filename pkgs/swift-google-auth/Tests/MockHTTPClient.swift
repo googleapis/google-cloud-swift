@@ -17,7 +17,7 @@ import struct DequeModule.Deque
 import struct Logging.Logger
 import AsyncHTTPClient
 import Testing
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 final class MockHTTPClient: HTTPClientProtocol {
   typealias Closure = @Sendable (HTTPClientRequest) async throws -> HTTPClientResponse

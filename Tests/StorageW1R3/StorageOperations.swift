@@ -14,7 +14,7 @@
 
 import Foundation
 import NIOCore
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudGax
 import GoogleCloudStorage
 

@@ -16,7 +16,7 @@ import Foundation
 import AsyncHTTPClient
 import NIOHTTP1
 import Testing
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite struct MDSCredentialsTest {
   @Test func headersSuccessWithQuotaProject() async throws {

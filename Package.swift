@@ -67,7 +67,7 @@ let package = Package(
       name: "AllModules",
       dependencies: [
         .product(name: "UserGuide", package: "guide"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
       ] + generatedModules,
@@ -137,7 +137,7 @@ let package = Package(
     .testTarget(
       name: "Auth",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleIAMCredentialsV1", package: "swift-google-iam-credentials-v1"),
         "GoogleCloudTestHelpers",
       ],
@@ -161,7 +161,7 @@ let package = Package(
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
@@ -180,7 +180,7 @@ let package = Package(
       name: "StorageSamples",
       dependencies: [
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),

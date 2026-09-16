@@ -15,7 +15,7 @@
 import Foundation
 import AsyncHTTPClient
 import Testing
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 private struct MockSubjectTokenProvider: SubjectTokenProvider {
   let token: String

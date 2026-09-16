@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 import AsyncHTTPClient
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 typealias UserCredentials = UserCredentialsGeneric<TestClock>
 

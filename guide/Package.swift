@@ -37,7 +37,7 @@ let package = Package(
     .target(
       name: "UserGuide",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),

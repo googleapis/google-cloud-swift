@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleCloudGax
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleRpc
 import struct GoogleCloudWKT.Empty
 import AsyncHTTPClient

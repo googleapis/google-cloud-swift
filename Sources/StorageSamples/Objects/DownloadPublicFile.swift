@@ -14,7 +14,7 @@
 
 // [START storage_download_public_file]
 import Foundation
-import GoogleCloudAuth
+import GoogleAuth
 import GoogleCloudStorage
 
 public func downloadPublicFile(

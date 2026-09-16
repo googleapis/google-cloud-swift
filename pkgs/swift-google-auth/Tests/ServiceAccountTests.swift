@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import JWTKit
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite("Service Account Key & Credentials Tests")
 struct ServiceAccountTests {

@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite struct ApiKeyCredentialsTests {
   @Test func debugDescriptionRedactsApiKey() {

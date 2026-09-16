@@ -68,7 +68,7 @@ To avoid coupling the core ADC resolver with all possible credential types (and
 their heavy dependencies like Crypto), we will use a dynamic registry pattern.
 
 See
-[CredentialParserRegistry.swift](../Sources/GoogleCloudAuth/CredentialParserRegistry.swift)
+[CredentialParserRegistry.swift](../Sources/GoogleAuth/CredentialParserRegistry.swift)
 for the protocol and the thread-safe dynamic registry pattern implementation.
 
 The ADC resolver will read the file using `JSONSerialization` (weak typing) to
@@ -81,7 +81,7 @@ specific configuration struct (e.g., `ServiceAccountCredentials` or
 
 The `CredentialsConfiguration` enum natively handles overrides using associated
 values on the `.adc` case without breaking existing usage. See
-[Credentials.swift](../Sources/GoogleCloudAuth/Credentials.swift) for the enum
+[Credentials.swift](../Sources/GoogleAuth/Credentials.swift) for the enum
 implementation.
 
 -   `quotaProjectID`: Manually sets the quota project ID. This is overridden by
@@ -100,16 +100,16 @@ optimization and behavior.
 
 # Implementation details
 
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/ADCPath.swift`: Handles AIP-4110 path
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/ADCPath.swift`: Handles AIP-4110 path
     precedence.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/ADCResolver.swift`: Reads raw JSON
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/ADCResolver.swift`: Reads raw JSON
     file data from the resolved path.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/ADC.swift`: Orchestrates JSON
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/ADC.swift`: Orchestrates JSON
     decoding, quota project injection, and registry delegation.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/CredentialParserRegistry.swift`:
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/CredentialParserRegistry.swift`:
     Contains the `CredentialParserRegistry` class and `CredentialSourceParser`
     protocol.
--   `pkgs/swift-google-auth/Sources/GoogleCloudAuth/Credentials.swift`: Maintains the
+-   `pkgs/swift-google-auth/Sources/GoogleAuth/Credentials.swift`: Maintains the
     public `CredentialsConfiguration` enum.
 
 # Testing Parity

@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-import GoogleCloudAuth
+import GoogleAuth
 
 @Suite struct CredentialsErrorTest {
   @Test func notSupported() {

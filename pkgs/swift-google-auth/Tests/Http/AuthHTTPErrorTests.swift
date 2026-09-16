@@ -16,7 +16,7 @@ import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
 import Testing
 
-@testable import GoogleCloudAuth
+@testable import GoogleAuth
 
 @Suite struct AuthHTTPErrorTest {
   private let testURL = URL(string: "https://example.com")!
