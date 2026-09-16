@@ -278,7 +278,7 @@ To preview the user guide use:
 swift package --disable-sandbox preview-documentation --target UserGuide
 ```
 
-To preview one of the hand-crated packages use:
+To preview one of the handcrafted packages use:
 
 ```bash
 swift package --disable-sandbox preview-documentation --target GoogleCloudAuth
@@ -291,6 +291,20 @@ You can also preview the GAPICs used by the top-level tests, for example:
 ```bash
 swift package --disable-sandbox preview-documentation --target GoogleCloudSecretManagerV1
 swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
+```
+
+### Preview Other Generated Packages
+
+In standard local development workflows, only a minimal set of packages is
+built to keep dependency resolution and build times short-ish.
+
+To preview documentation for any package, set `SHARD_COUNT=1` and
+`SHARD_INDEX=0` in your shell. That loads all packages into the "shard", and
+you can pick the target with `--target <PackageTargetName>`:
+
+```bash
+env SHARD_COUNT=1 SHARD_INDEX=0 \
+  swift package --disable-sandbox preview-documentation --target GoogleCloudVisionV1
 ```
 
 ## Miscellaneous Tools
