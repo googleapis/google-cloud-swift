@@ -43,33 +43,33 @@ import Testing
   @Test(
     "Struct fields serialize",
     arguments: [
-      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (#"{"map":{},"repeated":[]}"#, T()),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":{}}"#,
+        #"{"map":{},"repeated":[],"singular":{}}"#,
         T().with { $0.singular = [:] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":{"a":42}}"#,
+        #"{"map":{},"repeated":[],"singular":{"a":42}}"#,
         T().with { $0.singular = ["a": .number(42)] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":{"a":"hello"}}"#,
+        #"{"map":{},"repeated":[],"singular":{"a":"hello"}}"#,
         T().with { $0.singular = ["a": .string("hello")] }
       ),
       (
-        #"{"map":{},"optional":{"a":42},"repeated":[],"singular":null}"#,
+        #"{"map":{},"optional":{"a":42},"repeated":[]}"#,
         T().with { $0.optional = ["a": .number(42)] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[{}],"singular":null}"#,
+        #"{"map":{},"repeated":[{}]}"#,
         T().with { $0.repeated = [[:]] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[{"a":42}],"singular":null}"#,
+        #"{"map":{},"repeated":[{"a":42}]}"#,
         T().with { $0.repeated = [["a": .number(42)]] }
       ),
       (
-        #"{"map":{"a":{"b":42}},"optional":null,"repeated":[],"singular":null}"#,
+        #"{"map":{"a":{"b":42}},"repeated":[]}"#,
         T().with { $0.map = ["a": ["b": .number(42)]] }
       ),
     ]

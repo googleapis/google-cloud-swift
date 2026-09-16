@@ -39,13 +39,13 @@ import Testing
   @Test(
     "NullValue fields serialize",
     arguments: [
-      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (#"{"map":{},"repeated":[],"singular":null}"#, T()),
       (
-        #"{"map":{},"optional":null,"repeated":[null],"singular":null}"#,
+        #"{"map":{},"repeated":[null],"singular":null}"#,
         T().with { $0.repeated = [NullValue()] }
       ),
       (
-        #"{"map":{"a":null},"optional":null,"repeated":[],"singular":null}"#,
+        #"{"map":{"a":null},"repeated":[],"singular":null}"#,
         T().with { $0.map = ["a": NullValue()] }
       ),
     ]

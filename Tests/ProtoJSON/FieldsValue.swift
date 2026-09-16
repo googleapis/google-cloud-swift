@@ -49,45 +49,45 @@ import Testing
   @Test(
     "Value fields serialize",
     arguments: [
-      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (#"{"map":{},"repeated":[]}"#, T()),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":42}"#,
+        #"{"map":{},"repeated":[],"singular":42}"#,
         T().with { $0.singular = .number(42) }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":"hello"}"#,
+        #"{"map":{},"repeated":[],"singular":"hello"}"#,
         T().with { $0.singular = .string("hello") }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":true}"#,
+        #"{"map":{},"repeated":[],"singular":true}"#,
         T().with { $0.singular = .bool(true) }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":{}}"#,
+        #"{"map":{},"repeated":[],"singular":{}}"#,
         T().with { $0.singular = .object([:]) }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":[]}"#,
+        #"{"map":{},"repeated":[],"singular":[]}"#,
         T().with { $0.singular = .array([]) }
       ),
       (
-        #"{"map":{},"optional":42,"repeated":[],"singular":null}"#,
+        #"{"map":{},"optional":42,"repeated":[]}"#,
         T().with { $0.optional = .number(42) }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[null],"singular":null}"#,
+        #"{"map":{},"repeated":[null]}"#,
         T().with { $0.repeated = [.null(NullValue())] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[42,"hello"],"singular":null}"#,
+        #"{"map":{},"repeated":[42,"hello"]}"#,
         T().with { $0.repeated = [.number(42), .string("hello")] }
       ),
       (
-        #"{"map":{"a":42},"optional":null,"repeated":[],"singular":null}"#,
+        #"{"map":{"a":42},"repeated":[]}"#,
         T().with { $0.map = ["a": .number(42)] }
       ),
       (
-        #"{"map":{"a":null},"optional":null,"repeated":[],"singular":null}"#,
+        #"{"map":{"a":null},"repeated":[]}"#,
         T().with { $0.map = ["a": .null(NullValue())] }
       ),
     ]

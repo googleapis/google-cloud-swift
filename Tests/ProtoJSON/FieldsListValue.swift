@@ -45,33 +45,33 @@ import Testing
   @Test(
     "ListValue fields serialize",
     arguments: [
-      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (#"{"map":{},"repeated":[]}"#, T()),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":[]}"#,
+        #"{"map":{},"repeated":[],"singular":[]}"#,
         T().with { $0.singular = [] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":[42]}"#,
+        #"{"map":{},"repeated":[],"singular":[42]}"#,
         T().with { $0.singular = [.number(42)] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":["hello"]}"#,
+        #"{"map":{},"repeated":[],"singular":["hello"]}"#,
         T().with { $0.singular = [.string("hello")] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":[42,"hello"]}"#,
+        #"{"map":{},"repeated":[],"singular":[42,"hello"]}"#,
         T().with { $0.singular = [.number(42), .string("hello")] }
       ),
       (
-        #"{"map":{},"optional":[42],"repeated":[],"singular":null}"#,
+        #"{"map":{},"optional":[42],"repeated":[]}"#,
         T().with { $0.optional = [.number(42)] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[[42]],"singular":null}"#,
+        #"{"map":{},"repeated":[[42]]}"#,
         T().with { $0.repeated = [[.number(42)]] }
       ),
       (
-        #"{"map":{"a":[42]},"optional":null,"repeated":[],"singular":null}"#,
+        #"{"map":{"a":[42]},"repeated":[]}"#,
         T().with { $0.map = ["a": [.number(42)]] }
       ),
     ]

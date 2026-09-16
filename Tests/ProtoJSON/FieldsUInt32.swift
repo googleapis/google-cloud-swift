@@ -51,15 +51,15 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":0}"#,
         T()
       ),
       (
-        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":0}"#,
         T().with { $0.mapKey = [42: "a"] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{"42":7},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{},"mapKeyValue":{"42":7},"mapValue":{},"repeated":[],"singular":0}"#,
         T().with { $0.mapKeyValue = [42: 7] }
       ),
     ])

@@ -52,15 +52,15 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"0"}"#,
         T()
       ),
       (
-        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
+        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"0"}"#,
         T().with { $0.mapKey = [42: "a"] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{"42":"7"},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
+        #"{"mapKey":{},"mapKeyValue":{"42":"7"},"mapValue":{},"repeated":[],"singular":"0"}"#,
         T().with { $0.mapKeyValue = [42: 7] }
       ),
       (
@@ -68,19 +68,19 @@ import Testing
         T().with { $0.option = 42 }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":["4","2"],"singular":"0"}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":["4","2"],"singular":"0"}"#,
         T().with { $0.repeated = [4, 2] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{"a":"42"},"option":null,"repeated":[],"singular":"0"}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{"a":"42"},"repeated":[],"singular":"0"}"#,
         T().with { $0.mapValue = ["a": 42] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"42"}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"42"}"#,
         T().with { $0.singular = 42 }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"18446744073709551615"}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"18446744073709551615"}"#,
         T().with { $0.singular = UInt64.max }
       ),
     ])
