@@ -16,6 +16,11 @@
 
 # Ignore anything ignored by `git`:
 #!include:.gitignore
+# In git worktrees, .git is a text file pointing to the main repository's
+# git directory on the host. Uploading it causes git commands in the container
+# to fail because that host path does not exist on the build VM.
+.git
+.git/
 
 # This is an attempt to ignore most worktrees. Those are big, and slow down the
 # upload for manual builds.

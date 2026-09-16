@@ -50,13 +50,19 @@ locals {
     }
   }
 
-  # There are builds that only run Post Merge.
-  # The full build is sharded across 16 parallel jobs. To change shard count in the future,
+  # These are builds that only run Post Merge.
+  # The full build and docs build are sharded across 8 parallel jobs. To change shard count in the future,
   # or to shard any other build, simply set `shards = <count>` on that build definition.
   pm_build_overrides = {
     full = {
       config  = "scripted.yaml"
       script  = "full"
+      pool_id = "swift-sdk-pool"
+      shards  = 8
+    }
+    docs = {
+      config  = "scripted.yaml"
+      script  = "docs"
       pool_id = "swift-sdk-pool"
       shards  = 8
     }
