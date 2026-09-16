@@ -39,7 +39,7 @@ let package = Package(
     .target(
       name: "GoogleCloudPolicySimulatorV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudOrgPolicyV2", package: "swift-google-cloud-orgpolicy-v2"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),

@@ -38,7 +38,7 @@ let package = Package(
     .target(
       name: "GoogleCloudFilestoreV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudCommon", package: "swift-google-cloud-common"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),

@@ -35,7 +35,7 @@ let package = Package(
     .target(
       name: "GoogleCloudTextToSpeechV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),

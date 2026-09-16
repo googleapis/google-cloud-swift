@@ -63,7 +63,7 @@ let package = Package(
           name: "GoogleAppsScriptTypeSheets", package: "swift-google-apps-script-type-sheets"),
         .product(
           name: "GoogleAppsScriptTypeSlides", package: "swift-google-apps-script-type-slides"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),

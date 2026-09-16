@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.44.1-0.20260916171302-f2209f8f5161
+version: v0.44.1-0.20260916175338-acced014d60e
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -71,7 +71,7 @@ default:
       - name: GoogleAppsScriptTypeSlides
         url: https://github.com/googleapis/swift-google-apps-script-type-slides
         api_package: google.apps.script.type.slides
-      - name: GoogleCloudAuth
+      - name: GoogleAuth
         url: https://github.com/googleapis/swift-google-auth
         required_by_services: true
       - name: GoogleCloudCommon
@@ -221,6 +221,15 @@ libraries:
   - name: google-apps-script-type-slides
     version: 0.0.0-preview
     copyright_year: "2026"
+  - name: google-auth
+    version: 0.0.0-preview
+    copyright_year: "2026"
+    output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
+    swift:
+      modules:
+        - output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
+          api_path: ""
+          module_type: package-version
   - name: google-bigtable-admin-v2
     version: 0.1.0-preview
     copyright_year: "2026"
@@ -322,15 +331,6 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleCloudAuditManagerV1
-  - name: google-cloud-auth
-    version: 0.0.0-preview
-    copyright_year: "2026"
-    output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
-    swift:
-      modules:
-        - output: pkgs/swift-google-auth/Sources/GoogleCloudAuth/generated
-          api_path: ""
-          module_type: package-version
   - name: google-cloud-backupdr-logging-v1
     version: 0.0.0-preview
     copyright_year: "2026"

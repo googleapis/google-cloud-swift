@@ -37,7 +37,7 @@ let package = Package(
       name: "GoogleCloudMonitoringDashboardV1",
       dependencies: [
         .product(name: "GoogleApi", package: "swift-google-api"),
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleType", package: "swift-google-type"),

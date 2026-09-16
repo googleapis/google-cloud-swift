@@ -34,7 +34,7 @@ let package = Package(
     .target(
       name: "GoogleCloudKMSInventoryV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudKMSV1", package: "swift-google-cloud-kms-v1"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),

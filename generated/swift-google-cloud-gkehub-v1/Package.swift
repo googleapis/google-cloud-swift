@@ -44,7 +44,7 @@ let package = Package(
     .target(
       name: "GoogleCloudGKEHubV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(
           name: "GoogleCloudGKEHubConfigManagementV1",
           package: "swift-google-cloud-gkehub-configmanagement-v1"),

@@ -109,7 +109,7 @@ let package = Package(
     .target(
       name: "GoogleCloudDialogflowV2",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
