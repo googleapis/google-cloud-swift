@@ -38,6 +38,8 @@ public struct LocalizedObjectAnnotation: Codable, Equatable, GoogleCloudWKT._Any
   /// Image region to which this object belongs. This must be populated.
   public var boundingPoly: BoundingPoly? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocalizedObjectAnnotation`.
   public init() {}
 
@@ -52,6 +54,60 @@ public struct LocalizedObjectAnnotation: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mid = CodingKeys(stringValue: "mid")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let name = CodingKeys(stringValue: "name")
+    static let score = CodingKeys(stringValue: "score")
+    static let boundingPoly = CodingKeys(stringValue: "boundingPoly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mid",
+      "languageCode",
+      "name",
+      "score",
+      "boundingPoly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mid) {
+      self.mid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+      self.score = value
+    }
+    self.boundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingPoly)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mid, forKey: .mid)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.score, forKey: .score)
+    try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

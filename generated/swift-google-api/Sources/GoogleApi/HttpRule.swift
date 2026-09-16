@@ -320,6 +320,8 @@ public struct HttpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// can be defined using the 'custom' field.
   public var pattern: OneOf_Pattern? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HttpRule`.
   public init() {}
 
@@ -336,25 +338,51 @@ public struct HttpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case selector = "selector"
-    case `get` = "get"
-    case put = "put"
-    case post = "post"
-    case delete = "delete"
-    case patch = "patch"
-    case custom = "custom"
-    case body = "body"
-    case responseBody = "responseBody"
-    case additionalBindings = "additionalBindings"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let `get` = CodingKeys(stringValue: "get")
+    static let put = CodingKeys(stringValue: "put")
+    static let post = CodingKeys(stringValue: "post")
+    static let delete = CodingKeys(stringValue: "delete")
+    static let patch = CodingKeys(stringValue: "patch")
+    static let custom = CodingKeys(stringValue: "custom")
+    static let body = CodingKeys(stringValue: "body")
+    static let responseBody = CodingKeys(stringValue: "responseBody")
+    static let additionalBindings = CodingKeys(stringValue: "additionalBindings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "get",
+      "put",
+      "post",
+      "delete",
+      "patch",
+      "custom",
+      "body",
+      "responseBody",
+      "additionalBindings",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.selector = try container.decode(Swift.String.self, forKey: .selector)
-    self.body = try container.decode(Swift.String.self, forKey: .body)
-    self.responseBody = try container.decode(Swift.String.self, forKey: .responseBody)
-    self.additionalBindings = try container.decode([HttpRule].self, forKey: .additionalBindings)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
+      self.body = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseBody) {
+      self.responseBody = value
+    }
+    if let value = try container.decodeIfPresent([HttpRule].self, forKey: .additionalBindings) {
+      self.additionalBindings = value
+    }
 
     var pattern: OneOf_Pattern? = nil
     let patternCheckAndSet = {
@@ -385,6 +413,10 @@ public struct HttpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try patternCheckAndSet(.custom(custom))
     }
     self.pattern = pattern
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -409,6 +441,9 @@ public struct HttpRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .custom(let value):
         try container.encode(value, forKey: .custom)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

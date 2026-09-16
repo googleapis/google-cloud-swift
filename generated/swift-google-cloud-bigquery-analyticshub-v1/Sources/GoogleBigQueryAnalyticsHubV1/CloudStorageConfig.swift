@@ -71,6 +71,8 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Defaults to text format.
   public var outputFormat: OneOf_OutputFormat? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudStorageConfig`.
   public init() {}
 
@@ -87,31 +89,63 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case textConfig = "textConfig"
-    case avroConfig = "avroConfig"
-    case bucket = "bucket"
-    case filenamePrefix = "filenamePrefix"
-    case filenameSuffix = "filenameSuffix"
-    case filenameDatetimeFormat = "filenameDatetimeFormat"
-    case maxDuration = "maxDuration"
-    case maxBytes = "maxBytes"
-    case maxMessages = "maxMessages"
-    case serviceAccountEmail = "serviceAccountEmail"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let textConfig = CodingKeys(stringValue: "textConfig")
+    static let avroConfig = CodingKeys(stringValue: "avroConfig")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let filenamePrefix = CodingKeys(stringValue: "filenamePrefix")
+    static let filenameSuffix = CodingKeys(stringValue: "filenameSuffix")
+    static let filenameDatetimeFormat = CodingKeys(stringValue: "filenameDatetimeFormat")
+    static let maxDuration = CodingKeys(stringValue: "maxDuration")
+    static let maxBytes = CodingKeys(stringValue: "maxBytes")
+    static let maxMessages = CodingKeys(stringValue: "maxMessages")
+    static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "textConfig",
+      "avroConfig",
+      "bucket",
+      "filenamePrefix",
+      "filenameSuffix",
+      "filenameDatetimeFormat",
+      "maxDuration",
+      "maxBytes",
+      "maxMessages",
+      "serviceAccountEmail",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
-    self.filenamePrefix = try container.decode(Swift.String.self, forKey: .filenamePrefix)
-    self.filenameSuffix = try container.decode(Swift.String.self, forKey: .filenameSuffix)
-    self.filenameDatetimeFormat = try container.decode(
-      Swift.String.self, forKey: .filenameDatetimeFormat)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filenamePrefix) {
+      self.filenamePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filenameSuffix) {
+      self.filenameSuffix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filenameDatetimeFormat)
+    {
+      self.filenameDatetimeFormat = value
+    }
     self.maxDuration = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .maxDuration)
-    self.maxBytes = try container.decode(Swift.Int64.self, forKey: .maxBytes)
-    self.maxMessages = try container.decode(Swift.Int64.self, forKey: .maxMessages)
-    self.serviceAccountEmail = try container.decode(Swift.String.self, forKey: .serviceAccountEmail)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxBytes) {
+      self.maxBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxMessages) {
+      self.maxMessages = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail) {
+      self.serviceAccountEmail = value
+    }
 
     var outputFormat: OneOf_OutputFormat? = nil
     let outputFormatCheckAndSet = {
@@ -134,6 +168,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try outputFormatCheckAndSet(.avroConfig(avroConfig))
     }
     self.outputFormat = outputFormat
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -142,7 +180,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.filenamePrefix, forKey: .filenamePrefix)
     try container.encode(self.filenameSuffix, forKey: .filenameSuffix)
     try container.encode(self.filenameDatetimeFormat, forKey: .filenameDatetimeFormat)
-    try container.encode(self.maxDuration, forKey: .maxDuration)
+    try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
     try container.encode(self.maxBytes, forKey: .maxBytes)
     try container.encode(self.maxMessages, forKey: .maxMessages)
     try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
@@ -155,6 +193,9 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .avroConfig)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for writing message data in text format.
@@ -163,6 +204,8 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public struct TextConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TextConfig`.
     public init() {}
 
@@ -177,6 +220,30 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -208,6 +275,8 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// using the topic schema, if it exists.
     public var useTopicSchema: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AvroConfig`.
     public init() {}
 
@@ -222,6 +291,44 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let writeMetadata = CodingKeys(stringValue: "writeMetadata")
+      static let useTopicSchema = CodingKeys(stringValue: "useTopicSchema")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "writeMetadata",
+        "useTopicSchema",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .writeMetadata) {
+        self.writeMetadata = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useTopicSchema) {
+        self.useTopicSchema = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.writeMetadata, forKey: .writeMetadata)
+      try container.encode(self.useTopicSchema, forKey: .useTopicSchema)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

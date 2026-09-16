@@ -49,6 +49,8 @@ public struct CreateIcebergCatalogRequest: Codable, Equatable, GoogleCloudWKT._A
   /// performance and cost.
   public var primaryLocation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateIcebergCatalogRequest`.
   public init() {}
 
@@ -65,28 +67,53 @@ public struct CreateIcebergCatalogRequest: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case icebergCatalogId = "iceberg-catalog-id"
-    case icebergCatalog = "icebergCatalog"
-    case primaryLocation = "primary_location"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let icebergCatalogId = CodingKeys(stringValue: "iceberg-catalog-id")
+    static let icebergCatalog = CodingKeys(stringValue: "icebergCatalog")
+    static let primaryLocation = CodingKeys(stringValue: "primary_location")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "iceberg-catalog-id",
+      "icebergCatalog",
+      "primary_location",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.icebergCatalogId = try container.decode(Swift.String.self, forKey: .icebergCatalogId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .icebergCatalogId) {
+      self.icebergCatalogId = value
+    }
     self.icebergCatalog = try container.decodeIfPresent(
       IcebergCatalog.self, forKey: .icebergCatalog)
-    self.primaryLocation = try container.decode(Swift.String.self, forKey: .primaryLocation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryLocation) {
+      self.primaryLocation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.icebergCatalogId, forKey: .icebergCatalogId)
-    try container.encode(self.icebergCatalog, forKey: .icebergCatalog)
+    try container.encodeIfPresent(self.icebergCatalog, forKey: .icebergCatalog)
     try container.encode(self.primaryLocation, forKey: .primaryLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

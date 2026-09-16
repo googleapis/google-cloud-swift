@@ -42,6 +42,8 @@
     /// Ranking metrics of this suggestion.
     public var rankingInfo: OneOf_RankingInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompletionSuggestion`.
     public init() {}
 
@@ -58,24 +60,49 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case globalScore = "globalScore"
-      case frequency = "frequency"
-      case suggestion = "suggestion"
-      case languageCode = "languageCode"
-      case groupId = "groupId"
-      case groupScore = "groupScore"
-      case alternativePhrases = "alternativePhrases"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let globalScore = CodingKeys(stringValue: "globalScore")
+      static let frequency = CodingKeys(stringValue: "frequency")
+      static let suggestion = CodingKeys(stringValue: "suggestion")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let groupId = CodingKeys(stringValue: "groupId")
+      static let groupScore = CodingKeys(stringValue: "groupScore")
+      static let alternativePhrases = CodingKeys(stringValue: "alternativePhrases")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "globalScore",
+        "frequency",
+        "suggestion",
+        "languageCode",
+        "groupId",
+        "groupScore",
+        "alternativePhrases",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.suggestion = try container.decode(Swift.String.self, forKey: .suggestion)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
-      self.groupId = try container.decode(Swift.String.self, forKey: .groupId)
-      self.groupScore = try container.decode(Swift.Double.self, forKey: .groupScore)
-      self.alternativePhrases = try container.decode(
-        [Swift.String].self, forKey: .alternativePhrases)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suggestion) {
+        self.suggestion = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupId) {
+        self.groupId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .groupScore) {
+        self.groupScore = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .alternativePhrases)
+      {
+        self.alternativePhrases = value
+      }
 
       var rankingInfo: OneOf_RankingInfo? = nil
       let rankingInfoCheckAndSet = {
@@ -94,6 +121,10 @@
         try rankingInfoCheckAndSet(.frequency(frequency))
       }
       self.rankingInfo = rankingInfo
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -111,6 +142,9 @@
         case .frequency(let value):
           try container.encode(value, forKey: .frequency)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

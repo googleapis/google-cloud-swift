@@ -27,6 +27,8 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// enforcement type for Model Armor filters.
   public var enforcementType: OneOf_EnforcementType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AiPlatformFloorSetting`.
   public init() {}
 
@@ -43,15 +45,28 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inspectOnly = "inspectOnly"
-    case inspectAndBlock = "inspectAndBlock"
-    case enableCloudLogging = "enableCloudLogging"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inspectOnly = CodingKeys(stringValue: "inspectOnly")
+    static let inspectAndBlock = CodingKeys(stringValue: "inspectAndBlock")
+    static let enableCloudLogging = CodingKeys(stringValue: "enableCloudLogging")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inspectOnly",
+      "inspectAndBlock",
+      "enableCloudLogging",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.enableCloudLogging = try container.decode(Swift.Bool.self, forKey: .enableCloudLogging)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCloudLogging) {
+      self.enableCloudLogging = value
+    }
 
     var enforcementType: OneOf_EnforcementType? = nil
     let enforcementTypeCheckAndSet = {
@@ -72,6 +87,10 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPac
       try enforcementTypeCheckAndSet(.inspectAndBlock(inspectAndBlock))
     }
     self.enforcementType = enforcementType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +104,9 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .inspectAndBlock(let value):
         try container.encode(value, forKey: .inspectAndBlock)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

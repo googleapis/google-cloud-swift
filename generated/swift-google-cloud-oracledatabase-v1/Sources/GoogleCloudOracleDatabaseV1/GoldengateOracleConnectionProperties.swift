@@ -55,6 +55,8 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
   /// including length, case sensitivity, and so on.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateOracleConnectionProperties`.
   public init() {}
 
@@ -71,30 +73,63 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case username = "username"
-    case authenticationMode = "authenticationMode"
-    case connectionString = "connectionString"
-    case sessionMode = "sessionMode"
-    case gcpOracleDatabaseId = "gcpOracleDatabaseId"
-    case walletFile = "walletFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let username = CodingKeys(stringValue: "username")
+    static let authenticationMode = CodingKeys(stringValue: "authenticationMode")
+    static let connectionString = CodingKeys(stringValue: "connectionString")
+    static let sessionMode = CodingKeys(stringValue: "sessionMode")
+    static let gcpOracleDatabaseId = CodingKeys(stringValue: "gcpOracleDatabaseId")
+    static let walletFile = CodingKeys(stringValue: "walletFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "username",
+      "authenticationMode",
+      "connectionString",
+      "sessionMode",
+      "gcpOracleDatabaseId",
+      "walletFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.authenticationMode = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateOracleConnectionProperties.OracleAuthenticationMode.self,
       forKey: .authenticationMode)
-    self.connectionString = try container.decode(Swift.String.self, forKey: .connectionString)
-    self.sessionMode = try container.decode(
+    {
+      self.authenticationMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionString) {
+      self.connectionString = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateOracleConnectionProperties.SessionMode.self, forKey: .sessionMode)
-    self.gcpOracleDatabaseId = try container.decode(Swift.String.self, forKey: .gcpOracleDatabaseId)
-    self.walletFile = try container.decode(Swift.String.self, forKey: .walletFile)
+    {
+      self.sessionMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleDatabaseId) {
+      self.gcpOracleDatabaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .walletFile) {
+      self.walletFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -115,6 +150,10 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -134,6 +173,9 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

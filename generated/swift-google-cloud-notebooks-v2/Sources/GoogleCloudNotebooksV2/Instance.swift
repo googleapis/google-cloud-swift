@@ -81,6 +81,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Setup for the Notebook instance.
   public var infrastructure: OneOf_Infrastructure? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -97,40 +99,89 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case gceSetup = "gceSetup"
-    case proxyUri = "proxyUri"
-    case instanceOwners = "instanceOwners"
-    case creator = "creator"
-    case state = "state"
-    case upgradeHistory = "upgradeHistory"
-    case id = "id"
-    case healthState = "healthState"
-    case healthInfo = "healthInfo"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case disableProxyAccess = "disableProxyAccess"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let gceSetup = CodingKeys(stringValue: "gceSetup")
+    static let proxyUri = CodingKeys(stringValue: "proxyUri")
+    static let instanceOwners = CodingKeys(stringValue: "instanceOwners")
+    static let creator = CodingKeys(stringValue: "creator")
+    static let state = CodingKeys(stringValue: "state")
+    static let upgradeHistory = CodingKeys(stringValue: "upgradeHistory")
+    static let id = CodingKeys(stringValue: "id")
+    static let healthState = CodingKeys(stringValue: "healthState")
+    static let healthInfo = CodingKeys(stringValue: "healthInfo")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let disableProxyAccess = CodingKeys(stringValue: "disableProxyAccess")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "gceSetup",
+      "proxyUri",
+      "instanceOwners",
+      "creator",
+      "state",
+      "upgradeHistory",
+      "id",
+      "healthState",
+      "healthInfo",
+      "createTime",
+      "updateTime",
+      "disableProxyAccess",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.proxyUri = try container.decode(Swift.String.self, forKey: .proxyUri)
-    self.instanceOwners = try container.decode([Swift.String].self, forKey: .instanceOwners)
-    self.creator = try container.decode(Swift.String.self, forKey: .creator)
-    self.state = try container.decode(State.self, forKey: .state)
-    self.upgradeHistory = try container.decode([UpgradeHistoryEntry].self, forKey: .upgradeHistory)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.healthState = try container.decode(HealthState.self, forKey: .healthState)
-    self.healthInfo = try container.decode([Swift.String: Swift.String].self, forKey: .healthInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .proxyUri) {
+      self.proxyUri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instanceOwners) {
+      self.instanceOwners = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
+      self.creator = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [UpgradeHistoryEntry].self, forKey: .upgradeHistory)
+    {
+      self.upgradeHistory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(HealthState.self, forKey: .healthState) {
+      self.healthState = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .healthInfo)
+    {
+      self.healthInfo = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.disableProxyAccess = try container.decode(Swift.Bool.self, forKey: .disableProxyAccess)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableProxyAccess) {
+      self.disableProxyAccess = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var infrastructure: OneOf_Infrastructure? = nil
     let infrastructureCheckAndSet = {
@@ -146,6 +197,10 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try infrastructureCheckAndSet(.gceSetup(gceSetup))
     }
     self.infrastructure = infrastructure
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -159,8 +214,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.healthState, forKey: .healthState)
     try container.encode(self.healthInfo, forKey: .healthInfo)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.disableProxyAccess, forKey: .disableProxyAccess)
     try container.encode(self.labels, forKey: .labels)
 
@@ -169,6 +224,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gceSetup(let value):
         try container.encode(value, forKey: .gceSetup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

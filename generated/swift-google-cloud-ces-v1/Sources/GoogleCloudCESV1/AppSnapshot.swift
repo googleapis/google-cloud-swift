@@ -39,6 +39,8 @@ public struct AppSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. List of toolsets in the app.
   public var toolsets: [Toolset] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppSnapshot`.
   public init() {}
 
@@ -53,6 +55,66 @@ public struct AppSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let app = CodingKeys(stringValue: "app")
+    static let agents = CodingKeys(stringValue: "agents")
+    static let tools = CodingKeys(stringValue: "tools")
+    static let examples = CodingKeys(stringValue: "examples")
+    static let guardrails = CodingKeys(stringValue: "guardrails")
+    static let toolsets = CodingKeys(stringValue: "toolsets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "app",
+      "agents",
+      "tools",
+      "examples",
+      "guardrails",
+      "toolsets",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.app = try container.decodeIfPresent(App.self, forKey: .app)
+    if let value = try container.decodeIfPresent([Agent].self, forKey: .agents) {
+      self.agents = value
+    }
+    if let value = try container.decodeIfPresent([Tool].self, forKey: .tools) {
+      self.tools = value
+    }
+    if let value = try container.decodeIfPresent([Example].self, forKey: .examples) {
+      self.examples = value
+    }
+    if let value = try container.decodeIfPresent([Guardrail].self, forKey: .guardrails) {
+      self.guardrails = value
+    }
+    if let value = try container.decodeIfPresent([Toolset].self, forKey: .toolsets) {
+      self.toolsets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.app, forKey: .app)
+    try container.encode(self.agents, forKey: .agents)
+    try container.encode(self.tools, forKey: .tools)
+    try container.encode(self.examples, forKey: .examples)
+    try container.encode(self.guardrails, forKey: .guardrails)
+    try container.encode(self.toolsets, forKey: .toolsets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

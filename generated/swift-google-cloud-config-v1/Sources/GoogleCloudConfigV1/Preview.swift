@@ -116,6 +116,8 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Blueprint to preview.
   public var blueprint: OneOf_Blueprint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Preview`.
   public init() {}
 
@@ -132,55 +134,113 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case terraformBlueprint = "terraformBlueprint"
-    case name = "name"
-    case createTime = "createTime"
-    case labels = "labels"
-    case state = "state"
-    case deployment = "deployment"
-    case previewMode = "previewMode"
-    case serviceAccount = "serviceAccount"
-    case artifactsGcsBucket = "artifactsGcsBucket"
-    case workerPool = "workerPool"
-    case errorCode = "errorCode"
-    case errorStatus = "errorStatus"
-    case build = "build"
-    case tfErrors = "tfErrors"
-    case errorLogs = "errorLogs"
-    case previewArtifacts = "previewArtifacts"
-    case logs = "logs"
-    case tfVersion = "tfVersion"
-    case tfVersionConstraint = "tfVersionConstraint"
-    case annotations = "annotations"
-    case providerConfig = "providerConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let terraformBlueprint = CodingKeys(stringValue: "terraformBlueprint")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let previewMode = CodingKeys(stringValue: "previewMode")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let artifactsGcsBucket = CodingKeys(stringValue: "artifactsGcsBucket")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorStatus = CodingKeys(stringValue: "errorStatus")
+    static let build = CodingKeys(stringValue: "build")
+    static let tfErrors = CodingKeys(stringValue: "tfErrors")
+    static let errorLogs = CodingKeys(stringValue: "errorLogs")
+    static let previewArtifacts = CodingKeys(stringValue: "previewArtifacts")
+    static let logs = CodingKeys(stringValue: "logs")
+    static let tfVersion = CodingKeys(stringValue: "tfVersion")
+    static let tfVersionConstraint = CodingKeys(stringValue: "tfVersionConstraint")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let providerConfig = CodingKeys(stringValue: "providerConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "terraformBlueprint",
+      "name",
+      "createTime",
+      "labels",
+      "state",
+      "deployment",
+      "previewMode",
+      "serviceAccount",
+      "artifactsGcsBucket",
+      "workerPool",
+      "errorCode",
+      "errorStatus",
+      "build",
+      "tfErrors",
+      "errorLogs",
+      "previewArtifacts",
+      "logs",
+      "tfVersion",
+      "tfVersionConstraint",
+      "annotations",
+      "providerConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.state = try container.decode(Preview.State.self, forKey: .state)
-    self.deployment = try container.decode(Swift.String.self, forKey: .deployment)
-    self.previewMode = try container.decode(Preview.PreviewMode.self, forKey: .previewMode)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Preview.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+      self.deployment = value
+    }
+    if let value = try container.decodeIfPresent(Preview.PreviewMode.self, forKey: .previewMode) {
+      self.previewMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
     self.artifactsGcsBucket = try container.decodeIfPresent(
       Swift.String.self, forKey: .artifactsGcsBucket)
     self.workerPool = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool)
-    self.errorCode = try container.decode(Preview.ErrorCode.self, forKey: .errorCode)
+    if let value = try container.decodeIfPresent(Preview.ErrorCode.self, forKey: .errorCode) {
+      self.errorCode = value
+    }
     self.errorStatus = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .errorStatus)
-    self.build = try container.decode(Swift.String.self, forKey: .build)
-    self.tfErrors = try container.decode([TerraformError].self, forKey: .tfErrors)
-    self.errorLogs = try container.decode(Swift.String.self, forKey: .errorLogs)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .build) {
+      self.build = value
+    }
+    if let value = try container.decodeIfPresent([TerraformError].self, forKey: .tfErrors) {
+      self.tfErrors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorLogs) {
+      self.errorLogs = value
+    }
     self.previewArtifacts = try container.decodeIfPresent(
       PreviewArtifacts.self, forKey: .previewArtifacts)
-    self.logs = try container.decode(Swift.String.self, forKey: .logs)
-    self.tfVersion = try container.decode(Swift.String.self, forKey: .tfVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logs) {
+      self.logs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tfVersion) {
+      self.tfVersion = value
+    }
     self.tfVersionConstraint = try container.decodeIfPresent(
       Swift.String.self, forKey: .tfVersionConstraint)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
     self.providerConfig = try container.decodeIfPresent(
       ProviderConfig.self, forKey: .providerConfig)
 
@@ -200,36 +260,43 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try blueprintCheckAndSet(.terraformBlueprint(terraformBlueprint))
     }
     self.blueprint = blueprint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.deployment, forKey: .deployment)
     try container.encode(self.previewMode, forKey: .previewMode)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.artifactsGcsBucket, forKey: .artifactsGcsBucket)
-    try container.encode(self.workerPool, forKey: .workerPool)
+    try container.encodeIfPresent(self.artifactsGcsBucket, forKey: .artifactsGcsBucket)
+    try container.encodeIfPresent(self.workerPool, forKey: .workerPool)
     try container.encode(self.errorCode, forKey: .errorCode)
-    try container.encode(self.errorStatus, forKey: .errorStatus)
+    try container.encodeIfPresent(self.errorStatus, forKey: .errorStatus)
     try container.encode(self.build, forKey: .build)
     try container.encode(self.tfErrors, forKey: .tfErrors)
     try container.encode(self.errorLogs, forKey: .errorLogs)
-    try container.encode(self.previewArtifacts, forKey: .previewArtifacts)
+    try container.encodeIfPresent(self.previewArtifacts, forKey: .previewArtifacts)
     try container.encode(self.logs, forKey: .logs)
     try container.encode(self.tfVersion, forKey: .tfVersion)
-    try container.encode(self.tfVersionConstraint, forKey: .tfVersionConstraint)
+    try container.encodeIfPresent(self.tfVersionConstraint, forKey: .tfVersionConstraint)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.providerConfig, forKey: .providerConfig)
+    try container.encodeIfPresent(self.providerConfig, forKey: .providerConfig)
 
     if let choice = self.blueprint {
       switch choice {
       case .terraformBlueprint(let value):
         try container.encode(value, forKey: .terraformBlueprint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -118,6 +118,8 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The connectivity method.
   public var connectivity: OneOf_Connectivity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationJob`.
   public init() {}
 
@@ -134,49 +136,100 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case displayName = "displayName"
-    case state = "state"
-    case phase = "phase"
-    case type = "type"
-    case dumpPath = "dumpPath"
-    case dumpFlags = "dumpFlags"
-    case source = "source"
-    case destination = "destination"
-    case reverseSshConnectivity = "reverseSshConnectivity"
-    case vpcPeeringConnectivity = "vpcPeeringConnectivity"
-    case staticIpConnectivity = "staticIpConnectivity"
-    case duration = "duration"
-    case error = "error"
-    case sourceDatabase = "sourceDatabase"
-    case destinationDatabase = "destinationDatabase"
-    case endTime = "endTime"
-    case conversionWorkspace = "conversionWorkspace"
-    case filter = "filter"
-    case cmekKeyName = "cmekKeyName"
-    case performanceConfig = "performanceConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let phase = CodingKeys(stringValue: "phase")
+    static let type = CodingKeys(stringValue: "type")
+    static let dumpPath = CodingKeys(stringValue: "dumpPath")
+    static let dumpFlags = CodingKeys(stringValue: "dumpFlags")
+    static let source = CodingKeys(stringValue: "source")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let reverseSshConnectivity = CodingKeys(stringValue: "reverseSshConnectivity")
+    static let vpcPeeringConnectivity = CodingKeys(stringValue: "vpcPeeringConnectivity")
+    static let staticIpConnectivity = CodingKeys(stringValue: "staticIpConnectivity")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let error = CodingKeys(stringValue: "error")
+    static let sourceDatabase = CodingKeys(stringValue: "sourceDatabase")
+    static let destinationDatabase = CodingKeys(stringValue: "destinationDatabase")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let conversionWorkspace = CodingKeys(stringValue: "conversionWorkspace")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let cmekKeyName = CodingKeys(stringValue: "cmekKeyName")
+    static let performanceConfig = CodingKeys(stringValue: "performanceConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "state",
+      "phase",
+      "type",
+      "dumpPath",
+      "dumpFlags",
+      "source",
+      "destination",
+      "reverseSshConnectivity",
+      "vpcPeeringConnectivity",
+      "staticIpConnectivity",
+      "duration",
+      "error",
+      "sourceDatabase",
+      "destinationDatabase",
+      "endTime",
+      "conversionWorkspace",
+      "filter",
+      "cmekKeyName",
+      "performanceConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.state = try container.decode(MigrationJob.State.self, forKey: .state)
-    self.phase = try container.decode(MigrationJob.Phase.self, forKey: .phase)
-    self.type = try container.decode(MigrationJob.Type_.self, forKey: .type)
-    self.dumpPath = try container.decode(Swift.String.self, forKey: .dumpPath)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(MigrationJob.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(MigrationJob.Phase.self, forKey: .phase) {
+      self.phase = value
+    }
+    if let value = try container.decodeIfPresent(MigrationJob.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dumpPath) {
+      self.dumpPath = value
+    }
     self.dumpFlags = try container.decodeIfPresent(MigrationJob.DumpFlags.self, forKey: .dumpFlags)
-    self.source = try container.decode(Swift.String.self, forKey: .source)
-    self.destination = try container.decode(Swift.String.self, forKey: .destination)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+      self.source = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
+      self.destination = value
+    }
     self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.sourceDatabase = try container.decodeIfPresent(DatabaseType.self, forKey: .sourceDatabase)
@@ -185,8 +238,12 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.conversionWorkspace = try container.decodeIfPresent(
       ConversionWorkspaceInfo.self, forKey: .conversionWorkspace)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
-    self.cmekKeyName = try container.decode(Swift.String.self, forKey: .cmekKeyName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cmekKeyName) {
+      self.cmekKeyName = value
+    }
     self.performanceConfig = try container.decodeIfPresent(
       MigrationJob.PerformanceConfig.self, forKey: .performanceConfig)
 
@@ -216,31 +273,35 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try connectivityCheckAndSet(.staticIpConnectivity(staticIpConnectivity))
     }
     self.connectivity = connectivity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.phase, forKey: .phase)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.dumpPath, forKey: .dumpPath)
-    try container.encode(self.dumpFlags, forKey: .dumpFlags)
+    try container.encodeIfPresent(self.dumpFlags, forKey: .dumpFlags)
     try container.encode(self.source, forKey: .source)
     try container.encode(self.destination, forKey: .destination)
-    try container.encode(self.duration, forKey: .duration)
-    try container.encode(self.error, forKey: .error)
-    try container.encode(self.sourceDatabase, forKey: .sourceDatabase)
-    try container.encode(self.destinationDatabase, forKey: .destinationDatabase)
-    try container.encode(self.endTime, forKey: .endTime)
-    try container.encode(self.conversionWorkspace, forKey: .conversionWorkspace)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.sourceDatabase, forKey: .sourceDatabase)
+    try container.encodeIfPresent(self.destinationDatabase, forKey: .destinationDatabase)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.conversionWorkspace, forKey: .conversionWorkspace)
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.cmekKeyName, forKey: .cmekKeyName)
-    try container.encode(self.performanceConfig, forKey: .performanceConfig)
+    try container.encodeIfPresent(self.performanceConfig, forKey: .performanceConfig)
 
     if let choice = self.connectivity {
       switch choice {
@@ -251,6 +312,9 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .staticIpConnectivity(let value):
         try container.encode(value, forKey: .staticIpConnectivity)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -263,6 +327,8 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The value of the flag.
     public var value: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DumpFlag`.
     public init() {}
@@ -278,6 +344,44 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -298,6 +402,8 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The flags for the initial dump.
     public var dumpFlags: [MigrationJob.DumpFlag] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DumpFlags`.
     public init() {}
 
@@ -312,6 +418,39 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dumpFlags = CodingKeys(stringValue: "dumpFlags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dumpFlags"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([MigrationJob.DumpFlag].self, forKey: .dumpFlags)
+      {
+        self.dumpFlags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dumpFlags, forKey: .dumpFlags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -333,6 +472,8 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var dumpParallelLevel: MigrationJob.PerformanceConfig.DumpParallelLevel = MigrationJob
       .PerformanceConfig.DumpParallelLevel()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PerformanceConfig`.
     public init() {}
 
@@ -347,6 +488,40 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dumpParallelLevel = CodingKeys(stringValue: "dumpParallelLevel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dumpParallelLevel"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        MigrationJob.PerformanceConfig.DumpParallelLevel.self, forKey: .dumpParallelLevel)
+      {
+        self.dumpParallelLevel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dumpParallelLevel, forKey: .dumpParallelLevel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes the parallelism level during initial dump.

@@ -31,6 +31,8 @@ public struct ElementaryStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. Encoding of an audio, video, or text track.
   public var elementaryStream: OneOf_ElementaryStream? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ElementaryStream`.
   public init() {}
 
@@ -47,16 +49,30 @@ public struct ElementaryStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case key = "key"
-    case videoStream = "videoStream"
-    case audioStream = "audioStream"
-    case textStream = "textStream"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let videoStream = CodingKeys(stringValue: "videoStream")
+    static let audioStream = CodingKeys(stringValue: "audioStream")
+    static let textStream = CodingKeys(stringValue: "textStream")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "videoStream",
+      "audioStream",
+      "textStream",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
 
     var elementaryStream: OneOf_ElementaryStream? = nil
     let elementaryStreamCheckAndSet = {
@@ -78,6 +94,10 @@ public struct ElementaryStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try elementaryStreamCheckAndSet(.textStream(textStream))
     }
     self.elementaryStream = elementaryStream
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +113,9 @@ public struct ElementaryStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .textStream(let value):
         try container.encode(value, forKey: .textStream)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

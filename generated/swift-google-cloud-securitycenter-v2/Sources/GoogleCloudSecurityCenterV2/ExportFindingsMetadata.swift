@@ -27,6 +27,8 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The destination to export findings to.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportFindingsMetadata`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case exportStartTime = "exportStartTime"
-    case bigQueryDestination = "bigQueryDestination"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exportStartTime = CodingKeys(stringValue: "exportStartTime")
+    static let bigQueryDestination = CodingKeys(stringValue: "bigQueryDestination")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exportStartTime",
+      "bigQueryDestination",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,17 +81,24 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
       try destinationCheckAndSet(.bigQueryDestination(bigQueryDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.exportStartTime, forKey: .exportStartTime)
+    try container.encodeIfPresent(self.exportStartTime, forKey: .exportStartTime)
 
     if let choice = self.destination {
       switch choice {
       case .bigQueryDestination(let value):
         try container.encode(value, forKey: .bigQueryDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

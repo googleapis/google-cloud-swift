@@ -35,6 +35,8 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// status reported by the agent.
   public var substate: JobStatus.Substate = JobStatus.Substate()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobStatus`.
   public init() {}
 
@@ -49,6 +51,55 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let details = CodingKeys(stringValue: "details")
+    static let stateStartTime = CodingKeys(stringValue: "stateStartTime")
+    static let substate = CodingKeys(stringValue: "substate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "details",
+      "stateStartTime",
+      "substate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(JobStatus.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+      self.details = value
+    }
+    self.stateStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .stateStartTime)
+    if let value = try container.decodeIfPresent(JobStatus.Substate.self, forKey: .substate) {
+      self.substate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.details, forKey: .details)
+    try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
+    try container.encode(self.substate, forKey: .substate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The job state.

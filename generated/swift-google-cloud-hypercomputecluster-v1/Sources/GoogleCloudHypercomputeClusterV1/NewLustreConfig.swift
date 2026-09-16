@@ -44,6 +44,8 @@ public struct NewLustreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Allowed values are between 18000 and 7632000.
   public var capacityGb: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NewLustreConfig`.
   public init() {}
 
@@ -58,6 +60,56 @@ public struct NewLustreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lustre = CodingKeys(stringValue: "lustre")
+    static let description = CodingKeys(stringValue: "description")
+    static let filesystem = CodingKeys(stringValue: "filesystem")
+    static let capacityGb = CodingKeys(stringValue: "capacityGb")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lustre",
+      "description",
+      "filesystem",
+      "capacityGb",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lustre) {
+      self.lustre = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filesystem) {
+      self.filesystem = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityGb) {
+      self.capacityGb = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.lustre, forKey: .lustre)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.filesystem, forKey: .filesystem)
+    try container.encode(self.capacityGb, forKey: .capacityGb)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -76,6 +76,8 @@
     /// [google.cloud.discoveryengine.v1.TransactionInfo.value]: <doc:TransactionInfo/value>
     public var discountValue: Swift.Float? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransactionInfo`.
     public init() {}
 
@@ -90,6 +92,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let value = CodingKeys(stringValue: "value")
+      static let currency = CodingKeys(stringValue: "currency")
+      static let transactionId = CodingKeys(stringValue: "transactionId")
+      static let tax = CodingKeys(stringValue: "tax")
+      static let cost = CodingKeys(stringValue: "cost")
+      static let discountValue = CodingKeys(stringValue: "discountValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "value",
+        "currency",
+        "transactionId",
+        "tax",
+        "cost",
+        "discountValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.value = try container.decodeIfPresent(Swift.Float.self, forKey: .value)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currency) {
+        self.currency = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transactionId) {
+        self.transactionId = value
+      }
+      self.tax = try container.decodeIfPresent(Swift.Float.self, forKey: .tax)
+      self.cost = try container.decodeIfPresent(Swift.Float.self, forKey: .cost)
+      self.discountValue = try container.decodeIfPresent(Swift.Float.self, forKey: .discountValue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.value, forKey: .value)
+      try container.encode(self.currency, forKey: .currency)
+      try container.encode(self.transactionId, forKey: .transactionId)
+      try container.encodeIfPresent(self.tax, forKey: .tax)
+      try container.encodeIfPresent(self.cost, forKey: .cost)
+      try container.encodeIfPresent(self.discountValue, forKey: .discountValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

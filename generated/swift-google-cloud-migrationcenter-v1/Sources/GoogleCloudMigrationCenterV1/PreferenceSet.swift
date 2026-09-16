@@ -39,6 +39,8 @@ public struct PreferenceSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A set of preferences that applies to all virtual machines in the context.
   public var virtualMachinePreferences: VirtualMachinePreferences? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PreferenceSet`.
   public init() {}
 
@@ -53,6 +55,66 @@ public struct PreferenceSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let virtualMachinePreferences = CodingKeys(stringValue: "virtualMachinePreferences")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "displayName",
+      "description",
+      "virtualMachinePreferences",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.virtualMachinePreferences = try container.decodeIfPresent(
+      VirtualMachinePreferences.self, forKey: .virtualMachinePreferences)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(
+      self.virtualMachinePreferences, forKey: .virtualMachinePreferences)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

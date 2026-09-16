@@ -34,6 +34,8 @@ public struct InTotoStatement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var predicate: OneOf_Predicate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InTotoStatement`.
   public init() {}
 
@@ -50,20 +52,40 @@ public struct InTotoStatement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "_type"
-    case subject = "subject"
-    case predicateType = "predicateType"
-    case provenance = "provenance"
-    case slsaProvenance = "slsaProvenance"
-    case slsaProvenanceZeroTwo = "slsaProvenanceZeroTwo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "_type")
+    static let subject = CodingKeys(stringValue: "subject")
+    static let predicateType = CodingKeys(stringValue: "predicateType")
+    static let provenance = CodingKeys(stringValue: "provenance")
+    static let slsaProvenance = CodingKeys(stringValue: "slsaProvenance")
+    static let slsaProvenanceZeroTwo = CodingKeys(stringValue: "slsaProvenanceZeroTwo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "_type",
+      "subject",
+      "predicateType",
+      "provenance",
+      "slsaProvenance",
+      "slsaProvenanceZeroTwo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.subject = try container.decode([Subject].self, forKey: .subject)
-    self.predicateType = try container.decode(Swift.String.self, forKey: .predicateType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Subject].self, forKey: .subject) {
+      self.subject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predicateType) {
+      self.predicateType = value
+    }
 
     var predicate: OneOf_Predicate? = nil
     let predicateCheckAndSet = {
@@ -89,6 +111,10 @@ public struct InTotoStatement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try predicateCheckAndSet(.slsaProvenanceZeroTwo(slsaProvenanceZeroTwo))
     }
     self.predicate = predicate
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -106,6 +132,9 @@ public struct InTotoStatement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .slsaProvenanceZeroTwo(let value):
         try container.encode(value, forKey: .slsaProvenanceZeroTwo)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

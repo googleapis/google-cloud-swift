@@ -24,6 +24,8 @@ public struct VectorField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Vector type configuration.
   public var vectorTypeConfig: OneOf_VectorTypeConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VectorField`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct VectorField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case denseVector = "denseVector"
-    case sparseVector = "sparseVector"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let denseVector = CodingKeys(stringValue: "denseVector")
+    static let sparseVector = CodingKeys(stringValue: "sparseVector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "denseVector",
+      "sparseVector",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct VectorField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try vectorTypeConfigCheckAndSet(.sparseVector(sparseVector))
     }
     self.vectorTypeConfig = vectorTypeConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct VectorField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .sparseVector(let value):
         try container.encode(value, forKey: .sparseVector)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

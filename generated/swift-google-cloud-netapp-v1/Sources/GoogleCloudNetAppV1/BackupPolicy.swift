@@ -58,6 +58,8 @@ public struct BackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The backup policy state.
   public var state: BackupPolicy.State = BackupPolicy.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupPolicy`.
   public init() {}
 
@@ -72,6 +74,84 @@ public struct BackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dailyBackupLimit = CodingKeys(stringValue: "dailyBackupLimit")
+    static let weeklyBackupLimit = CodingKeys(stringValue: "weeklyBackupLimit")
+    static let monthlyBackupLimit = CodingKeys(stringValue: "monthlyBackupLimit")
+    static let description = CodingKeys(stringValue: "description")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let assignedVolumeCount = CodingKeys(stringValue: "assignedVolumeCount")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dailyBackupLimit",
+      "weeklyBackupLimit",
+      "monthlyBackupLimit",
+      "description",
+      "enabled",
+      "assignedVolumeCount",
+      "createTime",
+      "labels",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.dailyBackupLimit = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .dailyBackupLimit)
+    self.weeklyBackupLimit = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .weeklyBackupLimit)
+    self.monthlyBackupLimit = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .monthlyBackupLimit)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+    self.assignedVolumeCount = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .assignedVolumeCount)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(BackupPolicy.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.dailyBackupLimit, forKey: .dailyBackupLimit)
+    try container.encodeIfPresent(self.weeklyBackupLimit, forKey: .weeklyBackupLimit)
+    try container.encodeIfPresent(self.monthlyBackupLimit, forKey: .monthlyBackupLimit)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encodeIfPresent(self.assignedVolumeCount, forKey: .assignedVolumeCount)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public enum State: Codable, Equatable, Sendable {

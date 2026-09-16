@@ -69,6 +69,8 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Metastore status of the lake.
   public var metastoreStatus: Lake.MetastoreStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Lake`.
   public init() {}
 
@@ -85,6 +87,98 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let metastore = CodingKeys(stringValue: "metastore")
+    static let assetStatus = CodingKeys(stringValue: "assetStatus")
+    static let metastoreStatus = CodingKeys(stringValue: "metastoreStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "uid",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "state",
+      "serviceAccount",
+      "metastore",
+      "assetStatus",
+      "metastoreStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.metastore = try container.decodeIfPresent(Lake.Metastore.self, forKey: .metastore)
+    self.assetStatus = try container.decodeIfPresent(AssetStatus.self, forKey: .assetStatus)
+    self.metastoreStatus = try container.decodeIfPresent(
+      Lake.MetastoreStatus.self, forKey: .metastoreStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.metastore, forKey: .metastore)
+    try container.encodeIfPresent(self.assetStatus, forKey: .assetStatus)
+    try container.encodeIfPresent(self.metastoreStatus, forKey: .metastoreStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Settings to manage association of Dataproc Metastore with a lake.
   public struct Metastore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -94,6 +188,8 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// with the lake:
     /// `projects/{project_id}/locations/{location_id}/services/{service_id}`
     public var service: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Metastore`.
     public init() {}
@@ -109,6 +205,38 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let service = CodingKeys(stringValue: "service")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "service"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+        self.service = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.service, forKey: .service)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -138,6 +266,8 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The URI of the endpoint used to access the Metastore service.
     public var endpoint: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetastoreStatus`.
     public init() {}
 
@@ -152,6 +282,56 @@ public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let message = CodingKeys(stringValue: "message")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let endpoint = CodingKeys(stringValue: "endpoint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "message",
+        "updateTime",
+        "endpoint",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Lake.MetastoreStatus.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+        self.message = value
+      }
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+        self.endpoint = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.message, forKey: .message)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.endpoint, forKey: .endpoint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Current state of association.

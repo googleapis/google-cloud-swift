@@ -28,6 +28,8 @@ public struct GcsAutoclassConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var terminalStorageClass: GcsAutoclassConfig.TerminalStorageClass =
     GcsAutoclassConfig.TerminalStorageClass()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsAutoclassConfig`.
   public init() {}
 
@@ -42,6 +44,46 @@ public struct GcsAutoclassConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let terminalStorageClass = CodingKeys(stringValue: "terminalStorageClass")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "terminalStorageClass",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      GcsAutoclassConfig.TerminalStorageClass.self, forKey: .terminalStorageClass)
+    {
+      self.terminalStorageClass = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encode(self.terminalStorageClass, forKey: .terminalStorageClass)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Terminal storage class types of the autoclass bucket

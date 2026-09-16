@@ -35,6 +35,8 @@
     /// Debug info for SearchKnowledge.
     public var searchKnowledgeDebugInfo: SearchKnowledgeDebugInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchKnowledgeResponse`.
     public init() {}
 
@@ -49,6 +51,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let answers = CodingKeys(stringValue: "answers")
+      static let rewrittenQuery = CodingKeys(stringValue: "rewrittenQuery")
+      static let searchKnowledgeDebugInfo = CodingKeys(stringValue: "searchKnowledgeDebugInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "answers",
+        "rewrittenQuery",
+        "searchKnowledgeDebugInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([SearchKnowledgeAnswer].self, forKey: .answers) {
+        self.answers = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rewrittenQuery) {
+        self.rewrittenQuery = value
+      }
+      self.searchKnowledgeDebugInfo = try container.decodeIfPresent(
+        SearchKnowledgeDebugInfo.self, forKey: .searchKnowledgeDebugInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.answers, forKey: .answers)
+      try container.encode(self.rewrittenQuery, forKey: .rewrittenQuery)
+      try container.encodeIfPresent(
+        self.searchKnowledgeDebugInfo, forKey: .searchKnowledgeDebugInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

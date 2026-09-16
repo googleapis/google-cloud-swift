@@ -85,6 +85,8 @@ public struct BranchRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. List of required status checks before merging to the branch.
   public var requiredStatusChecks: [BranchRule.Check] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BranchRule`.
   public init() {}
 
@@ -101,12 +103,140 @@ public struct BranchRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let includePattern = CodingKeys(stringValue: "includePattern")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let requirePullRequest = CodingKeys(stringValue: "requirePullRequest")
+    static let minimumReviewsCount = CodingKeys(stringValue: "minimumReviewsCount")
+    static let minimumApprovalsCount = CodingKeys(stringValue: "minimumApprovalsCount")
+    static let requireCodeOwnerApproval = CodingKeys(stringValue: "requireCodeOwnerApproval")
+    static let requireCommentsResolved = CodingKeys(stringValue: "requireCommentsResolved")
+    static let allowStaleReviews = CodingKeys(stringValue: "allowStaleReviews")
+    static let requireLinearHistory = CodingKeys(stringValue: "requireLinearHistory")
+    static let requiredStatusChecks = CodingKeys(stringValue: "requiredStatusChecks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "annotations",
+      "etag",
+      "includePattern",
+      "disabled",
+      "requirePullRequest",
+      "minimumReviewsCount",
+      "minimumApprovalsCount",
+      "requireCodeOwnerApproval",
+      "requireCommentsResolved",
+      "allowStaleReviews",
+      "requireLinearHistory",
+      "requiredStatusChecks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .includePattern) {
+      self.includePattern = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requirePullRequest) {
+      self.requirePullRequest = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minimumReviewsCount) {
+      self.minimumReviewsCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minimumApprovalsCount) {
+      self.minimumApprovalsCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireCodeOwnerApproval)
+    {
+      self.requireCodeOwnerApproval = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireCommentsResolved)
+    {
+      self.requireCommentsResolved = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowStaleReviews) {
+      self.allowStaleReviews = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireLinearHistory) {
+      self.requireLinearHistory = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BranchRule.Check].self, forKey: .requiredStatusChecks)
+    {
+      self.requiredStatusChecks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.includePattern, forKey: .includePattern)
+    try container.encode(self.disabled, forKey: .disabled)
+    try container.encode(self.requirePullRequest, forKey: .requirePullRequest)
+    try container.encode(self.minimumReviewsCount, forKey: .minimumReviewsCount)
+    try container.encode(self.minimumApprovalsCount, forKey: .minimumApprovalsCount)
+    try container.encode(self.requireCodeOwnerApproval, forKey: .requireCodeOwnerApproval)
+    try container.encode(self.requireCommentsResolved, forKey: .requireCommentsResolved)
+    try container.encode(self.allowStaleReviews, forKey: .allowStaleReviews)
+    try container.encode(self.requireLinearHistory, forKey: .requireLinearHistory)
+    try container.encode(self.requiredStatusChecks, forKey: .requiredStatusChecks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Check is a type for status check.
   public struct Check: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The context of the check.
     public var context: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Check`.
     public init() {}
@@ -122,6 +252,38 @@ public struct BranchRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let context = CodingKeys(stringValue: "context")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "context"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .context) {
+        self.context = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.context, forKey: .context)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

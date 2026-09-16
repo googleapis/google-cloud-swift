@@ -98,6 +98,8 @@ public struct AsymmetricSignResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
   public var protectionLevel: ProtectionLevel = ProtectionLevel()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AsymmetricSignResponse`.
   public init() {}
 
@@ -114,34 +116,65 @@ public struct AsymmetricSignResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case signature = "signature"
-    case signatureCrc32C = "signatureCrc32c"
-    case verifiedDigestCrc32C = "verifiedDigestCrc32c"
-    case name = "name"
-    case verifiedDataCrc32C = "verifiedDataCrc32c"
-    case protectionLevel = "protectionLevel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let signature = CodingKeys(stringValue: "signature")
+    static let signatureCrc32C = CodingKeys(stringValue: "signatureCrc32c")
+    static let verifiedDigestCrc32C = CodingKeys(stringValue: "verifiedDigestCrc32c")
+    static let name = CodingKeys(stringValue: "name")
+    static let verifiedDataCrc32C = CodingKeys(stringValue: "verifiedDataCrc32c")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "signature",
+      "signatureCrc32c",
+      "verifiedDigestCrc32c",
+      "name",
+      "verifiedDataCrc32c",
+      "protectionLevel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.signature = try container.decode(Foundation.Data.self, forKey: .signature)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .signature) {
+      self.signature = value
+    }
     self.signatureCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .signatureCrc32C)
-    self.verifiedDigestCrc32C = try container.decode(Swift.Bool.self, forKey: .verifiedDigestCrc32C)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.verifiedDataCrc32C = try container.decode(Swift.Bool.self, forKey: .verifiedDataCrc32C)
-    self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedDigestCrc32C) {
+      self.verifiedDigestCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedDataCrc32C) {
+      self.verifiedDataCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.signature, forKey: .signature)
-    try container.encode(self.signatureCrc32C, forKey: .signatureCrc32C)
+    try container.encodeIfPresent(self.signatureCrc32C, forKey: .signatureCrc32C)
     try container.encode(self.verifiedDigestCrc32C, forKey: .verifiedDigestCrc32C)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.verifiedDataCrc32C, forKey: .verifiedDataCrc32C)
     try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

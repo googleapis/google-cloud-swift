@@ -61,6 +61,8 @@ public struct LineItemChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// partners or cancelled by the user.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LineItemChange`.
   public init() {}
 
@@ -75,6 +77,89 @@ public struct LineItemChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let changeId = CodingKeys(stringValue: "changeId")
+    static let changeType = CodingKeys(stringValue: "changeType")
+    static let oldLineItemInfo = CodingKeys(stringValue: "oldLineItemInfo")
+    static let newLineItemInfo = CodingKeys(stringValue: "newLineItemInfo")
+    static let changeState = CodingKeys(stringValue: "changeState")
+    static let stateReason = CodingKeys(stringValue: "stateReason")
+    static let changeStateReasonType = CodingKeys(stringValue: "changeStateReasonType")
+    static let changeEffectiveTime = CodingKeys(stringValue: "changeEffectiveTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "changeId",
+      "changeType",
+      "oldLineItemInfo",
+      "newLineItemInfo",
+      "changeState",
+      "stateReason",
+      "changeStateReasonType",
+      "changeEffectiveTime",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .changeId) {
+      self.changeId = value
+    }
+    if let value = try container.decodeIfPresent(LineItemChangeType.self, forKey: .changeType) {
+      self.changeType = value
+    }
+    self.oldLineItemInfo = try container.decodeIfPresent(
+      LineItemInfo.self, forKey: .oldLineItemInfo)
+    self.newLineItemInfo = try container.decodeIfPresent(
+      LineItemInfo.self, forKey: .newLineItemInfo)
+    if let value = try container.decodeIfPresent(LineItemChangeState.self, forKey: .changeState) {
+      self.changeState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateReason) {
+      self.stateReason = value
+    }
+    if let value = try container.decodeIfPresent(
+      LineItemChangeStateReasonType.self, forKey: .changeStateReasonType)
+    {
+      self.changeStateReasonType = value
+    }
+    self.changeEffectiveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .changeEffectiveTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.changeId, forKey: .changeId)
+    try container.encode(self.changeType, forKey: .changeType)
+    try container.encodeIfPresent(self.oldLineItemInfo, forKey: .oldLineItemInfo)
+    try container.encodeIfPresent(self.newLineItemInfo, forKey: .newLineItemInfo)
+    try container.encode(self.changeState, forKey: .changeState)
+    try container.encode(self.stateReason, forKey: .stateReason)
+    try container.encode(self.changeStateReasonType, forKey: .changeStateReasonType)
+    try container.encodeIfPresent(self.changeEffectiveTime, forKey: .changeEffectiveTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

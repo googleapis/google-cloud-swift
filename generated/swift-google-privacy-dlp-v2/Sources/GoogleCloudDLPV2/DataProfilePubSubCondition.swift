@@ -24,6 +24,8 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
   /// An expression.
   public var expressions: DataProfilePubSubCondition.PubSubExpressions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataProfilePubSubCondition`.
   public init() {}
 
@@ -40,12 +42,45 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let expressions = CodingKeys(stringValue: "expressions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "expressions"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.expressions = try container.decodeIfPresent(
+      DataProfilePubSubCondition.PubSubExpressions.self, forKey: .expressions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.expressions, forKey: .expressions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A condition consisting of a value.
   public struct PubSubCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The value for the condition to trigger.
     public var value: OneOf_Value? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PubSubCondition`.
     public init() {}
@@ -63,9 +98,19 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case minimumRiskScore = "minimumRiskScore"
-      case minimumSensitivityScore = "minimumSensitivityScore"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minimumRiskScore = CodingKeys(stringValue: "minimumRiskScore")
+      static let minimumSensitivityScore = CodingKeys(stringValue: "minimumSensitivityScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minimumRiskScore",
+        "minimumSensitivityScore",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -92,6 +137,10 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
         try valueCheckAndSet(.minimumSensitivityScore(minimumSensitivityScore))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,6 +153,9 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
         case .minimumSensitivityScore(let value):
           try container.encode(value, forKey: .minimumSensitivityScore)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -137,6 +189,8 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
     /// Conditions to apply to the expression.
     public var conditions: [DataProfilePubSubCondition.PubSubCondition] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PubSubExpressions`.
     public init() {}
 
@@ -151,6 +205,49 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let logicalOperator = CodingKeys(stringValue: "logicalOperator")
+      static let conditions = CodingKeys(stringValue: "conditions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "logicalOperator",
+        "conditions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DataProfilePubSubCondition.PubSubExpressions.PubSubLogicalOperator.self,
+        forKey: .logicalOperator)
+      {
+        self.logicalOperator = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DataProfilePubSubCondition.PubSubCondition].self, forKey: .conditions)
+      {
+        self.conditions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.logicalOperator, forKey: .logicalOperator)
+      try container.encode(self.conditions, forKey: .conditions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Logical operators for conditional checks.

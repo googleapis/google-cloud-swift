@@ -32,6 +32,8 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// (e.g. LLM errors).
   public var endSessionConfig: ErrorHandlingSettings.EndSessionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ErrorHandlingSettings`.
   public init() {}
 
@@ -46,6 +48,50 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let errorHandlingStrategy = CodingKeys(stringValue: "errorHandlingStrategy")
+    static let fallbackResponseConfig = CodingKeys(stringValue: "fallbackResponseConfig")
+    static let endSessionConfig = CodingKeys(stringValue: "endSessionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "errorHandlingStrategy",
+      "fallbackResponseConfig",
+      "endSessionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ErrorHandlingSettings.ErrorHandlingStrategy.self, forKey: .errorHandlingStrategy)
+    {
+      self.errorHandlingStrategy = value
+    }
+    self.fallbackResponseConfig = try container.decodeIfPresent(
+      ErrorHandlingSettings.FallbackResponseConfig.self, forKey: .fallbackResponseConfig)
+    self.endSessionConfig = try container.decodeIfPresent(
+      ErrorHandlingSettings.EndSessionConfig.self, forKey: .endSessionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.errorHandlingStrategy, forKey: .errorHandlingStrategy)
+    try container.encodeIfPresent(self.fallbackResponseConfig, forKey: .fallbackResponseConfig)
+    try container.encodeIfPresent(self.endSessionConfig, forKey: .endSessionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for handling fallback responses.
@@ -63,6 +109,8 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// [google.cloud.ces.v1.EndSession]: <doc:EndSession>
     public var maxFallbackAttempts: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FallbackResponseConfig`.
     public init() {}
 
@@ -77,6 +125,46 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customFallbackMessages = CodingKeys(stringValue: "customFallbackMessages")
+      static let maxFallbackAttempts = CodingKeys(stringValue: "maxFallbackAttempts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customFallbackMessages",
+        "maxFallbackAttempts",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .customFallbackMessages)
+      {
+        self.customFallbackMessages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFallbackAttempts) {
+        self.maxFallbackAttempts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.customFallbackMessages, forKey: .customFallbackMessages)
+      try container.encode(self.maxFallbackAttempts, forKey: .maxFallbackAttempts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -106,6 +194,8 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// [google.cloud.ces.v1.EndSession.metadata]: <doc:EndSession/metadata>
     public var escalateSession: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EndSessionConfig`.
     public init() {}
 
@@ -120,6 +210,37 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let escalateSession = CodingKeys(stringValue: "escalateSession")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "escalateSession"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.escalateSession = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .escalateSession)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.escalateSession, forKey: .escalateSession)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

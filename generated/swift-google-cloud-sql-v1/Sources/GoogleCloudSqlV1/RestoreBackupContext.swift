@@ -35,6 +35,8 @@
     /// The full project ID of the source instance.
     public var project: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RestoreBackupContext`.
     public init() {}
 
@@ -49,6 +51,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let backupRunId = CodingKeys(stringValue: "backupRunId")
+      static let instanceId = CodingKeys(stringValue: "instanceId")
+      static let project = CodingKeys(stringValue: "project")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "backupRunId",
+        "instanceId",
+        "project",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .backupRunId) {
+        self.backupRunId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
+        self.instanceId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.backupRunId, forKey: .backupRunId)
+      try container.encode(self.instanceId, forKey: .instanceId)
+      try container.encode(self.project, forKey: .project)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

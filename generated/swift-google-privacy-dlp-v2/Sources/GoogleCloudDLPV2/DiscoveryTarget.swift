@@ -24,6 +24,8 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A target to match against for Discovery.
   public var target: OneOf_Target? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryTarget`.
   public init() {}
 
@@ -40,13 +42,27 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case bigQueryTarget = "bigQueryTarget"
-    case cloudSqlTarget = "cloudSqlTarget"
-    case secretsTarget = "secretsTarget"
-    case cloudStorageTarget = "cloudStorageTarget"
-    case otherCloudTarget = "otherCloudTarget"
-    case vertexDatasetTarget = "vertexDatasetTarget"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigQueryTarget = CodingKeys(stringValue: "bigQueryTarget")
+    static let cloudSqlTarget = CodingKeys(stringValue: "cloudSqlTarget")
+    static let secretsTarget = CodingKeys(stringValue: "secretsTarget")
+    static let cloudStorageTarget = CodingKeys(stringValue: "cloudStorageTarget")
+    static let otherCloudTarget = CodingKeys(stringValue: "otherCloudTarget")
+    static let vertexDatasetTarget = CodingKeys(stringValue: "vertexDatasetTarget")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigQueryTarget",
+      "cloudSqlTarget",
+      "secretsTarget",
+      "cloudStorageTarget",
+      "otherCloudTarget",
+      "vertexDatasetTarget",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,6 +109,10 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try targetCheckAndSet(.vertexDatasetTarget(vertexDatasetTarget))
     }
     self.target = target
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -113,6 +133,9 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .vertexDatasetTarget(let value):
         try container.encode(value, forKey: .vertexDatasetTarget)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

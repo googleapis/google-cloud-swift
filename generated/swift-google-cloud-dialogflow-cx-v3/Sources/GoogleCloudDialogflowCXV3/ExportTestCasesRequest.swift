@@ -48,6 +48,8 @@
     /// The destination to export.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportTestCasesRequest`.
     public init() {}
 
@@ -64,19 +66,38 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case gcsUri = "gcsUri"
-      case dataFormat = "dataFormat"
-      case filter = "filter"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+      static let dataFormat = CodingKeys(stringValue: "dataFormat")
+      static let filter = CodingKeys(stringValue: "filter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "gcsUri",
+        "dataFormat",
+        "filter",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.dataFormat = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         ExportTestCasesRequest.DataFormat.self, forKey: .dataFormat)
-      self.filter = try container.decode(Swift.String.self, forKey: .filter)
+      {
+        self.dataFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
 
       var destination: OneOf_Destination? = nil
       let destinationCheckAndSet = {
@@ -92,6 +113,10 @@
         try destinationCheckAndSet(.gcsUri(gcsUri))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,6 +130,9 @@
         case .gcsUri(let value):
           try container.encode(value, forKey: .gcsUri)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

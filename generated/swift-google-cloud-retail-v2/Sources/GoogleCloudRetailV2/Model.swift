@@ -147,6 +147,8 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Additional model features config.
   public var modelFeaturesConfig: Model.ModelFeaturesConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Model`.
   public init() {}
 
@@ -163,6 +165,125 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let trainingState = CodingKeys(stringValue: "trainingState")
+    static let servingState = CodingKeys(stringValue: "servingState")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let type = CodingKeys(stringValue: "type")
+    static let optimizationObjective = CodingKeys(stringValue: "optimizationObjective")
+    static let periodicTuningState = CodingKeys(stringValue: "periodicTuningState")
+    static let lastTuneTime = CodingKeys(stringValue: "lastTuneTime")
+    static let tuningOperation = CodingKeys(stringValue: "tuningOperation")
+    static let dataState = CodingKeys(stringValue: "dataState")
+    static let filteringOption = CodingKeys(stringValue: "filteringOption")
+    static let servingConfigLists = CodingKeys(stringValue: "servingConfigLists")
+    static let modelFeaturesConfig = CodingKeys(stringValue: "modelFeaturesConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "trainingState",
+      "servingState",
+      "createTime",
+      "updateTime",
+      "type",
+      "optimizationObjective",
+      "periodicTuningState",
+      "lastTuneTime",
+      "tuningOperation",
+      "dataState",
+      "filteringOption",
+      "servingConfigLists",
+      "modelFeaturesConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Model.TrainingState.self, forKey: .trainingState) {
+      self.trainingState = value
+    }
+    if let value = try container.decodeIfPresent(Model.ServingState.self, forKey: .servingState) {
+      self.servingState = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .optimizationObjective)
+    {
+      self.optimizationObjective = value
+    }
+    if let value = try container.decodeIfPresent(
+      Model.PeriodicTuningState.self, forKey: .periodicTuningState)
+    {
+      self.periodicTuningState = value
+    }
+    self.lastTuneTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastTuneTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tuningOperation) {
+      self.tuningOperation = value
+    }
+    if let value = try container.decodeIfPresent(Model.DataState.self, forKey: .dataState) {
+      self.dataState = value
+    }
+    if let value = try container.decodeIfPresent(
+      RecommendationsFilteringOption.self, forKey: .filteringOption)
+    {
+      self.filteringOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Model.ServingConfigList].self, forKey: .servingConfigLists)
+    {
+      self.servingConfigLists = value
+    }
+    self.modelFeaturesConfig = try container.decodeIfPresent(
+      Model.ModelFeaturesConfig.self, forKey: .modelFeaturesConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.trainingState, forKey: .trainingState)
+    try container.encode(self.servingState, forKey: .servingState)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.optimizationObjective, forKey: .optimizationObjective)
+    try container.encode(self.periodicTuningState, forKey: .periodicTuningState)
+    try container.encodeIfPresent(self.lastTuneTime, forKey: .lastTuneTime)
+    try container.encode(self.tuningOperation, forKey: .tuningOperation)
+    try container.encode(self.dataState, forKey: .dataState)
+    try container.encode(self.filteringOption, forKey: .filteringOption)
+    try container.encode(self.servingConfigLists, forKey: .servingConfigLists)
+    try container.encodeIfPresent(self.modelFeaturesConfig, forKey: .modelFeaturesConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents an ordered combination of valid serving configs, which
   /// can be used for `PAGE_OPTIMIZATION` recommendations.
   public struct ServingConfigList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -171,6 +292,8 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. A set of valid serving configs that may be used for
     /// `PAGE_OPTIMIZATION`.
     public var servingConfigIds: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ServingConfigList`.
     public init() {}
@@ -186,6 +309,38 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let servingConfigIds = CodingKeys(stringValue: "servingConfigIds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "servingConfigIds"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .servingConfigIds) {
+        self.servingConfigIds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.servingConfigIds, forKey: .servingConfigIds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -212,6 +367,8 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.retail.v2.Model.ContextProductsType.MULTIPLE_CONTEXT_PRODUCTS]: <doc:Model/ContextProductsType/multipleContextProducts>
     public var contextProductsType: Model.ContextProductsType = Model.ContextProductsType()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FrequentlyBoughtTogetherFeaturesConfig`.
     public init() {}
 
@@ -226,6 +383,40 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let contextProductsType = CodingKeys(stringValue: "contextProductsType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "contextProductsType"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Model.ContextProductsType.self, forKey: .contextProductsType)
+      {
+        self.contextProductsType = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.contextProductsType, forKey: .contextProductsType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -246,6 +437,8 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     public var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelFeaturesConfig`.
     public init() {}
 
@@ -262,8 +455,18 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case frequentlyBoughtTogetherConfig = "frequentlyBoughtTogetherConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let frequentlyBoughtTogetherConfig = CodingKeys(
+        stringValue: "frequentlyBoughtTogetherConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "frequentlyBoughtTogetherConfig"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -286,6 +489,10 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           .frequentlyBoughtTogetherConfig(frequentlyBoughtTogetherConfig))
       }
       self.typeDedicatedConfig = typeDedicatedConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -296,6 +503,9 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .frequentlyBoughtTogetherConfig(let value):
           try container.encode(value, forKey: .frequentlyBoughtTogetherConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

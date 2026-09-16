@@ -214,6 +214,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to.
   public var availableMaintenanceVersions: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -228,6 +230,252 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let locationId = CodingKeys(stringValue: "locationId")
+    static let alternativeLocationId = CodingKeys(stringValue: "alternativeLocationId")
+    static let redisVersion = CodingKeys(stringValue: "redisVersion")
+    static let reservedIpRange = CodingKeys(stringValue: "reservedIpRange")
+    static let secondaryIpRange = CodingKeys(stringValue: "secondaryIpRange")
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let currentLocationId = CodingKeys(stringValue: "currentLocationId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let redisConfigs = CodingKeys(stringValue: "redisConfigs")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let authorizedNetwork = CodingKeys(stringValue: "authorizedNetwork")
+    static let persistenceIamIdentity = CodingKeys(stringValue: "persistenceIamIdentity")
+    static let connectMode = CodingKeys(stringValue: "connectMode")
+    static let authEnabled = CodingKeys(stringValue: "authEnabled")
+    static let serverCaCerts = CodingKeys(stringValue: "serverCaCerts")
+    static let transitEncryptionMode = CodingKeys(stringValue: "transitEncryptionMode")
+    static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+    static let maintenanceSchedule = CodingKeys(stringValue: "maintenanceSchedule")
+    static let replicaCount = CodingKeys(stringValue: "replicaCount")
+    static let nodes = CodingKeys(stringValue: "nodes")
+    static let readEndpoint = CodingKeys(stringValue: "readEndpoint")
+    static let readEndpointPort = CodingKeys(stringValue: "readEndpointPort")
+    static let readReplicasMode = CodingKeys(stringValue: "readReplicasMode")
+    static let customerManagedKey = CodingKeys(stringValue: "customerManagedKey")
+    static let persistenceConfig = CodingKeys(stringValue: "persistenceConfig")
+    static let suspensionReasons = CodingKeys(stringValue: "suspensionReasons")
+    static let maintenanceVersion = CodingKeys(stringValue: "maintenanceVersion")
+    static let availableMaintenanceVersions = CodingKeys(
+      stringValue: "availableMaintenanceVersions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "labels",
+      "locationId",
+      "alternativeLocationId",
+      "redisVersion",
+      "reservedIpRange",
+      "secondaryIpRange",
+      "host",
+      "port",
+      "currentLocationId",
+      "createTime",
+      "state",
+      "statusMessage",
+      "redisConfigs",
+      "tier",
+      "memorySizeGb",
+      "authorizedNetwork",
+      "persistenceIamIdentity",
+      "connectMode",
+      "authEnabled",
+      "serverCaCerts",
+      "transitEncryptionMode",
+      "maintenancePolicy",
+      "maintenanceSchedule",
+      "replicaCount",
+      "nodes",
+      "readEndpoint",
+      "readEndpointPort",
+      "readReplicasMode",
+      "customerManagedKey",
+      "persistenceConfig",
+      "suspensionReasons",
+      "maintenanceVersion",
+      "availableMaintenanceVersions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alternativeLocationId)
+    {
+      self.alternativeLocationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .redisVersion) {
+      self.redisVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reservedIpRange) {
+      self.reservedIpRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryIpRange) {
+      self.secondaryIpRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentLocationId) {
+      self.currentLocationId = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Instance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .redisConfigs)
+    {
+      self.redisConfigs = value
+    }
+    if let value = try container.decodeIfPresent(Instance.Tier.self, forKey: .tier) {
+      self.tier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizedNetwork) {
+      self.authorizedNetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .persistenceIamIdentity)
+    {
+      self.persistenceIamIdentity = value
+    }
+    if let value = try container.decodeIfPresent(Instance.ConnectMode.self, forKey: .connectMode) {
+      self.connectMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .authEnabled) {
+      self.authEnabled = value
+    }
+    if let value = try container.decodeIfPresent([TlsCertificate].self, forKey: .serverCaCerts) {
+      self.serverCaCerts = value
+    }
+    if let value = try container.decodeIfPresent(
+      Instance.TransitEncryptionMode.self, forKey: .transitEncryptionMode)
+    {
+      self.transitEncryptionMode = value
+    }
+    self.maintenancePolicy = try container.decodeIfPresent(
+      MaintenancePolicy.self, forKey: .maintenancePolicy)
+    self.maintenanceSchedule = try container.decodeIfPresent(
+      MaintenanceSchedule.self, forKey: .maintenanceSchedule)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .replicaCount) {
+      self.replicaCount = value
+    }
+    if let value = try container.decodeIfPresent([NodeInfo].self, forKey: .nodes) {
+      self.nodes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .readEndpoint) {
+      self.readEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .readEndpointPort) {
+      self.readEndpointPort = value
+    }
+    if let value = try container.decodeIfPresent(
+      Instance.ReadReplicasMode.self, forKey: .readReplicasMode)
+    {
+      self.readReplicasMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customerManagedKey) {
+      self.customerManagedKey = value
+    }
+    self.persistenceConfig = try container.decodeIfPresent(
+      PersistenceConfig.self, forKey: .persistenceConfig)
+    if let value = try container.decodeIfPresent(
+      [Instance.SuspensionReason].self, forKey: .suspensionReasons)
+    {
+      self.suspensionReasons = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceVersion) {
+      self.maintenanceVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .availableMaintenanceVersions)
+    {
+      self.availableMaintenanceVersions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.locationId, forKey: .locationId)
+    try container.encode(self.alternativeLocationId, forKey: .alternativeLocationId)
+    try container.encode(self.redisVersion, forKey: .redisVersion)
+    try container.encode(self.reservedIpRange, forKey: .reservedIpRange)
+    try container.encode(self.secondaryIpRange, forKey: .secondaryIpRange)
+    try container.encode(self.host, forKey: .host)
+    try container.encode(self.port, forKey: .port)
+    try container.encode(self.currentLocationId, forKey: .currentLocationId)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.statusMessage, forKey: .statusMessage)
+    try container.encode(self.redisConfigs, forKey: .redisConfigs)
+    try container.encode(self.tier, forKey: .tier)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.authorizedNetwork, forKey: .authorizedNetwork)
+    try container.encode(self.persistenceIamIdentity, forKey: .persistenceIamIdentity)
+    try container.encode(self.connectMode, forKey: .connectMode)
+    try container.encode(self.authEnabled, forKey: .authEnabled)
+    try container.encode(self.serverCaCerts, forKey: .serverCaCerts)
+    try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+    try container.encodeIfPresent(self.maintenanceSchedule, forKey: .maintenanceSchedule)
+    try container.encode(self.replicaCount, forKey: .replicaCount)
+    try container.encode(self.nodes, forKey: .nodes)
+    try container.encode(self.readEndpoint, forKey: .readEndpoint)
+    try container.encode(self.readEndpointPort, forKey: .readEndpointPort)
+    try container.encode(self.readReplicasMode, forKey: .readReplicasMode)
+    try container.encode(self.customerManagedKey, forKey: .customerManagedKey)
+    try container.encodeIfPresent(self.persistenceConfig, forKey: .persistenceConfig)
+    try container.encode(self.suspensionReasons, forKey: .suspensionReasons)
+    try container.encode(self.maintenanceVersion, forKey: .maintenanceVersion)
+    try container.encode(self.availableMaintenanceVersions, forKey: .availableMaintenanceVersions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the different states of a Redis instance.

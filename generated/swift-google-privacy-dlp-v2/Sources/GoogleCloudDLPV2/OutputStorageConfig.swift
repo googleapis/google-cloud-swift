@@ -37,6 +37,8 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// *
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OutputStorageConfig`.
   public init() {}
 
@@ -53,16 +55,30 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case table = "table"
-    case storagePath = "storagePath"
-    case outputSchema = "outputSchema"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let table = CodingKeys(stringValue: "table")
+    static let storagePath = CodingKeys(stringValue: "storagePath")
+    static let outputSchema = CodingKeys(stringValue: "outputSchema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "table",
+      "storagePath",
+      "outputSchema",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.outputSchema = try container.decode(
+    if let value = try container.decodeIfPresent(
       OutputStorageConfig.OutputSchema.self, forKey: .outputSchema)
+    {
+      self.outputSchema = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -82,6 +98,10 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try typeCheckAndSet(.storagePath(storagePath))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -95,6 +115,9 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .storagePath(let value):
         try container.encode(value, forKey: .storagePath)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

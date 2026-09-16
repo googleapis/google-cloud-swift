@@ -29,6 +29,8 @@ public struct ManifestOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// renditions by bitrate according to the ordering policy.
   public var bitrateOrder: ManifestOptions.OrderPolicy = ManifestOptions.OrderPolicy()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManifestOptions`.
   public init() {}
 
@@ -43,6 +45,47 @@ public struct ManifestOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeRenditions = CodingKeys(stringValue: "includeRenditions")
+    static let bitrateOrder = CodingKeys(stringValue: "bitrateOrder")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeRenditions",
+      "bitrateOrder",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([RenditionFilter].self, forKey: .includeRenditions)
+    {
+      self.includeRenditions = value
+    }
+    if let value = try container.decodeIfPresent(
+      ManifestOptions.OrderPolicy.self, forKey: .bitrateOrder)
+    {
+      self.bitrateOrder = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.includeRenditions, forKey: .includeRenditions)
+    try container.encode(self.bitrateOrder, forKey: .bitrateOrder)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the ordering policy during manifest generation.

@@ -41,6 +41,8 @@
     /// rating.
     public var blocked: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SafetyRating`.
     public init() {}
 
@@ -55,6 +57,72 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let category = CodingKeys(stringValue: "category")
+      static let probability = CodingKeys(stringValue: "probability")
+      static let probabilityScore = CodingKeys(stringValue: "probabilityScore")
+      static let severity = CodingKeys(stringValue: "severity")
+      static let severityScore = CodingKeys(stringValue: "severityScore")
+      static let blocked = CodingKeys(stringValue: "blocked")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "category",
+        "probability",
+        "probabilityScore",
+        "severity",
+        "severityScore",
+        "blocked",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(HarmCategory.self, forKey: .category) {
+        self.category = value
+      }
+      if let value = try container.decodeIfPresent(
+        SafetyRating.HarmProbability.self, forKey: .probability)
+      {
+        self.probability = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .probabilityScore) {
+        self.probabilityScore = value
+      }
+      if let value = try container.decodeIfPresent(
+        SafetyRating.HarmSeverity.self, forKey: .severity)
+      {
+        self.severity = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .severityScore) {
+        self.severityScore = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .blocked) {
+        self.blocked = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.category, forKey: .category)
+      try container.encode(self.probability, forKey: .probability)
+      try container.encode(self.probabilityScore, forKey: .probabilityScore)
+      try container.encode(self.severity, forKey: .severity)
+      try container.encode(self.severityScore, forKey: .severityScore)
+      try container.encode(self.blocked, forKey: .blocked)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Harm probability levels in the content.

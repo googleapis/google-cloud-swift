@@ -361,6 +361,8 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public var relevanceThreshold: SearchJobsRequest.RelevanceThreshold =
     SearchJobsRequest.RelevanceThreshold()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchJobsRequest`.
   public init() {}
 
@@ -375,6 +377,132 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let searchMode = CodingKeys(stringValue: "searchMode")
+    static let requestMetadata = CodingKeys(stringValue: "requestMetadata")
+    static let jobQuery = CodingKeys(stringValue: "jobQuery")
+    static let enableBroadening = CodingKeys(stringValue: "enableBroadening")
+    static let histogramQueries = CodingKeys(stringValue: "histogramQueries")
+    static let jobView = CodingKeys(stringValue: "jobView")
+    static let offset = CodingKeys(stringValue: "offset")
+    static let maxPageSize = CodingKeys(stringValue: "maxPageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let orderBy = CodingKeys(stringValue: "orderBy")
+    static let diversificationLevel = CodingKeys(stringValue: "diversificationLevel")
+    static let customRankingInfo = CodingKeys(stringValue: "customRankingInfo")
+    static let disableKeywordMatch = CodingKeys(stringValue: "disableKeywordMatch")
+    static let keywordMatchMode = CodingKeys(stringValue: "keywordMatchMode")
+    static let relevanceThreshold = CodingKeys(stringValue: "relevanceThreshold")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "searchMode",
+      "requestMetadata",
+      "jobQuery",
+      "enableBroadening",
+      "histogramQueries",
+      "jobView",
+      "offset",
+      "maxPageSize",
+      "pageToken",
+      "orderBy",
+      "diversificationLevel",
+      "customRankingInfo",
+      "disableKeywordMatch",
+      "keywordMatchMode",
+      "relevanceThreshold",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      SearchJobsRequest.SearchMode.self, forKey: .searchMode)
+    {
+      self.searchMode = value
+    }
+    self.requestMetadata = try container.decodeIfPresent(
+      RequestMetadata.self, forKey: .requestMetadata)
+    self.jobQuery = try container.decodeIfPresent(JobQuery.self, forKey: .jobQuery)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableBroadening) {
+      self.enableBroadening = value
+    }
+    if let value = try container.decodeIfPresent([HistogramQuery].self, forKey: .histogramQueries) {
+      self.histogramQueries = value
+    }
+    if let value = try container.decodeIfPresent(JobView.self, forKey: .jobView) {
+      self.jobView = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .offset) {
+      self.offset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPageSize) {
+      self.maxPageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+      self.orderBy = value
+    }
+    if let value = try container.decodeIfPresent(
+      SearchJobsRequest.DiversificationLevel.self, forKey: .diversificationLevel)
+    {
+      self.diversificationLevel = value
+    }
+    self.customRankingInfo = try container.decodeIfPresent(
+      SearchJobsRequest.CustomRankingInfo.self, forKey: .customRankingInfo)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableKeywordMatch) {
+      self.disableKeywordMatch = value
+    }
+    if let value = try container.decodeIfPresent(
+      SearchJobsRequest.KeywordMatchMode.self, forKey: .keywordMatchMode)
+    {
+      self.keywordMatchMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      SearchJobsRequest.RelevanceThreshold.self, forKey: .relevanceThreshold)
+    {
+      self.relevanceThreshold = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.searchMode, forKey: .searchMode)
+    try container.encodeIfPresent(self.requestMetadata, forKey: .requestMetadata)
+    try container.encodeIfPresent(self.jobQuery, forKey: .jobQuery)
+    try container.encode(self.enableBroadening, forKey: .enableBroadening)
+    try container.encode(self.histogramQueries, forKey: .histogramQueries)
+    try container.encode(self.jobView, forKey: .jobView)
+    try container.encode(self.offset, forKey: .offset)
+    try container.encode(self.maxPageSize, forKey: .maxPageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.orderBy, forKey: .orderBy)
+    try container.encode(self.diversificationLevel, forKey: .diversificationLevel)
+    try container.encodeIfPresent(self.customRankingInfo, forKey: .customRankingInfo)
+    try container.encode(self.disableKeywordMatch, forKey: .disableKeywordMatch)
+    try container.encode(self.keywordMatchMode, forKey: .keywordMatchMode)
+    try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Custom ranking information for
@@ -421,6 +549,8 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// [google.cloud.talent.v4.Job.custom_attributes]: <doc:Job/customAttributes>
     public var rankingExpression: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomRankingInfo`.
     public init() {}
 
@@ -435,6 +565,46 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let importanceLevel = CodingKeys(stringValue: "importanceLevel")
+      static let rankingExpression = CodingKeys(stringValue: "rankingExpression")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "importanceLevel",
+        "rankingExpression",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        SearchJobsRequest.CustomRankingInfo.ImportanceLevel.self, forKey: .importanceLevel)
+      {
+        self.importanceLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rankingExpression) {
+        self.rankingExpression = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.importanceLevel, forKey: .importanceLevel)
+      try container.encode(self.rankingExpression, forKey: .rankingExpression)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The importance level for

@@ -84,6 +84,8 @@ public struct ProtectedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Optional. Recovery Point.
   public var recoveryPoint: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProtectedResource`.
   public init() {}
 
@@ -98,6 +100,165 @@ public struct ProtectedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let resourceId = CodingKeys(stringValue: "resourceId")
+    static let backupInclusionOrExclusion = CodingKeys(stringValue: "backupInclusionOrExclusion")
+    static let hostId = CodingKeys(stringValue: "hostId")
+    static let hostName = CodingKeys(stringValue: "hostName")
+    static let backupPlanPolicyTemplateId = CodingKeys(stringValue: "backupPlanPolicyTemplateId")
+    static let backupPlanPolicyTemplate = CodingKeys(stringValue: "backupPlanPolicyTemplate")
+    static let slaId = CodingKeys(stringValue: "slaId")
+    static let backupPlanRestrictions = CodingKeys(stringValue: "backupPlanRestrictions")
+    static let protectedOn = CodingKeys(stringValue: "protectedOn")
+    static let policyOverrides = CodingKeys(stringValue: "policyOverrides")
+    static let sourceAppliance = CodingKeys(stringValue: "sourceAppliance")
+    static let sourceApplianceId = CodingKeys(stringValue: "sourceApplianceId")
+    static let protectedDataInGib = CodingKeys(stringValue: "protectedDataInGib")
+    static let onvaultInGib = CodingKeys(stringValue: "onvaultInGib")
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+    static let remoteAppliance = CodingKeys(stringValue: "remoteAppliance")
+    static let remoteApplianceId = CodingKeys(stringValue: "remoteApplianceId")
+    static let recoveryPoint = CodingKeys(stringValue: "recoveryPoint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceName",
+      "resourceType",
+      "resourceId",
+      "backupInclusionOrExclusion",
+      "hostId",
+      "hostName",
+      "backupPlanPolicyTemplateId",
+      "backupPlanPolicyTemplate",
+      "slaId",
+      "backupPlanRestrictions",
+      "protectedOn",
+      "policyOverrides",
+      "sourceAppliance",
+      "sourceApplianceId",
+      "protectedDataInGib",
+      "onvaultInGib",
+      "applianceName",
+      "applianceId",
+      "remoteAppliance",
+      "remoteApplianceId",
+      "recoveryPoint",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceId) {
+      self.resourceId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupInclusionOrExclusion)
+    {
+      self.backupInclusionOrExclusion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostId) {
+      self.hostId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+      self.hostName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanPolicyTemplateId)
+    {
+      self.backupPlanPolicyTemplateId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanPolicyTemplate)
+    {
+      self.backupPlanPolicyTemplate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .slaId) {
+      self.slaId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRestrictions)
+    {
+      self.backupPlanRestrictions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .protectedOn) {
+      self.protectedOn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policyOverrides) {
+      self.policyOverrides = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceAppliance) {
+      self.sourceAppliance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceApplianceId) {
+      self.sourceApplianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .protectedDataInGib) {
+      self.protectedDataInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .onvaultInGib) {
+      self.onvaultInGib = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteAppliance) {
+      self.remoteAppliance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteApplianceId) {
+      self.remoteApplianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recoveryPoint) {
+      self.recoveryPoint = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.resourceId, forKey: .resourceId)
+    try container.encode(self.backupInclusionOrExclusion, forKey: .backupInclusionOrExclusion)
+    try container.encode(self.hostId, forKey: .hostId)
+    try container.encode(self.hostName, forKey: .hostName)
+    try container.encode(self.backupPlanPolicyTemplateId, forKey: .backupPlanPolicyTemplateId)
+    try container.encode(self.backupPlanPolicyTemplate, forKey: .backupPlanPolicyTemplate)
+    try container.encode(self.slaId, forKey: .slaId)
+    try container.encode(self.backupPlanRestrictions, forKey: .backupPlanRestrictions)
+    try container.encode(self.protectedOn, forKey: .protectedOn)
+    try container.encode(self.policyOverrides, forKey: .policyOverrides)
+    try container.encode(self.sourceAppliance, forKey: .sourceAppliance)
+    try container.encode(self.sourceApplianceId, forKey: .sourceApplianceId)
+    try container.encode(self.protectedDataInGib, forKey: .protectedDataInGib)
+    try container.encode(self.onvaultInGib, forKey: .onvaultInGib)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    try container.encode(self.remoteAppliance, forKey: .remoteAppliance)
+    try container.encode(self.remoteApplianceId, forKey: .remoteApplianceId)
+    try container.encode(self.recoveryPoint, forKey: .recoveryPoint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

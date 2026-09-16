@@ -26,6 +26,8 @@
     /// individually or all at once.
     public var mode: InstanceGroupManagerTargetSizePolicy.Mode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerTargetSizePolicy`.
     public init() {}
 
@@ -40,6 +42,37 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mode = CodingKeys(stringValue: "mode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mode"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.mode = try container.decodeIfPresent(
+        InstanceGroupManagerTargetSizePolicy.Mode.self, forKey: .mode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [mode][google.cloud.compute.v1.InstanceGroupManagerTargetSizePolicy.mode] field.

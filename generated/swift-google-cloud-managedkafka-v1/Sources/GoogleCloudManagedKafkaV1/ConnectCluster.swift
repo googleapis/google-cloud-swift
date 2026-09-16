@@ -53,6 +53,8 @@ public struct ConnectCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Platform specific configuration properties for a Kafka Connect cluster.
   public var platformConfig: OneOf_PlatformConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectCluster`.
   public init() {}
 
@@ -69,31 +71,60 @@ public struct ConnectCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcpConfig = "gcpConfig"
-    case name = "name"
-    case kafkaCluster = "kafkaCluster"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case capacityConfig = "capacityConfig"
-    case state = "state"
-    case config = "config"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcpConfig = CodingKeys(stringValue: "gcpConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let kafkaCluster = CodingKeys(stringValue: "kafkaCluster")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let capacityConfig = CodingKeys(stringValue: "capacityConfig")
+    static let state = CodingKeys(stringValue: "state")
+    static let config = CodingKeys(stringValue: "config")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcpConfig",
+      "name",
+      "kafkaCluster",
+      "createTime",
+      "updateTime",
+      "labels",
+      "capacityConfig",
+      "state",
+      "config",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.kafkaCluster = try container.decode(Swift.String.self, forKey: .kafkaCluster)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kafkaCluster) {
+      self.kafkaCluster = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.capacityConfig = try container.decodeIfPresent(
       CapacityConfig.self, forKey: .capacityConfig)
-    self.state = try container.decode(ConnectCluster.State.self, forKey: .state)
-    self.config = try container.decode([Swift.String: Swift.String].self, forKey: .config)
+    if let value = try container.decodeIfPresent(ConnectCluster.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .config)
+    {
+      self.config = value
+    }
 
     var platformConfig: OneOf_PlatformConfig? = nil
     let platformConfigCheckAndSet = {
@@ -109,16 +140,20 @@ public struct ConnectCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try platformConfigCheckAndSet(.gcpConfig(gcpConfig))
     }
     self.platformConfig = platformConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.kafkaCluster, forKey: .kafkaCluster)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.capacityConfig, forKey: .capacityConfig)
+    try container.encodeIfPresent(self.capacityConfig, forKey: .capacityConfig)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.config, forKey: .config)
 
@@ -127,6 +162,9 @@ public struct ConnectCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcpConfig(let value):
         try container.encode(value, forKey: .gcpConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

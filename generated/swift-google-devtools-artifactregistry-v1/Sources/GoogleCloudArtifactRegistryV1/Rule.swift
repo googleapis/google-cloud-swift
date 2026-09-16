@@ -41,6 +41,8 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If empty, this rule applies to all packages inside the repository.
   public var packageId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rule`.
   public init() {}
 
@@ -55,6 +57,60 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let action = CodingKeys(stringValue: "action")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let packageId = CodingKeys(stringValue: "packageId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "action",
+      "operation",
+      "condition",
+      "packageId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Rule.Action.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Rule.Operation.self, forKey: .operation) {
+      self.operation = value
+    }
+    self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageId) {
+      self.packageId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encode(self.packageId, forKey: .packageId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the action of the rule.

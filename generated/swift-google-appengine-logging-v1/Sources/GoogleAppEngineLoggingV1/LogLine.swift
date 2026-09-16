@@ -34,6 +34,8 @@ public struct LogLine: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Where in the source code this log message was written.
   public var sourceLocation: SourceLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogLine`.
   public init() {}
 
@@ -48,6 +50,55 @@ public struct LogLine: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let time = CodingKeys(stringValue: "time")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let logMessage = CodingKeys(stringValue: "logMessage")
+    static let sourceLocation = CodingKeys(stringValue: "sourceLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "time",
+      "severity",
+      "logMessage",
+      "sourceLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.time = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .time)
+    if let value = try container.decodeIfPresent(
+      GoogleCloudLoggingType.LogSeverity.self, forKey: .severity)
+    {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logMessage) {
+      self.logMessage = value
+    }
+    self.sourceLocation = try container.decodeIfPresent(
+      SourceLocation.self, forKey: .sourceLocation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.time, forKey: .time)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.logMessage, forKey: .logMessage)
+    try container.encodeIfPresent(self.sourceLocation, forKey: .sourceLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

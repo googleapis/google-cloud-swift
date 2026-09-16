@@ -165,6 +165,8 @@
     /// [google.cloud.discoveryengine.v1.IdentityMappingStore]: <doc:IdentityMappingStore>
     public var identityMappingStore: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataStore`.
     public init() {}
 
@@ -179,6 +181,139 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let industryVertical = CodingKeys(stringValue: "industryVertical")
+      static let solutionTypes = CodingKeys(stringValue: "solutionTypes")
+      static let defaultSchemaId = CodingKeys(stringValue: "defaultSchemaId")
+      static let contentConfig = CodingKeys(stringValue: "contentConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let advancedSiteSearchConfig = CodingKeys(stringValue: "advancedSiteSearchConfig")
+      static let naturalLanguageQueryUnderstandingConfig = CodingKeys(
+        stringValue: "naturalLanguageQueryUnderstandingConfig")
+      static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+      static let cmekConfig = CodingKeys(stringValue: "cmekConfig")
+      static let billingEstimation = CodingKeys(stringValue: "billingEstimation")
+      static let aclEnabled = CodingKeys(stringValue: "aclEnabled")
+      static let workspaceConfig = CodingKeys(stringValue: "workspaceConfig")
+      static let documentProcessingConfig = CodingKeys(stringValue: "documentProcessingConfig")
+      static let startingSchema = CodingKeys(stringValue: "startingSchema")
+      static let healthcareFhirConfig = CodingKeys(stringValue: "healthcareFhirConfig")
+      static let identityMappingStore = CodingKeys(stringValue: "identityMappingStore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "industryVertical",
+        "solutionTypes",
+        "defaultSchemaId",
+        "contentConfig",
+        "createTime",
+        "advancedSiteSearchConfig",
+        "naturalLanguageQueryUnderstandingConfig",
+        "kmsKeyName",
+        "cmekConfig",
+        "billingEstimation",
+        "aclEnabled",
+        "workspaceConfig",
+        "documentProcessingConfig",
+        "startingSchema",
+        "healthcareFhirConfig",
+        "identityMappingStore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(IndustryVertical.self, forKey: .industryVertical)
+      {
+        self.industryVertical = value
+      }
+      if let value = try container.decodeIfPresent([SolutionType].self, forKey: .solutionTypes) {
+        self.solutionTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultSchemaId) {
+        self.defaultSchemaId = value
+      }
+      if let value = try container.decodeIfPresent(
+        DataStore.ContentConfig.self, forKey: .contentConfig)
+      {
+        self.contentConfig = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.advancedSiteSearchConfig = try container.decodeIfPresent(
+        AdvancedSiteSearchConfig.self, forKey: .advancedSiteSearchConfig)
+      self.naturalLanguageQueryUnderstandingConfig = try container.decodeIfPresent(
+        NaturalLanguageQueryUnderstandingConfig.self,
+        forKey: .naturalLanguageQueryUnderstandingConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+        self.kmsKeyName = value
+      }
+      self.cmekConfig = try container.decodeIfPresent(CmekConfig.self, forKey: .cmekConfig)
+      self.billingEstimation = try container.decodeIfPresent(
+        DataStore.BillingEstimation.self, forKey: .billingEstimation)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .aclEnabled) {
+        self.aclEnabled = value
+      }
+      self.workspaceConfig = try container.decodeIfPresent(
+        WorkspaceConfig.self, forKey: .workspaceConfig)
+      self.documentProcessingConfig = try container.decodeIfPresent(
+        DocumentProcessingConfig.self, forKey: .documentProcessingConfig)
+      self.startingSchema = try container.decodeIfPresent(Schema.self, forKey: .startingSchema)
+      self.healthcareFhirConfig = try container.decodeIfPresent(
+        HealthcareFhirConfig.self, forKey: .healthcareFhirConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identityMappingStore)
+      {
+        self.identityMappingStore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.industryVertical, forKey: .industryVertical)
+      try container.encode(self.solutionTypes, forKey: .solutionTypes)
+      try container.encode(self.defaultSchemaId, forKey: .defaultSchemaId)
+      try container.encode(self.contentConfig, forKey: .contentConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(
+        self.advancedSiteSearchConfig, forKey: .advancedSiteSearchConfig)
+      try container.encodeIfPresent(
+        self.naturalLanguageQueryUnderstandingConfig,
+        forKey: .naturalLanguageQueryUnderstandingConfig)
+      try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+      try container.encodeIfPresent(self.cmekConfig, forKey: .cmekConfig)
+      try container.encodeIfPresent(self.billingEstimation, forKey: .billingEstimation)
+      try container.encode(self.aclEnabled, forKey: .aclEnabled)
+      try container.encodeIfPresent(self.workspaceConfig, forKey: .workspaceConfig)
+      try container.encodeIfPresent(
+        self.documentProcessingConfig, forKey: .documentProcessingConfig)
+      try container.encodeIfPresent(self.startingSchema, forKey: .startingSchema)
+      try container.encodeIfPresent(self.healthcareFhirConfig, forKey: .healthcareFhirConfig)
+      try container.encode(self.identityMappingStore, forKey: .identityMappingStore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Estimation of data size per data store.
@@ -203,6 +338,8 @@
       /// Last updated timestamp for websites.
       public var websiteDataUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BillingEstimation`.
       public init() {}
 
@@ -217,6 +354,71 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let structuredDataSize = CodingKeys(stringValue: "structuredDataSize")
+        static let unstructuredDataSize = CodingKeys(stringValue: "unstructuredDataSize")
+        static let websiteDataSize = CodingKeys(stringValue: "websiteDataSize")
+        static let structuredDataUpdateTime = CodingKeys(stringValue: "structuredDataUpdateTime")
+        static let unstructuredDataUpdateTime = CodingKeys(
+          stringValue: "unstructuredDataUpdateTime")
+        static let websiteDataUpdateTime = CodingKeys(stringValue: "websiteDataUpdateTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "structuredDataSize",
+          "unstructuredDataSize",
+          "websiteDataSize",
+          "structuredDataUpdateTime",
+          "unstructuredDataUpdateTime",
+          "websiteDataUpdateTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .structuredDataSize)
+        {
+          self.structuredDataSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .unstructuredDataSize)
+        {
+          self.unstructuredDataSize = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .websiteDataSize) {
+          self.websiteDataSize = value
+        }
+        self.structuredDataUpdateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .structuredDataUpdateTime)
+        self.unstructuredDataUpdateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .unstructuredDataUpdateTime)
+        self.websiteDataUpdateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .websiteDataUpdateTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.structuredDataSize, forKey: .structuredDataSize)
+        try container.encode(self.unstructuredDataSize, forKey: .unstructuredDataSize)
+        try container.encode(self.websiteDataSize, forKey: .websiteDataSize)
+        try container.encodeIfPresent(
+          self.structuredDataUpdateTime, forKey: .structuredDataUpdateTime)
+        try container.encodeIfPresent(
+          self.unstructuredDataUpdateTime, forKey: .unstructuredDataUpdateTime)
+        try container.encodeIfPresent(self.websiteDataUpdateTime, forKey: .websiteDataUpdateTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

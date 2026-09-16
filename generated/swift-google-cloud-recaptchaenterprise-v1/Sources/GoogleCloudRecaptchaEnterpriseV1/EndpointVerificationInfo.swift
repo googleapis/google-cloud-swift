@@ -31,6 +31,8 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyP
 
   public var endpoint: OneOf_Endpoint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndpointVerificationInfo`.
   public init() {}
 
@@ -47,16 +49,30 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case emailAddress = "emailAddress"
-    case phoneNumber = "phoneNumber"
-    case requestToken = "requestToken"
-    case lastVerificationTime = "lastVerificationTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let emailAddress = CodingKeys(stringValue: "emailAddress")
+    static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+    static let requestToken = CodingKeys(stringValue: "requestToken")
+    static let lastVerificationTime = CodingKeys(stringValue: "lastVerificationTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "emailAddress",
+      "phoneNumber",
+      "requestToken",
+      "lastVerificationTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.requestToken = try container.decode(Swift.String.self, forKey: .requestToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestToken) {
+      self.requestToken = value
+    }
     self.lastVerificationTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastVerificationTime)
 
@@ -77,12 +93,16 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyP
       try endpointCheckAndSet(.phoneNumber(phoneNumber))
     }
     self.endpoint = endpoint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.requestToken, forKey: .requestToken)
-    try container.encode(self.lastVerificationTime, forKey: .lastVerificationTime)
+    try container.encodeIfPresent(self.lastVerificationTime, forKey: .lastVerificationTime)
 
     if let choice = self.endpoint {
       switch choice {
@@ -91,6 +111,9 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyP
       case .phoneNumber(let value):
         try container.encode(value, forKey: .phoneNumber)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

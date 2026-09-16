@@ -25,6 +25,8 @@
     /// Custom output.
     public var customOutput: OneOf_CustomOutput? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomOutput`.
     public init() {}
 
@@ -41,8 +43,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case rawOutputs = "rawOutputs"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let rawOutputs = CodingKeys(stringValue: "rawOutputs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "rawOutputs"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -62,6 +73,10 @@
         try customOutputCheckAndSet(.rawOutputs(rawOutputs))
       }
       self.customOutput = customOutput
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@
         case .rawOutputs(let value):
           try container.encode(value, forKey: .rawOutputs)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

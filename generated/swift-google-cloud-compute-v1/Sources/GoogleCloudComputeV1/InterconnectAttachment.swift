@@ -370,6 +370,8 @@
     /// Only specified at creation time.
     public var vlanTag8021Q: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachment`.
     public init() {}
 
@@ -386,54 +388,114 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case adminEnabled = "adminEnabled"
-      case attachmentGroup = "attachmentGroup"
-      case bandwidth = "bandwidth"
-      case candidateCloudRouterIpAddress = "candidateCloudRouterIpAddress"
-      case candidateCloudRouterIpv6Address = "candidateCloudRouterIpv6Address"
-      case candidateCustomerRouterIpAddress = "candidateCustomerRouterIpAddress"
-      case candidateCustomerRouterIpv6Address = "candidateCustomerRouterIpv6Address"
-      case candidateIpv6Subnets = "candidateIpv6Subnets"
-      case candidateSubnets = "candidateSubnets"
-      case cloudRouterIpAddress = "cloudRouterIpAddress"
-      case cloudRouterIpv6Address = "cloudRouterIpv6Address"
-      case cloudRouterIpv6InterfaceId = "cloudRouterIpv6InterfaceId"
-      case configurationConstraints = "configurationConstraints"
-      case creationTimestamp = "creationTimestamp"
-      case customerRouterIpAddress = "customerRouterIpAddress"
-      case customerRouterIpv6Address = "customerRouterIpv6Address"
-      case customerRouterIpv6InterfaceId = "customerRouterIpv6InterfaceId"
-      case dataplaneVersion = "dataplaneVersion"
-      case description = "description"
-      case edgeAvailabilityDomain = "edgeAvailabilityDomain"
-      case encryption = "encryption"
-      case googleReferenceId = "googleReferenceId"
-      case id = "id"
-      case interconnect = "interconnect"
-      case ipsecInternalAddresses = "ipsecInternalAddresses"
-      case kind = "kind"
-      case l2Forwarding = "l2Forwarding"
-      case labelFingerprint = "labelFingerprint"
-      case labels = "labels"
-      case mtu = "mtu"
-      case name = "name"
-      case operationalStatus = "operationalStatus"
-      case pairingKey = "pairingKey"
-      case params = "params"
-      case partnerAsn = "partnerAsn"
-      case partnerMetadata = "partnerMetadata"
-      case privateInterconnectInfo = "privateInterconnectInfo"
-      case region = "region"
-      case remoteService = "remoteService"
-      case router = "router"
-      case satisfiesPzs = "satisfiesPzs"
-      case selfLink = "selfLink"
-      case stackType = "stackType"
-      case state = "state"
-      case subnetLength = "subnetLength"
-      case type = "type"
-      case vlanTag8021Q = "vlanTag8021q"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let attachmentGroup = CodingKeys(stringValue: "attachmentGroup")
+      static let bandwidth = CodingKeys(stringValue: "bandwidth")
+      static let candidateCloudRouterIpAddress = CodingKeys(
+        stringValue: "candidateCloudRouterIpAddress")
+      static let candidateCloudRouterIpv6Address = CodingKeys(
+        stringValue: "candidateCloudRouterIpv6Address")
+      static let candidateCustomerRouterIpAddress = CodingKeys(
+        stringValue: "candidateCustomerRouterIpAddress")
+      static let candidateCustomerRouterIpv6Address = CodingKeys(
+        stringValue: "candidateCustomerRouterIpv6Address")
+      static let candidateIpv6Subnets = CodingKeys(stringValue: "candidateIpv6Subnets")
+      static let candidateSubnets = CodingKeys(stringValue: "candidateSubnets")
+      static let cloudRouterIpAddress = CodingKeys(stringValue: "cloudRouterIpAddress")
+      static let cloudRouterIpv6Address = CodingKeys(stringValue: "cloudRouterIpv6Address")
+      static let cloudRouterIpv6InterfaceId = CodingKeys(stringValue: "cloudRouterIpv6InterfaceId")
+      static let configurationConstraints = CodingKeys(stringValue: "configurationConstraints")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let customerRouterIpAddress = CodingKeys(stringValue: "customerRouterIpAddress")
+      static let customerRouterIpv6Address = CodingKeys(stringValue: "customerRouterIpv6Address")
+      static let customerRouterIpv6InterfaceId = CodingKeys(
+        stringValue: "customerRouterIpv6InterfaceId")
+      static let dataplaneVersion = CodingKeys(stringValue: "dataplaneVersion")
+      static let description = CodingKeys(stringValue: "description")
+      static let edgeAvailabilityDomain = CodingKeys(stringValue: "edgeAvailabilityDomain")
+      static let encryption = CodingKeys(stringValue: "encryption")
+      static let googleReferenceId = CodingKeys(stringValue: "googleReferenceId")
+      static let id = CodingKeys(stringValue: "id")
+      static let interconnect = CodingKeys(stringValue: "interconnect")
+      static let ipsecInternalAddresses = CodingKeys(stringValue: "ipsecInternalAddresses")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let l2Forwarding = CodingKeys(stringValue: "l2Forwarding")
+      static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let mtu = CodingKeys(stringValue: "mtu")
+      static let name = CodingKeys(stringValue: "name")
+      static let operationalStatus = CodingKeys(stringValue: "operationalStatus")
+      static let pairingKey = CodingKeys(stringValue: "pairingKey")
+      static let params = CodingKeys(stringValue: "params")
+      static let partnerAsn = CodingKeys(stringValue: "partnerAsn")
+      static let partnerMetadata = CodingKeys(stringValue: "partnerMetadata")
+      static let privateInterconnectInfo = CodingKeys(stringValue: "privateInterconnectInfo")
+      static let region = CodingKeys(stringValue: "region")
+      static let remoteService = CodingKeys(stringValue: "remoteService")
+      static let router = CodingKeys(stringValue: "router")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let state = CodingKeys(stringValue: "state")
+      static let subnetLength = CodingKeys(stringValue: "subnetLength")
+      static let type = CodingKeys(stringValue: "type")
+      static let vlanTag8021Q = CodingKeys(stringValue: "vlanTag8021q")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adminEnabled",
+        "attachmentGroup",
+        "bandwidth",
+        "candidateCloudRouterIpAddress",
+        "candidateCloudRouterIpv6Address",
+        "candidateCustomerRouterIpAddress",
+        "candidateCustomerRouterIpv6Address",
+        "candidateIpv6Subnets",
+        "candidateSubnets",
+        "cloudRouterIpAddress",
+        "cloudRouterIpv6Address",
+        "cloudRouterIpv6InterfaceId",
+        "configurationConstraints",
+        "creationTimestamp",
+        "customerRouterIpAddress",
+        "customerRouterIpv6Address",
+        "customerRouterIpv6InterfaceId",
+        "dataplaneVersion",
+        "description",
+        "edgeAvailabilityDomain",
+        "encryption",
+        "googleReferenceId",
+        "id",
+        "interconnect",
+        "ipsecInternalAddresses",
+        "kind",
+        "l2Forwarding",
+        "labelFingerprint",
+        "labels",
+        "mtu",
+        "name",
+        "operationalStatus",
+        "pairingKey",
+        "params",
+        "partnerAsn",
+        "partnerMetadata",
+        "privateInterconnectInfo",
+        "region",
+        "remoteService",
+        "router",
+        "satisfiesPzs",
+        "selfLink",
+        "stackType",
+        "state",
+        "subnetLength",
+        "type",
+        "vlanTag8021q",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -451,9 +513,14 @@
         Swift.String.self, forKey: .candidateCustomerRouterIpAddress)
       self.candidateCustomerRouterIpv6Address = try container.decodeIfPresent(
         Swift.String.self, forKey: .candidateCustomerRouterIpv6Address)
-      self.candidateIpv6Subnets = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .candidateIpv6Subnets)
-      self.candidateSubnets = try container.decode([Swift.String].self, forKey: .candidateSubnets)
+      {
+        self.candidateIpv6Subnets = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .candidateSubnets) {
+        self.candidateSubnets = value
+      }
       self.cloudRouterIpAddress = try container.decodeIfPresent(
         Swift.String.self, forKey: .cloudRouterIpAddress)
       self.cloudRouterIpv6Address = try container.decodeIfPresent(
@@ -481,8 +548,11 @@
         Swift.String.self, forKey: .googleReferenceId)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.interconnect = try container.decodeIfPresent(Swift.String.self, forKey: .interconnect)
-      self.ipsecInternalAddresses = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .ipsecInternalAddresses)
+      {
+        self.ipsecInternalAddresses = value
+      }
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.l2Forwarding = try container.decodeIfPresent(
         InterconnectAttachmentL2Forwarding.self, forKey: .l2Forwarding)
@@ -495,7 +565,11 @@
         }
         self.labelFingerprint = v
       }
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
       self.mtu = try container.decodeIfPresent(Swift.Int32.self, forKey: .mtu)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.operationalStatus = try container.decodeIfPresent(
@@ -519,66 +593,76 @@
       self.subnetLength = try container.decodeIfPresent(Swift.Int32.self, forKey: .subnetLength)
       self.type = try container.decodeIfPresent(InterconnectAttachment.Type_.self, forKey: .type)
       self.vlanTag8021Q = try container.decodeIfPresent(Swift.Int32.self, forKey: .vlanTag8021Q)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.adminEnabled, forKey: .adminEnabled)
-      try container.encode(self.attachmentGroup, forKey: .attachmentGroup)
-      try container.encode(self.bandwidth, forKey: .bandwidth)
-      try container.encode(
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(self.attachmentGroup, forKey: .attachmentGroup)
+      try container.encodeIfPresent(self.bandwidth, forKey: .bandwidth)
+      try container.encodeIfPresent(
         self.candidateCloudRouterIpAddress, forKey: .candidateCloudRouterIpAddress)
-      try container.encode(
+      try container.encodeIfPresent(
         self.candidateCloudRouterIpv6Address, forKey: .candidateCloudRouterIpv6Address)
-      try container.encode(
+      try container.encodeIfPresent(
         self.candidateCustomerRouterIpAddress, forKey: .candidateCustomerRouterIpAddress)
-      try container.encode(
+      try container.encodeIfPresent(
         self.candidateCustomerRouterIpv6Address, forKey: .candidateCustomerRouterIpv6Address)
       try container.encode(self.candidateIpv6Subnets, forKey: .candidateIpv6Subnets)
       try container.encode(self.candidateSubnets, forKey: .candidateSubnets)
-      try container.encode(self.cloudRouterIpAddress, forKey: .cloudRouterIpAddress)
-      try container.encode(self.cloudRouterIpv6Address, forKey: .cloudRouterIpv6Address)
-      try container.encode(self.cloudRouterIpv6InterfaceId, forKey: .cloudRouterIpv6InterfaceId)
-      try container.encode(self.configurationConstraints, forKey: .configurationConstraints)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.customerRouterIpAddress, forKey: .customerRouterIpAddress)
-      try container.encode(self.customerRouterIpv6Address, forKey: .customerRouterIpv6Address)
-      try container.encode(
+      try container.encodeIfPresent(self.cloudRouterIpAddress, forKey: .cloudRouterIpAddress)
+      try container.encodeIfPresent(self.cloudRouterIpv6Address, forKey: .cloudRouterIpv6Address)
+      try container.encodeIfPresent(
+        self.cloudRouterIpv6InterfaceId, forKey: .cloudRouterIpv6InterfaceId)
+      try container.encodeIfPresent(
+        self.configurationConstraints, forKey: .configurationConstraints)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.customerRouterIpAddress, forKey: .customerRouterIpAddress)
+      try container.encodeIfPresent(
+        self.customerRouterIpv6Address, forKey: .customerRouterIpv6Address)
+      try container.encodeIfPresent(
         self.customerRouterIpv6InterfaceId, forKey: .customerRouterIpv6InterfaceId)
-      try container.encode(self.dataplaneVersion, forKey: .dataplaneVersion)
-      try container.encode(self.description, forKey: .description)
-      try container.encode(self.edgeAvailabilityDomain, forKey: .edgeAvailabilityDomain)
-      try container.encode(self.encryption, forKey: .encryption)
-      try container.encode(self.googleReferenceId, forKey: .googleReferenceId)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.interconnect, forKey: .interconnect)
+      try container.encodeIfPresent(self.dataplaneVersion, forKey: .dataplaneVersion)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.edgeAvailabilityDomain, forKey: .edgeAvailabilityDomain)
+      try container.encodeIfPresent(self.encryption, forKey: .encryption)
+      try container.encodeIfPresent(self.googleReferenceId, forKey: .googleReferenceId)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.interconnect, forKey: .interconnect)
       try container.encode(self.ipsecInternalAddresses, forKey: .ipsecInternalAddresses)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.l2Forwarding, forKey: .l2Forwarding)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.l2Forwarding, forKey: .l2Forwarding)
       if let v = labelFingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
-      try container.encode(self.mtu, forKey: .mtu)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.operationalStatus, forKey: .operationalStatus)
-      try container.encode(self.pairingKey, forKey: .pairingKey)
-      try container.encode(self.params, forKey: .params)
-      try container.encode(self.partnerAsn, forKey: .partnerAsn)
-      try container.encode(self.partnerMetadata, forKey: .partnerMetadata)
-      try container.encode(self.privateInterconnectInfo, forKey: .privateInterconnectInfo)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.remoteService, forKey: .remoteService)
-      try container.encode(self.router, forKey: .router)
-      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.stackType, forKey: .stackType)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.subnetLength, forKey: .subnetLength)
-      try container.encode(self.type, forKey: .type)
-      try container.encode(self.vlanTag8021Q, forKey: .vlanTag8021Q)
+      try container.encodeIfPresent(self.mtu, forKey: .mtu)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.operationalStatus, forKey: .operationalStatus)
+      try container.encodeIfPresent(self.pairingKey, forKey: .pairingKey)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.partnerAsn, forKey: .partnerAsn)
+      try container.encodeIfPresent(self.partnerMetadata, forKey: .partnerMetadata)
+      try container.encodeIfPresent(self.privateInterconnectInfo, forKey: .privateInterconnectInfo)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.remoteService, forKey: .remoteService)
+      try container.encodeIfPresent(self.router, forKey: .router)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.subnetLength, forKey: .subnetLength)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      try container.encodeIfPresent(self.vlanTag8021Q, forKey: .vlanTag8021Q)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [bandwidth][google.cloud.compute.v1.InterconnectAttachment.bandwidth] field.

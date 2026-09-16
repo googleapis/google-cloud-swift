@@ -28,6 +28,8 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type descriptor.
   public var typeDescriptor: PacketType.TypeDescriptor? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PacketType`.
   public init() {}
 
@@ -42,6 +44,43 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let typeClass = CodingKeys(stringValue: "typeClass")
+    static let typeDescriptor = CodingKeys(stringValue: "typeDescriptor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "typeClass",
+      "typeDescriptor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .typeClass) {
+      self.typeClass = value
+    }
+    self.typeDescriptor = try container.decodeIfPresent(
+      PacketType.TypeDescriptor.self, forKey: .typeDescriptor)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.typeClass, forKey: .typeClass)
+    try container.encodeIfPresent(self.typeDescriptor, forKey: .typeDescriptor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The message that fully specifies the type of the packet.
@@ -66,6 +105,8 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// type string alone is not enough to disambiguate the specific type.
     public var typeDetails: OneOf_TypeDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TypeDescriptor`.
     public init() {}
 
@@ -82,15 +123,28 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gstreamerBufferDescriptor = "gstreamerBufferDescriptor"
-      case rawImageDescriptor = "rawImageDescriptor"
-      case type = "type"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gstreamerBufferDescriptor = CodingKeys(stringValue: "gstreamerBufferDescriptor")
+      static let rawImageDescriptor = CodingKeys(stringValue: "rawImageDescriptor")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gstreamerBufferDescriptor",
+        "rawImageDescriptor",
+        "type",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.type = try container.decode(Swift.String.self, forKey: .type)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
 
       var typeDetails: OneOf_TypeDetails? = nil
       let typeDetailsCheckAndSet = {
@@ -113,6 +167,10 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try typeDetailsCheckAndSet(.rawImageDescriptor(rawImageDescriptor))
       }
       self.typeDetails = typeDetails
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -126,6 +184,9 @@ public struct PacketType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .rawImageDescriptor(let value):
           try container.encode(value, forKey: .rawImageDescriptor)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

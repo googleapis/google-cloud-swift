@@ -46,6 +46,8 @@
     /// Storage or Google Drive.
     public var ragFileSource: OneOf_RagFileSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagFile`.
     public init() {}
 
@@ -62,26 +64,52 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
-      case googleDriveSource = "googleDriveSource"
-      case directUploadSource = "directUploadSource"
-      case slackSource = "slackSource"
-      case jiraSource = "jiraSource"
-      case sharePointSources = "sharePointSources"
-      case name = "name"
-      case displayName = "displayName"
-      case description = "description"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case fileStatus = "fileStatus"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let googleDriveSource = CodingKeys(stringValue: "googleDriveSource")
+      static let directUploadSource = CodingKeys(stringValue: "directUploadSource")
+      static let slackSource = CodingKeys(stringValue: "slackSource")
+      static let jiraSource = CodingKeys(stringValue: "jiraSource")
+      static let sharePointSources = CodingKeys(stringValue: "sharePointSources")
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let fileStatus = CodingKeys(stringValue: "fileStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource",
+        "googleDriveSource",
+        "directUploadSource",
+        "slackSource",
+        "jiraSource",
+        "sharePointSources",
+        "name",
+        "displayName",
+        "description",
+        "createTime",
+        "updateTime",
+        "fileStatus",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
@@ -123,6 +151,10 @@
         try ragFileSourceCheckAndSet(.sharePointSources(sharePointSources))
       }
       self.ragFileSource = ragFileSource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -130,9 +162,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
-      try container.encode(self.fileStatus, forKey: .fileStatus)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.fileStatus, forKey: .fileStatus)
 
       if let choice = self.ragFileSource {
         switch choice {
@@ -149,6 +181,9 @@
         case .sharePointSources(let value):
           try container.encode(value, forKey: .sharePointSources)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

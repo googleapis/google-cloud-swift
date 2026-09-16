@@ -47,6 +47,8 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// SecretManager etc.
   public var userCredential: OneOf_UserCredential? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecuteSqlRequest`.
   public init() {}
 
@@ -63,22 +65,46 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case instance = "instance"
-    case database = "database"
-    case user = "user"
-    case sqlStatement = "sqlStatement"
-    case validateOnly = "validateOnly"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let database = CodingKeys(stringValue: "database")
+    static let user = CodingKeys(stringValue: "user")
+    static let sqlStatement = CodingKeys(stringValue: "sqlStatement")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "instance",
+      "database",
+      "user",
+      "sqlStatement",
+      "validateOnly",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.instance = try container.decode(Swift.String.self, forKey: .instance)
-    self.database = try container.decode(Swift.String.self, forKey: .database)
-    self.user = try container.decode(Swift.String.self, forKey: .user)
-    self.sqlStatement = try container.decode(Swift.String.self, forKey: .sqlStatement)
-    self.validateOnly = try container.decode(Swift.Bool.self, forKey: .validateOnly)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+      self.user = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sqlStatement) {
+      self.sqlStatement = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
 
     var userCredential: OneOf_UserCredential? = nil
     let userCredentialCheckAndSet = {
@@ -94,6 +120,10 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try userCredentialCheckAndSet(.password(password))
     }
     self.userCredential = userCredential
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +139,9 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .password(let value):
         try container.encode(value, forKey: .password)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

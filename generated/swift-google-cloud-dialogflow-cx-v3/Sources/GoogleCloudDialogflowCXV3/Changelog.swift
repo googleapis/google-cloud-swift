@@ -48,6 +48,8 @@
     /// The affected language code of the change.
     public var languageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Changelog`.
     public init() {}
 
@@ -62,6 +64,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let userEmail = CodingKeys(stringValue: "userEmail")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let action = CodingKeys(stringValue: "action")
+      static let type = CodingKeys(stringValue: "type")
+      static let resource = CodingKeys(stringValue: "resource")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "userEmail",
+        "displayName",
+        "action",
+        "type",
+        "resource",
+        "createTime",
+        "languageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEmail) {
+        self.userEmail = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+        self.action = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+        self.resource = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.userEmail, forKey: .userEmail)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.action, forKey: .action)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.resource, forKey: .resource)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct DataCollectionOptionsDbSystem: Codable, Equatable, GoogleCloudWKT.
   /// Optional. Indicates whether to enable incident logs and trace collection.
   public var isIncidentLogsEnabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataCollectionOptionsDbSystem`.
   public init() {}
 
@@ -41,6 +43,46 @@ public struct DataCollectionOptionsDbSystem: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let isDiagnosticsEventsEnabled = CodingKeys(stringValue: "isDiagnosticsEventsEnabled")
+    static let isIncidentLogsEnabled = CodingKeys(stringValue: "isIncidentLogsEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "isDiagnosticsEventsEnabled",
+      "isIncidentLogsEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .isDiagnosticsEventsEnabled)
+    {
+      self.isDiagnosticsEventsEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isIncidentLogsEnabled) {
+      self.isIncidentLogsEnabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.isDiagnosticsEventsEnabled, forKey: .isDiagnosticsEventsEnabled)
+    try container.encode(self.isIncidentLogsEnabled, forKey: .isIncidentLogsEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

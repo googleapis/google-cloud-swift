@@ -35,6 +35,8 @@
     /// results will be returned in the [FunctionCall.partial_args] field.
     public var streamFunctionCallArguments: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FunctionCallingConfig`.
     public init() {}
 
@@ -49,6 +51,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mode = CodingKeys(stringValue: "mode")
+      static let allowedFunctionNames = CodingKeys(stringValue: "allowedFunctionNames")
+      static let streamFunctionCallArguments = CodingKeys(
+        stringValue: "streamFunctionCallArguments")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mode",
+        "allowedFunctionNames",
+        "streamFunctionCallArguments",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(FunctionCallingConfig.Mode.self, forKey: .mode) {
+        self.mode = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .allowedFunctionNames)
+      {
+        self.allowedFunctionNames = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .streamFunctionCallArguments)
+      {
+        self.streamFunctionCallArguments = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encode(self.allowedFunctionNames, forKey: .allowedFunctionNames)
+      try container.encode(self.streamFunctionCallArguments, forKey: .streamFunctionCallArguments)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Function calling mode.

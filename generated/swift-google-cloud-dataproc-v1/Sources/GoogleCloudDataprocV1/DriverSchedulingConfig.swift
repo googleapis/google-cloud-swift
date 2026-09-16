@@ -27,6 +27,8 @@ public struct DriverSchedulingConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Required. The number of vCPUs the driver is requesting.
   public var vcores: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DriverSchedulingConfig`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct DriverSchedulingConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let vcores = CodingKeys(stringValue: "vcores")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "memoryMb",
+      "vcores",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vcores) {
+      self.vcores = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.vcores, forKey: .vcores)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

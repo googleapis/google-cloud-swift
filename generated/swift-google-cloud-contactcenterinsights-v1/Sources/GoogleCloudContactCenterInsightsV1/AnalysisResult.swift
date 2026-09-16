@@ -27,6 +27,8 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Metadata discovered during analysis.
   public var metadata: OneOf_Metadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalysisResult`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case callAnalysisMetadata = "callAnalysisMetadata"
-    case endTime = "endTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let callAnalysisMetadata = CodingKeys(stringValue: "callAnalysisMetadata")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "callAnalysisMetadata",
+      "endTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,17 +80,24 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try metadataCheckAndSet(.callAnalysisMetadata(callAnalysisMetadata))
     }
     self.metadata = metadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
     if let choice = self.metadata {
       switch choice {
       case .callAnalysisMetadata(let value):
         try container.encode(value, forKey: .callAnalysisMetadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -110,6 +129,8 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Results of scoring QaScorecards.
     public var qaScorecardResults: [QaScorecardResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CallAnalysisMetadata`.
     public init() {}
 
@@ -124,6 +145,83 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let annotations = CodingKeys(stringValue: "annotations")
+      static let entities = CodingKeys(stringValue: "entities")
+      static let sentiments = CodingKeys(stringValue: "sentiments")
+      static let silence = CodingKeys(stringValue: "silence")
+      static let intents = CodingKeys(stringValue: "intents")
+      static let phraseMatchers = CodingKeys(stringValue: "phraseMatchers")
+      static let issueModelResult = CodingKeys(stringValue: "issueModelResult")
+      static let qaScorecardResults = CodingKeys(stringValue: "qaScorecardResults")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "annotations",
+        "entities",
+        "sentiments",
+        "silence",
+        "intents",
+        "phraseMatchers",
+        "issueModelResult",
+        "qaScorecardResults",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([CallAnnotation].self, forKey: .annotations) {
+        self.annotations = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Entity].self, forKey: .entities) {
+        self.entities = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ConversationLevelSentiment].self, forKey: .sentiments)
+      {
+        self.sentiments = value
+      }
+      self.silence = try container.decodeIfPresent(ConversationLevelSilence.self, forKey: .silence)
+      if let value = try container.decodeIfPresent([Swift.String: Intent].self, forKey: .intents) {
+        self.intents = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: PhraseMatchData].self, forKey: .phraseMatchers)
+      {
+        self.phraseMatchers = value
+      }
+      self.issueModelResult = try container.decodeIfPresent(
+        IssueModelResult.self, forKey: .issueModelResult)
+      if let value = try container.decodeIfPresent(
+        [QaScorecardResult].self, forKey: .qaScorecardResults)
+      {
+        self.qaScorecardResults = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.annotations, forKey: .annotations)
+      try container.encode(self.entities, forKey: .entities)
+      try container.encode(self.sentiments, forKey: .sentiments)
+      try container.encodeIfPresent(self.silence, forKey: .silence)
+      try container.encode(self.intents, forKey: .intents)
+      try container.encode(self.phraseMatchers, forKey: .phraseMatchers)
+      try container.encodeIfPresent(self.issueModelResult, forKey: .issueModelResult)
+      try container.encode(self.qaScorecardResults, forKey: .qaScorecardResults)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

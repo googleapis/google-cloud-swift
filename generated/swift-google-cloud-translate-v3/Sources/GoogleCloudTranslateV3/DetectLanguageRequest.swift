@@ -63,6 +63,8 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Required. The source of the document from which to detect the language.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DetectLanguageRequest`.
   public init() {}
 
@@ -79,20 +81,42 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case model = "model"
-    case content = "content"
-    case mimeType = "mimeType"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let model = CodingKeys(stringValue: "model")
+    static let content = CodingKeys(stringValue: "content")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "model",
+      "content",
+      "mimeType",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.model = try container.decode(Swift.String.self, forKey: .model)
-    self.mimeType = try container.decode(Swift.String.self, forKey: .mimeType)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -108,6 +132,10 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try sourceCheckAndSet(.content(content))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -122,6 +150,9 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .content(let value):
         try container.encode(value, forKey: .content)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -146,6 +146,8 @@
     /// The VM instance is the peer side of the BGP session.
     public var routerApplianceInstance: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterBgpPeer`.
     public init() {}
 
@@ -160,6 +162,156 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advertiseMode = CodingKeys(stringValue: "advertiseMode")
+      static let advertisedGroups = CodingKeys(stringValue: "advertisedGroups")
+      static let advertisedIpRanges = CodingKeys(stringValue: "advertisedIpRanges")
+      static let advertisedRoutePriority = CodingKeys(stringValue: "advertisedRoutePriority")
+      static let bfd = CodingKeys(stringValue: "bfd")
+      static let customLearnedIpRanges = CodingKeys(stringValue: "customLearnedIpRanges")
+      static let customLearnedRoutePriority = CodingKeys(stringValue: "customLearnedRoutePriority")
+      static let enable = CodingKeys(stringValue: "enable")
+      static let enableIpv4 = CodingKeys(stringValue: "enableIpv4")
+      static let enableIpv6 = CodingKeys(stringValue: "enableIpv6")
+      static let exportPolicies = CodingKeys(stringValue: "exportPolicies")
+      static let importPolicies = CodingKeys(stringValue: "importPolicies")
+      static let interfaceName = CodingKeys(stringValue: "interfaceName")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv4NexthopAddress = CodingKeys(stringValue: "ipv4NexthopAddress")
+      static let ipv6NexthopAddress = CodingKeys(stringValue: "ipv6NexthopAddress")
+      static let managementType = CodingKeys(stringValue: "managementType")
+      static let md5AuthenticationKeyName = CodingKeys(stringValue: "md5AuthenticationKeyName")
+      static let name = CodingKeys(stringValue: "name")
+      static let peerAsn = CodingKeys(stringValue: "peerAsn")
+      static let peerIpAddress = CodingKeys(stringValue: "peerIpAddress")
+      static let peerIpv4NexthopAddress = CodingKeys(stringValue: "peerIpv4NexthopAddress")
+      static let peerIpv6NexthopAddress = CodingKeys(stringValue: "peerIpv6NexthopAddress")
+      static let routerApplianceInstance = CodingKeys(stringValue: "routerApplianceInstance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advertiseMode",
+        "advertisedGroups",
+        "advertisedIpRanges",
+        "advertisedRoutePriority",
+        "bfd",
+        "customLearnedIpRanges",
+        "customLearnedRoutePriority",
+        "enable",
+        "enableIpv4",
+        "enableIpv6",
+        "exportPolicies",
+        "importPolicies",
+        "interfaceName",
+        "ipAddress",
+        "ipv4NexthopAddress",
+        "ipv6NexthopAddress",
+        "managementType",
+        "md5AuthenticationKeyName",
+        "name",
+        "peerAsn",
+        "peerIpAddress",
+        "peerIpv4NexthopAddress",
+        "peerIpv6NexthopAddress",
+        "routerApplianceInstance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.advertiseMode = try container.decodeIfPresent(
+        RouterBgpPeer.AdvertiseMode.self, forKey: .advertiseMode)
+      if let value = try container.decodeIfPresent(
+        [RouterBgpPeer.AdvertisedGroups].self, forKey: .advertisedGroups)
+      {
+        self.advertisedGroups = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RouterAdvertisedIpRange].self, forKey: .advertisedIpRanges)
+      {
+        self.advertisedIpRanges = value
+      }
+      self.advertisedRoutePriority = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .advertisedRoutePriority)
+      self.bfd = try container.decodeIfPresent(RouterBgpPeerBfd.self, forKey: .bfd)
+      if let value = try container.decodeIfPresent(
+        [RouterBgpPeerCustomLearnedIpRange].self, forKey: .customLearnedIpRanges)
+      {
+        self.customLearnedIpRanges = value
+      }
+      self.customLearnedRoutePriority = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .customLearnedRoutePriority)
+      self.enable = try container.decodeIfPresent(RouterBgpPeer.Enable.self, forKey: .enable)
+      self.enableIpv4 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv4)
+      self.enableIpv6 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv6)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exportPolicies) {
+        self.exportPolicies = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .importPolicies) {
+        self.importPolicies = value
+      }
+      self.interfaceName = try container.decodeIfPresent(Swift.String.self, forKey: .interfaceName)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv4NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .ipv4NexthopAddress)
+      self.ipv6NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .ipv6NexthopAddress)
+      self.managementType = try container.decodeIfPresent(
+        RouterBgpPeer.ManagementType.self, forKey: .managementType)
+      self.md5AuthenticationKeyName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .md5AuthenticationKeyName)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.peerAsn = try container.decodeIfPresent(Swift.UInt32.self, forKey: .peerAsn)
+      self.peerIpAddress = try container.decodeIfPresent(Swift.String.self, forKey: .peerIpAddress)
+      self.peerIpv4NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerIpv4NexthopAddress)
+      self.peerIpv6NexthopAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerIpv6NexthopAddress)
+      self.routerApplianceInstance = try container.decodeIfPresent(
+        Swift.String.self, forKey: .routerApplianceInstance)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.advertiseMode, forKey: .advertiseMode)
+      try container.encode(self.advertisedGroups, forKey: .advertisedGroups)
+      try container.encode(self.advertisedIpRanges, forKey: .advertisedIpRanges)
+      try container.encodeIfPresent(self.advertisedRoutePriority, forKey: .advertisedRoutePriority)
+      try container.encodeIfPresent(self.bfd, forKey: .bfd)
+      try container.encode(self.customLearnedIpRanges, forKey: .customLearnedIpRanges)
+      try container.encodeIfPresent(
+        self.customLearnedRoutePriority, forKey: .customLearnedRoutePriority)
+      try container.encodeIfPresent(self.enable, forKey: .enable)
+      try container.encodeIfPresent(self.enableIpv4, forKey: .enableIpv4)
+      try container.encodeIfPresent(self.enableIpv6, forKey: .enableIpv6)
+      try container.encode(self.exportPolicies, forKey: .exportPolicies)
+      try container.encode(self.importPolicies, forKey: .importPolicies)
+      try container.encodeIfPresent(self.interfaceName, forKey: .interfaceName)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv4NexthopAddress, forKey: .ipv4NexthopAddress)
+      try container.encodeIfPresent(self.ipv6NexthopAddress, forKey: .ipv6NexthopAddress)
+      try container.encodeIfPresent(self.managementType, forKey: .managementType)
+      try container.encodeIfPresent(
+        self.md5AuthenticationKeyName, forKey: .md5AuthenticationKeyName)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.peerAsn, forKey: .peerAsn)
+      try container.encodeIfPresent(self.peerIpAddress, forKey: .peerIpAddress)
+      try container.encodeIfPresent(self.peerIpv4NexthopAddress, forKey: .peerIpv4NexthopAddress)
+      try container.encodeIfPresent(self.peerIpv6NexthopAddress, forKey: .peerIpv6NexthopAddress)
+      try container.encodeIfPresent(self.routerApplianceInstance, forKey: .routerApplianceInstance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [advertiseMode][google.cloud.compute.v1.RouterBgpPeer.advertiseMode] field.

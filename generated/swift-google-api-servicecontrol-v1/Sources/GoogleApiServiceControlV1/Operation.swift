@@ -108,6 +108,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Unimplemented.
   public var extensions: [GoogleCloudWKT.`Any`] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Operation`.
   public init() {}
 
@@ -122,6 +124,98 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let operationId = CodingKeys(stringValue: "operationId")
+    static let operationName = CodingKeys(stringValue: "operationName")
+    static let consumerId = CodingKeys(stringValue: "consumerId")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let metricValueSets = CodingKeys(stringValue: "metricValueSets")
+    static let logEntries = CodingKeys(stringValue: "logEntries")
+    static let importance = CodingKeys(stringValue: "importance")
+    static let userLabels = CodingKeys(stringValue: "userLabels")
+    static let extensions = CodingKeys(stringValue: "extensions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "operationId",
+      "operationName",
+      "consumerId",
+      "startTime",
+      "endTime",
+      "labels",
+      "metricValueSets",
+      "logEntries",
+      "importance",
+      "userLabels",
+      "extensions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
+      self.operationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationName) {
+      self.operationName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consumerId) {
+      self.consumerId = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([MetricValueSet].self, forKey: .metricValueSets) {
+      self.metricValueSets = value
+    }
+    if let value = try container.decodeIfPresent([LogEntry].self, forKey: .logEntries) {
+      self.logEntries = value
+    }
+    if let value = try container.decodeIfPresent(Operation.Importance.self, forKey: .importance) {
+      self.importance = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .userLabels)
+    {
+      self.userLabels = value
+    }
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.`Any`].self, forKey: .extensions) {
+      self.extensions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.operationId, forKey: .operationId)
+    try container.encode(self.operationName, forKey: .operationName)
+    try container.encode(self.consumerId, forKey: .consumerId)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.metricValueSets, forKey: .metricValueSets)
+    try container.encode(self.logEntries, forKey: .logEntries)
+    try container.encode(self.importance, forKey: .importance)
+    try container.encode(self.userLabels, forKey: .userLabels)
+    try container.encode(self.extensions, forKey: .extensions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines the importance of the data contained in the operation.

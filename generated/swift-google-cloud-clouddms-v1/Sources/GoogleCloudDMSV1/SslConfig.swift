@@ -40,6 +40,8 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// certificate to verify it's connecting to the right host.
   public var caCertificate: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SslConfig`.
   public init() {}
 
@@ -54,6 +56,56 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let clientKey = CodingKeys(stringValue: "clientKey")
+    static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+    static let caCertificate = CodingKeys(stringValue: "caCertificate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "clientKey",
+      "clientCertificate",
+      "caCertificate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(SslConfig.SslType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+      self.clientKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+      self.clientCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+      self.caCertificate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.clientKey, forKey: .clientKey)
+    try container.encode(self.clientCertificate, forKey: .clientCertificate)
+    try container.encode(self.caCertificate, forKey: .caCertificate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies The kind of ssl configuration used.

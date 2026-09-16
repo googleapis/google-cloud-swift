@@ -45,6 +45,8 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Some services might not provide the result.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Operation`.
   public init() {}
 
@@ -61,19 +63,36 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case metadata = "metadata"
-    case done = "done"
-    case error = "error"
-    case response = "response"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let done = CodingKeys(stringValue: "done")
+    static let error = CodingKeys(stringValue: "error")
+    static let response = CodingKeys(stringValue: "response")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "metadata",
+      "done",
+      "error",
+      "response",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.metadata = try container.decodeIfPresent(GoogleCloudWKT.`Any`.self, forKey: .metadata)
-    self.done = try container.decode(Swift.Bool.self, forKey: .done)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .done) {
+      self.done = value
+    }
 
     var result: OneOf_Result? = nil
     let resultCheckAndSet = {
@@ -92,12 +111,16 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.response(response))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
     try container.encode(self.done, forKey: .done)
 
     if let choice = self.result {
@@ -107,6 +130,9 @@ public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .response(let value):
         try container.encode(value, forKey: .response)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

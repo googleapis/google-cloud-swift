@@ -41,6 +41,8 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// detected to have the most likelihood of being spoken in the audio.
   public var languageCode: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpeechRecognitionResult`.
   public init() {}
 
@@ -55,6 +57,57 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let alternatives = CodingKeys(stringValue: "alternatives")
+    static let channelTag = CodingKeys(stringValue: "channelTag")
+    static let resultEndOffset = CodingKeys(stringValue: "resultEndOffset")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "alternatives",
+      "channelTag",
+      "resultEndOffset",
+      "languageCode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [SpeechRecognitionAlternative].self, forKey: .alternatives)
+    {
+      self.alternatives = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelTag) {
+      self.channelTag = value
+    }
+    self.resultEndOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .resultEndOffset)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.alternatives, forKey: .alternatives)
+    try container.encode(self.channelTag, forKey: .channelTag)
+    try container.encodeIfPresent(self.resultEndOffset, forKey: .resultEndOffset)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

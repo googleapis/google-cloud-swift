@@ -31,6 +31,8 @@
     /// Optional. Config for ranking and reranking.
     public var ranking: RagRetrievalConfig.Ranking? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagRetrievalConfig`.
     public init() {}
 
@@ -47,6 +49,47 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let topK = CodingKeys(stringValue: "topK")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let ranking = CodingKeys(stringValue: "ranking")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "topK",
+        "filter",
+        "ranking",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK) {
+        self.topK = value
+      }
+      self.filter = try container.decodeIfPresent(RagRetrievalConfig.Filter.self, forKey: .filter)
+      self.ranking = try container.decodeIfPresent(
+        RagRetrievalConfig.Ranking.self, forKey: .ranking)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.topK, forKey: .topK)
+      try container.encodeIfPresent(self.filter, forKey: .filter)
+      try container.encodeIfPresent(self.ranking, forKey: .ranking)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Config for filters.
     public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -57,6 +100,8 @@
       /// Filter contexts retrieved from the vector DB based on either vector
       /// distance or vector similarity.
       public var vectorDbThreshold: OneOf_VectorDbThreshold? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Filter`.
       public init() {}
@@ -74,15 +119,28 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case vectorDistanceThreshold = "vectorDistanceThreshold"
-        case vectorSimilarityThreshold = "vectorSimilarityThreshold"
-        case metadataFilter = "metadataFilter"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let vectorDistanceThreshold = CodingKeys(stringValue: "vectorDistanceThreshold")
+        static let vectorSimilarityThreshold = CodingKeys(stringValue: "vectorSimilarityThreshold")
+        static let metadataFilter = CodingKeys(stringValue: "metadataFilter")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "vectorDistanceThreshold",
+          "vectorSimilarityThreshold",
+          "metadataFilter",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.metadataFilter = try container.decode(Swift.String.self, forKey: .metadataFilter)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataFilter) {
+          self.metadataFilter = value
+        }
 
         var vectorDbThreshold: OneOf_VectorDbThreshold? = nil
         let vectorDbThresholdCheckAndSet = {
@@ -105,6 +163,10 @@
           try vectorDbThresholdCheckAndSet(.vectorSimilarityThreshold(vectorSimilarityThreshold))
         }
         self.vectorDbThreshold = vectorDbThreshold
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -118,6 +180,9 @@
           case .vectorSimilarityThreshold(let value):
             try container.encode(value, forKey: .vectorSimilarityThreshold)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -150,6 +215,8 @@
       /// Config options for ranking. Currently only Rank Service is supported.
       public var rankingConfig: OneOf_RankingConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Ranking`.
       public init() {}
 
@@ -166,9 +233,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case rankService = "rankService"
-        case llmRanker = "llmRanker"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let rankService = CodingKeys(stringValue: "rankService")
+        static let llmRanker = CodingKeys(stringValue: "llmRanker")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "rankService",
+          "llmRanker",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -195,6 +272,10 @@
           try rankingConfigCheckAndSet(.llmRanker(llmRanker))
         }
         self.rankingConfig = rankingConfig
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -208,6 +289,9 @@
             try container.encode(value, forKey: .llmRanker)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Config for Rank Service.
@@ -217,6 +301,9 @@
         /// Optional. The model name of the rank service.
         /// Format: `semantic-ranker-512@latest`
         public var modelName: Swift.String? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `RankService`.
         public init() {}
@@ -232,6 +319,36 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelName = CodingKeys(stringValue: "modelName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelName"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.modelName = try container.decodeIfPresent(Swift.String.self, forKey: .modelName)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.modelName, forKey: .modelName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -254,6 +371,9 @@
         /// Format: `gemini-1.5-pro`
         public var modelName: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `LlmRanker`.
         public init() {}
 
@@ -268,6 +388,36 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelName = CodingKeys(stringValue: "modelName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelName"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.modelName = try container.decodeIfPresent(Swift.String.self, forKey: .modelName)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.modelName, forKey: .modelName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

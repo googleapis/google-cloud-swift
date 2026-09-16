@@ -43,6 +43,8 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// effect. Exactly one of the fields MUST be specified.
   public var recurrence: OneOf_Recurrence? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExclusionWindow`.
   public init() {}
 
@@ -59,12 +61,25 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case startTime = "startTime"
-    case duration = "duration"
-    case singleOccurrenceDate = "singleOccurrenceDate"
-    case daily = "daily"
-    case daysOfWeek = "daysOfWeek"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let singleOccurrenceDate = CodingKeys(stringValue: "singleOccurrenceDate")
+    static let daily = CodingKeys(stringValue: "daily")
+    static let daysOfWeek = CodingKeys(stringValue: "daysOfWeek")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startTime",
+      "duration",
+      "singleOccurrenceDate",
+      "daily",
+      "daysOfWeek",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -96,12 +111,16 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try recurrenceCheckAndSet(.daysOfWeek(daysOfWeek))
     }
     self.recurrence = recurrence
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
 
     if let choice = self.recurrence {
       switch choice {
@@ -113,6 +132,9 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .daysOfWeek)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Holds repeated DaysOfWeek values as a container.
@@ -121,6 +143,8 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Optional. A list of days of week.
     public var daysOfWeek: [GoogleType.DayOfWeek] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DayOfWeekList`.
     public init() {}
@@ -136,6 +160,39 @@ public struct ExclusionWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let daysOfWeek = CodingKeys(stringValue: "daysOfWeek")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "daysOfWeek"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GoogleType.DayOfWeek].self, forKey: .daysOfWeek)
+      {
+        self.daysOfWeek = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

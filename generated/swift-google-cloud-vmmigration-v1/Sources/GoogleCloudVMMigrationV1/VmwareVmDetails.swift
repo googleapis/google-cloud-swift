@@ -63,6 +63,8 @@ public struct VmwareVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The CPU architecture.
   public var architecture: VmwareVmDetails.VmArchitecture = VmwareVmDetails.VmArchitecture()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmwareVmDetails`.
   public init() {}
 
@@ -77,6 +79,117 @@ public struct VmwareVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmId = CodingKeys(stringValue: "vmId")
+    static let datacenterId = CodingKeys(stringValue: "datacenterId")
+    static let datacenterDescription = CodingKeys(stringValue: "datacenterDescription")
+    static let uuid = CodingKeys(stringValue: "uuid")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let powerState = CodingKeys(stringValue: "powerState")
+    static let cpuCount = CodingKeys(stringValue: "cpuCount")
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let diskCount = CodingKeys(stringValue: "diskCount")
+    static let committedStorageMb = CodingKeys(stringValue: "committedStorageMb")
+    static let guestDescription = CodingKeys(stringValue: "guestDescription")
+    static let bootOption = CodingKeys(stringValue: "bootOption")
+    static let architecture = CodingKeys(stringValue: "architecture")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmId",
+      "datacenterId",
+      "datacenterDescription",
+      "uuid",
+      "displayName",
+      "powerState",
+      "cpuCount",
+      "memoryMb",
+      "diskCount",
+      "committedStorageMb",
+      "guestDescription",
+      "bootOption",
+      "architecture",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmId) {
+      self.vmId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datacenterId) {
+      self.datacenterId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datacenterDescription)
+    {
+      self.datacenterDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+      self.uuid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      VmwareVmDetails.PowerState.self, forKey: .powerState)
+    {
+      self.powerState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+      self.cpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskCount) {
+      self.diskCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .committedStorageMb) {
+      self.committedStorageMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .guestDescription) {
+      self.guestDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      VmwareVmDetails.BootOption.self, forKey: .bootOption)
+    {
+      self.bootOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      VmwareVmDetails.VmArchitecture.self, forKey: .architecture)
+    {
+      self.architecture = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmId, forKey: .vmId)
+    try container.encode(self.datacenterId, forKey: .datacenterId)
+    try container.encode(self.datacenterDescription, forKey: .datacenterDescription)
+    try container.encode(self.uuid, forKey: .uuid)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.powerState, forKey: .powerState)
+    try container.encode(self.cpuCount, forKey: .cpuCount)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.diskCount, forKey: .diskCount)
+    try container.encode(self.committedStorageMb, forKey: .committedStorageMb)
+    try container.encode(self.guestDescription, forKey: .guestDescription)
+    try container.encode(self.bootOption, forKey: .bootOption)
+    try container.encode(self.architecture, forKey: .architecture)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values for the power state of the VM.

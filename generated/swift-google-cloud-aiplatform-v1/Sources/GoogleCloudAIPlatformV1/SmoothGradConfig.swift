@@ -38,6 +38,8 @@
     /// prior to computing gradients.
     public var gradientNoiseSigma: OneOf_GradientNoiseSigma? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SmoothGradConfig`.
     public init() {}
 
@@ -54,15 +56,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case noiseSigma = "noiseSigma"
-      case featureNoiseSigma = "featureNoiseSigma"
-      case noisySampleCount = "noisySampleCount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let noiseSigma = CodingKeys(stringValue: "noiseSigma")
+      static let featureNoiseSigma = CodingKeys(stringValue: "featureNoiseSigma")
+      static let noisySampleCount = CodingKeys(stringValue: "noisySampleCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "noiseSigma",
+        "featureNoiseSigma",
+        "noisySampleCount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.noisySampleCount = try container.decode(Swift.Int32.self, forKey: .noisySampleCount)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .noisySampleCount) {
+        self.noisySampleCount = value
+      }
 
       var gradientNoiseSigma: OneOf_GradientNoiseSigma? = nil
       let gradientNoiseSigmaCheckAndSet = {
@@ -83,6 +98,10 @@
         try gradientNoiseSigmaCheckAndSet(.featureNoiseSigma(featureNoiseSigma))
       }
       self.gradientNoiseSigma = gradientNoiseSigma
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,6 +115,9 @@
         case .featureNoiseSigma(let value):
           try container.encode(value, forKey: .featureNoiseSigma)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -56,6 +56,8 @@ public struct FirewallPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// specified. A single policy can contain up to 16 actions.
   public var actions: [FirewallAction] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FirewallPolicy`.
   public init() {}
 
@@ -70,6 +72,62 @@ public struct FirewallPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let path = CodingKeys(stringValue: "path")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let actions = CodingKeys(stringValue: "actions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "path",
+      "condition",
+      "actions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+      self.condition = value
+    }
+    if let value = try container.decodeIfPresent([FirewallAction].self, forKey: .actions) {
+      self.actions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.condition, forKey: .condition)
+    try container.encode(self.actions, forKey: .actions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

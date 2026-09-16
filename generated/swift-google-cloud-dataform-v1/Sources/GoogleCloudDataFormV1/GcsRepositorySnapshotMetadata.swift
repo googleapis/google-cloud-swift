@@ -32,6 +32,8 @@ public struct GcsRepositorySnapshotMetadata: Codable, Equatable, GoogleCloudWKT.
   /// https://cloud.google.com/storage/docs/metadata#generation-number.
   public var generation: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsRepositorySnapshotMetadata`.
   public init() {}
 
@@ -48,18 +50,39 @@ public struct GcsRepositorySnapshotMetadata: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case repositorySnapshotUri = "repositorySnapshotUri"
-    case crc32CChecksum = "crc32cChecksum"
-    case generation = "generation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repositorySnapshotUri = CodingKeys(stringValue: "repositorySnapshotUri")
+    static let crc32CChecksum = CodingKeys(stringValue: "crc32cChecksum")
+    static let generation = CodingKeys(stringValue: "generation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repositorySnapshotUri",
+      "crc32cChecksum",
+      "generation",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.repositorySnapshotUri = try container.decode(
-      Swift.String.self, forKey: .repositorySnapshotUri)
-    self.crc32CChecksum = try container.decode(Swift.String.self, forKey: .crc32CChecksum)
-    self.generation = try container.decode(Swift.Int64.self, forKey: .generation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositorySnapshotUri)
+    {
+      self.repositorySnapshotUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crc32CChecksum) {
+      self.crc32CChecksum = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -67,6 +90,9 @@ public struct GcsRepositorySnapshotMetadata: Codable, Equatable, GoogleCloudWKT.
     try container.encode(self.repositorySnapshotUri, forKey: .repositorySnapshotUri)
     try container.encode(self.crc32CChecksum, forKey: .crc32CChecksum)
     try container.encode(self.generation, forKey: .generation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -126,6 +126,8 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The message to send to the worker.
   public var messageType: OneOf_MessageType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Task`.
   public init() {}
 
@@ -142,34 +144,61 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case appEngineHttpRequest = "appEngineHttpRequest"
-    case httpRequest = "httpRequest"
-    case scheduleTime = "scheduleTime"
-    case createTime = "createTime"
-    case dispatchDeadline = "dispatchDeadline"
-    case dispatchCount = "dispatchCount"
-    case responseCount = "responseCount"
-    case firstAttempt = "firstAttempt"
-    case lastAttempt = "lastAttempt"
-    case view = "view"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let appEngineHttpRequest = CodingKeys(stringValue: "appEngineHttpRequest")
+    static let httpRequest = CodingKeys(stringValue: "httpRequest")
+    static let scheduleTime = CodingKeys(stringValue: "scheduleTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let dispatchDeadline = CodingKeys(stringValue: "dispatchDeadline")
+    static let dispatchCount = CodingKeys(stringValue: "dispatchCount")
+    static let responseCount = CodingKeys(stringValue: "responseCount")
+    static let firstAttempt = CodingKeys(stringValue: "firstAttempt")
+    static let lastAttempt = CodingKeys(stringValue: "lastAttempt")
+    static let view = CodingKeys(stringValue: "view")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "appEngineHttpRequest",
+      "httpRequest",
+      "scheduleTime",
+      "createTime",
+      "dispatchDeadline",
+      "dispatchCount",
+      "responseCount",
+      "firstAttempt",
+      "lastAttempt",
+      "view",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.scheduleTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .scheduleTime)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.dispatchDeadline = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .dispatchDeadline)
-    self.dispatchCount = try container.decode(Swift.Int32.self, forKey: .dispatchCount)
-    self.responseCount = try container.decode(Swift.Int32.self, forKey: .responseCount)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dispatchCount) {
+      self.dispatchCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .responseCount) {
+      self.responseCount = value
+    }
     self.firstAttempt = try container.decodeIfPresent(Attempt.self, forKey: .firstAttempt)
     self.lastAttempt = try container.decodeIfPresent(Attempt.self, forKey: .lastAttempt)
-    self.view = try container.decode(Task.View.self, forKey: .view)
+    if let value = try container.decodeIfPresent(Task.View.self, forKey: .view) {
+      self.view = value
+    }
 
     var messageType: OneOf_MessageType? = nil
     let messageTypeCheckAndSet = {
@@ -190,18 +219,22 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try messageTypeCheckAndSet(.httpRequest(httpRequest))
     }
     self.messageType = messageType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.scheduleTime, forKey: .scheduleTime)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.dispatchDeadline, forKey: .dispatchDeadline)
+    try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.dispatchDeadline, forKey: .dispatchDeadline)
     try container.encode(self.dispatchCount, forKey: .dispatchCount)
     try container.encode(self.responseCount, forKey: .responseCount)
-    try container.encode(self.firstAttempt, forKey: .firstAttempt)
-    try container.encode(self.lastAttempt, forKey: .lastAttempt)
+    try container.encodeIfPresent(self.firstAttempt, forKey: .firstAttempt)
+    try container.encodeIfPresent(self.lastAttempt, forKey: .lastAttempt)
     try container.encode(self.view, forKey: .view)
 
     if let choice = self.messageType {
@@ -211,6 +244,9 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .httpRequest(let value):
         try container.encode(value, forKey: .httpRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

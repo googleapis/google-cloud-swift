@@ -48,6 +48,8 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Additional information about the Query metadata.
   public var detail: OneOf_Detail? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionEvent`.
   public init() {}
 
@@ -64,25 +66,53 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case message = "message"
-    case userId = "userId"
-    case sessionId = "sessionId"
-    case type = "type"
-    case query = "query"
-    case eventSucceeded = "eventSucceeded"
-    case fastStartupEnabled = "fastStartupEnabled"
-    case unassignedDuration = "unassignedDuration"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let userId = CodingKeys(stringValue: "userId")
+    static let sessionId = CodingKeys(stringValue: "sessionId")
+    static let type = CodingKeys(stringValue: "type")
+    static let query = CodingKeys(stringValue: "query")
+    static let eventSucceeded = CodingKeys(stringValue: "eventSucceeded")
+    static let fastStartupEnabled = CodingKeys(stringValue: "fastStartupEnabled")
+    static let unassignedDuration = CodingKeys(stringValue: "unassignedDuration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "userId",
+      "sessionId",
+      "type",
+      "query",
+      "eventSucceeded",
+      "fastStartupEnabled",
+      "unassignedDuration",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.message = try container.decode(Swift.String.self, forKey: .message)
-    self.userId = try container.decode(Swift.String.self, forKey: .userId)
-    self.sessionId = try container.decode(Swift.String.self, forKey: .sessionId)
-    self.type = try container.decode(SessionEvent.EventType.self, forKey: .type)
-    self.eventSucceeded = try container.decode(Swift.Bool.self, forKey: .eventSucceeded)
-    self.fastStartupEnabled = try container.decode(Swift.Bool.self, forKey: .fastStartupEnabled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userId) {
+      self.userId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
+      self.sessionId = value
+    }
+    if let value = try container.decodeIfPresent(SessionEvent.EventType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .eventSucceeded) {
+      self.eventSucceeded = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fastStartupEnabled) {
+      self.fastStartupEnabled = value
+    }
     self.unassignedDuration = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .unassignedDuration)
 
@@ -100,6 +130,10 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailCheckAndSet(.query(query))
     }
     self.detail = detail
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -110,13 +144,16 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.type, forKey: .type)
     try container.encode(self.eventSucceeded, forKey: .eventSucceeded)
     try container.encode(self.fastStartupEnabled, forKey: .fastStartupEnabled)
-    try container.encode(self.unassignedDuration, forKey: .unassignedDuration)
+    try container.encodeIfPresent(self.unassignedDuration, forKey: .unassignedDuration)
 
     if let choice = self.detail {
       switch choice {
       case .query(let value):
         try container.encode(value, forKey: .query)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -142,6 +179,8 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The data processed by the query.
     public var dataProcessedBytes: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryDetail`.
     public init() {}
 
@@ -156,6 +195,68 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let queryId = CodingKeys(stringValue: "queryId")
+      static let queryText = CodingKeys(stringValue: "queryText")
+      static let engine = CodingKeys(stringValue: "engine")
+      static let duration = CodingKeys(stringValue: "duration")
+      static let resultSizeBytes = CodingKeys(stringValue: "resultSizeBytes")
+      static let dataProcessedBytes = CodingKeys(stringValue: "dataProcessedBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "queryId",
+        "queryText",
+        "engine",
+        "duration",
+        "resultSizeBytes",
+        "dataProcessedBytes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryId) {
+        self.queryId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryText) {
+        self.queryText = value
+      }
+      if let value = try container.decodeIfPresent(
+        SessionEvent.QueryDetail.Engine.self, forKey: .engine)
+      {
+        self.engine = value
+      }
+      self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .resultSizeBytes) {
+        self.resultSizeBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataProcessedBytes) {
+        self.dataProcessedBytes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.queryId, forKey: .queryId)
+      try container.encode(self.queryText, forKey: .queryText)
+      try container.encode(self.engine, forKey: .engine)
+      try container.encodeIfPresent(self.duration, forKey: .duration)
+      try container.encode(self.resultSizeBytes, forKey: .resultSizeBytes)
+      try container.encode(self.dataProcessedBytes, forKey: .dataProcessedBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Query Execution engine.

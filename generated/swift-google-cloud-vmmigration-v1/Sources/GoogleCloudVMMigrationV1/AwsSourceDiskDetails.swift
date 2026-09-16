@@ -33,6 +33,8 @@ public struct AwsSourceDiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Optional. Output only. A map of AWS volume tags.
   public var tags: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsSourceDiskDetails`.
   public init() {}
 
@@ -47,6 +49,57 @@ public struct AwsSourceDiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let volumeId = CodingKeys(stringValue: "volumeId")
+    static let sizeGib = CodingKeys(stringValue: "sizeGib")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let tags = CodingKeys(stringValue: "tags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "volumeId",
+      "sizeGib",
+      "diskType",
+      "tags",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeId) {
+      self.volumeId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGib) {
+      self.sizeGib = value
+    }
+    if let value = try container.decodeIfPresent(AwsSourceDiskDetails.Type_.self, forKey: .diskType)
+    {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.volumeId, forKey: .volumeId)
+    try container.encode(self.sizeGib, forKey: .sizeGib)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encode(self.tags, forKey: .tags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values for disk types.

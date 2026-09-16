@@ -76,6 +76,8 @@
     /// [google.cloud.dialogflow.v2.Intent.Message.platform]: <doc:Intent/Message/platform>
     public var platform: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryParameters`.
     public init() {}
 
@@ -90,6 +92,87 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let geoLocation = CodingKeys(stringValue: "geoLocation")
+      static let contexts = CodingKeys(stringValue: "contexts")
+      static let resetContexts = CodingKeys(stringValue: "resetContexts")
+      static let sessionEntityTypes = CodingKeys(stringValue: "sessionEntityTypes")
+      static let payload = CodingKeys(stringValue: "payload")
+      static let sentimentAnalysisRequestConfig = CodingKeys(
+        stringValue: "sentimentAnalysisRequestConfig")
+      static let webhookHeaders = CodingKeys(stringValue: "webhookHeaders")
+      static let platform = CodingKeys(stringValue: "platform")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeZone",
+        "geoLocation",
+        "contexts",
+        "resetContexts",
+        "sessionEntityTypes",
+        "payload",
+        "sentimentAnalysisRequestConfig",
+        "webhookHeaders",
+        "platform",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      self.geoLocation = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .geoLocation)
+      if let value = try container.decodeIfPresent([Context].self, forKey: .contexts) {
+        self.contexts = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .resetContexts) {
+        self.resetContexts = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SessionEntityType].self, forKey: .sessionEntityTypes)
+      {
+        self.sessionEntityTypes = value
+      }
+      self.payload = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .payload)
+      self.sentimentAnalysisRequestConfig = try container.decodeIfPresent(
+        SentimentAnalysisRequestConfig.self, forKey: .sentimentAnalysisRequestConfig)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .webhookHeaders)
+      {
+        self.webhookHeaders = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .platform) {
+        self.platform = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.geoLocation, forKey: .geoLocation)
+      try container.encode(self.contexts, forKey: .contexts)
+      try container.encode(self.resetContexts, forKey: .resetContexts)
+      try container.encode(self.sessionEntityTypes, forKey: .sessionEntityTypes)
+      try container.encodeIfPresent(self.payload, forKey: .payload)
+      try container.encodeIfPresent(
+        self.sentimentAnalysisRequestConfig, forKey: .sentimentAnalysisRequestConfig)
+      try container.encode(self.webhookHeaders, forKey: .webhookHeaders)
+      try container.encode(self.platform, forKey: .platform)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

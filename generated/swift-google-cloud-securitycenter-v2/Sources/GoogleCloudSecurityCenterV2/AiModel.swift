@@ -42,6 +42,8 @@ public struct AiModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The user defined display name of model. Ex. baseline-classification-model
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AiModel`.
   public init() {}
 
@@ -56,6 +58,76 @@ public struct AiModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let library = CodingKeys(stringValue: "library")
+    static let location = CodingKeys(stringValue: "location")
+    static let publisher = CodingKeys(stringValue: "publisher")
+    static let deploymentPlatform = CodingKeys(stringValue: "deploymentPlatform")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "domain",
+      "library",
+      "location",
+      "publisher",
+      "deploymentPlatform",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .library) {
+      self.library = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publisher) {
+      self.publisher = value
+    }
+    if let value = try container.decodeIfPresent(
+      AiModel.DeploymentPlatform.self, forKey: .deploymentPlatform)
+    {
+      self.deploymentPlatform = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.library, forKey: .library)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.publisher, forKey: .publisher)
+    try container.encode(self.deploymentPlatform, forKey: .deploymentPlatform)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The platform on which the model is deployed.

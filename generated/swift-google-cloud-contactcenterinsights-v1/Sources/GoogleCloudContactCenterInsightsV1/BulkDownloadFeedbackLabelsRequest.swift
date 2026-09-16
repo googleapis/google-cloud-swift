@@ -63,6 +63,8 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
   /// will be written to.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BulkDownloadFeedbackLabelsRequest`.
   public init() {}
 
@@ -79,26 +81,55 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDestination = "gcsDestination"
-    case parent = "parent"
-    case filter = "filter"
-    case maxDownloadCount = "maxDownloadCount"
-    case feedbackLabelType = "feedbackLabelType"
-    case conversationFilter = "conversationFilter"
-    case templateQaScorecardId = "templateQaScorecardId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDestination = CodingKeys(stringValue: "gcsDestination")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let maxDownloadCount = CodingKeys(stringValue: "maxDownloadCount")
+    static let feedbackLabelType = CodingKeys(stringValue: "feedbackLabelType")
+    static let conversationFilter = CodingKeys(stringValue: "conversationFilter")
+    static let templateQaScorecardId = CodingKeys(stringValue: "templateQaScorecardId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDestination",
+      "parent",
+      "filter",
+      "maxDownloadCount",
+      "feedbackLabelType",
+      "conversationFilter",
+      "templateQaScorecardId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
-    self.maxDownloadCount = try container.decode(Swift.Int32.self, forKey: .maxDownloadCount)
-    self.feedbackLabelType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDownloadCount) {
+      self.maxDownloadCount = value
+    }
+    if let value = try container.decodeIfPresent(
       BulkDownloadFeedbackLabelsRequest.FeedbackLabelType.self, forKey: .feedbackLabelType)
-    self.conversationFilter = try container.decode(Swift.String.self, forKey: .conversationFilter)
-    self.templateQaScorecardId = try container.decode(
+    {
+      self.feedbackLabelType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationFilter) {
+      self.conversationFilter = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .templateQaScorecardId)
+    {
+      self.templateQaScorecardId = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -116,6 +147,10 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -132,6 +167,9 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
       case .gcsDestination(let value):
         try container.encode(value, forKey: .gcsDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -163,6 +201,8 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
     /// Optional. The number of records per file. Applicable for either format.
     public var recordsPerFileCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsDestination`.
     public init() {}
 
@@ -177,6 +217,65 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let format = CodingKeys(stringValue: "format")
+      static let objectUri = CodingKeys(stringValue: "objectUri")
+      static let addWhitespace = CodingKeys(stringValue: "addWhitespace")
+      static let alwaysPrintEmptyFields = CodingKeys(stringValue: "alwaysPrintEmptyFields")
+      static let recordsPerFileCount = CodingKeys(stringValue: "recordsPerFileCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "format",
+        "objectUri",
+        "addWhitespace",
+        "alwaysPrintEmptyFields",
+        "recordsPerFileCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        BulkDownloadFeedbackLabelsRequest.GcsDestination.Format.self, forKey: .format)
+      {
+        self.format = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .objectUri) {
+        self.objectUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .addWhitespace) {
+        self.addWhitespace = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .alwaysPrintEmptyFields)
+      {
+        self.alwaysPrintEmptyFields = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .recordsPerFileCount) {
+        self.recordsPerFileCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.format, forKey: .format)
+      try container.encode(self.objectUri, forKey: .objectUri)
+      try container.encode(self.addWhitespace, forKey: .addWhitespace)
+      try container.encode(self.alwaysPrintEmptyFields, forKey: .alwaysPrintEmptyFields)
+      try container.encode(self.recordsPerFileCount, forKey: .recordsPerFileCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// All permissible file formats.

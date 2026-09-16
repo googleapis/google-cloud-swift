@@ -29,6 +29,8 @@ public struct PercentageAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Pass-Through    => "0.00"
   public var percentage: GoogleType.Decimal? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PercentageAdjustment`.
   public init() {}
 
@@ -43,6 +45,36 @@ public struct PercentageAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let percentage = CodingKeys(stringValue: "percentage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "percentage"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.percentage = try container.decodeIfPresent(GoogleType.Decimal.self, forKey: .percentage)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.percentage, forKey: .percentage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

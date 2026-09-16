@@ -46,6 +46,8 @@
     /// Optional. Dataplex integration settings.
     public var dataplexConfig: MetadataStore.DataplexConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetadataStore`.
     public init() {}
 
@@ -62,12 +64,77 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let description = CodingKeys(stringValue: "description")
+      static let state = CodingKeys(stringValue: "state")
+      static let dataplexConfig = CodingKeys(stringValue: "dataplexConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "createTime",
+        "updateTime",
+        "encryptionSpec",
+        "description",
+        "state",
+        "dataplexConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.state = try container.decodeIfPresent(
+        MetadataStore.MetadataStoreState.self, forKey: .state)
+      self.dataplexConfig = try container.decodeIfPresent(
+        MetadataStore.DataplexConfig.self, forKey: .dataplexConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.dataplexConfig, forKey: .dataplexConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Represents state information for a MetadataStore.
     public struct MetadataStoreState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The disk utilization of the MetadataStore in bytes.
       public var diskUtilizationBytes: Swift.Int64 = Swift.Int64()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MetadataStoreState`.
       public init() {}
@@ -83,6 +150,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let diskUtilizationBytes = CodingKeys(stringValue: "diskUtilizationBytes")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "diskUtilizationBytes"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .diskUtilizationBytes)
+        {
+          self.diskUtilizationBytes = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.diskUtilizationBytes, forKey: .diskUtilizationBytes)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -104,6 +205,8 @@
       /// Vertex Pipelines.
       public var enabledPipelinesLineage: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DataplexConfig`.
       public init() {}
 
@@ -118,6 +221,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enabledPipelinesLineage = CodingKeys(stringValue: "enabledPipelinesLineage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enabledPipelinesLineage"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enabledPipelinesLineage)
+        {
+          self.enabledPipelinesLineage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enabledPipelinesLineage, forKey: .enabledPipelinesLineage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -42,6 +42,8 @@
     /// to follow.
     public var willContinue: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FunctionCall`.
     public init() {}
 
@@ -56,6 +58,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let args = CodingKeys(stringValue: "args")
+      static let partialArgs = CodingKeys(stringValue: "partialArgs")
+      static let willContinue = CodingKeys(stringValue: "willContinue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "args",
+        "partialArgs",
+        "willContinue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.args = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .args)
+      if let value = try container.decodeIfPresent([PartialArg].self, forKey: .partialArgs) {
+        self.partialArgs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .willContinue) {
+        self.willContinue = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.args, forKey: .args)
+      try container.encode(self.partialArgs, forKey: .partialArgs)
+      try container.encode(self.willContinue, forKey: .willContinue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

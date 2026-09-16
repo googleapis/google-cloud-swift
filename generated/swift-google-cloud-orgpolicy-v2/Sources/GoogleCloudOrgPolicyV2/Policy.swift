@@ -55,6 +55,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ensure the client has an up-to-date value before proceeding.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Policy`.
   public init() {}
 
@@ -69,6 +71,56 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let spec = CodingKeys(stringValue: "spec")
+    static let alternate = CodingKeys(stringValue: "alternate")
+    static let dryRunSpec = CodingKeys(stringValue: "dryRunSpec")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "spec",
+      "alternate",
+      "dryRunSpec",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.spec = try container.decodeIfPresent(PolicySpec.self, forKey: .spec)
+    self.alternate = try container.decodeIfPresent(AlternatePolicySpec.self, forKey: .alternate)
+    self.dryRunSpec = try container.decodeIfPresent(PolicySpec.self, forKey: .dryRunSpec)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.spec, forKey: .spec)
+    try container.encodeIfPresent(self.alternate, forKey: .alternate)
+    try container.encodeIfPresent(self.dryRunSpec, forKey: .dryRunSpec)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

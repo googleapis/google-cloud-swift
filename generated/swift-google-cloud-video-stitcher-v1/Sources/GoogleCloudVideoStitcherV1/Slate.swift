@@ -32,6 +32,8 @@ public struct Slate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// gam_slate has all the GAM-related attributes of slates.
   public var gamSlate: Slate.GamSlate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Slate`.
   public init() {}
 
@@ -48,6 +50,48 @@ public struct Slate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let gamSlate = CodingKeys(stringValue: "gamSlate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uri",
+      "gamSlate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    self.gamSlate = try container.decodeIfPresent(Slate.GamSlate.self, forKey: .gamSlate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encodeIfPresent(self.gamSlate, forKey: .gamSlate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// GamSlate object has Google Ad Manager (GAM) related properties for the
   /// slate.
   public struct GamSlate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -58,6 +102,8 @@ public struct Slate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Output only. The identifier generated for the slate by GAM.
     public var gamSlateId: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `GamSlate`.
     public init() {}
@@ -73,6 +119,44 @@ public struct Slate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let networkCode = CodingKeys(stringValue: "networkCode")
+      static let gamSlateId = CodingKeys(stringValue: "gamSlateId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "networkCode",
+        "gamSlateId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkCode) {
+        self.networkCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .gamSlateId) {
+        self.gamSlateId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.networkCode, forKey: .networkCode)
+      try container.encode(self.gamSlateId, forKey: .gamSlateId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

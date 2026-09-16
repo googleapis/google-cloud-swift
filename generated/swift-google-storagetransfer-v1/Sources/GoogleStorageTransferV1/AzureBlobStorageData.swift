@@ -82,6 +82,8 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.storagetransfer.v1.AzureBlobStorageData.credentials_secret]: <doc:AzureBlobStorageData/credentialsSecret>
   public var federatedIdentityConfig: AzureBlobStorageData.FederatedIdentityConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureBlobStorageData`.
   public init() {}
 
@@ -96,6 +98,66 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageAccount = CodingKeys(stringValue: "storageAccount")
+    static let azureCredentials = CodingKeys(stringValue: "azureCredentials")
+    static let container = CodingKeys(stringValue: "container")
+    static let path = CodingKeys(stringValue: "path")
+    static let credentialsSecret = CodingKeys(stringValue: "credentialsSecret")
+    static let federatedIdentityConfig = CodingKeys(stringValue: "federatedIdentityConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storageAccount",
+      "azureCredentials",
+      "container",
+      "path",
+      "credentialsSecret",
+      "federatedIdentityConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageAccount) {
+      self.storageAccount = value
+    }
+    self.azureCredentials = try container.decodeIfPresent(
+      AzureCredentials.self, forKey: .azureCredentials)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .container) {
+      self.container = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .credentialsSecret) {
+      self.credentialsSecret = value
+    }
+    self.federatedIdentityConfig = try container.decodeIfPresent(
+      AzureBlobStorageData.FederatedIdentityConfig.self, forKey: .federatedIdentityConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.storageAccount, forKey: .storageAccount)
+    try container.encodeIfPresent(self.azureCredentials, forKey: .azureCredentials)
+    try container.encode(self.container, forKey: .container)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.credentialsSecret, forKey: .credentialsSecret)
+    try container.encodeIfPresent(self.federatedIdentityConfig, forKey: .federatedIdentityConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The identity of an Azure application through which Storage Transfer Service
@@ -119,6 +181,8 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// credentials.
     public var tenantId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FederatedIdentityConfig`.
     public init() {}
 
@@ -133,6 +197,44 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientId = CodingKeys(stringValue: "clientId")
+      static let tenantId = CodingKeys(stringValue: "tenantId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientId",
+        "tenantId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+        self.clientId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenantId) {
+        self.tenantId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clientId, forKey: .clientId)
+      try container.encode(self.tenantId, forKey: .tenantId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

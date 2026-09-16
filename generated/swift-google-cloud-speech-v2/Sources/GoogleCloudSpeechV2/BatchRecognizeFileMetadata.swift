@@ -56,6 +56,8 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleCloudWKT._An
   /// The audio source, which is a Google Cloud Storage URI.
   public var audioSource: OneOf_AudioSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchRecognizeFileMetadata`.
   public init() {}
 
@@ -72,10 +74,21 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case uri = "uri"
-    case config = "config"
-    case configMask = "configMask"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let config = CodingKeys(stringValue: "config")
+    static let configMask = CodingKeys(stringValue: "configMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "config",
+      "configMask",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -98,18 +111,25 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleCloudWKT._An
       try audioSourceCheckAndSet(.uri(uri))
     }
     self.audioSource = audioSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.config, forKey: .config)
-    try container.encode(self.configMask, forKey: .configMask)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.configMask, forKey: .configMask)
 
     if let choice = self.audioSource {
       switch choice {
       case .uri(let value):
         try container.encode(value, forKey: .uri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

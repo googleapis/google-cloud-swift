@@ -42,6 +42,8 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the same shape, for example, daily ETL jobs.
   public var cohort: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeConfig`.
   public init() {}
 
@@ -56,6 +58,68 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let version = CodingKeys(stringValue: "version")
+    static let containerImage = CodingKeys(stringValue: "containerImage")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let repositoryConfig = CodingKeys(stringValue: "repositoryConfig")
+    static let autotuningConfig = CodingKeys(stringValue: "autotuningConfig")
+    static let cohort = CodingKeys(stringValue: "cohort")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "version",
+      "containerImage",
+      "properties",
+      "repositoryConfig",
+      "autotuningConfig",
+      "cohort",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerImage) {
+      self.containerImage = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    self.repositoryConfig = try container.decodeIfPresent(
+      RepositoryConfig.self, forKey: .repositoryConfig)
+    self.autotuningConfig = try container.decodeIfPresent(
+      AutotuningConfig.self, forKey: .autotuningConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cohort) {
+      self.cohort = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.containerImage, forKey: .containerImage)
+    try container.encode(self.properties, forKey: .properties)
+    try container.encodeIfPresent(self.repositoryConfig, forKey: .repositoryConfig)
+    try container.encodeIfPresent(self.autotuningConfig, forKey: .autotuningConfig)
+    try container.encode(self.cohort, forKey: .cohort)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

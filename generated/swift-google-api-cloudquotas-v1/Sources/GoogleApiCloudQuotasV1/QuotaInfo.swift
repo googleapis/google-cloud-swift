@@ -85,6 +85,8 @@ public struct QuotaInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// https://console.cloud.google.com/iam-admin/quotas.
   public var serviceRequestQuotaUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaInfo`.
   public init() {}
 
@@ -99,6 +101,130 @@ public struct QuotaInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let quotaId = CodingKeys(stringValue: "quotaId")
+    static let metric = CodingKeys(stringValue: "metric")
+    static let service = CodingKeys(stringValue: "service")
+    static let isPrecise = CodingKeys(stringValue: "isPrecise")
+    static let refreshInterval = CodingKeys(stringValue: "refreshInterval")
+    static let containerType = CodingKeys(stringValue: "containerType")
+    static let dimensions = CodingKeys(stringValue: "dimensions")
+    static let metricDisplayName = CodingKeys(stringValue: "metricDisplayName")
+    static let quotaDisplayName = CodingKeys(stringValue: "quotaDisplayName")
+    static let metricUnit = CodingKeys(stringValue: "metricUnit")
+    static let quotaIncreaseEligibility = CodingKeys(stringValue: "quotaIncreaseEligibility")
+    static let isFixed = CodingKeys(stringValue: "isFixed")
+    static let dimensionsInfos = CodingKeys(stringValue: "dimensionsInfos")
+    static let isConcurrent = CodingKeys(stringValue: "isConcurrent")
+    static let serviceRequestQuotaUri = CodingKeys(stringValue: "serviceRequestQuotaUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "quotaId",
+      "metric",
+      "service",
+      "isPrecise",
+      "refreshInterval",
+      "containerType",
+      "dimensions",
+      "metricDisplayName",
+      "quotaDisplayName",
+      "metricUnit",
+      "quotaIncreaseEligibility",
+      "isFixed",
+      "dimensionsInfos",
+      "isConcurrent",
+      "serviceRequestQuotaUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaId) {
+      self.quotaId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metric) {
+      self.metric = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPrecise) {
+      self.isPrecise = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .refreshInterval) {
+      self.refreshInterval = value
+    }
+    if let value = try container.decodeIfPresent(
+      QuotaInfo.ContainerType.self, forKey: .containerType)
+    {
+      self.containerType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dimensions) {
+      self.dimensions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricDisplayName) {
+      self.metricDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaDisplayName) {
+      self.quotaDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricUnit) {
+      self.metricUnit = value
+    }
+    self.quotaIncreaseEligibility = try container.decodeIfPresent(
+      QuotaIncreaseEligibility.self, forKey: .quotaIncreaseEligibility)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFixed) {
+      self.isFixed = value
+    }
+    if let value = try container.decodeIfPresent([DimensionsInfo].self, forKey: .dimensionsInfos) {
+      self.dimensionsInfos = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isConcurrent) {
+      self.isConcurrent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceRequestQuotaUri)
+    {
+      self.serviceRequestQuotaUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.quotaId, forKey: .quotaId)
+    try container.encode(self.metric, forKey: .metric)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.isPrecise, forKey: .isPrecise)
+    try container.encode(self.refreshInterval, forKey: .refreshInterval)
+    try container.encode(self.containerType, forKey: .containerType)
+    try container.encode(self.dimensions, forKey: .dimensions)
+    try container.encode(self.metricDisplayName, forKey: .metricDisplayName)
+    try container.encode(self.quotaDisplayName, forKey: .quotaDisplayName)
+    try container.encode(self.metricUnit, forKey: .metricUnit)
+    try container.encodeIfPresent(self.quotaIncreaseEligibility, forKey: .quotaIncreaseEligibility)
+    try container.encode(self.isFixed, forKey: .isFixed)
+    try container.encode(self.dimensionsInfos, forKey: .dimensionsInfos)
+    try container.encode(self.isConcurrent, forKey: .isConcurrent)
+    try container.encode(self.serviceRequestQuotaUri, forKey: .serviceRequestQuotaUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumeration of the types of a cloud resource container.

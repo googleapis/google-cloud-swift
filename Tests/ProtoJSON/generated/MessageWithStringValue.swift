@@ -30,6 +30,8 @@ public struct MessageWithStringValue: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Test string as map values.
   public var map: [Swift.String: GoogleCloudWKT.StringValue] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageWithStringValue`.
   public init() {}
 
@@ -44,6 +46,53 @@ public struct MessageWithStringValue: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singular = CodingKeys(stringValue: "singular")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let map = CodingKeys(stringValue: "map")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singular",
+      "repeated",
+      "map",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.singular = try container.decodeIfPresent(
+      GoogleCloudWKT.StringValue.self, forKey: .singular)
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudWKT.StringValue].self, forKey: .repeated)
+    {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.StringValue].self, forKey: .map)
+    {
+      self.map = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.singular, forKey: .singular)
+    try container.encode(self.repeated, forKey: .repeated)
+    try container.encode(self.map, forKey: .map)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

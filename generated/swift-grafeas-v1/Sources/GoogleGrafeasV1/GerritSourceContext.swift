@@ -33,6 +33,8 @@ public struct GerritSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// or its alias.
   public var revision: OneOf_Revision? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GerritSourceContext`.
   public init() {}
 
@@ -49,17 +51,33 @@ public struct GerritSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hostUri = "hostUri"
-    case gerritProject = "gerritProject"
-    case revisionId = "revisionId"
-    case aliasContext = "aliasContext"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hostUri = CodingKeys(stringValue: "hostUri")
+    static let gerritProject = CodingKeys(stringValue: "gerritProject")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let aliasContext = CodingKeys(stringValue: "aliasContext")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hostUri",
+      "gerritProject",
+      "revisionId",
+      "aliasContext",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.hostUri = try container.decode(Swift.String.self, forKey: .hostUri)
-    self.gerritProject = try container.decode(Swift.String.self, forKey: .gerritProject)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostUri) {
+      self.hostUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gerritProject) {
+      self.gerritProject = value
+    }
 
     var revision: OneOf_Revision? = nil
     let revisionCheckAndSet = {
@@ -78,6 +96,10 @@ public struct GerritSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try revisionCheckAndSet(.aliasContext(aliasContext))
     }
     self.revision = revision
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -92,6 +114,9 @@ public struct GerritSourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .aliasContext(let value):
         try container.encode(value, forKey: .aliasContext)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -27,6 +27,8 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of storage system to inspect.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StorageConfig`.
   public init() {}
 
@@ -43,12 +45,25 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case datastoreOptions = "datastoreOptions"
-    case cloudStorageOptions = "cloudStorageOptions"
-    case bigQueryOptions = "bigQueryOptions"
-    case hybridOptions = "hybridOptions"
-    case timespanConfig = "timespanConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let datastoreOptions = CodingKeys(stringValue: "datastoreOptions")
+    static let cloudStorageOptions = CodingKeys(stringValue: "cloudStorageOptions")
+    static let bigQueryOptions = CodingKeys(stringValue: "bigQueryOptions")
+    static let hybridOptions = CodingKeys(stringValue: "hybridOptions")
+    static let timespanConfig = CodingKeys(stringValue: "timespanConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "datastoreOptions",
+      "cloudStorageOptions",
+      "bigQueryOptions",
+      "hybridOptions",
+      "timespanConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -87,11 +102,15 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.hybridOptions(hybridOptions))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.timespanConfig, forKey: .timespanConfig)
+    try container.encodeIfPresent(self.timespanConfig, forKey: .timespanConfig)
 
     if let choice = self.type {
       switch choice {
@@ -104,6 +123,9 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .hybridOptions(let value):
         try container.encode(value, forKey: .hybridOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -173,6 +195,8 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// related to this operation.
     public var enableAutoPopulationOfTimespanConfig: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimespanConfig`.
     public init() {}
 
@@ -187,6 +211,55 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let timestampField = CodingKeys(stringValue: "timestampField")
+      static let enableAutoPopulationOfTimespanConfig = CodingKeys(
+        stringValue: "enableAutoPopulationOfTimespanConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTime",
+        "endTime",
+        "timestampField",
+        "enableAutoPopulationOfTimespanConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.timestampField = try container.decodeIfPresent(FieldId.self, forKey: .timestampField)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableAutoPopulationOfTimespanConfig)
+      {
+        self.enableAutoPopulationOfTimespanConfig = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.timestampField, forKey: .timestampField)
+      try container.encode(
+        self.enableAutoPopulationOfTimespanConfig, forKey: .enableAutoPopulationOfTimespanConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

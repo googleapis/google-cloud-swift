@@ -53,6 +53,8 @@
     /// default value is 1.0.
     public var sampleRate: Swift.Float? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceLogConfig`.
     public init() {}
 
@@ -67,6 +69,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enable = CodingKeys(stringValue: "enable")
+      static let loggingHttpRequestHeaders = CodingKeys(stringValue: "loggingHttpRequestHeaders")
+      static let loggingHttpResponseHeaders = CodingKeys(stringValue: "loggingHttpResponseHeaders")
+      static let optionalFields = CodingKeys(stringValue: "optionalFields")
+      static let optionalMode = CodingKeys(stringValue: "optionalMode")
+      static let sampleRate = CodingKeys(stringValue: "sampleRate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enable",
+        "loggingHttpRequestHeaders",
+        "loggingHttpResponseHeaders",
+        "optionalFields",
+        "optionalMode",
+        "sampleRate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enable = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable)
+      if let value = try container.decodeIfPresent(
+        [BackendServiceLogConfigLoggingHttpHeader].self, forKey: .loggingHttpRequestHeaders)
+      {
+        self.loggingHttpRequestHeaders = value
+      }
+      if let value = try container.decodeIfPresent(
+        [BackendServiceLogConfigLoggingHttpHeader].self, forKey: .loggingHttpResponseHeaders)
+      {
+        self.loggingHttpResponseHeaders = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .optionalFields) {
+        self.optionalFields = value
+      }
+      self.optionalMode = try container.decodeIfPresent(
+        BackendServiceLogConfig.OptionalMode.self, forKey: .optionalMode)
+      self.sampleRate = try container.decodeIfPresent(Swift.Float.self, forKey: .sampleRate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enable, forKey: .enable)
+      try container.encode(self.loggingHttpRequestHeaders, forKey: .loggingHttpRequestHeaders)
+      try container.encode(self.loggingHttpResponseHeaders, forKey: .loggingHttpResponseHeaders)
+      try container.encode(self.optionalFields, forKey: .optionalFields)
+      try container.encodeIfPresent(self.optionalMode, forKey: .optionalMode)
+      try container.encodeIfPresent(self.sampleRate, forKey: .sampleRate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [optionalMode][google.cloud.compute.v1.BackendServiceLogConfig.optionalMode] field.

@@ -26,6 +26,8 @@ public struct ActionDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Summary of what occurred in the actions.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ActionDetails`.
   public init() {}
 
@@ -42,8 +44,17 @@ public struct ActionDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case deidentifyDetails = "deidentifyDetails"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deidentifyDetails = CodingKeys(stringValue: "deidentifyDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deidentifyDetails"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,6 +76,10 @@ public struct ActionDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try detailsCheckAndSet(.deidentifyDetails(deidentifyDetails))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -75,6 +90,9 @@ public struct ActionDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .deidentifyDetails(let value):
         try container.encode(value, forKey: .deidentifyDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

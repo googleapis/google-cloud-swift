@@ -76,6 +76,8 @@ public struct ReidentifyContentRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Deprecated. This field has no effect.
   public var locationId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReidentifyContentRequest`.
   public init() {}
 
@@ -90,6 +92,70 @@ public struct ReidentifyContentRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let reidentifyConfig = CodingKeys(stringValue: "reidentifyConfig")
+    static let inspectConfig = CodingKeys(stringValue: "inspectConfig")
+    static let item = CodingKeys(stringValue: "item")
+    static let inspectTemplateName = CodingKeys(stringValue: "inspectTemplateName")
+    static let reidentifyTemplateName = CodingKeys(stringValue: "reidentifyTemplateName")
+    static let locationId = CodingKeys(stringValue: "locationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "reidentifyConfig",
+      "inspectConfig",
+      "item",
+      "inspectTemplateName",
+      "reidentifyTemplateName",
+      "locationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.reidentifyConfig = try container.decodeIfPresent(
+      DeidentifyConfig.self, forKey: .reidentifyConfig)
+    self.inspectConfig = try container.decodeIfPresent(InspectConfig.self, forKey: .inspectConfig)
+    self.item = try container.decodeIfPresent(ContentItem.self, forKey: .item)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inspectTemplateName) {
+      self.inspectTemplateName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reidentifyTemplateName)
+    {
+      self.reidentifyTemplateName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.reidentifyConfig, forKey: .reidentifyConfig)
+    try container.encodeIfPresent(self.inspectConfig, forKey: .inspectConfig)
+    try container.encodeIfPresent(self.item, forKey: .item)
+    try container.encode(self.inspectTemplateName, forKey: .inspectTemplateName)
+    try container.encode(self.reidentifyTemplateName, forKey: .reidentifyTemplateName)
+    try container.encode(self.locationId, forKey: .locationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

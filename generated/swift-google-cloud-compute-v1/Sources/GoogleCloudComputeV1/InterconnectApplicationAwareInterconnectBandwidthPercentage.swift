@@ -32,6 +32,8 @@
     public var trafficClass:
       InterconnectApplicationAwareInterconnectBandwidthPercentage.TrafficClass? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectApplicationAwareInterconnectBandwidthPercentage`.
     public init() {}
 
@@ -46,6 +48,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let percentage = CodingKeys(stringValue: "percentage")
+      static let trafficClass = CodingKeys(stringValue: "trafficClass")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "percentage",
+        "trafficClass",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.percentage = try container.decodeIfPresent(Swift.UInt32.self, forKey: .percentage)
+      self.trafficClass = try container.decodeIfPresent(
+        InterconnectApplicationAwareInterconnectBandwidthPercentage.TrafficClass.self,
+        forKey: .trafficClass)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.percentage, forKey: .percentage)
+      try container.encodeIfPresent(self.trafficClass, forKey: .trafficClass)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [trafficClass][google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage.trafficClass] field.

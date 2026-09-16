@@ -47,6 +47,8 @@ public struct RepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// one of these ways.
   public var revision: OneOf_Revision? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepoSource`.
   public init() {}
 
@@ -63,25 +65,52 @@ public struct RepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case projectId = "projectId"
-    case repoName = "repoName"
-    case branchName = "branchName"
-    case tagName = "tagName"
-    case commitSha = "commitSha"
-    case dir = "dir"
-    case invertRegex = "invertRegex"
-    case substitutions = "substitutions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let repoName = CodingKeys(stringValue: "repoName")
+    static let branchName = CodingKeys(stringValue: "branchName")
+    static let tagName = CodingKeys(stringValue: "tagName")
+    static let commitSha = CodingKeys(stringValue: "commitSha")
+    static let dir = CodingKeys(stringValue: "dir")
+    static let invertRegex = CodingKeys(stringValue: "invertRegex")
+    static let substitutions = CodingKeys(stringValue: "substitutions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "repoName",
+      "branchName",
+      "tagName",
+      "commitSha",
+      "dir",
+      "invertRegex",
+      "substitutions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.projectId = try container.decode(Swift.String.self, forKey: .projectId)
-    self.repoName = try container.decode(Swift.String.self, forKey: .repoName)
-    self.dir = try container.decode(Swift.String.self, forKey: .dir)
-    self.invertRegex = try container.decode(Swift.Bool.self, forKey: .invertRegex)
-    self.substitutions = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repoName) {
+      self.repoName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dir) {
+      self.dir = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invertRegex) {
+      self.invertRegex = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .substitutions)
+    {
+      self.substitutions = value
+    }
 
     var revision: OneOf_Revision? = nil
     let revisionCheckAndSet = {
@@ -103,6 +132,10 @@ public struct RepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try revisionCheckAndSet(.commitSha(commitSha))
     }
     self.revision = revision
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -122,6 +155,9 @@ public struct RepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .commitSha(let value):
         try container.encode(value, forKey: .commitSha)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

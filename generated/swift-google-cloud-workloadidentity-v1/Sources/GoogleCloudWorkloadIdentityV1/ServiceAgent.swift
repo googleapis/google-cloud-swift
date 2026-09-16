@@ -46,6 +46,8 @@ public struct ServiceAgent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Service agent state.
   public var state: ServiceAgent.State = ServiceAgent.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceAgent`.
   public init() {}
 
@@ -60,6 +62,68 @@ public struct ServiceAgent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let container = CodingKeys(stringValue: "container")
+    static let serviceProducer = CodingKeys(stringValue: "serviceProducer")
+    static let principal = CodingKeys(stringValue: "principal")
+    static let role = CodingKeys(stringValue: "role")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "container",
+      "serviceProducer",
+      "principal",
+      "role",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .container) {
+      self.container = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceProducer) {
+      self.serviceProducer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principal) {
+      self.principal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+      self.role = value
+    }
+    if let value = try container.decodeIfPresent(ServiceAgent.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.container, forKey: .container)
+    try container.encode(self.serviceProducer, forKey: .serviceProducer)
+    try container.encode(self.principal, forKey: .principal)
+    try container.encode(self.role, forKey: .role)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for service agent `state`.

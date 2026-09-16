@@ -42,6 +42,8 @@
     ///   ANNOUNCED: The public delegated prefix is active.
     public var status: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PublicAdvertisedPrefixPublicDelegatedPrefix`.
     public init() {}
 
@@ -56,6 +58,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipRange = CodingKeys(stringValue: "ipRange")
+      static let name = CodingKeys(stringValue: "name")
+      static let project = CodingKeys(stringValue: "project")
+      static let region = CodingKeys(stringValue: "region")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipRange",
+        "name",
+        "project",
+        "region",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipRange)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.project = try container.decodeIfPresent(Swift.String.self, forKey: .project)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.status = try container.decodeIfPresent(Swift.String.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipRange, forKey: .ipRange)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.project, forKey: .project)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

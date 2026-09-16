@@ -33,6 +33,8 @@ public struct ViolationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The rule output of the violation.
   public var ruleOutput: [RuleOutput] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ViolationDetails`.
   public init() {}
 
@@ -47,6 +49,58 @@ public struct ViolationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let asset = CodingKeys(stringValue: "asset")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let observed = CodingKeys(stringValue: "observed")
+    static let ruleOutput = CodingKeys(stringValue: "ruleOutput")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "asset",
+      "serviceAccount",
+      "observed",
+      "ruleOutput",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
+      self.asset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .observed)
+    {
+      self.observed = value
+    }
+    if let value = try container.decodeIfPresent([RuleOutput].self, forKey: .ruleOutput) {
+      self.ruleOutput = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.asset, forKey: .asset)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.observed, forKey: .observed)
+    try container.encode(self.ruleOutput, forKey: .ruleOutput)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

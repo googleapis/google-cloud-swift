@@ -38,6 +38,8 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If the Tag Template migration is not enabled, this field is not set.
   public var templateMigrationEnabledTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationConfig`.
   public init() {}
 
@@ -52,6 +54,55 @@ public struct MigrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tagTemplateMigration = CodingKeys(stringValue: "tagTemplateMigration")
+    static let catalogUiExperience = CodingKeys(stringValue: "catalogUiExperience")
+    static let templateMigrationEnabledTime = CodingKeys(
+      stringValue: "templateMigrationEnabledTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tagTemplateMigration",
+      "catalogUiExperience",
+      "templateMigrationEnabledTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      TagTemplateMigration.self, forKey: .tagTemplateMigration)
+    {
+      self.tagTemplateMigration = value
+    }
+    if let value = try container.decodeIfPresent(
+      CatalogUIExperience.self, forKey: .catalogUiExperience)
+    {
+      self.catalogUiExperience = value
+    }
+    self.templateMigrationEnabledTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .templateMigrationEnabledTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.tagTemplateMigration, forKey: .tagTemplateMigration)
+    try container.encode(self.catalogUiExperience, forKey: .catalogUiExperience)
+    try container.encodeIfPresent(
+      self.templateMigrationEnabledTime, forKey: .templateMigrationEnabledTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

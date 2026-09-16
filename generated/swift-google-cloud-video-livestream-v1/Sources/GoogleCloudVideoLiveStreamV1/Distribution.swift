@@ -47,6 +47,8 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configurations for the output endpoint by streaming protocols.
   public var endpoint: OneOf_Endpoint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Distribution`.
   public init() {}
 
@@ -63,20 +65,40 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case key = "key"
-    case distributionStream = "distributionStream"
-    case state = "state"
-    case error = "error"
-    case srtPush = "srtPush"
-    case rtmpPush = "rtmpPush"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let distributionStream = CodingKeys(stringValue: "distributionStream")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let srtPush = CodingKeys(stringValue: "srtPush")
+    static let rtmpPush = CodingKeys(stringValue: "rtmpPush")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "distributionStream",
+      "state",
+      "error",
+      "srtPush",
+      "rtmpPush",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.key = try container.decode(Swift.String.self, forKey: .key)
-    self.distributionStream = try container.decode(Swift.String.self, forKey: .distributionStream)
-    self.state = try container.decode(Distribution.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .distributionStream) {
+      self.distributionStream = value
+    }
+    if let value = try container.decodeIfPresent(Distribution.State.self, forKey: .state) {
+      self.state = value
+    }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
     var endpoint: OneOf_Endpoint? = nil
@@ -97,6 +119,10 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try endpointCheckAndSet(.rtmpPush(rtmpPush))
     }
     self.endpoint = endpoint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,7 +130,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.key, forKey: .key)
     try container.encode(self.distributionStream, forKey: .distributionStream)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.error, forKey: .error)
+    try container.encodeIfPresent(self.error, forKey: .error)
 
     if let choice = self.endpoint {
       switch choice {
@@ -113,6 +139,9 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .rtmpPush(let value):
         try container.encode(value, forKey: .rtmpPush)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

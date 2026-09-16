@@ -49,6 +49,8 @@
     /// The config used by the speech synthesizer to generate the output audio.
     public var outputAudioConfig: OutputAudioConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DetectIntentResponse`.
     public init() {}
 
@@ -63,6 +65,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let responseId = CodingKeys(stringValue: "responseId")
+      static let queryResult = CodingKeys(stringValue: "queryResult")
+      static let webhookStatus = CodingKeys(stringValue: "webhookStatus")
+      static let outputAudio = CodingKeys(stringValue: "outputAudio")
+      static let outputAudioConfig = CodingKeys(stringValue: "outputAudioConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "responseId",
+        "queryResult",
+        "webhookStatus",
+        "outputAudio",
+        "outputAudioConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseId) {
+        self.responseId = value
+      }
+      self.queryResult = try container.decodeIfPresent(QueryResult.self, forKey: .queryResult)
+      self.webhookStatus = try container.decodeIfPresent(
+        GoogleRpc.Status.self, forKey: .webhookStatus)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .outputAudio) {
+        self.outputAudio = value
+      }
+      self.outputAudioConfig = try container.decodeIfPresent(
+        OutputAudioConfig.self, forKey: .outputAudioConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.responseId, forKey: .responseId)
+      try container.encodeIfPresent(self.queryResult, forKey: .queryResult)
+      try container.encodeIfPresent(self.webhookStatus, forKey: .webhookStatus)
+      try container.encode(self.outputAudio, forKey: .outputAudio)
+      try container.encodeIfPresent(self.outputAudioConfig, forKey: .outputAudioConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -43,6 +43,8 @@ public struct FetchProfilesResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// field is omitted or empty, then there are no more results to return.
   public var nextPageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchProfilesResponse`.
   public init() {}
 
@@ -57,6 +59,55 @@ public struct FetchProfilesResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let profile = CodingKeys(stringValue: "profile")
+    static let performanceRange = CodingKeys(stringValue: "performanceRange")
+    static let comments = CodingKeys(stringValue: "comments")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "profile",
+      "performanceRange",
+      "comments",
+      "nextPageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Profile].self, forKey: .profile) {
+      self.profile = value
+    }
+    self.performanceRange = try container.decodeIfPresent(
+      PerformanceRange.self, forKey: .performanceRange)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comments) {
+      self.comments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.profile, forKey: .profile)
+    try container.encodeIfPresent(self.performanceRange, forKey: .performanceRange)
+    try container.encode(self.comments, forKey: .comments)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

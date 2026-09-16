@@ -33,6 +33,8 @@ public struct WindowsUpdateSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// patch configurations.
   public var exclusivePatches: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WindowsUpdateSettings`.
   public init() {}
 
@@ -47,6 +49,52 @@ public struct WindowsUpdateSettings: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let classifications = CodingKeys(stringValue: "classifications")
+    static let excludes = CodingKeys(stringValue: "excludes")
+    static let exclusivePatches = CodingKeys(stringValue: "exclusivePatches")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "classifications",
+      "excludes",
+      "exclusivePatches",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [WindowsUpdateSettings.Classification].self, forKey: .classifications)
+    {
+      self.classifications = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludes) {
+      self.excludes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exclusivePatches) {
+      self.exclusivePatches = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.classifications, forKey: .classifications)
+    try container.encode(self.excludes, forKey: .excludes)
+    try container.encode(self.exclusivePatches, forKey: .exclusivePatches)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Microsoft Windows update classifications as defined in

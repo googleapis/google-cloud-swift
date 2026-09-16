@@ -39,6 +39,8 @@ public struct ImageOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// occurrence.
   public var baseResourceUrl: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageOccurrence`.
   public init() {}
 
@@ -53,6 +55,54 @@ public struct ImageOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fingerprint = CodingKeys(stringValue: "fingerprint")
+    static let distance = CodingKeys(stringValue: "distance")
+    static let layerInfo = CodingKeys(stringValue: "layerInfo")
+    static let baseResourceUrl = CodingKeys(stringValue: "baseResourceUrl")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fingerprint",
+      "distance",
+      "layerInfo",
+      "baseResourceUrl",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.fingerprint = try container.decodeIfPresent(Fingerprint.self, forKey: .fingerprint)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .distance) {
+      self.distance = value
+    }
+    if let value = try container.decodeIfPresent([Layer].self, forKey: .layerInfo) {
+      self.layerInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseResourceUrl) {
+      self.baseResourceUrl = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.fingerprint, forKey: .fingerprint)
+    try container.encode(self.distance, forKey: .distance)
+    try container.encode(self.layerInfo, forKey: .layerInfo)
+    try container.encode(self.baseResourceUrl, forKey: .baseResourceUrl)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

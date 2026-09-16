@@ -65,6 +65,8 @@
     /// endpoint.
     public var writeEndpointAutoDnsStatus: AutoDnsStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PscAutoConnectionConfig`.
     public init() {}
 
@@ -79,6 +81,80 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consumerProject = CodingKeys(stringValue: "consumerProject")
+      static let consumerNetwork = CodingKeys(stringValue: "consumerNetwork")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let status = CodingKeys(stringValue: "status")
+      static let consumerNetworkStatus = CodingKeys(stringValue: "consumerNetworkStatus")
+      static let serviceConnectionPolicy = CodingKeys(stringValue: "serviceConnectionPolicy")
+      static let serviceConnectionPolicyCreationResult = CodingKeys(
+        stringValue: "serviceConnectionPolicyCreationResult")
+      static let instanceAutoDnsStatus = CodingKeys(stringValue: "instanceAutoDnsStatus")
+      static let writeEndpointAutoDnsStatus = CodingKeys(stringValue: "writeEndpointAutoDnsStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consumerProject",
+        "consumerNetwork",
+        "ipAddress",
+        "status",
+        "consumerNetworkStatus",
+        "serviceConnectionPolicy",
+        "serviceConnectionPolicyCreationResult",
+        "instanceAutoDnsStatus",
+        "writeEndpointAutoDnsStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consumerProject) {
+        self.consumerProject = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consumerNetwork) {
+        self.consumerNetwork = value
+      }
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.status = try container.decodeIfPresent(Swift.String.self, forKey: .status)
+      self.consumerNetworkStatus = try container.decodeIfPresent(
+        Swift.String.self, forKey: .consumerNetworkStatus)
+      self.serviceConnectionPolicy = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serviceConnectionPolicy)
+      self.serviceConnectionPolicyCreationResult = try container.decodeIfPresent(
+        Swift.String.self, forKey: .serviceConnectionPolicyCreationResult)
+      self.instanceAutoDnsStatus = try container.decodeIfPresent(
+        AutoDnsStatus.self, forKey: .instanceAutoDnsStatus)
+      self.writeEndpointAutoDnsStatus = try container.decodeIfPresent(
+        AutoDnsStatus.self, forKey: .writeEndpointAutoDnsStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.consumerProject, forKey: .consumerProject)
+      try container.encode(self.consumerNetwork, forKey: .consumerNetwork)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.consumerNetworkStatus, forKey: .consumerNetworkStatus)
+      try container.encodeIfPresent(self.serviceConnectionPolicy, forKey: .serviceConnectionPolicy)
+      try container.encodeIfPresent(
+        self.serviceConnectionPolicyCreationResult, forKey: .serviceConnectionPolicyCreationResult)
+      try container.encodeIfPresent(self.instanceAutoDnsStatus, forKey: .instanceAutoDnsStatus)
+      try container.encodeIfPresent(
+        self.writeEndpointAutoDnsStatus, forKey: .writeEndpointAutoDnsStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

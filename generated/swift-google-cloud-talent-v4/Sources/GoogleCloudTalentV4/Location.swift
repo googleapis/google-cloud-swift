@@ -52,6 +52,8 @@ public struct Location: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.type.LatLng]: https://www.google.com/search?q=Swift+google.type+GoogleType.LatLng
   public var radiusMiles: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Location`.
   public init() {}
 
@@ -66,6 +68,54 @@ public struct Location: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let locationType = CodingKeys(stringValue: "locationType")
+    static let postalAddress = CodingKeys(stringValue: "postalAddress")
+    static let latLng = CodingKeys(stringValue: "latLng")
+    static let radiusMiles = CodingKeys(stringValue: "radiusMiles")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "locationType",
+      "postalAddress",
+      "latLng",
+      "radiusMiles",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Location.LocationType.self, forKey: .locationType)
+    {
+      self.locationType = value
+    }
+    self.postalAddress = try container.decodeIfPresent(
+      GoogleType.PostalAddress.self, forKey: .postalAddress)
+    self.latLng = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .latLng)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .radiusMiles) {
+      self.radiusMiles = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.locationType, forKey: .locationType)
+    try container.encodeIfPresent(self.postalAddress, forKey: .postalAddress)
+    try container.encodeIfPresent(self.latLng, forKey: .latLng)
+    try container.encode(self.radiusMiles, forKey: .radiusMiles)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum which represents the type of a location.

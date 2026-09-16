@@ -27,6 +27,8 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Details specific to the task type.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationTaskResult`.
   public init() {}
 
@@ -43,14 +45,28 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case translationTaskResult = "translationTaskResult"
-    case taskOutputs = "taskOutputs"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let translationTaskResult = CodingKeys(stringValue: "translationTaskResult")
+    static let taskOutputs = CodingKeys(stringValue: "taskOutputs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "translationTaskResult",
+      "taskOutputs",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.taskOutputs = try container.decode([Swift.String: TaskOutput].self, forKey: .taskOutputs)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: TaskOutput].self, forKey: .taskOutputs)
+    {
+      self.taskOutputs = value
+    }
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -68,6 +84,10 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try detailsCheckAndSet(.translationTaskResult(translationTaskResult))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +99,9 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .translationTaskResult(let value):
         try container.encode(value, forKey: .translationTaskResult)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -33,6 +33,8 @@ public struct CreateDataExchangeRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// Required. The data exchange to create.
   public var dataExchange: DataExchange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDataExchangeRequest`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct CreateDataExchangeRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let dataExchangeId = CodingKeys(stringValue: "dataExchangeId")
+    static let dataExchange = CodingKeys(stringValue: "dataExchange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "dataExchangeId",
+      "dataExchange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataExchangeId) {
+      self.dataExchangeId = value
+    }
+    self.dataExchange = try container.decodeIfPresent(DataExchange.self, forKey: .dataExchange)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.dataExchangeId, forKey: .dataExchangeId)
+    try container.encodeIfPresent(self.dataExchange, forKey: .dataExchange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

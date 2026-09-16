@@ -28,6 +28,8 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleCloudWK
   /// Details of the VM the disks are attached to.
   public var vmTarget: OneOf_VmTarget? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeEngineDisksTargetDetails`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case disksTargetDetails = "disksTargetDetails"
-    case vmTargetDetails = "vmTargetDetails"
-    case disks = "disks"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let disksTargetDetails = CodingKeys(stringValue: "disksTargetDetails")
+    static let vmTargetDetails = CodingKeys(stringValue: "vmTargetDetails")
+    static let disks = CodingKeys(stringValue: "disks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "disksTargetDetails",
+      "vmTargetDetails",
+      "disks",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.disks = try container.decode([PersistentDisk].self, forKey: .disks)
+    if let value = try container.decodeIfPresent([PersistentDisk].self, forKey: .disks) {
+      self.disks = value
+    }
 
     var vmTarget: OneOf_VmTarget? = nil
     let vmTargetCheckAndSet = {
@@ -75,6 +90,10 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleCloudWK
       try vmTargetCheckAndSet(.vmTargetDetails(vmTargetDetails))
     }
     self.vmTarget = vmTarget
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleCloudWK
       case .vmTargetDetails(let value):
         try container.encode(value, forKey: .vmTargetDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

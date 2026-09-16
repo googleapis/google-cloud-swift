@@ -50,6 +50,8 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// entity.
   public var partitionStyle: Schema.PartitionStyle = Schema.PartitionStyle()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Schema`.
   public init() {}
 
@@ -64,6 +66,60 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userManaged = CodingKeys(stringValue: "userManaged")
+    static let fields = CodingKeys(stringValue: "fields")
+    static let partitionFields = CodingKeys(stringValue: "partitionFields")
+    static let partitionStyle = CodingKeys(stringValue: "partitionStyle")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userManaged",
+      "fields",
+      "partitionFields",
+      "partitionStyle",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userManaged) {
+      self.userManaged = value
+    }
+    if let value = try container.decodeIfPresent([Schema.SchemaField].self, forKey: .fields) {
+      self.fields = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Schema.PartitionField].self, forKey: .partitionFields)
+    {
+      self.partitionFields = value
+    }
+    if let value = try container.decodeIfPresent(
+      Schema.PartitionStyle.self, forKey: .partitionStyle)
+    {
+      self.partitionStyle = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.userManaged, forKey: .userManaged)
+    try container.encode(self.fields, forKey: .fields)
+    try container.encode(self.partitionFields, forKey: .partitionFields)
+    try container.encode(self.partitionStyle, forKey: .partitionStyle)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents a column field within a table schema.
@@ -88,6 +144,8 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Any nested field for complex types.
     public var fields: [Schema.SchemaField] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SchemaField`.
     public init() {}
 
@@ -102,6 +160,62 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let type = CodingKeys(stringValue: "type")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let fields = CodingKeys(stringValue: "fields")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "type",
+        "mode",
+        "fields",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Schema.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Schema.Mode.self, forKey: .mode) {
+        self.mode = value
+      }
+      if let value = try container.decodeIfPresent([Schema.SchemaField].self, forKey: .fields) {
+        self.fields = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encode(self.fields, forKey: .fields)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -130,6 +244,8 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Immutable. The type of field.
     public var type: Schema.Type_ = Schema.Type_()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PartitionField`.
     public init() {}
 
@@ -144,6 +260,44 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Schema.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

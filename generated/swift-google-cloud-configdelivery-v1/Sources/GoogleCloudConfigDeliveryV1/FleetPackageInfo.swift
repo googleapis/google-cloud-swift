@@ -37,6 +37,8 @@ public struct FleetPackageInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// (if any).
   public var errors: [FleetPackageError] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FleetPackageInfo`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct FleetPackageInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let activeRollout = CodingKeys(stringValue: "activeRollout")
+    static let lastCompletedRollout = CodingKeys(stringValue: "lastCompletedRollout")
+    static let state = CodingKeys(stringValue: "state")
+    static let errors = CodingKeys(stringValue: "errors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "activeRollout",
+      "lastCompletedRollout",
+      "state",
+      "errors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeRollout) {
+      self.activeRollout = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastCompletedRollout) {
+      self.lastCompletedRollout = value
+    }
+    if let value = try container.decodeIfPresent(FleetPackageInfo.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([FleetPackageError].self, forKey: .errors) {
+      self.errors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.activeRollout, forKey: .activeRollout)
+    try container.encode(self.lastCompletedRollout, forKey: .lastCompletedRollout)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.errors, forKey: .errors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible values for the `FleetPackage` state.

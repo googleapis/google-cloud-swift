@@ -27,6 +27,8 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleCloudWK
 
   public var scope: OneOf_Scope? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VolumeDataRestorePolicyOverride`.
   public init() {}
 
@@ -43,14 +45,28 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case policy = "policy"
-    case selectedPvcs = "selectedPvcs"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policy = CodingKeys(stringValue: "policy")
+    static let selectedPvcs = CodingKeys(stringValue: "selectedPvcs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policy",
+      "selectedPvcs",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.policy = try container.decode(RestoreConfig.VolumeDataRestorePolicy.self, forKey: .policy)
+    if let value = try container.decodeIfPresent(
+      RestoreConfig.VolumeDataRestorePolicy.self, forKey: .policy)
+    {
+      self.policy = value
+    }
 
     var scope: OneOf_Scope? = nil
     let scopeCheckAndSet = {
@@ -68,6 +84,10 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleCloudWK
       try scopeCheckAndSet(.selectedPvcs(selectedPvcs))
     }
     self.scope = scope
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +99,9 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleCloudWK
       case .selectedPvcs(let value):
         try container.encode(value, forKey: .selectedPvcs)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

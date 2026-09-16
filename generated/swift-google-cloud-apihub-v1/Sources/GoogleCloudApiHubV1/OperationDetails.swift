@@ -36,6 +36,8 @@ public struct OperationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var operation: OneOf_Operation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperationDetails`.
   public init() {}
 
@@ -52,18 +54,34 @@ public struct OperationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case httpOperation = "httpOperation"
-    case description = "description"
-    case documentation = "documentation"
-    case deprecated = "deprecated"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let httpOperation = CodingKeys(stringValue: "httpOperation")
+    static let description = CodingKeys(stringValue: "description")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let deprecated = CodingKeys(stringValue: "deprecated")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "httpOperation",
+      "description",
+      "documentation",
+      "deprecated",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.documentation = try container.decodeIfPresent(Documentation.self, forKey: .documentation)
-    self.deprecated = try container.decode(Swift.Bool.self, forKey: .deprecated)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deprecated) {
+      self.deprecated = value
+    }
 
     var operation: OneOf_Operation? = nil
     let operationCheckAndSet = {
@@ -81,12 +99,16 @@ public struct OperationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try operationCheckAndSet(.httpOperation(httpOperation))
     }
     self.operation = operation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.documentation, forKey: .documentation)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
     try container.encode(self.deprecated, forKey: .deprecated)
 
     if let choice = self.operation {
@@ -94,6 +116,9 @@ public struct OperationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .httpOperation(let value):
         try container.encode(value, forKey: .httpOperation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

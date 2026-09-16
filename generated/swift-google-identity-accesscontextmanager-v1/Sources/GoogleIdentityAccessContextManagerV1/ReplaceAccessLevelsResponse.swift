@@ -26,6 +26,8 @@ public struct ReplaceAccessLevelsResponse: Codable, Equatable, GoogleCloudWKT._A
   /// [google.identity.accesscontextmanager.v1.AccessLevel] instances.
   public var accessLevels: [AccessLevel] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplaceAccessLevelsResponse`.
   public init() {}
 
@@ -40,6 +42,38 @@ public struct ReplaceAccessLevelsResponse: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accessLevels = CodingKeys(stringValue: "accessLevels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accessLevels"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([AccessLevel].self, forKey: .accessLevels) {
+      self.accessLevels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.accessLevels, forKey: .accessLevels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

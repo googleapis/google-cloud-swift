@@ -36,6 +36,8 @@
     /// group all receive these target pool settings.
     public var targetPools: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagersSetTargetPoolsRequest`.
     public init() {}
 
@@ -52,9 +54,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fingerprint = "fingerprint"
-      case targetPools = "targetPools"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let targetPools = CodingKeys(stringValue: "targetPools")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fingerprint",
+        "targetPools",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -68,7 +80,13 @@
         }
         self.fingerprint = v
       }
-      self.targetPools = try container.decode([Swift.String].self, forKey: .targetPools)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetPools) {
+        self.targetPools = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,6 +97,9 @@
         )
       }
       try container.encode(self.targetPools, forKey: .targetPools)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

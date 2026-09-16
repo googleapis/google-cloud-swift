@@ -39,6 +39,8 @@
     /// Required. Playbook invocation's output state.
     public var playbookState: OutputState = OutputState()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PlaybookInvocation`.
     public init() {}
 
@@ -53,6 +55,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let playbook = CodingKeys(stringValue: "playbook")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let playbookInput = CodingKeys(stringValue: "playbookInput")
+      static let playbookOutput = CodingKeys(stringValue: "playbookOutput")
+      static let playbookState = CodingKeys(stringValue: "playbookState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "playbook",
+        "displayName",
+        "playbookInput",
+        "playbookOutput",
+        "playbookState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .playbook) {
+        self.playbook = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.playbookInput = try container.decodeIfPresent(PlaybookInput.self, forKey: .playbookInput)
+      self.playbookOutput = try container.decodeIfPresent(
+        PlaybookOutput.self, forKey: .playbookOutput)
+      if let value = try container.decodeIfPresent(OutputState.self, forKey: .playbookState) {
+        self.playbookState = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.playbook, forKey: .playbook)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.playbookInput, forKey: .playbookInput)
+      try container.encodeIfPresent(self.playbookOutput, forKey: .playbookOutput)
+      try container.encode(self.playbookState, forKey: .playbookState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

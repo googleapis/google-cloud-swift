@@ -40,6 +40,8 @@
     /// [google.cloud.dialogflow.cx.v3.Agent.text_to_speech_settings]: <doc:Agent/textToSpeechSettings>
     public var synthesizeSpeechConfig: SynthesizeSpeechConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OutputAudioConfig`.
     public init() {}
 
@@ -54,6 +56,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audioEncoding = CodingKeys(stringValue: "audioEncoding")
+      static let sampleRateHertz = CodingKeys(stringValue: "sampleRateHertz")
+      static let synthesizeSpeechConfig = CodingKeys(stringValue: "synthesizeSpeechConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audioEncoding",
+        "sampleRateHertz",
+        "synthesizeSpeechConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(OutputAudioEncoding.self, forKey: .audioEncoding)
+      {
+        self.audioEncoding = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleRateHertz) {
+        self.sampleRateHertz = value
+      }
+      self.synthesizeSpeechConfig = try container.decodeIfPresent(
+        SynthesizeSpeechConfig.self, forKey: .synthesizeSpeechConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
+      try container.encodeIfPresent(self.synthesizeSpeechConfig, forKey: .synthesizeSpeechConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

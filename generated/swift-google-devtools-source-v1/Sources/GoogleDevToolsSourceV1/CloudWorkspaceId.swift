@@ -30,6 +30,8 @@ public struct CloudWorkspaceId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// chosen by the client in the Source API's CreateWorkspace method.
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudWorkspaceId`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct CloudWorkspaceId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repoId = CodingKeys(stringValue: "repoId")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repoId",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.repoId = try container.decodeIfPresent(RepoId.self, forKey: .repoId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.repoId, forKey: .repoId)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

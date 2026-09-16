@@ -39,6 +39,8 @@
     /// This value may be validated to match approved Partner values.
     public var portalUrl: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentPartnerMetadata`.
     public init() {}
 
@@ -53,6 +55,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let interconnectName = CodingKeys(stringValue: "interconnectName")
+      static let partnerName = CodingKeys(stringValue: "partnerName")
+      static let portalUrl = CodingKeys(stringValue: "portalUrl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "interconnectName",
+        "partnerName",
+        "portalUrl",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.interconnectName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .interconnectName)
+      self.partnerName = try container.decodeIfPresent(Swift.String.self, forKey: .partnerName)
+      self.portalUrl = try container.decodeIfPresent(Swift.String.self, forKey: .portalUrl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.interconnectName, forKey: .interconnectName)
+      try container.encodeIfPresent(self.partnerName, forKey: .partnerName)
+      try container.encodeIfPresent(self.portalUrl, forKey: .portalUrl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -87,6 +87,8 @@
     @available(*, deprecated)
     public var sha256: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomerEncryptionKey`.
     public init() {}
 
@@ -101,6 +103,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+      static let kmsKeyServiceAccount = CodingKeys(stringValue: "kmsKeyServiceAccount")
+      static let rawKey = CodingKeys(stringValue: "rawKey")
+      static let rsaEncryptedKey = CodingKeys(stringValue: "rsaEncryptedKey")
+      static let sha256 = CodingKeys(stringValue: "sha256")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kmsKeyName",
+        "kmsKeyServiceAccount",
+        "rawKey",
+        "rsaEncryptedKey",
+        "sha256",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.kmsKeyName = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName)
+      self.kmsKeyServiceAccount = try container.decodeIfPresent(
+        Swift.String.self, forKey: .kmsKeyServiceAccount)
+      self.rawKey = try container.decodeIfPresent(Swift.String.self, forKey: .rawKey)
+      self.rsaEncryptedKey = try container.decodeIfPresent(
+        Swift.String.self, forKey: .rsaEncryptedKey)
+      self.sha256 = try container.decodeIfPresent(Swift.String.self, forKey: .sha256)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.kmsKeyName, forKey: .kmsKeyName)
+      try container.encodeIfPresent(self.kmsKeyServiceAccount, forKey: .kmsKeyServiceAccount)
+      try container.encodeIfPresent(self.rawKey, forKey: .rawKey)
+      try container.encodeIfPresent(self.rsaEncryptedKey, forKey: .rsaEncryptedKey)
+      try container.encodeIfPresent(self.sha256, forKey: .sha256)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

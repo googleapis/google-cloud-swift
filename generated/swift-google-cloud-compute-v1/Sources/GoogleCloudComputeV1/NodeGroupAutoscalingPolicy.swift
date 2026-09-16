@@ -33,6 +33,8 @@
     /// Autoscaler modes.
     public var mode: NodeGroupAutoscalingPolicy.Mode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NodeGroupAutoscalingPolicy`.
     public init() {}
 
@@ -47,6 +49,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxNodes = CodingKeys(stringValue: "maxNodes")
+      static let minNodes = CodingKeys(stringValue: "minNodes")
+      static let mode = CodingKeys(stringValue: "mode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxNodes",
+        "minNodes",
+        "mode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxNodes = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodes)
+      self.minNodes = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodes)
+      self.mode = try container.decodeIfPresent(NodeGroupAutoscalingPolicy.Mode.self, forKey: .mode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxNodes, forKey: .maxNodes)
+      try container.encodeIfPresent(self.minNodes, forKey: .minNodes)
+      try container.encodeIfPresent(self.mode, forKey: .mode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [mode][google.cloud.compute.v1.NodeGroupAutoscalingPolicy.mode] field.

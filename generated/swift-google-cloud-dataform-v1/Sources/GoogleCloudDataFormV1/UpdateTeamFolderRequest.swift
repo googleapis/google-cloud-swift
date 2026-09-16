@@ -28,6 +28,8 @@ public struct UpdateTeamFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Required. The updated TeamFolder.
   public var teamFolder: TeamFolder? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateTeamFolderRequest`.
   public init() {}
 
@@ -42,6 +44,41 @@ public struct UpdateTeamFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let teamFolder = CodingKeys(stringValue: "teamFolder")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateMask",
+      "teamFolder",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.teamFolder = try container.decodeIfPresent(TeamFolder.self, forKey: .teamFolder)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.teamFolder, forKey: .teamFolder)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

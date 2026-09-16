@@ -36,6 +36,8 @@
     /// Optional. Output language code.
     public var outputLanguageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AgentCoachingContext`.
     public init() {}
 
@@ -50,6 +52,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let overarchingGuidance = CodingKeys(stringValue: "overarchingGuidance")
+      static let instructions = CodingKeys(stringValue: "instructions")
+      static let version = CodingKeys(stringValue: "version")
+      static let outputLanguageCode = CodingKeys(stringValue: "outputLanguageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "overarchingGuidance",
+        "instructions",
+        "version",
+        "outputLanguageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .overarchingGuidance)
+      {
+        self.overarchingGuidance = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AgentCoachingInstruction].self, forKey: .instructions)
+      {
+        self.instructions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputLanguageCode) {
+        self.outputLanguageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.overarchingGuidance, forKey: .overarchingGuidance)
+      try container.encode(self.instructions, forKey: .instructions)
+      try container.encode(self.version, forKey: .version)
+      try container.encode(self.outputLanguageCode, forKey: .outputLanguageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

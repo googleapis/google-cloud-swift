@@ -47,6 +47,8 @@
     /// Reservation.
     public var procurementStatus: FutureReservationStatusLastKnownGoodState.ProcurementStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureReservationStatusLastKnownGoodState`.
     public init() {}
 
@@ -61,6 +63,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let description = CodingKeys(stringValue: "description")
+      static let existingMatchingUsageInfo = CodingKeys(stringValue: "existingMatchingUsageInfo")
+      static let futureReservationSpecs = CodingKeys(stringValue: "futureReservationSpecs")
+      static let lockTime = CodingKeys(stringValue: "lockTime")
+      static let namePrefix = CodingKeys(stringValue: "namePrefix")
+      static let procurementStatus = CodingKeys(stringValue: "procurementStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "description",
+        "existingMatchingUsageInfo",
+        "futureReservationSpecs",
+        "lockTime",
+        "namePrefix",
+        "procurementStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.existingMatchingUsageInfo = try container.decodeIfPresent(
+        FutureReservationStatusExistingMatchingUsageInfo.self, forKey: .existingMatchingUsageInfo)
+      self.futureReservationSpecs = try container.decodeIfPresent(
+        FutureReservationStatusLastKnownGoodStateFutureReservationSpecs.self,
+        forKey: .futureReservationSpecs)
+      self.lockTime = try container.decodeIfPresent(Swift.String.self, forKey: .lockTime)
+      self.namePrefix = try container.decodeIfPresent(Swift.String.self, forKey: .namePrefix)
+      self.procurementStatus = try container.decodeIfPresent(
+        FutureReservationStatusLastKnownGoodState.ProcurementStatus.self, forKey: .procurementStatus
+      )
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
+        self.existingMatchingUsageInfo, forKey: .existingMatchingUsageInfo)
+      try container.encodeIfPresent(self.futureReservationSpecs, forKey: .futureReservationSpecs)
+      try container.encodeIfPresent(self.lockTime, forKey: .lockTime)
+      try container.encodeIfPresent(self.namePrefix, forKey: .namePrefix)
+      try container.encodeIfPresent(self.procurementStatus, forKey: .procurementStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [procurementStatus][google.cloud.compute.v1.FutureReservationStatusLastKnownGoodState.procurementStatus] field.

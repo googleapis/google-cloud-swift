@@ -67,6 +67,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The specific details of the `IntelligenceFinding`.
   public var intelligenceFindingDetails: OneOf_IntelligenceFindingDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IntelligenceFinding`.
   public init() {}
 
@@ -83,37 +85,74 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case type = "type"
-    case category = "category"
-    case severity = "severity"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case targetResource = "targetResource"
-    case associatedResources = "associatedResources"
-    case observationPeriod = "observationPeriod"
-    case coldlineAndArchivalStorageOperationsSpike = "coldlineAndArchivalStorageOperationsSpike"
-    case throttledRequestsSpike = "throttledRequestsSpike"
-    case crossRegionEgressSpike = "crossRegionEgressSpike"
-    case storageGrowthAboveTrend = "storageGrowthAboveTrend"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let type = CodingKeys(stringValue: "type")
+    static let category = CodingKeys(stringValue: "category")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let associatedResources = CodingKeys(stringValue: "associatedResources")
+    static let observationPeriod = CodingKeys(stringValue: "observationPeriod")
+    static let coldlineAndArchivalStorageOperationsSpike = CodingKeys(
+      stringValue: "coldlineAndArchivalStorageOperationsSpike")
+    static let throttledRequestsSpike = CodingKeys(stringValue: "throttledRequestsSpike")
+    static let crossRegionEgressSpike = CodingKeys(stringValue: "crossRegionEgressSpike")
+    static let storageGrowthAboveTrend = CodingKeys(stringValue: "storageGrowthAboveTrend")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "type",
+      "category",
+      "severity",
+      "createTime",
+      "updateTime",
+      "targetResource",
+      "associatedResources",
+      "observationPeriod",
+      "coldlineAndArchivalStorageOperationsSpike",
+      "throttledRequestsSpike",
+      "crossRegionEgressSpike",
+      "storageGrowthAboveTrend",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.type = try container.decode(FindingType.self, forKey: .type)
-    self.category = try container.decode(FindingCategory.self, forKey: .category)
-    self.severity = try container.decode(FindingSeverity.self, forKey: .severity)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(FindingType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(FindingCategory.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(FindingSeverity.self, forKey: .severity) {
+      self.severity = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.targetResource = try container.decode(Swift.String.self, forKey: .targetResource)
-    self.associatedResources = try container.decode(
-      [Swift.String].self, forKey: .associatedResources)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .associatedResources)
+    {
+      self.associatedResources = value
+    }
     self.observationPeriod = try container.decodeIfPresent(
       GoogleType.Interval.self, forKey: .observationPeriod)
 
@@ -150,6 +189,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try intelligenceFindingDetailsCheckAndSet(.storageGrowthAboveTrend(storageGrowthAboveTrend))
     }
     self.intelligenceFindingDetails = intelligenceFindingDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -159,11 +202,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.type, forKey: .type)
     try container.encode(self.category, forKey: .category)
     try container.encode(self.severity, forKey: .severity)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.targetResource, forKey: .targetResource)
     try container.encode(self.associatedResources, forKey: .associatedResources)
-    try container.encode(self.observationPeriod, forKey: .observationPeriod)
+    try container.encodeIfPresent(self.observationPeriod, forKey: .observationPeriod)
 
     if let choice = self.intelligenceFindingDetails {
       switch choice {
@@ -176,6 +219,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .storageGrowthAboveTrend(let value):
         try container.encode(value, forKey: .storageGrowthAboveTrend)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -198,6 +244,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public var topBuckets:
       [IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ColdlineAndArchivalStorageOperationsSpike`.
     public init() {}
 
@@ -212,6 +260,54 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+      static let totalOperationsCount = CodingKeys(stringValue: "totalOperationsCount")
+      static let topBuckets = CodingKeys(stringValue: "topBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "percentageIncrease",
+        "totalOperationsCount",
+        "topBuckets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
+        self.percentageIncrease = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalOperationsCount)
+      {
+        self.totalOperationsCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution].self,
+        forKey: .topBuckets)
+      {
+        self.topBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+      try container.encode(self.totalOperationsCount, forKey: .totalOperationsCount)
+      try container.encode(self.topBuckets, forKey: .topBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents the operation spike details for a bucket.
@@ -231,6 +327,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       /// `IntelligenceFinding`.
       public var details: OneOf_Details? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BucketContribution`.
       public init() {}
 
@@ -247,21 +345,41 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case bucket = "bucket"
-        case percentageIncrease = "percentageIncrease"
-        case totalOperationsCount = "totalOperationsCount"
-        case contribution = "contribution"
-        case error = "error"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bucket = CodingKeys(stringValue: "bucket")
+        static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+        static let totalOperationsCount = CodingKeys(stringValue: "totalOperationsCount")
+        static let contribution = CodingKeys(stringValue: "contribution")
+        static let error = CodingKeys(stringValue: "error")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bucket",
+          "percentageIncrease",
+          "totalOperationsCount",
+          "contribution",
+          "error",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
-        self.percentageIncrease = try container.decode(
-          Swift.Double.self, forKey: .percentageIncrease)
-        self.totalOperationsCount = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+          self.bucket = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease)
+        {
+          self.percentageIncrease = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .totalOperationsCount)
+        {
+          self.totalOperationsCount = value
+        }
 
         var details: OneOf_Details? = nil
         let detailsCheckAndSet = {
@@ -283,6 +401,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -299,6 +421,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(value, forKey: .error)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Represents the contribution of the bucket towards the
@@ -311,6 +436,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         public var topPrefixes:
           [IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
             .Contribution.PrefixContribution] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Contribution`.
         public init() {}
@@ -328,6 +456,43 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let topPrefixes = CodingKeys(stringValue: "topPrefixes")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "topPrefixes"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [
+              IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
+                .Contribution.PrefixContribution
+            ].self, forKey: .topPrefixes)
+          {
+            self.topPrefixes = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.topPrefixes, forKey: .topPrefixes)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Represents the operation spike details for an object prefix.
         public struct PrefixContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -342,6 +507,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
           /// Output only. The total count of operations for the object prefix.
           public var totalOperationsCount: Swift.Int64 = Swift.Int64()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `PrefixContribution`.
           public init() {}
@@ -359,19 +527,42 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case `prefix` = "prefix"
-            case percentageIncrease = "percentageIncrease"
-            case totalOperationsCount = "totalOperationsCount"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let `prefix` = CodingKeys(stringValue: "prefix")
+            static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+            static let totalOperationsCount = CodingKeys(stringValue: "totalOperationsCount")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "prefix",
+              "percentageIncrease",
+              "totalOperationsCount",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-            self.percentageIncrease = try container.decode(
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+              self.`prefix` = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Double.self, forKey: .percentageIncrease)
-            self.totalOperationsCount = try container.decode(
+            {
+              self.percentageIncrease = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Int64.self, forKey: .totalOperationsCount)
+            {
+              self.totalOperationsCount = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -379,6 +570,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
             try container.encode(self.totalOperationsCount, forKey: .totalOperationsCount)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -459,6 +653,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// egress.
     public var topBuckets: [IntelligenceFinding.CrossRegionEgressSpike.BucketContribution] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CrossRegionEgressSpike`.
     public init() {}
 
@@ -473,6 +669,52 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let totalEgressBytes = CodingKeys(stringValue: "totalEgressBytes")
+      static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+      static let topBuckets = CodingKeys(stringValue: "topBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "totalEgressBytes",
+        "percentageIncrease",
+        "topBuckets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalEgressBytes) {
+        self.totalEgressBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
+        self.percentageIncrease = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IntelligenceFinding.CrossRegionEgressSpike.BucketContribution].self, forKey: .topBuckets)
+      {
+        self.topBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
+      try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+      try container.encode(self.topBuckets, forKey: .topBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents the cross-region egress spike details for a bucket.
@@ -494,6 +736,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       /// `IntelligenceFinding`.
       public var details: OneOf_Details? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BucketContribution`.
       public init() {}
 
@@ -510,20 +754,39 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case bucket = "bucket"
-        case totalEgressBytes = "totalEgressBytes"
-        case percentageIncrease = "percentageIncrease"
-        case contribution = "contribution"
-        case error = "error"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bucket = CodingKeys(stringValue: "bucket")
+        static let totalEgressBytes = CodingKeys(stringValue: "totalEgressBytes")
+        static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+        static let contribution = CodingKeys(stringValue: "contribution")
+        static let error = CodingKeys(stringValue: "error")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bucket",
+          "totalEgressBytes",
+          "percentageIncrease",
+          "contribution",
+          "error",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
-        self.totalEgressBytes = try container.decode(Swift.Int64.self, forKey: .totalEgressBytes)
-        self.percentageIncrease = try container.decode(
-          Swift.Double.self, forKey: .percentageIncrease)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+          self.bucket = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalEgressBytes) {
+          self.totalEgressBytes = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease)
+        {
+          self.percentageIncrease = value
+        }
 
         var details: OneOf_Details? = nil
         let detailsCheckAndSet = {
@@ -545,6 +808,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -561,6 +828,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(value, forKey: .error)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Represents the contribution of the bucket towards the
@@ -573,6 +843,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         public var topPrefixes:
           [IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution
             .PrefixContribution] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Contribution`.
         public init() {}
@@ -588,6 +861,43 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let topPrefixes = CodingKeys(stringValue: "topPrefixes")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "topPrefixes"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [
+              IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution
+                .PrefixContribution
+            ].self, forKey: .topPrefixes)
+          {
+            self.topPrefixes = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.topPrefixes, forKey: .topPrefixes)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Represents the cross-region egress spike details for an object
@@ -607,6 +917,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           /// object prefix.
           public var percentageIncrease: Swift.Double = Swift.Double()
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `PrefixContribution`.
           public init() {}
 
@@ -623,19 +936,42 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case `prefix` = "prefix"
-            case totalEgressBytes = "totalEgressBytes"
-            case percentageIncrease = "percentageIncrease"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let `prefix` = CodingKeys(stringValue: "prefix")
+            static let totalEgressBytes = CodingKeys(stringValue: "totalEgressBytes")
+            static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "prefix",
+              "totalEgressBytes",
+              "percentageIncrease",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-            self.totalEgressBytes = try container.decode(
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+              self.`prefix` = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Int64.self, forKey: .totalEgressBytes)
-            self.percentageIncrease = try container.decode(
+            {
+              self.totalEgressBytes = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Double.self, forKey: .percentageIncrease)
+            {
+              self.percentageIncrease = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -643,6 +979,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
             try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -721,6 +1060,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// requests.
     public var topBuckets: [IntelligenceFinding.ThrottledRequestSpike.BucketContribution] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ThrottledRequestSpike`.
     public init() {}
 
@@ -735,6 +1076,52 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let throttledRequests = CodingKeys(stringValue: "throttledRequests")
+      static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+      static let topBuckets = CodingKeys(stringValue: "topBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "throttledRequests",
+        "percentageIncrease",
+        "topBuckets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .throttledRequests) {
+        self.throttledRequests = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
+        self.percentageIncrease = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IntelligenceFinding.ThrottledRequestSpike.BucketContribution].self, forKey: .topBuckets)
+      {
+        self.topBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.throttledRequests, forKey: .throttledRequests)
+      try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+      try container.encode(self.topBuckets, forKey: .topBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents the throttled requests details for a bucket.
@@ -755,6 +1142,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       /// `IntelligenceFinding`.
       public var details: OneOf_Details? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BucketContribution`.
       public init() {}
 
@@ -771,20 +1160,39 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case bucket = "bucket"
-        case throttledRequests = "throttledRequests"
-        case percentageIncrease = "percentageIncrease"
-        case contribution = "contribution"
-        case error = "error"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bucket = CodingKeys(stringValue: "bucket")
+        static let throttledRequests = CodingKeys(stringValue: "throttledRequests")
+        static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+        static let contribution = CodingKeys(stringValue: "contribution")
+        static let error = CodingKeys(stringValue: "error")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bucket",
+          "throttledRequests",
+          "percentageIncrease",
+          "contribution",
+          "error",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
-        self.throttledRequests = try container.decode(Swift.Int64.self, forKey: .throttledRequests)
-        self.percentageIncrease = try container.decode(
-          Swift.Double.self, forKey: .percentageIncrease)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+          self.bucket = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .throttledRequests) {
+          self.throttledRequests = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease)
+        {
+          self.percentageIncrease = value
+        }
 
         var details: OneOf_Details? = nil
         let detailsCheckAndSet = {
@@ -806,6 +1214,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -822,6 +1234,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(value, forKey: .error)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Represents the contribution of the bucket towards the
@@ -834,6 +1249,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         public var topPrefixes:
           [IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution
             .PrefixContribution] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Contribution`.
         public init() {}
@@ -851,6 +1269,43 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let topPrefixes = CodingKeys(stringValue: "topPrefixes")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "topPrefixes"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [
+              IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution
+                .PrefixContribution
+            ].self, forKey: .topPrefixes)
+          {
+            self.topPrefixes = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.topPrefixes, forKey: .topPrefixes)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Represents throttled requests details for an object prefix.
         public struct PrefixContribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -865,6 +1320,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           /// Output only. The percentage increase in throttled requests for the
           /// object prefix.
           public var percentageIncrease: Swift.Double = Swift.Double()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `PrefixContribution`.
           public init() {}
@@ -882,19 +1340,42 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case `prefix` = "prefix"
-            case throttledRequests = "throttledRequests"
-            case percentageIncrease = "percentageIncrease"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let `prefix` = CodingKeys(stringValue: "prefix")
+            static let throttledRequests = CodingKeys(stringValue: "throttledRequests")
+            static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "prefix",
+              "throttledRequests",
+              "percentageIncrease",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-            self.throttledRequests = try container.decode(
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+              self.`prefix` = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Int64.self, forKey: .throttledRequests)
-            self.percentageIncrease = try container.decode(
+            {
+              self.throttledRequests = value
+            }
+            if let value = try container.decodeIfPresent(
               Swift.Double.self, forKey: .percentageIncrease)
+            {
+              self.percentageIncrease = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -902,6 +1383,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.throttledRequests, forKey: .throttledRequests)
             try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -978,6 +1462,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// growth.
     public var topBuckets: [IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StorageGrowthAboveTrend`.
     public init() {}
 
@@ -992,6 +1478,54 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let totalStorageGrowthBytes = CodingKeys(stringValue: "totalStorageGrowthBytes")
+      static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+      static let topBuckets = CodingKeys(stringValue: "topBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "totalStorageGrowthBytes",
+        "percentageIncrease",
+        "topBuckets",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalStorageGrowthBytes)
+      {
+        self.totalStorageGrowthBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
+        self.percentageIncrease = value
+      }
+      if let value = try container.decodeIfPresent(
+        [IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution].self, forKey: .topBuckets)
+      {
+        self.topBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.totalStorageGrowthBytes, forKey: .totalStorageGrowthBytes)
+      try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
+      try container.encode(self.topBuckets, forKey: .topBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents the storage growth details for a bucket.
@@ -1011,6 +1545,8 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
       /// `IntelligenceFinding`.
       public var details: OneOf_Details? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BucketContribution`.
       public init() {}
 
@@ -1027,20 +1563,39 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case bucket = "bucket"
-        case totalStorageGrowthBytes = "totalStorageGrowthBytes"
-        case percentageIncrease = "percentageIncrease"
-        case error = "error"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bucket = CodingKeys(stringValue: "bucket")
+        static let totalStorageGrowthBytes = CodingKeys(stringValue: "totalStorageGrowthBytes")
+        static let percentageIncrease = CodingKeys(stringValue: "percentageIncrease")
+        static let error = CodingKeys(stringValue: "error")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bucket",
+          "totalStorageGrowthBytes",
+          "percentageIncrease",
+          "error",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
-        self.totalStorageGrowthBytes = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+          self.bucket = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .totalStorageGrowthBytes)
-        self.percentageIncrease = try container.decode(
-          Swift.Double.self, forKey: .percentageIncrease)
+        {
+          self.totalStorageGrowthBytes = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease)
+        {
+          self.percentageIncrease = value
+        }
 
         var details: OneOf_Details? = nil
         let detailsCheckAndSet = {
@@ -1056,6 +1611,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -1069,6 +1628,9 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleCloudWKT._AnyPackab
           case .error(let value):
             try container.encode(value, forKey: .error)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

@@ -72,6 +72,8 @@
     /// If set, this value must be between 20 and 60. The default is 20.
     public var keepaliveInterval: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterBgp`.
     public init() {}
 
@@ -86,6 +88,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advertiseMode = CodingKeys(stringValue: "advertiseMode")
+      static let advertisedGroups = CodingKeys(stringValue: "advertisedGroups")
+      static let advertisedIpRanges = CodingKeys(stringValue: "advertisedIpRanges")
+      static let asn = CodingKeys(stringValue: "asn")
+      static let identifierRange = CodingKeys(stringValue: "identifierRange")
+      static let keepaliveInterval = CodingKeys(stringValue: "keepaliveInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advertiseMode",
+        "advertisedGroups",
+        "advertisedIpRanges",
+        "asn",
+        "identifierRange",
+        "keepaliveInterval",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.advertiseMode = try container.decodeIfPresent(
+        RouterBgp.AdvertiseMode.self, forKey: .advertiseMode)
+      if let value = try container.decodeIfPresent(
+        [RouterBgp.AdvertisedGroups].self, forKey: .advertisedGroups)
+      {
+        self.advertisedGroups = value
+      }
+      if let value = try container.decodeIfPresent(
+        [RouterAdvertisedIpRange].self, forKey: .advertisedIpRanges)
+      {
+        self.advertisedIpRanges = value
+      }
+      self.asn = try container.decodeIfPresent(Swift.UInt32.self, forKey: .asn)
+      self.identifierRange = try container.decodeIfPresent(
+        Swift.String.self, forKey: .identifierRange)
+      self.keepaliveInterval = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .keepaliveInterval)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.advertiseMode, forKey: .advertiseMode)
+      try container.encode(self.advertisedGroups, forKey: .advertisedGroups)
+      try container.encode(self.advertisedIpRanges, forKey: .advertisedIpRanges)
+      try container.encodeIfPresent(self.asn, forKey: .asn)
+      try container.encodeIfPresent(self.identifierRange, forKey: .identifierRange)
+      try container.encodeIfPresent(self.keepaliveInterval, forKey: .keepaliveInterval)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [advertiseMode][google.cloud.compute.v1.RouterBgp.advertiseMode] field.

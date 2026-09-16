@@ -27,6 +27,8 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
   public var policy: OneOf_Policy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenanceWindow`.
   public init() {}
 
@@ -43,17 +45,32 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dailyMaintenanceWindow = "dailyMaintenanceWindow"
-    case recurringWindow = "recurringWindow"
-    case recurringMaintenanceWindow = "recurringMaintenanceWindow"
-    case maintenanceExclusions = "maintenanceExclusions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dailyMaintenanceWindow = CodingKeys(stringValue: "dailyMaintenanceWindow")
+    static let recurringWindow = CodingKeys(stringValue: "recurringWindow")
+    static let recurringMaintenanceWindow = CodingKeys(stringValue: "recurringMaintenanceWindow")
+    static let maintenanceExclusions = CodingKeys(stringValue: "maintenanceExclusions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dailyMaintenanceWindow",
+      "recurringWindow",
+      "recurringMaintenanceWindow",
+      "maintenanceExclusions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.maintenanceExclusions = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: TimeWindow].self, forKey: .maintenanceExclusions)
+    {
+      self.maintenanceExclusions = value
+    }
 
     var policy: OneOf_Policy? = nil
     let policyCheckAndSet = {
@@ -81,6 +98,10 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try policyCheckAndSet(.recurringMaintenanceWindow(recurringMaintenanceWindow))
     }
     self.policy = policy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,6 +117,9 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .recurringMaintenanceWindow(let value):
         try container.encode(value, forKey: .recurringMaintenanceWindow)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

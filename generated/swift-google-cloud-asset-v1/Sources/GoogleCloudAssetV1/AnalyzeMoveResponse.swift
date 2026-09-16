@@ -25,6 +25,8 @@ public struct AnalyzeMoveResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// analysis. The analysis is grouped by different Google Cloud services.
   public var moveAnalysis: [MoveAnalysis] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeMoveResponse`.
   public init() {}
 
@@ -39,6 +41,38 @@ public struct AnalyzeMoveResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let moveAnalysis = CodingKeys(stringValue: "moveAnalysis")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "moveAnalysis"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MoveAnalysis].self, forKey: .moveAnalysis) {
+      self.moveAnalysis = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.moveAnalysis, forKey: .moveAnalysis)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -41,6 +41,8 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
   public var infrastructureConfig: OneOf_InfrastructureConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VirtualClusterConfig`.
   public init() {}
 
@@ -57,15 +59,28 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stagingBucket = "stagingBucket"
-    case kubernetesClusterConfig = "kubernetesClusterConfig"
-    case auxiliaryServicesConfig = "auxiliaryServicesConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stagingBucket = CodingKeys(stringValue: "stagingBucket")
+    static let kubernetesClusterConfig = CodingKeys(stringValue: "kubernetesClusterConfig")
+    static let auxiliaryServicesConfig = CodingKeys(stringValue: "auxiliaryServicesConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stagingBucket",
+      "kubernetesClusterConfig",
+      "auxiliaryServicesConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.stagingBucket = try container.decode(Swift.String.self, forKey: .stagingBucket)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stagingBucket) {
+      self.stagingBucket = value
+    }
     self.auxiliaryServicesConfig = try container.decodeIfPresent(
       AuxiliaryServicesConfig.self, forKey: .auxiliaryServicesConfig)
 
@@ -85,18 +100,25 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try infrastructureConfigCheckAndSet(.kubernetesClusterConfig(kubernetesClusterConfig))
     }
     self.infrastructureConfig = infrastructureConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.stagingBucket, forKey: .stagingBucket)
-    try container.encode(self.auxiliaryServicesConfig, forKey: .auxiliaryServicesConfig)
+    try container.encodeIfPresent(self.auxiliaryServicesConfig, forKey: .auxiliaryServicesConfig)
 
     if let choice = self.infrastructureConfig {
       switch choice {
       case .kubernetesClusterConfig(let value):
         try container.encode(value, forKey: .kubernetesClusterConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

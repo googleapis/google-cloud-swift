@@ -46,6 +46,8 @@ public struct AudioRecordingConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// `$project/$location/$app/$date/$session/` will be used.
   public var gcsPathPrefix: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AudioRecordingConfig`.
   public init() {}
 
@@ -60,6 +62,44 @@ public struct AudioRecordingConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsBucket = CodingKeys(stringValue: "gcsBucket")
+    static let gcsPathPrefix = CodingKeys(stringValue: "gcsPathPrefix")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsBucket",
+      "gcsPathPrefix",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsBucket) {
+      self.gcsBucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsPathPrefix) {
+      self.gcsPathPrefix = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.gcsBucket, forKey: .gcsBucket)
+    try container.encode(self.gcsPathPrefix, forKey: .gcsPathPrefix)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

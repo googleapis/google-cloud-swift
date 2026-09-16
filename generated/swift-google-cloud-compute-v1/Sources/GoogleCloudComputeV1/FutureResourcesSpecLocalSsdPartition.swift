@@ -28,6 +28,8 @@
     /// The size of the disk in GB.
     public var diskSizeGb: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureResourcesSpecLocalSsdPartition`.
     public init() {}
 
@@ -42,6 +44,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let diskInterface = CodingKeys(stringValue: "diskInterface")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "diskInterface",
+        "diskSizeGb",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.diskInterface = try container.decodeIfPresent(
+        FutureResourcesSpecLocalSsdPartition.DiskInterface.self, forKey: .diskInterface)
+      self.diskSizeGb = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskSizeGb)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.diskInterface, forKey: .diskInterface)
+      try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [diskInterface][google.cloud.compute.v1.FutureResourcesSpecLocalSsdPartition.diskInterface] field.

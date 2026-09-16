@@ -52,6 +52,8 @@ public struct DevicePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether the device needs to be corp owned.
   public var requireCorpOwned: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DevicePolicy`.
   public init() {}
 
@@ -66,6 +68,75 @@ public struct DevicePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requireScreenlock = CodingKeys(stringValue: "requireScreenlock")
+    static let allowedEncryptionStatuses = CodingKeys(stringValue: "allowedEncryptionStatuses")
+    static let osConstraints = CodingKeys(stringValue: "osConstraints")
+    static let allowedDeviceManagementLevels = CodingKeys(
+      stringValue: "allowedDeviceManagementLevels")
+    static let requireAdminApproval = CodingKeys(stringValue: "requireAdminApproval")
+    static let requireCorpOwned = CodingKeys(stringValue: "requireCorpOwned")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requireScreenlock",
+      "allowedEncryptionStatuses",
+      "osConstraints",
+      "allowedDeviceManagementLevels",
+      "requireAdminApproval",
+      "requireCorpOwned",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireScreenlock) {
+      self.requireScreenlock = value
+    }
+    if let value = try container.decodeIfPresent(
+      [GoogleIdentityAccessContextManagerType.DeviceEncryptionStatus].self,
+      forKey: .allowedEncryptionStatuses)
+    {
+      self.allowedEncryptionStatuses = value
+    }
+    if let value = try container.decodeIfPresent([OsConstraint].self, forKey: .osConstraints) {
+      self.osConstraints = value
+    }
+    if let value = try container.decodeIfPresent(
+      [GoogleIdentityAccessContextManagerType.DeviceManagementLevel].self,
+      forKey: .allowedDeviceManagementLevels)
+    {
+      self.allowedDeviceManagementLevels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireAdminApproval) {
+      self.requireAdminApproval = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireCorpOwned) {
+      self.requireCorpOwned = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.requireScreenlock, forKey: .requireScreenlock)
+    try container.encode(self.allowedEncryptionStatuses, forKey: .allowedEncryptionStatuses)
+    try container.encode(self.osConstraints, forKey: .osConstraints)
+    try container.encode(self.allowedDeviceManagementLevels, forKey: .allowedDeviceManagementLevels)
+    try container.encode(self.requireAdminApproval, forKey: .requireAdminApproval)
+    try container.encode(self.requireCorpOwned, forKey: .requireCorpOwned)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

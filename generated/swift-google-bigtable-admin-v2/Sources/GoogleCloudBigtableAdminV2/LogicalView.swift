@@ -38,6 +38,8 @@ public struct LogicalView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Set to true to make the LogicalView protected against deletion.
   public var deletionProtection: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogicalView`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct LogicalView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let query = CodingKeys(stringValue: "query")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let deletionProtection = CodingKeys(stringValue: "deletionProtection")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "query",
+      "etag",
+      "deletionProtection",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deletionProtection) {
+      self.deletionProtection = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.deletionProtection, forKey: .deletionProtection)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

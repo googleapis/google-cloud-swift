@@ -268,6 +268,8 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var endLoadIntervals: [CapacityQuantityInterval] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Vehicle`.
   public init() {}
 
@@ -282,6 +284,204 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let travelMode = CodingKeys(stringValue: "travelMode")
+    static let routeModifiers = CodingKeys(stringValue: "routeModifiers")
+    static let startLocation = CodingKeys(stringValue: "startLocation")
+    static let startWaypoint = CodingKeys(stringValue: "startWaypoint")
+    static let endLocation = CodingKeys(stringValue: "endLocation")
+    static let endWaypoint = CodingKeys(stringValue: "endWaypoint")
+    static let startTags = CodingKeys(stringValue: "startTags")
+    static let endTags = CodingKeys(stringValue: "endTags")
+    static let startTimeWindows = CodingKeys(stringValue: "startTimeWindows")
+    static let endTimeWindows = CodingKeys(stringValue: "endTimeWindows")
+    static let travelDurationMultiple = CodingKeys(stringValue: "travelDurationMultiple")
+    static let unloadingPolicy = CodingKeys(stringValue: "unloadingPolicy")
+    static let loadLimits = CodingKeys(stringValue: "loadLimits")
+    static let costPerHour = CodingKeys(stringValue: "costPerHour")
+    static let costPerTraveledHour = CodingKeys(stringValue: "costPerTraveledHour")
+    static let costPerKilometer = CodingKeys(stringValue: "costPerKilometer")
+    static let fixedCost = CodingKeys(stringValue: "fixedCost")
+    static let usedIfRouteIsEmpty = CodingKeys(stringValue: "usedIfRouteIsEmpty")
+    static let routeDurationLimit = CodingKeys(stringValue: "routeDurationLimit")
+    static let travelDurationLimit = CodingKeys(stringValue: "travelDurationLimit")
+    static let routeDistanceLimit = CodingKeys(stringValue: "routeDistanceLimit")
+    static let extraVisitDurationForVisitType = CodingKeys(
+      stringValue: "extraVisitDurationForVisitType")
+    static let breakRule = CodingKeys(stringValue: "breakRule")
+    static let label = CodingKeys(stringValue: "label")
+    static let ignore = CodingKeys(stringValue: "ignore")
+    static let breakRuleIndices = CodingKeys(stringValue: "breakRuleIndices")
+    static let capacities = CodingKeys(stringValue: "capacities")
+    static let startLoadIntervals = CodingKeys(stringValue: "startLoadIntervals")
+    static let endLoadIntervals = CodingKeys(stringValue: "endLoadIntervals")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "travelMode",
+      "routeModifiers",
+      "startLocation",
+      "startWaypoint",
+      "endLocation",
+      "endWaypoint",
+      "startTags",
+      "endTags",
+      "startTimeWindows",
+      "endTimeWindows",
+      "travelDurationMultiple",
+      "unloadingPolicy",
+      "loadLimits",
+      "costPerHour",
+      "costPerTraveledHour",
+      "costPerKilometer",
+      "fixedCost",
+      "usedIfRouteIsEmpty",
+      "routeDurationLimit",
+      "travelDurationLimit",
+      "routeDistanceLimit",
+      "extraVisitDurationForVisitType",
+      "breakRule",
+      "label",
+      "ignore",
+      "breakRuleIndices",
+      "capacities",
+      "startLoadIntervals",
+      "endLoadIntervals",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Vehicle.TravelMode.self, forKey: .travelMode) {
+      self.travelMode = value
+    }
+    self.routeModifiers = try container.decodeIfPresent(
+      RouteModifiers.self, forKey: .routeModifiers)
+    self.startLocation = try container.decodeIfPresent(
+      GoogleType.LatLng.self, forKey: .startLocation)
+    self.startWaypoint = try container.decodeIfPresent(Waypoint.self, forKey: .startWaypoint)
+    self.endLocation = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .endLocation)
+    self.endWaypoint = try container.decodeIfPresent(Waypoint.self, forKey: .endWaypoint)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .startTags) {
+      self.startTags = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .endTags) {
+      self.endTags = value
+    }
+    if let value = try container.decodeIfPresent([TimeWindow].self, forKey: .startTimeWindows) {
+      self.startTimeWindows = value
+    }
+    if let value = try container.decodeIfPresent([TimeWindow].self, forKey: .endTimeWindows) {
+      self.endTimeWindows = value
+    }
+    self.travelDurationMultiple = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .travelDurationMultiple)
+    if let value = try container.decodeIfPresent(
+      Vehicle.UnloadingPolicy.self, forKey: .unloadingPolicy)
+    {
+      self.unloadingPolicy = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Vehicle.LoadLimit].self, forKey: .loadLimits)
+    {
+      self.loadLimits = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .costPerHour) {
+      self.costPerHour = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .costPerTraveledHour) {
+      self.costPerTraveledHour = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .costPerKilometer) {
+      self.costPerKilometer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .fixedCost) {
+      self.fixedCost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .usedIfRouteIsEmpty) {
+      self.usedIfRouteIsEmpty = value
+    }
+    self.routeDurationLimit = try container.decodeIfPresent(
+      Vehicle.DurationLimit.self, forKey: .routeDurationLimit)
+    self.travelDurationLimit = try container.decodeIfPresent(
+      Vehicle.DurationLimit.self, forKey: .travelDurationLimit)
+    self.routeDistanceLimit = try container.decodeIfPresent(
+      DistanceLimit.self, forKey: .routeDistanceLimit)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.Duration].self, forKey: .extraVisitDurationForVisitType)
+    {
+      self.extraVisitDurationForVisitType = value
+    }
+    self.breakRule = try container.decodeIfPresent(BreakRule.self, forKey: .breakRule)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+      self.label = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignore) {
+      self.ignore = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .breakRuleIndices) {
+      self.breakRuleIndices = value
+    }
+    if let value = try container.decodeIfPresent([CapacityQuantity].self, forKey: .capacities) {
+      self.capacities = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CapacityQuantityInterval].self, forKey: .startLoadIntervals)
+    {
+      self.startLoadIntervals = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CapacityQuantityInterval].self, forKey: .endLoadIntervals)
+    {
+      self.endLoadIntervals = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.travelMode, forKey: .travelMode)
+    try container.encodeIfPresent(self.routeModifiers, forKey: .routeModifiers)
+    try container.encodeIfPresent(self.startLocation, forKey: .startLocation)
+    try container.encodeIfPresent(self.startWaypoint, forKey: .startWaypoint)
+    try container.encodeIfPresent(self.endLocation, forKey: .endLocation)
+    try container.encodeIfPresent(self.endWaypoint, forKey: .endWaypoint)
+    try container.encode(self.startTags, forKey: .startTags)
+    try container.encode(self.endTags, forKey: .endTags)
+    try container.encode(self.startTimeWindows, forKey: .startTimeWindows)
+    try container.encode(self.endTimeWindows, forKey: .endTimeWindows)
+    try container.encodeIfPresent(self.travelDurationMultiple, forKey: .travelDurationMultiple)
+    try container.encode(self.unloadingPolicy, forKey: .unloadingPolicy)
+    try container.encode(self.loadLimits, forKey: .loadLimits)
+    try container.encode(self.costPerHour, forKey: .costPerHour)
+    try container.encode(self.costPerTraveledHour, forKey: .costPerTraveledHour)
+    try container.encode(self.costPerKilometer, forKey: .costPerKilometer)
+    try container.encode(self.fixedCost, forKey: .fixedCost)
+    try container.encode(self.usedIfRouteIsEmpty, forKey: .usedIfRouteIsEmpty)
+    try container.encodeIfPresent(self.routeDurationLimit, forKey: .routeDurationLimit)
+    try container.encodeIfPresent(self.travelDurationLimit, forKey: .travelDurationLimit)
+    try container.encodeIfPresent(self.routeDistanceLimit, forKey: .routeDistanceLimit)
+    try container.encode(
+      self.extraVisitDurationForVisitType, forKey: .extraVisitDurationForVisitType)
+    try container.encodeIfPresent(self.breakRule, forKey: .breakRule)
+    try container.encode(self.label, forKey: .label)
+    try container.encode(self.ignore, forKey: .ignore)
+    try container.encode(self.breakRuleIndices, forKey: .breakRuleIndices)
+    try container.encode(self.capacities, forKey: .capacities)
+    try container.encode(self.startLoadIntervals, forKey: .startLoadIntervals)
+    try container.encode(self.endLoadIntervals, forKey: .endLoadIntervals)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines a load limit applying to a vehicle, e.g. "this truck may only
@@ -321,6 +521,8 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The acceptable load interval of the vehicle at the end of the route.
     public var endLoadInterval: Vehicle.LoadLimit.Interval? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LoadLimit`.
     public init() {}
 
@@ -335,6 +537,60 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxLoad = CodingKeys(stringValue: "maxLoad")
+      static let softMaxLoad = CodingKeys(stringValue: "softMaxLoad")
+      static let costPerUnitAboveSoftMax = CodingKeys(stringValue: "costPerUnitAboveSoftMax")
+      static let startLoadInterval = CodingKeys(stringValue: "startLoadInterval")
+      static let endLoadInterval = CodingKeys(stringValue: "endLoadInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxLoad",
+        "softMaxLoad",
+        "costPerUnitAboveSoftMax",
+        "startLoadInterval",
+        "endLoadInterval",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxLoad = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxLoad)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .softMaxLoad) {
+        self.softMaxLoad = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .costPerUnitAboveSoftMax)
+      {
+        self.costPerUnitAboveSoftMax = value
+      }
+      self.startLoadInterval = try container.decodeIfPresent(
+        Vehicle.LoadLimit.Interval.self, forKey: .startLoadInterval)
+      self.endLoadInterval = try container.decodeIfPresent(
+        Vehicle.LoadLimit.Interval.self, forKey: .endLoadInterval)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxLoad, forKey: .maxLoad)
+      try container.encode(self.softMaxLoad, forKey: .softMaxLoad)
+      try container.encode(self.costPerUnitAboveSoftMax, forKey: .costPerUnitAboveSoftMax)
+      try container.encodeIfPresent(self.startLoadInterval, forKey: .startLoadInterval)
+      try container.encodeIfPresent(self.endLoadInterval, forKey: .endLoadInterval)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Interval of acceptable load amounts.
@@ -362,6 +618,8 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// [google.cloud.optimization.v1.Vehicle.LoadLimit.Interval.min]: <doc:Vehicle/LoadLimit/Interval/min>
       public var max: Swift.Int64? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Interval`.
       public init() {}
 
@@ -376,6 +634,42 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let min = CodingKeys(stringValue: "min")
+        static let max = CodingKeys(stringValue: "max")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "min",
+          "max",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .min) {
+          self.min = value
+        }
+        self.max = try container.decodeIfPresent(Swift.Int64.self, forKey: .max)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.min, forKey: .min)
+        try container.encodeIfPresent(self.max, forKey: .max)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -454,6 +748,8 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The cost must be nonnegative.
     public var costPerSquareHourAfterQuadraticSoftMax: Swift.Double? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DurationLimit`.
     public init() {}
 
@@ -468,6 +764,61 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDuration = CodingKeys(stringValue: "maxDuration")
+      static let softMaxDuration = CodingKeys(stringValue: "softMaxDuration")
+      static let costPerHourAfterSoftMax = CodingKeys(stringValue: "costPerHourAfterSoftMax")
+      static let quadraticSoftMaxDuration = CodingKeys(stringValue: "quadraticSoftMaxDuration")
+      static let costPerSquareHourAfterQuadraticSoftMax = CodingKeys(
+        stringValue: "costPerSquareHourAfterQuadraticSoftMax")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDuration",
+        "softMaxDuration",
+        "costPerHourAfterSoftMax",
+        "quadraticSoftMaxDuration",
+        "costPerSquareHourAfterQuadraticSoftMax",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxDuration)
+      self.softMaxDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .softMaxDuration)
+      self.costPerHourAfterSoftMax = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .costPerHourAfterSoftMax)
+      self.quadraticSoftMaxDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .quadraticSoftMaxDuration)
+      self.costPerSquareHourAfterQuadraticSoftMax = try container.decodeIfPresent(
+        Swift.Double.self, forKey: .costPerSquareHourAfterQuadraticSoftMax)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
+      try container.encodeIfPresent(self.softMaxDuration, forKey: .softMaxDuration)
+      try container.encodeIfPresent(self.costPerHourAfterSoftMax, forKey: .costPerHourAfterSoftMax)
+      try container.encodeIfPresent(
+        self.quadraticSoftMaxDuration, forKey: .quadraticSoftMaxDuration)
+      try container.encodeIfPresent(
+        self.costPerSquareHourAfterQuadraticSoftMax, forKey: .costPerSquareHourAfterQuadraticSoftMax
+      )
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Defines where SRT encryption passphrase are stored.
   public var passphraseSource: OneOf_PassphraseSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SrtPushOutputEndpoint`.
   public init() {}
 
@@ -44,14 +46,26 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case uri = "uri"
-    case passphraseSecretVersion = "passphraseSecretVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let passphraseSecretVersion = CodingKeys(stringValue: "passphraseSecretVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "passphraseSecretVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
 
     var passphraseSource: OneOf_PassphraseSource? = nil
     let passphraseSourceCheckAndSet = {
@@ -69,6 +83,10 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPack
       try passphraseSourceCheckAndSet(.passphraseSecretVersion(passphraseSecretVersion))
     }
     self.passphraseSource = passphraseSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,9 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .passphraseSecretVersion(let value):
         try container.encode(value, forKey: .passphraseSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

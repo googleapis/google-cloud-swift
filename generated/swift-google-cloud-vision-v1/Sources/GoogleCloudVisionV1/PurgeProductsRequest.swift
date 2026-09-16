@@ -33,6 +33,8 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The Products to delete.
   public var target: OneOf_Target? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PurgeProductsRequest`.
   public init() {}
 
@@ -49,17 +51,33 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case productSetPurgeConfig = "productSetPurgeConfig"
-    case deleteOrphanProducts = "deleteOrphanProducts"
-    case parent = "parent"
-    case force = "force"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let productSetPurgeConfig = CodingKeys(stringValue: "productSetPurgeConfig")
+    static let deleteOrphanProducts = CodingKeys(stringValue: "deleteOrphanProducts")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let force = CodingKeys(stringValue: "force")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "productSetPurgeConfig",
+      "deleteOrphanProducts",
+      "parent",
+      "force",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.force = try container.decode(Swift.Bool.self, forKey: .force)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .force) {
+      self.force = value
+    }
 
     var target: OneOf_Target? = nil
     let targetCheckAndSet = {
@@ -82,6 +100,10 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try targetCheckAndSet(.deleteOrphanProducts(deleteOrphanProducts))
     }
     self.target = target
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,6 +118,9 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .deleteOrphanProducts(let value):
         try container.encode(value, forKey: .deleteOrphanProducts)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

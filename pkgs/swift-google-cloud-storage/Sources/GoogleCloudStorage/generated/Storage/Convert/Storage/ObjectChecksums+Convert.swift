@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ObjectChecksums {
@@ -28,12 +28,16 @@ extension ObjectChecksums {
     self.init()
     self.crc32C = proto.hasCrc32C ? proto.crc32C : nil
     self.md5Hash = proto.md5Hash
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let crc32C = self.crc32C { proto.crc32C = crc32C }
     proto.md5Hash = self.md5Hash
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

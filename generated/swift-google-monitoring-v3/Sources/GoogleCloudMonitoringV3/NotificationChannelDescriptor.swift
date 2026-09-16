@@ -60,6 +60,8 @@ public struct NotificationChannelDescriptor: Codable, Equatable, GoogleCloudWKT.
   /// The product launch stage for channels of this type.
   public var launchStage: GoogleApi.LaunchStage = GoogleApi.LaunchStage()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NotificationChannelDescriptor`.
   public init() {}
 
@@ -74,6 +76,75 @@ public struct NotificationChannelDescriptor: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let supportedTiers = CodingKeys(stringValue: "supportedTiers")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "displayName",
+      "description",
+      "labels",
+      "supportedTiers",
+      "launchStage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([GoogleApi.LabelDescriptor].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([ServiceTier].self, forKey: .supportedTiers) {
+      self.supportedTiers = value
+    }
+    if let value = try container.decodeIfPresent(GoogleApi.LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.supportedTiers, forKey: .supportedTiers)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

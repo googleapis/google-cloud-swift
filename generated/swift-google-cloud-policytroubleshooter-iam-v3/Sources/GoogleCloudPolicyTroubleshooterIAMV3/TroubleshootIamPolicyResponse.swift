@@ -42,6 +42,8 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleCloudWKT.
   /// access state.
   public var denyPolicyExplanation: DenyPolicyExplanation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TroubleshootIamPolicyResponse`.
   public init() {}
 
@@ -56,6 +58,54 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let overallAccessState = CodingKeys(stringValue: "overallAccessState")
+    static let accessTuple = CodingKeys(stringValue: "accessTuple")
+    static let allowPolicyExplanation = CodingKeys(stringValue: "allowPolicyExplanation")
+    static let denyPolicyExplanation = CodingKeys(stringValue: "denyPolicyExplanation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "overallAccessState",
+      "accessTuple",
+      "allowPolicyExplanation",
+      "denyPolicyExplanation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      TroubleshootIamPolicyResponse.OverallAccessState.self, forKey: .overallAccessState)
+    {
+      self.overallAccessState = value
+    }
+    self.accessTuple = try container.decodeIfPresent(AccessTuple.self, forKey: .accessTuple)
+    self.allowPolicyExplanation = try container.decodeIfPresent(
+      AllowPolicyExplanation.self, forKey: .allowPolicyExplanation)
+    self.denyPolicyExplanation = try container.decodeIfPresent(
+      DenyPolicyExplanation.self, forKey: .denyPolicyExplanation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.overallAccessState, forKey: .overallAccessState)
+    try container.encodeIfPresent(self.accessTuple, forKey: .accessTuple)
+    try container.encodeIfPresent(self.allowPolicyExplanation, forKey: .allowPolicyExplanation)
+    try container.encodeIfPresent(self.denyPolicyExplanation, forKey: .denyPolicyExplanation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Whether the principal has the permission on the resource.

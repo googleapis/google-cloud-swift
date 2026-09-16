@@ -36,6 +36,8 @@
     /// Output only. The text corresponding to the segment from the response.
     public var text: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Segment`.
     public init() {}
 
@@ -50,6 +52,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let partIndex = CodingKeys(stringValue: "partIndex")
+      static let startIndex = CodingKeys(stringValue: "startIndex")
+      static let endIndex = CodingKeys(stringValue: "endIndex")
+      static let text = CodingKeys(stringValue: "text")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "partIndex",
+        "startIndex",
+        "endIndex",
+        "text",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .partIndex) {
+        self.partIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .startIndex) {
+        self.startIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .endIndex) {
+        self.endIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.partIndex, forKey: .partIndex)
+      try container.encode(self.startIndex, forKey: .startIndex)
+      try container.encode(self.endIndex, forKey: .endIndex)
+      try container.encode(self.text, forKey: .text)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

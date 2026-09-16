@@ -47,6 +47,8 @@ public struct EndpointInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// URI of the source telemetry agent this packet originates from.
   public var sourceAgentUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndpointInfo`.
   public init() {}
 
@@ -63,28 +65,64 @@ public struct EndpointInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceIp = "sourceIp"
-    case destinationIp = "destinationIp"
-    case `protocol` = "protocol"
-    case sourcePort = "sourcePort"
-    case destinationPort = "destinationPort"
-    case sourceNetworkUri = "sourceNetworkUri"
-    case destinationNetworkUri = "destinationNetworkUri"
-    case sourceAgentUri = "sourceAgentUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceIp = CodingKeys(stringValue: "sourceIp")
+    static let destinationIp = CodingKeys(stringValue: "destinationIp")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let sourcePort = CodingKeys(stringValue: "sourcePort")
+    static let destinationPort = CodingKeys(stringValue: "destinationPort")
+    static let sourceNetworkUri = CodingKeys(stringValue: "sourceNetworkUri")
+    static let destinationNetworkUri = CodingKeys(stringValue: "destinationNetworkUri")
+    static let sourceAgentUri = CodingKeys(stringValue: "sourceAgentUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceIp",
+      "destinationIp",
+      "protocol",
+      "sourcePort",
+      "destinationPort",
+      "sourceNetworkUri",
+      "destinationNetworkUri",
+      "sourceAgentUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sourceIp = try container.decode(Swift.String.self, forKey: .sourceIp)
-    self.destinationIp = try container.decode(Swift.String.self, forKey: .destinationIp)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.sourcePort = try container.decode(Swift.Int32.self, forKey: .sourcePort)
-    self.destinationPort = try container.decode(Swift.Int32.self, forKey: .destinationPort)
-    self.sourceNetworkUri = try container.decode(Swift.String.self, forKey: .sourceNetworkUri)
-    self.destinationNetworkUri = try container.decode(
-      Swift.String.self, forKey: .destinationNetworkUri)
-    self.sourceAgentUri = try container.decode(Swift.String.self, forKey: .sourceAgentUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceIp) {
+      self.sourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationIp) {
+      self.destinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sourcePort) {
+      self.sourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .destinationPort) {
+      self.destinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceNetworkUri) {
+      self.sourceNetworkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationNetworkUri)
+    {
+      self.destinationNetworkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceAgentUri) {
+      self.sourceAgentUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +135,9 @@ public struct EndpointInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.sourceNetworkUri, forKey: .sourceNetworkUri)
     try container.encode(self.destinationNetworkUri, forKey: .destinationNetworkUri)
     try container.encode(self.sourceAgentUri, forKey: .sourceAgentUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

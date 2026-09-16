@@ -28,6 +28,8 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of key
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecordKey`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case datastoreKey = "datastoreKey"
-    case bigQueryKey = "bigQueryKey"
-    case idValues = "idValues"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let datastoreKey = CodingKeys(stringValue: "datastoreKey")
+    static let bigQueryKey = CodingKeys(stringValue: "bigQueryKey")
+    static let idValues = CodingKeys(stringValue: "idValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "datastoreKey",
+      "bigQueryKey",
+      "idValues",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.idValues = try container.decode([Swift.String].self, forKey: .idValues)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .idValues) {
+      self.idValues = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -71,6 +86,10 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.bigQueryKey(bigQueryKey))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +103,9 @@ public struct RecordKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .bigQueryKey(let value):
         try container.encode(value, forKey: .bigQueryKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -61,6 +61,8 @@ public struct Federation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// federation.
   public var uid: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Federation`.
   public init() {}
 
@@ -77,31 +79,56 @@ public struct Federation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case version = "version"
-    case backendMetastores = "backendMetastores"
-    case endpointUri = "endpointUri"
-    case state = "state"
-    case stateMessage = "stateMessage"
-    case uid = "uid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let version = CodingKeys(stringValue: "version")
+    static let backendMetastores = CodingKeys(stringValue: "backendMetastores")
+    static let endpointUri = CodingKeys(stringValue: "endpointUri")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let uid = CodingKeys(stringValue: "uid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "version",
+      "backendMetastores",
+      "endpointUri",
+      "state",
+      "stateMessage",
+      "uid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.version = try container.decode(Swift.String.self, forKey: .version)
-    self.backendMetastores = try { () throws in
-      let stringKeyed = try container.decode(
-        [Swift.String: BackendMetastore].self, forKey: .backendMetastores)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let stringKeyed = try container.decodeIfPresent(
+      [Swift.String: BackendMetastore].self, forKey: .backendMetastores)
+    {
       let tuples = try stringKeyed.lazy.map {
         (key, value) throws -> (Swift.Int32, BackendMetastore) in
         guard let newKey = Swift.Int32(key) else {
@@ -113,19 +140,31 @@ public struct Federation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         }
         return (newKey, value)
       }
-      return Dictionary(uniqueKeysWithValues: tuples)
-    }()
-    self.endpointUri = try container.decode(Swift.String.self, forKey: .endpointUri)
-    self.state = try container.decode(Federation.State.self, forKey: .state)
-    self.stateMessage = try container.decode(Swift.String.self, forKey: .stateMessage)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+      self.backendMetastores = Dictionary(uniqueKeysWithValues: tuples)
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointUri) {
+      self.endpointUri = value
+    }
+    if let value = try container.decodeIfPresent(Federation.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.version, forKey: .version)
     do {
@@ -138,6 +177,9 @@ public struct Federation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateMessage, forKey: .stateMessage)
     try container.encode(self.uid, forKey: .uid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The current state of the federation.

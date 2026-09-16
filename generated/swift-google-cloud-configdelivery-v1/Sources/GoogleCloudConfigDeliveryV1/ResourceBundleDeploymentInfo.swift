@@ -41,6 +41,8 @@ public struct ResourceBundleDeploymentInfo: Codable, Equatable, GoogleCloudWKT._
   /// deployment of new release is pending.
   public var messages: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceBundleDeploymentInfo`.
   public init() {}
 
@@ -55,6 +57,64 @@ public struct ResourceBundleDeploymentInfo: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let release = CodingKeys(stringValue: "release")
+    static let version = CodingKeys(stringValue: "version")
+    static let variant = CodingKeys(stringValue: "variant")
+    static let syncState = CodingKeys(stringValue: "syncState")
+    static let messages = CodingKeys(stringValue: "messages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "release",
+      "version",
+      "variant",
+      "syncState",
+      "messages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .release) {
+      self.release = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .variant) {
+      self.variant = value
+    }
+    if let value = try container.decodeIfPresent(
+      ResourceBundleDeploymentInfo.SyncState.self, forKey: .syncState)
+    {
+      self.syncState = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .messages) {
+      self.messages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.release, forKey: .release)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.variant, forKey: .variant)
+    try container.encode(self.syncState, forKey: .syncState)
+    try container.encode(self.messages, forKey: .messages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Synchronization state of the resource bundle deployment.

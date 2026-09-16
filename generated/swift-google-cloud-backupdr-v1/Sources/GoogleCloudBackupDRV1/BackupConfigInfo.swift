@@ -36,6 +36,8 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration Info has the resource format-specific configuration.
   public var backupConfig: OneOf_BackupConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupConfigInfo`.
   public init() {}
 
@@ -52,18 +54,35 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case lastBackupState = "lastBackupState"
-    case lastSuccessfulBackupConsistencyTime = "lastSuccessfulBackupConsistencyTime"
-    case lastBackupError = "lastBackupError"
-    case gcpBackupConfig = "gcpBackupConfig"
-    case backupApplianceBackupConfig = "backupApplianceBackupConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lastBackupState = CodingKeys(stringValue: "lastBackupState")
+    static let lastSuccessfulBackupConsistencyTime = CodingKeys(
+      stringValue: "lastSuccessfulBackupConsistencyTime")
+    static let lastBackupError = CodingKeys(stringValue: "lastBackupError")
+    static let gcpBackupConfig = CodingKeys(stringValue: "gcpBackupConfig")
+    static let backupApplianceBackupConfig = CodingKeys(stringValue: "backupApplianceBackupConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lastBackupState",
+      "lastSuccessfulBackupConsistencyTime",
+      "lastBackupError",
+      "gcpBackupConfig",
+      "backupApplianceBackupConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.lastBackupState = try container.decode(
+    if let value = try container.decodeIfPresent(
       BackupConfigInfo.LastBackupState.self, forKey: .lastBackupState)
+    {
+      self.lastBackupState = value
+    }
     self.lastSuccessfulBackupConsistencyTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastSuccessfulBackupConsistencyTime)
     self.lastBackupError = try container.decodeIfPresent(
@@ -90,14 +109,18 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try backupConfigCheckAndSet(.backupApplianceBackupConfig(backupApplianceBackupConfig))
     }
     self.backupConfig = backupConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.lastBackupState, forKey: .lastBackupState)
-    try container.encode(
+    try container.encodeIfPresent(
       self.lastSuccessfulBackupConsistencyTime, forKey: .lastSuccessfulBackupConsistencyTime)
-    try container.encode(self.lastBackupError, forKey: .lastBackupError)
+    try container.encodeIfPresent(self.lastBackupError, forKey: .lastBackupError)
 
     if let choice = self.backupConfig {
       switch choice {
@@ -106,6 +129,9 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backupApplianceBackupConfig(let value):
         try container.encode(value, forKey: .backupApplianceBackupConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

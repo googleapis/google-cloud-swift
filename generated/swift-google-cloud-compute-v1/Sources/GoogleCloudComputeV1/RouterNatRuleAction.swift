@@ -45,6 +45,8 @@
     /// This field is used for private NAT.
     public var sourceNatDrainRanges: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RouterNatRuleAction`.
     public init() {}
 
@@ -59,6 +61,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceNatActiveIps = CodingKeys(stringValue: "sourceNatActiveIps")
+      static let sourceNatActiveRanges = CodingKeys(stringValue: "sourceNatActiveRanges")
+      static let sourceNatDrainIps = CodingKeys(stringValue: "sourceNatDrainIps")
+      static let sourceNatDrainRanges = CodingKeys(stringValue: "sourceNatDrainRanges")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceNatActiveIps",
+        "sourceNatActiveRanges",
+        "sourceNatDrainIps",
+        "sourceNatDrainRanges",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceNatActiveIps)
+      {
+        self.sourceNatActiveIps = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .sourceNatActiveRanges)
+      {
+        self.sourceNatActiveRanges = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceNatDrainIps)
+      {
+        self.sourceNatDrainIps = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .sourceNatDrainRanges)
+      {
+        self.sourceNatDrainRanges = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceNatActiveIps, forKey: .sourceNatActiveIps)
+      try container.encode(self.sourceNatActiveRanges, forKey: .sourceNatActiveRanges)
+      try container.encode(self.sourceNatDrainIps, forKey: .sourceNatDrainIps)
+      try container.encode(self.sourceNatDrainRanges, forKey: .sourceNatDrainRanges)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

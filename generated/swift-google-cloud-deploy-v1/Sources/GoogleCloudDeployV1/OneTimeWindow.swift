@@ -35,6 +35,8 @@ public struct OneTimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. End time (exclusive). You may use 24:00 for the end of the day.
   public var endTime: GoogleType.TimeOfDay? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OneTimeWindow`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct OneTimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startDate = CodingKeys(stringValue: "startDate")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endDate = CodingKeys(stringValue: "endDate")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startDate",
+      "startTime",
+      "endDate",
+      "endTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.startDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .startDate)
+    self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
+    self.endDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .endDate)
+    self.endTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .endTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.startDate, forKey: .startDate)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endDate, forKey: .endDate)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -24,6 +24,8 @@ public struct ConversationDataSource: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The source of the conversation.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationDataSource`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ConversationDataSource: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsSource = "gcsSource"
-    case dialogflowSource = "dialogflowSource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let dialogflowSource = CodingKeys(stringValue: "dialogflowSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSource",
+      "dialogflowSource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct ConversationDataSource: Codable, Equatable, GoogleCloudWKT._AnyPac
       try sourceCheckAndSet(.dialogflowSource(dialogflowSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct ConversationDataSource: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .dialogflowSource(let value):
         try container.encode(value, forKey: .dialogflowSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

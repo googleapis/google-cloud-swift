@@ -46,6 +46,8 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The last published timestamp of the update.
   public var lastPublishedTimestamp: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WindowsUpdate`.
   public init() {}
 
@@ -62,6 +64,72 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let identity = CodingKeys(stringValue: "identity")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let kbArticleIds = CodingKeys(stringValue: "kbArticleIds")
+    static let supportUrl = CodingKeys(stringValue: "supportUrl")
+    static let lastPublishedTimestamp = CodingKeys(stringValue: "lastPublishedTimestamp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "identity",
+      "title",
+      "description",
+      "categories",
+      "kbArticleIds",
+      "supportUrl",
+      "lastPublishedTimestamp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.identity = try container.decodeIfPresent(WindowsUpdate.Identity.self, forKey: .identity)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([WindowsUpdate.Category].self, forKey: .categories)
+    {
+      self.categories = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kbArticleIds) {
+      self.kbArticleIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .supportUrl) {
+      self.supportUrl = value
+    }
+    self.lastPublishedTimestamp = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastPublishedTimestamp)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.identity, forKey: .identity)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.categories, forKey: .categories)
+    try container.encode(self.kbArticleIds, forKey: .kbArticleIds)
+    try container.encode(self.supportUrl, forKey: .supportUrl)
+    try container.encodeIfPresent(self.lastPublishedTimestamp, forKey: .lastPublishedTimestamp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The unique identifier of the update.
   public struct Identity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -71,6 +139,8 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The revision number of the update.
     public var revision: Swift.Int32 = Swift.Int32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Identity`.
     public init() {}
@@ -86,6 +156,44 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let updateId = CodingKeys(stringValue: "updateId")
+      static let revision = CodingKeys(stringValue: "revision")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "updateId",
+        "revision",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .updateId) {
+        self.updateId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .revision) {
+        self.revision = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.updateId, forKey: .updateId)
+      try container.encode(self.revision, forKey: .revision)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -109,6 +217,8 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The localized name of the category.
     public var name: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Category`.
     public init() {}
 
@@ -123,6 +233,44 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let categoryId = CodingKeys(stringValue: "categoryId")
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "categoryId",
+        "name",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .categoryId) {
+        self.categoryId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.categoryId, forKey: .categoryId)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

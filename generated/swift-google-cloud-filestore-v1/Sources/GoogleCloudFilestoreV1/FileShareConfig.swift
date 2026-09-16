@@ -39,6 +39,8 @@ public struct FileShareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// share is created from scratch.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FileShareConfig`.
   public init() {}
 
@@ -55,18 +57,37 @@ public struct FileShareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case capacityGb = "capacityGb"
-    case sourceBackup = "sourceBackup"
-    case nfsExportOptions = "nfsExportOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let capacityGb = CodingKeys(stringValue: "capacityGb")
+    static let sourceBackup = CodingKeys(stringValue: "sourceBackup")
+    static let nfsExportOptions = CodingKeys(stringValue: "nfsExportOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "capacityGb",
+      "sourceBackup",
+      "nfsExportOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.capacityGb = try container.decode(Swift.Int64.self, forKey: .capacityGb)
-    self.nfsExportOptions = try container.decode([NfsExportOptions].self, forKey: .nfsExportOptions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .capacityGb) {
+      self.capacityGb = value
+    }
+    if let value = try container.decodeIfPresent([NfsExportOptions].self, forKey: .nfsExportOptions)
+    {
+      self.nfsExportOptions = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -82,6 +103,10 @@ public struct FileShareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.sourceBackup(sourceBackup))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -95,6 +120,9 @@ public struct FileShareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .sourceBackup(let value):
         try container.encode(value, forKey: .sourceBackup)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

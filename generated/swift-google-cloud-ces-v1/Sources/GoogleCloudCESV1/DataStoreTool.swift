@@ -43,6 +43,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Defines the search source, either a single DataStore or an Engine.
   public var searchSource: OneOf_SearchSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataStoreTool`.
   public init() {}
 
@@ -59,25 +61,54 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dataStoreSource = "dataStoreSource"
-    case engineSource = "engineSource"
-    case name = "name"
-    case description = "description"
-    case boostSpecs = "boostSpecs"
-    case modalityConfigs = "modalityConfigs"
-    case filterParameterBehavior = "filterParameterBehavior"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataStoreSource = CodingKeys(stringValue: "dataStoreSource")
+    static let engineSource = CodingKeys(stringValue: "engineSource")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let boostSpecs = CodingKeys(stringValue: "boostSpecs")
+    static let modalityConfigs = CodingKeys(stringValue: "modalityConfigs")
+    static let filterParameterBehavior = CodingKeys(stringValue: "filterParameterBehavior")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataStoreSource",
+      "engineSource",
+      "name",
+      "description",
+      "boostSpecs",
+      "modalityConfigs",
+      "filterParameterBehavior",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.boostSpecs = try container.decode([DataStoreTool.BoostSpecs].self, forKey: .boostSpecs)
-    self.modalityConfigs = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DataStoreTool.BoostSpecs].self, forKey: .boostSpecs)
+    {
+      self.boostSpecs = value
+    }
+    if let value = try container.decodeIfPresent(
       [DataStoreTool.ModalityConfig].self, forKey: .modalityConfigs)
-    self.filterParameterBehavior = try container.decode(
+    {
+      self.modalityConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
       DataStoreTool.FilterParameterBehavior.self, forKey: .filterParameterBehavior)
+    {
+      self.filterParameterBehavior = value
+    }
 
     var searchSource: OneOf_SearchSource? = nil
     let searchSourceCheckAndSet = {
@@ -100,6 +131,10 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try searchSourceCheckAndSet(.engineSource(engineSource))
     }
     self.searchSource = searchSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -118,6 +153,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .engineSource)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Rewriter configuration.
@@ -133,6 +171,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Whether the rewriter is disabled.
     public var disabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RewriterConfig`.
     public init() {}
 
@@ -147,6 +187,48 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modelSettings = CodingKeys(stringValue: "modelSettings")
+      static let prompt = CodingKeys(stringValue: "prompt")
+      static let disabled = CodingKeys(stringValue: "disabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modelSettings",
+        "prompt",
+        "disabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.modelSettings = try container.decodeIfPresent(ModelSettings.self, forKey: .modelSettings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .prompt) {
+        self.prompt = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
+      try container.encode(self.prompt, forKey: .prompt)
+      try container.encode(self.disabled, forKey: .disabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -173,6 +255,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Whether summarization is disabled.
     public var disabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SummarizationConfig`.
     public init() {}
 
@@ -187,6 +271,48 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modelSettings = CodingKeys(stringValue: "modelSettings")
+      static let prompt = CodingKeys(stringValue: "prompt")
+      static let disabled = CodingKeys(stringValue: "disabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modelSettings",
+        "prompt",
+        "disabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.modelSettings = try container.decodeIfPresent(ModelSettings.self, forKey: .modelSettings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .prompt) {
+        self.prompt = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
+      try container.encode(self.prompt, forKey: .prompt)
+      try container.encode(self.disabled, forKey: .disabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -217,6 +343,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Whether grounding is disabled.
     public var disabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GroundingConfig`.
     public init() {}
 
@@ -231,6 +359,44 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let groundingLevel = CodingKeys(stringValue: "groundingLevel")
+      static let disabled = CodingKeys(stringValue: "disabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "groundingLevel",
+        "disabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .groundingLevel) {
+        self.groundingLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.groundingLevel, forKey: .groundingLevel)
+      try container.encode(self.disabled, forKey: .disabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -256,6 +422,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The data store.
     public var dataStore: DataStore? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataStoreSource`.
     public init() {}
 
@@ -270,6 +438,42 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filter = CodingKeys(stringValue: "filter")
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filter",
+        "dataStore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      self.dataStore = try container.decodeIfPresent(DataStore.self, forKey: .dataStore)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encodeIfPresent(self.dataStore, forKey: .dataStore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -303,6 +507,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata
     public var filter: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EngineSource`.
     public init() {}
 
@@ -317,6 +523,52 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let engine = CodingKeys(stringValue: "engine")
+      static let dataStoreSources = CodingKeys(stringValue: "dataStoreSources")
+      static let filter = CodingKeys(stringValue: "filter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "engine",
+        "dataStoreSources",
+        "filter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engine) {
+        self.engine = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DataStoreTool.DataStoreSource].self, forKey: .dataStoreSources)
+      {
+        self.dataStoreSources = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.engine, forKey: .engine)
+      try container.encode(self.dataStoreSources, forKey: .dataStoreSources)
+      try container.encode(self.filter, forKey: .filter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -344,6 +596,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. A list of boosting specifications.
     public var spec: [DataStoreTool.BoostSpec] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BoostSpecs`.
     public init() {}
 
@@ -358,6 +612,44 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataStores = CodingKeys(stringValue: "dataStores")
+      static let spec = CodingKeys(stringValue: "spec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataStores",
+        "spec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStores) {
+        self.dataStores = value
+      }
+      if let value = try container.decodeIfPresent([DataStoreTool.BoostSpec].self, forKey: .spec) {
+        self.spec = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataStores, forKey: .dataStores)
+      try container.encode(self.spec, forKey: .spec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -378,6 +670,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. A list of boosting specifications.
     public var conditionBoostSpecs: [DataStoreTool.BoostSpec.ConditionBoostSpec] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BoostSpec`.
     public init() {}
 
@@ -392,6 +686,40 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conditionBoostSpecs = CodingKeys(stringValue: "conditionBoostSpecs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conditionBoostSpecs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DataStoreTool.BoostSpec.ConditionBoostSpec].self, forKey: .conditionBoostSpecs)
+      {
+        self.conditionBoostSpecs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.conditionBoostSpecs, forKey: .conditionBoostSpecs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Boost specification for a condition.
@@ -422,6 +750,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public var boostControlSpec: DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec? =
         nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ConditionBoostSpec`.
       public init() {}
 
@@ -436,6 +766,50 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let condition = CodingKeys(stringValue: "condition")
+        static let boost = CodingKeys(stringValue: "boost")
+        static let boostControlSpec = CodingKeys(stringValue: "boostControlSpec")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "condition",
+          "boost",
+          "boostControlSpec",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+          self.condition = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .boost) {
+          self.boost = value
+        }
+        self.boostControlSpec = try container.decodeIfPresent(
+          DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.self,
+          forKey: .boostControlSpec)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.condition, forKey: .condition)
+        try container.encode(self.boost, forKey: .boost)
+        try container.encodeIfPresent(self.boostControlSpec, forKey: .boostControlSpec)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Specification for custom ranking based on customer specified attribute
@@ -470,6 +844,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public var controlPoints:
           [DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `BoostControlSpec`.
         public init() {}
 
@@ -484,6 +861,65 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let fieldName = CodingKeys(stringValue: "fieldName")
+          static let attributeType = CodingKeys(stringValue: "attributeType")
+          static let interpolationType = CodingKeys(stringValue: "interpolationType")
+          static let controlPoints = CodingKeys(stringValue: "controlPoints")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "fieldName",
+            "attributeType",
+            "interpolationType",
+            "controlPoints",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
+            self.fieldName = value
+          }
+          if let value = try container.decodeIfPresent(
+            DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.AttributeType.self,
+            forKey: .attributeType)
+          {
+            self.attributeType = value
+          }
+          if let value = try container.decodeIfPresent(
+            DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.InterpolationType.self,
+            forKey: .interpolationType)
+          {
+            self.interpolationType = value
+          }
+          if let value = try container.decodeIfPresent(
+            [DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint].self,
+            forKey: .controlPoints)
+          {
+            self.controlPoints = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.fieldName, forKey: .fieldName)
+          try container.encode(self.attributeType, forKey: .attributeType)
+          try container.encode(self.interpolationType, forKey: .interpolationType)
+          try container.encode(self.controlPoints, forKey: .controlPoints)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// The control points used to define the curve. The curve defined
@@ -504,6 +940,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           /// the attribute_value evaluates to the value specified above.
           public var boostAmount: Swift.Float = Swift.Float()
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `ControlPoint`.
           public init() {}
 
@@ -518,6 +957,45 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let attributeValue = CodingKeys(stringValue: "attributeValue")
+            static let boostAmount = CodingKeys(stringValue: "boostAmount")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "attributeValue",
+              "boostAmount",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attributeValue)
+            {
+              self.attributeValue = value
+            }
+            if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .boostAmount) {
+              self.boostAmount = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.attributeValue, forKey: .attributeValue)
+            try container.encode(self.boostAmount, forKey: .boostAmount)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -798,6 +1276,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The grounding configuration.
     public var groundingConfig: DataStoreTool.GroundingConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModalityConfig`.
     public init() {}
 
@@ -812,6 +1292,55 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modalityType = CodingKeys(stringValue: "modalityType")
+      static let rewriterConfig = CodingKeys(stringValue: "rewriterConfig")
+      static let summarizationConfig = CodingKeys(stringValue: "summarizationConfig")
+      static let groundingConfig = CodingKeys(stringValue: "groundingConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modalityType",
+        "rewriterConfig",
+        "summarizationConfig",
+        "groundingConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DataStoreTool.ModalityConfig.ModalityType.self, forKey: .modalityType)
+      {
+        self.modalityType = value
+      }
+      self.rewriterConfig = try container.decodeIfPresent(
+        DataStoreTool.RewriterConfig.self, forKey: .rewriterConfig)
+      self.summarizationConfig = try container.decodeIfPresent(
+        DataStoreTool.SummarizationConfig.self, forKey: .summarizationConfig)
+      self.groundingConfig = try container.decodeIfPresent(
+        DataStoreTool.GroundingConfig.self, forKey: .groundingConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.modalityType, forKey: .modalityType)
+      try container.encodeIfPresent(self.rewriterConfig, forKey: .rewriterConfig)
+      try container.encodeIfPresent(self.summarizationConfig, forKey: .summarizationConfig)
+      try container.encodeIfPresent(self.groundingConfig, forKey: .groundingConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The modality type.

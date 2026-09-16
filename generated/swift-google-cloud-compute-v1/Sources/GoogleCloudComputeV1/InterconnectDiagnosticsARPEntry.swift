@@ -28,6 +28,8 @@
     /// The MAC address of this ARP neighbor.
     public var macAddress: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectDiagnosticsARPEntry`.
     public init() {}
 
@@ -42,6 +44,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let macAddress = CodingKeys(stringValue: "macAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipAddress",
+        "macAddress",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.macAddress = try container.decodeIfPresent(Swift.String.self, forKey: .macAddress)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.macAddress, forKey: .macAddress)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

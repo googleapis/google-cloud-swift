@@ -87,6 +87,8 @@
     /// connection strings, in the format project:region:instance.
     public var connectionName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConnectSettings`.
     public init() {}
 
@@ -101,6 +103,130 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let serverCaCert = CodingKeys(stringValue: "serverCaCert")
+      static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+      static let region = CodingKeys(stringValue: "region")
+      static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+      static let backendType = CodingKeys(stringValue: "backendType")
+      static let pscEnabled = CodingKeys(stringValue: "pscEnabled")
+      static let dnsName = CodingKeys(stringValue: "dnsName")
+      static let serverCaMode = CodingKeys(stringValue: "serverCaMode")
+      static let customSubjectAlternativeNames = CodingKeys(
+        stringValue: "customSubjectAlternativeNames")
+      static let dnsNames = CodingKeys(stringValue: "dnsNames")
+      static let nodeCount = CodingKeys(stringValue: "nodeCount")
+      static let nodes = CodingKeys(stringValue: "nodes")
+      static let mdxProtocolSupport = CodingKeys(stringValue: "mdxProtocolSupport")
+      static let connectionName = CodingKeys(stringValue: "connectionName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "serverCaCert",
+        "ipAddresses",
+        "region",
+        "databaseVersion",
+        "backendType",
+        "pscEnabled",
+        "dnsName",
+        "serverCaMode",
+        "customSubjectAlternativeNames",
+        "dnsNames",
+        "nodeCount",
+        "nodes",
+        "mdxProtocolSupport",
+        "connectionName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      self.serverCaCert = try container.decodeIfPresent(SslCert.self, forKey: .serverCaCert)
+      if let value = try container.decodeIfPresent([IpMapping].self, forKey: .ipAddresses) {
+        self.ipAddresses = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+        self.region = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlDatabaseVersion.self, forKey: .databaseVersion)
+      {
+        self.databaseVersion = value
+      }
+      if let value = try container.decodeIfPresent(SqlBackendType.self, forKey: .backendType) {
+        self.backendType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .pscEnabled) {
+        self.pscEnabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName) {
+        self.dnsName = value
+      }
+      if let value = try container.decodeIfPresent(
+        ConnectSettings.CaMode.self, forKey: .serverCaMode)
+      {
+        self.serverCaMode = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .customSubjectAlternativeNames)
+      {
+        self.customSubjectAlternativeNames = value
+      }
+      if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
+        self.dnsNames = value
+      }
+      self.nodeCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount)
+      if let value = try container.decodeIfPresent(
+        [ConnectSettings.ConnectPoolNodeConfig].self, forKey: .nodes)
+      {
+        self.nodes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ConnectSettings.MdxProtocolSupport].self, forKey: .mdxProtocolSupport)
+      {
+        self.mdxProtocolSupport = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionName) {
+        self.connectionName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.serverCaCert, forKey: .serverCaCert)
+      try container.encode(self.ipAddresses, forKey: .ipAddresses)
+      try container.encode(self.region, forKey: .region)
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      try container.encode(self.backendType, forKey: .backendType)
+      try container.encode(self.pscEnabled, forKey: .pscEnabled)
+      try container.encode(self.dnsName, forKey: .dnsName)
+      try container.encode(self.serverCaMode, forKey: .serverCaMode)
+      try container.encode(
+        self.customSubjectAlternativeNames, forKey: .customSubjectAlternativeNames)
+      try container.encode(self.dnsNames, forKey: .dnsNames)
+      try container.encodeIfPresent(self.nodeCount, forKey: .nodeCount)
+      try container.encode(self.nodes, forKey: .nodes)
+      try container.encode(self.mdxProtocolSupport, forKey: .mdxProtocolSupport)
+      try container.encode(self.connectionName, forKey: .connectionName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Details of a single read pool node of a read pool.
@@ -121,6 +247,8 @@
       /// Output only. The list of DNS names used by this read pool node.
       public var dnsNames: [DnsNameMapping] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ConnectPoolNodeConfig`.
       public init() {}
 
@@ -135,6 +263,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let ipAddresses = CodingKeys(stringValue: "ipAddresses")
+        static let dnsName = CodingKeys(stringValue: "dnsName")
+        static let dnsNames = CodingKeys(stringValue: "dnsNames")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "ipAddresses",
+          "dnsName",
+          "dnsNames",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+        if let value = try container.decodeIfPresent([IpMapping].self, forKey: .ipAddresses) {
+          self.ipAddresses = value
+        }
+        self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
+        if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
+          self.dnsNames = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(self.ipAddresses, forKey: .ipAddresses)
+        try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
+        try container.encode(self.dnsNames, forKey: .dnsNames)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

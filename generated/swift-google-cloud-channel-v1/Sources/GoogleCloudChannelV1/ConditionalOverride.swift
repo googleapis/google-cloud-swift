@@ -34,6 +34,8 @@ public struct ConditionalOverride: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. Specifies the condition which, if met, will apply the override.
   public var repricingCondition: RepricingCondition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConditionalOverride`.
   public init() {}
 
@@ -48,6 +50,47 @@ public struct ConditionalOverride: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adjustment = CodingKeys(stringValue: "adjustment")
+    static let rebillingBasis = CodingKeys(stringValue: "rebillingBasis")
+    static let repricingCondition = CodingKeys(stringValue: "repricingCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adjustment",
+      "rebillingBasis",
+      "repricingCondition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.adjustment = try container.decodeIfPresent(RepricingAdjustment.self, forKey: .adjustment)
+    if let value = try container.decodeIfPresent(RebillingBasis.self, forKey: .rebillingBasis) {
+      self.rebillingBasis = value
+    }
+    self.repricingCondition = try container.decodeIfPresent(
+      RepricingCondition.self, forKey: .repricingCondition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.adjustment, forKey: .adjustment)
+    try container.encode(self.rebillingBasis, forKey: .rebillingBasis)
+    try container.encodeIfPresent(self.repricingCondition, forKey: .repricingCondition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

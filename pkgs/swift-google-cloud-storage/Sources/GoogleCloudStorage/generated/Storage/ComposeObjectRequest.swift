@@ -61,6 +61,8 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Whether the source objects should be deleted in the compose request.
   public var deleteSourceObjects: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComposeObjectRequest`.
   public init() {}
 
@@ -77,6 +79,84 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destination = CodingKeys(stringValue: "destination")
+    static let sourceObjects = CodingKeys(stringValue: "sourceObjects")
+    static let destinationPredefinedAcl = CodingKeys(stringValue: "destinationPredefinedAcl")
+    static let ifGenerationMatch = CodingKeys(stringValue: "ifGenerationMatch")
+    static let ifMetagenerationMatch = CodingKeys(stringValue: "ifMetagenerationMatch")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let commonObjectRequestParams = CodingKeys(stringValue: "commonObjectRequestParams")
+    static let objectChecksums = CodingKeys(stringValue: "objectChecksums")
+    static let deleteSourceObjects = CodingKeys(stringValue: "deleteSourceObjects")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destination",
+      "sourceObjects",
+      "destinationPredefinedAcl",
+      "ifGenerationMatch",
+      "ifMetagenerationMatch",
+      "kmsKey",
+      "commonObjectRequestParams",
+      "objectChecksums",
+      "deleteSourceObjects",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.destination = try container.decodeIfPresent(Object.self, forKey: .destination)
+    if let value = try container.decodeIfPresent(
+      [ComposeObjectRequest.SourceObject].self, forKey: .sourceObjects)
+    {
+      self.sourceObjects = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .destinationPredefinedAcl)
+    {
+      self.destinationPredefinedAcl = value
+    }
+    self.ifGenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationMatch)
+    self.ifMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationMatch)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    self.commonObjectRequestParams = try container.decodeIfPresent(
+      CommonObjectRequestParams.self, forKey: .commonObjectRequestParams)
+    self.objectChecksums = try container.decodeIfPresent(
+      ObjectChecksums.self, forKey: .objectChecksums)
+    self.deleteSourceObjects = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .deleteSourceObjects)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.destination, forKey: .destination)
+    try container.encode(self.sourceObjects, forKey: .sourceObjects)
+    try container.encode(self.destinationPredefinedAcl, forKey: .destinationPredefinedAcl)
+    try container.encodeIfPresent(self.ifGenerationMatch, forKey: .ifGenerationMatch)
+    try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encodeIfPresent(
+      self.commonObjectRequestParams, forKey: .commonObjectRequestParams)
+    try container.encodeIfPresent(self.objectChecksums, forKey: .objectChecksums)
+    try container.encodeIfPresent(self.deleteSourceObjects, forKey: .deleteSourceObjects)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Description of a source object for a composition request.
   public struct SourceObject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -90,6 +170,8 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
     /// Optional. Conditions that must be met for this operation to execute.
     public var objectPreconditions: ComposeObjectRequest.SourceObject.ObjectPreconditions? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SourceObject`.
     public init() {}
@@ -107,6 +189,49 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let generation = CodingKeys(stringValue: "generation")
+      static let objectPreconditions = CodingKeys(stringValue: "objectPreconditions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "generation",
+        "objectPreconditions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+        self.generation = value
+      }
+      self.objectPreconditions = try container.decodeIfPresent(
+        ComposeObjectRequest.SourceObject.ObjectPreconditions.self, forKey: .objectPreconditions)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.generation, forKey: .generation)
+      try container.encodeIfPresent(self.objectPreconditions, forKey: .objectPreconditions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Preconditions for a source object of a composition request.
     public struct ObjectPreconditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -115,6 +240,8 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       /// that would be used matches this value.  If this value and a generation
       /// are both specified, they must be the same value or the call fails.
       public var ifGenerationMatch: Swift.Int64? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ObjectPreconditions`.
       public init() {}
@@ -130,6 +257,37 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ifGenerationMatch = CodingKeys(stringValue: "ifGenerationMatch")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "ifGenerationMatch"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.ifGenerationMatch = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .ifGenerationMatch)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.ifGenerationMatch, forKey: .ifGenerationMatch)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

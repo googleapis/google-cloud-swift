@@ -33,6 +33,8 @@ public struct InputAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Automatic failover configurations.
   public var automaticFailover: InputAttachment.AutomaticFailover? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InputAttachment`.
   public init() {}
 
@@ -49,6 +51,49 @@ public struct InputAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let input = CodingKeys(stringValue: "input")
+    static let automaticFailover = CodingKeys(stringValue: "automaticFailover")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "input",
+      "automaticFailover",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .input) {
+      self.input = value
+    }
+    self.automaticFailover = try container.decodeIfPresent(
+      InputAttachment.AutomaticFailover.self, forKey: .automaticFailover)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.input, forKey: .input)
+    try container.encodeIfPresent(self.automaticFailover, forKey: .automaticFailover)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configurations to follow when automatic failover happens.
   public struct AutomaticFailover: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -60,6 +105,8 @@ public struct InputAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///
     /// [google.cloud.video.livestream.v1.InputAttachment.key]: <doc:InputAttachment/key>
     public var inputKeys: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AutomaticFailover`.
     public init() {}
@@ -75,6 +122,38 @@ public struct InputAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputKeys = CodingKeys(stringValue: "inputKeys")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputKeys"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputKeys) {
+        self.inputKeys = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputKeys, forKey: .inputKeys)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

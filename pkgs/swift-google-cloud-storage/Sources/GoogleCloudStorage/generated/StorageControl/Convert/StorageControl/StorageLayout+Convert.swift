@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension StorageLayout {
@@ -34,6 +34,7 @@ extension StorageLayout {
     self.hierarchicalNamespace =
       proto.hasHierarchicalNamespace ? try .init(proto: proto.hierarchicalNamespace) : nil
     self.rapidCacheInfo = proto.hasRapidCacheInfo ? try .init(proto: proto.rapidCacheInfo) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -50,6 +51,9 @@ extension StorageLayout {
     if let rapidCacheInfo = self.rapidCacheInfo {
       proto.rapidCacheInfo = try rapidCacheInfo.toProto()
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -61,11 +65,15 @@ extension StorageLayout.CustomPlacementConfig {
   internal init(proto: ProtoType) throws {
     self.init()
     self.dataLocations = proto.dataLocations
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.dataLocations = self.dataLocations
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -77,11 +85,15 @@ extension StorageLayout.HierarchicalNamespace {
   internal init(proto: ProtoType) throws {
     self.init()
     self.enabled = proto.enabled
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.enabled = self.enabled
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -93,11 +105,15 @@ extension StorageLayout.RapidCacheInfo {
   internal init(proto: ProtoType) throws {
     self.init()
     self.cacheType = proto.cacheType
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.cacheType = self.cacheType
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

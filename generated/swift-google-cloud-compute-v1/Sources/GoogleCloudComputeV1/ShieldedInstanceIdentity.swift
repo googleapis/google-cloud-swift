@@ -42,6 +42,8 @@
     /// issued to the Shielded Instance's vTPM.
     public var signingKey: ShieldedInstanceIdentityEntry? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ShieldedInstanceIdentity`.
     public init() {}
 
@@ -56,6 +58,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eccP256EncryptionKey = CodingKeys(stringValue: "eccP256EncryptionKey")
+      static let eccP256SigningKey = CodingKeys(stringValue: "eccP256SigningKey")
+      static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let signingKey = CodingKeys(stringValue: "signingKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eccP256EncryptionKey",
+        "eccP256SigningKey",
+        "encryptionKey",
+        "kind",
+        "signingKey",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.eccP256EncryptionKey = try container.decodeIfPresent(
+        ShieldedInstanceIdentityEntry.self, forKey: .eccP256EncryptionKey)
+      self.eccP256SigningKey = try container.decodeIfPresent(
+        ShieldedInstanceIdentityEntry.self, forKey: .eccP256SigningKey)
+      self.encryptionKey = try container.decodeIfPresent(
+        ShieldedInstanceIdentityEntry.self, forKey: .encryptionKey)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.signingKey = try container.decodeIfPresent(
+        ShieldedInstanceIdentityEntry.self, forKey: .signingKey)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.eccP256EncryptionKey, forKey: .eccP256EncryptionKey)
+      try container.encodeIfPresent(self.eccP256SigningKey, forKey: .eccP256SigningKey)
+      try container.encodeIfPresent(self.encryptionKey, forKey: .encryptionKey)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.signingKey, forKey: .signingKey)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

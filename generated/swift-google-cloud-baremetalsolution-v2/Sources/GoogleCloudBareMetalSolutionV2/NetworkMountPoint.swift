@@ -33,6 +33,8 @@ public struct NetworkMountPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Ip address of the server.
   public var ipAddress: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkMountPoint`.
   public init() {}
 
@@ -47,6 +49,56 @@ public struct NetworkMountPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instance = CodingKeys(stringValue: "instance")
+    static let logicalInterface = CodingKeys(stringValue: "logicalInterface")
+    static let defaultGateway = CodingKeys(stringValue: "defaultGateway")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instance",
+      "logicalInterface",
+      "defaultGateway",
+      "ipAddress",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logicalInterface) {
+      self.logicalInterface = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .defaultGateway) {
+      self.defaultGateway = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.logicalInterface, forKey: .logicalInterface)
+    try container.encode(self.defaultGateway, forKey: .defaultGateway)
+    try container.encode(self.ipAddress, forKey: .ipAddress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

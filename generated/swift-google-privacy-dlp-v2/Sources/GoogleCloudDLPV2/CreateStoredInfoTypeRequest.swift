@@ -55,6 +55,8 @@ public struct CreateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Deprecated. This field has no effect.
   public var locationId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateStoredInfoTypeRequest`.
   public init() {}
 
@@ -69,6 +71,54 @@ public struct CreateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let config = CodingKeys(stringValue: "config")
+    static let storedInfoTypeId = CodingKeys(stringValue: "storedInfoTypeId")
+    static let locationId = CodingKeys(stringValue: "locationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "config",
+      "storedInfoTypeId",
+      "locationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.config = try container.decodeIfPresent(StoredInfoTypeConfig.self, forKey: .config)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storedInfoTypeId) {
+      self.storedInfoTypeId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encode(self.storedInfoTypeId, forKey: .storedInfoTypeId)
+    try container.encode(self.locationId, forKey: .locationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

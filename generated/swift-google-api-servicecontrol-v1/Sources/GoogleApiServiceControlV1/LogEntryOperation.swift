@@ -37,6 +37,8 @@ public struct LogEntryOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Optional. Set this to True if this is the last log entry in the operation.
   public var last: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogEntryOperation`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct LogEntryOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let producer = CodingKeys(stringValue: "producer")
+    static let first = CodingKeys(stringValue: "first")
+    static let last = CodingKeys(stringValue: "last")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "producer",
+      "first",
+      "last",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .producer) {
+      self.producer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .first) {
+      self.first = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .last) {
+      self.last = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.producer, forKey: .producer)
+    try container.encode(self.first, forKey: .first)
+    try container.encode(self.last, forKey: .last)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -46,6 +46,8 @@ public struct ImageContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Parameters for text detection and document text detection.
   public var textDetectionParams: TextDetectionParams? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImageContext`.
   public init() {}
 
@@ -60,6 +62,62 @@ public struct ImageContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let latLongRect = CodingKeys(stringValue: "latLongRect")
+    static let languageHints = CodingKeys(stringValue: "languageHints")
+    static let cropHintsParams = CodingKeys(stringValue: "cropHintsParams")
+    static let productSearchParams = CodingKeys(stringValue: "productSearchParams")
+    static let webDetectionParams = CodingKeys(stringValue: "webDetectionParams")
+    static let textDetectionParams = CodingKeys(stringValue: "textDetectionParams")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "latLongRect",
+      "languageHints",
+      "cropHintsParams",
+      "productSearchParams",
+      "webDetectionParams",
+      "textDetectionParams",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.latLongRect = try container.decodeIfPresent(LatLongRect.self, forKey: .latLongRect)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageHints) {
+      self.languageHints = value
+    }
+    self.cropHintsParams = try container.decodeIfPresent(
+      CropHintsParams.self, forKey: .cropHintsParams)
+    self.productSearchParams = try container.decodeIfPresent(
+      ProductSearchParams.self, forKey: .productSearchParams)
+    self.webDetectionParams = try container.decodeIfPresent(
+      WebDetectionParams.self, forKey: .webDetectionParams)
+    self.textDetectionParams = try container.decodeIfPresent(
+      TextDetectionParams.self, forKey: .textDetectionParams)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.latLongRect, forKey: .latLongRect)
+    try container.encode(self.languageHints, forKey: .languageHints)
+    try container.encodeIfPresent(self.cropHintsParams, forKey: .cropHintsParams)
+    try container.encodeIfPresent(self.productSearchParams, forKey: .productSearchParams)
+    try container.encodeIfPresent(self.webDetectionParams, forKey: .webDetectionParams)
+    try container.encodeIfPresent(self.textDetectionParams, forKey: .textDetectionParams)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

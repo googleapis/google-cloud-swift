@@ -45,6 +45,8 @@ public struct GkeCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// that both `dns_endpoint` and `internal_ip` cannot be set to true.
   public var dnsEndpoint: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GkeCluster`.
   public init() {}
 
@@ -59,6 +61,56 @@ public struct GkeCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let proxyUrl = CodingKeys(stringValue: "proxyUrl")
+    static let dnsEndpoint = CodingKeys(stringValue: "dnsEndpoint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cluster",
+      "internalIp",
+      "proxyUrl",
+      "dnsEndpoint",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+      self.cluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .proxyUrl) {
+      self.proxyUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dnsEndpoint) {
+      self.dnsEndpoint = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cluster, forKey: .cluster)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.proxyUrl, forKey: .proxyUrl)
+    try container.encode(self.dnsEndpoint, forKey: .dnsEndpoint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

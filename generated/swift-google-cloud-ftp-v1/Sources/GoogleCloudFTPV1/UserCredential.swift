@@ -31,6 +31,8 @@ public struct UserCredential: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Example: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..."
   public var sshPublicKeyBody: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserCredential`.
   public init() {}
 
@@ -45,6 +47,51 @@ public struct UserCredential: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let credentialName = CodingKeys(stringValue: "credentialName")
+    static let credentialType = CodingKeys(stringValue: "credentialType")
+    static let sshPublicKeyBody = CodingKeys(stringValue: "sshPublicKeyBody")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "credentialName",
+      "credentialType",
+      "sshPublicKeyBody",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .credentialName) {
+      self.credentialName = value
+    }
+    if let value = try container.decodeIfPresent(UserCredential.Type_.self, forKey: .credentialType)
+    {
+      self.credentialType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sshPublicKeyBody) {
+      self.sshPublicKeyBody = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.credentialName, forKey: .credentialName)
+    try container.encode(self.credentialType, forKey: .credentialType)
+    try container.encode(self.sshPublicKeyBody, forKey: .sshPublicKeyBody)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of credential.

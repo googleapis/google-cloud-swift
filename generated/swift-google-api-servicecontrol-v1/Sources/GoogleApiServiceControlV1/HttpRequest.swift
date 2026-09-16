@@ -84,6 +84,8 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
   public var `protocol`: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HttpRequest`.
   public init() {}
 
@@ -100,42 +102,99 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case requestMethod = "requestMethod"
-    case requestUrl = "requestUrl"
-    case requestSize = "requestSize"
-    case status = "status"
-    case responseSize = "responseSize"
-    case userAgent = "userAgent"
-    case remoteIp = "remoteIp"
-    case serverIp = "serverIp"
-    case referer = "referer"
-    case latency = "latency"
-    case cacheLookup = "cacheLookup"
-    case cacheHit = "cacheHit"
-    case cacheValidatedWithOriginServer = "cacheValidatedWithOriginServer"
-    case cacheFillBytes = "cacheFillBytes"
-    case `protocol` = "protocol"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestMethod = CodingKeys(stringValue: "requestMethod")
+    static let requestUrl = CodingKeys(stringValue: "requestUrl")
+    static let requestSize = CodingKeys(stringValue: "requestSize")
+    static let status = CodingKeys(stringValue: "status")
+    static let responseSize = CodingKeys(stringValue: "responseSize")
+    static let userAgent = CodingKeys(stringValue: "userAgent")
+    static let remoteIp = CodingKeys(stringValue: "remoteIp")
+    static let serverIp = CodingKeys(stringValue: "serverIp")
+    static let referer = CodingKeys(stringValue: "referer")
+    static let latency = CodingKeys(stringValue: "latency")
+    static let cacheLookup = CodingKeys(stringValue: "cacheLookup")
+    static let cacheHit = CodingKeys(stringValue: "cacheHit")
+    static let cacheValidatedWithOriginServer = CodingKeys(
+      stringValue: "cacheValidatedWithOriginServer")
+    static let cacheFillBytes = CodingKeys(stringValue: "cacheFillBytes")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestMethod",
+      "requestUrl",
+      "requestSize",
+      "status",
+      "responseSize",
+      "userAgent",
+      "remoteIp",
+      "serverIp",
+      "referer",
+      "latency",
+      "cacheLookup",
+      "cacheHit",
+      "cacheValidatedWithOriginServer",
+      "cacheFillBytes",
+      "protocol",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.requestMethod = try container.decode(Swift.String.self, forKey: .requestMethod)
-    self.requestUrl = try container.decode(Swift.String.self, forKey: .requestUrl)
-    self.requestSize = try container.decode(Swift.Int64.self, forKey: .requestSize)
-    self.status = try container.decode(Swift.Int32.self, forKey: .status)
-    self.responseSize = try container.decode(Swift.Int64.self, forKey: .responseSize)
-    self.userAgent = try container.decode(Swift.String.self, forKey: .userAgent)
-    self.remoteIp = try container.decode(Swift.String.self, forKey: .remoteIp)
-    self.serverIp = try container.decode(Swift.String.self, forKey: .serverIp)
-    self.referer = try container.decode(Swift.String.self, forKey: .referer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestMethod) {
+      self.requestMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestUrl) {
+      self.requestUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .requestSize) {
+      self.requestSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .responseSize) {
+      self.responseSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgent) {
+      self.userAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteIp) {
+      self.remoteIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverIp) {
+      self.serverIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referer) {
+      self.referer = value
+    }
     self.latency = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .latency)
-    self.cacheLookup = try container.decode(Swift.Bool.self, forKey: .cacheLookup)
-    self.cacheHit = try container.decode(Swift.Bool.self, forKey: .cacheHit)
-    self.cacheValidatedWithOriginServer = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cacheLookup) {
+      self.cacheLookup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cacheHit) {
+      self.cacheHit = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .cacheValidatedWithOriginServer)
-    self.cacheFillBytes = try container.decode(Swift.Int64.self, forKey: .cacheFillBytes)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
+    {
+      self.cacheValidatedWithOriginServer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .cacheFillBytes) {
+      self.cacheFillBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -149,13 +208,16 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.remoteIp, forKey: .remoteIp)
     try container.encode(self.serverIp, forKey: .serverIp)
     try container.encode(self.referer, forKey: .referer)
-    try container.encode(self.latency, forKey: .latency)
+    try container.encodeIfPresent(self.latency, forKey: .latency)
     try container.encode(self.cacheLookup, forKey: .cacheLookup)
     try container.encode(self.cacheHit, forKey: .cacheHit)
     try container.encode(
       self.cacheValidatedWithOriginServer, forKey: .cacheValidatedWithOriginServer)
     try container.encode(self.cacheFillBytes, forKey: .cacheFillBytes)
     try container.encode(self.`protocol`, forKey: .`protocol`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct ScalingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// scaling factor.
   public var scalingModel: OneOf_ScalingModel? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScalingConfig`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct ScalingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case instanceSize = "instanceSize"
-    case scalingFactor = "scalingFactor"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instanceSize = CodingKeys(stringValue: "instanceSize")
+    static let scalingFactor = CodingKeys(stringValue: "scalingFactor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instanceSize",
+      "scalingFactor",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct ScalingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try scalingModelCheckAndSet(.scalingFactor(scalingFactor))
     }
     self.scalingModel = scalingModel
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct ScalingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .scalingFactor(let value):
         try container.encode(value, forKey: .scalingFactor)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

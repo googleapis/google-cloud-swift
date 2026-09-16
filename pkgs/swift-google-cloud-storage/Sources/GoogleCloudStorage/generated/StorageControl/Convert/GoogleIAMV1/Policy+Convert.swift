@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleIAMV1
 internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.Policy {
@@ -31,6 +31,7 @@ extension GoogleIAMV1.Policy {
     self.bindings = try proto.bindings.map { try .init(proto: $0) }
     self.auditConfigs = try proto.auditConfigs.map { try .init(proto: $0) }
     self.etag = proto.etag
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -39,6 +40,9 @@ extension GoogleIAMV1.Policy {
     proto.bindings = try self.bindings.map { try $0.toProto() }
     proto.auditConfigs = try self.auditConfigs.map { try $0.toProto() }
     proto.etag = self.etag
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

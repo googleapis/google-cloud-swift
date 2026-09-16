@@ -45,6 +45,8 @@
     /// is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
     public var ipv6Address: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExternalVpnGatewayInterface`.
     public init() {}
 
@@ -59,6 +61,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "ipAddress",
+        "ipv6Address",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.id = try container.decodeIfPresent(Swift.UInt32.self, forKey: .id)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

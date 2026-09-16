@@ -33,6 +33,8 @@ public struct MessageWithStruct: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// A map field, messages cannot be keys.
   public var map: [Swift.String: GoogleCloudWKT.Struct] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageWithStruct`.
   public init() {}
 
@@ -49,27 +51,52 @@ public struct MessageWithStruct: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case singular = "singular"
-    case `optional` = "optional"
-    case repeated = "repeated"
-    case map = "map"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singular = CodingKeys(stringValue: "singular")
+    static let `optional` = CodingKeys(stringValue: "optional")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let map = CodingKeys(stringValue: "map")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singular",
+      "optional",
+      "repeated",
+      "map",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.singular = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .singular)
     self.`optional` = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .`optional`)
-    self.repeated = try container.decode([GoogleCloudWKT.Struct].self, forKey: .repeated)
-    self.map = try container.decode([Swift.String: GoogleCloudWKT.Struct].self, forKey: .map)
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.Struct].self, forKey: .repeated) {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleCloudWKT.Struct].self, forKey: .map)
+    {
+      self.map = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.singular, forKey: .singular)
-    try container.encode(self.`optional`, forKey: .`optional`)
+    try container.encodeIfPresent(self.singular, forKey: .singular)
+    try container.encodeIfPresent(self.`optional`, forKey: .`optional`)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.map, forKey: .map)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -56,6 +56,8 @@ public struct ColorInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// property [Product.color](https://schema.org/color).
   public var colors: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ColorInfo`.
   public init() {}
 
@@ -70,6 +72,44 @@ public struct ColorInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let colorFamilies = CodingKeys(stringValue: "colorFamilies")
+    static let colors = CodingKeys(stringValue: "colors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "colorFamilies",
+      "colors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .colorFamilies) {
+      self.colorFamilies = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .colors) {
+      self.colors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.colorFamilies, forKey: .colorFamilies)
+    try container.encode(self.colors, forKey: .colors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

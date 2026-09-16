@@ -190,6 +190,8 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// reservation group path is ["group-1", "group-2", "group-3"].
   public var reservationGroupPath: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Reservation`.
   public init() {}
 
@@ -206,6 +208,143 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let slotCapacity = CodingKeys(stringValue: "slotCapacity")
+    static let ignoreIdleSlots = CodingKeys(stringValue: "ignoreIdleSlots")
+    static let autoscale = CodingKeys(stringValue: "autoscale")
+    static let concurrency = CodingKeys(stringValue: "concurrency")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let multiRegionAuxiliary = CodingKeys(stringValue: "multiRegionAuxiliary")
+    static let edition = CodingKeys(stringValue: "edition")
+    static let primaryLocation = CodingKeys(stringValue: "primaryLocation")
+    static let secondaryLocation = CodingKeys(stringValue: "secondaryLocation")
+    static let originalPrimaryLocation = CodingKeys(stringValue: "originalPrimaryLocation")
+    static let maxSlots = CodingKeys(stringValue: "maxSlots")
+    static let scalingMode = CodingKeys(stringValue: "scalingMode")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let reservationGroup = CodingKeys(stringValue: "reservationGroup")
+    static let replicationStatus = CodingKeys(stringValue: "replicationStatus")
+    static let schedulingPolicy = CodingKeys(stringValue: "schedulingPolicy")
+    static let reservationGroupPath = CodingKeys(stringValue: "reservationGroupPath")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "slotCapacity",
+      "ignoreIdleSlots",
+      "autoscale",
+      "concurrency",
+      "creationTime",
+      "updateTime",
+      "multiRegionAuxiliary",
+      "edition",
+      "primaryLocation",
+      "secondaryLocation",
+      "originalPrimaryLocation",
+      "maxSlots",
+      "scalingMode",
+      "labels",
+      "reservationGroup",
+      "replicationStatus",
+      "schedulingPolicy",
+      "reservationGroupPath",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .slotCapacity) {
+      self.slotCapacity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreIdleSlots) {
+      self.ignoreIdleSlots = value
+    }
+    self.autoscale = try container.decodeIfPresent(Reservation.Autoscale.self, forKey: .autoscale)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .concurrency) {
+      self.concurrency = value
+    }
+    self.creationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .creationTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .multiRegionAuxiliary) {
+      self.multiRegionAuxiliary = value
+    }
+    if let value = try container.decodeIfPresent(Edition.self, forKey: .edition) {
+      self.edition = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryLocation) {
+      self.primaryLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryLocation) {
+      self.secondaryLocation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .originalPrimaryLocation)
+    {
+      self.originalPrimaryLocation = value
+    }
+    self.maxSlots = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxSlots)
+    if let value = try container.decodeIfPresent(Reservation.ScalingMode.self, forKey: .scalingMode)
+    {
+      self.scalingMode = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reservationGroup) {
+      self.reservationGroup = value
+    }
+    self.replicationStatus = try container.decodeIfPresent(
+      Reservation.ReplicationStatus.self, forKey: .replicationStatus)
+    self.schedulingPolicy = try container.decodeIfPresent(
+      SchedulingPolicy.self, forKey: .schedulingPolicy)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reservationGroupPath)
+    {
+      self.reservationGroupPath = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.slotCapacity, forKey: .slotCapacity)
+    try container.encode(self.ignoreIdleSlots, forKey: .ignoreIdleSlots)
+    try container.encodeIfPresent(self.autoscale, forKey: .autoscale)
+    try container.encode(self.concurrency, forKey: .concurrency)
+    try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.multiRegionAuxiliary, forKey: .multiRegionAuxiliary)
+    try container.encode(self.edition, forKey: .edition)
+    try container.encode(self.primaryLocation, forKey: .primaryLocation)
+    try container.encode(self.secondaryLocation, forKey: .secondaryLocation)
+    try container.encode(self.originalPrimaryLocation, forKey: .originalPrimaryLocation)
+    try container.encodeIfPresent(self.maxSlots, forKey: .maxSlots)
+    try container.encode(self.scalingMode, forKey: .scalingMode)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.reservationGroup, forKey: .reservationGroup)
+    try container.encodeIfPresent(self.replicationStatus, forKey: .replicationStatus)
+    try container.encodeIfPresent(self.schedulingPolicy, forKey: .schedulingPolicy)
+    try container.encode(self.reservationGroupPath, forKey: .reservationGroupPath)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Auto scaling settings.
   public struct Autoscale: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -219,6 +358,8 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. Number of slots to be scaled when needed.
     public var maxSlots: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Autoscale`.
     public init() {}
@@ -234,6 +375,44 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let currentSlots = CodingKeys(stringValue: "currentSlots")
+      static let maxSlots = CodingKeys(stringValue: "maxSlots")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "currentSlots",
+        "maxSlots",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .currentSlots) {
+        self.currentSlots = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxSlots) {
+        self.maxSlots = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.currentSlots, forKey: .currentSlots)
+      try container.encode(self.maxSlots, forKey: .maxSlots)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -272,6 +451,8 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// failover is complete.
     public var softFailoverStartTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReplicationStatus`.
     public init() {}
 
@@ -286,6 +467,51 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let error = CodingKeys(stringValue: "error")
+      static let lastErrorTime = CodingKeys(stringValue: "lastErrorTime")
+      static let lastReplicationTime = CodingKeys(stringValue: "lastReplicationTime")
+      static let softFailoverStartTime = CodingKeys(stringValue: "softFailoverStartTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "error",
+        "lastErrorTime",
+        "lastReplicationTime",
+        "softFailoverStartTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      self.lastErrorTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastErrorTime)
+      self.lastReplicationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .lastReplicationTime)
+      self.softFailoverStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .softFailoverStartTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(self.lastErrorTime, forKey: .lastErrorTime)
+      try container.encodeIfPresent(self.lastReplicationTime, forKey: .lastReplicationTime)
+      try container.encodeIfPresent(self.softFailoverStartTime, forKey: .softFailoverStartTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

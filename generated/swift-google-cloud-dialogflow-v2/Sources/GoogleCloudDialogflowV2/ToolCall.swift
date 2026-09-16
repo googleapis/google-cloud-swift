@@ -46,6 +46,8 @@
     /// Specifies the source of this tool call.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ToolCall`.
     public init() {}
 
@@ -62,31 +64,60 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case tool = "tool"
-      case cesTool = "cesTool"
-      case cesToolset = "cesToolset"
-      case cesApp = "cesApp"
-      case toolDisplayName = "toolDisplayName"
-      case toolDisplayDetails = "toolDisplayDetails"
-      case action = "action"
-      case inputParameters = "inputParameters"
-      case createTime = "createTime"
-      case answerRecord = "answerRecord"
-      case state = "state"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tool = CodingKeys(stringValue: "tool")
+      static let cesTool = CodingKeys(stringValue: "cesTool")
+      static let cesToolset = CodingKeys(stringValue: "cesToolset")
+      static let cesApp = CodingKeys(stringValue: "cesApp")
+      static let toolDisplayName = CodingKeys(stringValue: "toolDisplayName")
+      static let toolDisplayDetails = CodingKeys(stringValue: "toolDisplayDetails")
+      static let action = CodingKeys(stringValue: "action")
+      static let inputParameters = CodingKeys(stringValue: "inputParameters")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let answerRecord = CodingKeys(stringValue: "answerRecord")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tool",
+        "cesTool",
+        "cesToolset",
+        "cesApp",
+        "toolDisplayName",
+        "toolDisplayDetails",
+        "action",
+        "inputParameters",
+        "createTime",
+        "answerRecord",
+        "state",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.toolDisplayName = try container.decode(Swift.String.self, forKey: .toolDisplayName)
-      self.toolDisplayDetails = try container.decode(Swift.String.self, forKey: .toolDisplayDetails)
-      self.action = try container.decode(Swift.String.self, forKey: .action)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .toolDisplayName) {
+        self.toolDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .toolDisplayDetails) {
+        self.toolDisplayDetails = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+        self.action = value
+      }
       self.inputParameters = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .inputParameters)
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-      self.answerRecord = try container.decode(Swift.String.self, forKey: .answerRecord)
-      self.state = try container.decode(ToolCall.State.self, forKey: .state)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerRecord) {
+        self.answerRecord = value
+      }
+      if let value = try container.decodeIfPresent(ToolCall.State.self, forKey: .state) {
+        self.state = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -111,6 +142,10 @@
         try sourceCheckAndSet(.cesApp(cesApp))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -118,8 +153,8 @@
       try container.encode(self.toolDisplayName, forKey: .toolDisplayName)
       try container.encode(self.toolDisplayDetails, forKey: .toolDisplayDetails)
       try container.encode(self.action, forKey: .action)
-      try container.encode(self.inputParameters, forKey: .inputParameters)
-      try container.encode(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.inputParameters, forKey: .inputParameters)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encode(self.answerRecord, forKey: .answerRecord)
       try container.encode(self.state, forKey: .state)
 
@@ -134,6 +169,9 @@
         case .cesApp(let value):
           try container.encode(value, forKey: .cesApp)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

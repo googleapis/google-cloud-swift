@@ -28,6 +28,8 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Defines the source of the migration.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StartMigrationRequest`.
   public init() {}
 
@@ -44,14 +46,26 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case selfManagedSource = "selfManagedSource"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selfManagedSource = CodingKeys(stringValue: "selfManagedSource")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selfManagedSource",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -69,6 +83,10 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try sourceCheckAndSet(.selfManagedSource(selfManagedSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,9 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .selfManagedSource(let value):
         try container.encode(value, forKey: .selfManagedSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

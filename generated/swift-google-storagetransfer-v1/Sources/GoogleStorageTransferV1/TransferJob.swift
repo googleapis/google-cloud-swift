@@ -125,6 +125,8 @@ public struct TransferJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Present if a TransferOperation has been created for this JobConfig.
   public var latestOperationName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferJob`.
   public init() {}
 
@@ -139,6 +141,109 @@ public struct TransferJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let transferSpec = CodingKeys(stringValue: "transferSpec")
+    static let replicationSpec = CodingKeys(stringValue: "replicationSpec")
+    static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let schedule = CodingKeys(stringValue: "schedule")
+    static let eventStream = CodingKeys(stringValue: "eventStream")
+    static let status = CodingKeys(stringValue: "status")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let lastModificationTime = CodingKeys(stringValue: "lastModificationTime")
+    static let deletionTime = CodingKeys(stringValue: "deletionTime")
+    static let latestOperationName = CodingKeys(stringValue: "latestOperationName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "projectId",
+      "serviceAccount",
+      "transferSpec",
+      "replicationSpec",
+      "notificationConfig",
+      "loggingConfig",
+      "schedule",
+      "eventStream",
+      "status",
+      "creationTime",
+      "lastModificationTime",
+      "deletionTime",
+      "latestOperationName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.transferSpec = try container.decodeIfPresent(TransferSpec.self, forKey: .transferSpec)
+    self.replicationSpec = try container.decodeIfPresent(
+      ReplicationSpec.self, forKey: .replicationSpec)
+    self.notificationConfig = try container.decodeIfPresent(
+      NotificationConfig.self, forKey: .notificationConfig)
+    self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+    self.schedule = try container.decodeIfPresent(Schedule.self, forKey: .schedule)
+    self.eventStream = try container.decodeIfPresent(EventStream.self, forKey: .eventStream)
+    if let value = try container.decodeIfPresent(TransferJob.Status.self, forKey: .status) {
+      self.status = value
+    }
+    self.creationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .creationTime)
+    self.lastModificationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModificationTime)
+    self.deletionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deletionTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestOperationName) {
+      self.latestOperationName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.transferSpec, forKey: .transferSpec)
+    try container.encodeIfPresent(self.replicationSpec, forKey: .replicationSpec)
+    try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.schedule, forKey: .schedule)
+    try container.encodeIfPresent(self.eventStream, forKey: .eventStream)
+    try container.encode(self.status, forKey: .status)
+    try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+    try container.encodeIfPresent(self.lastModificationTime, forKey: .lastModificationTime)
+    try container.encodeIfPresent(self.deletionTime, forKey: .deletionTime)
+    try container.encode(self.latestOperationName, forKey: .latestOperationName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The status of the transfer job.

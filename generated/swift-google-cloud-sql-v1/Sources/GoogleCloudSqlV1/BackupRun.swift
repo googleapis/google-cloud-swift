@@ -93,6 +93,8 @@
     /// Output only. The maximum chargeable bytes for the backup.
     public var maxChargeableBytes: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackupRun`.
     public init() {}
 
@@ -107,6 +109,140 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let status = CodingKeys(stringValue: "status")
+      static let enqueuedTime = CodingKeys(stringValue: "enqueuedTime")
+      static let id = CodingKeys(stringValue: "id")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let error = CodingKeys(stringValue: "error")
+      static let type = CodingKeys(stringValue: "type")
+      static let description = CodingKeys(stringValue: "description")
+      static let windowStartTime = CodingKeys(stringValue: "windowStartTime")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let location = CodingKeys(stringValue: "location")
+      static let databaseVersion = CodingKeys(stringValue: "databaseVersion")
+      static let diskEncryptionConfiguration = CodingKeys(
+        stringValue: "diskEncryptionConfiguration")
+      static let diskEncryptionStatus = CodingKeys(stringValue: "diskEncryptionStatus")
+      static let backupKind = CodingKeys(stringValue: "backupKind")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let maxChargeableBytes = CodingKeys(stringValue: "maxChargeableBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "status",
+        "enqueuedTime",
+        "id",
+        "startTime",
+        "endTime",
+        "error",
+        "type",
+        "description",
+        "windowStartTime",
+        "instance",
+        "selfLink",
+        "location",
+        "databaseVersion",
+        "diskEncryptionConfiguration",
+        "diskEncryptionStatus",
+        "backupKind",
+        "timeZone",
+        "maxChargeableBytes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(SqlBackupRunStatus.self, forKey: .status) {
+        self.status = value
+      }
+      self.enqueuedTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .enqueuedTime)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .id) {
+        self.id = value
+      }
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.error = try container.decodeIfPresent(OperationError.self, forKey: .error)
+      if let value = try container.decodeIfPresent(SqlBackupRunType.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.windowStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .windowStartTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlDatabaseVersion.self, forKey: .databaseVersion)
+      {
+        self.databaseVersion = value
+      }
+      self.diskEncryptionConfiguration = try container.decodeIfPresent(
+        DiskEncryptionConfiguration.self, forKey: .diskEncryptionConfiguration)
+      self.diskEncryptionStatus = try container.decodeIfPresent(
+        DiskEncryptionStatus.self, forKey: .diskEncryptionStatus)
+      if let value = try container.decodeIfPresent(SqlBackupKind.self, forKey: .backupKind) {
+        self.backupKind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      self.maxChargeableBytes = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .maxChargeableBytes)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.status, forKey: .status)
+      try container.encodeIfPresent(self.enqueuedTime, forKey: .enqueuedTime)
+      try container.encode(self.id, forKey: .id)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.windowStartTime, forKey: .windowStartTime)
+      try container.encode(self.instance, forKey: .instance)
+      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encode(self.location, forKey: .location)
+      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      try container.encodeIfPresent(
+        self.diskEncryptionConfiguration, forKey: .diskEncryptionConfiguration)
+      try container.encodeIfPresent(self.diskEncryptionStatus, forKey: .diskEncryptionStatus)
+      try container.encode(self.backupKind, forKey: .backupKind)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.maxChargeableBytes, forKey: .maxChargeableBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

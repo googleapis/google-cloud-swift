@@ -116,6 +116,8 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The AutomationRun actively repairing the rollout.
   public var activeRepairAutomationRun: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rollout`.
   public init() {}
 
@@ -130,6 +132,172 @@ public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let description = CodingKeys(stringValue: "description")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let approveTime = CodingKeys(stringValue: "approveTime")
+    static let enqueueTime = CodingKeys(stringValue: "enqueueTime")
+    static let deployStartTime = CodingKeys(stringValue: "deployStartTime")
+    static let deployEndTime = CodingKeys(stringValue: "deployEndTime")
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let approvalState = CodingKeys(stringValue: "approvalState")
+    static let state = CodingKeys(stringValue: "state")
+    static let failureReason = CodingKeys(stringValue: "failureReason")
+    static let deployingBuild = CodingKeys(stringValue: "deployingBuild")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let deployFailureCause = CodingKeys(stringValue: "deployFailureCause")
+    static let phases = CodingKeys(stringValue: "phases")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let controllerRollout = CodingKeys(stringValue: "controllerRollout")
+    static let rollbackOfRollout = CodingKeys(stringValue: "rollbackOfRollout")
+    static let rolledBackByRollouts = CodingKeys(stringValue: "rolledBackByRollouts")
+    static let activeRepairAutomationRun = CodingKeys(stringValue: "activeRepairAutomationRun")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "description",
+      "annotations",
+      "labels",
+      "createTime",
+      "approveTime",
+      "enqueueTime",
+      "deployStartTime",
+      "deployEndTime",
+      "targetId",
+      "approvalState",
+      "state",
+      "failureReason",
+      "deployingBuild",
+      "etag",
+      "deployFailureCause",
+      "phases",
+      "metadata",
+      "controllerRollout",
+      "rollbackOfRollout",
+      "rolledBackByRollouts",
+      "activeRepairAutomationRun",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.approveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .approveTime)
+    self.enqueueTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .enqueueTime)
+    self.deployStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deployStartTime)
+    self.deployEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deployEndTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent(Rollout.ApprovalState.self, forKey: .approvalState)
+    {
+      self.approvalState = value
+    }
+    if let value = try container.decodeIfPresent(Rollout.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureReason) {
+      self.failureReason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployingBuild) {
+      self.deployingBuild = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      Rollout.FailureCause.self, forKey: .deployFailureCause)
+    {
+      self.deployFailureCause = value
+    }
+    if let value = try container.decodeIfPresent([Phase].self, forKey: .phases) {
+      self.phases = value
+    }
+    self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .controllerRollout) {
+      self.controllerRollout = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rollbackOfRollout) {
+      self.rollbackOfRollout = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .rolledBackByRollouts)
+    {
+      self.rolledBackByRollouts = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .activeRepairAutomationRun)
+    {
+      self.activeRepairAutomationRun = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.approveTime, forKey: .approveTime)
+    try container.encodeIfPresent(self.enqueueTime, forKey: .enqueueTime)
+    try container.encodeIfPresent(self.deployStartTime, forKey: .deployStartTime)
+    try container.encodeIfPresent(self.deployEndTime, forKey: .deployEndTime)
+    try container.encode(self.targetId, forKey: .targetId)
+    try container.encode(self.approvalState, forKey: .approvalState)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.failureReason, forKey: .failureReason)
+    try container.encode(self.deployingBuild, forKey: .deployingBuild)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.deployFailureCause, forKey: .deployFailureCause)
+    try container.encode(self.phases, forKey: .phases)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.controllerRollout, forKey: .controllerRollout)
+    try container.encode(self.rollbackOfRollout, forKey: .rollbackOfRollout)
+    try container.encode(self.rolledBackByRollouts, forKey: .rolledBackByRollouts)
+    try container.encode(self.activeRepairAutomationRun, forKey: .activeRepairAutomationRun)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Valid approval states of a `Rollout`.

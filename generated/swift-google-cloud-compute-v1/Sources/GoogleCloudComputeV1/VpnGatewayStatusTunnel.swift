@@ -33,6 +33,8 @@
     /// Output only. URL reference to the VPN tunnel.
     public var tunnelUrl: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpnGatewayStatusTunnel`.
     public init() {}
 
@@ -47,6 +49,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let localGatewayInterface = CodingKeys(stringValue: "localGatewayInterface")
+      static let peerGatewayInterface = CodingKeys(stringValue: "peerGatewayInterface")
+      static let tunnelUrl = CodingKeys(stringValue: "tunnelUrl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "localGatewayInterface",
+        "peerGatewayInterface",
+        "tunnelUrl",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.localGatewayInterface = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .localGatewayInterface)
+      self.peerGatewayInterface = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .peerGatewayInterface)
+      self.tunnelUrl = try container.decodeIfPresent(Swift.String.self, forKey: .tunnelUrl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.localGatewayInterface, forKey: .localGatewayInterface)
+      try container.encodeIfPresent(self.peerGatewayInterface, forKey: .peerGatewayInterface)
+      try container.encodeIfPresent(self.tunnelUrl, forKey: .tunnelUrl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

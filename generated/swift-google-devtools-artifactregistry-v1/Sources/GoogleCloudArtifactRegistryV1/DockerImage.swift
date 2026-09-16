@@ -80,6 +80,8 @@ public struct DockerImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// list of image manifests.
   public var imageManifests: [ImageManifest] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DockerImage`.
   public init() {}
 
@@ -94,6 +96,89 @@ public struct DockerImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let imageSizeBytes = CodingKeys(stringValue: "imageSizeBytes")
+    static let uploadTime = CodingKeys(stringValue: "uploadTime")
+    static let mediaType = CodingKeys(stringValue: "mediaType")
+    static let buildTime = CodingKeys(stringValue: "buildTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let artifactType = CodingKeys(stringValue: "artifactType")
+    static let imageManifests = CodingKeys(stringValue: "imageManifests")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uri",
+      "tags",
+      "imageSizeBytes",
+      "uploadTime",
+      "mediaType",
+      "buildTime",
+      "updateTime",
+      "artifactType",
+      "imageManifests",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .imageSizeBytes) {
+      self.imageSizeBytes = value
+    }
+    self.uploadTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .uploadTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mediaType) {
+      self.mediaType = value
+    }
+    self.buildTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .buildTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactType) {
+      self.artifactType = value
+    }
+    if let value = try container.decodeIfPresent([ImageManifest].self, forKey: .imageManifests) {
+      self.imageManifests = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.imageSizeBytes, forKey: .imageSizeBytes)
+    try container.encodeIfPresent(self.uploadTime, forKey: .uploadTime)
+    try container.encode(self.mediaType, forKey: .mediaType)
+    try container.encodeIfPresent(self.buildTime, forKey: .buildTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.artifactType, forKey: .artifactType)
+    try container.encode(self.imageManifests, forKey: .imageManifests)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

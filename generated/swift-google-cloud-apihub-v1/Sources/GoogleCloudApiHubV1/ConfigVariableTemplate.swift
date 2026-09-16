@@ -47,6 +47,8 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// `MULTI_SELECT`.
   public var multiSelectOptions: [ConfigValueOption] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConfigVariableTemplate`.
   public init() {}
 
@@ -63,26 +65,62 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case id = "id"
-    case valueType = "valueType"
-    case description = "description"
-    case validationRegex = "validationRegex"
-    case `required` = "required"
-    case enumOptions = "enumOptions"
-    case multiSelectOptions = "multiSelectOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let valueType = CodingKeys(stringValue: "valueType")
+    static let description = CodingKeys(stringValue: "description")
+    static let validationRegex = CodingKeys(stringValue: "validationRegex")
+    static let `required` = CodingKeys(stringValue: "required")
+    static let enumOptions = CodingKeys(stringValue: "enumOptions")
+    static let multiSelectOptions = CodingKeys(stringValue: "multiSelectOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "valueType",
+      "description",
+      "validationRegex",
+      "required",
+      "enumOptions",
+      "multiSelectOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.valueType = try container.decode(ConfigVariableTemplate.ValueType.self, forKey: .valueType)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.validationRegex = try container.decode(Swift.String.self, forKey: .validationRegex)
-    self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-    self.enumOptions = try container.decode([ConfigValueOption].self, forKey: .enumOptions)
-    self.multiSelectOptions = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(
+      ConfigVariableTemplate.ValueType.self, forKey: .valueType)
+    {
+      self.valueType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .validationRegex) {
+      self.validationRegex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+      self.`required` = value
+    }
+    if let value = try container.decodeIfPresent([ConfigValueOption].self, forKey: .enumOptions) {
+      self.enumOptions = value
+    }
+    if let value = try container.decodeIfPresent(
       [ConfigValueOption].self, forKey: .multiSelectOptions)
+    {
+      self.multiSelectOptions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +132,9 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     try container.encode(self.`required`, forKey: .`required`)
     try container.encode(self.enumOptions, forKey: .enumOptions)
     try container.encode(self.multiSelectOptions, forKey: .multiSelectOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// ValueType indicates the data type of the value.

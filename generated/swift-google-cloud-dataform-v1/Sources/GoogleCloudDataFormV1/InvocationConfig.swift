@@ -48,6 +48,8 @@ public struct InvocationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// https://cloud.google.com/bigquery/docs/running-queries#queries.
   public var queryPriority: InvocationConfig.QueryPriority? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InvocationConfig`.
   public init() {}
 
@@ -62,6 +64,84 @@ public struct InvocationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includedTargets = CodingKeys(stringValue: "includedTargets")
+    static let includedTags = CodingKeys(stringValue: "includedTags")
+    static let transitiveDependenciesIncluded = CodingKeys(
+      stringValue: "transitiveDependenciesIncluded")
+    static let transitiveDependentsIncluded = CodingKeys(
+      stringValue: "transitiveDependentsIncluded")
+    static let fullyRefreshIncrementalTablesEnabled = CodingKeys(
+      stringValue: "fullyRefreshIncrementalTablesEnabled")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let queryPriority = CodingKeys(stringValue: "queryPriority")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includedTargets",
+      "includedTags",
+      "transitiveDependenciesIncluded",
+      "transitiveDependentsIncluded",
+      "fullyRefreshIncrementalTablesEnabled",
+      "serviceAccount",
+      "queryPriority",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Target].self, forKey: .includedTargets) {
+      self.includedTargets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedTags) {
+      self.includedTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .transitiveDependenciesIncluded)
+    {
+      self.transitiveDependenciesIncluded = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .transitiveDependentsIncluded)
+    {
+      self.transitiveDependentsIncluded = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .fullyRefreshIncrementalTablesEnabled)
+    {
+      self.fullyRefreshIncrementalTablesEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    self.queryPriority = try container.decodeIfPresent(
+      InvocationConfig.QueryPriority.self, forKey: .queryPriority)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.includedTargets, forKey: .includedTargets)
+    try container.encode(self.includedTags, forKey: .includedTags)
+    try container.encode(
+      self.transitiveDependenciesIncluded, forKey: .transitiveDependenciesIncluded)
+    try container.encode(self.transitiveDependentsIncluded, forKey: .transitiveDependentsIncluded)
+    try container.encode(
+      self.fullyRefreshIncrementalTablesEnabled, forKey: .fullyRefreshIncrementalTablesEnabled)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.queryPriority, forKey: .queryPriority)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of priority for query execution in BigQuery.

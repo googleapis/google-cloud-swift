@@ -24,6 +24,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Types of analysis.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivacyMetric`.
   public init() {}
 
@@ -40,13 +42,28 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case numericalStatsConfig = "numericalStatsConfig"
-    case categoricalStatsConfig = "categoricalStatsConfig"
-    case kAnonymityConfig = "kAnonymityConfig"
-    case lDiversityConfig = "lDiversityConfig"
-    case kMapEstimationConfig = "kMapEstimationConfig"
-    case deltaPresenceEstimationConfig = "deltaPresenceEstimationConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let numericalStatsConfig = CodingKeys(stringValue: "numericalStatsConfig")
+    static let categoricalStatsConfig = CodingKeys(stringValue: "categoricalStatsConfig")
+    static let kAnonymityConfig = CodingKeys(stringValue: "kAnonymityConfig")
+    static let lDiversityConfig = CodingKeys(stringValue: "lDiversityConfig")
+    static let kMapEstimationConfig = CodingKeys(stringValue: "kMapEstimationConfig")
+    static let deltaPresenceEstimationConfig = CodingKeys(
+      stringValue: "deltaPresenceEstimationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "numericalStatsConfig",
+      "categoricalStatsConfig",
+      "kAnonymityConfig",
+      "lDiversityConfig",
+      "kMapEstimationConfig",
+      "deltaPresenceEstimationConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -93,6 +110,10 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.deltaPresenceEstimationConfig(deltaPresenceEstimationConfig))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,6 +135,9 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .deltaPresenceEstimationConfig)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Compute numerical stats over an individual column, including
@@ -124,6 +148,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Field to compute numerical stats on. Supported types are
     /// integer, float, date, datetime, timestamp, time.
     public var field: FieldId? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NumericalStatsConfig`.
     public init() {}
@@ -139,6 +165,36 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let field = CodingKeys(stringValue: "field")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "field"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.field, forKey: .field)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -163,6 +219,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// depending on the data.
     public var field: FieldId? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CategoricalStatsConfig`.
     public init() {}
 
@@ -177,6 +235,36 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let field = CodingKeys(stringValue: "field")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "field"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.field, forKey: .field)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -213,6 +301,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// might be ignored.
     public var entityId: EntityId? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KAnonymityConfig`.
     public init() {}
 
@@ -227,6 +317,42 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quasiIds = CodingKeys(stringValue: "quasiIds")
+      static let entityId = CodingKeys(stringValue: "entityId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quasiIds",
+        "entityId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([FieldId].self, forKey: .quasiIds) {
+        self.quasiIds = value
+      }
+      self.entityId = try container.decodeIfPresent(EntityId.self, forKey: .entityId)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.quasiIds, forKey: .quasiIds)
+      try container.encodeIfPresent(self.entityId, forKey: .entityId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -252,6 +378,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Sensitive field for computing the l-value.
     public var sensitiveAttribute: FieldId? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LDiversityConfig`.
     public init() {}
 
@@ -266,6 +394,43 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quasiIds = CodingKeys(stringValue: "quasiIds")
+      static let sensitiveAttribute = CodingKeys(stringValue: "sensitiveAttribute")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quasiIds",
+        "sensitiveAttribute",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([FieldId].self, forKey: .quasiIds) {
+        self.quasiIds = value
+      }
+      self.sensitiveAttribute = try container.decodeIfPresent(
+        FieldId.self, forKey: .sensitiveAttribute)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.quasiIds, forKey: .quasiIds)
+      try container.encodeIfPresent(self.sensitiveAttribute, forKey: .sensitiveAttribute)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -302,6 +467,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// of one auxiliary table.
     public var auxiliaryTables: [PrivacyMetric.KMapEstimationConfig.AuxiliaryTable] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KMapEstimationConfig`.
     public init() {}
 
@@ -318,6 +485,54 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quasiIds = CodingKeys(stringValue: "quasiIds")
+      static let regionCode = CodingKeys(stringValue: "regionCode")
+      static let auxiliaryTables = CodingKeys(stringValue: "auxiliaryTables")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quasiIds",
+        "regionCode",
+        "auxiliaryTables",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [PrivacyMetric.KMapEstimationConfig.TaggedField].self, forKey: .quasiIds)
+      {
+        self.quasiIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
+        self.regionCode = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PrivacyMetric.KMapEstimationConfig.AuxiliaryTable].self, forKey: .auxiliaryTables)
+      {
+        self.auxiliaryTables = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.quasiIds, forKey: .quasiIds)
+      try container.encode(self.regionCode, forKey: .regionCode)
+      try container.encode(self.auxiliaryTables, forKey: .auxiliaryTables)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A column with a semantic tag attached.
     public struct TaggedField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -329,6 +544,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// statistical model to use to estimate the reidentifiability of each
       /// value. [required]
       public var tag: OneOf_Tag? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `TaggedField`.
       public init() {}
@@ -346,11 +563,23 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case field = "field"
-        case infoType = "infoType"
-        case customTag = "customTag"
-        case inferred = "inferred"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let field = CodingKeys(stringValue: "field")
+        static let infoType = CodingKeys(stringValue: "infoType")
+        static let customTag = CodingKeys(stringValue: "customTag")
+        static let inferred = CodingKeys(stringValue: "inferred")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "field",
+          "infoType",
+          "customTag",
+          "inferred",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -379,11 +608,15 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try tagCheckAndSet(.inferred(inferred))
         }
         self.tag = tag
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.field, forKey: .field)
+        try container.encodeIfPresent(self.field, forKey: .field)
 
         if let choice = self.tag {
           switch choice {
@@ -394,6 +627,9 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           case .inferred(let value):
             try container.encode(value, forKey: .inferred)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -448,6 +684,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// number between 0 and 1 (inclusive). Null values are assumed to be zero.
       public var relativeFrequency: FieldId? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AuxiliaryTable`.
       public init() {}
 
@@ -464,6 +702,49 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let table = CodingKeys(stringValue: "table")
+        static let quasiIds = CodingKeys(stringValue: "quasiIds")
+        static let relativeFrequency = CodingKeys(stringValue: "relativeFrequency")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "table",
+          "quasiIds",
+          "relativeFrequency",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table)
+        if let value = try container.decodeIfPresent(
+          [PrivacyMetric.KMapEstimationConfig.AuxiliaryTable.QuasiIdField].self, forKey: .quasiIds)
+        {
+          self.quasiIds = value
+        }
+        self.relativeFrequency = try container.decodeIfPresent(
+          FieldId.self, forKey: .relativeFrequency)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.table, forKey: .table)
+        try container.encode(self.quasiIds, forKey: .quasiIds)
+        try container.encodeIfPresent(self.relativeFrequency, forKey: .relativeFrequency)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// A quasi-identifier column has a custom_tag, used to know which column
       /// in the data corresponds to which column in the statistical model.
       public struct QuasiIdField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -474,6 +755,9 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
         /// A auxiliary field.
         public var customTag: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `QuasiIdField`.
         public init() {}
@@ -489,6 +773,42 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let field = CodingKeys(stringValue: "field")
+          static let customTag = CodingKeys(stringValue: "customTag")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "field",
+            "customTag",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
+            self.customTag = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.field, forKey: .field)
+          try container.encode(self.customTag, forKey: .customTag)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -547,6 +867,8 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// field of one auxiliary table.
     public var auxiliaryTables: [StatisticalTable] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeltaPresenceEstimationConfig`.
     public init() {}
 
@@ -561,6 +883,52 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let quasiIds = CodingKeys(stringValue: "quasiIds")
+      static let regionCode = CodingKeys(stringValue: "regionCode")
+      static let auxiliaryTables = CodingKeys(stringValue: "auxiliaryTables")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "quasiIds",
+        "regionCode",
+        "auxiliaryTables",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([QuasiId].self, forKey: .quasiIds) {
+        self.quasiIds = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
+        self.regionCode = value
+      }
+      if let value = try container.decodeIfPresent(
+        [StatisticalTable].self, forKey: .auxiliaryTables)
+      {
+        self.auxiliaryTables = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.quasiIds, forKey: .quasiIds)
+      try container.encode(self.regionCode, forKey: .regionCode)
+      try container.encode(self.auxiliaryTables, forKey: .auxiliaryTables)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension CreateFolderRequest {
@@ -31,6 +31,7 @@ extension CreateFolderRequest {
     self.folderId = proto.folderID
     self.recursive = proto.recursive
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -40,6 +41,9 @@ extension CreateFolderRequest {
     proto.folderID = self.folderId
     proto.recursive = self.recursive
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

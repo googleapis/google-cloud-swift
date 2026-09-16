@@ -40,6 +40,8 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A path can never be empty, and a path can have at most 100 elements.
   public var path: [Key.PathElement] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Key`.
   public init() {}
 
@@ -54,6 +56,42 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let partitionId = CodingKeys(stringValue: "partitionId")
+    static let path = CodingKeys(stringValue: "path")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "partitionId",
+      "path",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.partitionId = try container.decodeIfPresent(PartitionId.self, forKey: .partitionId)
+    if let value = try container.decodeIfPresent([Key.PathElement].self, forKey: .path) {
+      self.path = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.partitionId, forKey: .partitionId)
+    try container.encode(self.path, forKey: .path)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A (kind, ID/name) pair used to construct a key path.
@@ -72,6 +110,8 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The type of ID.
     public var idType: OneOf_IdType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PathElement`.
     public init() {}
 
@@ -88,15 +128,28 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case kind = "kind"
-      case id = "id"
-      case name = "name"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let id = CodingKeys(stringValue: "id")
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "id",
+        "name",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
 
       var idType: OneOf_IdType? = nil
       let idTypeCheckAndSet = {
@@ -115,6 +168,10 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try idTypeCheckAndSet(.name(name))
       }
       self.idType = idType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,6 +185,9 @@ public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .name(let value):
           try container.encode(value, forKey: .name)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

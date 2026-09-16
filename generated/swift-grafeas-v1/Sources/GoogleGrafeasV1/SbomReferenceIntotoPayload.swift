@@ -38,6 +38,8 @@ public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWKT._An
   /// SBOM.
   public var predicate: SbomReferenceIntotoPredicate? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SbomReferenceIntotoPayload`.
   public init() {}
 
@@ -54,20 +56,42 @@ public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "_type"
-    case predicateType = "predicateType"
-    case subject = "subject"
-    case predicate = "predicate"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "_type")
+    static let predicateType = CodingKeys(stringValue: "predicateType")
+    static let subject = CodingKeys(stringValue: "subject")
+    static let predicate = CodingKeys(stringValue: "predicate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "_type",
+      "predicateType",
+      "subject",
+      "predicate",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.predicateType = try container.decode(Swift.String.self, forKey: .predicateType)
-    self.subject = try container.decode([Subject].self, forKey: .subject)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predicateType) {
+      self.predicateType = value
+    }
+    if let value = try container.decodeIfPresent([Subject].self, forKey: .subject) {
+      self.subject = value
+    }
     self.predicate = try container.decodeIfPresent(
       SbomReferenceIntotoPredicate.self, forKey: .predicate)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -75,7 +99,10 @@ public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWKT._An
     try container.encode(self.type, forKey: .type)
     try container.encode(self.predicateType, forKey: .predicateType)
     try container.encode(self.subject, forKey: .subject)
-    try container.encode(self.predicate, forKey: .predicate)
+    try container.encodeIfPresent(self.predicate, forKey: .predicate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

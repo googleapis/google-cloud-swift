@@ -35,6 +35,8 @@
     /// The confidence score of the detected language between 0 and 1.
     public var confidenceScore: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LanguageInfo`.
     public init() {}
 
@@ -49,6 +51,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputLanguageCode = CodingKeys(stringValue: "inputLanguageCode")
+      static let resolvedLanguageCode = CodingKeys(stringValue: "resolvedLanguageCode")
+      static let confidenceScore = CodingKeys(stringValue: "confidenceScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputLanguageCode",
+        "resolvedLanguageCode",
+        "confidenceScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputLanguageCode) {
+        self.inputLanguageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resolvedLanguageCode)
+      {
+        self.resolvedLanguageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceScore) {
+        self.confidenceScore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputLanguageCode, forKey: .inputLanguageCode)
+      try container.encode(self.resolvedLanguageCode, forKey: .resolvedLanguageCode)
+      try container.encode(self.confidenceScore, forKey: .confidenceScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

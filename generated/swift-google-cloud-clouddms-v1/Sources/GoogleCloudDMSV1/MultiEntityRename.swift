@@ -40,6 +40,8 @@ public struct MultiEntityRename: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// case. If no transformation is desired, use NO_TRANSFORMATION
   public var sourceNameTransformation: EntityNameTransformation = EntityNameTransformation()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MultiEntityRename`.
   public init() {}
 
@@ -54,6 +56,46 @@ public struct MultiEntityRename: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let newNamePattern = CodingKeys(stringValue: "newNamePattern")
+    static let sourceNameTransformation = CodingKeys(stringValue: "sourceNameTransformation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "newNamePattern",
+      "sourceNameTransformation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newNamePattern) {
+      self.newNamePattern = value
+    }
+    if let value = try container.decodeIfPresent(
+      EntityNameTransformation.self, forKey: .sourceNameTransformation)
+    {
+      self.sourceNameTransformation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.newNamePattern, forKey: .newNamePattern)
+    try container.encode(self.sourceNameTransformation, forKey: .sourceNameTransformation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

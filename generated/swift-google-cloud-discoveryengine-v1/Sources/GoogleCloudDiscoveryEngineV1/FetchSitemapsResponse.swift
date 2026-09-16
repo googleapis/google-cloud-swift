@@ -31,6 +31,8 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     public var sitemapsMetadata: [FetchSitemapsResponse.SitemapMetadata] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FetchSitemapsResponse`.
     public init() {}
 
@@ -47,6 +49,40 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sitemapsMetadata = CodingKeys(stringValue: "sitemapsMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sitemapsMetadata"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [FetchSitemapsResponse.SitemapMetadata].self, forKey: .sitemapsMetadata)
+      {
+        self.sitemapsMetadata = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sitemapsMetadata, forKey: .sitemapsMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Contains a [Sitemap][google.cloud.discoveryengine.v1.Sitemap] and its
     /// metadata.
     ///
@@ -58,6 +94,8 @@
       ///
       /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
       public var sitemap: Sitemap? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SitemapMetadata`.
       public init() {}
@@ -73,6 +111,36 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sitemap = CodingKeys(stringValue: "sitemap")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sitemap"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sitemap = try container.decodeIfPresent(Sitemap.self, forKey: .sitemap)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.sitemap, forKey: .sitemap)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

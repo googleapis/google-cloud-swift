@@ -51,6 +51,8 @@ public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// hour.
   public var localSsdRecoveryTimeout: SchedulingDuration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Scheduling`.
   public init() {}
 
@@ -67,6 +69,74 @@ public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let onHostMaintenance = CodingKeys(stringValue: "onHostMaintenance")
+    static let automaticRestart = CodingKeys(stringValue: "automaticRestart")
+    static let preemptible = CodingKeys(stringValue: "preemptible")
+    static let nodeAffinities = CodingKeys(stringValue: "nodeAffinities")
+    static let minNodeCpus = CodingKeys(stringValue: "minNodeCpus")
+    static let provisioningModel = CodingKeys(stringValue: "provisioningModel")
+    static let instanceTerminationAction = CodingKeys(stringValue: "instanceTerminationAction")
+    static let localSsdRecoveryTimeout = CodingKeys(stringValue: "localSsdRecoveryTimeout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "onHostMaintenance",
+      "automaticRestart",
+      "preemptible",
+      "nodeAffinities",
+      "minNodeCpus",
+      "provisioningModel",
+      "instanceTerminationAction",
+      "localSsdRecoveryTimeout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.onHostMaintenance = try container.decodeIfPresent(
+      Scheduling.OnHostMaintenance.self, forKey: .onHostMaintenance)
+    self.automaticRestart = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .automaticRestart)
+    self.preemptible = try container.decodeIfPresent(Swift.Bool.self, forKey: .preemptible)
+    if let value = try container.decodeIfPresent(
+      [Scheduling.NodeAffinity].self, forKey: .nodeAffinities)
+    {
+      self.nodeAffinities = value
+    }
+    self.minNodeCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCpus)
+    self.provisioningModel = try container.decodeIfPresent(
+      Scheduling.ProvisioningModel.self, forKey: .provisioningModel)
+    self.instanceTerminationAction = try container.decodeIfPresent(
+      Scheduling.InstanceTerminationAction.self, forKey: .instanceTerminationAction)
+    self.localSsdRecoveryTimeout = try container.decodeIfPresent(
+      SchedulingDuration.self, forKey: .localSsdRecoveryTimeout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.onHostMaintenance, forKey: .onHostMaintenance)
+    try container.encodeIfPresent(self.automaticRestart, forKey: .automaticRestart)
+    try container.encodeIfPresent(self.preemptible, forKey: .preemptible)
+    try container.encode(self.nodeAffinities, forKey: .nodeAffinities)
+    try container.encodeIfPresent(self.minNodeCpus, forKey: .minNodeCpus)
+    try container.encodeIfPresent(self.provisioningModel, forKey: .provisioningModel)
+    try container.encodeIfPresent(
+      self.instanceTerminationAction, forKey: .instanceTerminationAction)
+    try container.encodeIfPresent(self.localSsdRecoveryTimeout, forKey: .localSsdRecoveryTimeout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Node Affinity: the configuration of desired nodes onto which this Instance
   /// could be scheduled.
   public struct NodeAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -80,6 +150,8 @@ public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Optional. Corresponds to the label values of Node resource.
     public var values: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NodeAffinity`.
     public init() {}
@@ -97,10 +169,21 @@ public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case key = "key"
-      case `operator` = "operator"
-      case values = "values"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let key = CodingKeys(stringValue: "key")
+      static let `operator` = CodingKeys(stringValue: "operator")
+      static let values = CodingKeys(stringValue: "values")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "key",
+        "operator",
+        "values",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -108,14 +191,23 @@ public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
       self.`operator` = try container.decodeIfPresent(
         Scheduling.NodeAffinity.Operator.self, forKey: .`operator`)
-      self.values = try container.decode([Swift.String].self, forKey: .values)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
+        self.values = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.key, forKey: .key)
-      try container.encode(self.`operator`, forKey: .`operator`)
+      try container.encodeIfPresent(self.key, forKey: .key)
+      try container.encodeIfPresent(self.`operator`, forKey: .`operator`)
       try container.encode(self.values, forKey: .values)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the type of node selections.

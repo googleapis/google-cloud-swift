@@ -34,6 +34,8 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var uri: OneOf_Uri? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TargetArtifact`.
   public init() {}
 
@@ -50,19 +52,38 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case artifactUri = "artifactUri"
-    case skaffoldConfigPath = "skaffoldConfigPath"
-    case manifestPath = "manifestPath"
-    case phaseArtifacts = "phaseArtifacts"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let artifactUri = CodingKeys(stringValue: "artifactUri")
+    static let skaffoldConfigPath = CodingKeys(stringValue: "skaffoldConfigPath")
+    static let manifestPath = CodingKeys(stringValue: "manifestPath")
+    static let phaseArtifacts = CodingKeys(stringValue: "phaseArtifacts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "artifactUri",
+      "skaffoldConfigPath",
+      "manifestPath",
+      "phaseArtifacts",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.skaffoldConfigPath = try container.decode(Swift.String.self, forKey: .skaffoldConfigPath)
-    self.manifestPath = try container.decode(Swift.String.self, forKey: .manifestPath)
-    self.phaseArtifacts = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldConfigPath) {
+      self.skaffoldConfigPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifestPath) {
+      self.manifestPath = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: TargetArtifact.PhaseArtifact].self, forKey: .phaseArtifacts)
+    {
+      self.phaseArtifacts = value
+    }
 
     var uri: OneOf_Uri? = nil
     let uriCheckAndSet = {
@@ -78,6 +99,10 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try uriCheckAndSet(.artifactUri(artifactUri))
     }
     self.uri = uri
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -91,6 +116,9 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .artifactUri(let value):
         try container.encode(value, forKey: .artifactUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -109,6 +137,8 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// relative to the URI. This is only set if it is applicable.
     public var jobManifestsPath: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PhaseArtifact`.
     public init() {}
 
@@ -123,6 +153,50 @@ public struct TargetArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let skaffoldConfigPath = CodingKeys(stringValue: "skaffoldConfigPath")
+      static let manifestPath = CodingKeys(stringValue: "manifestPath")
+      static let jobManifestsPath = CodingKeys(stringValue: "jobManifestsPath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "skaffoldConfigPath",
+        "manifestPath",
+        "jobManifestsPath",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldConfigPath) {
+        self.skaffoldConfigPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifestPath) {
+        self.manifestPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobManifestsPath) {
+        self.jobManifestsPath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.skaffoldConfigPath, forKey: .skaffoldConfigPath)
+      try container.encode(self.manifestPath, forKey: .manifestPath)
+      try container.encode(self.jobManifestsPath, forKey: .jobManifestsPath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

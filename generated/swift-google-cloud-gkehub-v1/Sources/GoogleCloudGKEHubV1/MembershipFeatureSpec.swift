@@ -25,6 +25,8 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
 {
   public var featureSpec: OneOf_FeatureSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MembershipFeatureSpec`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case configmanagement = "configmanagement"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let configmanagement = CodingKeys(stringValue: "configmanagement")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "configmanagement"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
       try featureSpecCheckAndSet(.configmanagement(configmanagement))
     }
     self.featureSpec = featureSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .configmanagement(let value):
         try container.encode(value, forKey: .configmanagement)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

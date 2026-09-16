@@ -166,6 +166,8 @@ public struct DocumentQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// be honored.
   public var customWeightsMetadata: CustomWeightsMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentQuery`.
   public init() {}
 
@@ -180,6 +182,105 @@ public struct DocumentQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let query = CodingKeys(stringValue: "query")
+    static let isNlQuery = CodingKeys(stringValue: "isNlQuery")
+    static let customPropertyFilter = CodingKeys(stringValue: "customPropertyFilter")
+    static let timeFilters = CodingKeys(stringValue: "timeFilters")
+    static let documentSchemaNames = CodingKeys(stringValue: "documentSchemaNames")
+    static let propertyFilter = CodingKeys(stringValue: "propertyFilter")
+    static let fileTypeFilter = CodingKeys(stringValue: "fileTypeFilter")
+    static let folderNameFilter = CodingKeys(stringValue: "folderNameFilter")
+    static let documentNameFilter = CodingKeys(stringValue: "documentNameFilter")
+    static let queryContext = CodingKeys(stringValue: "queryContext")
+    static let documentCreatorFilter = CodingKeys(stringValue: "documentCreatorFilter")
+    static let customWeightsMetadata = CodingKeys(stringValue: "customWeightsMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "query",
+      "isNlQuery",
+      "customPropertyFilter",
+      "timeFilters",
+      "documentSchemaNames",
+      "propertyFilter",
+      "fileTypeFilter",
+      "folderNameFilter",
+      "documentNameFilter",
+      "queryContext",
+      "documentCreatorFilter",
+      "customWeightsMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isNlQuery) {
+      self.isNlQuery = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customPropertyFilter) {
+      self.customPropertyFilter = value
+    }
+    if let value = try container.decodeIfPresent([TimeFilter].self, forKey: .timeFilters) {
+      self.timeFilters = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documentSchemaNames)
+    {
+      self.documentSchemaNames = value
+    }
+    if let value = try container.decodeIfPresent([PropertyFilter].self, forKey: .propertyFilter) {
+      self.propertyFilter = value
+    }
+    self.fileTypeFilter = try container.decodeIfPresent(
+      FileTypeFilter.self, forKey: .fileTypeFilter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .folderNameFilter) {
+      self.folderNameFilter = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documentNameFilter) {
+      self.documentNameFilter = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .queryContext) {
+      self.queryContext = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .documentCreatorFilter)
+    {
+      self.documentCreatorFilter = value
+    }
+    self.customWeightsMetadata = try container.decodeIfPresent(
+      CustomWeightsMetadata.self, forKey: .customWeightsMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.isNlQuery, forKey: .isNlQuery)
+    try container.encode(self.customPropertyFilter, forKey: .customPropertyFilter)
+    try container.encode(self.timeFilters, forKey: .timeFilters)
+    try container.encode(self.documentSchemaNames, forKey: .documentSchemaNames)
+    try container.encode(self.propertyFilter, forKey: .propertyFilter)
+    try container.encodeIfPresent(self.fileTypeFilter, forKey: .fileTypeFilter)
+    try container.encode(self.folderNameFilter, forKey: .folderNameFilter)
+    try container.encode(self.documentNameFilter, forKey: .documentNameFilter)
+    try container.encode(self.queryContext, forKey: .queryContext)
+    try container.encode(self.documentCreatorFilter, forKey: .documentCreatorFilter)
+    try container.encodeIfPresent(self.customWeightsMetadata, forKey: .customWeightsMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

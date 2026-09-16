@@ -36,6 +36,8 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleCl
   /// backup.
   public var launchFromBackupStorageSizeDetails: [StorageSizeDetails] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbSystemInitialStorageSizeProperties`.
   public init() {}
 
@@ -50,6 +52,66 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let storageManagement = CodingKeys(stringValue: "storageManagement")
+    static let shapeType = CodingKeys(stringValue: "shapeType")
+    static let storageSizeDetails = CodingKeys(stringValue: "storageSizeDetails")
+    static let launchFromBackupStorageSizeDetails = CodingKeys(
+      stringValue: "launchFromBackupStorageSizeDetails")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "storageManagement",
+      "shapeType",
+      "storageSizeDetails",
+      "launchFromBackupStorageSizeDetails",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      DbSystemInitialStorageSizeProperties.StorageManagement.self, forKey: .storageManagement)
+    {
+      self.storageManagement = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbSystemInitialStorageSizeProperties.ShapeType.self, forKey: .shapeType)
+    {
+      self.shapeType = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StorageSizeDetails].self, forKey: .storageSizeDetails)
+    {
+      self.storageSizeDetails = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StorageSizeDetails].self, forKey: .launchFromBackupStorageSizeDetails)
+    {
+      self.launchFromBackupStorageSizeDetails = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.storageManagement, forKey: .storageManagement)
+    try container.encode(self.shapeType, forKey: .shapeType)
+    try container.encode(self.storageSizeDetails, forKey: .storageSizeDetails)
+    try container.encode(
+      self.launchFromBackupStorageSizeDetails, forKey: .launchFromBackupStorageSizeDetails)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The storage option used in the DB system.

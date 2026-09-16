@@ -137,6 +137,8 @@
     /// Optional. Whether to do component level validations before job creation.
     public var preflightValidations: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PipelineJob`.
     public init() {}
 
@@ -151,6 +153,146 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let pipelineSpec = CodingKeys(stringValue: "pipelineSpec")
+      static let state = CodingKeys(stringValue: "state")
+      static let jobDetail = CodingKeys(stringValue: "jobDetail")
+      static let error = CodingKeys(stringValue: "error")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let runtimeConfig = CodingKeys(stringValue: "runtimeConfig")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+      static let network = CodingKeys(stringValue: "network")
+      static let reservedIpRanges = CodingKeys(stringValue: "reservedIpRanges")
+      static let pscInterfaceConfig = CodingKeys(stringValue: "pscInterfaceConfig")
+      static let templateUri = CodingKeys(stringValue: "templateUri")
+      static let templateMetadata = CodingKeys(stringValue: "templateMetadata")
+      static let scheduleName = CodingKeys(stringValue: "scheduleName")
+      static let preflightValidations = CodingKeys(stringValue: "preflightValidations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "createTime",
+        "startTime",
+        "endTime",
+        "updateTime",
+        "pipelineSpec",
+        "state",
+        "jobDetail",
+        "error",
+        "labels",
+        "runtimeConfig",
+        "encryptionSpec",
+        "serviceAccount",
+        "network",
+        "reservedIpRanges",
+        "pscInterfaceConfig",
+        "templateUri",
+        "templateMetadata",
+        "scheduleName",
+        "preflightValidations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.pipelineSpec = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .pipelineSpec)
+      if let value = try container.decodeIfPresent(PipelineState.self, forKey: .state) {
+        self.state = value
+      }
+      self.jobDetail = try container.decodeIfPresent(PipelineJobDetail.self, forKey: .jobDetail)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.runtimeConfig = try container.decodeIfPresent(
+        PipelineJob.RuntimeConfig.self, forKey: .runtimeConfig)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+        self.serviceAccount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .reservedIpRanges) {
+        self.reservedIpRanges = value
+      }
+      self.pscInterfaceConfig = try container.decodeIfPresent(
+        PscInterfaceConfig.self, forKey: .pscInterfaceConfig)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .templateUri) {
+        self.templateUri = value
+      }
+      self.templateMetadata = try container.decodeIfPresent(
+        PipelineTemplateMetadata.self, forKey: .templateMetadata)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scheduleName) {
+        self.scheduleName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preflightValidations) {
+        self.preflightValidations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.pipelineSpec, forKey: .pipelineSpec)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.jobDetail, forKey: .jobDetail)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.runtimeConfig, forKey: .runtimeConfig)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.serviceAccount, forKey: .serviceAccount)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.reservedIpRanges, forKey: .reservedIpRanges)
+      try container.encodeIfPresent(self.pscInterfaceConfig, forKey: .pscInterfaceConfig)
+      try container.encode(self.templateUri, forKey: .templateUri)
+      try container.encodeIfPresent(self.templateMetadata, forKey: .templateMetadata)
+      try container.encode(self.scheduleName, forKey: .scheduleName)
+      try container.encode(self.preflightValidations, forKey: .preflightValidations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The runtime config of a PipelineJob.
@@ -203,6 +345,8 @@
       /// artifact name and the value would be one of the InputArtifact.
       public var inputArtifacts: [Swift.String: PipelineJob.RuntimeConfig.InputArtifact] = [:]
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RuntimeConfig`.
       public init() {}
 
@@ -219,11 +363,79 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let parameters = CodingKeys(stringValue: "parameters")
+        static let gcsOutputDirectory = CodingKeys(stringValue: "gcsOutputDirectory")
+        static let parameterValues = CodingKeys(stringValue: "parameterValues")
+        static let failurePolicy = CodingKeys(stringValue: "failurePolicy")
+        static let inputArtifacts = CodingKeys(stringValue: "inputArtifacts")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "parameters",
+          "gcsOutputDirectory",
+          "parameterValues",
+          "failurePolicy",
+          "inputArtifacts",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Value].self, forKey: .parameters)
+        {
+          self.parameters = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsOutputDirectory)
+        {
+          self.gcsOutputDirectory = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: GoogleCloudWKT.Value].self, forKey: .parameterValues)
+        {
+          self.parameterValues = value
+        }
+        if let value = try container.decodeIfPresent(
+          PipelineFailurePolicy.self, forKey: .failurePolicy)
+        {
+          self.failurePolicy = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: PipelineJob.RuntimeConfig.InputArtifact].self, forKey: .inputArtifacts)
+        {
+          self.inputArtifacts = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.parameters, forKey: .parameters)
+        try container.encode(self.gcsOutputDirectory, forKey: .gcsOutputDirectory)
+        try container.encode(self.parameterValues, forKey: .parameterValues)
+        try container.encode(self.failurePolicy, forKey: .failurePolicy)
+        try container.encode(self.inputArtifacts, forKey: .inputArtifacts)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// The type of an input artifact.
       public struct InputArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         public var kind: OneOf_Kind? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `InputArtifact`.
         public init() {}
@@ -241,8 +453,17 @@
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case artifactId = "artifactId"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let artifactId = CodingKeys(stringValue: "artifactId")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "artifactId"
+          ]
         }
 
         public init(from decoder: Decoder) throws {
@@ -263,6 +484,10 @@
             try kindCheckAndSet(.artifactId(artifactId))
           }
           self.kind = kind
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -273,6 +498,9 @@
             case .artifactId(let value):
               try container.encode(value, forKey: .artifactId)
             }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
         }
 

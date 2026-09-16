@@ -44,6 +44,8 @@
     /// Optional. Token used to access Hugging Face gated models.
     public var huggingFaceToken: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GetPublisherModelRequest`.
     public init() {}
 
@@ -58,6 +60,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let view = CodingKeys(stringValue: "view")
+      static let isHuggingFaceModel = CodingKeys(stringValue: "isHuggingFaceModel")
+      static let huggingFaceToken = CodingKeys(stringValue: "huggingFaceToken")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "languageCode",
+        "view",
+        "isHuggingFaceModel",
+        "huggingFaceToken",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(PublisherModelView.self, forKey: .view) {
+        self.view = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isHuggingFaceModel) {
+        self.isHuggingFaceModel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .huggingFaceToken) {
+        self.huggingFaceToken = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encode(self.view, forKey: .view)
+      try container.encode(self.isHuggingFaceModel, forKey: .isHuggingFaceModel)
+      try container.encode(self.huggingFaceToken, forKey: .huggingFaceToken)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

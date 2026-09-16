@@ -58,6 +58,8 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The status of the plugin action.
   public var actionStatus: OneOf_ActionStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PluginInstanceAction`.
   public init() {}
 
@@ -74,27 +76,53 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hubInstanceAction = "hubInstanceAction"
-    case actionId = "actionId"
-    case state = "state"
-    case scheduleCronExpression = "scheduleCronExpression"
-    case curationConfig = "curationConfig"
-    case scheduleTimeZone = "scheduleTimeZone"
-    case serviceAccount = "serviceAccount"
-    case resourceConfig = "resourceConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hubInstanceAction = CodingKeys(stringValue: "hubInstanceAction")
+    static let actionId = CodingKeys(stringValue: "actionId")
+    static let state = CodingKeys(stringValue: "state")
+    static let scheduleCronExpression = CodingKeys(stringValue: "scheduleCronExpression")
+    static let curationConfig = CodingKeys(stringValue: "curationConfig")
+    static let scheduleTimeZone = CodingKeys(stringValue: "scheduleTimeZone")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let resourceConfig = CodingKeys(stringValue: "resourceConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hubInstanceAction",
+      "actionId",
+      "state",
+      "scheduleCronExpression",
+      "curationConfig",
+      "scheduleTimeZone",
+      "serviceAccount",
+      "resourceConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.actionId = try container.decode(Swift.String.self, forKey: .actionId)
-    self.state = try container.decode(PluginInstanceAction.State.self, forKey: .state)
-    self.scheduleCronExpression = try container.decode(
-      Swift.String.self, forKey: .scheduleCronExpression)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .actionId) {
+      self.actionId = value
+    }
+    if let value = try container.decodeIfPresent(PluginInstanceAction.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scheduleCronExpression)
+    {
+      self.scheduleCronExpression = value
+    }
     self.curationConfig = try container.decodeIfPresent(
       CurationConfig.self, forKey: .curationConfig)
-    self.scheduleTimeZone = try container.decode(Swift.String.self, forKey: .scheduleTimeZone)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scheduleTimeZone) {
+      self.scheduleTimeZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
     self.resourceConfig = try container.decodeIfPresent(
       PluginInstanceAction.ResourceConfig.self, forKey: .resourceConfig)
 
@@ -114,6 +142,10 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try actionStatusCheckAndSet(.hubInstanceAction(hubInstanceAction))
     }
     self.actionStatus = actionStatus
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -121,16 +153,19 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
     try container.encode(self.actionId, forKey: .actionId)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.scheduleCronExpression, forKey: .scheduleCronExpression)
-    try container.encode(self.curationConfig, forKey: .curationConfig)
+    try container.encodeIfPresent(self.curationConfig, forKey: .curationConfig)
     try container.encode(self.scheduleTimeZone, forKey: .scheduleTimeZone)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
-    try container.encode(self.resourceConfig, forKey: .resourceConfig)
+    try container.encodeIfPresent(self.resourceConfig, forKey: .resourceConfig)
 
     if let choice = self.actionStatus {
       switch choice {
       case .hubInstanceAction(let value):
         try container.encode(value, forKey: .hubInstanceAction)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -144,6 +179,8 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Output only. The pubsub topic to publish the data to. Format is
     /// projects/{project}/topics/{topic}
     public var pubsubTopic: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ResourceConfig`.
     public init() {}
@@ -159,6 +196,44 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let actionType = CodingKeys(stringValue: "actionType")
+      static let pubsubTopic = CodingKeys(stringValue: "pubsubTopic")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "actionType",
+        "pubsubTopic",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(ActionType.self, forKey: .actionType) {
+        self.actionType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pubsubTopic) {
+        self.pubsubTopic = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.actionType, forKey: .actionType)
+      try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -46,6 +46,8 @@
     /// Model training input.
     public var trainingInput: OneOf_TrainingInput? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TrainCustomModelRequest`.
     public init() {}
 
@@ -62,20 +64,39 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsTrainingInput = "gcsTrainingInput"
-      case dataStore = "dataStore"
-      case modelType = "modelType"
-      case errorConfig = "errorConfig"
-      case modelId = "modelId"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsTrainingInput = CodingKeys(stringValue: "gcsTrainingInput")
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+      static let modelType = CodingKeys(stringValue: "modelType")
+      static let errorConfig = CodingKeys(stringValue: "errorConfig")
+      static let modelId = CodingKeys(stringValue: "modelId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsTrainingInput",
+        "dataStore",
+        "modelType",
+        "errorConfig",
+        "modelId",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.dataStore = try container.decode(Swift.String.self, forKey: .dataStore)
-      self.modelType = try container.decode(Swift.String.self, forKey: .modelType)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
+        self.dataStore = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelType) {
+        self.modelType = value
+      }
       self.errorConfig = try container.decodeIfPresent(ImportErrorConfig.self, forKey: .errorConfig)
-      self.modelId = try container.decode(Swift.String.self, forKey: .modelId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+        self.modelId = value
+      }
 
       var trainingInput: OneOf_TrainingInput? = nil
       let trainingInputCheckAndSet = {
@@ -93,13 +114,17 @@
         try trainingInputCheckAndSet(.gcsTrainingInput(gcsTrainingInput))
       }
       self.trainingInput = trainingInput
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataStore, forKey: .dataStore)
       try container.encode(self.modelType, forKey: .modelType)
-      try container.encode(self.errorConfig, forKey: .errorConfig)
+      try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
       try container.encode(self.modelId, forKey: .modelId)
 
       if let choice = self.trainingInput {
@@ -107,6 +132,9 @@
         case .gcsTrainingInput(let value):
           try container.encode(value, forKey: .gcsTrainingInput)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -147,6 +175,8 @@
       /// a random 80/20 train/test split will be performed on train_data_path.
       public var testDataPath: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GcsTrainingInput`.
       public init() {}
 
@@ -161,6 +191,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let corpusDataPath = CodingKeys(stringValue: "corpusDataPath")
+        static let queryDataPath = CodingKeys(stringValue: "queryDataPath")
+        static let trainDataPath = CodingKeys(stringValue: "trainDataPath")
+        static let testDataPath = CodingKeys(stringValue: "testDataPath")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "corpusDataPath",
+          "queryDataPath",
+          "trainDataPath",
+          "testDataPath",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .corpusDataPath) {
+          self.corpusDataPath = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryDataPath) {
+          self.queryDataPath = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trainDataPath) {
+          self.trainDataPath = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .testDataPath) {
+          self.testDataPath = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.corpusDataPath, forKey: .corpusDataPath)
+        try container.encode(self.queryDataPath, forKey: .queryDataPath)
+        try container.encode(self.trainDataPath, forKey: .trainDataPath)
+        try container.encode(self.testDataPath, forKey: .testDataPath)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

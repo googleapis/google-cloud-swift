@@ -24,6 +24,8 @@ public struct BatchContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Represents the batch to inspect or redact.
   public var batch: OneOf_Batch? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchContentItem`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct BatchContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValueBatch = "stringValueBatch"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValueBatch = CodingKeys(stringValue: "stringValueBatch")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValueBatch"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct BatchContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try batchCheckAndSet(.stringValueBatch(stringValueBatch))
     }
     self.batch = batch
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct BatchContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .stringValueBatch(let value):
         try container.encode(value, forKey: .stringValueBatch)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

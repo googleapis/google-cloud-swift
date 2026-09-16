@@ -25,6 +25,8 @@
     /// The Tuned Model Reference for the model.
     public var tunedModelRef: OneOf_TunedModelRef? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TunedModelRef`.
     public init() {}
 
@@ -41,10 +43,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case tunedModel = "tunedModel"
-      case tuningJob = "tuningJob"
-      case pipelineJob = "pipelineJob"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tunedModel = CodingKeys(stringValue: "tunedModel")
+      static let tuningJob = CodingKeys(stringValue: "tuningJob")
+      static let pipelineJob = CodingKeys(stringValue: "pipelineJob")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tunedModel",
+        "tuningJob",
+        "pipelineJob",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -70,6 +83,10 @@
         try tunedModelRefCheckAndSet(.pipelineJob(pipelineJob))
       }
       self.tunedModelRef = tunedModelRef
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -84,6 +101,9 @@
         case .pipelineJob(let value):
           try container.encode(value, forKey: .pipelineJob)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

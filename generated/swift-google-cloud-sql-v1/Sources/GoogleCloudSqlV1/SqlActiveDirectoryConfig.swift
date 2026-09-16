@@ -44,6 +44,8 @@
     /// hierarchical path to the organizational unit.
     public var organizationalUnit: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlActiveDirectoryConfig`.
     public init() {}
 
@@ -58,6 +60,72 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let domain = CodingKeys(stringValue: "domain")
+      static let mode = CodingKeys(stringValue: "mode")
+      static let dnsServers = CodingKeys(stringValue: "dnsServers")
+      static let adminCredentialSecretName = CodingKeys(stringValue: "adminCredentialSecretName")
+      static let organizationalUnit = CodingKeys(stringValue: "organizationalUnit")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "domain",
+        "mode",
+        "dnsServers",
+        "adminCredentialSecretName",
+        "organizationalUnit",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+        self.domain = value
+      }
+      if let value = try container.decodeIfPresent(
+        SqlActiveDirectoryConfig.ActiveDirectoryMode.self, forKey: .mode)
+      {
+        self.mode = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dnsServers) {
+        self.dnsServers = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .adminCredentialSecretName)
+      {
+        self.adminCredentialSecretName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organizationalUnit) {
+        self.organizationalUnit = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.domain, forKey: .domain)
+      try container.encode(self.mode, forKey: .mode)
+      try container.encode(self.dnsServers, forKey: .dnsServers)
+      try container.encode(self.adminCredentialSecretName, forKey: .adminCredentialSecretName)
+      try container.encode(self.organizationalUnit, forKey: .organizationalUnit)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The modes of Active Directory configuration.

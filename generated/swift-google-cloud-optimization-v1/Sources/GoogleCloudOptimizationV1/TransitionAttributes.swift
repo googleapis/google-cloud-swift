@@ -79,6 +79,8 @@ public struct TransitionAttributes: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// starting the destination visit.
   public var delay: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransitionAttributes`.
   public init() {}
 
@@ -93,6 +95,76 @@ public struct TransitionAttributes: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let srcTag = CodingKeys(stringValue: "srcTag")
+    static let excludedSrcTag = CodingKeys(stringValue: "excludedSrcTag")
+    static let dstTag = CodingKeys(stringValue: "dstTag")
+    static let excludedDstTag = CodingKeys(stringValue: "excludedDstTag")
+    static let cost = CodingKeys(stringValue: "cost")
+    static let costPerKilometer = CodingKeys(stringValue: "costPerKilometer")
+    static let distanceLimit = CodingKeys(stringValue: "distanceLimit")
+    static let delay = CodingKeys(stringValue: "delay")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "srcTag",
+      "excludedSrcTag",
+      "dstTag",
+      "excludedDstTag",
+      "cost",
+      "costPerKilometer",
+      "distanceLimit",
+      "delay",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .srcTag) {
+      self.srcTag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .excludedSrcTag) {
+      self.excludedSrcTag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dstTag) {
+      self.dstTag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .excludedDstTag) {
+      self.excludedDstTag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .cost) {
+      self.cost = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .costPerKilometer) {
+      self.costPerKilometer = value
+    }
+    self.distanceLimit = try container.decodeIfPresent(DistanceLimit.self, forKey: .distanceLimit)
+    self.delay = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .delay)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.srcTag, forKey: .srcTag)
+    try container.encode(self.excludedSrcTag, forKey: .excludedSrcTag)
+    try container.encode(self.dstTag, forKey: .dstTag)
+    try container.encode(self.excludedDstTag, forKey: .excludedDstTag)
+    try container.encode(self.cost, forKey: .cost)
+    try container.encode(self.costPerKilometer, forKey: .costPerKilometer)
+    try container.encodeIfPresent(self.distanceLimit, forKey: .distanceLimit)
+    try container.encodeIfPresent(self.delay, forKey: .delay)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@ public struct ShipmentTypeRequirement: Codable, Equatable, GoogleCloudWKT._AnyPa
   public var requirementMode: ShipmentTypeRequirement.RequirementMode =
     ShipmentTypeRequirement.RequirementMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ShipmentTypeRequirement`.
   public init() {}
 
@@ -52,6 +54,58 @@ public struct ShipmentTypeRequirement: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requiredShipmentTypeAlternatives = CodingKeys(
+      stringValue: "requiredShipmentTypeAlternatives")
+    static let dependentShipmentTypes = CodingKeys(stringValue: "dependentShipmentTypes")
+    static let requirementMode = CodingKeys(stringValue: "requirementMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requiredShipmentTypeAlternatives",
+      "dependentShipmentTypes",
+      "requirementMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .requiredShipmentTypeAlternatives)
+    {
+      self.requiredShipmentTypeAlternatives = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .dependentShipmentTypes)
+    {
+      self.dependentShipmentTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      ShipmentTypeRequirement.RequirementMode.self, forKey: .requirementMode)
+    {
+      self.requirementMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.requiredShipmentTypeAlternatives, forKey: .requiredShipmentTypeAlternatives)
+    try container.encode(self.dependentShipmentTypes, forKey: .dependentShipmentTypes)
+    try container.encode(self.requirementMode, forKey: .requirementMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Modes defining the appearance of dependent shipments on a route.

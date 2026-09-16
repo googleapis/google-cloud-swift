@@ -44,6 +44,8 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. Defines the granularity for repricing.
   public var granularity: OneOf_Granularity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepricingConfig`.
   public init() {}
 
@@ -60,13 +62,27 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case entitlementGranularity = "entitlementGranularity"
-    case channelPartnerGranularity = "channelPartnerGranularity"
-    case effectiveInvoiceMonth = "effectiveInvoiceMonth"
-    case adjustment = "adjustment"
-    case rebillingBasis = "rebillingBasis"
-    case conditionalOverrides = "conditionalOverrides"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entitlementGranularity = CodingKeys(stringValue: "entitlementGranularity")
+    static let channelPartnerGranularity = CodingKeys(stringValue: "channelPartnerGranularity")
+    static let effectiveInvoiceMonth = CodingKeys(stringValue: "effectiveInvoiceMonth")
+    static let adjustment = CodingKeys(stringValue: "adjustment")
+    static let rebillingBasis = CodingKeys(stringValue: "rebillingBasis")
+    static let conditionalOverrides = CodingKeys(stringValue: "conditionalOverrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entitlementGranularity",
+      "channelPartnerGranularity",
+      "effectiveInvoiceMonth",
+      "adjustment",
+      "rebillingBasis",
+      "conditionalOverrides",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -74,9 +90,14 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.effectiveInvoiceMonth = try container.decodeIfPresent(
       GoogleType.Date.self, forKey: .effectiveInvoiceMonth)
     self.adjustment = try container.decodeIfPresent(RepricingAdjustment.self, forKey: .adjustment)
-    self.rebillingBasis = try container.decode(RebillingBasis.self, forKey: .rebillingBasis)
-    self.conditionalOverrides = try container.decode(
+    if let value = try container.decodeIfPresent(RebillingBasis.self, forKey: .rebillingBasis) {
+      self.rebillingBasis = value
+    }
+    if let value = try container.decodeIfPresent(
       [ConditionalOverride].self, forKey: .conditionalOverrides)
+    {
+      self.conditionalOverrides = value
+    }
 
     var granularity: OneOf_Granularity? = nil
     let granularityCheckAndSet = {
@@ -99,12 +120,16 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try granularityCheckAndSet(.channelPartnerGranularity(channelPartnerGranularity))
     }
     self.granularity = granularity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.effectiveInvoiceMonth, forKey: .effectiveInvoiceMonth)
-    try container.encode(self.adjustment, forKey: .adjustment)
+    try container.encodeIfPresent(self.effectiveInvoiceMonth, forKey: .effectiveInvoiceMonth)
+    try container.encodeIfPresent(self.adjustment, forKey: .adjustment)
     try container.encode(self.rebillingBasis, forKey: .rebillingBasis)
     try container.encode(self.conditionalOverrides, forKey: .conditionalOverrides)
 
@@ -116,6 +141,9 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .channelPartnerGranularity)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Applies the repricing configuration at the entitlement level.
@@ -126,6 +154,8 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Format:
     /// accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
     public var entitlement: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EntitlementGranularity`.
     public init() {}
@@ -141,6 +171,38 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entitlement = CodingKeys(stringValue: "entitlement")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entitlement"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlement) {
+        self.entitlement = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entitlement, forKey: .entitlement)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -166,6 +228,8 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct ChannelPartnerGranularity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ChannelPartnerGranularity`.
     public init() {}
 
@@ -180,6 +244,30 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

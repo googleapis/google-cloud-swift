@@ -33,6 +33,8 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
   /// The set of options that the audit scope report is exported in.
   public var auditReport: OneOf_AuditReport? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateFrameworkAuditScopeReportResponse`.
   public init() {}
 
@@ -49,16 +51,31 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case scopeReportContents = "scopeReportContents"
-    case name = "name"
-    case complianceFramework = "complianceFramework"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scopeReportContents = CodingKeys(stringValue: "scopeReportContents")
+    static let name = CodingKeys(stringValue: "name")
+    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scopeReportContents",
+      "name",
+      "complianceFramework",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.complianceFramework = try container.decode(Swift.String.self, forKey: .complianceFramework)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
+      self.complianceFramework = value
+    }
 
     var auditReport: OneOf_AuditReport? = nil
     let auditReportCheckAndSet = {
@@ -76,6 +93,10 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
       try auditReportCheckAndSet(.scopeReportContents(scopeReportContents))
     }
     self.auditReport = auditReport
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +109,9 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
       case .scopeReportContents(let value):
         try container.encode(value, forKey: .scopeReportContents)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

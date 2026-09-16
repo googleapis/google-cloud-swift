@@ -27,6 +27,8 @@ public struct Form: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ! The names of form fields related to the vulnerability.
   public var fields: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Form`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct Form: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let actionUri = CodingKeys(stringValue: "actionUri")
+    static let fields = CodingKeys(stringValue: "fields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "actionUri",
+      "fields",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .actionUri) {
+      self.actionUri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fields) {
+      self.fields = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.actionUri, forKey: .actionUri)
+    try container.encode(self.fields, forKey: .fields)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

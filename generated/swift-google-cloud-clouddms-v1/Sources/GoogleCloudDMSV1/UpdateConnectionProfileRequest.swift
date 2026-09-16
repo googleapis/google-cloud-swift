@@ -47,6 +47,8 @@ public struct UpdateConnectionProfileRequest: Codable, Equatable, GoogleCloudWKT
   /// Only supported for Oracle connection profiles.
   public var skipValidation: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateConnectionProfileRequest`.
   public init() {}
 
@@ -61,6 +63,60 @@ public struct UpdateConnectionProfileRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let connectionProfile = CodingKeys(stringValue: "connectionProfile")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let skipValidation = CodingKeys(stringValue: "skipValidation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateMask",
+      "connectionProfile",
+      "requestId",
+      "validateOnly",
+      "skipValidation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.connectionProfile = try container.decodeIfPresent(
+      ConnectionProfile.self, forKey: .connectionProfile)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipValidation) {
+      self.skipValidation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.connectionProfile, forKey: .connectionProfile)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.skipValidation, forKey: .skipValidation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// protect the user data.
   public var encryptionConfig: AlloyDbSettings.EncryptionConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AlloyDbSettings`.
   public init() {}
 
@@ -61,6 +63,60 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let initialUser = CodingKeys(stringValue: "initialUser")
+    static let vpcNetwork = CodingKeys(stringValue: "vpcNetwork")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let primaryInstanceSettings = CodingKeys(stringValue: "primaryInstanceSettings")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "initialUser",
+      "vpcNetwork",
+      "labels",
+      "primaryInstanceSettings",
+      "encryptionConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.initialUser = try container.decodeIfPresent(
+      AlloyDbSettings.UserPassword.self, forKey: .initialUser)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vpcNetwork) {
+      self.vpcNetwork = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.primaryInstanceSettings = try container.decodeIfPresent(
+      AlloyDbSettings.PrimaryInstanceSettings.self, forKey: .primaryInstanceSettings)
+    self.encryptionConfig = try container.decodeIfPresent(
+      AlloyDbSettings.EncryptionConfig.self, forKey: .encryptionConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.initialUser, forKey: .initialUser)
+    try container.encode(self.vpcNetwork, forKey: .vpcNetwork)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.primaryInstanceSettings, forKey: .primaryInstanceSettings)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The username/password for a database user. Used for specifying initial
   /// users at cluster creation time.
   public struct UserPassword: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -74,6 +130,8 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Output only. Indicates if the initial_user.password field has been set.
     public var passwordSet: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UserPassword`.
     public init() {}
@@ -89,6 +147,50 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let user = CodingKeys(stringValue: "user")
+      static let password = CodingKeys(stringValue: "password")
+      static let passwordSet = CodingKeys(stringValue: "passwordSet")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "user",
+        "password",
+        "passwordSet",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+        self.user = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passwordSet) {
+        self.passwordSet = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.user, forKey: .user)
+      try container.encode(self.password, forKey: .password)
+      try container.encode(self.passwordSet, forKey: .passwordSet)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -127,6 +229,8 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// This is the connection endpoint for an end-user application.
     public var privateIp: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PrimaryInstanceSettings`.
     public init() {}
 
@@ -143,12 +247,73 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let machineConfig = CodingKeys(stringValue: "machineConfig")
+      static let databaseFlags = CodingKeys(stringValue: "databaseFlags")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let privateIp = CodingKeys(stringValue: "privateIp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "machineConfig",
+        "databaseFlags",
+        "labels",
+        "privateIp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      self.machineConfig = try container.decodeIfPresent(
+        AlloyDbSettings.PrimaryInstanceSettings.MachineConfig.self, forKey: .machineConfig)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .databaseFlags)
+      {
+        self.databaseFlags = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateIp) {
+        self.privateIp = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encodeIfPresent(self.machineConfig, forKey: .machineConfig)
+      try container.encode(self.databaseFlags, forKey: .databaseFlags)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.privateIp, forKey: .privateIp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// MachineConfig describes the configuration of a machine.
     public struct MachineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of CPU's in the VM instance.
       public var cpuCount: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MachineConfig`.
       public init() {}
@@ -164,6 +329,38 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let cpuCount = CodingKeys(stringValue: "cpuCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "cpuCount"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
+          self.cpuCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.cpuCount, forKey: .cpuCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -199,6 +396,8 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
     public var kmsKeyName: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EncryptionConfig`.
     public init() {}
 
@@ -213,6 +412,38 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kmsKeyName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+        self.kmsKeyName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -95,6 +95,8 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specify either total number of sprites or interval to create sprites.
   public var extractionStrategy: OneOf_ExtractionStrategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SpriteSheet`.
   public init() {}
 
@@ -111,33 +113,66 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case format = "format"
-    case filePrefix = "filePrefix"
-    case spriteWidthPixels = "spriteWidthPixels"
-    case spriteHeightPixels = "spriteHeightPixels"
-    case columnCount = "columnCount"
-    case rowCount = "rowCount"
-    case startTimeOffset = "startTimeOffset"
-    case endTimeOffset = "endTimeOffset"
-    case totalCount = "totalCount"
-    case interval = "interval"
-    case quality = "quality"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let format = CodingKeys(stringValue: "format")
+    static let filePrefix = CodingKeys(stringValue: "filePrefix")
+    static let spriteWidthPixels = CodingKeys(stringValue: "spriteWidthPixels")
+    static let spriteHeightPixels = CodingKeys(stringValue: "spriteHeightPixels")
+    static let columnCount = CodingKeys(stringValue: "columnCount")
+    static let rowCount = CodingKeys(stringValue: "rowCount")
+    static let startTimeOffset = CodingKeys(stringValue: "startTimeOffset")
+    static let endTimeOffset = CodingKeys(stringValue: "endTimeOffset")
+    static let totalCount = CodingKeys(stringValue: "totalCount")
+    static let interval = CodingKeys(stringValue: "interval")
+    static let quality = CodingKeys(stringValue: "quality")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "format",
+      "filePrefix",
+      "spriteWidthPixels",
+      "spriteHeightPixels",
+      "columnCount",
+      "rowCount",
+      "startTimeOffset",
+      "endTimeOffset",
+      "totalCount",
+      "interval",
+      "quality",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.format = try container.decode(Swift.String.self, forKey: .format)
-    self.filePrefix = try container.decode(Swift.String.self, forKey: .filePrefix)
-    self.spriteWidthPixels = try container.decode(Swift.Int32.self, forKey: .spriteWidthPixels)
-    self.spriteHeightPixels = try container.decode(Swift.Int32.self, forKey: .spriteHeightPixels)
-    self.columnCount = try container.decode(Swift.Int32.self, forKey: .columnCount)
-    self.rowCount = try container.decode(Swift.Int32.self, forKey: .rowCount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .format) {
+      self.format = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filePrefix) {
+      self.filePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .spriteWidthPixels) {
+      self.spriteWidthPixels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .spriteHeightPixels) {
+      self.spriteHeightPixels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .columnCount) {
+      self.columnCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .rowCount) {
+      self.rowCount = value
+    }
     self.startTimeOffset = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
     self.endTimeOffset = try container.decodeIfPresent(
       GoogleCloudWKT.Duration.self, forKey: .endTimeOffset)
-    self.quality = try container.decode(Swift.Int32.self, forKey: .quality)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .quality) {
+      self.quality = value
+    }
 
     var extractionStrategy: OneOf_ExtractionStrategy? = nil
     let extractionStrategyCheckAndSet = {
@@ -158,6 +193,10 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try extractionStrategyCheckAndSet(.interval(interval))
     }
     self.extractionStrategy = extractionStrategy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -168,8 +207,8 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.spriteHeightPixels, forKey: .spriteHeightPixels)
     try container.encode(self.columnCount, forKey: .columnCount)
     try container.encode(self.rowCount, forKey: .rowCount)
-    try container.encode(self.startTimeOffset, forKey: .startTimeOffset)
-    try container.encode(self.endTimeOffset, forKey: .endTimeOffset)
+    try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
+    try container.encodeIfPresent(self.endTimeOffset, forKey: .endTimeOffset)
     try container.encode(self.quality, forKey: .quality)
 
     if let choice = self.extractionStrategy {
@@ -179,6 +218,9 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .interval(let value):
         try container.encode(value, forKey: .interval)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

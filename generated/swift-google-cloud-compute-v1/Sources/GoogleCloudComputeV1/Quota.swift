@@ -35,6 +35,8 @@
     /// [Output Only] Current usage of this metric.
     public var usage: Swift.Double? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Quota`.
     public init() {}
 
@@ -49,6 +51,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let limit = CodingKeys(stringValue: "limit")
+      static let metric = CodingKeys(stringValue: "metric")
+      static let owner = CodingKeys(stringValue: "owner")
+      static let usage = CodingKeys(stringValue: "usage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "limit",
+        "metric",
+        "owner",
+        "usage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.limit = try container.decodeIfPresent(Swift.Double.self, forKey: .limit)
+      self.metric = try container.decodeIfPresent(Quota.Metric.self, forKey: .metric)
+      self.owner = try container.decodeIfPresent(Swift.String.self, forKey: .owner)
+      self.usage = try container.decodeIfPresent(Swift.Double.self, forKey: .usage)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.limit, forKey: .limit)
+      try container.encodeIfPresent(self.metric, forKey: .metric)
+      try container.encodeIfPresent(self.owner, forKey: .owner)
+      try container.encodeIfPresent(self.usage, forKey: .usage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [metric][google.cloud.compute.v1.Quota.metric] field.

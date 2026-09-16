@@ -33,6 +33,8 @@ public struct CustomerOnboardingStep: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. Current state of the step
   public var completionState: CompletionState = CompletionState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomerOnboardingStep`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct CustomerOnboardingStep: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let step = CodingKeys(stringValue: "step")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let completionTime = CodingKeys(stringValue: "completionTime")
+    static let completionState = CodingKeys(stringValue: "completionState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "step",
+      "startTime",
+      "completionTime",
+      "completionState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(CustomerOnboardingStep.Step.self, forKey: .step) {
+      self.step = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.completionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completionTime)
+    if let value = try container.decodeIfPresent(CompletionState.self, forKey: .completionState) {
+      self.completionState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.step, forKey: .step)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
+    try container.encode(self.completionState, forKey: .completionState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for possible onboarding steps

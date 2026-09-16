@@ -77,6 +77,8 @@ public struct ExplainedPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   public var relevance: HeuristicRelevance = HeuristicRelevance()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExplainedPolicy`.
   public init() {}
 
@@ -91,6 +93,62 @@ public struct ExplainedPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let access = CodingKeys(stringValue: "access")
+    static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+    static let policy = CodingKeys(stringValue: "policy")
+    static let bindingExplanations = CodingKeys(stringValue: "bindingExplanations")
+    static let relevance = CodingKeys(stringValue: "relevance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "access",
+      "fullResourceName",
+      "policy",
+      "bindingExplanations",
+      "relevance",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AccessState.self, forKey: .access) {
+      self.access = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+      self.fullResourceName = value
+    }
+    self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)
+    if let value = try container.decodeIfPresent(
+      [BindingExplanation].self, forKey: .bindingExplanations)
+    {
+      self.bindingExplanations = value
+    }
+    if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.access, forKey: .access)
+    try container.encode(self.fullResourceName, forKey: .fullResourceName)
+    try container.encodeIfPresent(self.policy, forKey: .policy)
+    try container.encode(self.bindingExplanations, forKey: .bindingExplanations)
+    try container.encode(self.relevance, forKey: .relevance)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

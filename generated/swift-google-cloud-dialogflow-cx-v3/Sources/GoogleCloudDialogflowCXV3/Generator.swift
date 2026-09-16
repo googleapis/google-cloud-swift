@@ -53,6 +53,8 @@
     /// Parameters passed to the LLM to configure its behavior.
     public var modelParameter: Generator.ModelParameter? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Generator`.
     public init() {}
 
@@ -69,6 +71,66 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let promptText = CodingKeys(stringValue: "promptText")
+      static let placeholders = CodingKeys(stringValue: "placeholders")
+      static let llmModelSettings = CodingKeys(stringValue: "llmModelSettings")
+      static let modelParameter = CodingKeys(stringValue: "modelParameter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "promptText",
+        "placeholders",
+        "llmModelSettings",
+        "modelParameter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.promptText = try container.decodeIfPresent(Phrase.self, forKey: .promptText)
+      if let value = try container.decodeIfPresent(
+        [Generator.Placeholder].self, forKey: .placeholders)
+      {
+        self.placeholders = value
+      }
+      self.llmModelSettings = try container.decodeIfPresent(
+        LlmModelSettings.self, forKey: .llmModelSettings)
+      self.modelParameter = try container.decodeIfPresent(
+        Generator.ModelParameter.self, forKey: .modelParameter)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.promptText, forKey: .promptText)
+      try container.encode(self.placeholders, forKey: .placeholders)
+      try container.encodeIfPresent(self.llmModelSettings, forKey: .llmModelSettings)
+      try container.encodeIfPresent(self.modelParameter, forKey: .modelParameter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Represents a custom placeholder in the prompt text.
     public struct Placeholder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -78,6 +140,8 @@
 
       /// Custom placeholder value in the prompt text.
       public var name: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Placeholder`.
       public init() {}
@@ -93,6 +157,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let name = CodingKeys(stringValue: "name")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "name",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.name, forKey: .name)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -134,6 +236,8 @@
       /// Small topK = less random. Large topK = more random.
       public var topK: Swift.Int32? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ModelParameter`.
       public init() {}
 
@@ -148,6 +252,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let temperature = CodingKeys(stringValue: "temperature")
+        static let maxDecodeSteps = CodingKeys(stringValue: "maxDecodeSteps")
+        static let topP = CodingKeys(stringValue: "topP")
+        static let topK = CodingKeys(stringValue: "topK")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "temperature",
+          "maxDecodeSteps",
+          "topP",
+          "topK",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.temperature = try container.decodeIfPresent(Swift.Float.self, forKey: .temperature)
+        self.maxDecodeSteps = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .maxDecodeSteps)
+        self.topP = try container.decodeIfPresent(Swift.Float.self, forKey: .topP)
+        self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.temperature, forKey: .temperature)
+        try container.encodeIfPresent(self.maxDecodeSteps, forKey: .maxDecodeSteps)
+        try container.encodeIfPresent(self.topP, forKey: .topP)
+        try container.encodeIfPresent(self.topK, forKey: .topK)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

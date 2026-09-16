@@ -56,6 +56,8 @@ public struct JobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The `JobRun` type and the information for that type.
   public var jobRun: OneOf_JobRun? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobRun`.
   public init() {}
 
@@ -72,37 +74,72 @@ public struct JobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case phaseId = "phaseId"
-    case jobId = "jobId"
-    case createTime = "createTime"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case state = "state"
-    case deployJobRun = "deployJobRun"
-    case verifyJobRun = "verifyJobRun"
-    case predeployJobRun = "predeployJobRun"
-    case postdeployJobRun = "postdeployJobRun"
-    case createChildRolloutJobRun = "createChildRolloutJobRun"
-    case advanceChildRolloutJobRun = "advanceChildRolloutJobRun"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let phaseId = CodingKeys(stringValue: "phaseId")
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let deployJobRun = CodingKeys(stringValue: "deployJobRun")
+    static let verifyJobRun = CodingKeys(stringValue: "verifyJobRun")
+    static let predeployJobRun = CodingKeys(stringValue: "predeployJobRun")
+    static let postdeployJobRun = CodingKeys(stringValue: "postdeployJobRun")
+    static let createChildRolloutJobRun = CodingKeys(stringValue: "createChildRolloutJobRun")
+    static let advanceChildRolloutJobRun = CodingKeys(stringValue: "advanceChildRolloutJobRun")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "phaseId",
+      "jobId",
+      "createTime",
+      "startTime",
+      "endTime",
+      "state",
+      "deployJobRun",
+      "verifyJobRun",
+      "predeployJobRun",
+      "postdeployJobRun",
+      "createChildRolloutJobRun",
+      "advanceChildRolloutJobRun",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.phaseId = try container.decode(Swift.String.self, forKey: .phaseId)
-    self.jobId = try container.decode(Swift.String.self, forKey: .jobId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phaseId) {
+      self.phaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-    self.state = try container.decode(JobRun.State.self, forKey: .state)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(JobRun.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var jobRun: OneOf_JobRun? = nil
     let jobRunCheckAndSet = {
@@ -141,6 +178,10 @@ public struct JobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try jobRunCheckAndSet(.advanceChildRolloutJobRun(advanceChildRolloutJobRun))
     }
     self.jobRun = jobRun
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -149,9 +190,9 @@ public struct JobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.phaseId, forKey: .phaseId)
     try container.encode(self.jobId, forKey: .jobId)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.etag, forKey: .etag)
 
@@ -170,6 +211,9 @@ public struct JobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .advanceChildRolloutJobRun(let value):
         try container.encode(value, forKey: .advanceChildRolloutJobRun)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

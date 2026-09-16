@@ -49,6 +49,8 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Connectivity options used to establish a connection to the profile.
   public var connectivity: OneOf_Connectivity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectionProfile`.
   public init() {}
 
@@ -65,36 +67,69 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case displayName = "displayName"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
-    case oracleProfile = "oracleProfile"
-    case gcsProfile = "gcsProfile"
-    case mysqlProfile = "mysqlProfile"
-    case bigqueryProfile = "bigqueryProfile"
-    case postgresqlProfile = "postgresqlProfile"
-    case sqlServerProfile = "sqlServerProfile"
-    case salesforceProfile = "salesforceProfile"
-    case mongodbProfile = "mongodbProfile"
-    case staticServiceIpConnectivity = "staticServiceIpConnectivity"
-    case forwardSshConnectivity = "forwardSshConnectivity"
-    case privateConnectivity = "privateConnectivity"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let oracleProfile = CodingKeys(stringValue: "oracleProfile")
+    static let gcsProfile = CodingKeys(stringValue: "gcsProfile")
+    static let mysqlProfile = CodingKeys(stringValue: "mysqlProfile")
+    static let bigqueryProfile = CodingKeys(stringValue: "bigqueryProfile")
+    static let postgresqlProfile = CodingKeys(stringValue: "postgresqlProfile")
+    static let sqlServerProfile = CodingKeys(stringValue: "sqlServerProfile")
+    static let salesforceProfile = CodingKeys(stringValue: "salesforceProfile")
+    static let mongodbProfile = CodingKeys(stringValue: "mongodbProfile")
+    static let staticServiceIpConnectivity = CodingKeys(stringValue: "staticServiceIpConnectivity")
+    static let forwardSshConnectivity = CodingKeys(stringValue: "forwardSshConnectivity")
+    static let privateConnectivity = CodingKeys(stringValue: "privateConnectivity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "oracleProfile",
+      "gcsProfile",
+      "mysqlProfile",
+      "bigqueryProfile",
+      "postgresqlProfile",
+      "sqlServerProfile",
+      "salesforceProfile",
+      "mongodbProfile",
+      "staticServiceIpConnectivity",
+      "forwardSshConnectivity",
+      "privateConnectivity",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
@@ -172,17 +207,21 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try connectivityCheckAndSet(.privateConnectivity(privateConnectivity))
     }
     self.connectivity = connectivity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
     if let choice = self.profile {
       switch choice {
@@ -214,6 +253,9 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .privateConnectivity(let value):
         try container.encode(value, forKey: .privateConnectivity)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

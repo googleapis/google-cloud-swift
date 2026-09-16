@@ -71,6 +71,8 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The list of locations where the deployment group is present.
   public var locations: [MirroringLocation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MirroringDeploymentGroup`.
   public init() {}
 
@@ -87,6 +89,103 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let network = CodingKeys(stringValue: "network")
+    static let connectedEndpointGroups = CodingKeys(stringValue: "connectedEndpointGroups")
+    static let nestedDeployments = CodingKeys(stringValue: "nestedDeployments")
+    static let state = CodingKeys(stringValue: "state")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let description = CodingKeys(stringValue: "description")
+    static let locations = CodingKeys(stringValue: "locations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "network",
+      "connectedEndpointGroups",
+      "nestedDeployments",
+      "state",
+      "reconciling",
+      "description",
+      "locations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MirroringDeploymentGroup.ConnectedEndpointGroup].self, forKey: .connectedEndpointGroups)
+    {
+      self.connectedEndpointGroups = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MirroringDeploymentGroup.Deployment].self, forKey: .nestedDeployments)
+    {
+      self.nestedDeployments = value
+    }
+    if let value = try container.decodeIfPresent(
+      MirroringDeploymentGroup.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([MirroringLocation].self, forKey: .locations) {
+      self.locations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.connectedEndpointGroups, forKey: .connectedEndpointGroups)
+    try container.encode(self.nestedDeployments, forKey: .nestedDeployments)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.locations, forKey: .locations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// An endpoint group connected to this deployment group.
   public struct ConnectedEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -95,6 +194,8 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
     /// `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`.
     /// See https://google.aip.dev/124.
     public var name: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ConnectedEndpointGroup`.
     public init() {}
@@ -110,6 +211,38 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -135,6 +268,8 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
     /// Output only. Most recent known state of the deployment.
     public var state: MirroringDeployment.State = MirroringDeployment.State()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Deployment`.
     public init() {}
 
@@ -149,6 +284,44 @@ public struct MirroringDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(MirroringDeployment.State.self, forKey: .state) {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

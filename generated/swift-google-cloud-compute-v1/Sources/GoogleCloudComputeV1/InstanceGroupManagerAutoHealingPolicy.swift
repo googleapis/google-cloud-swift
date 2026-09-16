@@ -35,6 +35,8 @@
     /// seconds. The default value is 0.
     public var initialDelaySec: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerAutoHealingPolicy`.
     public init() {}
 
@@ -49,6 +51,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let healthCheck = CodingKeys(stringValue: "healthCheck")
+      static let initialDelaySec = CodingKeys(stringValue: "initialDelaySec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "healthCheck",
+        "initialDelaySec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.healthCheck = try container.decodeIfPresent(Swift.String.self, forKey: .healthCheck)
+      self.initialDelaySec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .initialDelaySec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.healthCheck, forKey: .healthCheck)
+      try container.encodeIfPresent(self.initialDelaySec, forKey: .initialDelaySec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

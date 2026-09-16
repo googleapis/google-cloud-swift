@@ -30,6 +30,8 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// brady", "drew brees", etc.
   public var bucketValue: OneOf_BucketValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FacetBucket`.
   public init() {}
 
@@ -46,15 +48,28 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case value = "value"
-    case range = "range"
-    case selected = "selected"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let value = CodingKeys(stringValue: "value")
+    static let range = CodingKeys(stringValue: "range")
+    static let selected = CodingKeys(stringValue: "selected")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "value",
+      "range",
+      "selected",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.selected = try container.decode(Swift.Bool.self, forKey: .selected)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .selected) {
+      self.selected = value
+    }
 
     var bucketValue: OneOf_BucketValue? = nil
     let bucketValueCheckAndSet = {
@@ -73,6 +88,10 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try bucketValueCheckAndSet(.range(range))
     }
     self.bucketValue = bucketValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +106,9 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .range)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The range of values [start, end) for which faceting is applied.
@@ -98,6 +120,8 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// End of the range. Non-existence indicates some bound (e.g. inf).
     public var end: FacetValue? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Range`.
     public init() {}
@@ -113,6 +137,40 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let start = CodingKeys(stringValue: "start")
+      static let end = CodingKeys(stringValue: "end")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "start",
+        "end",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.start = try container.decodeIfPresent(FacetValue.self, forKey: .start)
+      self.end = try container.decodeIfPresent(FacetValue.self, forKey: .end)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.start, forKey: .start)
+      try container.encodeIfPresent(self.end, forKey: .end)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

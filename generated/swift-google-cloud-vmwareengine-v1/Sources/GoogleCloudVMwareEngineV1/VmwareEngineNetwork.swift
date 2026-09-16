@@ -58,6 +58,8 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// request.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmwareEngineNetwork`.
   public init() {}
 
@@ -74,6 +76,86 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let vpcNetworks = CodingKeys(stringValue: "vpcNetworks")
+    static let state = CodingKeys(stringValue: "state")
+    static let type = CodingKeys(stringValue: "type")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "description",
+      "vpcNetworks",
+      "state",
+      "type",
+      "uid",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [VmwareEngineNetwork.VpcNetwork].self, forKey: .vpcNetworks)
+    {
+      self.vpcNetworks = value
+    }
+    if let value = try container.decodeIfPresent(VmwareEngineNetwork.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(VmwareEngineNetwork.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.vpcNetworks, forKey: .vpcNetworks)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents a VMware Engine VPC network that is managed by a
   /// VMware Engine network resource.
   public struct VpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -87,6 +169,8 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// VMware Engine network is attached to. For example:
     /// `projects/123123/global/networks/my-network`
     public var network: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `VpcNetwork`.
     public init() {}
@@ -102,6 +186,46 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let network = CodingKeys(stringValue: "network")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "network",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        VmwareEngineNetwork.VpcNetwork.Type_.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.network, forKey: .network)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enum Type defines possible types of a VMware Engine network controlled

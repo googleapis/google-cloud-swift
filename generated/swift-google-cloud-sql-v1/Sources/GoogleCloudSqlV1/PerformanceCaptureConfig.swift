@@ -92,6 +92,8 @@
     /// `READ_ONLY_TRANSACTIONS` if unspecified.
     public var transactionKillType: PerformanceCaptureConfig.TransactionKillType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PerformanceCaptureConfig`.
     public init() {}
 
@@ -106,6 +108,121 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let probingIntervalSeconds = CodingKeys(stringValue: "probingIntervalSeconds")
+      static let probeThreshold = CodingKeys(stringValue: "probeThreshold")
+      static let runningThreadsThreshold = CodingKeys(stringValue: "runningThreadsThreshold")
+      static let secondsBehindSourceThreshold = CodingKeys(
+        stringValue: "secondsBehindSourceThreshold")
+      static let transactionDurationThreshold = CodingKeys(
+        stringValue: "transactionDurationThreshold")
+      static let cpuUtilizationThresholdPercent = CodingKeys(
+        stringValue: "cpuUtilizationThresholdPercent")
+      static let memoryUsageThresholdPercent = CodingKeys(
+        stringValue: "memoryUsageThresholdPercent")
+      static let transactionLockWaitThresholdCount = CodingKeys(
+        stringValue: "transactionLockWaitThresholdCount")
+      static let semaphoreWaitThresholdCount = CodingKeys(
+        stringValue: "semaphoreWaitThresholdCount")
+      static let historyListLengthThresholdCount = CodingKeys(
+        stringValue: "historyListLengthThresholdCount")
+      static let transactionKillThresholdSeconds = CodingKeys(
+        stringValue: "transactionKillThresholdSeconds")
+      static let transactionKillExcludedUserHosts = CodingKeys(
+        stringValue: "transactionKillExcludedUserHosts")
+      static let transactionKillType = CodingKeys(stringValue: "transactionKillType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "probingIntervalSeconds",
+        "probeThreshold",
+        "runningThreadsThreshold",
+        "secondsBehindSourceThreshold",
+        "transactionDurationThreshold",
+        "cpuUtilizationThresholdPercent",
+        "memoryUsageThresholdPercent",
+        "transactionLockWaitThresholdCount",
+        "semaphoreWaitThresholdCount",
+        "historyListLengthThresholdCount",
+        "transactionKillThresholdSeconds",
+        "transactionKillExcludedUserHosts",
+        "transactionKillType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+      self.probingIntervalSeconds = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .probingIntervalSeconds)
+      self.probeThreshold = try container.decodeIfPresent(Swift.Int32.self, forKey: .probeThreshold)
+      self.runningThreadsThreshold = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .runningThreadsThreshold)
+      self.secondsBehindSourceThreshold = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .secondsBehindSourceThreshold)
+      self.transactionDurationThreshold = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .transactionDurationThreshold)
+      self.cpuUtilizationThresholdPercent = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .cpuUtilizationThresholdPercent)
+      self.memoryUsageThresholdPercent = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .memoryUsageThresholdPercent)
+      self.transactionLockWaitThresholdCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .transactionLockWaitThresholdCount)
+      self.semaphoreWaitThresholdCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .semaphoreWaitThresholdCount)
+      self.historyListLengthThresholdCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .historyListLengthThresholdCount)
+      self.transactionKillThresholdSeconds = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .transactionKillThresholdSeconds)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .transactionKillExcludedUserHosts)
+      {
+        self.transactionKillExcludedUserHosts = value
+      }
+      self.transactionKillType = try container.decodeIfPresent(
+        PerformanceCaptureConfig.TransactionKillType.self, forKey: .transactionKillType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.probingIntervalSeconds, forKey: .probingIntervalSeconds)
+      try container.encodeIfPresent(self.probeThreshold, forKey: .probeThreshold)
+      try container.encodeIfPresent(self.runningThreadsThreshold, forKey: .runningThreadsThreshold)
+      try container.encodeIfPresent(
+        self.secondsBehindSourceThreshold, forKey: .secondsBehindSourceThreshold)
+      try container.encodeIfPresent(
+        self.transactionDurationThreshold, forKey: .transactionDurationThreshold)
+      try container.encodeIfPresent(
+        self.cpuUtilizationThresholdPercent, forKey: .cpuUtilizationThresholdPercent)
+      try container.encodeIfPresent(
+        self.memoryUsageThresholdPercent, forKey: .memoryUsageThresholdPercent)
+      try container.encodeIfPresent(
+        self.transactionLockWaitThresholdCount, forKey: .transactionLockWaitThresholdCount)
+      try container.encodeIfPresent(
+        self.semaphoreWaitThresholdCount, forKey: .semaphoreWaitThresholdCount)
+      try container.encodeIfPresent(
+        self.historyListLengthThresholdCount, forKey: .historyListLengthThresholdCount)
+      try container.encodeIfPresent(
+        self.transactionKillThresholdSeconds, forKey: .transactionKillThresholdSeconds)
+      try container.encode(
+        self.transactionKillExcludedUserHosts, forKey: .transactionKillExcludedUserHosts)
+      try container.encodeIfPresent(self.transactionKillType, forKey: .transactionKillType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines the categories of long-running transactions eligible for automatic

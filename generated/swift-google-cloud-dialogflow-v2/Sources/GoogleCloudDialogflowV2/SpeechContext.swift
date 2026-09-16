@@ -49,6 +49,8 @@
     /// find a value that fits your use case with binary search.
     public var boost: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpeechContext`.
     public init() {}
 
@@ -63,6 +65,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let phrases = CodingKeys(stringValue: "phrases")
+      static let boost = CodingKeys(stringValue: "boost")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "phrases",
+        "boost",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phrases) {
+        self.phrases = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .boost) {
+        self.boost = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.phrases, forKey: .phrases)
+      try container.encode(self.boost, forKey: .boost)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

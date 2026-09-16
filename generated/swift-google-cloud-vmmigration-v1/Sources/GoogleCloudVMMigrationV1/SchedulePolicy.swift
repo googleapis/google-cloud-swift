@@ -29,6 +29,8 @@ public struct SchedulePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// changes and adaptations to fully function on Compute Engine.
   public var skipOsAdaptation: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SchedulePolicy`.
   public init() {}
 
@@ -43,6 +45,43 @@ public struct SchedulePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let idleDuration = CodingKeys(stringValue: "idleDuration")
+    static let skipOsAdaptation = CodingKeys(stringValue: "skipOsAdaptation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "idleDuration",
+      "skipOsAdaptation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.idleDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .idleDuration)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipOsAdaptation) {
+      self.skipOsAdaptation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.idleDuration, forKey: .idleDuration)
+    try container.encode(self.skipOsAdaptation, forKey: .skipOsAdaptation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

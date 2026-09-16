@@ -47,6 +47,8 @@ public struct SqlIpConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// 'slash' notation (e.g. `192.168.100.0/24`).
   public var authorizedNetworks: [SqlAclEntry] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SqlIpConfig`.
   public init() {}
 
@@ -61,6 +63,60 @@ public struct SqlIpConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableIpv4 = CodingKeys(stringValue: "enableIpv4")
+    static let privateNetwork = CodingKeys(stringValue: "privateNetwork")
+    static let allocatedIpRange = CodingKeys(stringValue: "allocatedIpRange")
+    static let requireSsl = CodingKeys(stringValue: "requireSsl")
+    static let authorizedNetworks = CodingKeys(stringValue: "authorizedNetworks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableIpv4",
+      "privateNetwork",
+      "allocatedIpRange",
+      "requireSsl",
+      "authorizedNetworks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.enableIpv4 = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .enableIpv4)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateNetwork) {
+      self.privateNetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allocatedIpRange) {
+      self.allocatedIpRange = value
+    }
+    self.requireSsl = try container.decodeIfPresent(
+      GoogleCloudWKT.BoolValue.self, forKey: .requireSsl)
+    if let value = try container.decodeIfPresent([SqlAclEntry].self, forKey: .authorizedNetworks) {
+      self.authorizedNetworks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.enableIpv4, forKey: .enableIpv4)
+    try container.encode(self.privateNetwork, forKey: .privateNetwork)
+    try container.encode(self.allocatedIpRange, forKey: .allocatedIpRange)
+    try container.encodeIfPresent(self.requireSsl, forKey: .requireSsl)
+    try container.encode(self.authorizedNetworks, forKey: .authorizedNetworks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

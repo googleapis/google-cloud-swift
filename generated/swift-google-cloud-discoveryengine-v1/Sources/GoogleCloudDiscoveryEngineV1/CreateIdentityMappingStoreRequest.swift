@@ -42,6 +42,8 @@
     /// override the default CmekConfig if one is set for the project.
     public var cmekOptions: OneOf_CmekOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateIdentityMappingStoreRequest`.
     public init() {}
 
@@ -58,19 +60,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cmekConfigName = "cmekConfigName"
-      case disableCmek = "disableCmek"
-      case parent = "parent"
-      case identityMappingStoreId = "identityMappingStoreId"
-      case identityMappingStore = "identityMappingStore"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cmekConfigName = CodingKeys(stringValue: "cmekConfigName")
+      static let disableCmek = CodingKeys(stringValue: "disableCmek")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let identityMappingStoreId = CodingKeys(stringValue: "identityMappingStoreId")
+      static let identityMappingStore = CodingKeys(stringValue: "identityMappingStore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cmekConfigName",
+        "disableCmek",
+        "parent",
+        "identityMappingStoreId",
+        "identityMappingStore",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.identityMappingStoreId = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .identityMappingStoreId)
+      {
+        self.identityMappingStoreId = value
+      }
       self.identityMappingStore = try container.decodeIfPresent(
         IdentityMappingStore.self, forKey: .identityMappingStore)
 
@@ -93,13 +113,17 @@
         try cmekOptionsCheckAndSet(.disableCmek(disableCmek))
       }
       self.cmekOptions = cmekOptions
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.identityMappingStoreId, forKey: .identityMappingStoreId)
-      try container.encode(self.identityMappingStore, forKey: .identityMappingStore)
+      try container.encodeIfPresent(self.identityMappingStore, forKey: .identityMappingStore)
 
       if let choice = self.cmekOptions {
         switch choice {
@@ -108,6 +132,9 @@
         case .disableCmek(let value):
           try container.encode(value, forKey: .disableCmek)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

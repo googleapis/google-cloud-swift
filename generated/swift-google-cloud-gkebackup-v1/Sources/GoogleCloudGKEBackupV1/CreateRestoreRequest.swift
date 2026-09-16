@@ -38,6 +38,8 @@ public struct CreateRestoreRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// - be unique within the set of Restores in this RestorePlan.
   public var restoreId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateRestoreRequest`.
   public init() {}
 
@@ -52,6 +54,48 @@ public struct CreateRestoreRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let restore = CodingKeys(stringValue: "restore")
+    static let restoreId = CodingKeys(stringValue: "restoreId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "restore",
+      "restoreId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.restore = try container.decodeIfPresent(Restore.self, forKey: .restore)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .restoreId) {
+      self.restoreId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.restore, forKey: .restore)
+    try container.encode(self.restoreId, forKey: .restoreId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

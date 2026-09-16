@@ -74,6 +74,8 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public var sensitiveDataProtectionMapping: ResourceValueConfig.SensitiveDataProtectionMapping? =
     nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceValueConfig`.
   public init() {}
 
@@ -90,6 +92,100 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resourceValue = CodingKeys(stringValue: "resourceValue")
+    static let tagValues = CodingKeys(stringValue: "tagValues")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let resourceLabelsSelector = CodingKeys(stringValue: "resourceLabelsSelector")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let cloudProvider = CodingKeys(stringValue: "cloudProvider")
+    static let sensitiveDataProtectionMapping = CodingKeys(
+      stringValue: "sensitiveDataProtectionMapping")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resourceValue",
+      "tagValues",
+      "resourceType",
+      "scope",
+      "resourceLabelsSelector",
+      "description",
+      "createTime",
+      "updateTime",
+      "cloudProvider",
+      "sensitiveDataProtectionMapping",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(ResourceValue.self, forKey: .resourceValue) {
+      self.resourceValue = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagValues) {
+      self.tagValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceLabelsSelector)
+    {
+      self.resourceLabelsSelector = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(CloudProvider.self, forKey: .cloudProvider) {
+      self.cloudProvider = value
+    }
+    self.sensitiveDataProtectionMapping = try container.decodeIfPresent(
+      ResourceValueConfig.SensitiveDataProtectionMapping.self,
+      forKey: .sensitiveDataProtectionMapping)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.resourceValue, forKey: .resourceValue)
+    try container.encode(self.tagValues, forKey: .tagValues)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.resourceLabelsSelector, forKey: .resourceLabelsSelector)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    try container.encodeIfPresent(
+      self.sensitiveDataProtectionMapping, forKey: .sensitiveDataProtectionMapping)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Resource value mapping for Sensitive Data Protection findings
   /// If any of these mappings have a resource value that is not unspecified,
   /// the resource_value field will be ignored when reading this configuration.
@@ -103,6 +199,8 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// Resource value mapping for medium-sensitivity Sensitive Data Protection
     /// findings
     public var mediumSensitivityMapping: ResourceValue = ResourceValue()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SensitiveDataProtectionMapping`.
     public init() {}
@@ -118,6 +216,48 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let highSensitivityMapping = CodingKeys(stringValue: "highSensitivityMapping")
+      static let mediumSensitivityMapping = CodingKeys(stringValue: "mediumSensitivityMapping")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "highSensitivityMapping",
+        "mediumSensitivityMapping",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ResourceValue.self, forKey: .highSensitivityMapping)
+      {
+        self.highSensitivityMapping = value
+      }
+      if let value = try container.decodeIfPresent(
+        ResourceValue.self, forKey: .mediumSensitivityMapping)
+      {
+        self.mediumSensitivityMapping = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.highSensitivityMapping, forKey: .highSensitivityMapping)
+      try container.encode(self.mediumSensitivityMapping, forKey: .mediumSensitivityMapping)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

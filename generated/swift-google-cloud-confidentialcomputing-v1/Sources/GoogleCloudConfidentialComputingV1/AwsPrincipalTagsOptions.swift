@@ -24,6 +24,8 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Principal tags to allow in the token.
   public var allowedPrincipalTags: AwsPrincipalTagsOptions.AllowedPrincipalTags? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsPrincipalTagsOptions`.
   public init() {}
 
@@ -40,6 +42,37 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowedPrincipalTags = CodingKeys(stringValue: "allowedPrincipalTags")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowedPrincipalTags"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.allowedPrincipalTags = try container.decodeIfPresent(
+      AwsPrincipalTagsOptions.AllowedPrincipalTags.self, forKey: .allowedPrincipalTags)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.allowedPrincipalTags, forKey: .allowedPrincipalTags)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Allowed principal tags is used to define what principal tags will be
   /// placed in the token.
   public struct AllowedPrincipalTags: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -48,6 +81,8 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
     /// Optional. Container image signatures allowed in the token.
     public var containerImageSignatures:
       AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AllowedPrincipalTags`.
     public init() {}
@@ -65,6 +100,39 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let containerImageSignatures = CodingKeys(stringValue: "containerImageSignatures")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "containerImageSignatures"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.containerImageSignatures = try container.decodeIfPresent(
+        AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.self,
+        forKey: .containerImageSignatures)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.containerImageSignatures, forKey: .containerImageSignatures)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Allowed Container Image Signatures. Key IDs are required to allow
     /// this claim to fit within the narrow AWS IAM restrictions.
     public struct ContainerImageSignatures: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -74,6 +142,8 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
       /// that have been validated and added to the token will be filtered into
       /// principal tags. Unrecognized key ids will be ignored.
       public var keyIds: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ContainerImageSignatures`.
       public init() {}
@@ -89,6 +159,38 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleCloudWKT._AnyPa
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let keyIds = CodingKeys(stringValue: "keyIds")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "keyIds"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .keyIds) {
+          self.keyIds = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.keyIds, forKey: .keyIds)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

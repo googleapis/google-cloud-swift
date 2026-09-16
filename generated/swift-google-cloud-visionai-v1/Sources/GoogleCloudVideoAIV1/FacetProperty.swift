@@ -50,6 +50,8 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var rangeFacetConfig: OneOf_RangeFacetConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FacetProperty`.
   public init() {}
 
@@ -66,22 +68,45 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case fixedRangeBucketSpec = "fixedRangeBucketSpec"
-    case customRangeBucketSpec = "customRangeBucketSpec"
-    case datetimeBucketSpec = "datetimeBucketSpec"
-    case mappedFields = "mappedFields"
-    case displayName = "displayName"
-    case resultSize = "resultSize"
-    case bucketType = "bucketType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fixedRangeBucketSpec = CodingKeys(stringValue: "fixedRangeBucketSpec")
+    static let customRangeBucketSpec = CodingKeys(stringValue: "customRangeBucketSpec")
+    static let datetimeBucketSpec = CodingKeys(stringValue: "datetimeBucketSpec")
+    static let mappedFields = CodingKeys(stringValue: "mappedFields")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let resultSize = CodingKeys(stringValue: "resultSize")
+    static let bucketType = CodingKeys(stringValue: "bucketType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fixedRangeBucketSpec",
+      "customRangeBucketSpec",
+      "datetimeBucketSpec",
+      "mappedFields",
+      "displayName",
+      "resultSize",
+      "bucketType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.mappedFields = try container.decode([Swift.String].self, forKey: .mappedFields)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.resultSize = try container.decode(Swift.Int64.self, forKey: .resultSize)
-    self.bucketType = try container.decode(FacetBucketType.self, forKey: .bucketType)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .mappedFields) {
+      self.mappedFields = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .resultSize) {
+      self.resultSize = value
+    }
+    if let value = try container.decodeIfPresent(FacetBucketType.self, forKey: .bucketType) {
+      self.bucketType = value
+    }
 
     var rangeFacetConfig: OneOf_RangeFacetConfig? = nil
     let rangeFacetConfigCheckAndSet = {
@@ -109,6 +134,10 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try rangeFacetConfigCheckAndSet(.datetimeBucketSpec(datetimeBucketSpec))
     }
     self.rangeFacetConfig = rangeFacetConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -127,6 +156,9 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .datetimeBucketSpec(let value):
         try container.encode(value, forKey: .datetimeBucketSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -151,6 +183,8 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Total number of buckets.
     public var bucketCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FixedRangeBucketSpec`.
     public init() {}
 
@@ -165,6 +199,47 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bucketStart = CodingKeys(stringValue: "bucketStart")
+      static let bucketGranularity = CodingKeys(stringValue: "bucketGranularity")
+      static let bucketCount = CodingKeys(stringValue: "bucketCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bucketStart",
+        "bucketGranularity",
+        "bucketCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bucketStart = try container.decodeIfPresent(FacetValue.self, forKey: .bucketStart)
+      self.bucketGranularity = try container.decodeIfPresent(
+        FacetValue.self, forKey: .bucketGranularity)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bucketCount) {
+        self.bucketCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.bucketStart, forKey: .bucketStart)
+      try container.encodeIfPresent(self.bucketGranularity, forKey: .bucketGranularity)
+      try container.encode(self.bucketCount, forKey: .bucketCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -192,6 +267,8 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Currently, only integer type is supported for this field.
     public var endpoints: [FacetValue] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomRangeBucketSpec`.
     public init() {}
 
@@ -206,6 +283,38 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let endpoints = CodingKeys(stringValue: "endpoints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "endpoints"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([FacetValue].self, forKey: .endpoints) {
+        self.endpoints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.endpoints, forKey: .endpoints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -227,6 +336,8 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var granularity: FacetProperty.DateTimeBucketSpec.Granularity = FacetProperty
       .DateTimeBucketSpec.Granularity()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DateTimeBucketSpec`.
     public init() {}
 
@@ -241,6 +352,40 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let granularity = CodingKeys(stringValue: "granularity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "granularity"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        FacetProperty.DateTimeBucketSpec.Granularity.self, forKey: .granularity)
+      {
+        self.granularity = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.granularity, forKey: .granularity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Granularity enum for the datetime bucket.

@@ -94,6 +94,8 @@ public struct AuthProvider: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///    - query: access_token
   public var jwtLocations: [JwtLocation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthProvider`.
   public init() {}
 
@@ -108,6 +110,68 @@ public struct AuthProvider: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let issuer = CodingKeys(stringValue: "issuer")
+    static let jwksUri = CodingKeys(stringValue: "jwksUri")
+    static let audiences = CodingKeys(stringValue: "audiences")
+    static let authorizationUrl = CodingKeys(stringValue: "authorizationUrl")
+    static let jwtLocations = CodingKeys(stringValue: "jwtLocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "issuer",
+      "jwksUri",
+      "audiences",
+      "authorizationUrl",
+      "jwtLocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
+      self.issuer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jwksUri) {
+      self.jwksUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audiences) {
+      self.audiences = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authorizationUrl) {
+      self.authorizationUrl = value
+    }
+    if let value = try container.decodeIfPresent([JwtLocation].self, forKey: .jwtLocations) {
+      self.jwtLocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.issuer, forKey: .issuer)
+    try container.encode(self.jwksUri, forKey: .jwksUri)
+    try container.encode(self.audiences, forKey: .audiences)
+    try container.encode(self.authorizationUrl, forKey: .authorizationUrl)
+    try container.encode(self.jwtLocations, forKey: .jwtLocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

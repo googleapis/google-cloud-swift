@@ -24,6 +24,8 @@ public struct Command: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of command.
   public var commandType: OneOf_CommandType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Command`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct Command: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case agentCommand = "agentCommand"
-    case shellCommand = "shellCommand"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let agentCommand = CodingKeys(stringValue: "agentCommand")
+    static let shellCommand = CodingKeys(stringValue: "shellCommand")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "agentCommand",
+      "shellCommand",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,6 +77,10 @@ public struct Command: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try commandTypeCheckAndSet(.shellCommand(shellCommand))
     }
     self.commandType = commandType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +93,9 @@ public struct Command: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .shellCommand(let value):
         try container.encode(value, forKey: .shellCommand)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

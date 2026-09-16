@@ -30,6 +30,8 @@ public struct DetachLunRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If true, performs lun unmapping without instance reboot.
   public var skipReboot: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DetachLunRequest`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct DetachLunRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instance = CodingKeys(stringValue: "instance")
+    static let lun = CodingKeys(stringValue: "lun")
+    static let skipReboot = CodingKeys(stringValue: "skipReboot")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instance",
+      "lun",
+      "skipReboot",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lun) {
+      self.lun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipReboot) {
+      self.skipReboot = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.lun, forKey: .lun)
+    try container.encode(self.skipReboot, forKey: .skipReboot)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

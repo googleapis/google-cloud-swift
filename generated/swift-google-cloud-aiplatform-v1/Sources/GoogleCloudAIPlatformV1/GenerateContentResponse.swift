@@ -43,6 +43,8 @@
     /// Usage metadata about the response(s).
     public var usageMetadata: GenerateContentResponse.UsageMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerateContentResponse`.
     public init() {}
 
@@ -59,6 +61,65 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let candidates = CodingKeys(stringValue: "candidates")
+      static let modelVersion = CodingKeys(stringValue: "modelVersion")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let responseId = CodingKeys(stringValue: "responseId")
+      static let promptFeedback = CodingKeys(stringValue: "promptFeedback")
+      static let usageMetadata = CodingKeys(stringValue: "usageMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "candidates",
+        "modelVersion",
+        "createTime",
+        "responseId",
+        "promptFeedback",
+        "usageMetadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Candidate].self, forKey: .candidates) {
+        self.candidates = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersion) {
+        self.modelVersion = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseId) {
+        self.responseId = value
+      }
+      self.promptFeedback = try container.decodeIfPresent(
+        GenerateContentResponse.PromptFeedback.self, forKey: .promptFeedback)
+      self.usageMetadata = try container.decodeIfPresent(
+        GenerateContentResponse.UsageMetadata.self, forKey: .usageMetadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.candidates, forKey: .candidates)
+      try container.encode(self.modelVersion, forKey: .modelVersion)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encode(self.responseId, forKey: .responseId)
+      try container.encodeIfPresent(self.promptFeedback, forKey: .promptFeedback)
+      try container.encodeIfPresent(self.usageMetadata, forKey: .usageMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Content filter results for a prompt sent in the request.
     public struct PromptFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -72,6 +133,8 @@
 
       /// Output only. A readable block reason message.
       public var blockReasonMessage: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `PromptFeedback`.
       public init() {}
@@ -87,6 +150,53 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let blockReason = CodingKeys(stringValue: "blockReason")
+        static let safetyRatings = CodingKeys(stringValue: "safetyRatings")
+        static let blockReasonMessage = CodingKeys(stringValue: "blockReasonMessage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "blockReason",
+          "safetyRatings",
+          "blockReasonMessage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          GenerateContentResponse.PromptFeedback.BlockedReason.self, forKey: .blockReason)
+        {
+          self.blockReason = value
+        }
+        if let value = try container.decodeIfPresent([SafetyRating].self, forKey: .safetyRatings) {
+          self.safetyRatings = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .blockReasonMessage)
+        {
+          self.blockReasonMessage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.blockReason, forKey: .blockReason)
+        try container.encode(self.safetyRatings, forKey: .safetyRatings)
+        try container.encode(self.blockReasonMessage, forKey: .blockReasonMessage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Blocked reason enumeration.
@@ -276,6 +386,8 @@
       public var trafficType: GenerateContentResponse.UsageMetadata.TrafficType =
         GenerateContentResponse.UsageMetadata.TrafficType()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `UsageMetadata`.
       public init() {}
 
@@ -290,6 +402,108 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let promptTokenCount = CodingKeys(stringValue: "promptTokenCount")
+        static let candidatesTokenCount = CodingKeys(stringValue: "candidatesTokenCount")
+        static let thoughtsTokenCount = CodingKeys(stringValue: "thoughtsTokenCount")
+        static let totalTokenCount = CodingKeys(stringValue: "totalTokenCount")
+        static let cachedContentTokenCount = CodingKeys(stringValue: "cachedContentTokenCount")
+        static let promptTokensDetails = CodingKeys(stringValue: "promptTokensDetails")
+        static let cacheTokensDetails = CodingKeys(stringValue: "cacheTokensDetails")
+        static let candidatesTokensDetails = CodingKeys(stringValue: "candidatesTokensDetails")
+        static let toolUsePromptTokensDetails = CodingKeys(
+          stringValue: "toolUsePromptTokensDetails")
+        static let trafficType = CodingKeys(stringValue: "trafficType")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "promptTokenCount",
+          "candidatesTokenCount",
+          "thoughtsTokenCount",
+          "totalTokenCount",
+          "cachedContentTokenCount",
+          "promptTokensDetails",
+          "cacheTokensDetails",
+          "candidatesTokensDetails",
+          "toolUsePromptTokensDetails",
+          "trafficType",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .promptTokenCount) {
+          self.promptTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .candidatesTokenCount)
+        {
+          self.candidatesTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .thoughtsTokenCount)
+        {
+          self.thoughtsTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokenCount) {
+          self.totalTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .cachedContentTokenCount)
+        {
+          self.cachedContentTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ModalityTokenCount].self, forKey: .promptTokensDetails)
+        {
+          self.promptTokensDetails = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ModalityTokenCount].self, forKey: .cacheTokensDetails)
+        {
+          self.cacheTokensDetails = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ModalityTokenCount].self, forKey: .candidatesTokensDetails)
+        {
+          self.candidatesTokensDetails = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ModalityTokenCount].self, forKey: .toolUsePromptTokensDetails)
+        {
+          self.toolUsePromptTokensDetails = value
+        }
+        if let value = try container.decodeIfPresent(
+          GenerateContentResponse.UsageMetadata.TrafficType.self, forKey: .trafficType)
+        {
+          self.trafficType = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.promptTokenCount, forKey: .promptTokenCount)
+        try container.encode(self.candidatesTokenCount, forKey: .candidatesTokenCount)
+        try container.encode(self.thoughtsTokenCount, forKey: .thoughtsTokenCount)
+        try container.encode(self.totalTokenCount, forKey: .totalTokenCount)
+        try container.encode(self.cachedContentTokenCount, forKey: .cachedContentTokenCount)
+        try container.encode(self.promptTokensDetails, forKey: .promptTokensDetails)
+        try container.encode(self.cacheTokensDetails, forKey: .cacheTokensDetails)
+        try container.encode(self.candidatesTokensDetails, forKey: .candidatesTokensDetails)
+        try container.encode(self.toolUsePromptTokensDetails, forKey: .toolUsePromptTokensDetails)
+        try container.encode(self.trafficType, forKey: .trafficType)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The type of traffic that this request was processed with, indicating

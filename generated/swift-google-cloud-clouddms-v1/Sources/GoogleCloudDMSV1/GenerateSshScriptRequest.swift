@@ -33,6 +33,8 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The VM configuration
   public var vmConfig: OneOf_VmConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateSshScriptRequest`.
   public init() {}
 
@@ -49,19 +51,38 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case migrationJob = "migrationJob"
-    case vm = "vm"
-    case vmCreationConfig = "vmCreationConfig"
-    case vmSelectionConfig = "vmSelectionConfig"
-    case vmPort = "vmPort"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let migrationJob = CodingKeys(stringValue: "migrationJob")
+    static let vm = CodingKeys(stringValue: "vm")
+    static let vmCreationConfig = CodingKeys(stringValue: "vmCreationConfig")
+    static let vmSelectionConfig = CodingKeys(stringValue: "vmSelectionConfig")
+    static let vmPort = CodingKeys(stringValue: "vmPort")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "migrationJob",
+      "vm",
+      "vmCreationConfig",
+      "vmSelectionConfig",
+      "vmPort",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.migrationJob = try container.decode(Swift.String.self, forKey: .migrationJob)
-    self.vm = try container.decode(Swift.String.self, forKey: .vm)
-    self.vmPort = try container.decode(Swift.Int32.self, forKey: .vmPort)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .migrationJob) {
+      self.migrationJob = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vm) {
+      self.vm = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmPort) {
+      self.vmPort = value
+    }
 
     var vmConfig: OneOf_VmConfig? = nil
     let vmConfigCheckAndSet = {
@@ -84,6 +105,10 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       try vmConfigCheckAndSet(.vmSelectionConfig(vmSelectionConfig))
     }
     self.vmConfig = vmConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -99,6 +124,9 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       case .vmSelectionConfig(let value):
         try container.encode(value, forKey: .vmSelectionConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

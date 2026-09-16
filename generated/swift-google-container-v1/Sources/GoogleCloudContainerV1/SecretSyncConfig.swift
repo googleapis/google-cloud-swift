@@ -27,6 +27,8 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Rotation config for secret manager.
   public var rotationConfig: SecretSyncConfig.SyncRotationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecretSyncConfig`.
   public init() {}
 
@@ -43,6 +45,41 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let rotationConfig = CodingKeys(stringValue: "rotationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "rotationConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+    self.rotationConfig = try container.decodeIfPresent(
+      SecretSyncConfig.SyncRotationConfig.self, forKey: .rotationConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encodeIfPresent(self.rotationConfig, forKey: .rotationConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// SyncRotationConfig is config for secret manager auto rotation.
   public struct SyncRotationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +90,8 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The interval between two consecutive rotations. Default rotation interval
     /// is 2 minutes.
     public var rotationInterval: GoogleCloudWKT.Duration? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SyncRotationConfig`.
     public init() {}
@@ -68,6 +107,41 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let rotationInterval = CodingKeys(stringValue: "rotationInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "rotationInterval",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+      self.rotationInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .rotationInterval)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.enabled, forKey: .enabled)
+      try container.encodeIfPresent(self.rotationInterval, forKey: .rotationInterval)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

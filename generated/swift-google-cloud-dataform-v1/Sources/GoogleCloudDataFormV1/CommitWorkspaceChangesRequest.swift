@@ -34,6 +34,8 @@ public struct CommitWorkspaceChangesRequest: Codable, Equatable, GoogleCloudWKT.
   /// root. If left empty, all files will be committed.
   public var paths: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CommitWorkspaceChangesRequest`.
   public init() {}
 
@@ -48,6 +50,54 @@ public struct CommitWorkspaceChangesRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let author = CodingKeys(stringValue: "author")
+    static let commitMessage = CodingKeys(stringValue: "commitMessage")
+    static let paths = CodingKeys(stringValue: "paths")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "author",
+      "commitMessage",
+      "paths",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.author = try container.decodeIfPresent(CommitAuthor.self, forKey: .author)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commitMessage) {
+      self.commitMessage = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .paths) {
+      self.paths = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.author, forKey: .author)
+    try container.encode(self.commitMessage, forKey: .commitMessage)
+    try container.encode(self.paths, forKey: .paths)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

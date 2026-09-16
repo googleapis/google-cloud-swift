@@ -53,6 +53,8 @@ public struct GcsIngestWithDocAiProcessorsPipeline: Codable, Equatable, GoogleCl
   /// and can be skipped if it is not applicable.
   public var pipelineConfig: IngestPipelineConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsIngestWithDocAiProcessorsPipeline`.
   public init() {}
 
@@ -67,6 +69,71 @@ public struct GcsIngestWithDocAiProcessorsPipeline: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputPath = CodingKeys(stringValue: "inputPath")
+    static let splitClassifyProcessorInfo = CodingKeys(stringValue: "splitClassifyProcessorInfo")
+    static let extractProcessorInfos = CodingKeys(stringValue: "extractProcessorInfos")
+    static let processorResultsFolderPath = CodingKeys(stringValue: "processorResultsFolderPath")
+    static let skipIngestedDocuments = CodingKeys(stringValue: "skipIngestedDocuments")
+    static let pipelineConfig = CodingKeys(stringValue: "pipelineConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputPath",
+      "splitClassifyProcessorInfo",
+      "extractProcessorInfos",
+      "processorResultsFolderPath",
+      "skipIngestedDocuments",
+      "pipelineConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputPath) {
+      self.inputPath = value
+    }
+    self.splitClassifyProcessorInfo = try container.decodeIfPresent(
+      ProcessorInfo.self, forKey: .splitClassifyProcessorInfo)
+    if let value = try container.decodeIfPresent(
+      [ProcessorInfo].self, forKey: .extractProcessorInfos)
+    {
+      self.extractProcessorInfos = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .processorResultsFolderPath)
+    {
+      self.processorResultsFolderPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipIngestedDocuments) {
+      self.skipIngestedDocuments = value
+    }
+    self.pipelineConfig = try container.decodeIfPresent(
+      IngestPipelineConfig.self, forKey: .pipelineConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputPath, forKey: .inputPath)
+    try container.encodeIfPresent(
+      self.splitClassifyProcessorInfo, forKey: .splitClassifyProcessorInfo)
+    try container.encode(self.extractProcessorInfos, forKey: .extractProcessorInfos)
+    try container.encode(self.processorResultsFolderPath, forKey: .processorResultsFolderPath)
+    try container.encode(self.skipIngestedDocuments, forKey: .skipIngestedDocuments)
+    try container.encodeIfPresent(self.pipelineConfig, forKey: .pipelineConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

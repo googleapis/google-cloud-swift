@@ -32,6 +32,8 @@
     /// in this map it will be ignored.
     public var families: [Swift.String: BigtableOptions.BigtableColumnFamily] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BigtableOptions`.
     public init() {}
 
@@ -46,6 +48,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let keyFieldName = CodingKeys(stringValue: "keyFieldName")
+      static let families = CodingKeys(stringValue: "families")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "keyFieldName",
+        "families",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyFieldName) {
+        self.keyFieldName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: BigtableOptions.BigtableColumnFamily].self, forKey: .families)
+      {
+        self.families = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.keyFieldName, forKey: .keyFieldName)
+      try container.encode(self.families, forKey: .families)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The column family of the Bigtable.
@@ -77,6 +119,8 @@
       /// column. If a column is not present in this list it will be ignored.
       public var columns: [BigtableOptions.BigtableColumn] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BigtableColumnFamily`.
       public init() {}
 
@@ -91,6 +135,60 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let fieldName = CodingKeys(stringValue: "fieldName")
+        static let encoding = CodingKeys(stringValue: "encoding")
+        static let type = CodingKeys(stringValue: "type")
+        static let columns = CodingKeys(stringValue: "columns")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "fieldName",
+          "encoding",
+          "type",
+          "columns",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
+          self.fieldName = value
+        }
+        if let value = try container.decodeIfPresent(
+          BigtableOptions.Encoding.self, forKey: .encoding)
+        {
+          self.encoding = value
+        }
+        if let value = try container.decodeIfPresent(BigtableOptions.Type_.self, forKey: .type) {
+          self.type = value
+        }
+        if let value = try container.decodeIfPresent(
+          [BigtableOptions.BigtableColumn].self, forKey: .columns)
+        {
+          self.columns = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.fieldName, forKey: .fieldName)
+        try container.encode(self.encoding, forKey: .encoding)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.columns, forKey: .columns)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -134,6 +232,8 @@
       /// function when the encoding value is set to `BINARY`.
       public var type: BigtableOptions.Type_ = BigtableOptions.Type_()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BigtableColumn`.
       public init() {}
 
@@ -148,6 +248,58 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let qualifier = CodingKeys(stringValue: "qualifier")
+        static let fieldName = CodingKeys(stringValue: "fieldName")
+        static let encoding = CodingKeys(stringValue: "encoding")
+        static let type = CodingKeys(stringValue: "type")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "qualifier",
+          "fieldName",
+          "encoding",
+          "type",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .qualifier) {
+          self.qualifier = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
+          self.fieldName = value
+        }
+        if let value = try container.decodeIfPresent(
+          BigtableOptions.Encoding.self, forKey: .encoding)
+        {
+          self.encoding = value
+        }
+        if let value = try container.decodeIfPresent(BigtableOptions.Type_.self, forKey: .type) {
+          self.type = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.qualifier, forKey: .qualifier)
+        try container.encode(self.fieldName, forKey: .fieldName)
+        try container.encode(self.encoding, forKey: .encoding)
+        try container.encode(self.type, forKey: .type)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -68,6 +68,8 @@ public struct CVSSv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// component resulting from a successfully exploited vulnerability.
   public var availabilityImpact: CVSSv3.Impact = CVSSv3.Impact()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CVSSv3`.
   public init() {}
 
@@ -82,6 +84,105 @@ public struct CVSSv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let baseScore = CodingKeys(stringValue: "baseScore")
+    static let exploitabilityScore = CodingKeys(stringValue: "exploitabilityScore")
+    static let impactScore = CodingKeys(stringValue: "impactScore")
+    static let attackVector = CodingKeys(stringValue: "attackVector")
+    static let attackComplexity = CodingKeys(stringValue: "attackComplexity")
+    static let privilegesRequired = CodingKeys(stringValue: "privilegesRequired")
+    static let userInteraction = CodingKeys(stringValue: "userInteraction")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let confidentialityImpact = CodingKeys(stringValue: "confidentialityImpact")
+    static let integrityImpact = CodingKeys(stringValue: "integrityImpact")
+    static let availabilityImpact = CodingKeys(stringValue: "availabilityImpact")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "baseScore",
+      "exploitabilityScore",
+      "impactScore",
+      "attackVector",
+      "attackComplexity",
+      "privilegesRequired",
+      "userInteraction",
+      "scope",
+      "confidentialityImpact",
+      "integrityImpact",
+      "availabilityImpact",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .baseScore) {
+      self.baseScore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .exploitabilityScore) {
+      self.exploitabilityScore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .impactScore) {
+      self.impactScore = value
+    }
+    if let value = try container.decodeIfPresent(CVSSv3.AttackVector.self, forKey: .attackVector) {
+      self.attackVector = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSSv3.AttackComplexity.self, forKey: .attackComplexity)
+    {
+      self.attackComplexity = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSSv3.PrivilegesRequired.self, forKey: .privilegesRequired)
+    {
+      self.privilegesRequired = value
+    }
+    if let value = try container.decodeIfPresent(
+      CVSSv3.UserInteraction.self, forKey: .userInteraction)
+    {
+      self.userInteraction = value
+    }
+    if let value = try container.decodeIfPresent(CVSSv3.Scope.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(CVSSv3.Impact.self, forKey: .confidentialityImpact)
+    {
+      self.confidentialityImpact = value
+    }
+    if let value = try container.decodeIfPresent(CVSSv3.Impact.self, forKey: .integrityImpact) {
+      self.integrityImpact = value
+    }
+    if let value = try container.decodeIfPresent(CVSSv3.Impact.self, forKey: .availabilityImpact) {
+      self.availabilityImpact = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.baseScore, forKey: .baseScore)
+    try container.encode(self.exploitabilityScore, forKey: .exploitabilityScore)
+    try container.encode(self.impactScore, forKey: .impactScore)
+    try container.encode(self.attackVector, forKey: .attackVector)
+    try container.encode(self.attackComplexity, forKey: .attackComplexity)
+    try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
+    try container.encode(self.userInteraction, forKey: .userInteraction)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
+    try container.encode(self.integrityImpact, forKey: .integrityImpact)
+    try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// This metric reflects the context by which vulnerability exploitation is

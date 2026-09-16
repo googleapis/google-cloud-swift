@@ -29,6 +29,8 @@
     /// If populated, represents where the chunk starts and ends in the document.
     public var pageSpan: RagChunk.PageSpan? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagChunk`.
     public init() {}
 
@@ -45,6 +47,42 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let pageSpan = CodingKeys(stringValue: "pageSpan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "pageSpan",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      self.pageSpan = try container.decodeIfPresent(RagChunk.PageSpan.self, forKey: .pageSpan)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.text, forKey: .text)
+      try container.encodeIfPresent(self.pageSpan, forKey: .pageSpan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Represents where the chunk starts and ends in the document.
     public struct PageSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -54,6 +92,8 @@
 
       /// Page where chunk ends in the document. Inclusive. 1-indexed.
       public var lastPage: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `PageSpan`.
       public init() {}
@@ -69,6 +109,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let firstPage = CodingKeys(stringValue: "firstPage")
+        static let lastPage = CodingKeys(stringValue: "lastPage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "firstPage",
+          "lastPage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .firstPage) {
+          self.firstPage = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lastPage) {
+          self.lastPage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.firstPage, forKey: .firstPage)
+        try container.encode(self.lastPage, forKey: .lastPage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

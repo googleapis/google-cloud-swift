@@ -66,6 +66,8 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleCloudWKT._A
   public var operationsInsightsState: PluggableDatabaseProperties.OperationsInsightsState =
     PluggableDatabaseProperties.OperationsInsightsState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PluggableDatabaseProperties`.
   public init() {}
 
@@ -82,12 +84,127 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let compartmentId = CodingKeys(stringValue: "compartmentId")
+    static let connectionStrings = CodingKeys(stringValue: "connectionStrings")
+    static let containerDatabaseOcid = CodingKeys(stringValue: "containerDatabaseOcid")
+    static let definedTags = CodingKeys(stringValue: "definedTags")
+    static let freeformTags = CodingKeys(stringValue: "freeformTags")
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let isRestricted = CodingKeys(stringValue: "isRestricted")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let pdbName = CodingKeys(stringValue: "pdbName")
+    static let pdbNodeLevelDetails = CodingKeys(stringValue: "pdbNodeLevelDetails")
+    static let databaseManagementConfig = CodingKeys(stringValue: "databaseManagementConfig")
+    static let operationsInsightsState = CodingKeys(stringValue: "operationsInsightsState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "compartmentId",
+      "connectionStrings",
+      "containerDatabaseOcid",
+      "definedTags",
+      "freeformTags",
+      "ocid",
+      "isRestricted",
+      "lifecycleDetails",
+      "lifecycleState",
+      "pdbName",
+      "pdbNodeLevelDetails",
+      "databaseManagementConfig",
+      "operationsInsightsState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .compartmentId) {
+      self.compartmentId = value
+    }
+    self.connectionStrings = try container.decodeIfPresent(
+      PluggableDatabaseConnectionStrings.self, forKey: .connectionStrings)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerDatabaseOcid)
+    {
+      self.containerDatabaseOcid = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: PluggableDatabaseProperties.DefinedTagValue].self, forKey: .definedTags)
+    {
+      self.definedTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .freeformTags)
+    {
+      self.freeformTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRestricted) {
+      self.isRestricted = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
+    if let value = try container.decodeIfPresent(
+      PluggableDatabaseProperties.PluggableDatabaseLifecycleState.self, forKey: .lifecycleState)
+    {
+      self.lifecycleState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pdbName) {
+      self.pdbName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PluggableDatabaseNodeLevelDetails].self, forKey: .pdbNodeLevelDetails)
+    {
+      self.pdbNodeLevelDetails = value
+    }
+    self.databaseManagementConfig = try container.decodeIfPresent(
+      DatabaseManagementConfig.self, forKey: .databaseManagementConfig)
+    if let value = try container.decodeIfPresent(
+      PluggableDatabaseProperties.OperationsInsightsState.self, forKey: .operationsInsightsState)
+    {
+      self.operationsInsightsState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.compartmentId, forKey: .compartmentId)
+    try container.encodeIfPresent(self.connectionStrings, forKey: .connectionStrings)
+    try container.encode(self.containerDatabaseOcid, forKey: .containerDatabaseOcid)
+    try container.encode(self.definedTags, forKey: .definedTags)
+    try container.encode(self.freeformTags, forKey: .freeformTags)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.isRestricted, forKey: .isRestricted)
+    try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
+    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    try container.encode(self.pdbName, forKey: .pdbName)
+    try container.encode(self.pdbNodeLevelDetails, forKey: .pdbNodeLevelDetails)
+    try container.encodeIfPresent(self.databaseManagementConfig, forKey: .databaseManagementConfig)
+    try container.encode(self.operationsInsightsState, forKey: .operationsInsightsState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Wrapper message for the value of a defined tag.
   public struct DefinedTagValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The tags within the namespace.
     public var tags: [Swift.String: Swift.String] = [:]
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DefinedTagValue`.
     public init() {}
@@ -103,6 +220,39 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleCloudWKT._A
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tags = CodingKeys(stringValue: "tags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tags"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags)
+      {
+        self.tags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tags, forKey: .tags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

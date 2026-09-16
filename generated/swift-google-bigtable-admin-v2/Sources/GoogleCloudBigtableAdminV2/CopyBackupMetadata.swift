@@ -39,6 +39,8 @@ public struct CopyBackupMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// [google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]: <doc:BigtableTableAdminClient/copyBackup(request:options:)>
   public var progress: OperationProgress? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CopyBackupMetadata`.
   public init() {}
 
@@ -53,6 +55,47 @@ public struct CopyBackupMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceBackupInfo = CodingKeys(stringValue: "sourceBackupInfo")
+    static let progress = CodingKeys(stringValue: "progress")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceBackupInfo",
+      "progress",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.sourceBackupInfo = try container.decodeIfPresent(
+      BackupInfo.self, forKey: .sourceBackupInfo)
+    self.progress = try container.decodeIfPresent(OperationProgress.self, forKey: .progress)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.sourceBackupInfo, forKey: .sourceBackupInfo)
+    try container.encodeIfPresent(self.progress, forKey: .progress)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct RepricingCondition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Represents the types of existing conditional statements.
   public var condition: OneOf_Condition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepricingCondition`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct RepricingCondition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case skuGroupCondition = "skuGroupCondition"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let skuGroupCondition = CodingKeys(stringValue: "skuGroupCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "skuGroupCondition"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct RepricingCondition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try conditionCheckAndSet(.skuGroupCondition(skuGroupCondition))
     }
     self.condition = condition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct RepricingCondition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .skuGroupCondition(let value):
         try container.encode(value, forKey: .skuGroupCondition)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -26,6 +26,8 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public var action: OneOf_Action? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValueTransformation`.
   public init() {}
 
@@ -42,17 +44,35 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case isNull = "isNull"
-    case valueList = "valueList"
-    case intComparison = "intComparison"
-    case doubleComparison = "doubleComparison"
-    case assignNull = "assignNull"
-    case assignSpecificValue = "assignSpecificValue"
-    case assignMinValue = "assignMinValue"
-    case assignMaxValue = "assignMaxValue"
-    case roundScale = "roundScale"
-    case applyHash = "applyHash"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let isNull = CodingKeys(stringValue: "isNull")
+    static let valueList = CodingKeys(stringValue: "valueList")
+    static let intComparison = CodingKeys(stringValue: "intComparison")
+    static let doubleComparison = CodingKeys(stringValue: "doubleComparison")
+    static let assignNull = CodingKeys(stringValue: "assignNull")
+    static let assignSpecificValue = CodingKeys(stringValue: "assignSpecificValue")
+    static let assignMinValue = CodingKeys(stringValue: "assignMinValue")
+    static let assignMaxValue = CodingKeys(stringValue: "assignMaxValue")
+    static let roundScale = CodingKeys(stringValue: "roundScale")
+    static let applyHash = CodingKeys(stringValue: "applyHash")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "isNull",
+      "valueList",
+      "intComparison",
+      "doubleComparison",
+      "assignNull",
+      "assignSpecificValue",
+      "assignMinValue",
+      "assignMaxValue",
+      "roundScale",
+      "applyHash",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -123,6 +143,10 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try actionCheckAndSet(.applyHash(applyHash))
     }
     self.action = action
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -156,6 +180,9 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .applyHash(let value):
         try container.encode(value, forKey: .applyHash)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -42,6 +42,8 @@ public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. The timestamp that the revision was created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupPlanRevision`.
   public init() {}
 
@@ -56,6 +58,60 @@ public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+    static let state = CodingKeys(stringValue: "state")
+    static let backupPlanSnapshot = CodingKeys(stringValue: "backupPlanSnapshot")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "revisionId",
+      "state",
+      "backupPlanSnapshot",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
+    if let value = try container.decodeIfPresent(BackupPlanRevision.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.backupPlanSnapshot = try container.decodeIfPresent(
+      BackupPlan.self, forKey: .backupPlanSnapshot)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.revisionId, forKey: .revisionId)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.backupPlanSnapshot, forKey: .backupPlanSnapshot)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of the `BackupPlanRevision`.

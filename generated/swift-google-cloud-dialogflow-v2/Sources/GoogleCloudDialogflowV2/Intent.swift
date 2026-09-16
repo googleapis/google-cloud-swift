@@ -145,6 +145,8 @@
     /// the output.
     public var followupIntentInfo: [Intent.FollowupIntentInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Intent`.
     public init() {}
 
@@ -159,6 +161,164 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let webhookState = CodingKeys(stringValue: "webhookState")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let isFallback = CodingKeys(stringValue: "isFallback")
+      static let mlDisabled = CodingKeys(stringValue: "mlDisabled")
+      static let liveAgentHandoff = CodingKeys(stringValue: "liveAgentHandoff")
+      static let endInteraction = CodingKeys(stringValue: "endInteraction")
+      static let inputContextNames = CodingKeys(stringValue: "inputContextNames")
+      static let events = CodingKeys(stringValue: "events")
+      static let trainingPhrases = CodingKeys(stringValue: "trainingPhrases")
+      static let action = CodingKeys(stringValue: "action")
+      static let outputContexts = CodingKeys(stringValue: "outputContexts")
+      static let resetContexts = CodingKeys(stringValue: "resetContexts")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let messages = CodingKeys(stringValue: "messages")
+      static let defaultResponsePlatforms = CodingKeys(stringValue: "defaultResponsePlatforms")
+      static let rootFollowupIntentName = CodingKeys(stringValue: "rootFollowupIntentName")
+      static let parentFollowupIntentName = CodingKeys(stringValue: "parentFollowupIntentName")
+      static let followupIntentInfo = CodingKeys(stringValue: "followupIntentInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "webhookState",
+        "priority",
+        "isFallback",
+        "mlDisabled",
+        "liveAgentHandoff",
+        "endInteraction",
+        "inputContextNames",
+        "events",
+        "trainingPhrases",
+        "action",
+        "outputContexts",
+        "resetContexts",
+        "parameters",
+        "messages",
+        "defaultResponsePlatforms",
+        "rootFollowupIntentName",
+        "parentFollowupIntentName",
+        "followupIntentInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Intent.WebhookState.self, forKey: .webhookState)
+      {
+        self.webhookState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+        self.priority = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFallback) {
+        self.isFallback = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .mlDisabled) {
+        self.mlDisabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .liveAgentHandoff) {
+        self.liveAgentHandoff = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .endInteraction) {
+        self.endInteraction = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputContextNames)
+      {
+        self.inputContextNames = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .events) {
+        self.events = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.TrainingPhrase].self, forKey: .trainingPhrases)
+      {
+        self.trainingPhrases = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+        self.action = value
+      }
+      if let value = try container.decodeIfPresent([Context].self, forKey: .outputContexts) {
+        self.outputContexts = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .resetContexts) {
+        self.resetContexts = value
+      }
+      if let value = try container.decodeIfPresent([Intent.Parameter].self, forKey: .parameters) {
+        self.parameters = value
+      }
+      if let value = try container.decodeIfPresent([Intent.Message].self, forKey: .messages) {
+        self.messages = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.Message.Platform].self, forKey: .defaultResponsePlatforms)
+      {
+        self.defaultResponsePlatforms = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .rootFollowupIntentName)
+      {
+        self.rootFollowupIntentName = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .parentFollowupIntentName)
+      {
+        self.parentFollowupIntentName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.FollowupIntentInfo].self, forKey: .followupIntentInfo)
+      {
+        self.followupIntentInfo = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.webhookState, forKey: .webhookState)
+      try container.encode(self.priority, forKey: .priority)
+      try container.encode(self.isFallback, forKey: .isFallback)
+      try container.encode(self.mlDisabled, forKey: .mlDisabled)
+      try container.encode(self.liveAgentHandoff, forKey: .liveAgentHandoff)
+      try container.encode(self.endInteraction, forKey: .endInteraction)
+      try container.encode(self.inputContextNames, forKey: .inputContextNames)
+      try container.encode(self.events, forKey: .events)
+      try container.encode(self.trainingPhrases, forKey: .trainingPhrases)
+      try container.encode(self.action, forKey: .action)
+      try container.encode(self.outputContexts, forKey: .outputContexts)
+      try container.encode(self.resetContexts, forKey: .resetContexts)
+      try container.encode(self.parameters, forKey: .parameters)
+      try container.encode(self.messages, forKey: .messages)
+      try container.encode(self.defaultResponsePlatforms, forKey: .defaultResponsePlatforms)
+      try container.encode(self.rootFollowupIntentName, forKey: .rootFollowupIntentName)
+      try container.encode(self.parentFollowupIntentName, forKey: .parentFollowupIntentName)
+      try container.encode(self.followupIntentInfo, forKey: .followupIntentInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents an example that the agent is trained on.
@@ -201,6 +361,8 @@
       /// intent or training, this counter is increased.
       public var timesAddedCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TrainingPhrase`.
       public init() {}
 
@@ -215,6 +377,60 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let type = CodingKeys(stringValue: "type")
+        static let parts = CodingKeys(stringValue: "parts")
+        static let timesAddedCount = CodingKeys(stringValue: "timesAddedCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "type",
+          "parts",
+          "timesAddedCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent(
+          Intent.TrainingPhrase.Type_.self, forKey: .type)
+        {
+          self.type = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Intent.TrainingPhrase.Part].self, forKey: .parts)
+        {
+          self.parts = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .timesAddedCount) {
+          self.timesAddedCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.parts, forKey: .parts)
+        try container.encode(self.timesAddedCount, forKey: .timesAddedCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Represents a part of a training phrase.
@@ -239,6 +455,9 @@
         /// API, you must set this to true.
         public var userDefined: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Part`.
         public init() {}
 
@@ -253,6 +472,56 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let text = CodingKeys(stringValue: "text")
+          static let entityType = CodingKeys(stringValue: "entityType")
+          static let alias = CodingKeys(stringValue: "alias")
+          static let userDefined = CodingKeys(stringValue: "userDefined")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "text",
+            "entityType",
+            "alias",
+            "userDefined",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+            self.text = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+            self.entityType = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alias) {
+            self.alias = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userDefined) {
+            self.userDefined = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.text, forKey: .text)
+          try container.encode(self.entityType, forKey: .entityType)
+          try container.encode(self.alias, forKey: .alias)
+          try container.encode(self.userDefined, forKey: .userDefined)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -431,6 +700,8 @@
       /// Optional. Indicates whether the parameter represents a list of values.
       public var isList: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Parameter`.
       public init() {}
 
@@ -445,6 +716,82 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let value = CodingKeys(stringValue: "value")
+        static let defaultValue = CodingKeys(stringValue: "defaultValue")
+        static let entityTypeDisplayName = CodingKeys(stringValue: "entityTypeDisplayName")
+        static let mandatory = CodingKeys(stringValue: "mandatory")
+        static let prompts = CodingKeys(stringValue: "prompts")
+        static let isList = CodingKeys(stringValue: "isList")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "displayName",
+          "value",
+          "defaultValue",
+          "entityTypeDisplayName",
+          "mandatory",
+          "prompts",
+          "isList",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+          self.value = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultValue) {
+          self.defaultValue = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .entityTypeDisplayName)
+        {
+          self.entityTypeDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .mandatory) {
+          self.mandatory = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .prompts) {
+          self.prompts = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isList) {
+          self.isList = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encode(self.value, forKey: .value)
+        try container.encode(self.defaultValue, forKey: .defaultValue)
+        try container.encode(self.entityTypeDisplayName, forKey: .entityTypeDisplayName)
+        try container.encode(self.mandatory, forKey: .mandatory)
+        try container.encode(self.prompts, forKey: .prompts)
+        try container.encode(self.isList, forKey: .isList)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -472,6 +819,8 @@
       /// Required. The rich response message.
       public var message: OneOf_Message? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Message`.
       public init() {}
 
@@ -488,27 +837,54 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case text = "text"
-        case image = "image"
-        case quickReplies = "quickReplies"
-        case card = "card"
-        case payload = "payload"
-        case simpleResponses = "simpleResponses"
-        case basicCard = "basicCard"
-        case suggestions = "suggestions"
-        case linkOutSuggestion = "linkOutSuggestion"
-        case listSelect = "listSelect"
-        case carouselSelect = "carouselSelect"
-        case browseCarouselCard = "browseCarouselCard"
-        case tableCard = "tableCard"
-        case mediaContent = "mediaContent"
-        case platform = "platform"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let text = CodingKeys(stringValue: "text")
+        static let image = CodingKeys(stringValue: "image")
+        static let quickReplies = CodingKeys(stringValue: "quickReplies")
+        static let card = CodingKeys(stringValue: "card")
+        static let payload = CodingKeys(stringValue: "payload")
+        static let simpleResponses = CodingKeys(stringValue: "simpleResponses")
+        static let basicCard = CodingKeys(stringValue: "basicCard")
+        static let suggestions = CodingKeys(stringValue: "suggestions")
+        static let linkOutSuggestion = CodingKeys(stringValue: "linkOutSuggestion")
+        static let listSelect = CodingKeys(stringValue: "listSelect")
+        static let carouselSelect = CodingKeys(stringValue: "carouselSelect")
+        static let browseCarouselCard = CodingKeys(stringValue: "browseCarouselCard")
+        static let tableCard = CodingKeys(stringValue: "tableCard")
+        static let mediaContent = CodingKeys(stringValue: "mediaContent")
+        static let platform = CodingKeys(stringValue: "platform")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "text",
+          "image",
+          "quickReplies",
+          "card",
+          "payload",
+          "simpleResponses",
+          "basicCard",
+          "suggestions",
+          "linkOutSuggestion",
+          "listSelect",
+          "carouselSelect",
+          "browseCarouselCard",
+          "tableCard",
+          "mediaContent",
+          "platform",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.platform = try container.decode(Intent.Message.Platform.self, forKey: .platform)
+        if let value = try container.decodeIfPresent(
+          Intent.Message.Platform.self, forKey: .platform)
+        {
+          self.platform = value
+        }
 
         var message: OneOf_Message? = nil
         let messageCheckAndSet = {
@@ -585,6 +961,10 @@
           try messageCheckAndSet(.mediaContent(mediaContent))
         }
         self.message = message
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -623,6 +1003,9 @@
             try container.encode(value, forKey: .mediaContent)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The text response message.
@@ -631,6 +1014,9 @@
       {
         /// Optional. The collection of the agent's responses.
         public var text: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Text`.
         public init() {}
@@ -646,6 +1032,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let text = CodingKeys(stringValue: "text")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "text"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .text) {
+            self.text = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.text, forKey: .text)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -670,6 +1088,9 @@
         /// e.g., screen readers.
         public var accessibilityText: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Image`.
         public init() {}
 
@@ -684,6 +1105,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let imageUri = CodingKeys(stringValue: "imageUri")
+          static let accessibilityText = CodingKeys(stringValue: "accessibilityText")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "imageUri",
+            "accessibilityText",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+            self.imageUri = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.String.self, forKey: .accessibilityText)
+          {
+            self.accessibilityText = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.imageUri, forKey: .imageUri)
+          try container.encode(self.accessibilityText, forKey: .accessibilityText)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -707,6 +1168,9 @@
         /// Optional. The collection of quick replies.
         public var quickReplies: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `QuickReplies`.
         public init() {}
 
@@ -721,6 +1185,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+          static let quickReplies = CodingKeys(stringValue: "quickReplies")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title",
+            "quickReplies",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .quickReplies) {
+            self.quickReplies = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          try container.encode(self.quickReplies, forKey: .quickReplies)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -750,6 +1252,9 @@
         /// Optional. The collection of card buttons.
         public var buttons: [Intent.Message.Card.Button] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Card`.
         public init() {}
 
@@ -766,6 +1271,58 @@
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+          static let subtitle = CodingKeys(stringValue: "subtitle")
+          static let imageUri = CodingKeys(stringValue: "imageUri")
+          static let buttons = CodingKeys(stringValue: "buttons")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title",
+            "subtitle",
+            "imageUri",
+            "buttons",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subtitle) {
+            self.subtitle = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+            self.imageUri = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.Card.Button].self, forKey: .buttons)
+          {
+            self.buttons = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          try container.encode(self.subtitle, forKey: .subtitle)
+          try container.encode(self.imageUri, forKey: .imageUri)
+          try container.encode(self.buttons, forKey: .buttons)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Contains information about a button.
         public struct Button: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -776,6 +1333,9 @@
           /// Optional. The text to send back to the Dialogflow API or a URI to
           /// open.
           public var postback: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `Button`.
           public init() {}
@@ -791,6 +1351,44 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let text = CodingKeys(stringValue: "text")
+            static let postback = CodingKeys(stringValue: "postback")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "text",
+              "postback",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+              self.text = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .postback) {
+              self.postback = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.text, forKey: .text)
+            try container.encode(self.postback, forKey: .postback)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -831,6 +1429,9 @@
         /// Optional. The text to display.
         public var displayText: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `SimpleResponse`.
         public init() {}
 
@@ -845,6 +1446,50 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let textToSpeech = CodingKeys(stringValue: "textToSpeech")
+          static let ssml = CodingKeys(stringValue: "ssml")
+          static let displayText = CodingKeys(stringValue: "displayText")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "textToSpeech",
+            "ssml",
+            "displayText",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .textToSpeech) {
+            self.textToSpeech = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ssml) {
+            self.ssml = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayText) {
+            self.displayText = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.textToSpeech, forKey: .textToSpeech)
+          try container.encode(self.ssml, forKey: .ssml)
+          try container.encode(self.displayText, forKey: .displayText)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -868,6 +1513,9 @@
         /// Required. The list of simple responses.
         public var simpleResponses: [Intent.Message.SimpleResponse] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `SimpleResponses`.
         public init() {}
 
@@ -882,6 +1530,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let simpleResponses = CodingKeys(stringValue: "simpleResponses")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "simpleResponses"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.SimpleResponse].self, forKey: .simpleResponses)
+          {
+            self.simpleResponses = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.simpleResponses, forKey: .simpleResponses)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -914,6 +1596,9 @@
         /// Optional. The collection of card buttons.
         public var buttons: [Intent.Message.BasicCard.Button] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `BasicCard`.
         public init() {}
 
@@ -930,6 +1615,62 @@
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+          static let subtitle = CodingKeys(stringValue: "subtitle")
+          static let formattedText = CodingKeys(stringValue: "formattedText")
+          static let image = CodingKeys(stringValue: "image")
+          static let buttons = CodingKeys(stringValue: "buttons")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title",
+            "subtitle",
+            "formattedText",
+            "image",
+            "buttons",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subtitle) {
+            self.subtitle = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .formattedText) {
+            self.formattedText = value
+          }
+          self.image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.BasicCard.Button].self, forKey: .buttons)
+          {
+            self.buttons = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          try container.encode(self.subtitle, forKey: .subtitle)
+          try container.encode(self.formattedText, forKey: .formattedText)
+          try container.encodeIfPresent(self.image, forKey: .image)
+          try container.encode(self.buttons, forKey: .buttons)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// The button object that appears at the bottom of a card.
         public struct Button: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
@@ -939,6 +1680,9 @@
 
           /// Required. Action to take when a user taps on the button.
           public var openUriAction: Intent.Message.BasicCard.Button.OpenUriAction? = nil
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `Button`.
           public init() {}
@@ -956,12 +1700,52 @@
             return copy
           }
 
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let title = CodingKeys(stringValue: "title")
+            static let openUriAction = CodingKeys(stringValue: "openUriAction")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "title",
+              "openUriAction",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+              self.title = value
+            }
+            self.openUriAction = try container.decodeIfPresent(
+              Intent.Message.BasicCard.Button.OpenUriAction.self, forKey: .openUriAction)
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.title, forKey: .title)
+            try container.encodeIfPresent(self.openUriAction, forKey: .openUriAction)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
           /// Opens the given URI.
           public struct OpenUriAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
           {
             /// Required. The HTTP or HTTPS scheme URI.
             public var uri: Swift.String = Swift.String()
+
+            @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+              .init()
 
             /// Initialize a new instance of `OpenUriAction`.
             public init() {}
@@ -977,6 +1761,38 @@
               var copy = self
               try config(&copy)
               return copy
+            }
+
+            private struct CodingKeys: CodingKey {
+              var stringValue: Swift.String
+              var intValue: Swift.Int? { nil }
+              init(stringValue: Swift.String) { self.stringValue = stringValue }
+              init?(intValue: Swift.Int) { nil }
+
+              static let uri = CodingKeys(stringValue: "uri")
+
+              static let _knownKeys: Set<Swift.String> = [
+                "uri"
+              ]
+            }
+
+            public init(from decoder: Decoder) throws {
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+              if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+                self.uri = value
+              }
+              for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+                self._unknownFields.json[key.stringValue] = try container.decode(
+                  GoogleCloudWKT.Value.self, forKey: key)
+              }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+              var container = encoder.container(keyedBy: CodingKeys.self)
+              try container.encode(self.uri, forKey: .uri)
+              for (key, value) in self._unknownFields.json {
+                try container.encode(value, forKey: CodingKeys(stringValue: key))
+              }
             }
 
             public static var _anyTypeUrl: Swift.String {
@@ -1021,6 +1837,9 @@
         /// Required. The text shown the in the suggestion chip.
         public var title: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Suggestion`.
         public init() {}
 
@@ -1035,6 +1854,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1055,6 +1906,9 @@
         /// Required. The list of suggested replies.
         public var suggestions: [Intent.Message.Suggestion] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Suggestions`.
         public init() {}
 
@@ -1069,6 +1923,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let suggestions = CodingKeys(stringValue: "suggestions")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "suggestions"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.Suggestion].self, forKey: .suggestions)
+          {
+            self.suggestions = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.suggestions, forKey: .suggestions)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1094,6 +1982,9 @@
         /// suggestion chip.
         public var uri: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `LinkOutSuggestion`.
         public init() {}
 
@@ -1108,6 +1999,45 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let destinationName = CodingKeys(stringValue: "destinationName")
+          static let uri = CodingKeys(stringValue: "uri")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "destinationName",
+            "uri",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationName)
+          {
+            self.destinationName = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+            self.uri = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.destinationName, forKey: .destinationName)
+          try container.encode(self.uri, forKey: .uri)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1134,6 +2064,9 @@
         /// Optional. Subtitle of the list.
         public var subtitle: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ListSelect`.
         public init() {}
 
@@ -1148,6 +2081,52 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+          static let items = CodingKeys(stringValue: "items")
+          static let subtitle = CodingKeys(stringValue: "subtitle")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title",
+            "items",
+            "subtitle",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.ListSelect.Item].self, forKey: .items)
+          {
+            self.items = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subtitle) {
+            self.subtitle = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          try container.encode(self.items, forKey: .items)
+          try container.encode(self.subtitle, forKey: .subtitle)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// An item in the list.
@@ -1166,6 +2145,9 @@
           /// Optional. The image to display.
           public var image: Intent.Message.Image? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `Item`.
           public init() {}
 
@@ -1180,6 +2162,53 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let info = CodingKeys(stringValue: "info")
+            static let title = CodingKeys(stringValue: "title")
+            static let description = CodingKeys(stringValue: "description")
+            static let image = CodingKeys(stringValue: "image")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "info",
+              "title",
+              "description",
+              "image",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.info = try container.decodeIfPresent(
+              Intent.Message.SelectItemInfo.self, forKey: .info)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+              self.title = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+              self.description = value
+            }
+            self.image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image)
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(self.info, forKey: .info)
+            try container.encode(self.title, forKey: .title)
+            try container.encode(self.description, forKey: .description)
+            try container.encodeIfPresent(self.image, forKey: .image)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -1211,6 +2240,9 @@
         /// Required. Carousel items.
         public var items: [Intent.Message.CarouselSelect.Item] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `CarouselSelect`.
         public init() {}
 
@@ -1225,6 +2257,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let items = CodingKeys(stringValue: "items")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "items"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.CarouselSelect.Item].self, forKey: .items)
+          {
+            self.items = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.items, forKey: .items)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// An item in the carousel.
@@ -1243,6 +2309,9 @@
           /// Optional. The image to display.
           public var image: Intent.Message.Image? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `Item`.
           public init() {}
 
@@ -1257,6 +2326,53 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let info = CodingKeys(stringValue: "info")
+            static let title = CodingKeys(stringValue: "title")
+            static let description = CodingKeys(stringValue: "description")
+            static let image = CodingKeys(stringValue: "image")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "info",
+              "title",
+              "description",
+              "image",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.info = try container.decodeIfPresent(
+              Intent.Message.SelectItemInfo.self, forKey: .info)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+              self.title = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+              self.description = value
+            }
+            self.image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image)
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(self.info, forKey: .info)
+            try container.encode(self.title, forKey: .title)
+            try container.encode(self.description, forKey: .description)
+            try container.encodeIfPresent(self.image, forKey: .image)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -1295,6 +2411,9 @@
         /// item in dialog.
         public var synonyms: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `SelectItemInfo`.
         public init() {}
 
@@ -1309,6 +2428,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let synonyms = CodingKeys(stringValue: "synonyms")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "synonyms",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+            self.key = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .synonyms) {
+            self.synonyms = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.key, forKey: .key)
+          try container.encode(self.synonyms, forKey: .synonyms)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1333,6 +2490,9 @@
         /// Required. List of media objects.
         public var mediaObjects: [Intent.Message.MediaContent.ResponseMediaObject] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `MediaContent`.
         public init() {}
 
@@ -1347,6 +2507,48 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let mediaType = CodingKeys(stringValue: "mediaType")
+          static let mediaObjects = CodingKeys(stringValue: "mediaObjects")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "mediaType",
+            "mediaObjects",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Intent.Message.MediaContent.ResponseMediaType.self, forKey: .mediaType)
+          {
+            self.mediaType = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.MediaContent.ResponseMediaObject].self, forKey: .mediaObjects)
+          {
+            self.mediaObjects = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.mediaType, forKey: .mediaType)
+          try container.encode(self.mediaObjects, forKey: .mediaObjects)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Response media object for media content card.
@@ -1365,6 +2567,9 @@
           /// Image to show with the media card.
           public var image: OneOf_Image? = nil
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `ResponseMediaObject`.
           public init() {}
 
@@ -1381,19 +2586,38 @@
             return copy
           }
 
-          private enum CodingKeys: Swift.String, CodingKey {
-            case name = "name"
-            case description = "description"
-            case largeImage = "largeImage"
-            case icon = "icon"
-            case contentUrl = "contentUrl"
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let name = CodingKeys(stringValue: "name")
+            static let description = CodingKeys(stringValue: "description")
+            static let largeImage = CodingKeys(stringValue: "largeImage")
+            static let icon = CodingKeys(stringValue: "icon")
+            static let contentUrl = CodingKeys(stringValue: "contentUrl")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "name",
+              "description",
+              "largeImage",
+              "icon",
+              "contentUrl",
+            ]
           }
 
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.name = try container.decode(Swift.String.self, forKey: .name)
-            self.description = try container.decode(Swift.String.self, forKey: .description)
-            self.contentUrl = try container.decode(Swift.String.self, forKey: .contentUrl)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+              self.name = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+              self.description = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentUrl) {
+              self.contentUrl = value
+            }
 
             var image: OneOf_Image? = nil
             let imageCheckAndSet = {
@@ -1414,6 +2638,10 @@
               try imageCheckAndSet(.icon(icon))
             }
             self.image = image
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
           }
 
           public func encode(to encoder: Encoder) throws {
@@ -1429,6 +2657,9 @@
               case .icon(let value):
                 try container.encode(value, forKey: .icon)
               }
+            }
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
             }
           }
 
@@ -1577,6 +2808,9 @@
         public var imageDisplayOptions: Intent.Message.BrowseCarouselCard.ImageDisplayOptions =
           Intent.Message.BrowseCarouselCard.ImageDisplayOptions()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `BrowseCarouselCard`.
         public init() {}
 
@@ -1591,6 +2825,48 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let items = CodingKeys(stringValue: "items")
+          static let imageDisplayOptions = CodingKeys(stringValue: "imageDisplayOptions")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "items",
+            "imageDisplayOptions",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem].self, forKey: .items)
+          {
+            self.items = value
+          }
+          if let value = try container.decodeIfPresent(
+            Intent.Message.BrowseCarouselCard.ImageDisplayOptions.self, forKey: .imageDisplayOptions
+          ) {
+            self.imageDisplayOptions = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.items, forKey: .items)
+          try container.encode(self.imageDisplayOptions, forKey: .imageDisplayOptions)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Browsing carousel tile
@@ -1615,6 +2891,9 @@
           /// Card. Maximum of one line of text.
           public var footer: Swift.String = Swift.String()
 
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
+
           /// Initialize a new instance of `BrowseCarouselCardItem`.
           public init() {}
 
@@ -1631,6 +2910,60 @@
             return copy
           }
 
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let openUriAction = CodingKeys(stringValue: "openUriAction")
+            static let title = CodingKeys(stringValue: "title")
+            static let description = CodingKeys(stringValue: "description")
+            static let image = CodingKeys(stringValue: "image")
+            static let footer = CodingKeys(stringValue: "footer")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "openUriAction",
+              "title",
+              "description",
+              "image",
+              "footer",
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.openUriAction = try container.decodeIfPresent(
+              Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.self,
+              forKey: .openUriAction)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+              self.title = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+              self.description = value
+            }
+            self.image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .footer) {
+              self.footer = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(self.openUriAction, forKey: .openUriAction)
+            try container.encode(self.title, forKey: .title)
+            try container.encode(self.description, forKey: .description)
+            try container.encodeIfPresent(self.image, forKey: .image)
+            try container.encode(self.footer, forKey: .footer)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
           /// Actions on Google action to open a given url.
           public struct OpenUrlAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
@@ -1643,6 +2976,9 @@
             public var urlTypeHint:
               Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint =
                 Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint()
+
+            @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+              .init()
 
             /// Initialize a new instance of `OpenUrlAction`.
             public init() {}
@@ -1658,6 +2994,47 @@
               var copy = self
               try config(&copy)
               return copy
+            }
+
+            private struct CodingKeys: CodingKey {
+              var stringValue: Swift.String
+              var intValue: Swift.Int? { nil }
+              init(stringValue: Swift.String) { self.stringValue = stringValue }
+              init?(intValue: Swift.Int) { nil }
+
+              static let url = CodingKeys(stringValue: "url")
+              static let urlTypeHint = CodingKeys(stringValue: "urlTypeHint")
+
+              static let _knownKeys: Set<Swift.String> = [
+                "url",
+                "urlTypeHint",
+              ]
+            }
+
+            public init(from decoder: Decoder) throws {
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+              if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+                self.url = value
+              }
+              if let value = try container.decodeIfPresent(
+                Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint
+                  .self, forKey: .urlTypeHint)
+              {
+                self.urlTypeHint = value
+              }
+              for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+                self._unknownFields.json[key.stringValue] = try container.decode(
+                  GoogleCloudWKT.Value.self, forKey: key)
+              }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+              var container = encoder.container(keyedBy: CodingKeys.self)
+              try container.encode(self.url, forKey: .url)
+              try container.encode(self.urlTypeHint, forKey: .urlTypeHint)
+              for (key, value) in self._unknownFields.json {
+                try container.encode(value, forKey: CodingKeys(stringValue: key))
+              }
             }
 
             /// Type of the URI.
@@ -1954,6 +3331,9 @@
         /// Optional. List of buttons for the card.
         public var buttons: [Intent.Message.BasicCard.Button] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `TableCard`.
         public init() {}
 
@@ -1968,6 +3348,72 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let title = CodingKeys(stringValue: "title")
+          static let subtitle = CodingKeys(stringValue: "subtitle")
+          static let image = CodingKeys(stringValue: "image")
+          static let columnProperties = CodingKeys(stringValue: "columnProperties")
+          static let rows = CodingKeys(stringValue: "rows")
+          static let buttons = CodingKeys(stringValue: "buttons")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "title",
+            "subtitle",
+            "image",
+            "columnProperties",
+            "rows",
+            "buttons",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+            self.title = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subtitle) {
+            self.subtitle = value
+          }
+          self.image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.ColumnProperties].self, forKey: .columnProperties)
+          {
+            self.columnProperties = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.TableCardRow].self, forKey: .rows)
+          {
+            self.rows = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.BasicCard.Button].self, forKey: .buttons)
+          {
+            self.buttons = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.title, forKey: .title)
+          try container.encode(self.subtitle, forKey: .subtitle)
+          try container.encodeIfPresent(self.image, forKey: .image)
+          try container.encode(self.columnProperties, forKey: .columnProperties)
+          try container.encode(self.rows, forKey: .rows)
+          try container.encode(self.buttons, forKey: .buttons)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1995,6 +3441,9 @@
         public var horizontalAlignment: Intent.Message.ColumnProperties.HorizontalAlignment = Intent
           .Message.ColumnProperties.HorizontalAlignment()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ColumnProperties`.
         public init() {}
 
@@ -2009,6 +3458,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let header = CodingKeys(stringValue: "header")
+          static let horizontalAlignment = CodingKeys(stringValue: "horizontalAlignment")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "header",
+            "horizontalAlignment",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {
+            self.header = value
+          }
+          if let value = try container.decodeIfPresent(
+            Intent.Message.ColumnProperties.HorizontalAlignment.self, forKey: .horizontalAlignment)
+          {
+            self.horizontalAlignment = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.header, forKey: .header)
+          try container.encode(self.horizontalAlignment, forKey: .horizontalAlignment)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Text alignments within a cell.
@@ -2146,6 +3635,9 @@
         /// Optional. Whether to add a visual divider after this row.
         public var dividerAfter: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `TableCardRow`.
         public init() {}
 
@@ -2160,6 +3652,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let cells = CodingKeys(stringValue: "cells")
+          static let dividerAfter = CodingKeys(stringValue: "dividerAfter")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "cells",
+            "dividerAfter",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Intent.Message.TableCardCell].self, forKey: .cells)
+          {
+            self.cells = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dividerAfter) {
+            self.dividerAfter = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.cells, forKey: .cells)
+          try container.encode(self.dividerAfter, forKey: .dividerAfter)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -2183,6 +3715,9 @@
         /// Required. Text in this cell.
         public var text: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `TableCardCell`.
         public init() {}
 
@@ -2197,6 +3732,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let text = CodingKeys(stringValue: "text")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "text"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+            self.text = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.text, forKey: .text)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -2422,6 +3989,8 @@
       /// Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
       public var parentFollowupIntentName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `FollowupIntentInfo`.
       public init() {}
 
@@ -2436,6 +4005,47 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let followupIntentName = CodingKeys(stringValue: "followupIntentName")
+        static let parentFollowupIntentName = CodingKeys(stringValue: "parentFollowupIntentName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "followupIntentName",
+          "parentFollowupIntentName",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .followupIntentName)
+        {
+          self.followupIntentName = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .parentFollowupIntentName)
+        {
+          self.parentFollowupIntentName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.followupIntentName, forKey: .followupIntentName)
+        try container.encode(self.parentFollowupIntentName, forKey: .parentFollowupIntentName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

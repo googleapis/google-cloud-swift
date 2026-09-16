@@ -25,6 +25,8 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// deleted as a result of removing the acl entry.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RemoveAclEntryResponse`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case acl = "acl"
-    case aclDeleted = "aclDeleted"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let acl = CodingKeys(stringValue: "acl")
+    static let aclDeleted = CodingKeys(stringValue: "aclDeleted")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "acl",
+      "aclDeleted",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +78,10 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       try resultCheckAndSet(.aclDeleted(aclDeleted))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +94,9 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .aclDeleted(let value):
         try container.encode(value, forKey: .aclDeleted)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

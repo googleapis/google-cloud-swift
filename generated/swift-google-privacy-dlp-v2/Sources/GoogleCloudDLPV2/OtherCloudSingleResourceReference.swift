@@ -24,6 +24,8 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleCloud
   /// The resource to scan.
   public var resource: OneOf_Resource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OtherCloudSingleResourceReference`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleCloud
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case amazonS3Bucket = "amazonS3Bucket"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let amazonS3Bucket = CodingKeys(stringValue: "amazonS3Bucket")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "amazonS3Bucket"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleCloud
       try resourceCheckAndSet(.amazonS3Bucket(amazonS3Bucket))
     }
     self.resource = resource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleCloud
       case .amazonS3Bucket(let value):
         try container.encode(value, forKey: .amazonS3Bucket)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

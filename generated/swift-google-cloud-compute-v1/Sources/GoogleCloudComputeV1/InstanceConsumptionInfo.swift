@@ -35,6 +35,8 @@
     /// Output only. The minimal guaranteed number of virtual CPUs that are reserved.
     public var minNodeCpus: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceConsumptionInfo`.
     public init() {}
 
@@ -49,6 +51,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let guestCpus = CodingKeys(stringValue: "guestCpus")
+      static let localSsdGb = CodingKeys(stringValue: "localSsdGb")
+      static let memoryMb = CodingKeys(stringValue: "memoryMb")
+      static let minNodeCpus = CodingKeys(stringValue: "minNodeCpus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "guestCpus",
+        "localSsdGb",
+        "memoryMb",
+        "minNodeCpus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.guestCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .guestCpus)
+      self.localSsdGb = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdGb)
+      self.memoryMb = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb)
+      self.minNodeCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCpus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.guestCpus, forKey: .guestCpus)
+      try container.encodeIfPresent(self.localSsdGb, forKey: .localSsdGb)
+      try container.encodeIfPresent(self.memoryMb, forKey: .memoryMb)
+      try container.encodeIfPresent(self.minNodeCpus, forKey: .minNodeCpus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

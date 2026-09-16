@@ -83,6 +83,8 @@ public struct CloudControl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// control.
   public var supportedTargetResourceTypes: [TargetResourceType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudControl`.
   public init() {}
 
@@ -97,6 +99,128 @@ public struct CloudControl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let majorRevisionId = CodingKeys(stringValue: "majorRevisionId")
+    static let description = CodingKeys(stringValue: "description")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let supportedEnforcementModes = CodingKeys(stringValue: "supportedEnforcementModes")
+    static let parameterSpec = CodingKeys(stringValue: "parameterSpec")
+    static let rules = CodingKeys(stringValue: "rules")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let findingCategory = CodingKeys(stringValue: "findingCategory")
+    static let supportedCloudProviders = CodingKeys(stringValue: "supportedCloudProviders")
+    static let relatedFrameworks = CodingKeys(stringValue: "relatedFrameworks")
+    static let remediationSteps = CodingKeys(stringValue: "remediationSteps")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let supportedTargetResourceTypes = CodingKeys(
+      stringValue: "supportedTargetResourceTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "majorRevisionId",
+      "description",
+      "displayName",
+      "supportedEnforcementModes",
+      "parameterSpec",
+      "rules",
+      "severity",
+      "findingCategory",
+      "supportedCloudProviders",
+      "relatedFrameworks",
+      "remediationSteps",
+      "categories",
+      "createTime",
+      "supportedTargetResourceTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .majorRevisionId) {
+      self.majorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [EnforcementMode].self, forKey: .supportedEnforcementModes)
+    {
+      self.supportedEnforcementModes = value
+    }
+    if let value = try container.decodeIfPresent([ParameterSpec].self, forKey: .parameterSpec) {
+      self.parameterSpec = value
+    }
+    if let value = try container.decodeIfPresent([Rule].self, forKey: .rules) {
+      self.rules = value
+    }
+    if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingCategory) {
+      self.findingCategory = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudProvider].self, forKey: .supportedCloudProviders)
+    {
+      self.supportedCloudProviders = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedFrameworks) {
+      self.relatedFrameworks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remediationSteps) {
+      self.remediationSteps = value
+    }
+    if let value = try container.decodeIfPresent([CloudControlCategory].self, forKey: .categories) {
+      self.categories = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(
+      [TargetResourceType].self, forKey: .supportedTargetResourceTypes)
+    {
+      self.supportedTargetResourceTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.supportedEnforcementModes, forKey: .supportedEnforcementModes)
+    try container.encode(self.parameterSpec, forKey: .parameterSpec)
+    try container.encode(self.rules, forKey: .rules)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.findingCategory, forKey: .findingCategory)
+    try container.encode(self.supportedCloudProviders, forKey: .supportedCloudProviders)
+    try container.encode(self.relatedFrameworks, forKey: .relatedFrameworks)
+    try container.encode(self.remediationSteps, forKey: .remediationSteps)
+    try container.encode(self.categories, forKey: .categories)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.supportedTargetResourceTypes, forKey: .supportedTargetResourceTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of cloud control.

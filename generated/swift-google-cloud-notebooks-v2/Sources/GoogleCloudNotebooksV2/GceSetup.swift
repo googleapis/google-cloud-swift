@@ -73,6 +73,8 @@ public struct GceSetup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of the image; can be one of VM image, or container image.
   public var image: OneOf_Image? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GceSetup`.
   public init() {}
 
@@ -89,39 +91,83 @@ public struct GceSetup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case machineType = "machineType"
-    case acceleratorConfigs = "acceleratorConfigs"
-    case serviceAccounts = "serviceAccounts"
-    case vmImage = "vmImage"
-    case containerImage = "containerImage"
-    case bootDisk = "bootDisk"
-    case dataDisks = "dataDisks"
-    case shieldedInstanceConfig = "shieldedInstanceConfig"
-    case networkInterfaces = "networkInterfaces"
-    case disablePublicIp = "disablePublicIp"
-    case tags = "tags"
-    case metadata = "metadata"
-    case enableIpForwarding = "enableIpForwarding"
-    case gpuDriverConfig = "gpuDriverConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let acceleratorConfigs = CodingKeys(stringValue: "acceleratorConfigs")
+    static let serviceAccounts = CodingKeys(stringValue: "serviceAccounts")
+    static let vmImage = CodingKeys(stringValue: "vmImage")
+    static let containerImage = CodingKeys(stringValue: "containerImage")
+    static let bootDisk = CodingKeys(stringValue: "bootDisk")
+    static let dataDisks = CodingKeys(stringValue: "dataDisks")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+    static let disablePublicIp = CodingKeys(stringValue: "disablePublicIp")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let enableIpForwarding = CodingKeys(stringValue: "enableIpForwarding")
+    static let gpuDriverConfig = CodingKeys(stringValue: "gpuDriverConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "machineType",
+      "acceleratorConfigs",
+      "serviceAccounts",
+      "vmImage",
+      "containerImage",
+      "bootDisk",
+      "dataDisks",
+      "shieldedInstanceConfig",
+      "networkInterfaces",
+      "disablePublicIp",
+      "tags",
+      "metadata",
+      "enableIpForwarding",
+      "gpuDriverConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.machineType = try container.decode(Swift.String.self, forKey: .machineType)
-    self.acceleratorConfigs = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(
       [AcceleratorConfig].self, forKey: .acceleratorConfigs)
-    self.serviceAccounts = try container.decode([ServiceAccount].self, forKey: .serviceAccounts)
+    {
+      self.acceleratorConfigs = value
+    }
+    if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .serviceAccounts) {
+      self.serviceAccounts = value
+    }
     self.bootDisk = try container.decodeIfPresent(BootDisk.self, forKey: .bootDisk)
-    self.dataDisks = try container.decode([DataDisk].self, forKey: .dataDisks)
+    if let value = try container.decodeIfPresent([DataDisk].self, forKey: .dataDisks) {
+      self.dataDisks = value
+    }
     self.shieldedInstanceConfig = try container.decodeIfPresent(
       ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
-    self.networkInterfaces = try container.decode(
+    if let value = try container.decodeIfPresent(
       [NetworkInterface].self, forKey: .networkInterfaces)
-    self.disablePublicIp = try container.decode(Swift.Bool.self, forKey: .disablePublicIp)
-    self.tags = try container.decode([Swift.String].self, forKey: .tags)
-    self.metadata = try container.decode([Swift.String: Swift.String].self, forKey: .metadata)
-    self.enableIpForwarding = try container.decode(Swift.Bool.self, forKey: .enableIpForwarding)
+    {
+      self.networkInterfaces = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disablePublicIp) {
+      self.disablePublicIp = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpForwarding) {
+      self.enableIpForwarding = value
+    }
     self.gpuDriverConfig = try container.decodeIfPresent(
       GPUDriverConfig.self, forKey: .gpuDriverConfig)
 
@@ -144,6 +190,10 @@ public struct GceSetup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try imageCheckAndSet(.containerImage(containerImage))
     }
     self.image = image
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -151,15 +201,15 @@ public struct GceSetup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.machineType, forKey: .machineType)
     try container.encode(self.acceleratorConfigs, forKey: .acceleratorConfigs)
     try container.encode(self.serviceAccounts, forKey: .serviceAccounts)
-    try container.encode(self.bootDisk, forKey: .bootDisk)
+    try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
     try container.encode(self.dataDisks, forKey: .dataDisks)
-    try container.encode(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
     try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
     try container.encode(self.disablePublicIp, forKey: .disablePublicIp)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.metadata, forKey: .metadata)
     try container.encode(self.enableIpForwarding, forKey: .enableIpForwarding)
-    try container.encode(self.gpuDriverConfig, forKey: .gpuDriverConfig)
+    try container.encodeIfPresent(self.gpuDriverConfig, forKey: .gpuDriverConfig)
 
     if let choice = self.image {
       switch choice {
@@ -168,6 +218,9 @@ public struct GceSetup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .containerImage(let value):
         try container.encode(value, forKey: .containerImage)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

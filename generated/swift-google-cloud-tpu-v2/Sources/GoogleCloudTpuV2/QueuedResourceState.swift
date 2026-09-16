@@ -34,6 +34,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Further data for the state.
   public var stateData: OneOf_StateData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueuedResourceState`.
   public init() {}
 
@@ -50,24 +52,47 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case state = "state"
-    case creatingData = "creatingData"
-    case acceptedData = "acceptedData"
-    case provisioningData = "provisioningData"
-    case failedData = "failedData"
-    case deletingData = "deletingData"
-    case activeData = "activeData"
-    case suspendingData = "suspendingData"
-    case suspendedData = "suspendedData"
-    case stateInitiator = "stateInitiator"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let creatingData = CodingKeys(stringValue: "creatingData")
+    static let acceptedData = CodingKeys(stringValue: "acceptedData")
+    static let provisioningData = CodingKeys(stringValue: "provisioningData")
+    static let failedData = CodingKeys(stringValue: "failedData")
+    static let deletingData = CodingKeys(stringValue: "deletingData")
+    static let activeData = CodingKeys(stringValue: "activeData")
+    static let suspendingData = CodingKeys(stringValue: "suspendingData")
+    static let suspendedData = CodingKeys(stringValue: "suspendedData")
+    static let stateInitiator = CodingKeys(stringValue: "stateInitiator")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "creatingData",
+      "acceptedData",
+      "provisioningData",
+      "failedData",
+      "deletingData",
+      "activeData",
+      "suspendingData",
+      "suspendedData",
+      "stateInitiator",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decode(QueuedResourceState.State.self, forKey: .state)
-    self.stateInitiator = try container.decode(
+    if let value = try container.decodeIfPresent(QueuedResourceState.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
       QueuedResourceState.StateInitiator.self, forKey: .stateInitiator)
+    {
+      self.stateInitiator = value
+    }
 
     var stateData: OneOf_StateData? = nil
     let stateDataCheckAndSet = {
@@ -120,6 +145,10 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try stateDataCheckAndSet(.suspendedData(suspendedData))
     }
     self.stateData = stateData
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -147,12 +176,17 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
         try container.encode(value, forKey: .suspendedData)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Further data for the creating state.
   public struct CreatingData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreatingData`.
     public init() {}
 
@@ -167,6 +201,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -184,6 +242,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct AcceptedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AcceptedData`.
     public init() {}
 
@@ -198,6 +258,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -215,6 +299,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct ProvisioningData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProvisioningData`.
     public init() {}
 
@@ -229,6 +315,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -250,6 +360,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// FAILED state.
     public var error: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FailedData`.
     public init() {}
 
@@ -264,6 +376,36 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let error = CodingKeys(stringValue: "error")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "error"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -281,6 +423,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct DeletingData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeletingData`.
     public init() {}
 
@@ -295,6 +439,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -312,6 +480,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct ActiveData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ActiveData`.
     public init() {}
 
@@ -326,6 +496,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -343,6 +537,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct SuspendingData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuspendingData`.
     public init() {}
 
@@ -357,6 +553,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -374,6 +594,8 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public struct SuspendedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SuspendedData`.
     public init() {}
 
@@ -388,6 +610,30 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -43,6 +43,8 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// be restored to, in format of JSON.
   public var details: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Restore`.
   public init() {}
 
@@ -57,6 +59,65 @@ public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let backup = CodingKeys(stringValue: "backup")
+    static let type = CodingKeys(stringValue: "type")
+    static let details = CodingKeys(stringValue: "details")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startTime",
+      "endTime",
+      "state",
+      "backup",
+      "type",
+      "details",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Restore.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backup) {
+      self.backup = value
+    }
+    if let value = try container.decodeIfPresent(Restore.RestoreType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+      self.details = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.backup, forKey: .backup)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.details, forKey: .details)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The current state of the restore.

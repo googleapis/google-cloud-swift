@@ -30,6 +30,8 @@ public struct AwsAccessRole: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This identity will be used to access the user's AWS IAM Role.
   public var identity: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsAccessRole`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct AwsAccessRole: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let iamRoleId = CodingKeys(stringValue: "iamRoleId")
+    static let identity = CodingKeys(stringValue: "identity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "iamRoleId",
+      "identity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamRoleId) {
+      self.iamRoleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identity) {
+      self.identity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.iamRoleId, forKey: .iamRoleId)
+    try container.encode(self.identity, forKey: .identity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

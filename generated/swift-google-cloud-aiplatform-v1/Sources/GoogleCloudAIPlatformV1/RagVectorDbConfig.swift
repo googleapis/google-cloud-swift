@@ -31,6 +31,8 @@
     /// The config for the Vector DB.
     public var vectorDb: OneOf_VectorDb? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagVectorDbConfig`.
     public init() {}
 
@@ -47,12 +49,25 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ragManagedDb = "ragManagedDb"
-      case pinecone = "pinecone"
-      case vertexVectorSearch = "vertexVectorSearch"
-      case apiAuth = "apiAuth"
-      case ragEmbeddingModelConfig = "ragEmbeddingModelConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ragManagedDb = CodingKeys(stringValue: "ragManagedDb")
+      static let pinecone = CodingKeys(stringValue: "pinecone")
+      static let vertexVectorSearch = CodingKeys(stringValue: "vertexVectorSearch")
+      static let apiAuth = CodingKeys(stringValue: "apiAuth")
+      static let ragEmbeddingModelConfig = CodingKeys(stringValue: "ragEmbeddingModelConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ragManagedDb",
+        "pinecone",
+        "vertexVectorSearch",
+        "apiAuth",
+        "ragEmbeddingModelConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -87,12 +102,16 @@
         try vectorDbCheckAndSet(.vertexVectorSearch(vertexVectorSearch))
       }
       self.vectorDb = vectorDb
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.apiAuth, forKey: .apiAuth)
-      try container.encode(self.ragEmbeddingModelConfig, forKey: .ragEmbeddingModelConfig)
+      try container.encodeIfPresent(self.apiAuth, forKey: .apiAuth)
+      try container.encodeIfPresent(self.ragEmbeddingModelConfig, forKey: .ragEmbeddingModelConfig)
 
       if let choice = self.vectorDb {
         switch choice {
@@ -104,6 +123,9 @@
           try container.encode(value, forKey: .vertexVectorSearch)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The config for the default RAG-managed Vector DB.
@@ -112,6 +134,8 @@
     {
       /// Choice of retrieval strategy.
       public var retrievalStrategy: OneOf_RetrievalStrategy? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `RagManagedDb`.
       public init() {}
@@ -129,9 +153,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case knn = "knn"
-        case ann = "ann"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let knn = CodingKeys(stringValue: "knn")
+        static let ann = CodingKeys(stringValue: "ann")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "knn",
+          "ann",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -158,6 +192,10 @@
           try retrievalStrategyCheckAndSet(.ann(ann))
         }
         self.retrievalStrategy = retrievalStrategy
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -171,12 +209,18 @@
             try container.encode(value, forKey: .ann)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Config for KNN search.
       public struct KNN: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `KNN`.
         public init() {}
 
@@ -191,6 +235,30 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let _knownKeys: Set<Swift.String> = []
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -231,6 +299,9 @@
         /// Default value is 500.
         public var leafCount: Swift.Int32 = Swift.Int32()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ANN`.
         public init() {}
 
@@ -245,6 +316,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let treeDepth = CodingKeys(stringValue: "treeDepth")
+          static let leafCount = CodingKeys(stringValue: "leafCount")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "treeDepth",
+            "leafCount",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .treeDepth) {
+            self.treeDepth = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .leafCount) {
+            self.leafCount = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.treeDepth, forKey: .treeDepth)
+          try container.encode(self.leafCount, forKey: .leafCount)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -287,6 +396,8 @@
       /// This value cannot be changed after it's set.
       public var indexName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Pinecone`.
       public init() {}
 
@@ -301,6 +412,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let indexName = CodingKeys(stringValue: "indexName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "indexName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexName) {
+          self.indexName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.indexName, forKey: .indexName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -328,6 +471,8 @@
       /// `projects/{project}/locations/{location}/indexes/{index}`
       public var index: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `VertexVectorSearch`.
       public init() {}
 
@@ -342,6 +487,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let indexEndpoint = CodingKeys(stringValue: "indexEndpoint")
+        static let index = CodingKeys(stringValue: "index")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "indexEndpoint",
+          "index",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
+          self.indexEndpoint = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .index) {
+          self.index = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.indexEndpoint, forKey: .indexEndpoint)
+        try container.encode(self.index, forKey: .index)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

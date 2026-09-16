@@ -28,6 +28,8 @@
     /// Value for the feature.
     public var value: OneOf_Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureValue`.
     public init() {}
 
@@ -44,18 +46,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case boolValue = "boolValue"
-      case doubleValue = "doubleValue"
-      case int64Value = "int64Value"
-      case stringValue = "stringValue"
-      case boolArrayValue = "boolArrayValue"
-      case doubleArrayValue = "doubleArrayValue"
-      case int64ArrayValue = "int64ArrayValue"
-      case stringArrayValue = "stringArrayValue"
-      case bytesValue = "bytesValue"
-      case structValue = "structValue"
-      case metadata = "metadata"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let boolValue = CodingKeys(stringValue: "boolValue")
+      static let doubleValue = CodingKeys(stringValue: "doubleValue")
+      static let int64Value = CodingKeys(stringValue: "int64Value")
+      static let stringValue = CodingKeys(stringValue: "stringValue")
+      static let boolArrayValue = CodingKeys(stringValue: "boolArrayValue")
+      static let doubleArrayValue = CodingKeys(stringValue: "doubleArrayValue")
+      static let int64ArrayValue = CodingKeys(stringValue: "int64ArrayValue")
+      static let stringArrayValue = CodingKeys(stringValue: "stringArrayValue")
+      static let bytesValue = CodingKeys(stringValue: "bytesValue")
+      static let structValue = CodingKeys(stringValue: "structValue")
+      static let metadata = CodingKeys(stringValue: "metadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "boolValue",
+        "doubleValue",
+        "int64Value",
+        "stringValue",
+        "boolArrayValue",
+        "doubleArrayValue",
+        "int64ArrayValue",
+        "stringArrayValue",
+        "bytesValue",
+        "structValue",
+        "metadata",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -111,11 +132,15 @@
         try valueCheckAndSet(.structValue(structValue))
       }
       self.value = value
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.metadata, forKey: .metadata)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
 
       if let choice = self.value {
         switch choice {
@@ -141,6 +166,9 @@
           try container.encode(value, forKey: .structValue)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Metadata of feature value.
@@ -157,6 +185,8 @@
       /// (366 days) in the future.
       public var generateTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Metadata`.
       public init() {}
 
@@ -171,6 +201,37 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let generateTime = CodingKeys(stringValue: "generateTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "generateTime"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.generateTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .generateTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.generateTime, forKey: .generateTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

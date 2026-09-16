@@ -41,6 +41,8 @@
     /// Optional. The resource view to apply to the returned intent.
     public var intentView: IntentView = IntentView()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UpdateIntentRequest`.
     public init() {}
 
@@ -55,6 +57,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intent = CodingKeys(stringValue: "intent")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let updateMask = CodingKeys(stringValue: "updateMask")
+      static let intentView = CodingKeys(stringValue: "intentView")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intent",
+        "languageCode",
+        "updateMask",
+        "intentView",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      self.updateMask = try container.decodeIfPresent(
+        GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+      if let value = try container.decodeIfPresent(IntentView.self, forKey: .intentView) {
+        self.intentView = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+      try container.encode(self.intentView, forKey: .intentView)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -401,6 +401,8 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWKT._AnyPacka
   ///     - query by a given key's existence. Example: `sccSecurityMarks.foo:*`
   public var sccSecurityMarks: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceSearchResult`.
   public init() {}
 
@@ -415,6 +417,208 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let assetType = CodingKeys(stringValue: "assetType")
+    static let project = CodingKeys(stringValue: "project")
+    static let folders = CodingKeys(stringValue: "folders")
+    static let organization = CodingKeys(stringValue: "organization")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let location = CodingKeys(stringValue: "location")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let networkTags = CodingKeys(stringValue: "networkTags")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let kmsKeys = CodingKeys(stringValue: "kmsKeys")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let additionalAttributes = CodingKeys(stringValue: "additionalAttributes")
+    static let parentFullResourceName = CodingKeys(stringValue: "parentFullResourceName")
+    static let versionedResources = CodingKeys(stringValue: "versionedResources")
+    static let attachedResources = CodingKeys(stringValue: "attachedResources")
+    static let relationships = CodingKeys(stringValue: "relationships")
+    static let tagKeys = CodingKeys(stringValue: "tagKeys")
+    static let tagValues = CodingKeys(stringValue: "tagValues")
+    static let tagValueIds = CodingKeys(stringValue: "tagValueIds")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let effectiveTags = CodingKeys(stringValue: "effectiveTags")
+    static let enrichments = CodingKeys(stringValue: "enrichments")
+    static let parentAssetType = CodingKeys(stringValue: "parentAssetType")
+    static let sccSecurityMarks = CodingKeys(stringValue: "sccSecurityMarks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "assetType",
+      "project",
+      "folders",
+      "organization",
+      "displayName",
+      "description",
+      "location",
+      "labels",
+      "networkTags",
+      "kmsKey",
+      "kmsKeys",
+      "createTime",
+      "updateTime",
+      "state",
+      "additionalAttributes",
+      "parentFullResourceName",
+      "versionedResources",
+      "attachedResources",
+      "relationships",
+      "tagKeys",
+      "tagValues",
+      "tagValueIds",
+      "tags",
+      "effectiveTags",
+      "enrichments",
+      "parentAssetType",
+      "sccSecurityMarks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetType) {
+      self.assetType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .folders) {
+      self.folders = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+      self.networkTags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kmsKeys) {
+      self.kmsKeys = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .state) {
+      self.state = value
+    }
+    self.additionalAttributes = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .additionalAttributes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentFullResourceName)
+    {
+      self.parentFullResourceName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [VersionedResource].self, forKey: .versionedResources)
+    {
+      self.versionedResources = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AttachedResource].self, forKey: .attachedResources)
+    {
+      self.attachedResources = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: RelatedResources].self, forKey: .relationships)
+    {
+      self.relationships = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagKeys) {
+      self.tagKeys = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagValues) {
+      self.tagValues = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagValueIds) {
+      self.tagValueIds = value
+    }
+    if let value = try container.decodeIfPresent([Tag].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent([EffectiveTagDetails].self, forKey: .effectiveTags)
+    {
+      self.effectiveTags = value
+    }
+    if let value = try container.decodeIfPresent([AssetEnrichment].self, forKey: .enrichments) {
+      self.enrichments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentAssetType) {
+      self.parentAssetType = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .sccSecurityMarks)
+    {
+      self.sccSecurityMarks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.assetType, forKey: .assetType)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.folders, forKey: .folders)
+    try container.encode(self.organization, forKey: .organization)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.networkTags, forKey: .networkTags)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.kmsKeys, forKey: .kmsKeys)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.additionalAttributes, forKey: .additionalAttributes)
+    try container.encode(self.parentFullResourceName, forKey: .parentFullResourceName)
+    try container.encode(self.versionedResources, forKey: .versionedResources)
+    try container.encode(self.attachedResources, forKey: .attachedResources)
+    try container.encode(self.relationships, forKey: .relationships)
+    try container.encode(self.tagKeys, forKey: .tagKeys)
+    try container.encode(self.tagValues, forKey: .tagValues)
+    try container.encode(self.tagValueIds, forKey: .tagValueIds)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.effectiveTags, forKey: .effectiveTags)
+    try container.encode(self.enrichments, forKey: .enrichments)
+    try container.encode(self.parentAssetType, forKey: .parentAssetType)
+    try container.encode(self.sccSecurityMarks, forKey: .sccSecurityMarks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

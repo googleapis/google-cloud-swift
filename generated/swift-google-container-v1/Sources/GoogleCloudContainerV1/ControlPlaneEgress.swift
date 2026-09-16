@@ -25,6 +25,8 @@ public struct ControlPlaneEgress: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Defines the mode of control plane egress.
   public var mode: ControlPlaneEgress.Mode = ControlPlaneEgress.Mode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ControlPlaneEgress`.
   public init() {}
 
@@ -39,6 +41,38 @@ public struct ControlPlaneEgress: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mode = CodingKeys(stringValue: "mode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mode"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ControlPlaneEgress.Mode.self, forKey: .mode) {
+      self.mode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.mode, forKey: .mode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Mode defines the mode of control plane egress.

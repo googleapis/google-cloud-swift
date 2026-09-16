@@ -27,6 +27,8 @@ public struct ConversationLevelSentiment: Codable, Equatable, GoogleCloudWKT._An
   /// Data specifying sentiment.
   public var sentimentData: SentimentData? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationLevelSentiment`.
   public init() {}
 
@@ -41,6 +43,42 @@ public struct ConversationLevelSentiment: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let channelTag = CodingKeys(stringValue: "channelTag")
+    static let sentimentData = CodingKeys(stringValue: "sentimentData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "channelTag",
+      "sentimentData",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .channelTag) {
+      self.channelTag = value
+    }
+    self.sentimentData = try container.decodeIfPresent(SentimentData.self, forKey: .sentimentData)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.channelTag, forKey: .channelTag)
+    try container.encodeIfPresent(self.sentimentData, forKey: .sentimentData)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

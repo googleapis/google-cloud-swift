@@ -52,6 +52,8 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If this is set, it must match the value in the `access_type` field.
   public var accessConfig: OneOf_AccessConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Server`.
   public init() {}
 
@@ -68,34 +70,67 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case externalConfig = "externalConfig"
-    case internalConfig = "internalConfig"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case displayName = "displayName"
-    case accessType = "accessType"
-    case state = "state"
-    case googleManagedServerCredential = "googleManagedServerCredential"
-    case serviceAgent = "serviceAgent"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let externalConfig = CodingKeys(stringValue: "externalConfig")
+    static let internalConfig = CodingKeys(stringValue: "internalConfig")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let accessType = CodingKeys(stringValue: "accessType")
+    static let state = CodingKeys(stringValue: "state")
+    static let googleManagedServerCredential = CodingKeys(
+      stringValue: "googleManagedServerCredential")
+    static let serviceAgent = CodingKeys(stringValue: "serviceAgent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "externalConfig",
+      "internalConfig",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "accessType",
+      "state",
+      "googleManagedServerCredential",
+      "serviceAgent",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.accessType = try container.decode(Server.AccessType.self, forKey: .accessType)
-    self.state = try container.decode(Server.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Server.AccessType.self, forKey: .accessType) {
+      self.accessType = value
+    }
+    if let value = try container.decodeIfPresent(Server.State.self, forKey: .state) {
+      self.state = value
+    }
     self.googleManagedServerCredential = try container.decodeIfPresent(
       ServerCredential.self, forKey: .googleManagedServerCredential)
-    self.serviceAgent = try container.decode(Swift.String.self, forKey: .serviceAgent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAgent) {
+      self.serviceAgent = value
+    }
 
     var accessConfig: OneOf_AccessConfig? = nil
     let accessConfigCheckAndSet = {
@@ -118,18 +153,23 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try accessConfigCheckAndSet(.internalConfig(internalConfig))
     }
     self.accessConfig = accessConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.accessType, forKey: .accessType)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.googleManagedServerCredential, forKey: .googleManagedServerCredential)
+    try container.encodeIfPresent(
+      self.googleManagedServerCredential, forKey: .googleManagedServerCredential)
     try container.encode(self.serviceAgent, forKey: .serviceAgent)
 
     if let choice = self.accessConfig {
@@ -139,6 +179,9 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .internalConfig(let value):
         try container.encode(value, forKey: .internalConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -51,6 +51,8 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Operator option.
   public var operatorOption: AnalyzerDefinition.OperatorOption? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzerDefinition`.
   public init() {}
 
@@ -67,25 +69,55 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case analyzer = "analyzer"
-    case `operator` = "operator"
-    case inputs = "inputs"
-    case attrs = "attrs"
-    case debugOptions = "debugOptions"
-    case operatorOption = "operatorOption"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let analyzer = CodingKeys(stringValue: "analyzer")
+    static let `operator` = CodingKeys(stringValue: "operator")
+    static let inputs = CodingKeys(stringValue: "inputs")
+    static let attrs = CodingKeys(stringValue: "attrs")
+    static let debugOptions = CodingKeys(stringValue: "debugOptions")
+    static let operatorOption = CodingKeys(stringValue: "operatorOption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "analyzer",
+      "operator",
+      "inputs",
+      "attrs",
+      "debugOptions",
+      "operatorOption",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.analyzer = try container.decode(Swift.String.self, forKey: .analyzer)
-    self.`operator` = try container.decode(Swift.String.self, forKey: .`operator`)
-    self.inputs = try container.decode([AnalyzerDefinition.StreamInput].self, forKey: .inputs)
-    self.attrs = try container.decode([Swift.String: AttributeValue].self, forKey: .attrs)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .analyzer) {
+      self.analyzer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`operator`) {
+      self.`operator` = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AnalyzerDefinition.StreamInput].self, forKey: .inputs)
+    {
+      self.inputs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AttributeValue].self, forKey: .attrs)
+    {
+      self.attrs = value
+    }
     self.debugOptions = try container.decodeIfPresent(
       AnalyzerDefinition.DebugOptions.self, forKey: .debugOptions)
     self.operatorOption = try container.decodeIfPresent(
       AnalyzerDefinition.OperatorOption.self, forKey: .operatorOption)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,8 +126,11 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.`operator`, forKey: .`operator`)
     try container.encode(self.inputs, forKey: .inputs)
     try container.encode(self.attrs, forKey: .attrs)
-    try container.encode(self.debugOptions, forKey: .debugOptions)
-    try container.encode(self.operatorOption, forKey: .operatorOption)
+    try container.encodeIfPresent(self.debugOptions, forKey: .debugOptions)
+    try container.encodeIfPresent(self.operatorOption, forKey: .operatorOption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The inputs to this analyzer.
@@ -122,6 +157,8 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// The name of the stream input (as discussed above).
     public var input: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamInput`.
     public init() {}
 
@@ -136,6 +173,38 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let input = CodingKeys(stringValue: "input")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "input"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .input) {
+        self.input = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.input, forKey: .input)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -156,6 +225,8 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Environment variables.
     public var environmentVariables: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DebugOptions`.
     public init() {}
 
@@ -170,6 +241,40 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let environmentVariables = CodingKeys(stringValue: "environmentVariables")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "environmentVariables"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .environmentVariables)
+      {
+        self.environmentVariables = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.environmentVariables, forKey: .environmentVariables)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -193,6 +298,8 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Registry of the operator. e.g. public, dev.
     public var registry: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OperatorOption`.
     public init() {}
 
@@ -207,6 +314,44 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tag = CodingKeys(stringValue: "tag")
+      static let registry = CodingKeys(stringValue: "registry")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tag",
+        "registry",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+        self.tag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .registry) {
+        self.registry = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tag, forKey: .tag)
+      try container.encode(self.registry, forKey: .registry)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

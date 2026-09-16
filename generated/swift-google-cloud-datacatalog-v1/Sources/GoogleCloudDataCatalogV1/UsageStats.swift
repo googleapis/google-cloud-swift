@@ -42,6 +42,8 @@ public struct UsageStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Total time spent only on successful uses, in milliseconds.
   public var totalExecutionTimeForCompletionsMillis: Swift.Float = Swift.Float()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UsageStats`.
   public init() {}
 
@@ -56,6 +58,60 @@ public struct UsageStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let totalCompletions = CodingKeys(stringValue: "totalCompletions")
+    static let totalFailures = CodingKeys(stringValue: "totalFailures")
+    static let totalCancellations = CodingKeys(stringValue: "totalCancellations")
+    static let totalExecutionTimeForCompletionsMillis = CodingKeys(
+      stringValue: "totalExecutionTimeForCompletionsMillis")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "totalCompletions",
+      "totalFailures",
+      "totalCancellations",
+      "totalExecutionTimeForCompletionsMillis",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .totalCompletions) {
+      self.totalCompletions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .totalFailures) {
+      self.totalFailures = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .totalCancellations) {
+      self.totalCancellations = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .totalExecutionTimeForCompletionsMillis)
+    {
+      self.totalExecutionTimeForCompletionsMillis = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.totalCompletions, forKey: .totalCompletions)
+    try container.encode(self.totalFailures, forKey: .totalFailures)
+    try container.encode(self.totalCancellations, forKey: .totalCancellations)
+    try container.encode(
+      self.totalExecutionTimeForCompletionsMillis, forKey: .totalExecutionTimeForCompletionsMillis)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -23,6 +23,8 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
 {
   public var streamingRequest: OneOf_StreamingRequest? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IngestAssetRequest`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case config = "config"
-    case timeIndexedData = "timeIndexedData"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let config = CodingKeys(stringValue: "config")
+    static let timeIndexedData = CodingKeys(stringValue: "timeIndexedData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "config",
+      "timeIndexedData",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try streamingRequestCheckAndSet(.timeIndexedData(timeIndexedData))
     }
     self.streamingRequest = streamingRequest
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .timeIndexedData)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration for the data.
@@ -91,6 +110,8 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public var asset: Swift.String = Swift.String()
 
     public var dataType: OneOf_DataType? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Config`.
     public init() {}
@@ -108,14 +129,26 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case videoType = "videoType"
-      case asset = "asset"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let videoType = CodingKeys(stringValue: "videoType")
+      static let asset = CodingKeys(stringValue: "asset")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "videoType",
+        "asset",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.asset = try container.decode(Swift.String.self, forKey: .asset)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
+        self.asset = value
+      }
 
       var dataType: OneOf_DataType? = nil
       let dataTypeCheckAndSet = {
@@ -133,6 +166,10 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try dataTypeCheckAndSet(.videoType(videoType))
       }
       self.dataType = dataType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -145,6 +182,9 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
           try container.encode(value, forKey: .videoType)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Type information for video data.
@@ -154,6 +194,8 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       /// Container format of the video data.
       public var containerFormat: IngestAssetRequest.Config.VideoType.ContainerFormat =
         IngestAssetRequest.Config.VideoType.ContainerFormat()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `VideoType`.
       public init() {}
@@ -169,6 +211,40 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let containerFormat = CodingKeys(stringValue: "containerFormat")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "containerFormat"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          IngestAssetRequest.Config.VideoType.ContainerFormat.self, forKey: .containerFormat)
+        {
+          self.containerFormat = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.containerFormat, forKey: .containerFormat)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Container format of the video.
@@ -306,6 +382,8 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Time range of the data.
     public var temporalPartition: Partition.TemporalPartition? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimeIndexedData`.
     public init() {}
 
@@ -320,6 +398,43 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let data = CodingKeys(stringValue: "data")
+      static let temporalPartition = CodingKeys(stringValue: "temporalPartition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "data",
+        "temporalPartition",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
+        self.data = value
+      }
+      self.temporalPartition = try container.decodeIfPresent(
+        Partition.TemporalPartition.self, forKey: .temporalPartition)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.data, forKey: .data)
+      try container.encodeIfPresent(self.temporalPartition, forKey: .temporalPartition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

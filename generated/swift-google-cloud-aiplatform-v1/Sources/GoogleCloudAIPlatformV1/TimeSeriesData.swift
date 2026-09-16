@@ -33,6 +33,8 @@
     /// Required. Data points in this time series.
     public var values: [TimeSeriesDataPoint] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimeSeriesData`.
     public init() {}
 
@@ -47,6 +49,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tensorboardTimeSeriesId = CodingKeys(stringValue: "tensorboardTimeSeriesId")
+      static let valueType = CodingKeys(stringValue: "valueType")
+      static let values = CodingKeys(stringValue: "values")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tensorboardTimeSeriesId",
+        "valueType",
+        "values",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .tensorboardTimeSeriesId)
+      {
+        self.tensorboardTimeSeriesId = value
+      }
+      if let value = try container.decodeIfPresent(
+        TensorboardTimeSeries.ValueType.self, forKey: .valueType)
+      {
+        self.valueType = value
+      }
+      if let value = try container.decodeIfPresent([TimeSeriesDataPoint].self, forKey: .values) {
+        self.values = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tensorboardTimeSeriesId, forKey: .tensorboardTimeSeriesId)
+      try container.encode(self.valueType, forKey: .valueType)
+      try container.encode(self.values, forKey: .values)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

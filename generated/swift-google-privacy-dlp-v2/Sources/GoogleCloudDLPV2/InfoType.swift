@@ -37,6 +37,8 @@ public struct InfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This only applies to data profiling.
   public var sensitivityScore: SensitivityScore? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InfoType`.
   public init() {}
 
@@ -51,6 +53,49 @@ public struct InfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let version = CodingKeys(stringValue: "version")
+    static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "version",
+      "sensitivityScore",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    self.sensitivityScore = try container.decodeIfPresent(
+      SensitivityScore.self, forKey: .sensitivityScore)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

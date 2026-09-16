@@ -56,6 +56,8 @@
     /// The destination to export.
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportEntityTypesRequest`.
     public init() {}
 
@@ -72,22 +74,45 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case entityTypes = "entityTypes"
-      case entityTypesUri = "entityTypesUri"
-      case entityTypesContentInline = "entityTypesContentInline"
-      case dataFormat = "dataFormat"
-      case languageCode = "languageCode"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let entityTypes = CodingKeys(stringValue: "entityTypes")
+      static let entityTypesUri = CodingKeys(stringValue: "entityTypesUri")
+      static let entityTypesContentInline = CodingKeys(stringValue: "entityTypesContentInline")
+      static let dataFormat = CodingKeys(stringValue: "dataFormat")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "entityTypes",
+        "entityTypesUri",
+        "entityTypesContentInline",
+        "dataFormat",
+        "languageCode",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.entityTypes = try container.decode([Swift.String].self, forKey: .entityTypes)
-      self.dataFormat = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entityTypes) {
+        self.entityTypes = value
+      }
+      if let value = try container.decodeIfPresent(
         ExportEntityTypesRequest.DataFormat.self, forKey: .dataFormat)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+      {
+        self.dataFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
 
       var destination: OneOf_Destination? = nil
       let destinationCheckAndSet = {
@@ -110,6 +135,10 @@
         try destinationCheckAndSet(.entityTypesContentInline(entityTypesContentInline))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -126,6 +155,9 @@
         case .entityTypesContentInline(let value):
           try container.encode(value, forKey: .entityTypesContentInline)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

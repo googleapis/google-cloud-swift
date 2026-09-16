@@ -32,6 +32,8 @@
     /// Size, in GiB, of provisioned write-optimized capacity for this Exapool
     public var writeOptimized: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StoragePoolExapoolProvisionedCapacityGb`.
     public init() {}
 
@@ -46,6 +48,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let capacityOptimized = CodingKeys(stringValue: "capacityOptimized")
+      static let readOptimized = CodingKeys(stringValue: "readOptimized")
+      static let writeOptimized = CodingKeys(stringValue: "writeOptimized")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "capacityOptimized",
+        "readOptimized",
+        "writeOptimized",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.capacityOptimized = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .capacityOptimized)
+      self.readOptimized = try container.decodeIfPresent(Swift.Int64.self, forKey: .readOptimized)
+      self.writeOptimized = try container.decodeIfPresent(Swift.Int64.self, forKey: .writeOptimized)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.capacityOptimized, forKey: .capacityOptimized)
+      try container.encodeIfPresent(self.readOptimized, forKey: .readOptimized)
+      try container.encodeIfPresent(self.writeOptimized, forKey: .writeOptimized)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

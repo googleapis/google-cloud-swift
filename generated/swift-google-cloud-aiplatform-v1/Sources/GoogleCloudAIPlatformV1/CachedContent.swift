@@ -69,6 +69,8 @@
     /// Expiration time of the cached content.
     public var expiration: OneOf_Expiration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CachedContent`.
     public init() {}
 
@@ -85,31 +87,62 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case expireTime = "expireTime"
-      case ttl = "ttl"
-      case name = "name"
-      case displayName = "displayName"
-      case model = "model"
-      case systemInstruction = "systemInstruction"
-      case contents = "contents"
-      case tools = "tools"
-      case toolConfig = "toolConfig"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case usageMetadata = "usageMetadata"
-      case encryptionSpec = "encryptionSpec"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let expireTime = CodingKeys(stringValue: "expireTime")
+      static let ttl = CodingKeys(stringValue: "ttl")
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let model = CodingKeys(stringValue: "model")
+      static let systemInstruction = CodingKeys(stringValue: "systemInstruction")
+      static let contents = CodingKeys(stringValue: "contents")
+      static let tools = CodingKeys(stringValue: "tools")
+      static let toolConfig = CodingKeys(stringValue: "toolConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let usageMetadata = CodingKeys(stringValue: "usageMetadata")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "expireTime",
+        "ttl",
+        "name",
+        "displayName",
+        "model",
+        "systemInstruction",
+        "contents",
+        "tools",
+        "toolConfig",
+        "createTime",
+        "updateTime",
+        "usageMetadata",
+        "encryptionSpec",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.model = try container.decode(Swift.String.self, forKey: .model)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
       self.systemInstruction = try container.decodeIfPresent(
         Content.self, forKey: .systemInstruction)
-      self.contents = try container.decode([Content].self, forKey: .contents)
-      self.tools = try container.decode([Tool].self, forKey: .tools)
+      if let value = try container.decodeIfPresent([Content].self, forKey: .contents) {
+        self.contents = value
+      }
+      if let value = try container.decodeIfPresent([Tool].self, forKey: .tools) {
+        self.tools = value
+      }
       self.toolConfig = try container.decodeIfPresent(ToolConfig.self, forKey: .toolConfig)
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
@@ -139,6 +172,10 @@
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -146,14 +183,14 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.model, forKey: .model)
-      try container.encode(self.systemInstruction, forKey: .systemInstruction)
+      try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
       try container.encode(self.contents, forKey: .contents)
       try container.encode(self.tools, forKey: .tools)
-      try container.encode(self.toolConfig, forKey: .toolConfig)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
-      try container.encode(self.usageMetadata, forKey: .usageMetadata)
-      try container.encode(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.toolConfig, forKey: .toolConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.usageMetadata, forKey: .usageMetadata)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
 
       if let choice = self.expiration {
         switch choice {
@@ -162,6 +199,9 @@
         case .ttl(let value):
           try container.encode(value, forKey: .ttl)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -184,6 +224,8 @@
       /// Duration of audio in seconds.
       public var audioDurationSeconds: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `UsageMetadata`.
       public init() {}
 
@@ -198,6 +240,66 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let totalTokenCount = CodingKeys(stringValue: "totalTokenCount")
+        static let textCount = CodingKeys(stringValue: "textCount")
+        static let imageCount = CodingKeys(stringValue: "imageCount")
+        static let videoDurationSeconds = CodingKeys(stringValue: "videoDurationSeconds")
+        static let audioDurationSeconds = CodingKeys(stringValue: "audioDurationSeconds")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "totalTokenCount",
+          "textCount",
+          "imageCount",
+          "videoDurationSeconds",
+          "audioDurationSeconds",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokenCount) {
+          self.totalTokenCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .textCount) {
+          self.textCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .imageCount) {
+          self.imageCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .videoDurationSeconds)
+        {
+          self.videoDurationSeconds = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .audioDurationSeconds)
+        {
+          self.audioDurationSeconds = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.totalTokenCount, forKey: .totalTokenCount)
+        try container.encode(self.textCount, forKey: .textCount)
+        try container.encode(self.imageCount, forKey: .imageCount)
+        try container.encode(self.videoDurationSeconds, forKey: .videoDurationSeconds)
+        try container.encode(self.audioDurationSeconds, forKey: .audioDurationSeconds)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

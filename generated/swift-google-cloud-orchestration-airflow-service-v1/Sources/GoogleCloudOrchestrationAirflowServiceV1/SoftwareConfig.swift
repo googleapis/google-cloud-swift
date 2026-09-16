@@ -126,6 +126,8 @@ public struct SoftwareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var webServerPluginsMode: SoftwareConfig.WebServerPluginsMode =
     SoftwareConfig.WebServerPluginsMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SoftwareConfig`.
   public init() {}
 
@@ -140,6 +142,88 @@ public struct SoftwareConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let imageVersion = CodingKeys(stringValue: "imageVersion")
+    static let airflowConfigOverrides = CodingKeys(stringValue: "airflowConfigOverrides")
+    static let pypiPackages = CodingKeys(stringValue: "pypiPackages")
+    static let envVariables = CodingKeys(stringValue: "envVariables")
+    static let pythonVersion = CodingKeys(stringValue: "pythonVersion")
+    static let schedulerCount = CodingKeys(stringValue: "schedulerCount")
+    static let cloudDataLineageIntegration = CodingKeys(stringValue: "cloudDataLineageIntegration")
+    static let webServerPluginsMode = CodingKeys(stringValue: "webServerPluginsMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "imageVersion",
+      "airflowConfigOverrides",
+      "pypiPackages",
+      "envVariables",
+      "pythonVersion",
+      "schedulerCount",
+      "cloudDataLineageIntegration",
+      "webServerPluginsMode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageVersion) {
+      self.imageVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .airflowConfigOverrides)
+    {
+      self.airflowConfigOverrides = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .pypiPackages)
+    {
+      self.pypiPackages = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .envVariables)
+    {
+      self.envVariables = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pythonVersion) {
+      self.pythonVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .schedulerCount) {
+      self.schedulerCount = value
+    }
+    self.cloudDataLineageIntegration = try container.decodeIfPresent(
+      CloudDataLineageIntegration.self, forKey: .cloudDataLineageIntegration)
+    if let value = try container.decodeIfPresent(
+      SoftwareConfig.WebServerPluginsMode.self, forKey: .webServerPluginsMode)
+    {
+      self.webServerPluginsMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.imageVersion, forKey: .imageVersion)
+    try container.encode(self.airflowConfigOverrides, forKey: .airflowConfigOverrides)
+    try container.encode(self.pypiPackages, forKey: .pypiPackages)
+    try container.encode(self.envVariables, forKey: .envVariables)
+    try container.encode(self.pythonVersion, forKey: .pythonVersion)
+    try container.encode(self.schedulerCount, forKey: .schedulerCount)
+    try container.encodeIfPresent(
+      self.cloudDataLineageIntegration, forKey: .cloudDataLineageIntegration)
+    try container.encode(self.webServerPluginsMode, forKey: .webServerPluginsMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Web server plugins mode of the Cloud Composer environment.

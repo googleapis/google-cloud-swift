@@ -38,6 +38,8 @@ public struct TemporalAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Currently this is only set for responses in Real-Time Feed.
   public var priorAsset: Asset? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TemporalAsset`.
   public init() {}
 
@@ -52,6 +54,58 @@ public struct TemporalAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let window = CodingKeys(stringValue: "window")
+    static let deleted = CodingKeys(stringValue: "deleted")
+    static let asset = CodingKeys(stringValue: "asset")
+    static let priorAssetState = CodingKeys(stringValue: "priorAssetState")
+    static let priorAsset = CodingKeys(stringValue: "priorAsset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "window",
+      "deleted",
+      "asset",
+      "priorAssetState",
+      "priorAsset",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.window = try container.decodeIfPresent(TimeWindow.self, forKey: .window)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deleted) {
+      self.deleted = value
+    }
+    self.asset = try container.decodeIfPresent(Asset.self, forKey: .asset)
+    if let value = try container.decodeIfPresent(
+      TemporalAsset.PriorAssetState.self, forKey: .priorAssetState)
+    {
+      self.priorAssetState = value
+    }
+    self.priorAsset = try container.decodeIfPresent(Asset.self, forKey: .priorAsset)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.window, forKey: .window)
+    try container.encode(self.deleted, forKey: .deleted)
+    try container.encodeIfPresent(self.asset, forKey: .asset)
+    try container.encode(self.priorAssetState, forKey: .priorAssetState)
+    try container.encodeIfPresent(self.priorAsset, forKey: .priorAsset)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of prior asset.

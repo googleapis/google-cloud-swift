@@ -61,6 +61,8 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// are ignored.
   public var vms: [VmUtilizationInfo] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UtilizationReport`.
   public init() {}
 
@@ -75,6 +77,89 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateTime = CodingKeys(stringValue: "stateTime")
+    static let error = CodingKeys(stringValue: "error")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let timeFrame = CodingKeys(stringValue: "timeFrame")
+    static let frameEndTime = CodingKeys(stringValue: "frameEndTime")
+    static let vmCount = CodingKeys(stringValue: "vmCount")
+    static let vms = CodingKeys(stringValue: "vms")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "state",
+      "stateTime",
+      "error",
+      "createTime",
+      "timeFrame",
+      "frameEndTime",
+      "vmCount",
+      "vms",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(UtilizationReport.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.stateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(
+      UtilizationReport.TimeFrame.self, forKey: .timeFrame)
+    {
+      self.timeFrame = value
+    }
+    self.frameEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .frameEndTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount) {
+      self.vmCount = value
+    }
+    if let value = try container.decodeIfPresent([VmUtilizationInfo].self, forKey: .vms) {
+      self.vms = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.timeFrame, forKey: .timeFrame)
+    try container.encodeIfPresent(self.frameEndTime, forKey: .frameEndTime)
+    try container.encode(self.vmCount, forKey: .vmCount)
+    try container.encode(self.vms, forKey: .vms)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Utilization report state.

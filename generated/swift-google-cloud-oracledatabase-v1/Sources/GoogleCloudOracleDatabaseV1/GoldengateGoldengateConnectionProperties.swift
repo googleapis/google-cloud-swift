@@ -44,6 +44,8 @@ public struct GoldengateGoldengateConnectionProperties: Codable, Equatable, Goog
   /// connection.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateGoldengateConnectionProperties`.
   public init() {}
 
@@ -60,24 +62,49 @@ public struct GoldengateGoldengateConnectionProperties: Codable, Equatable, Goog
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case goldengateDeploymentId = "goldengateDeploymentId"
-    case host = "host"
-    case port = "port"
-    case username = "username"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let goldengateDeploymentId = CodingKeys(stringValue: "goldengateDeploymentId")
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let username = CodingKeys(stringValue: "username")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "goldengateDeploymentId",
+      "host",
+      "port",
+      "username",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.goldengateDeploymentId = try container.decode(
-      Swift.String.self, forKey: .goldengateDeploymentId)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .goldengateDeploymentId)
+    {
+      self.goldengateDeploymentId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -98,6 +125,10 @@ public struct GoldengateGoldengateConnectionProperties: Codable, Equatable, Goog
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +146,9 @@ public struct GoldengateGoldengateConnectionProperties: Codable, Equatable, Goog
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

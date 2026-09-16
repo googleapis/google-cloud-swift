@@ -26,6 +26,8 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
   public var detectionExclusionDetectorActivities:
     [DetectionExclusionActivity.DetectionExclusionDetectorActivity] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DetectionExclusionActivity`.
   public init() {}
 
@@ -40,6 +42,43 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let detectionExclusionDetectorActivities = CodingKeys(
+      stringValue: "detectionExclusionDetectorActivities")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "detectionExclusionDetectorActivities"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [DetectionExclusionActivity.DetectionExclusionDetectorActivity].self,
+      forKey: .detectionExclusionDetectorActivities)
+    {
+      self.detectionExclusionDetectorActivities = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.detectionExclusionDetectorActivities, forKey: .detectionExclusionDetectorActivities)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The activity for a findings refinement that is a detection exclusion broken
@@ -57,6 +96,8 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
 
     public var detectorName: OneOf_DetectorName? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DetectionExclusionDetectorActivity`.
     public init() {}
 
@@ -73,21 +114,39 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case curatedRule = "curatedRule"
-      case curatedRuleSet = "curatedRuleSet"
-      case rule = "rule"
-      case deletedCuratedRuleSet = "deletedCuratedRuleSet"
-      case excludedDetectionCount = "excludedDetectionCount"
-      case totalDetectionCount = "totalDetectionCount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let curatedRule = CodingKeys(stringValue: "curatedRule")
+      static let curatedRuleSet = CodingKeys(stringValue: "curatedRuleSet")
+      static let rule = CodingKeys(stringValue: "rule")
+      static let deletedCuratedRuleSet = CodingKeys(stringValue: "deletedCuratedRuleSet")
+      static let excludedDetectionCount = CodingKeys(stringValue: "excludedDetectionCount")
+      static let totalDetectionCount = CodingKeys(stringValue: "totalDetectionCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "curatedRule",
+        "curatedRuleSet",
+        "rule",
+        "deletedCuratedRuleSet",
+        "excludedDetectionCount",
+        "totalDetectionCount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.excludedDetectionCount = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .excludedDetectionCount)
-      self.totalDetectionCount = try container.decode(
-        Swift.Int64.self, forKey: .totalDetectionCount)
+      {
+        self.excludedDetectionCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalDetectionCount) {
+        self.totalDetectionCount = value
+      }
 
       var detectorName: OneOf_DetectorName? = nil
       let detectorNameCheckAndSet = {
@@ -116,6 +175,10 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
         try detectorNameCheckAndSet(.deletedCuratedRuleSet(deletedCuratedRuleSet))
       }
       self.detectorName = detectorName
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,6 +197,9 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleCloudWKT._An
         case .deletedCuratedRuleSet(let value):
           try container.encode(value, forKey: .deletedCuratedRuleSet)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

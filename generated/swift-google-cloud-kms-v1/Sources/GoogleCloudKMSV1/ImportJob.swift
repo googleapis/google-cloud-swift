@@ -160,6 +160,8 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
   public var cryptoKeyBackend: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportJob`.
   public init() {}
 
@@ -174,6 +176,101 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let importMethod = CodingKeys(stringValue: "importMethod")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let generateTime = CodingKeys(stringValue: "generateTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let expireEventTime = CodingKeys(stringValue: "expireEventTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let publicKeyFormat = CodingKeys(stringValue: "publicKeyFormat")
+    static let attestation = CodingKeys(stringValue: "attestation")
+    static let cryptoKeyBackend = CodingKeys(stringValue: "cryptoKeyBackend")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "importMethod",
+      "protectionLevel",
+      "createTime",
+      "generateTime",
+      "expireTime",
+      "expireEventTime",
+      "state",
+      "publicKey",
+      "publicKeyFormat",
+      "attestation",
+      "cryptoKeyBackend",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(ImportJob.ImportMethod.self, forKey: .importMethod)
+    {
+      self.importMethod = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.generateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .generateTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    self.expireEventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireEventTime)
+    if let value = try container.decodeIfPresent(ImportJob.ImportJobState.self, forKey: .state) {
+      self.state = value
+    }
+    self.publicKey = try container.decodeIfPresent(
+      ImportJob.WrappingPublicKey.self, forKey: .publicKey)
+    if let value = try container.decodeIfPresent(
+      PublicKey.PublicKeyFormat.self, forKey: .publicKeyFormat)
+    {
+      self.publicKeyFormat = value
+    }
+    self.attestation = try container.decodeIfPresent(
+      KeyOperationAttestation.self, forKey: .attestation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyBackend) {
+      self.cryptoKeyBackend = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.importMethod, forKey: .importMethod)
+    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.generateTime, forKey: .generateTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.expireEventTime, forKey: .expireEventTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
+    try container.encode(self.publicKeyFormat, forKey: .publicKeyFormat)
+    try container.encodeIfPresent(self.attestation, forKey: .attestation)
+    try container.encode(self.cryptoKeyBackend, forKey: .cryptoKeyBackend)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The public key component of the wrapping key. For details of the type of
@@ -210,6 +307,8 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.kms.v1.PublicKey.PublicKeyFormat]: <doc:PublicKey/PublicKeyFormat>
     public var data: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WrappingPublicKey`.
     public init() {}
 
@@ -224,6 +323,44 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pem = CodingKeys(stringValue: "pem")
+      static let data = CodingKeys(stringValue: "data")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pem",
+        "data",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pem) {
+        self.pem = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
+        self.data = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pem, forKey: .pem)
+      try container.encode(self.data, forKey: .data)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

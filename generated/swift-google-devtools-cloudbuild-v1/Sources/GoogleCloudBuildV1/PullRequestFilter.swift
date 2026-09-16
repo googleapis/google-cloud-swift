@@ -39,6 +39,8 @@ public struct PullRequestFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// A target ref is the git reference where the pull request will be applied.
   public var gitRef: OneOf_GitRef? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PullRequestFilter`.
   public init() {}
 
@@ -55,17 +57,33 @@ public struct PullRequestFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case branch = "branch"
-    case commentControl = "commentControl"
-    case invertRegex = "invertRegex"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let branch = CodingKeys(stringValue: "branch")
+    static let commentControl = CodingKeys(stringValue: "commentControl")
+    static let invertRegex = CodingKeys(stringValue: "invertRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "branch",
+      "commentControl",
+      "invertRegex",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.commentControl = try container.decode(
+    if let value = try container.decodeIfPresent(
       PullRequestFilter.CommentControl.self, forKey: .commentControl)
-    self.invertRegex = try container.decode(Swift.Bool.self, forKey: .invertRegex)
+    {
+      self.commentControl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invertRegex) {
+      self.invertRegex = value
+    }
 
     var gitRef: OneOf_GitRef? = nil
     let gitRefCheckAndSet = {
@@ -81,6 +99,10 @@ public struct PullRequestFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try gitRefCheckAndSet(.branch(branch))
     }
     self.gitRef = gitRef
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +115,9 @@ public struct PullRequestFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .branch(let value):
         try container.encode(value, forKey: .branch)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

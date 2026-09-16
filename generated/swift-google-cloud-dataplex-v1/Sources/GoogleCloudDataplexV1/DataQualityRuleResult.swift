@@ -74,6 +74,8 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// [google.cloud.dataplex.v1.DataQualityRule.debug_queries]: <doc:DataQualityRule/debugQueries>
   public var debugQueriesResultSets: [DataQualityRuleResult.DebugQueryResultSet] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataQualityRuleResult`.
   public init() {}
 
@@ -88,6 +90,86 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rule = CodingKeys(stringValue: "rule")
+    static let passed = CodingKeys(stringValue: "passed")
+    static let evaluatedCount = CodingKeys(stringValue: "evaluatedCount")
+    static let passedCount = CodingKeys(stringValue: "passedCount")
+    static let nullCount = CodingKeys(stringValue: "nullCount")
+    static let passRatio = CodingKeys(stringValue: "passRatio")
+    static let failingRowsQuery = CodingKeys(stringValue: "failingRowsQuery")
+    static let assertionRowCount = CodingKeys(stringValue: "assertionRowCount")
+    static let debugQueriesResultSets = CodingKeys(stringValue: "debugQueriesResultSets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rule",
+      "passed",
+      "evaluatedCount",
+      "passedCount",
+      "nullCount",
+      "passRatio",
+      "failingRowsQuery",
+      "assertionRowCount",
+      "debugQueriesResultSets",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.rule = try container.decodeIfPresent(DataQualityRule.self, forKey: .rule)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passed) {
+      self.passed = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .evaluatedCount) {
+      self.evaluatedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .passedCount) {
+      self.passedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .nullCount) {
+      self.nullCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .passRatio) {
+      self.passRatio = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failingRowsQuery) {
+      self.failingRowsQuery = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .assertionRowCount) {
+      self.assertionRowCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DataQualityRuleResult.DebugQueryResultSet].self, forKey: .debugQueriesResultSets)
+    {
+      self.debugQueriesResultSets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.rule, forKey: .rule)
+    try container.encode(self.passed, forKey: .passed)
+    try container.encode(self.evaluatedCount, forKey: .evaluatedCount)
+    try container.encode(self.passedCount, forKey: .passedCount)
+    try container.encode(self.nullCount, forKey: .nullCount)
+    try container.encode(self.passRatio, forKey: .passRatio)
+    try container.encode(self.failingRowsQuery, forKey: .failingRowsQuery)
+    try container.encode(self.assertionRowCount, forKey: .assertionRowCount)
+    try container.encode(self.debugQueriesResultSets, forKey: .debugQueriesResultSets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains a single result from the debug query.
@@ -106,6 +188,8 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// Represents the value of the result as a string.
     public var value: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DebugQueryResult`.
     public init() {}
 
@@ -120,6 +204,50 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let type = CodingKeys(stringValue: "type")
+      static let value = CodingKeys(stringValue: "value")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "type",
+        "value",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+        self.value = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.value, forKey: .value)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -140,6 +268,8 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// Output only. Contains all results. Up to 10 results can be returned.
     public var results: [DataQualityRuleResult.DebugQueryResult] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DebugQueryResultSet`.
     public init() {}
 
@@ -154,6 +284,40 @@ public struct DataQualityRuleResult: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let results = CodingKeys(stringValue: "results")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "results"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [DataQualityRuleResult.DebugQueryResult].self, forKey: .results)
+      {
+        self.results = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.results, forKey: .results)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

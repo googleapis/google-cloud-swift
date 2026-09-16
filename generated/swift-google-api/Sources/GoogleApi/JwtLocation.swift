@@ -33,6 +33,8 @@ public struct JwtLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var `in`: OneOf_In? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JwtLocation`.
   public init() {}
 
@@ -49,16 +51,30 @@ public struct JwtLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case header = "header"
-    case query = "query"
-    case cookie = "cookie"
-    case valuePrefix = "valuePrefix"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let header = CodingKeys(stringValue: "header")
+    static let query = CodingKeys(stringValue: "query")
+    static let cookie = CodingKeys(stringValue: "cookie")
+    static let valuePrefix = CodingKeys(stringValue: "valuePrefix")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "header",
+      "query",
+      "cookie",
+      "valuePrefix",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.valuePrefix = try container.decode(Swift.String.self, forKey: .valuePrefix)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .valuePrefix) {
+      self.valuePrefix = value
+    }
 
     var `in`: OneOf_In? = nil
     let inCheckAndSet = {
@@ -80,6 +96,10 @@ public struct JwtLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try inCheckAndSet(.cookie(cookie))
     }
     self.`in` = `in`
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -95,6 +115,9 @@ public struct JwtLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .cookie(let value):
         try container.encode(value, forKey: .cookie)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

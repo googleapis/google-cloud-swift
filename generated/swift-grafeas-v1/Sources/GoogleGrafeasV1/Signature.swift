@@ -69,6 +69,8 @@ public struct Signature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///   * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
   public var publicKeyId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Signature`.
   public init() {}
 
@@ -83,6 +85,44 @@ public struct Signature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let signature = CodingKeys(stringValue: "signature")
+    static let publicKeyId = CodingKeys(stringValue: "publicKeyId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "signature",
+      "publicKeyId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .signature) {
+      self.signature = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicKeyId) {
+      self.publicKeyId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.signature, forKey: .signature)
+    try container.encode(self.publicKeyId, forKey: .publicKeyId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

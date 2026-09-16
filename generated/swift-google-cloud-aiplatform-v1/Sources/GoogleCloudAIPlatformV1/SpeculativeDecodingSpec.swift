@@ -28,6 +28,8 @@
     /// The type of speculation method to use.
     public var speculation: OneOf_Speculation? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpeculativeDecodingSpec`.
     public init() {}
 
@@ -44,16 +46,29 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case draftModelSpeculation = "draftModelSpeculation"
-      case ngramSpeculation = "ngramSpeculation"
-      case speculativeTokenCount = "speculativeTokenCount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let draftModelSpeculation = CodingKeys(stringValue: "draftModelSpeculation")
+      static let ngramSpeculation = CodingKeys(stringValue: "ngramSpeculation")
+      static let speculativeTokenCount = CodingKeys(stringValue: "speculativeTokenCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "draftModelSpeculation",
+        "ngramSpeculation",
+        "speculativeTokenCount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.speculativeTokenCount = try container.decode(
-        Swift.Int32.self, forKey: .speculativeTokenCount)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .speculativeTokenCount)
+      {
+        self.speculativeTokenCount = value
+      }
 
       var speculation: OneOf_Speculation? = nil
       let speculationCheckAndSet = {
@@ -76,6 +91,10 @@
         try speculationCheckAndSet(.ngramSpeculation(ngramSpeculation))
       }
       self.speculation = speculation
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -90,6 +109,9 @@
           try container.encode(value, forKey: .ngramSpeculation)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Draft model speculation works by using the smaller model to generate
@@ -99,6 +121,8 @@
     {
       /// Required. The resource name of the draft model.
       public var draftModel: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `DraftModelSpeculation`.
       public init() {}
@@ -114,6 +138,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let draftModel = CodingKeys(stringValue: "draftModel")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "draftModel"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .draftModel) {
+          self.draftModel = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.draftModel, forKey: .draftModel)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -140,6 +196,8 @@
       /// The default value is 3 if not specified.
       public var ngramSize: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NgramSpeculation`.
       public init() {}
 
@@ -154,6 +212,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let ngramSize = CodingKeys(stringValue: "ngramSize")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "ngramSize"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ngramSize) {
+          self.ngramSize = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.ngramSize, forKey: .ngramSize)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

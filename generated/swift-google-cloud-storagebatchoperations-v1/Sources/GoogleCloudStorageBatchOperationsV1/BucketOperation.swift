@@ -53,6 +53,8 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Action to be performed on the objects.
   public var transformation: OneOf_Transformation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BucketOperation`.
   public init() {}
 
@@ -69,28 +71,55 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case bucketName = "bucketName"
-    case prefixList = "prefixList"
-    case manifest = "manifest"
-    case putObjectHold = "putObjectHold"
-    case deleteObject = "deleteObject"
-    case putMetadata = "putMetadata"
-    case rewriteObject = "rewriteObject"
-    case updateObjectCustomContext = "updateObjectCustomContext"
-    case createTime = "createTime"
-    case startTime = "startTime"
-    case completeTime = "completeTime"
-    case counters = "counters"
-    case errorSummaries = "errorSummaries"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let bucketName = CodingKeys(stringValue: "bucketName")
+    static let prefixList = CodingKeys(stringValue: "prefixList")
+    static let manifest = CodingKeys(stringValue: "manifest")
+    static let putObjectHold = CodingKeys(stringValue: "putObjectHold")
+    static let deleteObject = CodingKeys(stringValue: "deleteObject")
+    static let putMetadata = CodingKeys(stringValue: "putMetadata")
+    static let rewriteObject = CodingKeys(stringValue: "rewriteObject")
+    static let updateObjectCustomContext = CodingKeys(stringValue: "updateObjectCustomContext")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let counters = CodingKeys(stringValue: "counters")
+    static let errorSummaries = CodingKeys(stringValue: "errorSummaries")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "bucketName",
+      "prefixList",
+      "manifest",
+      "putObjectHold",
+      "deleteObject",
+      "putMetadata",
+      "rewriteObject",
+      "updateObjectCustomContext",
+      "createTime",
+      "startTime",
+      "completeTime",
+      "counters",
+      "errorSummaries",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.bucketName = try container.decode(Swift.String.self, forKey: .bucketName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
+      self.bucketName = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
@@ -98,8 +127,12 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.completeTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
     self.counters = try container.decodeIfPresent(Counters.self, forKey: .counters)
-    self.errorSummaries = try container.decode([ErrorSummary].self, forKey: .errorSummaries)
-    self.state = try container.decode(BucketOperation.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent([ErrorSummary].self, forKey: .errorSummaries) {
+      self.errorSummaries = value
+    }
+    if let value = try container.decodeIfPresent(BucketOperation.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var objectConfiguration: OneOf_ObjectConfiguration? = nil
     let objectConfigurationCheckAndSet = {
@@ -151,16 +184,20 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try transformationCheckAndSet(.updateObjectCustomContext(updateObjectCustomContext))
     }
     self.transformation = transformation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.bucketName, forKey: .bucketName)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.completeTime, forKey: .completeTime)
-    try container.encode(self.counters, forKey: .counters)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+    try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
     try container.encode(self.state, forKey: .state)
 
@@ -186,6 +223,9 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .updateObjectCustomContext(let value):
         try container.encode(value, forKey: .updateObjectCustomContext)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -64,6 +64,8 @@ public struct BatchProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Label values are optional. Label keys must start with a letter.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchProcessRequest`.
   public init() {}
 
@@ -78,6 +80,66 @@ public struct BatchProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let inputDocuments = CodingKeys(stringValue: "inputDocuments")
+    static let documentOutputConfig = CodingKeys(stringValue: "documentOutputConfig")
+    static let skipHumanReview = CodingKeys(stringValue: "skipHumanReview")
+    static let processOptions = CodingKeys(stringValue: "processOptions")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "inputDocuments",
+      "documentOutputConfig",
+      "skipHumanReview",
+      "processOptions",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.inputDocuments = try container.decodeIfPresent(
+      BatchDocumentsInputConfig.self, forKey: .inputDocuments)
+    self.documentOutputConfig = try container.decodeIfPresent(
+      DocumentOutputConfig.self, forKey: .documentOutputConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipHumanReview) {
+      self.skipHumanReview = value
+    }
+    self.processOptions = try container.decodeIfPresent(
+      ProcessOptions.self, forKey: .processOptions)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.inputDocuments, forKey: .inputDocuments)
+    try container.encodeIfPresent(self.documentOutputConfig, forKey: .documentOutputConfig)
+    try container.encode(self.skipHumanReview, forKey: .skipHumanReview)
+    try container.encodeIfPresent(self.processOptions, forKey: .processOptions)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

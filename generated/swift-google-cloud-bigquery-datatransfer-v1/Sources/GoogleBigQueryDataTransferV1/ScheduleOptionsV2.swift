@@ -27,6 +27,8 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Data transfer schedules.
   public var schedule: OneOf_Schedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScheduleOptionsV2`.
   public init() {}
 
@@ -43,10 +45,21 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case timeBasedSchedule = "timeBasedSchedule"
-    case manualSchedule = "manualSchedule"
-    case eventDrivenSchedule = "eventDrivenSchedule"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let timeBasedSchedule = CodingKeys(stringValue: "timeBasedSchedule")
+    static let manualSchedule = CodingKeys(stringValue: "manualSchedule")
+    static let eventDrivenSchedule = CodingKeys(stringValue: "eventDrivenSchedule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "timeBasedSchedule",
+      "manualSchedule",
+      "eventDrivenSchedule",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,6 +91,10 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try scheduleCheckAndSet(.eventDrivenSchedule(eventDrivenSchedule))
     }
     self.schedule = schedule
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -92,6 +109,9 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .eventDrivenSchedule(let value):
         try container.encode(value, forKey: .eventDrivenSchedule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

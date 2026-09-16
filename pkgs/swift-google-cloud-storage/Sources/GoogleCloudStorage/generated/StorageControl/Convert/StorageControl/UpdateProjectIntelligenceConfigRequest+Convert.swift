@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension UpdateProjectIntelligenceConfigRequest {
@@ -31,6 +31,7 @@ extension UpdateProjectIntelligenceConfigRequest {
       proto.hasIntelligenceConfig ? try .init(proto: proto.intelligenceConfig) : nil
     self.updateMask = proto.hasUpdateMask ? try .init(proto: proto.updateMask) : nil
     self.requestId = proto.requestID
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -40,6 +41,9 @@ extension UpdateProjectIntelligenceConfigRequest {
     }
     if let updateMask = self.updateMask { proto.updateMask = try updateMask.toProto() }
     proto.requestID = self.requestId
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

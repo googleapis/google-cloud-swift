@@ -25,6 +25,8 @@ public struct VertexDatasetRegex: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// for configurations created within a project.
   public var projectIdRegex: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VertexDatasetRegex`.
   public init() {}
 
@@ -39,6 +41,38 @@ public struct VertexDatasetRegex: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectIdRegex = CodingKeys(stringValue: "projectIdRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectIdRegex"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectIdRegex) {
+      self.projectIdRegex = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectIdRegex, forKey: .projectIdRegex)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

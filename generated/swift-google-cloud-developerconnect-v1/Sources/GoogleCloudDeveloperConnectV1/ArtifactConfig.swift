@@ -33,6 +33,8 @@ public struct ArtifactConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The storage location of the artifact metadata.
   public var artifactMetadataStorage: OneOf_ArtifactMetadataStorage? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ArtifactConfig`.
   public init() {}
 
@@ -49,15 +51,28 @@ public struct ArtifactConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case googleArtifactRegistry = "googleArtifactRegistry"
-    case googleArtifactAnalysis = "googleArtifactAnalysis"
-    case uri = "uri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let googleArtifactRegistry = CodingKeys(stringValue: "googleArtifactRegistry")
+    static let googleArtifactAnalysis = CodingKeys(stringValue: "googleArtifactAnalysis")
+    static let uri = CodingKeys(stringValue: "uri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "googleArtifactRegistry",
+      "googleArtifactAnalysis",
+      "uri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
 
     var artifactStorage: OneOf_ArtifactStorage? = nil
     let artifactStorageCheckAndSet = {
@@ -92,6 +107,10 @@ public struct ArtifactConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try artifactMetadataStorageCheckAndSet(.googleArtifactAnalysis(googleArtifactAnalysis))
     }
     self.artifactMetadataStorage = artifactMetadataStorage
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -110,6 +129,9 @@ public struct ArtifactConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .googleArtifactAnalysis(let value):
         try container.encode(value, forKey: .googleArtifactAnalysis)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

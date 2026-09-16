@@ -38,6 +38,8 @@ public struct CheckCloudIdentityAccountsExistRequest: Codable, Equatable, Google
   /// customer.
   public var primaryAdminEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CheckCloudIdentityAccountsExistRequest`.
   public init() {}
 
@@ -52,6 +54,50 @@ public struct CheckCloudIdentityAccountsExistRequest: Codable, Equatable, Google
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let primaryAdminEmail = CodingKeys(stringValue: "primaryAdminEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "domain",
+      "primaryAdminEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryAdminEmail) {
+      self.primaryAdminEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.primaryAdminEmail, forKey: .primaryAdminEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

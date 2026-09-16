@@ -40,6 +40,8 @@ public struct CreateInstanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Fields marked `OutputOnly` must be left blank.
   public var clusters: [Swift.String: Cluster] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateInstanceRequest`.
   public init() {}
 
@@ -54,6 +56,54 @@ public struct CreateInstanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let instanceId = CodingKeys(stringValue: "instanceId")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let clusters = CodingKeys(stringValue: "clusters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "instanceId",
+      "instance",
+      "clusters",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
+      self.instanceId = value
+    }
+    self.instance = try container.decodeIfPresent(Instance.self, forKey: .instance)
+    if let value = try container.decodeIfPresent([Swift.String: Cluster].self, forKey: .clusters) {
+      self.clusters = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.instanceId, forKey: .instanceId)
+    try container.encodeIfPresent(self.instance, forKey: .instance)
+    try container.encode(self.clusters, forKey: .clusters)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

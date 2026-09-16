@@ -74,6 +74,8 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Information only applying for columns in Entries from a specific system.
   public var systemSpec: OneOf_SystemSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ColumnSchema`.
   public init() {}
 
@@ -90,34 +92,72 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case column = "column"
-    case type = "type"
-    case description = "description"
-    case mode = "mode"
-    case defaultValue = "defaultValue"
-    case ordinalPosition = "ordinalPosition"
-    case highestIndexingType = "highestIndexingType"
-    case subcolumns = "subcolumns"
-    case lookerColumnSpec = "lookerColumnSpec"
-    case rangeElementType = "rangeElementType"
-    case gcRule = "gcRule"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let column = CodingKeys(stringValue: "column")
+    static let type = CodingKeys(stringValue: "type")
+    static let description = CodingKeys(stringValue: "description")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let defaultValue = CodingKeys(stringValue: "defaultValue")
+    static let ordinalPosition = CodingKeys(stringValue: "ordinalPosition")
+    static let highestIndexingType = CodingKeys(stringValue: "highestIndexingType")
+    static let subcolumns = CodingKeys(stringValue: "subcolumns")
+    static let lookerColumnSpec = CodingKeys(stringValue: "lookerColumnSpec")
+    static let rangeElementType = CodingKeys(stringValue: "rangeElementType")
+    static let gcRule = CodingKeys(stringValue: "gcRule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "column",
+      "type",
+      "description",
+      "mode",
+      "defaultValue",
+      "ordinalPosition",
+      "highestIndexingType",
+      "subcolumns",
+      "lookerColumnSpec",
+      "rangeElementType",
+      "gcRule",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.column = try container.decode(Swift.String.self, forKey: .column)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.mode = try container.decode(Swift.String.self, forKey: .mode)
-    self.defaultValue = try container.decode(Swift.String.self, forKey: .defaultValue)
-    self.ordinalPosition = try container.decode(Swift.Int32.self, forKey: .ordinalPosition)
-    self.highestIndexingType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+      self.column = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mode) {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultValue) {
+      self.defaultValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ordinalPosition) {
+      self.ordinalPosition = value
+    }
+    if let value = try container.decodeIfPresent(
       ColumnSchema.IndexingType.self, forKey: .highestIndexingType)
-    self.subcolumns = try container.decode([ColumnSchema].self, forKey: .subcolumns)
+    {
+      self.highestIndexingType = value
+    }
+    if let value = try container.decodeIfPresent([ColumnSchema].self, forKey: .subcolumns) {
+      self.subcolumns = value
+    }
     self.rangeElementType = try container.decodeIfPresent(
       ColumnSchema.FieldElementType.self, forKey: .rangeElementType)
-    self.gcRule = try container.decode(Swift.String.self, forKey: .gcRule)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcRule) {
+      self.gcRule = value
+    }
 
     var systemSpec: OneOf_SystemSpec? = nil
     let systemSpecCheckAndSet = {
@@ -135,6 +175,10 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try systemSpecCheckAndSet(.lookerColumnSpec(lookerColumnSpec))
     }
     self.systemSpec = systemSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -147,7 +191,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.ordinalPosition, forKey: .ordinalPosition)
     try container.encode(self.highestIndexingType, forKey: .highestIndexingType)
     try container.encode(self.subcolumns, forKey: .subcolumns)
-    try container.encode(self.rangeElementType, forKey: .rangeElementType)
+    try container.encodeIfPresent(self.rangeElementType, forKey: .rangeElementType)
     try container.encode(self.gcRule, forKey: .gcRule)
 
     if let choice = self.systemSpec {
@@ -155,6 +199,9 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .lookerColumnSpec(let value):
         try container.encode(value, forKey: .lookerColumnSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -165,6 +212,8 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Looker specific column type of this column.
     public var type: ColumnSchema.LookerColumnSpec.LookerColumnType = ColumnSchema.LookerColumnSpec
       .LookerColumnType()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LookerColumnSpec`.
     public init() {}
@@ -180,6 +229,40 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ColumnSchema.LookerColumnSpec.LookerColumnType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Column type in Looker.
@@ -329,6 +412,8 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.datacatalog.v1.ColumnSchema.type]: <doc:ColumnSchema/type>
     public var type: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FieldElementType`.
     public init() {}
 
@@ -343,6 +428,38 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -26,6 +26,8 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not specified, the default is `onDemand`.
   public var mode: OneOf_Mode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Trigger`.
   public init() {}
 
@@ -42,10 +44,21 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case onDemand = "onDemand"
-    case schedule = "schedule"
-    case oneTime = "oneTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let onDemand = CodingKeys(stringValue: "onDemand")
+    static let schedule = CodingKeys(stringValue: "schedule")
+    static let oneTime = CodingKeys(stringValue: "oneTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "onDemand",
+      "schedule",
+      "oneTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +84,10 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try modeCheckAndSet(.oneTime(oneTime))
     }
     self.mode = mode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,12 +103,17 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .oneTime)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The scan runs once via `RunDataScan` API.
   public struct OnDemand: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OnDemand`.
     public init() {}
 
@@ -106,6 +128,30 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -137,6 +183,8 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// This field is required for Schedule scans.
     public var cron: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Schedule`.
     public init() {}
 
@@ -151,6 +199,38 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cron = CodingKeys(stringValue: "cron")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cron"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cron) {
+        self.cron = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.cron, forKey: .cron)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -175,6 +255,8 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// upon job completion, regardless of whether the job succeeded or failed.
     public var ttlAfterScanCompletion: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OneTime`.
     public init() {}
 
@@ -189,6 +271,37 @@ public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ttlAfterScanCompletion = CodingKeys(stringValue: "ttlAfterScanCompletion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ttlAfterScanCompletion"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ttlAfterScanCompletion = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .ttlAfterScanCompletion)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ttlAfterScanCompletion, forKey: .ttlAfterScanCompletion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

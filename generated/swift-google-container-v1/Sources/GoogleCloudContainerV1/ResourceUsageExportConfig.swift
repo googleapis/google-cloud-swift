@@ -31,6 +31,8 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._Any
   /// Configuration to enable resource consumption metering.
   public var consumptionMeteringConfig: ResourceUsageExportConfig.ConsumptionMeteringConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceUsageExportConfig`.
   public init() {}
 
@@ -47,12 +49,59 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+    static let enableNetworkEgressMetering = CodingKeys(stringValue: "enableNetworkEgressMetering")
+    static let consumptionMeteringConfig = CodingKeys(stringValue: "consumptionMeteringConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigqueryDestination",
+      "enableNetworkEgressMetering",
+      "consumptionMeteringConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.bigqueryDestination = try container.decodeIfPresent(
+      ResourceUsageExportConfig.BigQueryDestination.self, forKey: .bigqueryDestination)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableNetworkEgressMetering)
+    {
+      self.enableNetworkEgressMetering = value
+    }
+    self.consumptionMeteringConfig = try container.decodeIfPresent(
+      ResourceUsageExportConfig.ConsumptionMeteringConfig.self, forKey: .consumptionMeteringConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.bigqueryDestination, forKey: .bigqueryDestination)
+    try container.encode(self.enableNetworkEgressMetering, forKey: .enableNetworkEgressMetering)
+    try container.encodeIfPresent(
+      self.consumptionMeteringConfig, forKey: .consumptionMeteringConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Parameters for using BigQuery as the destination of resource usage export.
   public struct BigQueryDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of a BigQuery Dataset.
     public var datasetId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BigQueryDestination`.
     public init() {}
@@ -68,6 +117,38 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datasetId = CodingKeys(stringValue: "datasetId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datasetId"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
+        self.datasetId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.datasetId, forKey: .datasetId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -90,6 +171,8 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._Any
     /// records.
     public var enabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConsumptionMeteringConfig`.
     public init() {}
 
@@ -104,6 +187,38 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

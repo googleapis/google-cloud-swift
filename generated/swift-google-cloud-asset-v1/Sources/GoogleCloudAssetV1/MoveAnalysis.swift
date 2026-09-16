@@ -28,6 +28,8 @@ public struct MoveAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MoveAnalysis`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct MoveAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case displayName = "displayName"
-    case analysis = "analysis"
-    case error = "error"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let analysis = CodingKeys(stringValue: "analysis")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "analysis",
+      "error",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
 
     var result: OneOf_Result? = nil
     let resultCheckAndSet = {
@@ -71,6 +86,10 @@ public struct MoveAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.error(error))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +103,9 @@ public struct MoveAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .error(let value):
         try container.encode(value, forKey: .error)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

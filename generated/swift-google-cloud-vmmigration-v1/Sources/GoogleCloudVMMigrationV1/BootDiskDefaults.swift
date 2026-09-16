@@ -40,6 +40,8 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BootDiskDefaults`.
   public init() {}
 
@@ -56,19 +58,38 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case image = "image"
-    case diskName = "diskName"
-    case diskType = "diskType"
-    case deviceName = "deviceName"
-    case encryption = "encryption"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let image = CodingKeys(stringValue: "image")
+    static let diskName = CodingKeys(stringValue: "diskName")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let deviceName = CodingKeys(stringValue: "deviceName")
+    static let encryption = CodingKeys(stringValue: "encryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "image",
+      "diskName",
+      "diskType",
+      "deviceName",
+      "encryption",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.diskName = try container.decode(Swift.String.self, forKey: .diskName)
-    self.diskType = try container.decode(ComputeEngineDiskType.self, forKey: .diskType)
-    self.deviceName = try container.decode(Swift.String.self, forKey: .deviceName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskName) {
+      self.diskName = value
+    }
+    if let value = try container.decodeIfPresent(ComputeEngineDiskType.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deviceName) {
+      self.deviceName = value
+    }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
     var source: OneOf_Source? = nil
@@ -87,6 +108,10 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.image(image))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,13 +119,16 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.diskName, forKey: .diskName)
     try container.encode(self.diskType, forKey: .diskType)
     try container.encode(self.deviceName, forKey: .deviceName)
-    try container.encode(self.encryption, forKey: .encryption)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
 
     if let choice = self.source {
       switch choice {
       case .image(let value):
         try container.encode(value, forKey: .image)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -110,6 +138,8 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Required. The Image resource used when creating the disk.
     public var sourceImage: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DiskImageDefaults`.
     public init() {}
@@ -125,6 +155,38 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceImage = CodingKeys(stringValue: "sourceImage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceImage"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImage) {
+        self.sourceImage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceImage, forKey: .sourceImage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

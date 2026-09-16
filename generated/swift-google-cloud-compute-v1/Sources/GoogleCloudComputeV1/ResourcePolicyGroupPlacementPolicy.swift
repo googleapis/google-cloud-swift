@@ -45,6 +45,8 @@
     /// to work only if it contains this exact number of VMs.
     public var vmCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicyGroupPlacementPolicy`.
     public init() {}
 
@@ -59,6 +61,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let acceleratorTopologyMode = CodingKeys(stringValue: "acceleratorTopologyMode")
+      static let availabilityDomainCount = CodingKeys(stringValue: "availabilityDomainCount")
+      static let collocation = CodingKeys(stringValue: "collocation")
+      static let gpuTopology = CodingKeys(stringValue: "gpuTopology")
+      static let vmCount = CodingKeys(stringValue: "vmCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "acceleratorTopologyMode",
+        "availabilityDomainCount",
+        "collocation",
+        "gpuTopology",
+        "vmCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.acceleratorTopologyMode = try container.decodeIfPresent(
+        ResourcePolicyGroupPlacementPolicy.AcceleratorTopologyMode.self,
+        forKey: .acceleratorTopologyMode)
+      self.availabilityDomainCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .availabilityDomainCount)
+      self.collocation = try container.decodeIfPresent(
+        ResourcePolicyGroupPlacementPolicy.Collocation.self, forKey: .collocation)
+      self.gpuTopology = try container.decodeIfPresent(Swift.String.self, forKey: .gpuTopology)
+      self.vmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.acceleratorTopologyMode, forKey: .acceleratorTopologyMode)
+      try container.encodeIfPresent(self.availabilityDomainCount, forKey: .availabilityDomainCount)
+      try container.encodeIfPresent(self.collocation, forKey: .collocation)
+      try container.encodeIfPresent(self.gpuTopology, forKey: .gpuTopology)
+      try container.encodeIfPresent(self.vmCount, forKey: .vmCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [acceleratorTopologyMode][google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.acceleratorTopologyMode] field.

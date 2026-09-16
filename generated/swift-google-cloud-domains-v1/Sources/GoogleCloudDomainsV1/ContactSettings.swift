@@ -45,6 +45,8 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The technical contact for the `Registration`.
   public var technicalContact: ContactSettings.Contact? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContactSettings`.
   public init() {}
 
@@ -59,6 +61,53 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let privacy = CodingKeys(stringValue: "privacy")
+    static let registrantContact = CodingKeys(stringValue: "registrantContact")
+    static let adminContact = CodingKeys(stringValue: "adminContact")
+    static let technicalContact = CodingKeys(stringValue: "technicalContact")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "privacy",
+      "registrantContact",
+      "adminContact",
+      "technicalContact",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ContactPrivacy.self, forKey: .privacy) {
+      self.privacy = value
+    }
+    self.registrantContact = try container.decodeIfPresent(
+      ContactSettings.Contact.self, forKey: .registrantContact)
+    self.adminContact = try container.decodeIfPresent(
+      ContactSettings.Contact.self, forKey: .adminContact)
+    self.technicalContact = try container.decodeIfPresent(
+      ContactSettings.Contact.self, forKey: .technicalContact)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.privacy, forKey: .privacy)
+    try container.encodeIfPresent(self.registrantContact, forKey: .registrantContact)
+    try container.encodeIfPresent(self.adminContact, forKey: .adminContact)
+    try container.encodeIfPresent(self.technicalContact, forKey: .technicalContact)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details required for a contact associated with a `Registration`.
@@ -79,6 +128,8 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `"+1-800-555-0123"`.
     public var faxNumber: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Contact`.
     public init() {}
 
@@ -93,6 +144,55 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let postalAddress = CodingKeys(stringValue: "postalAddress")
+      static let email = CodingKeys(stringValue: "email")
+      static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+      static let faxNumber = CodingKeys(stringValue: "faxNumber")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "postalAddress",
+        "email",
+        "phoneNumber",
+        "faxNumber",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.postalAddress = try container.decodeIfPresent(
+        GoogleType.PostalAddress.self, forKey: .postalAddress)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+        self.email = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumber) {
+        self.phoneNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .faxNumber) {
+        self.faxNumber = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.postalAddress, forKey: .postalAddress)
+      try container.encode(self.email, forKey: .email)
+      try container.encode(self.phoneNumber, forKey: .phoneNumber)
+      try container.encode(self.faxNumber, forKey: .faxNumber)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -36,6 +36,8 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Configuration to select the CDC read method for the stream.
   public var cdcMethod: OneOf_CdcMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SqlServerSourceConfig`.
   public init() {}
 
@@ -52,13 +54,27 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeObjects = "includeObjects"
-    case excludeObjects = "excludeObjects"
-    case maxConcurrentCdcTasks = "maxConcurrentCdcTasks"
-    case maxConcurrentBackfillTasks = "maxConcurrentBackfillTasks"
-    case transactionLogs = "transactionLogs"
-    case changeTables = "changeTables"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeObjects = CodingKeys(stringValue: "includeObjects")
+    static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
+    static let maxConcurrentCdcTasks = CodingKeys(stringValue: "maxConcurrentCdcTasks")
+    static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+    static let transactionLogs = CodingKeys(stringValue: "transactionLogs")
+    static let changeTables = CodingKeys(stringValue: "changeTables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeObjects",
+      "excludeObjects",
+      "maxConcurrentCdcTasks",
+      "maxConcurrentBackfillTasks",
+      "transactionLogs",
+      "changeTables",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,10 +83,14 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       SqlServerRdbms.self, forKey: .includeObjects)
     self.excludeObjects = try container.decodeIfPresent(
       SqlServerRdbms.self, forKey: .excludeObjects)
-    self.maxConcurrentCdcTasks = try container.decode(
-      Swift.Int32.self, forKey: .maxConcurrentCdcTasks)
-    self.maxConcurrentBackfillTasks = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConcurrentCdcTasks) {
+      self.maxConcurrentCdcTasks = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .maxConcurrentBackfillTasks)
+    {
+      self.maxConcurrentBackfillTasks = value
+    }
 
     var cdcMethod: OneOf_CdcMethod? = nil
     let cdcMethodCheckAndSet = {
@@ -93,12 +113,16 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       try cdcMethodCheckAndSet(.changeTables(changeTables))
     }
     self.cdcMethod = cdcMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.includeObjects, forKey: .includeObjects)
-    try container.encode(self.excludeObjects, forKey: .excludeObjects)
+    try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
+    try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
     try container.encode(self.maxConcurrentCdcTasks, forKey: .maxConcurrentCdcTasks)
     try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
 
@@ -109,6 +133,9 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .changeTables(let value):
         try container.encode(value, forKey: .changeTables)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -45,6 +45,8 @@ public struct SequenceEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Custom engine specific features.
   public var customFeatures: GoogleCloudWKT.Struct? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SequenceEntity`.
   public init() {}
 
@@ -59,6 +61,73 @@ public struct SequenceEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let increment = CodingKeys(stringValue: "increment")
+    static let startValue = CodingKeys(stringValue: "startValue")
+    static let maxValue = CodingKeys(stringValue: "maxValue")
+    static let minValue = CodingKeys(stringValue: "minValue")
+    static let cycle = CodingKeys(stringValue: "cycle")
+    static let cache = CodingKeys(stringValue: "cache")
+    static let customFeatures = CodingKeys(stringValue: "customFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "increment",
+      "startValue",
+      "maxValue",
+      "minValue",
+      "cycle",
+      "cache",
+      "customFeatures",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .increment) {
+      self.increment = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .startValue) {
+      self.startValue = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .maxValue) {
+      self.maxValue = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .minValue) {
+      self.minValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cycle) {
+      self.cycle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .cache) {
+      self.cache = value
+    }
+    self.customFeatures = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .customFeatures)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.increment, forKey: .increment)
+    try container.encode(self.startValue, forKey: .startValue)
+    try container.encode(self.maxValue, forKey: .maxValue)
+    try container.encode(self.minValue, forKey: .minValue)
+    try container.encode(self.cycle, forKey: .cycle)
+    try container.encode(self.cache, forKey: .cache)
+    try container.encodeIfPresent(self.customFeatures, forKey: .customFeatures)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

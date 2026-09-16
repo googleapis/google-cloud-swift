@@ -68,6 +68,8 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Optional. The user-defined identifier of the provisioning config.
   public var customId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProvisioningConfig`.
   public init() {}
 
@@ -82,6 +84,116 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let instances = CodingKeys(stringValue: "instances")
+    static let networks = CodingKeys(stringValue: "networks")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let ticketId = CodingKeys(stringValue: "ticketId")
+    static let handoverServiceAccount = CodingKeys(stringValue: "handoverServiceAccount")
+    static let email = CodingKeys(stringValue: "email")
+    static let state = CodingKeys(stringValue: "state")
+    static let location = CodingKeys(stringValue: "location")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let cloudConsoleUri = CodingKeys(stringValue: "cloudConsoleUri")
+    static let vpcScEnabled = CodingKeys(stringValue: "vpcScEnabled")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let customId = CodingKeys(stringValue: "customId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "instances",
+      "networks",
+      "volumes",
+      "ticketId",
+      "handoverServiceAccount",
+      "email",
+      "state",
+      "location",
+      "updateTime",
+      "cloudConsoleUri",
+      "vpcScEnabled",
+      "statusMessage",
+      "customId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([InstanceConfig].self, forKey: .instances) {
+      self.instances = value
+    }
+    if let value = try container.decodeIfPresent([NetworkConfig].self, forKey: .networks) {
+      self.networks = value
+    }
+    if let value = try container.decodeIfPresent([VolumeConfig].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ticketId) {
+      self.ticketId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .handoverServiceAccount)
+    {
+      self.handoverServiceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .email) {
+      self.email = value
+    }
+    if let value = try container.decodeIfPresent(ProvisioningConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudConsoleUri) {
+      self.cloudConsoleUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .vpcScEnabled) {
+      self.vpcScEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customId) {
+      self.customId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.instances, forKey: .instances)
+    try container.encode(self.networks, forKey: .networks)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encode(self.ticketId, forKey: .ticketId)
+    try container.encode(self.handoverServiceAccount, forKey: .handoverServiceAccount)
+    try container.encode(self.email, forKey: .email)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.location, forKey: .location)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.cloudConsoleUri, forKey: .cloudConsoleUri)
+    try container.encode(self.vpcScEnabled, forKey: .vpcScEnabled)
+    try container.encode(self.statusMessage, forKey: .statusMessage)
+    try container.encode(self.customId, forKey: .customId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states for this ProvisioningConfig.

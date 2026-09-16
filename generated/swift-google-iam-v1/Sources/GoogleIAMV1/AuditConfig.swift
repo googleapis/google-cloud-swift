@@ -79,6 +79,8 @@ public struct AuditConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The configuration for logging of each type of permission.
   public var auditLogConfigs: [AuditLogConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditConfig`.
   public init() {}
 
@@ -93,6 +95,44 @@ public struct AuditConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let service = CodingKeys(stringValue: "service")
+    static let auditLogConfigs = CodingKeys(stringValue: "auditLogConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "service",
+      "auditLogConfigs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent([AuditLogConfig].self, forKey: .auditLogConfigs) {
+      self.auditLogConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.auditLogConfigs, forKey: .auditLogConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

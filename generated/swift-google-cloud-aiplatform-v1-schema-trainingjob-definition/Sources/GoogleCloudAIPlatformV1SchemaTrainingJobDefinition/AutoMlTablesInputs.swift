@@ -106,6 +106,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var additionalOptimizationObjectiveConfig: OneOf_AdditionalOptimizationObjectiveConfig? =
     nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoMlTablesInputs`.
   public init() {}
 
@@ -122,36 +124,77 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case optimizationObjectiveRecallValue = "optimizationObjectiveRecallValue"
-    case optimizationObjectivePrecisionValue = "optimizationObjectivePrecisionValue"
-    case predictionType = "predictionType"
-    case targetColumn = "targetColumn"
-    case transformations = "transformations"
-    case optimizationObjective = "optimizationObjective"
-    case trainBudgetMilliNodeHours = "trainBudgetMilliNodeHours"
-    case disableEarlyStopping = "disableEarlyStopping"
-    case weightColumnName = "weightColumnName"
-    case exportEvaluatedDataItemsConfig = "exportEvaluatedDataItemsConfig"
-    case additionalExperiments = "additionalExperiments"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let optimizationObjectiveRecallValue = CodingKeys(
+      stringValue: "optimizationObjectiveRecallValue")
+    static let optimizationObjectivePrecisionValue = CodingKeys(
+      stringValue: "optimizationObjectivePrecisionValue")
+    static let predictionType = CodingKeys(stringValue: "predictionType")
+    static let targetColumn = CodingKeys(stringValue: "targetColumn")
+    static let transformations = CodingKeys(stringValue: "transformations")
+    static let optimizationObjective = CodingKeys(stringValue: "optimizationObjective")
+    static let trainBudgetMilliNodeHours = CodingKeys(stringValue: "trainBudgetMilliNodeHours")
+    static let disableEarlyStopping = CodingKeys(stringValue: "disableEarlyStopping")
+    static let weightColumnName = CodingKeys(stringValue: "weightColumnName")
+    static let exportEvaluatedDataItemsConfig = CodingKeys(
+      stringValue: "exportEvaluatedDataItemsConfig")
+    static let additionalExperiments = CodingKeys(stringValue: "additionalExperiments")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "optimizationObjectiveRecallValue",
+      "optimizationObjectivePrecisionValue",
+      "predictionType",
+      "targetColumn",
+      "transformations",
+      "optimizationObjective",
+      "trainBudgetMilliNodeHours",
+      "disableEarlyStopping",
+      "weightColumnName",
+      "exportEvaluatedDataItemsConfig",
+      "additionalExperiments",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.predictionType = try container.decode(Swift.String.self, forKey: .predictionType)
-    self.targetColumn = try container.decode(Swift.String.self, forKey: .targetColumn)
-    self.transformations = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predictionType) {
+      self.predictionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetColumn) {
+      self.targetColumn = value
+    }
+    if let value = try container.decodeIfPresent(
       [AutoMlTablesInputs.Transformation].self, forKey: .transformations)
-    self.optimizationObjective = try container.decode(
-      Swift.String.self, forKey: .optimizationObjective)
-    self.trainBudgetMilliNodeHours = try container.decode(
+    {
+      self.transformations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .optimizationObjective)
+    {
+      self.optimizationObjective = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .trainBudgetMilliNodeHours)
-    self.disableEarlyStopping = try container.decode(Swift.Bool.self, forKey: .disableEarlyStopping)
-    self.weightColumnName = try container.decode(Swift.String.self, forKey: .weightColumnName)
+    {
+      self.trainBudgetMilliNodeHours = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableEarlyStopping) {
+      self.disableEarlyStopping = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .weightColumnName) {
+      self.weightColumnName = value
+    }
     self.exportEvaluatedDataItemsConfig = try container.decodeIfPresent(
       ExportEvaluatedDataItemsConfig.self, forKey: .exportEvaluatedDataItemsConfig)
-    self.additionalExperiments = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .additionalExperiments)
+    {
+      self.additionalExperiments = value
+    }
 
     var additionalOptimizationObjectiveConfig: OneOf_AdditionalOptimizationObjectiveConfig? = nil
     let additionalOptimizationObjectiveConfigCheckAndSet = {
@@ -177,6 +220,10 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         .optimizationObjectivePrecisionValue(optimizationObjectivePrecisionValue))
     }
     self.additionalOptimizationObjectiveConfig = additionalOptimizationObjectiveConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -188,7 +235,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.trainBudgetMilliNodeHours, forKey: .trainBudgetMilliNodeHours)
     try container.encode(self.disableEarlyStopping, forKey: .disableEarlyStopping)
     try container.encode(self.weightColumnName, forKey: .weightColumnName)
-    try container.encode(
+    try container.encodeIfPresent(
       self.exportEvaluatedDataItemsConfig, forKey: .exportEvaluatedDataItemsConfig)
     try container.encode(self.additionalExperiments, forKey: .additionalExperiments)
 
@@ -200,6 +247,9 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .optimizationObjectivePrecisionValue)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public struct Transformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -208,6 +258,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// The transformation that the training pipeline will apply to the input
     /// columns.
     public var transformationDetail: OneOf_TransformationDetail? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Transformation`.
     public init() {}
@@ -225,15 +277,31 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case auto = "auto"
-      case numeric = "numeric"
-      case categorical = "categorical"
-      case timestamp = "timestamp"
-      case text = "text"
-      case repeatedNumeric = "repeatedNumeric"
-      case repeatedCategorical = "repeatedCategorical"
-      case repeatedText = "repeatedText"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let auto = CodingKeys(stringValue: "auto")
+      static let numeric = CodingKeys(stringValue: "numeric")
+      static let categorical = CodingKeys(stringValue: "categorical")
+      static let timestamp = CodingKeys(stringValue: "timestamp")
+      static let text = CodingKeys(stringValue: "text")
+      static let repeatedNumeric = CodingKeys(stringValue: "repeatedNumeric")
+      static let repeatedCategorical = CodingKeys(stringValue: "repeatedCategorical")
+      static let repeatedText = CodingKeys(stringValue: "repeatedText")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "auto",
+        "numeric",
+        "categorical",
+        "timestamp",
+        "text",
+        "repeatedNumeric",
+        "repeatedCategorical",
+        "repeatedText",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -291,6 +359,10 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try transformationDetailCheckAndSet(.repeatedText(repeatedText))
       }
       self.transformationDetail = transformationDetail
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -316,6 +388,9 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
           try container.encode(value, forKey: .repeatedText)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Training pipeline will infer the proper transformation based on the
@@ -324,6 +399,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `AutoTransformation`.
       public init() {}
@@ -339,6 +416,38 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -374,6 +483,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       /// trainining data.
       public var invalidValuesAllowed: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NumericTransformation`.
       public init() {}
 
@@ -388,6 +499,45 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+        static let invalidValuesAllowed = CodingKeys(stringValue: "invalidValuesAllowed")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName",
+          "invalidValuesAllowed",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invalidValuesAllowed)
+        {
+          self.invalidValuesAllowed = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        try container.encode(self.invalidValuesAllowed, forKey: .invalidValuesAllowed)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -416,6 +566,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     {
       public var columnName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CategoricalTransformation`.
       public init() {}
 
@@ -430,6 +582,38 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -475,6 +659,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       /// trainining data.
       public var invalidValuesAllowed: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TimestampTransformation`.
       public init() {}
 
@@ -489,6 +675,51 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+        static let timeFormat = CodingKeys(stringValue: "timeFormat")
+        static let invalidValuesAllowed = CodingKeys(stringValue: "invalidValuesAllowed")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName",
+          "timeFormat",
+          "invalidValuesAllowed",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeFormat) {
+          self.timeFormat = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invalidValuesAllowed)
+        {
+          self.invalidValuesAllowed = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        try container.encode(self.timeFormat, forKey: .timeFormat)
+        try container.encode(self.invalidValuesAllowed, forKey: .invalidValuesAllowed)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -519,6 +750,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     {
       public var columnName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TextTransformation`.
       public init() {}
 
@@ -533,6 +766,38 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -563,6 +828,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       /// trainining data.
       public var invalidValuesAllowed: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NumericArrayTransformation`.
       public init() {}
 
@@ -577,6 +844,45 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+        static let invalidValuesAllowed = CodingKeys(stringValue: "invalidValuesAllowed")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName",
+          "invalidValuesAllowed",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invalidValuesAllowed)
+        {
+          self.invalidValuesAllowed = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        try container.encode(self.invalidValuesAllowed, forKey: .invalidValuesAllowed)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -604,6 +910,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     {
       public var columnName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CategoricalArrayTransformation`.
       public init() {}
 
@@ -618,6 +926,38 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -644,6 +984,8 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     {
       public var columnName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TextArrayTransformation`.
       public init() {}
 
@@ -658,6 +1000,38 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let columnName = CodingKeys(stringValue: "columnName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "columnName"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
+          self.columnName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.columnName, forKey: .columnName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

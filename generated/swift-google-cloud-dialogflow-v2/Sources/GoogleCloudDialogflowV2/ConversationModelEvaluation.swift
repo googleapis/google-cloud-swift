@@ -56,6 +56,8 @@
     /// Metrics details.
     public var metrics: OneOf_Metrics? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationModelEvaluation`.
     public init() {}
 
@@ -72,25 +74,46 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case evaluationConfig = "evaluationConfig"
-      case createTime = "createTime"
-      case smartReplyMetrics = "smartReplyMetrics"
-      case rawHumanEvalTemplateCsv = "rawHumanEvalTemplateCsv"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let evaluationConfig = CodingKeys(stringValue: "evaluationConfig")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let smartReplyMetrics = CodingKeys(stringValue: "smartReplyMetrics")
+      static let rawHumanEvalTemplateCsv = CodingKeys(stringValue: "rawHumanEvalTemplateCsv")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "evaluationConfig",
+        "createTime",
+        "smartReplyMetrics",
+        "rawHumanEvalTemplateCsv",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.evaluationConfig = try container.decodeIfPresent(
         EvaluationConfig.self, forKey: .evaluationConfig)
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-      self.rawHumanEvalTemplateCsv = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .rawHumanEvalTemplateCsv)
+      {
+        self.rawHumanEvalTemplateCsv = value
+      }
 
       var metrics: OneOf_Metrics? = nil
       let metricsCheckAndSet = {
@@ -108,14 +131,18 @@
         try metricsCheckAndSet(.smartReplyMetrics(smartReplyMetrics))
       }
       self.metrics = metrics
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.evaluationConfig, forKey: .evaluationConfig)
-      try container.encode(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.evaluationConfig, forKey: .evaluationConfig)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encode(self.rawHumanEvalTemplateCsv, forKey: .rawHumanEvalTemplateCsv)
 
       if let choice = self.metrics {
@@ -123,6 +150,9 @@
         case .smartReplyMetrics(let value):
           try container.encode(value, forKey: .smartReplyMetrics)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

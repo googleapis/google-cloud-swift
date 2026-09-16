@@ -55,6 +55,8 @@ public struct PosixAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The canonical resource name.
   public var name: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PosixAccount`.
   public init() {}
 
@@ -69,6 +71,100 @@ public struct PosixAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let primary = CodingKeys(stringValue: "primary")
+    static let username = CodingKeys(stringValue: "username")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let gid = CodingKeys(stringValue: "gid")
+    static let homeDirectory = CodingKeys(stringValue: "homeDirectory")
+    static let shell = CodingKeys(stringValue: "shell")
+    static let gecos = CodingKeys(stringValue: "gecos")
+    static let systemId = CodingKeys(stringValue: "systemId")
+    static let accountId = CodingKeys(stringValue: "accountId")
+    static let operatingSystemType = CodingKeys(stringValue: "operatingSystemType")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "primary",
+      "username",
+      "uid",
+      "gid",
+      "homeDirectory",
+      "shell",
+      "gecos",
+      "systemId",
+      "accountId",
+      "operatingSystemType",
+      "name",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .primary) {
+      self.primary = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .gid) {
+      self.gid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .homeDirectory) {
+      self.homeDirectory = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shell) {
+      self.shell = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gecos) {
+      self.gecos = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .systemId) {
+      self.systemId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
+      self.accountId = value
+    }
+    if let value = try container.decodeIfPresent(
+      OperatingSystemType.self, forKey: .operatingSystemType)
+    {
+      self.operatingSystemType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.primary, forKey: .primary)
+    try container.encode(self.username, forKey: .username)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.gid, forKey: .gid)
+    try container.encode(self.homeDirectory, forKey: .homeDirectory)
+    try container.encode(self.shell, forKey: .shell)
+    try container.encode(self.gecos, forKey: .gecos)
+    try container.encode(self.systemId, forKey: .systemId)
+    try container.encode(self.accountId, forKey: .accountId)
+    try container.encode(self.operatingSystemType, forKey: .operatingSystemType)
+    try container.encode(self.name, forKey: .name)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

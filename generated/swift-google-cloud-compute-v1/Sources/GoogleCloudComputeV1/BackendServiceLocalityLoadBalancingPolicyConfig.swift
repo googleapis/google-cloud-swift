@@ -28,6 +28,8 @@
 
     public var policy: BackendServiceLocalityLoadBalancingPolicyConfigPolicy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceLocalityLoadBalancingPolicyConfig`.
     public init() {}
 
@@ -42,6 +44,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customPolicy = CodingKeys(stringValue: "customPolicy")
+      static let policy = CodingKeys(stringValue: "policy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customPolicy",
+        "policy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.customPolicy = try container.decodeIfPresent(
+        BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy.self, forKey: .customPolicy)
+      self.policy = try container.decodeIfPresent(
+        BackendServiceLocalityLoadBalancingPolicyConfigPolicy.self, forKey: .policy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.customPolicy, forKey: .customPolicy)
+      try container.encodeIfPresent(self.policy, forKey: .policy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

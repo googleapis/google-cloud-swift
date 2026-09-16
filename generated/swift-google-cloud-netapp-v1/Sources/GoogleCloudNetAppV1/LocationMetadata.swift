@@ -36,6 +36,8 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Indicates if the location has ONTAP Proxy support.
   public var hasOntapProxy: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LocationMetadata`.
   public init() {}
 
@@ -50,6 +52,60 @@ public struct LocationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let supportedServiceLevels = CodingKeys(stringValue: "supportedServiceLevels")
+    static let supportedFlexPerformance = CodingKeys(stringValue: "supportedFlexPerformance")
+    static let hasVcp = CodingKeys(stringValue: "hasVcp")
+    static let hasOntapProxy = CodingKeys(stringValue: "hasOntapProxy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "supportedServiceLevels",
+      "supportedFlexPerformance",
+      "hasVcp",
+      "hasOntapProxy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ServiceLevel].self, forKey: .supportedServiceLevels)
+    {
+      self.supportedServiceLevels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [FlexPerformance].self, forKey: .supportedFlexPerformance)
+    {
+      self.supportedFlexPerformance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasVcp) {
+      self.hasVcp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasOntapProxy) {
+      self.hasOntapProxy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.supportedServiceLevels, forKey: .supportedServiceLevels)
+    try container.encode(self.supportedFlexPerformance, forKey: .supportedFlexPerformance)
+    try container.encode(self.hasVcp, forKey: .hasVcp)
+    try container.encode(self.hasOntapProxy, forKey: .hasOntapProxy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -53,6 +53,8 @@
     /// `INPUT_VALIDATION_FAILED`.
     public var errorMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomTuningModel`.
     public init() {}
 
@@ -67,6 +69,82 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let modelVersion = CodingKeys(stringValue: "modelVersion")
+      static let modelState = CodingKeys(stringValue: "modelState")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let trainingStartTime = CodingKeys(stringValue: "trainingStartTime")
+      static let metrics = CodingKeys(stringValue: "metrics")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "modelVersion",
+        "modelState",
+        "createTime",
+        "trainingStartTime",
+        "metrics",
+        "errorMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .modelVersion) {
+        self.modelVersion = value
+      }
+      if let value = try container.decodeIfPresent(
+        CustomTuningModel.ModelState.self, forKey: .modelState)
+      {
+        self.modelState = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.trainingStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .trainingStartTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Double].self, forKey: .metrics)
+      {
+        self.metrics = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.modelVersion, forKey: .modelVersion)
+      try container.encode(self.modelState, forKey: .modelState)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.trainingStartTime, forKey: .trainingStartTime)
+      try container.encode(self.metrics, forKey: .metrics)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The state of the model.

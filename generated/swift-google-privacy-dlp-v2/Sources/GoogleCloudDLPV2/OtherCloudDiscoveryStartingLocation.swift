@@ -24,6 +24,8 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
   /// The other cloud starting location for discovery.
   public var location: OneOf_Location? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OtherCloudDiscoveryStartingLocation`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case awsLocation = "awsLocation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let awsLocation = CodingKeys(stringValue: "awsLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "awsLocation"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
       try locationCheckAndSet(.awsLocation(awsLocation))
     }
     self.location = location
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
         try container.encode(value, forKey: .awsLocation)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The AWS starting location for discovery.
@@ -82,6 +100,8 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
   {
     /// The scope of this starting location.
     public var scope: OneOf_Scope? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AwsDiscoveryStartingLocation`.
     public init() {}
@@ -99,9 +119,19 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case accountId = "accountId"
-      case allAssetInventoryAssets = "allAssetInventoryAssets"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accountId = CodingKeys(stringValue: "accountId")
+      static let allAssetInventoryAssets = CodingKeys(stringValue: "allAssetInventoryAssets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accountId",
+        "allAssetInventoryAssets",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -126,6 +156,10 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
         try scopeCheckAndSet(.allAssetInventoryAssets(allAssetInventoryAssets))
       }
       self.scope = scope
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -138,6 +172,9 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleClo
         case .allAssetInventoryAssets(let value):
           try container.encode(value, forKey: .allAssetInventoryAssets)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

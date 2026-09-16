@@ -182,6 +182,8 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.api.MonitoredResourceDescriptor]: <doc:MonitoredResourceDescriptor>
   public var monitoredResourceTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetricDescriptor`.
   public init() {}
 
@@ -196,6 +198,103 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let type = CodingKeys(stringValue: "type")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let metricKind = CodingKeys(stringValue: "metricKind")
+    static let valueType = CodingKeys(stringValue: "valueType")
+    static let unit = CodingKeys(stringValue: "unit")
+    static let description = CodingKeys(stringValue: "description")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let launchStage = CodingKeys(stringValue: "launchStage")
+    static let monitoredResourceTypes = CodingKeys(stringValue: "monitoredResourceTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "type",
+      "labels",
+      "metricKind",
+      "valueType",
+      "unit",
+      "description",
+      "displayName",
+      "metadata",
+      "launchStage",
+      "monitoredResourceTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([LabelDescriptor].self, forKey: .labels) {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetricDescriptor.MetricKind.self, forKey: .metricKind)
+    {
+      self.metricKind = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetricDescriptor.ValueType.self, forKey: .valueType)
+    {
+      self.valueType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unit) {
+      self.unit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.metadata = try container.decodeIfPresent(
+      MetricDescriptor.MetricDescriptorMetadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+      self.launchStage = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .monitoredResourceTypes)
+    {
+      self.monitoredResourceTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.metricKind, forKey: .metricKind)
+    try container.encode(self.valueType, forKey: .valueType)
+    try container.encode(self.unit, forKey: .unit)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.launchStage, forKey: .launchStage)
+    try container.encode(self.monitoredResourceTypes, forKey: .monitoredResourceTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Additional annotations that can be used to guide the usage of a metric.
@@ -225,6 +324,8 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var timeSeriesResourceHierarchyLevel:
       [MetricDescriptor.MetricDescriptorMetadata.TimeSeriesResourceHierarchyLevel] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MetricDescriptorMetadata`.
     public init() {}
 
@@ -239,6 +340,59 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let launchStage = CodingKeys(stringValue: "launchStage")
+      static let samplePeriod = CodingKeys(stringValue: "samplePeriod")
+      static let ingestDelay = CodingKeys(stringValue: "ingestDelay")
+      static let timeSeriesResourceHierarchyLevel = CodingKeys(
+        stringValue: "timeSeriesResourceHierarchyLevel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "launchStage",
+        "samplePeriod",
+        "ingestDelay",
+        "timeSeriesResourceHierarchyLevel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+        self.launchStage = value
+      }
+      self.samplePeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .samplePeriod)
+      self.ingestDelay = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .ingestDelay)
+      if let value = try container.decodeIfPresent(
+        [MetricDescriptor.MetricDescriptorMetadata.TimeSeriesResourceHierarchyLevel].self,
+        forKey: .timeSeriesResourceHierarchyLevel)
+      {
+        self.timeSeriesResourceHierarchyLevel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.launchStage, forKey: .launchStage)
+      try container.encodeIfPresent(self.samplePeriod, forKey: .samplePeriod)
+      try container.encodeIfPresent(self.ingestDelay, forKey: .ingestDelay)
+      try container.encode(
+        self.timeSeriesResourceHierarchyLevel, forKey: .timeSeriesResourceHierarchyLevel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The resource hierarchy level of the timeseries data of a metric.

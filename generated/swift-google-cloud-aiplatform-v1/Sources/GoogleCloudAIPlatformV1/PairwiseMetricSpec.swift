@@ -41,6 +41,8 @@
     /// fields in the corresponding metric result will be empty.
     public var customOutputFormatConfig: CustomOutputFormatConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PairwiseMetricSpec`.
     public init() {}
 
@@ -55,6 +57,64 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metricPromptTemplate = CodingKeys(stringValue: "metricPromptTemplate")
+      static let candidateResponseFieldName = CodingKeys(stringValue: "candidateResponseFieldName")
+      static let baselineResponseFieldName = CodingKeys(stringValue: "baselineResponseFieldName")
+      static let systemInstruction = CodingKeys(stringValue: "systemInstruction")
+      static let customOutputFormatConfig = CodingKeys(stringValue: "customOutputFormatConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metricPromptTemplate",
+        "candidateResponseFieldName",
+        "baselineResponseFieldName",
+        "systemInstruction",
+        "customOutputFormatConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.metricPromptTemplate = try container.decodeIfPresent(
+        Swift.String.self, forKey: .metricPromptTemplate)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .candidateResponseFieldName)
+      {
+        self.candidateResponseFieldName = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .baselineResponseFieldName)
+      {
+        self.baselineResponseFieldName = value
+      }
+      self.systemInstruction = try container.decodeIfPresent(
+        Swift.String.self, forKey: .systemInstruction)
+      self.customOutputFormatConfig = try container.decodeIfPresent(
+        CustomOutputFormatConfig.self, forKey: .customOutputFormatConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.metricPromptTemplate, forKey: .metricPromptTemplate)
+      try container.encode(self.candidateResponseFieldName, forKey: .candidateResponseFieldName)
+      try container.encode(self.baselineResponseFieldName, forKey: .baselineResponseFieldName)
+      try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
+      try container.encodeIfPresent(
+        self.customOutputFormatConfig, forKey: .customOutputFormatConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

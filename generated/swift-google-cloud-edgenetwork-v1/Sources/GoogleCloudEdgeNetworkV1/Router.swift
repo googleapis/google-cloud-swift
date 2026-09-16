@@ -58,6 +58,8 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// static routes from this router.
   public var routeAdvertisements: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Router`.
   public init() {}
 
@@ -72,6 +74,96 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let network = CodingKeys(stringValue: "network")
+    static let interface = CodingKeys(stringValue: "interface")
+    static let bgpPeer = CodingKeys(stringValue: "bgpPeer")
+    static let bgp = CodingKeys(stringValue: "bgp")
+    static let state = CodingKeys(stringValue: "state")
+    static let routeAdvertisements = CodingKeys(stringValue: "routeAdvertisements")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "network",
+      "interface",
+      "bgpPeer",
+      "bgp",
+      "state",
+      "routeAdvertisements",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent([Router.Interface].self, forKey: .interface) {
+      self.interface = value
+    }
+    if let value = try container.decodeIfPresent([Router.BgpPeer].self, forKey: .bgpPeer) {
+      self.bgpPeer = value
+    }
+    self.bgp = try container.decodeIfPresent(Router.Bgp.self, forKey: .bgp)
+    if let value = try container.decodeIfPresent(ResourceState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .routeAdvertisements)
+    {
+      self.routeAdvertisements = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.interface, forKey: .interface)
+    try container.encode(self.bgpPeer, forKey: .bgpPeer)
+    try container.encodeIfPresent(self.bgp, forKey: .bgp)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.routeAdvertisements, forKey: .routeAdvertisements)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Router Interface defines the GDCE zone side layer-3 information for
@@ -99,6 +191,8 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The number of IP addresses must match the number of TOR devices.
     public var loopbackIpAddresses: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Interface`.
     public init() {}
 
@@ -113,6 +207,73 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let ipv4Cidr = CodingKeys(stringValue: "ipv4Cidr")
+      static let ipv6Cidr = CodingKeys(stringValue: "ipv6Cidr")
+      static let linkedInterconnectAttachment = CodingKeys(
+        stringValue: "linkedInterconnectAttachment")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let loopbackIpAddresses = CodingKeys(stringValue: "loopbackIpAddresses")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "ipv4Cidr",
+        "ipv6Cidr",
+        "linkedInterconnectAttachment",
+        "subnetwork",
+        "loopbackIpAddresses",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipv4Cidr) {
+        self.ipv4Cidr = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Cidr) {
+        self.ipv6Cidr = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .linkedInterconnectAttachment)
+      {
+        self.linkedInterconnectAttachment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+        self.subnetwork = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .loopbackIpAddresses)
+      {
+        self.loopbackIpAddresses = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.ipv4Cidr, forKey: .ipv4Cidr)
+      try container.encode(self.ipv6Cidr, forKey: .ipv6Cidr)
+      try container.encode(self.linkedInterconnectAttachment, forKey: .linkedInterconnectAttachment)
+      try container.encode(self.subnetwork, forKey: .subnetwork)
+      try container.encode(self.loopbackIpAddresses, forKey: .loopbackIpAddresses)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -158,6 +319,8 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// meaningless outside the zone in which they are being used.
     public var localAsn: Swift.UInt32 = Swift.UInt32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BgpPeer`.
     public init() {}
 
@@ -172,6 +335,80 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let interface = CodingKeys(stringValue: "interface")
+      static let interfaceIpv4Cidr = CodingKeys(stringValue: "interfaceIpv4Cidr")
+      static let interfaceIpv6Cidr = CodingKeys(stringValue: "interfaceIpv6Cidr")
+      static let peerIpv4Cidr = CodingKeys(stringValue: "peerIpv4Cidr")
+      static let peerIpv6Cidr = CodingKeys(stringValue: "peerIpv6Cidr")
+      static let peerAsn = CodingKeys(stringValue: "peerAsn")
+      static let localAsn = CodingKeys(stringValue: "localAsn")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "interface",
+        "interfaceIpv4Cidr",
+        "interfaceIpv6Cidr",
+        "peerIpv4Cidr",
+        "peerIpv6Cidr",
+        "peerAsn",
+        "localAsn",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interface) {
+        self.interface = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interfaceIpv4Cidr) {
+        self.interfaceIpv4Cidr = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .interfaceIpv6Cidr) {
+        self.interfaceIpv6Cidr = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerIpv4Cidr) {
+        self.peerIpv4Cidr = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerIpv6Cidr) {
+        self.peerIpv6Cidr = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .peerAsn) {
+        self.peerAsn = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .localAsn) {
+        self.localAsn = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.interface, forKey: .interface)
+      try container.encode(self.interfaceIpv4Cidr, forKey: .interfaceIpv4Cidr)
+      try container.encode(self.interfaceIpv6Cidr, forKey: .interfaceIpv6Cidr)
+      try container.encode(self.peerIpv4Cidr, forKey: .peerIpv4Cidr)
+      try container.encode(self.peerIpv6Cidr, forKey: .peerIpv6Cidr)
+      try container.encode(self.peerAsn, forKey: .peerAsn)
+      try container.encode(self.localAsn, forKey: .localAsn)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -196,6 +433,8 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// sent to the peer. Default is 20 with value between 20 and 60.
     public var keepaliveIntervalInSeconds: Swift.UInt32 = Swift.UInt32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Bgp`.
     public init() {}
 
@@ -210,6 +449,46 @@ public struct Router: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let asn = CodingKeys(stringValue: "asn")
+      static let keepaliveIntervalInSeconds = CodingKeys(stringValue: "keepaliveIntervalInSeconds")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "asn",
+        "keepaliveIntervalInSeconds",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .asn) {
+        self.asn = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .keepaliveIntervalInSeconds)
+      {
+        self.keepaliveIntervalInSeconds = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.asn, forKey: .asn)
+      try container.encode(self.keepaliveIntervalInSeconds, forKey: .keepaliveIntervalInSeconds)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@
     /// is enabled if PscAutomatedConfig is set.
     public var pscAutomatedEndpoints: [PscAutomatedEndpoints] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndexPrivateEndpoints`.
     public init() {}
 
@@ -51,6 +53,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let matchGrpcAddress = CodingKeys(stringValue: "matchGrpcAddress")
+      static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+      static let pscAutomatedEndpoints = CodingKeys(stringValue: "pscAutomatedEndpoints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "matchGrpcAddress",
+        "serviceAttachment",
+        "pscAutomatedEndpoints",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .matchGrpcAddress) {
+        self.matchGrpcAddress = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+        self.serviceAttachment = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PscAutomatedEndpoints].self, forKey: .pscAutomatedEndpoints)
+      {
+        self.pscAutomatedEndpoints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.matchGrpcAddress, forKey: .matchGrpcAddress)
+      try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
+      try container.encode(self.pscAutomatedEndpoints, forKey: .pscAutomatedEndpoints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

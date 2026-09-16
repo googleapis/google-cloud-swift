@@ -72,6 +72,8 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The frameworks that include this control.
   public var relatedFrameworks: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Control`.
   public init() {}
 
@@ -86,6 +88,130 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let family = CodingKeys(stringValue: "family")
+    static let controlFamily = CodingKeys(stringValue: "controlFamily")
+    static let responsibilityType = CodingKeys(stringValue: "responsibilityType")
+    static let googleResponsibilityDescription = CodingKeys(
+      stringValue: "googleResponsibilityDescription")
+    static let googleResponsibilityImplementation = CodingKeys(
+      stringValue: "googleResponsibilityImplementation")
+    static let customerResponsibilityDescription = CodingKeys(
+      stringValue: "customerResponsibilityDescription")
+    static let customerResponsibilityImplementation = CodingKeys(
+      stringValue: "customerResponsibilityImplementation")
+    static let sharedResponsibilityDescription = CodingKeys(
+      stringValue: "sharedResponsibilityDescription")
+    static let additionalContentUri = CodingKeys(stringValue: "additionalContentUri")
+    static let relatedFrameworks = CodingKeys(stringValue: "relatedFrameworks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "family",
+      "controlFamily",
+      "responsibilityType",
+      "googleResponsibilityDescription",
+      "googleResponsibilityImplementation",
+      "customerResponsibilityDescription",
+      "customerResponsibilityImplementation",
+      "sharedResponsibilityDescription",
+      "additionalContentUri",
+      "relatedFrameworks",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Control.Family.self, forKey: .family) {
+      self.family = value
+    }
+    self.controlFamily = try container.decodeIfPresent(ControlFamily.self, forKey: .controlFamily)
+    if let value = try container.decodeIfPresent(
+      RegulatoryControlResponsibilityType.self, forKey: .responsibilityType)
+    {
+      self.responsibilityType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityDescription)
+    {
+      self.googleResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .googleResponsibilityImplementation)
+    {
+      self.googleResponsibilityImplementation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityDescription)
+    {
+      self.customerResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .customerResponsibilityImplementation)
+    {
+      self.customerResponsibilityImplementation = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sharedResponsibilityDescription)
+    {
+      self.sharedResponsibilityDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .additionalContentUri) {
+      self.additionalContentUri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedFrameworks) {
+      self.relatedFrameworks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.family, forKey: .family)
+    try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
+    try container.encode(self.responsibilityType, forKey: .responsibilityType)
+    try container.encode(
+      self.googleResponsibilityDescription, forKey: .googleResponsibilityDescription)
+    try container.encode(
+      self.googleResponsibilityImplementation, forKey: .googleResponsibilityImplementation)
+    try container.encode(
+      self.customerResponsibilityDescription, forKey: .customerResponsibilityDescription)
+    try container.encode(
+      self.customerResponsibilityImplementation, forKey: .customerResponsibilityImplementation)
+    try container.encode(
+      self.sharedResponsibilityDescription, forKey: .sharedResponsibilityDescription)
+    try container.encode(self.additionalContentUri, forKey: .additionalContentUri)
+    try container.encode(self.relatedFrameworks, forKey: .relatedFrameworks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The regulatory control family.

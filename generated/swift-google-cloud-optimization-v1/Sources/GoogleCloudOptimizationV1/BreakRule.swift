@@ -37,6 +37,8 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
   public var frequencyConstraints: [BreakRule.FrequencyConstraint] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BreakRule`.
   public init() {}
 
@@ -51,6 +53,48 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let breakRequests = CodingKeys(stringValue: "breakRequests")
+    static let frequencyConstraints = CodingKeys(stringValue: "frequencyConstraints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "breakRequests",
+      "frequencyConstraints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [BreakRule.BreakRequest].self, forKey: .breakRequests)
+    {
+      self.breakRequests = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BreakRule.FrequencyConstraint].self, forKey: .frequencyConstraints)
+    {
+      self.frequencyConstraints = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.breakRequests, forKey: .breakRequests)
+    try container.encode(self.frequencyConstraints, forKey: .frequencyConstraints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The sequence of breaks (i.e. their number and order) that apply to each
@@ -70,6 +114,8 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Minimum duration of the break. Must be positive.
     public var minDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BreakRequest`.
     public init() {}
 
@@ -84,6 +130,47 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let earliestStartTime = CodingKeys(stringValue: "earliestStartTime")
+      static let latestStartTime = CodingKeys(stringValue: "latestStartTime")
+      static let minDuration = CodingKeys(stringValue: "minDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "earliestStartTime",
+        "latestStartTime",
+        "minDuration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.earliestStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .earliestStartTime)
+      self.latestStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .latestStartTime)
+      self.minDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.earliestStartTime, forKey: .earliestStartTime)
+      try container.encodeIfPresent(self.latestStartTime, forKey: .latestStartTime)
+      try container.encodeIfPresent(self.minDuration, forKey: .minDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -142,6 +229,8 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// min_break_duration`. Must be positive.
     public var maxInterBreakDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FrequencyConstraint`.
     public init() {}
 
@@ -156,6 +245,42 @@ public struct BreakRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minBreakDuration = CodingKeys(stringValue: "minBreakDuration")
+      static let maxInterBreakDuration = CodingKeys(stringValue: "maxInterBreakDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minBreakDuration",
+        "maxInterBreakDuration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.minBreakDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minBreakDuration)
+      self.maxInterBreakDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxInterBreakDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.minBreakDuration, forKey: .minBreakDuration)
+      try container.encodeIfPresent(self.maxInterBreakDuration, forKey: .maxInterBreakDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

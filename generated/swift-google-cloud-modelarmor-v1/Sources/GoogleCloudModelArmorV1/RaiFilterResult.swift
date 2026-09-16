@@ -41,6 +41,8 @@ public struct RaiFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// "sexually_suggestive".
   public var raiFilterTypeResults: [Swift.String: RaiFilterResult.RaiFilterTypeResult] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RaiFilterResult`.
   public init() {}
 
@@ -57,6 +59,59 @@ public struct RaiFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let messageItems = CodingKeys(stringValue: "messageItems")
+    static let matchState = CodingKeys(stringValue: "matchState")
+    static let raiFilterTypeResults = CodingKeys(stringValue: "raiFilterTypeResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "executionState",
+      "messageItems",
+      "matchState",
+      "raiFilterTypeResults",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FilterExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent([MessageItem].self, forKey: .messageItems) {
+      self.messageItems = value
+    }
+    if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .matchState) {
+      self.matchState = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: RaiFilterResult.RaiFilterTypeResult].self, forKey: .raiFilterTypeResults)
+    {
+      self.raiFilterTypeResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.messageItems, forKey: .messageItems)
+    try container.encode(self.matchState, forKey: .matchState)
+    try container.encode(self.raiFilterTypeResults, forKey: .raiFilterTypeResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Detailed Filter result for each of the responsible AI Filter Types.
   public struct RaiFilterTypeResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -69,6 +124,8 @@ public struct RaiFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Output only. Match state for this RAI filter.
     public var matchState: FilterMatchState = FilterMatchState()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `RaiFilterTypeResult`.
     public init() {}
@@ -84,6 +141,52 @@ public struct RaiFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filterType = CodingKeys(stringValue: "filterType")
+      static let confidenceLevel = CodingKeys(stringValue: "confidenceLevel")
+      static let matchState = CodingKeys(stringValue: "matchState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filterType",
+        "confidenceLevel",
+        "matchState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(RaiFilterType.self, forKey: .filterType) {
+        self.filterType = value
+      }
+      if let value = try container.decodeIfPresent(
+        DetectionConfidenceLevel.self, forKey: .confidenceLevel)
+      {
+        self.confidenceLevel = value
+      }
+      if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .matchState) {
+        self.matchState = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.filterType, forKey: .filterType)
+      try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+      try container.encode(self.matchState, forKey: .matchState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

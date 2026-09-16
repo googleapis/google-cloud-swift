@@ -37,6 +37,8 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Status of SQL execution.
   public var status: ExecuteSqlMetadata.Status = ExecuteSqlMetadata.Status()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecuteSqlMetadata`.
   public init() {}
 
@@ -51,6 +53,57 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let partialResult = CodingKeys(stringValue: "partialResult")
+    static let sqlStatementExecutionDuration = CodingKeys(
+      stringValue: "sqlStatementExecutionDuration")
+    static let status = CodingKeys(stringValue: "status")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "partialResult",
+      "sqlStatementExecutionDuration",
+      "status",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .partialResult) {
+      self.partialResult = value
+    }
+    self.sqlStatementExecutionDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .sqlStatementExecutionDuration)
+    if let value = try container.decodeIfPresent(ExecuteSqlMetadata.Status.self, forKey: .status) {
+      self.status = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.partialResult, forKey: .partialResult)
+    try container.encodeIfPresent(
+      self.sqlStatementExecutionDuration, forKey: .sqlStatementExecutionDuration)
+    try container.encode(self.status, forKey: .status)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Status contains all valid Status a SQL execution can end up in.

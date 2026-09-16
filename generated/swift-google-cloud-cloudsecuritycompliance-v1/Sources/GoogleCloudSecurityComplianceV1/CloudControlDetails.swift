@@ -38,6 +38,8 @@ public struct CloudControlDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// `{"name": "location","value": "us-west-1"}`.
   public var parameters: [Parameter] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudControlDetails`.
   public init() {}
 
@@ -52,6 +54,50 @@ public struct CloudControlDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let majorRevisionId = CodingKeys(stringValue: "majorRevisionId")
+    static let parameters = CodingKeys(stringValue: "parameters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "majorRevisionId",
+      "parameters",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .majorRevisionId) {
+      self.majorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent([Parameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
+    try container.encode(self.parameters, forKey: .parameters)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

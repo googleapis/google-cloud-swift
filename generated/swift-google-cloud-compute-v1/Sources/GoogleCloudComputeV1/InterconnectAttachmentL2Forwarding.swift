@@ -57,6 +57,8 @@
     /// this attachment.
     public var tunnelEndpointIpAddress: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentL2Forwarding`.
     public init() {}
 
@@ -71,6 +73,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let applianceMappings = CodingKeys(stringValue: "applianceMappings")
+      static let defaultApplianceIpAddress = CodingKeys(stringValue: "defaultApplianceIpAddress")
+      static let geneveHeader = CodingKeys(stringValue: "geneveHeader")
+      static let network = CodingKeys(stringValue: "network")
+      static let tunnelEndpointIpAddress = CodingKeys(stringValue: "tunnelEndpointIpAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "applianceMappings",
+        "defaultApplianceIpAddress",
+        "geneveHeader",
+        "network",
+        "tunnelEndpointIpAddress",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: InterconnectAttachmentL2ForwardingApplianceMapping].self,
+        forKey: .applianceMappings)
+      {
+        self.applianceMappings = value
+      }
+      self.defaultApplianceIpAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .defaultApplianceIpAddress)
+      self.geneveHeader = try container.decodeIfPresent(
+        InterconnectAttachmentL2ForwardingGeneveHeader.self, forKey: .geneveHeader)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.tunnelEndpointIpAddress = try container.decodeIfPresent(
+        Swift.String.self, forKey: .tunnelEndpointIpAddress)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.applianceMappings, forKey: .applianceMappings)
+      try container.encodeIfPresent(
+        self.defaultApplianceIpAddress, forKey: .defaultApplianceIpAddress)
+      try container.encodeIfPresent(self.geneveHeader, forKey: .geneveHeader)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.tunnelEndpointIpAddress, forKey: .tunnelEndpointIpAddress)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

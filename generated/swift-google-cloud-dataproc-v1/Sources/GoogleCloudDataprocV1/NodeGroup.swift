@@ -45,6 +45,8 @@ public struct NodeGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// * The node group must have no more than 32 labels.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeGroup`.
   public init() {}
 
@@ -59,6 +61,56 @@ public struct NodeGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let roles = CodingKeys(stringValue: "roles")
+    static let nodeGroupConfig = CodingKeys(stringValue: "nodeGroupConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "roles",
+      "nodeGroupConfig",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([NodeGroup.Role].self, forKey: .roles) {
+      self.roles = value
+    }
+    self.nodeGroupConfig = try container.decodeIfPresent(
+      InstanceGroupConfig.self, forKey: .nodeGroupConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.roles, forKey: .roles)
+    try container.encodeIfPresent(self.nodeGroupConfig, forKey: .nodeGroupConfig)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Node pool roles.

@@ -36,6 +36,8 @@ public struct FilteringAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Eventarc PathPattern format.
   public var pathPatternSupported: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FilteringAttribute`.
   public init() {}
 
@@ -52,19 +54,43 @@ public struct FilteringAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case attribute = "attribute"
-    case description = "description"
-    case `required` = "required"
-    case pathPatternSupported = "pathPatternSupported"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let attribute = CodingKeys(stringValue: "attribute")
+    static let description = CodingKeys(stringValue: "description")
+    static let `required` = CodingKeys(stringValue: "required")
+    static let pathPatternSupported = CodingKeys(stringValue: "pathPatternSupported")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "attribute",
+      "description",
+      "required",
+      "pathPatternSupported",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.attribute = try container.decode(Swift.String.self, forKey: .attribute)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-    self.pathPatternSupported = try container.decode(Swift.Bool.self, forKey: .pathPatternSupported)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attribute) {
+      self.attribute = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+      self.`required` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .pathPatternSupported) {
+      self.pathPatternSupported = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +99,9 @@ public struct FilteringAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.description, forKey: .description)
     try container.encode(self.`required`, forKey: .`required`)
     try container.encode(self.pathPatternSupported, forKey: .pathPatternSupported)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

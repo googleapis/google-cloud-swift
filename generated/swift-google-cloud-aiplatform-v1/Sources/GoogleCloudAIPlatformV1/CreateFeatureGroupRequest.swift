@@ -42,6 +42,8 @@
     /// The value must be unique within the project and location.
     public var featureGroupId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateFeatureGroupRequest`.
     public init() {}
 
@@ -56,6 +58,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let featureGroup = CodingKeys(stringValue: "featureGroup")
+      static let featureGroupId = CodingKeys(stringValue: "featureGroupId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "featureGroup",
+        "featureGroupId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.featureGroup = try container.decodeIfPresent(FeatureGroup.self, forKey: .featureGroup)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureGroupId) {
+        self.featureGroupId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.featureGroup, forKey: .featureGroup)
+      try container.encode(self.featureGroupId, forKey: .featureGroupId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

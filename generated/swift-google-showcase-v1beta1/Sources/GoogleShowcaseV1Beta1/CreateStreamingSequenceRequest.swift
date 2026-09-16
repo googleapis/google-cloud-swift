@@ -23,6 +23,8 @@ public struct CreateStreamingSequenceRequest: Codable, Equatable, GoogleCloudWKT
 {
   public var streamingSequence: StreamingSequence? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateStreamingSequenceRequest`.
   public init() {}
 
@@ -37,6 +39,37 @@ public struct CreateStreamingSequenceRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let streamingSequence = CodingKeys(stringValue: "streamingSequence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "streamingSequence"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.streamingSequence = try container.decodeIfPresent(
+      StreamingSequence.self, forKey: .streamingSequence)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.streamingSequence, forKey: .streamingSequence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

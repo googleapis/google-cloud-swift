@@ -31,6 +31,8 @@ public struct NFDeployStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Per-Site Status.
   public var sites: [NFDeploySiteStatus] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NFDeployStatus`.
   public init() {}
 
@@ -45,6 +47,50 @@ public struct NFDeployStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetedNfs = CodingKeys(stringValue: "targetedNfs")
+    static let readyNfs = CodingKeys(stringValue: "readyNfs")
+    static let sites = CodingKeys(stringValue: "sites")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetedNfs",
+      "readyNfs",
+      "sites",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .targetedNfs) {
+      self.targetedNfs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .readyNfs) {
+      self.readyNfs = value
+    }
+    if let value = try container.decodeIfPresent([NFDeploySiteStatus].self, forKey: .sites) {
+      self.sites = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.targetedNfs, forKey: .targetedNfs)
+    try container.encode(self.readyNfs, forKey: .readyNfs)
+    try container.encode(self.sites, forKey: .sites)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

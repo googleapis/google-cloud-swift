@@ -44,6 +44,8 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The query to search for.
   public var searchType: OneOf_SearchType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchDataObjectsRequest`.
   public init() {}
 
@@ -60,20 +62,40 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vectorSearch = "vectorSearch"
-    case semanticSearch = "semanticSearch"
-    case textSearch = "textSearch"
-    case parent = "parent"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vectorSearch = CodingKeys(stringValue: "vectorSearch")
+    static let semanticSearch = CodingKeys(stringValue: "semanticSearch")
+    static let textSearch = CodingKeys(stringValue: "textSearch")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vectorSearch",
+      "semanticSearch",
+      "textSearch",
+      "parent",
+      "pageSize",
+      "pageToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
 
     var searchType: OneOf_SearchType? = nil
     let searchTypeCheckAndSet = {
@@ -97,6 +119,10 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       try searchTypeCheckAndSet(.textSearch(textSearch))
     }
     self.searchType = searchType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,6 +140,9 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyP
       case .textSearch(let value):
         try container.encode(value, forKey: .textSearch)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -55,6 +55,8 @@ public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. Immutable. The type of analysis this note represents.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Note`.
   public init() {}
 
@@ -71,45 +73,87 @@ public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case shortDescription = "shortDescription"
-    case longDescription = "longDescription"
-    case kind = "kind"
-    case relatedUrl = "relatedUrl"
-    case expirationTime = "expirationTime"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case relatedNoteNames = "relatedNoteNames"
-    case vulnerability = "vulnerability"
-    case build = "build"
-    case image = "image"
-    case `package` = "package"
-    case deployment = "deployment"
-    case discovery = "discovery"
-    case attestation = "attestation"
-    case upgrade = "upgrade"
-    case compliance = "compliance"
-    case dsseAttestation = "dsseAttestation"
-    case vulnerabilityAssessment = "vulnerabilityAssessment"
-    case sbomReference = "sbomReference"
-    case secret = "secret"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let shortDescription = CodingKeys(stringValue: "shortDescription")
+    static let longDescription = CodingKeys(stringValue: "longDescription")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let relatedUrl = CodingKeys(stringValue: "relatedUrl")
+    static let expirationTime = CodingKeys(stringValue: "expirationTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let relatedNoteNames = CodingKeys(stringValue: "relatedNoteNames")
+    static let vulnerability = CodingKeys(stringValue: "vulnerability")
+    static let build = CodingKeys(stringValue: "build")
+    static let image = CodingKeys(stringValue: "image")
+    static let `package` = CodingKeys(stringValue: "package")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let discovery = CodingKeys(stringValue: "discovery")
+    static let attestation = CodingKeys(stringValue: "attestation")
+    static let upgrade = CodingKeys(stringValue: "upgrade")
+    static let compliance = CodingKeys(stringValue: "compliance")
+    static let dsseAttestation = CodingKeys(stringValue: "dsseAttestation")
+    static let vulnerabilityAssessment = CodingKeys(stringValue: "vulnerabilityAssessment")
+    static let sbomReference = CodingKeys(stringValue: "sbomReference")
+    static let secret = CodingKeys(stringValue: "secret")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "shortDescription",
+      "longDescription",
+      "kind",
+      "relatedUrl",
+      "expirationTime",
+      "createTime",
+      "updateTime",
+      "relatedNoteNames",
+      "vulnerability",
+      "build",
+      "image",
+      "package",
+      "deployment",
+      "discovery",
+      "attestation",
+      "upgrade",
+      "compliance",
+      "dsseAttestation",
+      "vulnerabilityAssessment",
+      "sbomReference",
+      "secret",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.shortDescription = try container.decode(Swift.String.self, forKey: .shortDescription)
-    self.longDescription = try container.decode(Swift.String.self, forKey: .longDescription)
-    self.kind = try container.decode(NoteKind.self, forKey: .kind)
-    self.relatedUrl = try container.decode([RelatedUrl].self, forKey: .relatedUrl)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shortDescription) {
+      self.shortDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .longDescription) {
+      self.longDescription = value
+    }
+    if let value = try container.decodeIfPresent(NoteKind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent([RelatedUrl].self, forKey: .relatedUrl) {
+      self.relatedUrl = value
+    }
     self.expirationTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.relatedNoteNames = try container.decode([Swift.String].self, forKey: .relatedNoteNames)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedNoteNames) {
+      self.relatedNoteNames = value
+    }
 
     var type: OneOf_Type? = nil
     let typeCheckAndSet = {
@@ -170,6 +214,10 @@ public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try typeCheckAndSet(.secret(secret))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -179,9 +227,9 @@ public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.longDescription, forKey: .longDescription)
     try container.encode(self.kind, forKey: .kind)
     try container.encode(self.relatedUrl, forKey: .relatedUrl)
-    try container.encode(self.expirationTime, forKey: .expirationTime)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.relatedNoteNames, forKey: .relatedNoteNames)
 
     if let choice = self.type {
@@ -213,6 +261,9 @@ public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .secret(let value):
         try container.encode(value, forKey: .secret)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

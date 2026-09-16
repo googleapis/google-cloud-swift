@@ -187,6 +187,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/OneOf_BackupScope>
   public var backupScope: OneOf_BackupScope? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Backup`.
   public init() {}
 
@@ -203,75 +205,153 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case manual = "manual"
-    case labels = "labels"
-    case deleteLockDays = "deleteLockDays"
-    case deleteLockExpireTime = "deleteLockExpireTime"
-    case retainDays = "retainDays"
-    case retainExpireTime = "retainExpireTime"
-    case encryptionKey = "encryptionKey"
-    case allNamespaces = "allNamespaces"
-    case selectedNamespaces = "selectedNamespaces"
-    case selectedApplications = "selectedApplications"
-    case containsVolumeData = "containsVolumeData"
-    case containsSecrets = "containsSecrets"
-    case clusterMetadata = "clusterMetadata"
-    case state = "state"
-    case stateReason = "stateReason"
-    case completeTime = "completeTime"
-    case resourceCount = "resourceCount"
-    case volumeCount = "volumeCount"
-    case sizeBytes = "sizeBytes"
-    case etag = "etag"
-    case description = "description"
-    case podCount = "podCount"
-    case configBackupSizeBytes = "configBackupSizeBytes"
-    case permissiveMode = "permissiveMode"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let manual = CodingKeys(stringValue: "manual")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let deleteLockDays = CodingKeys(stringValue: "deleteLockDays")
+    static let deleteLockExpireTime = CodingKeys(stringValue: "deleteLockExpireTime")
+    static let retainDays = CodingKeys(stringValue: "retainDays")
+    static let retainExpireTime = CodingKeys(stringValue: "retainExpireTime")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let allNamespaces = CodingKeys(stringValue: "allNamespaces")
+    static let selectedNamespaces = CodingKeys(stringValue: "selectedNamespaces")
+    static let selectedApplications = CodingKeys(stringValue: "selectedApplications")
+    static let containsVolumeData = CodingKeys(stringValue: "containsVolumeData")
+    static let containsSecrets = CodingKeys(stringValue: "containsSecrets")
+    static let clusterMetadata = CodingKeys(stringValue: "clusterMetadata")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateReason = CodingKeys(stringValue: "stateReason")
+    static let completeTime = CodingKeys(stringValue: "completeTime")
+    static let resourceCount = CodingKeys(stringValue: "resourceCount")
+    static let volumeCount = CodingKeys(stringValue: "volumeCount")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let description = CodingKeys(stringValue: "description")
+    static let podCount = CodingKeys(stringValue: "podCount")
+    static let configBackupSizeBytes = CodingKeys(stringValue: "configBackupSizeBytes")
+    static let permissiveMode = CodingKeys(stringValue: "permissiveMode")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "manual",
+      "labels",
+      "deleteLockDays",
+      "deleteLockExpireTime",
+      "retainDays",
+      "retainExpireTime",
+      "encryptionKey",
+      "allNamespaces",
+      "selectedNamespaces",
+      "selectedApplications",
+      "containsVolumeData",
+      "containsSecrets",
+      "clusterMetadata",
+      "state",
+      "stateReason",
+      "completeTime",
+      "resourceCount",
+      "volumeCount",
+      "sizeBytes",
+      "etag",
+      "description",
+      "podCount",
+      "configBackupSizeBytes",
+      "permissiveMode",
+      "satisfiesPzs",
+      "satisfiesPzi",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.manual = try container.decode(Swift.Bool.self, forKey: .manual)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.deleteLockDays = try container.decode(Swift.Int32.self, forKey: .deleteLockDays)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .manual) {
+      self.manual = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .deleteLockDays) {
+      self.deleteLockDays = value
+    }
     self.deleteLockExpireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteLockExpireTime)
-    self.retainDays = try container.decode(Swift.Int32.self, forKey: .retainDays)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retainDays) {
+      self.retainDays = value
+    }
     self.retainExpireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .retainExpireTime)
     self.encryptionKey = try container.decodeIfPresent(EncryptionKey.self, forKey: .encryptionKey)
-    self.containsVolumeData = try container.decode(Swift.Bool.self, forKey: .containsVolumeData)
-    self.containsSecrets = try container.decode(Swift.Bool.self, forKey: .containsSecrets)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .containsVolumeData) {
+      self.containsVolumeData = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .containsSecrets) {
+      self.containsSecrets = value
+    }
     self.clusterMetadata = try container.decodeIfPresent(
       Backup.ClusterMetadata.self, forKey: .clusterMetadata)
-    self.state = try container.decode(Backup.State.self, forKey: .state)
-    self.stateReason = try container.decode(Swift.String.self, forKey: .stateReason)
+    if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateReason) {
+      self.stateReason = value
+    }
     self.completeTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
-    self.resourceCount = try container.decode(Swift.Int32.self, forKey: .resourceCount)
-    self.volumeCount = try container.decode(Swift.Int32.self, forKey: .volumeCount)
-    self.sizeBytes = try container.decode(Swift.Int64.self, forKey: .sizeBytes)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.podCount = try container.decode(Swift.Int32.self, forKey: .podCount)
-    self.configBackupSizeBytes = try container.decode(
-      Swift.Int64.self, forKey: .configBackupSizeBytes)
-    self.permissiveMode = try container.decode(Swift.Bool.self, forKey: .permissiveMode)
-    self.satisfiesPzs = try container.decode(Swift.Bool.self, forKey: .satisfiesPzs)
-    self.satisfiesPzi = try container.decode(Swift.Bool.self, forKey: .satisfiesPzi)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .resourceCount) {
+      self.resourceCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .volumeCount) {
+      self.volumeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .podCount) {
+      self.podCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .configBackupSizeBytes) {
+      self.configBackupSizeBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .permissiveMode) {
+      self.permissiveMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
 
     var backupScope: OneOf_BackupScope? = nil
     let backupScopeCheckAndSet = {
@@ -297,27 +377,31 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try backupScopeCheckAndSet(.selectedApplications(selectedApplications))
     }
     self.backupScope = backupScope
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.manual, forKey: .manual)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.deleteLockDays, forKey: .deleteLockDays)
-    try container.encode(self.deleteLockExpireTime, forKey: .deleteLockExpireTime)
+    try container.encodeIfPresent(self.deleteLockExpireTime, forKey: .deleteLockExpireTime)
     try container.encode(self.retainDays, forKey: .retainDays)
-    try container.encode(self.retainExpireTime, forKey: .retainExpireTime)
-    try container.encode(self.encryptionKey, forKey: .encryptionKey)
+    try container.encodeIfPresent(self.retainExpireTime, forKey: .retainExpireTime)
+    try container.encodeIfPresent(self.encryptionKey, forKey: .encryptionKey)
     try container.encode(self.containsVolumeData, forKey: .containsVolumeData)
     try container.encode(self.containsSecrets, forKey: .containsSecrets)
-    try container.encode(self.clusterMetadata, forKey: .clusterMetadata)
+    try container.encodeIfPresent(self.clusterMetadata, forKey: .clusterMetadata)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateReason, forKey: .stateReason)
-    try container.encode(self.completeTime, forKey: .completeTime)
+    try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
     try container.encode(self.resourceCount, forKey: .resourceCount)
     try container.encode(self.volumeCount, forKey: .volumeCount)
     try container.encode(self.sizeBytes, forKey: .sizeBytes)
@@ -338,6 +422,9 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .selectedApplications(let value):
         try container.encode(value, forKey: .selectedApplications)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -367,6 +454,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Platform-specific version
     public var platformVersion: OneOf_PlatformVersion? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClusterMetadata`.
     public init() {}
 
@@ -383,20 +472,40 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cluster = "cluster"
-      case k8SVersion = "k8sVersion"
-      case backupCrdVersions = "backupCrdVersions"
-      case gkeVersion = "gkeVersion"
-      case anthosVersion = "anthosVersion"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cluster = CodingKeys(stringValue: "cluster")
+      static let k8SVersion = CodingKeys(stringValue: "k8sVersion")
+      static let backupCrdVersions = CodingKeys(stringValue: "backupCrdVersions")
+      static let gkeVersion = CodingKeys(stringValue: "gkeVersion")
+      static let anthosVersion = CodingKeys(stringValue: "anthosVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cluster",
+        "k8sVersion",
+        "backupCrdVersions",
+        "gkeVersion",
+        "anthosVersion",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.cluster = try container.decode(Swift.String.self, forKey: .cluster)
-      self.k8SVersion = try container.decode(Swift.String.self, forKey: .k8SVersion)
-      self.backupCrdVersions = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+        self.cluster = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .k8SVersion) {
+        self.k8SVersion = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .backupCrdVersions)
+      {
+        self.backupCrdVersions = value
+      }
 
       var platformVersion: OneOf_PlatformVersion? = nil
       let platformVersionCheckAndSet = {
@@ -417,6 +526,10 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try platformVersionCheckAndSet(.anthosVersion(anthosVersion))
       }
       self.platformVersion = platformVersion
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -432,6 +545,9 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .anthosVersion(let value):
           try container.encode(value, forKey: .anthosVersion)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -84,6 +84,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// format of this field is a JSON string.
   public var internalMetadata: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Repository`.
   public init() {}
 
@@ -98,6 +100,117 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let containingFolder = CodingKeys(stringValue: "containingFolder")
+    static let teamFolderName = CodingKeys(stringValue: "teamFolderName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let gitRemoteSettings = CodingKeys(stringValue: "gitRemoteSettings")
+    static let npmrcEnvironmentVariablesSecretVersion = CodingKeys(
+      stringValue: "npmrcEnvironmentVariablesSecretVersion")
+    static let workspaceCompilationOverrides = CodingKeys(
+      stringValue: "workspaceCompilationOverrides")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let setAuthenticatedUserAdmin = CodingKeys(stringValue: "setAuthenticatedUserAdmin")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let dataEncryptionState = CodingKeys(stringValue: "dataEncryptionState")
+    static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "containingFolder",
+      "teamFolderName",
+      "createTime",
+      "displayName",
+      "gitRemoteSettings",
+      "npmrcEnvironmentVariablesSecretVersion",
+      "workspaceCompilationOverrides",
+      "labels",
+      "setAuthenticatedUserAdmin",
+      "serviceAccount",
+      "kmsKeyName",
+      "dataEncryptionState",
+      "internalMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.containingFolder = try container.decodeIfPresent(
+      Swift.String.self, forKey: .containingFolder)
+    self.teamFolderName = try container.decodeIfPresent(Swift.String.self, forKey: .teamFolderName)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.gitRemoteSettings = try container.decodeIfPresent(
+      Repository.GitRemoteSettings.self, forKey: .gitRemoteSettings)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .npmrcEnvironmentVariablesSecretVersion)
+    {
+      self.npmrcEnvironmentVariablesSecretVersion = value
+    }
+    self.workspaceCompilationOverrides = try container.decodeIfPresent(
+      Repository.WorkspaceCompilationOverrides.self, forKey: .workspaceCompilationOverrides)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .setAuthenticatedUserAdmin)
+    {
+      self.setAuthenticatedUserAdmin = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    self.dataEncryptionState = try container.decodeIfPresent(
+      DataEncryptionState.self, forKey: .dataEncryptionState)
+    self.internalMetadata = try container.decodeIfPresent(
+      Swift.String.self, forKey: .internalMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.containingFolder, forKey: .containingFolder)
+    try container.encodeIfPresent(self.teamFolderName, forKey: .teamFolderName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.gitRemoteSettings, forKey: .gitRemoteSettings)
+    try container.encode(
+      self.npmrcEnvironmentVariablesSecretVersion, forKey: .npmrcEnvironmentVariablesSecretVersion)
+    try container.encodeIfPresent(
+      self.workspaceCompilationOverrides, forKey: .workspaceCompilationOverrides)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.setAuthenticatedUserAdmin, forKey: .setAuthenticatedUserAdmin)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+    try container.encodeIfPresent(self.dataEncryptionState, forKey: .dataEncryptionState)
+    try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Controls Git remote configuration for a repository.
@@ -135,6 +248,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var tokenStatus: Repository.GitRemoteSettings.TokenStatus = Repository.GitRemoteSettings
       .TokenStatus()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GitRemoteSettings`.
     public init() {}
 
@@ -151,6 +266,80 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let url = CodingKeys(stringValue: "url")
+      static let defaultBranch = CodingKeys(stringValue: "defaultBranch")
+      static let effectiveDefaultBranch = CodingKeys(stringValue: "effectiveDefaultBranch")
+      static let authenticationTokenSecretVersion = CodingKeys(
+        stringValue: "authenticationTokenSecretVersion")
+      static let sshAuthenticationConfig = CodingKeys(stringValue: "sshAuthenticationConfig")
+      static let gitRepositoryLink = CodingKeys(stringValue: "gitRepositoryLink")
+      static let tokenStatus = CodingKeys(stringValue: "tokenStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "url",
+        "defaultBranch",
+        "effectiveDefaultBranch",
+        "authenticationTokenSecretVersion",
+        "sshAuthenticationConfig",
+        "gitRepositoryLink",
+        "tokenStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+        self.url = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultBranch) {
+        self.defaultBranch = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .effectiveDefaultBranch)
+      {
+        self.effectiveDefaultBranch = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .authenticationTokenSecretVersion)
+      {
+        self.authenticationTokenSecretVersion = value
+      }
+      self.sshAuthenticationConfig = try container.decodeIfPresent(
+        Repository.GitRemoteSettings.SshAuthenticationConfig.self, forKey: .sshAuthenticationConfig)
+      self.gitRepositoryLink = try container.decodeIfPresent(
+        Swift.String.self, forKey: .gitRepositoryLink)
+      if let value = try container.decodeIfPresent(
+        Repository.GitRemoteSettings.TokenStatus.self, forKey: .tokenStatus)
+      {
+        self.tokenStatus = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.url, forKey: .url)
+      try container.encode(self.defaultBranch, forKey: .defaultBranch)
+      try container.encode(self.effectiveDefaultBranch, forKey: .effectiveDefaultBranch)
+      try container.encode(
+        self.authenticationTokenSecretVersion, forKey: .authenticationTokenSecretVersion)
+      try container.encodeIfPresent(self.sshAuthenticationConfig, forKey: .sshAuthenticationConfig)
+      try container.encodeIfPresent(self.gitRepositoryLink, forKey: .gitRepositoryLink)
+      try container.encode(self.tokenStatus, forKey: .tokenStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Configures fields for performing SSH authentication.
     public struct SshAuthenticationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -163,6 +352,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Required. Content of a public SSH key to verify an identity of a remote
       /// Git host.
       public var hostPublicKey: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SshAuthenticationConfig`.
       public init() {}
@@ -178,6 +369,47 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let userPrivateKeySecretVersion = CodingKeys(
+          stringValue: "userPrivateKeySecretVersion")
+        static let hostPublicKey = CodingKeys(stringValue: "hostPublicKey")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "userPrivateKeySecretVersion",
+          "hostPublicKey",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .userPrivateKeySecretVersion)
+        {
+          self.userPrivateKeySecretVersion = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostPublicKey) {
+          self.hostPublicKey = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.userPrivateKeySecretVersion, forKey: .userPrivateKeySecretVersion)
+        try container.encode(self.hostPublicKey, forKey: .hostPublicKey)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -330,6 +562,8 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The prefix that should be prepended to all table names.
     public var tablePrefix: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WorkspaceCompilationOverrides`.
     public init() {}
 
@@ -344,6 +578,50 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultDatabase = CodingKeys(stringValue: "defaultDatabase")
+      static let schemaSuffix = CodingKeys(stringValue: "schemaSuffix")
+      static let tablePrefix = CodingKeys(stringValue: "tablePrefix")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultDatabase",
+        "schemaSuffix",
+        "tablePrefix",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultDatabase) {
+        self.defaultDatabase = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaSuffix) {
+        self.schemaSuffix = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tablePrefix) {
+        self.tablePrefix = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.defaultDatabase, forKey: .defaultDatabase)
+      try container.encode(self.schemaSuffix, forKey: .schemaSuffix)
+      try container.encode(self.tablePrefix, forKey: .tablePrefix)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

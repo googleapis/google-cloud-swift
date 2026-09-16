@@ -59,6 +59,8 @@
     /// Required. The input content.
     public var input: OneOf_Input? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnalyzeContentRequest`.
     public init() {}
 
@@ -75,22 +77,42 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case participant = "participant"
-      case textInput = "textInput"
-      case audioInput = "audioInput"
-      case eventInput = "eventInput"
-      case suggestionInput = "suggestionInput"
-      case replyAudioConfig = "replyAudioConfig"
-      case queryParams = "queryParams"
-      case assistQueryParams = "assistQueryParams"
-      case cxParameters = "cxParameters"
-      case requestId = "requestId"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let participant = CodingKeys(stringValue: "participant")
+      static let textInput = CodingKeys(stringValue: "textInput")
+      static let audioInput = CodingKeys(stringValue: "audioInput")
+      static let eventInput = CodingKeys(stringValue: "eventInput")
+      static let suggestionInput = CodingKeys(stringValue: "suggestionInput")
+      static let replyAudioConfig = CodingKeys(stringValue: "replyAudioConfig")
+      static let queryParams = CodingKeys(stringValue: "queryParams")
+      static let assistQueryParams = CodingKeys(stringValue: "assistQueryParams")
+      static let cxParameters = CodingKeys(stringValue: "cxParameters")
+      static let requestId = CodingKeys(stringValue: "requestId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "participant",
+        "textInput",
+        "audioInput",
+        "eventInput",
+        "suggestionInput",
+        "replyAudioConfig",
+        "queryParams",
+        "assistQueryParams",
+        "cxParameters",
+        "requestId",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.participant = try container.decode(Swift.String.self, forKey: .participant)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .participant) {
+        self.participant = value
+      }
       self.replyAudioConfig = try container.decodeIfPresent(
         OutputAudioConfig.self, forKey: .replyAudioConfig)
       self.queryParams = try container.decodeIfPresent(QueryParameters.self, forKey: .queryParams)
@@ -98,7 +120,9 @@
         AssistQueryParameters.self, forKey: .assistQueryParams)
       self.cxParameters = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .cxParameters)
-      self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+        self.requestId = value
+      }
 
       var input: OneOf_Input? = nil
       let inputCheckAndSet = {
@@ -125,15 +149,19 @@
         try inputCheckAndSet(.suggestionInput(suggestionInput))
       }
       self.input = input
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.participant, forKey: .participant)
-      try container.encode(self.replyAudioConfig, forKey: .replyAudioConfig)
-      try container.encode(self.queryParams, forKey: .queryParams)
-      try container.encode(self.assistQueryParams, forKey: .assistQueryParams)
-      try container.encode(self.cxParameters, forKey: .cxParameters)
+      try container.encodeIfPresent(self.replyAudioConfig, forKey: .replyAudioConfig)
+      try container.encodeIfPresent(self.queryParams, forKey: .queryParams)
+      try container.encodeIfPresent(self.assistQueryParams, forKey: .assistQueryParams)
+      try container.encodeIfPresent(self.cxParameters, forKey: .cxParameters)
       try container.encode(self.requestId, forKey: .requestId)
 
       if let choice = self.input {
@@ -147,6 +175,9 @@
         case .suggestionInput(let value):
           try container.encode(value, forKey: .suggestionInput)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

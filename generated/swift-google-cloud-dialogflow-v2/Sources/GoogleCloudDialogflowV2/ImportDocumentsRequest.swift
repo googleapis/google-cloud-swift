@@ -47,6 +47,8 @@
     /// import more, Dialogflow will return an error.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportDocumentsRequest`.
     public init() {}
 
@@ -63,20 +65,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case gcsSource = "gcsSource"
-      case documentTemplate = "documentTemplate"
-      case importGcsCustomMetadata = "importGcsCustomMetadata"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let documentTemplate = CodingKeys(stringValue: "documentTemplate")
+      static let importGcsCustomMetadata = CodingKeys(stringValue: "importGcsCustomMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "gcsSource",
+        "documentTemplate",
+        "importGcsCustomMetadata",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
       self.documentTemplate = try container.decodeIfPresent(
         ImportDocumentTemplate.self, forKey: .documentTemplate)
-      self.importGcsCustomMetadata = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .importGcsCustomMetadata)
+      {
+        self.importGcsCustomMetadata = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -92,12 +111,16 @@
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
-      try container.encode(self.documentTemplate, forKey: .documentTemplate)
+      try container.encodeIfPresent(self.documentTemplate, forKey: .documentTemplate)
       try container.encode(self.importGcsCustomMetadata, forKey: .importGcsCustomMetadata)
 
       if let choice = self.source {
@@ -105,6 +128,9 @@
         case .gcsSource(let value):
           try container.encode(value, forKey: .gcsSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

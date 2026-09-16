@@ -28,6 +28,8 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The params returned by OAuth flow redirect.
   public var params: OneOf_Params? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FinishOAuthRequest`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oauthParams = "oauthParams"
-    case googleOauthParams = "googleOauthParams"
-    case accountConnector = "accountConnector"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oauthParams = CodingKeys(stringValue: "oauthParams")
+    static let googleOauthParams = CodingKeys(stringValue: "googleOauthParams")
+    static let accountConnector = CodingKeys(stringValue: "accountConnector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oauthParams",
+      "googleOauthParams",
+      "accountConnector",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.accountConnector = try container.decode(Swift.String.self, forKey: .accountConnector)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountConnector) {
+      self.accountConnector = value
+    }
 
     var params: OneOf_Params? = nil
     let paramsCheckAndSet = {
@@ -75,6 +90,10 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try paramsCheckAndSet(.googleOauthParams(googleOauthParams))
     }
     self.params = params
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +108,9 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .googleOauthParams)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The params returned by non-Google OAuth 2.0 flow redirect.
@@ -101,6 +123,8 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Required. The ticket to be used for post processing the callback from SCM
     /// provider.
     public var ticket: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `OAuthParams`.
     public init() {}
@@ -116,6 +140,44 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let code = CodingKeys(stringValue: "code")
+      static let ticket = CodingKeys(stringValue: "ticket")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "code",
+        "ticket",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .code) {
+        self.code = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ticket) {
+        self.ticket = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.code, forKey: .code)
+      try container.encode(self.ticket, forKey: .ticket)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -143,6 +205,8 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Google OAuth flow.
     public var ticket: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoogleOAuthParams`.
     public init() {}
 
@@ -157,6 +221,50 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scopes = CodingKeys(stringValue: "scopes")
+      static let versionInfo = CodingKeys(stringValue: "versionInfo")
+      static let ticket = CodingKeys(stringValue: "ticket")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scopes",
+        "versionInfo",
+        "ticket",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+        self.scopes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionInfo) {
+        self.versionInfo = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ticket) {
+        self.ticket = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.scopes, forKey: .scopes)
+      try container.encode(self.versionInfo, forKey: .versionInfo)
+      try container.encode(self.ticket, forKey: .ticket)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

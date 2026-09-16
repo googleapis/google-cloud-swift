@@ -87,6 +87,8 @@
     /// Optional. Whether to search the query exactly without query rewrite.
     public var exactSearch: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchKnowledgeRequest`.
     public init() {}
 
@@ -101,6 +103,91 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let query = CodingKeys(stringValue: "query")
+      static let conversationProfile = CodingKeys(stringValue: "conversationProfile")
+      static let sessionId = CodingKeys(stringValue: "sessionId")
+      static let conversation = CodingKeys(stringValue: "conversation")
+      static let latestMessage = CodingKeys(stringValue: "latestMessage")
+      static let querySource = CodingKeys(stringValue: "querySource")
+      static let endUserMetadata = CodingKeys(stringValue: "endUserMetadata")
+      static let searchConfig = CodingKeys(stringValue: "searchConfig")
+      static let exactSearch = CodingKeys(stringValue: "exactSearch")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "query",
+        "conversationProfile",
+        "sessionId",
+        "conversation",
+        "latestMessage",
+        "querySource",
+        "endUserMetadata",
+        "searchConfig",
+        "exactSearch",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.query = try container.decodeIfPresent(TextInput.self, forKey: .query)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationProfile)
+      {
+        self.conversationProfile = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
+        self.sessionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversation) {
+        self.conversation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestMessage) {
+        self.latestMessage = value
+      }
+      if let value = try container.decodeIfPresent(
+        SearchKnowledgeRequest.QuerySource.self, forKey: .querySource)
+      {
+        self.querySource = value
+      }
+      self.endUserMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .endUserMetadata)
+      self.searchConfig = try container.decodeIfPresent(
+        SearchKnowledgeRequest.SearchConfig.self, forKey: .searchConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .exactSearch) {
+        self.exactSearch = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.query, forKey: .query)
+      try container.encode(self.conversationProfile, forKey: .conversationProfile)
+      try container.encode(self.sessionId, forKey: .sessionId)
+      try container.encode(self.conversation, forKey: .conversation)
+      try container.encode(self.latestMessage, forKey: .latestMessage)
+      try container.encode(self.querySource, forKey: .querySource)
+      try container.encodeIfPresent(self.endUserMetadata, forKey: .endUserMetadata)
+      try container.encodeIfPresent(self.searchConfig, forKey: .searchConfig)
+      try container.encode(self.exactSearch, forKey: .exactSearch)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration specific to search queries with data stores.
@@ -122,6 +209,8 @@
       /// behavior is undefined.
       public var filterSpecs: [SearchKnowledgeRequest.SearchConfig.FilterSpecs] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SearchConfig`.
       public init() {}
 
@@ -138,6 +227,48 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let boostSpecs = CodingKeys(stringValue: "boostSpecs")
+        static let filterSpecs = CodingKeys(stringValue: "filterSpecs")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "boostSpecs",
+          "filterSpecs",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [SearchKnowledgeRequest.SearchConfig.BoostSpecs].self, forKey: .boostSpecs)
+        {
+          self.boostSpecs = value
+        }
+        if let value = try container.decodeIfPresent(
+          [SearchKnowledgeRequest.SearchConfig.FilterSpecs].self, forKey: .filterSpecs)
+        {
+          self.filterSpecs = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.boostSpecs, forKey: .boostSpecs)
+        try container.encode(self.filterSpecs, forKey: .filterSpecs)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Boost specifications for data stores.
       public struct BoostSpecs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -150,6 +281,9 @@
 
         /// Optional. A list of boosting specifications.
         public var spec: [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `BoostSpecs`.
         public init() {}
@@ -167,6 +301,46 @@
           return copy
         }
 
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let dataStores = CodingKeys(stringValue: "dataStores")
+          static let spec = CodingKeys(stringValue: "spec")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "dataStores",
+            "spec",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStores) {
+            self.dataStores = value
+          }
+          if let value = try container.decodeIfPresent(
+            [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec].self, forKey: .spec)
+          {
+            self.spec = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.dataStores, forKey: .dataStores)
+          try container.encode(self.spec, forKey: .spec)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
         /// Boost specification to boost certain documents.
         /// A copy of google.cloud.discoveryengine.v1main.BoostSpec, field
         /// documentation is available at
@@ -180,6 +354,9 @@
           /// Maximum number of specifications is 20.
           public var conditionBoostSpecs:
             [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec] = []
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+            .init()
 
           /// Initialize a new instance of `BoostSpec`.
           public init() {}
@@ -195,6 +372,41 @@
             var copy = self
             try config(&copy)
             return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let conditionBoostSpecs = CodingKeys(stringValue: "conditionBoostSpecs")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "conditionBoostSpecs"
+            ]
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(
+              [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec].self,
+              forKey: .conditionBoostSpecs)
+            {
+              self.conditionBoostSpecs = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleCloudWKT.Value.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.conditionBoostSpecs, forKey: .conditionBoostSpecs)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
           }
 
           /// Boost applies to documents which match a condition.
@@ -237,6 +449,9 @@
               SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
                 .BoostControlSpec? = nil
 
+            @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+              .init()
+
             /// Initialize a new instance of `ConditionBoostSpec`.
             public init() {}
 
@@ -251,6 +466,50 @@
               var copy = self
               try config(&copy)
               return copy
+            }
+
+            private struct CodingKeys: CodingKey {
+              var stringValue: Swift.String
+              var intValue: Swift.Int? { nil }
+              init(stringValue: Swift.String) { self.stringValue = stringValue }
+              init?(intValue: Swift.Int) { nil }
+
+              static let condition = CodingKeys(stringValue: "condition")
+              static let boost = CodingKeys(stringValue: "boost")
+              static let boostControlSpec = CodingKeys(stringValue: "boostControlSpec")
+
+              static let _knownKeys: Set<Swift.String> = [
+                "condition",
+                "boost",
+                "boostControlSpec",
+              ]
+            }
+
+            public init(from decoder: Decoder) throws {
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+              if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+                self.condition = value
+              }
+              if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .boost) {
+                self.boost = value
+              }
+              self.boostControlSpec = try container.decodeIfPresent(
+                SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                  .BoostControlSpec.self, forKey: .boostControlSpec)
+              for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+                self._unknownFields.json[key.stringValue] = try container.decode(
+                  GoogleCloudWKT.Value.self, forKey: key)
+              }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+              var container = encoder.container(keyedBy: CodingKeys.self)
+              try container.encode(self.condition, forKey: .condition)
+              try container.encode(self.boost, forKey: .boost)
+              try container.encodeIfPresent(self.boostControlSpec, forKey: .boostControlSpec)
+              for (key, value) in self._unknownFields.json {
+                try container.encode(value, forKey: CodingKeys(stringValue: key))
+              }
             }
 
             /// Specification for custom ranking based on customer specified
@@ -289,6 +548,9 @@
                 [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
                   .BoostControlSpec.ControlPoint] = []
 
+              @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+                .init()
+
               /// Initialize a new instance of `BoostControlSpec`.
               public init() {}
 
@@ -303,6 +565,69 @@
                 var copy = self
                 try config(&copy)
                 return copy
+              }
+
+              private struct CodingKeys: CodingKey {
+                var stringValue: Swift.String
+                var intValue: Swift.Int? { nil }
+                init(stringValue: Swift.String) { self.stringValue = stringValue }
+                init?(intValue: Swift.Int) { nil }
+
+                static let fieldName = CodingKeys(stringValue: "fieldName")
+                static let attributeType = CodingKeys(stringValue: "attributeType")
+                static let interpolationType = CodingKeys(stringValue: "interpolationType")
+                static let controlPoints = CodingKeys(stringValue: "controlPoints")
+
+                static let _knownKeys: Set<Swift.String> = [
+                  "fieldName",
+                  "attributeType",
+                  "interpolationType",
+                  "controlPoints",
+                ]
+              }
+
+              public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName)
+                {
+                  self.fieldName = value
+                }
+                if let value = try container.decodeIfPresent(
+                  SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                    .BoostControlSpec.AttributeType.self, forKey: .attributeType)
+                {
+                  self.attributeType = value
+                }
+                if let value = try container.decodeIfPresent(
+                  SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                    .BoostControlSpec.InterpolationType.self, forKey: .interpolationType)
+                {
+                  self.interpolationType = value
+                }
+                if let value = try container.decodeIfPresent(
+                  [
+                    SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec
+                      .BoostControlSpec.ControlPoint
+                  ].self, forKey: .controlPoints)
+                {
+                  self.controlPoints = value
+                }
+                for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue)
+                {
+                  self._unknownFields.json[key.stringValue] = try container.decode(
+                    GoogleCloudWKT.Value.self, forKey: key)
+                }
+              }
+
+              public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(self.fieldName, forKey: .fieldName)
+                try container.encode(self.attributeType, forKey: .attributeType)
+                try container.encode(self.interpolationType, forKey: .interpolationType)
+                try container.encode(self.controlPoints, forKey: .controlPoints)
+                for (key, value) in self._unknownFields.json {
+                  try container.encode(value, forKey: CodingKeys(stringValue: key))
+                }
               }
 
               /// The control points used to define the curve. The curve defined
@@ -323,6 +648,9 @@
                 /// if the attribute_value evaluates to the value specified above.
                 public var boostAmount: Swift.Float = Swift.Float()
 
+                @_spi(GoogleCloudInternal) public var _unknownFields:
+                  GoogleCloudWKT._UnknownFields = .init()
+
                 /// Initialize a new instance of `ControlPoint`.
                 public init() {}
 
@@ -337,6 +665,49 @@
                   var copy = self
                   try config(&copy)
                   return copy
+                }
+
+                private struct CodingKeys: CodingKey {
+                  var stringValue: Swift.String
+                  var intValue: Swift.Int? { nil }
+                  init(stringValue: Swift.String) { self.stringValue = stringValue }
+                  init?(intValue: Swift.Int) { nil }
+
+                  static let attributeValue = CodingKeys(stringValue: "attributeValue")
+                  static let boostAmount = CodingKeys(stringValue: "boostAmount")
+
+                  static let _knownKeys: Set<Swift.String> = [
+                    "attributeValue",
+                    "boostAmount",
+                  ]
+                }
+
+                public init(from decoder: Decoder) throws {
+                  let container = try decoder.container(keyedBy: CodingKeys.self)
+                  if let value = try container.decodeIfPresent(
+                    Swift.String.self, forKey: .attributeValue)
+                  {
+                    self.attributeValue = value
+                  }
+                  if let value = try container.decodeIfPresent(
+                    Swift.Float.self, forKey: .boostAmount)
+                  {
+                    self.boostAmount = value
+                  }
+                  for key in container.allKeys
+                  where !CodingKeys._knownKeys.contains(key.stringValue) {
+                    self._unknownFields.json[key.stringValue] = try container.decode(
+                      GoogleCloudWKT.Value.self, forKey: key)
+                  }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                  var container = encoder.container(keyedBy: CodingKeys.self)
+                  try container.encode(self.attributeValue, forKey: .attributeValue)
+                  try container.encode(self.boostAmount, forKey: .boostAmount)
+                  for (key, value) in self._unknownFields.json {
+                    try container.encode(value, forKey: CodingKeys(stringValue: key))
+                  }
                 }
 
                 public static var _anyTypeUrl: Swift.String {
@@ -630,6 +1001,9 @@
         /// https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax
         public var filter: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `FilterSpecs`.
         public init() {}
 
@@ -644,6 +1018,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let dataStores = CodingKeys(stringValue: "dataStores")
+          static let filter = CodingKeys(stringValue: "filter")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "dataStores",
+            "filter",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStores) {
+            self.dataStores = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+            self.filter = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.dataStores, forKey: .dataStores)
+          try container.encode(self.filter, forKey: .filter)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

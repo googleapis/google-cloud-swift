@@ -35,6 +35,8 @@
     /// If not set, default generation parameters are used.
     public var inferenceGenerationConfig: GenerationConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluationConfig`.
     public init() {}
 
@@ -49,6 +51,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let metrics = CodingKeys(stringValue: "metrics")
+      static let outputConfig = CodingKeys(stringValue: "outputConfig")
+      static let autoraterConfig = CodingKeys(stringValue: "autoraterConfig")
+      static let inferenceGenerationConfig = CodingKeys(stringValue: "inferenceGenerationConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "metrics",
+        "outputConfig",
+        "autoraterConfig",
+        "inferenceGenerationConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Metric].self, forKey: .metrics) {
+        self.metrics = value
+      }
+      self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+      self.autoraterConfig = try container.decodeIfPresent(
+        AutoraterConfig.self, forKey: .autoraterConfig)
+      self.inferenceGenerationConfig = try container.decodeIfPresent(
+        GenerationConfig.self, forKey: .inferenceGenerationConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.metrics, forKey: .metrics)
+      try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+      try container.encodeIfPresent(self.autoraterConfig, forKey: .autoraterConfig)
+      try container.encodeIfPresent(
+        self.inferenceGenerationConfig, forKey: .inferenceGenerationConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -32,6 +32,8 @@ public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public var googleServiceType: GoogleServiceInfo.GoogleServiceType =
     GoogleServiceInfo.GoogleServiceType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleServiceInfo`.
   public init() {}
 
@@ -46,6 +48,46 @@ public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceIp = CodingKeys(stringValue: "sourceIp")
+    static let googleServiceType = CodingKeys(stringValue: "googleServiceType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceIp",
+      "googleServiceType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceIp) {
+      self.sourceIp = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoogleServiceInfo.GoogleServiceType.self, forKey: .googleServiceType)
+    {
+      self.googleServiceType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceIp, forKey: .sourceIp)
+    try container.encode(self.googleServiceType, forKey: .googleServiceType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Recognized type of a Google Service.

@@ -44,6 +44,8 @@
 
     public var startTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FutureResourcesRecommendation`.
     public init() {}
 
@@ -58,6 +60,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let location = CodingKeys(stringValue: "location")
+      static let otherLocations = CodingKeys(stringValue: "otherLocations")
+      static let recommendationId = CodingKeys(stringValue: "recommendationId")
+      static let recommendationType = CodingKeys(stringValue: "recommendationType")
+      static let startTime = CodingKeys(stringValue: "startTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "endTime",
+        "location",
+        "otherLocations",
+        "recommendationId",
+        "recommendationType",
+        "startTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.location = try container.decodeIfPresent(Swift.String.self, forKey: .location)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: FutureResourcesRecommendationOtherLocation].self, forKey: .otherLocations)
+      {
+        self.otherLocations = value
+      }
+      self.recommendationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .recommendationId)
+      self.recommendationType = try container.decodeIfPresent(
+        FutureResourcesRecommendation.RecommendationType.self, forKey: .recommendationType)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.location, forKey: .location)
+      try container.encode(self.otherLocations, forKey: .otherLocations)
+      try container.encodeIfPresent(self.recommendationId, forKey: .recommendationId)
+      try container.encodeIfPresent(self.recommendationType, forKey: .recommendationType)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [recommendationType][google.cloud.compute.v1.FutureResourcesRecommendation.recommendationType] field.

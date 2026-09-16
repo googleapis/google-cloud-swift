@@ -27,6 +27,8 @@ public struct ValueFrequency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// How many times the value is contained in the field.
   public var count: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ValueFrequency`.
   public init() {}
 
@@ -41,6 +43,42 @@ public struct ValueFrequency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let value = CodingKeys(stringValue: "value")
+    static let count = CodingKeys(stringValue: "count")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "value",
+      "count",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.value = try container.decodeIfPresent(Value.self, forKey: .value)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+      self.count = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.value, forKey: .value)
+    try container.encode(self.count, forKey: .count)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

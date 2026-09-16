@@ -83,6 +83,8 @@ public struct Access: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// it can be an application login username.
   public var userName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Access`.
   public init() {}
 
@@ -97,6 +99,100 @@ public struct Access: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let principalEmail = CodingKeys(stringValue: "principalEmail")
+    static let callerIp = CodingKeys(stringValue: "callerIp")
+    static let callerIpGeo = CodingKeys(stringValue: "callerIpGeo")
+    static let userAgentFamily = CodingKeys(stringValue: "userAgentFamily")
+    static let userAgent = CodingKeys(stringValue: "userAgent")
+    static let serviceName = CodingKeys(stringValue: "serviceName")
+    static let methodName = CodingKeys(stringValue: "methodName")
+    static let principalSubject = CodingKeys(stringValue: "principalSubject")
+    static let serviceAccountKeyName = CodingKeys(stringValue: "serviceAccountKeyName")
+    static let serviceAccountDelegationInfo = CodingKeys(
+      stringValue: "serviceAccountDelegationInfo")
+    static let userName = CodingKeys(stringValue: "userName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "principalEmail",
+      "callerIp",
+      "callerIpGeo",
+      "userAgentFamily",
+      "userAgent",
+      "serviceName",
+      "methodName",
+      "principalSubject",
+      "serviceAccountKeyName",
+      "serviceAccountDelegationInfo",
+      "userName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principalEmail) {
+      self.principalEmail = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .callerIp) {
+      self.callerIp = value
+    }
+    self.callerIpGeo = try container.decodeIfPresent(Geolocation.self, forKey: .callerIpGeo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgentFamily) {
+      self.userAgentFamily = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgent) {
+      self.userAgent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
+      self.serviceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .methodName) {
+      self.methodName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principalSubject) {
+      self.principalSubject = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountKeyName)
+    {
+      self.serviceAccountKeyName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ServiceAccountDelegationInfo].self, forKey: .serviceAccountDelegationInfo)
+    {
+      self.serviceAccountDelegationInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userName) {
+      self.userName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.principalEmail, forKey: .principalEmail)
+    try container.encode(self.callerIp, forKey: .callerIp)
+    try container.encodeIfPresent(self.callerIpGeo, forKey: .callerIpGeo)
+    try container.encode(self.userAgentFamily, forKey: .userAgentFamily)
+    try container.encode(self.userAgent, forKey: .userAgent)
+    try container.encode(self.serviceName, forKey: .serviceName)
+    try container.encode(self.methodName, forKey: .methodName)
+    try container.encode(self.principalSubject, forKey: .principalSubject)
+    try container.encode(self.serviceAccountKeyName, forKey: .serviceAccountKeyName)
+    try container.encode(self.serviceAccountDelegationInfo, forKey: .serviceAccountDelegationInfo)
+    try container.encode(self.userName, forKey: .userName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

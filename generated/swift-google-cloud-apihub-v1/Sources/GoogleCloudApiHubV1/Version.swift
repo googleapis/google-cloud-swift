@@ -115,6 +115,8 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// version.
   public var sourceMetadata: [SourceMetadata] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Version`.
   public init() {}
 
@@ -129,6 +131,120 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let documentation = CodingKeys(stringValue: "documentation")
+    static let specs = CodingKeys(stringValue: "specs")
+    static let apiOperations = CodingKeys(stringValue: "apiOperations")
+    static let definitions = CodingKeys(stringValue: "definitions")
+    static let deployments = CodingKeys(stringValue: "deployments")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lifecycle = CodingKeys(stringValue: "lifecycle")
+    static let compliance = CodingKeys(stringValue: "compliance")
+    static let accreditation = CodingKeys(stringValue: "accreditation")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let selectedDeployment = CodingKeys(stringValue: "selectedDeployment")
+    static let sourceMetadata = CodingKeys(stringValue: "sourceMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "documentation",
+      "specs",
+      "apiOperations",
+      "definitions",
+      "deployments",
+      "createTime",
+      "updateTime",
+      "lifecycle",
+      "compliance",
+      "accreditation",
+      "attributes",
+      "selectedDeployment",
+      "sourceMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.documentation = try container.decodeIfPresent(Documentation.self, forKey: .documentation)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .specs) {
+      self.specs = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .apiOperations) {
+      self.apiOperations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .definitions) {
+      self.definitions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .deployments) {
+      self.deployments = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.lifecycle = try container.decodeIfPresent(AttributeValues.self, forKey: .lifecycle)
+    self.compliance = try container.decodeIfPresent(AttributeValues.self, forKey: .compliance)
+    self.accreditation = try container.decodeIfPresent(AttributeValues.self, forKey: .accreditation)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: AttributeValues].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectedDeployment) {
+      self.selectedDeployment = value
+    }
+    if let value = try container.decodeIfPresent([SourceMetadata].self, forKey: .sourceMetadata) {
+      self.sourceMetadata = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.documentation, forKey: .documentation)
+    try container.encode(self.specs, forKey: .specs)
+    try container.encode(self.apiOperations, forKey: .apiOperations)
+    try container.encode(self.definitions, forKey: .definitions)
+    try container.encode(self.deployments, forKey: .deployments)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lifecycle, forKey: .lifecycle)
+    try container.encodeIfPresent(self.compliance, forKey: .compliance)
+    try container.encodeIfPresent(self.accreditation, forKey: .accreditation)
+    try container.encode(self.attributes, forKey: .attributes)
+    try container.encode(self.selectedDeployment, forKey: .selectedDeployment)
+    try container.encode(self.sourceMetadata, forKey: .sourceMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

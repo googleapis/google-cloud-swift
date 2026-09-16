@@ -39,6 +39,8 @@ public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The child spans that are nested under this span.
   public var childSpans: [Span] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Span`.
   public init() {}
 
@@ -53,6 +55,61 @@ public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let childSpans = CodingKeys(stringValue: "childSpans")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "startTime",
+      "endTime",
+      "duration",
+      "attributes",
+      "childSpans",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
+    self.attributes = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .attributes)
+    if let value = try container.decodeIfPresent([Span].self, forKey: .childSpans) {
+      self.childSpans = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.duration, forKey: .duration)
+    try container.encodeIfPresent(self.attributes, forKey: .attributes)
+    try container.encode(self.childSpans, forKey: .childSpans)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -92,6 +92,8 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether the analysis should skip firewall checking. Default value is false.
   public var bypassFirewallChecks: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectivityTest`.
   public init() {}
 
@@ -108,34 +110,70 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case source = "source"
-    case destination = "destination"
-    case `protocol` = "protocol"
-    case relatedProjects = "relatedProjects"
-    case displayName = "displayName"
-    case labels = "labels"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case reachabilityDetails = "reachabilityDetails"
-    case probingDetails = "probingDetails"
-    case roundTrip = "roundTrip"
-    case returnReachabilityDetails = "returnReachabilityDetails"
-    case bypassFirewallChecks = "bypassFirewallChecks"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let source = CodingKeys(stringValue: "source")
+    static let destination = CodingKeys(stringValue: "destination")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let relatedProjects = CodingKeys(stringValue: "relatedProjects")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let reachabilityDetails = CodingKeys(stringValue: "reachabilityDetails")
+    static let probingDetails = CodingKeys(stringValue: "probingDetails")
+    static let roundTrip = CodingKeys(stringValue: "roundTrip")
+    static let returnReachabilityDetails = CodingKeys(stringValue: "returnReachabilityDetails")
+    static let bypassFirewallChecks = CodingKeys(stringValue: "bypassFirewallChecks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "source",
+      "destination",
+      "protocol",
+      "relatedProjects",
+      "displayName",
+      "labels",
+      "createTime",
+      "updateTime",
+      "reachabilityDetails",
+      "probingDetails",
+      "roundTrip",
+      "returnReachabilityDetails",
+      "bypassFirewallChecks",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.source = try container.decodeIfPresent(Endpoint.self, forKey: .source)
     self.destination = try container.decodeIfPresent(Endpoint.self, forKey: .destination)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.relatedProjects = try container.decode([Swift.String].self, forKey: .relatedProjects)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relatedProjects) {
+      self.relatedProjects = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -144,29 +182,41 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       ReachabilityDetails.self, forKey: .reachabilityDetails)
     self.probingDetails = try container.decodeIfPresent(
       ProbingDetails.self, forKey: .probingDetails)
-    self.roundTrip = try container.decode(Swift.Bool.self, forKey: .roundTrip)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .roundTrip) {
+      self.roundTrip = value
+    }
     self.returnReachabilityDetails = try container.decodeIfPresent(
       ReachabilityDetails.self, forKey: .returnReachabilityDetails)
-    self.bypassFirewallChecks = try container.decode(Swift.Bool.self, forKey: .bypassFirewallChecks)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bypassFirewallChecks) {
+      self.bypassFirewallChecks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.source, forKey: .source)
-    try container.encode(self.destination, forKey: .destination)
+    try container.encodeIfPresent(self.source, forKey: .source)
+    try container.encodeIfPresent(self.destination, forKey: .destination)
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.relatedProjects, forKey: .relatedProjects)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.reachabilityDetails, forKey: .reachabilityDetails)
-    try container.encode(self.probingDetails, forKey: .probingDetails)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.reachabilityDetails, forKey: .reachabilityDetails)
+    try container.encodeIfPresent(self.probingDetails, forKey: .probingDetails)
     try container.encode(self.roundTrip, forKey: .roundTrip)
-    try container.encode(self.returnReachabilityDetails, forKey: .returnReachabilityDetails)
+    try container.encodeIfPresent(
+      self.returnReachabilityDetails, forKey: .returnReachabilityDetails)
     try container.encode(self.bypassFirewallChecks, forKey: .bypassFirewallChecks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

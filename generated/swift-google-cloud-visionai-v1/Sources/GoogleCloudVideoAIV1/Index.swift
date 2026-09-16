@@ -64,6 +64,8 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// with latest assets, including their analyzed data and annotations.
   public var assetFilter: OneOf_AssetFilter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Index`.
   public init() {}
 
@@ -80,31 +82,60 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case entireCorpus = "entireCorpus"
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case state = "state"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deployedIndexes = "deployedIndexes"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entireCorpus = CodingKeys(stringValue: "entireCorpus")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deployedIndexes = CodingKeys(stringValue: "deployedIndexes")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entireCorpus",
+      "name",
+      "displayName",
+      "description",
+      "state",
+      "createTime",
+      "updateTime",
+      "deployedIndexes",
+      "satisfiesPzs",
+      "satisfiesPzi",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.state = try container.decode(Index.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Index.State.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.deployedIndexes = try container.decode(
+    if let value = try container.decodeIfPresent(
       [DeployedIndexReference].self, forKey: .deployedIndexes)
+    {
+      self.deployedIndexes = value
+    }
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
@@ -122,6 +153,10 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try assetFilterCheckAndSet(.entireCorpus(entireCorpus))
     }
     self.assetFilter = assetFilter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -130,17 +165,20 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.deployedIndexes, forKey: .deployedIndexes)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
 
     if let choice = self.assetFilter {
       switch choice {
       case .entireCorpus(let value):
         try container.encode(value, forKey: .entireCorpus)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

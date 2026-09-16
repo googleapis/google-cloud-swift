@@ -44,6 +44,8 @@ public struct GoldengateConnectionAssignmentProperties: Codable, Equatable, Goog
   public var state: GoldengateConnectionAssignmentProperties.State =
     GoldengateConnectionAssignmentProperties.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateConnectionAssignmentProperties`.
   public init() {}
 
@@ -58,6 +60,64 @@ public struct GoldengateConnectionAssignmentProperties: Codable, Equatable, Goog
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let goldengateConnection = CodingKeys(stringValue: "goldengateConnection")
+    static let goldengateDeployment = CodingKeys(stringValue: "goldengateDeployment")
+    static let alias = CodingKeys(stringValue: "alias")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "goldengateConnection",
+      "goldengateDeployment",
+      "alias",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .goldengateConnection) {
+      self.goldengateConnection = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .goldengateDeployment) {
+      self.goldengateDeployment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alias) {
+      self.alias = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateConnectionAssignmentProperties.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.goldengateConnection, forKey: .goldengateConnection)
+    try container.encode(self.goldengateDeployment, forKey: .goldengateDeployment)
+    try container.encode(self.alias, forKey: .alias)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible lifecycle states for connection assignments.

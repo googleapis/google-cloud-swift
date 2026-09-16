@@ -54,6 +54,8 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Connectivity options used to establish a connection to the database server.
   public var connectivity: OneOf_Connectivity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OracleConnectionProfile`.
   public init() {}
 
@@ -70,27 +72,57 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case host = "host"
-    case port = "port"
-    case username = "username"
-    case password = "password"
-    case passwordSet = "passwordSet"
-    case databaseService = "databaseService"
-    case ssl = "ssl"
-    case staticServiceIpConnectivity = "staticServiceIpConnectivity"
-    case forwardSshConnectivity = "forwardSshConnectivity"
-    case privateConnectivity = "privateConnectivity"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSet = CodingKeys(stringValue: "passwordSet")
+    static let databaseService = CodingKeys(stringValue: "databaseService")
+    static let ssl = CodingKeys(stringValue: "ssl")
+    static let staticServiceIpConnectivity = CodingKeys(stringValue: "staticServiceIpConnectivity")
+    static let forwardSshConnectivity = CodingKeys(stringValue: "forwardSshConnectivity")
+    static let privateConnectivity = CodingKeys(stringValue: "privateConnectivity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "host",
+      "port",
+      "username",
+      "password",
+      "passwordSet",
+      "databaseService",
+      "ssl",
+      "staticServiceIpConnectivity",
+      "forwardSshConnectivity",
+      "privateConnectivity",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.password = try container.decode(Swift.String.self, forKey: .password)
-    self.passwordSet = try container.decode(Swift.Bool.self, forKey: .passwordSet)
-    self.databaseService = try container.decode(Swift.String.self, forKey: .databaseService)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passwordSet) {
+      self.passwordSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseService) {
+      self.databaseService = value
+    }
     self.ssl = try container.decodeIfPresent(SslConfig.self, forKey: .ssl)
 
     var connectivity: OneOf_Connectivity? = nil
@@ -119,6 +151,10 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
       try connectivityCheckAndSet(.privateConnectivity(privateConnectivity))
     }
     self.connectivity = connectivity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -129,7 +165,7 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
     try container.encode(self.password, forKey: .password)
     try container.encode(self.passwordSet, forKey: .passwordSet)
     try container.encode(self.databaseService, forKey: .databaseService)
-    try container.encode(self.ssl, forKey: .ssl)
+    try container.encodeIfPresent(self.ssl, forKey: .ssl)
 
     if let choice = self.connectivity {
       switch choice {
@@ -140,6 +176,9 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .privateConnectivity(let value):
         try container.encode(value, forKey: .privateConnectivity)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

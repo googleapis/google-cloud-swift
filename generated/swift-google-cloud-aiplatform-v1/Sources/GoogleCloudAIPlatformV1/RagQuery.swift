@@ -29,6 +29,8 @@
     /// Currently only text query is supported.
     public var query: OneOf_Query? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RagQuery`.
     public init() {}
 
@@ -45,9 +47,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case ragRetrievalConfig = "ragRetrievalConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let ragRetrievalConfig = CodingKeys(stringValue: "ragRetrievalConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "ragRetrievalConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -69,17 +81,24 @@
         try queryCheckAndSet(.text(text))
       }
       self.query = query
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.ragRetrievalConfig, forKey: .ragRetrievalConfig)
+      try container.encodeIfPresent(self.ragRetrievalConfig, forKey: .ragRetrievalConfig)
 
       if let choice = self.query {
         switch choice {
         case .text(let value):
           try container.encode(value, forKey: .text)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

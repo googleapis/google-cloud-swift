@@ -40,6 +40,8 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleCloudWKT._AnyP
   /// and streaming modes.
   public var trackInfo: OneOf_TrackInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectTrackingAnnotation`.
   public init() {}
 
@@ -56,21 +58,41 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case segment = "segment"
-    case trackId = "trackId"
-    case entity = "entity"
-    case confidence = "confidence"
-    case frames = "frames"
-    case version = "version"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let segment = CodingKeys(stringValue: "segment")
+    static let trackId = CodingKeys(stringValue: "trackId")
+    static let entity = CodingKeys(stringValue: "entity")
+    static let confidence = CodingKeys(stringValue: "confidence")
+    static let frames = CodingKeys(stringValue: "frames")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "segment",
+      "trackId",
+      "entity",
+      "confidence",
+      "frames",
+      "version",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.entity = try container.decodeIfPresent(Entity.self, forKey: .entity)
-    self.confidence = try container.decode(Swift.Float.self, forKey: .confidence)
-    self.frames = try container.decode([ObjectTrackingFrame].self, forKey: .frames)
-    self.version = try container.decode(Swift.String.self, forKey: .version)
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+      self.confidence = value
+    }
+    if let value = try container.decodeIfPresent([ObjectTrackingFrame].self, forKey: .frames) {
+      self.frames = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
 
     var trackInfo: OneOf_TrackInfo? = nil
     let trackInfoCheckAndSet = {
@@ -89,11 +111,15 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleCloudWKT._AnyP
       try trackInfoCheckAndSet(.trackId(trackId))
     }
     self.trackInfo = trackInfo
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.entity, forKey: .entity)
+    try container.encodeIfPresent(self.entity, forKey: .entity)
     try container.encode(self.confidence, forKey: .confidence)
     try container.encode(self.frames, forKey: .frames)
     try container.encode(self.version, forKey: .version)
@@ -105,6 +131,9 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleCloudWKT._AnyP
       case .trackId(let value):
         try container.encode(value, forKey: .trackId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

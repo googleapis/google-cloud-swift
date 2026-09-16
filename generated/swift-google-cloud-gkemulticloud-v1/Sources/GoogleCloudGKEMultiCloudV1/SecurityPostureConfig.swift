@@ -26,6 +26,8 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   public var vulnerabilityMode: SecurityPostureConfig.VulnerabilityMode =
     SecurityPostureConfig.VulnerabilityMode()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityPostureConfig`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vulnerabilityMode = CodingKeys(stringValue: "vulnerabilityMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vulnerabilityMode"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      SecurityPostureConfig.VulnerabilityMode.self, forKey: .vulnerabilityMode)
+    {
+      self.vulnerabilityMode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vulnerabilityMode, forKey: .vulnerabilityMode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// VulnerabilityMode defines enablement mode for vulnerability scanning.

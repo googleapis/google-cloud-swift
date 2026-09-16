@@ -55,6 +55,8 @@
     /// Generator.
     public var generatorResource: OneOf_GeneratorResource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GenerateStatelessSuggestionRequest`.
     public init() {}
 
@@ -71,25 +73,49 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case generator = "generator"
-      case generatorName = "generatorName"
-      case contextReferences = "contextReferences"
-      case conversationContext = "conversationContext"
-      case triggerEvents = "triggerEvents"
-      case securitySettings = "securitySettings"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let generator = CodingKeys(stringValue: "generator")
+      static let generatorName = CodingKeys(stringValue: "generatorName")
+      static let contextReferences = CodingKeys(stringValue: "contextReferences")
+      static let conversationContext = CodingKeys(stringValue: "conversationContext")
+      static let triggerEvents = CodingKeys(stringValue: "triggerEvents")
+      static let securitySettings = CodingKeys(stringValue: "securitySettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "generator",
+        "generatorName",
+        "contextReferences",
+        "conversationContext",
+        "triggerEvents",
+        "securitySettings",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.contextReferences = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String: Conversation.ContextReference].self, forKey: .contextReferences)
+      {
+        self.contextReferences = value
+      }
       self.conversationContext = try container.decodeIfPresent(
         ConversationContext.self, forKey: .conversationContext)
-      self.triggerEvents = try container.decode([TriggerEvent].self, forKey: .triggerEvents)
-      self.securitySettings = try container.decode(Swift.String.self, forKey: .securitySettings)
+      if let value = try container.decodeIfPresent([TriggerEvent].self, forKey: .triggerEvents) {
+        self.triggerEvents = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securitySettings) {
+        self.securitySettings = value
+      }
 
       var generatorResource: OneOf_GeneratorResource? = nil
       let generatorResourceCheckAndSet = {
@@ -110,13 +136,17 @@
         try generatorResourceCheckAndSet(.generatorName(generatorName))
       }
       self.generatorResource = generatorResource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.contextReferences, forKey: .contextReferences)
-      try container.encode(self.conversationContext, forKey: .conversationContext)
+      try container.encodeIfPresent(self.conversationContext, forKey: .conversationContext)
       try container.encode(self.triggerEvents, forKey: .triggerEvents)
       try container.encode(self.securitySettings, forKey: .securitySettings)
 
@@ -127,6 +157,9 @@
         case .generatorName(let value):
           try container.encode(value, forKey: .generatorName)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -27,6 +27,8 @@ public struct ListIcebergTableIdentifiersResponse: Codable, Equatable, GoogleClo
   /// Output only. The next page token for pagination.
   public var nextPageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListIcebergTableIdentifiersResponse`.
   public init() {}
 
@@ -43,21 +45,42 @@ public struct ListIcebergTableIdentifiersResponse: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case identifiers = "identifiers"
-    case nextPageToken = "next-page-token"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let identifiers = CodingKeys(stringValue: "identifiers")
+    static let nextPageToken = CodingKeys(stringValue: "next-page-token")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "identifiers",
+      "next-page-token",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.identifiers = try container.decode([TableIdentifier].self, forKey: .identifiers)
-    self.nextPageToken = try container.decode(Swift.String.self, forKey: .nextPageToken)
+    if let value = try container.decodeIfPresent([TableIdentifier].self, forKey: .identifiers) {
+      self.identifiers = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.identifiers, forKey: .identifiers)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

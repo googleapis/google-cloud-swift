@@ -56,6 +56,8 @@ public struct McpToolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// or pinning the tools' states so they aren't fully dynamic.
   public var toolOverrides: [McpToolOverride] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `McpToolset`.
   public init() {}
 
@@ -70,6 +72,66 @@ public struct McpToolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serverAddress = CodingKeys(stringValue: "serverAddress")
+    static let apiAuthentication = CodingKeys(stringValue: "apiAuthentication")
+    static let serviceDirectoryConfig = CodingKeys(stringValue: "serviceDirectoryConfig")
+    static let tlsConfig = CodingKeys(stringValue: "tlsConfig")
+    static let customHeaders = CodingKeys(stringValue: "customHeaders")
+    static let toolOverrides = CodingKeys(stringValue: "toolOverrides")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serverAddress",
+      "apiAuthentication",
+      "serviceDirectoryConfig",
+      "tlsConfig",
+      "customHeaders",
+      "toolOverrides",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverAddress) {
+      self.serverAddress = value
+    }
+    self.apiAuthentication = try container.decodeIfPresent(
+      ApiAuthentication.self, forKey: .apiAuthentication)
+    self.serviceDirectoryConfig = try container.decodeIfPresent(
+      ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
+    self.tlsConfig = try container.decodeIfPresent(TlsConfig.self, forKey: .tlsConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .customHeaders)
+    {
+      self.customHeaders = value
+    }
+    if let value = try container.decodeIfPresent([McpToolOverride].self, forKey: .toolOverrides) {
+      self.toolOverrides = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serverAddress, forKey: .serverAddress)
+    try container.encodeIfPresent(self.apiAuthentication, forKey: .apiAuthentication)
+    try container.encodeIfPresent(self.serviceDirectoryConfig, forKey: .serviceDirectoryConfig)
+    try container.encodeIfPresent(self.tlsConfig, forKey: .tlsConfig)
+    try container.encode(self.customHeaders, forKey: .customHeaders)
+    try container.encode(self.toolOverrides, forKey: .toolOverrides)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

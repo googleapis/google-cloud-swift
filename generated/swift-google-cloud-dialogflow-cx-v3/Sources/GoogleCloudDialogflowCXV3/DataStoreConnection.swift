@@ -37,6 +37,8 @@
     /// considered as DOCUMENTS, as this is the legacy mode.
     public var documentProcessingMode: DocumentProcessingMode = DocumentProcessingMode()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataStoreConnection`.
     public init() {}
 
@@ -51,6 +53,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dataStoreType = CodingKeys(stringValue: "dataStoreType")
+      static let dataStore = CodingKeys(stringValue: "dataStore")
+      static let documentProcessingMode = CodingKeys(stringValue: "documentProcessingMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dataStoreType",
+        "dataStore",
+        "documentProcessingMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(DataStoreType.self, forKey: .dataStoreType) {
+        self.dataStoreType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
+        self.dataStore = value
+      }
+      if let value = try container.decodeIfPresent(
+        DocumentProcessingMode.self, forKey: .documentProcessingMode)
+      {
+        self.documentProcessingMode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dataStoreType, forKey: .dataStoreType)
+      try container.encode(self.dataStore, forKey: .dataStore)
+      try container.encode(self.documentProcessingMode, forKey: .documentProcessingMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

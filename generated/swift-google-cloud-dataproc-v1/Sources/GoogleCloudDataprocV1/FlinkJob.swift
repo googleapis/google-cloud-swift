@@ -54,6 +54,8 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.dataproc.v1.FlinkJob.main_class]: <doc:FlinkJob/OneOf_Driver/mainClass(_:)>
   public var driver: OneOf_Driver? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FlinkJob`.
   public init() {}
 
@@ -70,22 +72,47 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mainJarFileUri = "mainJarFileUri"
-    case mainClass = "mainClass"
-    case args = "args"
-    case jarFileUris = "jarFileUris"
-    case savepointUri = "savepointUri"
-    case properties = "properties"
-    case loggingConfig = "loggingConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mainJarFileUri = CodingKeys(stringValue: "mainJarFileUri")
+    static let mainClass = CodingKeys(stringValue: "mainClass")
+    static let args = CodingKeys(stringValue: "args")
+    static let jarFileUris = CodingKeys(stringValue: "jarFileUris")
+    static let savepointUri = CodingKeys(stringValue: "savepointUri")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mainJarFileUri",
+      "mainClass",
+      "args",
+      "jarFileUris",
+      "savepointUri",
+      "properties",
+      "loggingConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.args = try container.decode([Swift.String].self, forKey: .args)
-    self.jarFileUris = try container.decode([Swift.String].self, forKey: .jarFileUris)
-    self.savepointUri = try container.decode(Swift.String.self, forKey: .savepointUri)
-    self.properties = try container.decode([Swift.String: Swift.String].self, forKey: .properties)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .jarFileUris) {
+      self.jarFileUris = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savepointUri) {
+      self.savepointUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
     var driver: OneOf_Driver? = nil
@@ -107,6 +134,10 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try driverCheckAndSet(.mainClass(mainClass))
     }
     self.driver = driver
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,7 +146,7 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.jarFileUris, forKey: .jarFileUris)
     try container.encode(self.savepointUri, forKey: .savepointUri)
     try container.encode(self.properties, forKey: .properties)
-    try container.encode(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
 
     if let choice = self.driver {
       switch choice {
@@ -124,6 +155,9 @@ public struct FlinkJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .mainClass(let value):
         try container.encode(value, forKey: .mainClass)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

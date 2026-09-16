@@ -66,6 +66,8 @@ public struct CloudControlReport: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The assessment details of the cloud control.
   public var assessmentDetails: OneOf_AssessmentDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudControlReport`.
   public init() {}
 
@@ -82,43 +84,99 @@ public struct CloudControlReport: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case manualCloudControlAssessmentDetails = "manualCloudControlAssessmentDetails"
-    case cloudControlAssessmentDetails = "cloudControlAssessmentDetails"
-    case cloudControl = "cloudControl"
-    case displayName = "displayName"
-    case description = "description"
-    case categories = "categories"
-    case similarControls = "similarControls"
-    case cloudControlType = "cloudControlType"
-    case findingCategory = "findingCategory"
-    case rules = "rules"
-    case findingSeverity = "findingSeverity"
-    case enforcementMode = "enforcementMode"
-    case cloudControlDeployment = "cloudControlDeployment"
-    case majorRevisionId = "majorRevisionId"
-    case minorRevisionId = "minorRevisionId"
-    case frameworkMajorRevisionIds = "frameworkMajorRevisionIds"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let manualCloudControlAssessmentDetails = CodingKeys(
+      stringValue: "manualCloudControlAssessmentDetails")
+    static let cloudControlAssessmentDetails = CodingKeys(
+      stringValue: "cloudControlAssessmentDetails")
+    static let cloudControl = CodingKeys(stringValue: "cloudControl")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let similarControls = CodingKeys(stringValue: "similarControls")
+    static let cloudControlType = CodingKeys(stringValue: "cloudControlType")
+    static let findingCategory = CodingKeys(stringValue: "findingCategory")
+    static let rules = CodingKeys(stringValue: "rules")
+    static let findingSeverity = CodingKeys(stringValue: "findingSeverity")
+    static let enforcementMode = CodingKeys(stringValue: "enforcementMode")
+    static let cloudControlDeployment = CodingKeys(stringValue: "cloudControlDeployment")
+    static let majorRevisionId = CodingKeys(stringValue: "majorRevisionId")
+    static let minorRevisionId = CodingKeys(stringValue: "minorRevisionId")
+    static let frameworkMajorRevisionIds = CodingKeys(stringValue: "frameworkMajorRevisionIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "manualCloudControlAssessmentDetails",
+      "cloudControlAssessmentDetails",
+      "cloudControl",
+      "displayName",
+      "description",
+      "categories",
+      "similarControls",
+      "cloudControlType",
+      "findingCategory",
+      "rules",
+      "findingSeverity",
+      "enforcementMode",
+      "cloudControlDeployment",
+      "majorRevisionId",
+      "minorRevisionId",
+      "frameworkMajorRevisionIds",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.cloudControl = try container.decode(Swift.String.self, forKey: .cloudControl)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.categories = try container.decode([Swift.String].self, forKey: .categories)
-    self.similarControls = try container.decode([SimilarControls].self, forKey: .similarControls)
-    self.cloudControlType = try container.decode(CloudControl.Type_.self, forKey: .cloudControlType)
-    self.findingCategory = try container.decode(Swift.String.self, forKey: .findingCategory)
-    self.rules = try container.decode([Rule].self, forKey: .rules)
-    self.findingSeverity = try container.decode(Severity.self, forKey: .findingSeverity)
-    self.enforcementMode = try container.decode(EnforcementMode.self, forKey: .enforcementMode)
-    self.cloudControlDeployment = try container.decode(
-      Swift.String.self, forKey: .cloudControlDeployment)
-    self.majorRevisionId = try container.decode(Swift.Int64.self, forKey: .majorRevisionId)
-    self.minorRevisionId = try container.decode(Swift.Int64.self, forKey: .minorRevisionId)
-    self.frameworkMajorRevisionIds = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudControl) {
+      self.cloudControl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .categories) {
+      self.categories = value
+    }
+    if let value = try container.decodeIfPresent([SimilarControls].self, forKey: .similarControls) {
+      self.similarControls = value
+    }
+    if let value = try container.decodeIfPresent(CloudControl.Type_.self, forKey: .cloudControlType)
+    {
+      self.cloudControlType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingCategory) {
+      self.findingCategory = value
+    }
+    if let value = try container.decodeIfPresent([Rule].self, forKey: .rules) {
+      self.rules = value
+    }
+    if let value = try container.decodeIfPresent(Severity.self, forKey: .findingSeverity) {
+      self.findingSeverity = value
+    }
+    if let value = try container.decodeIfPresent(EnforcementMode.self, forKey: .enforcementMode) {
+      self.enforcementMode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudControlDeployment)
+    {
+      self.cloudControlDeployment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .majorRevisionId) {
+      self.majorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minorRevisionId) {
+      self.minorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.Int64].self, forKey: .frameworkMajorRevisionIds)
+    {
+      self.frameworkMajorRevisionIds = value
+    }
 
     var assessmentDetails: OneOf_AssessmentDetails? = nil
     let assessmentDetailsCheckAndSet = {
@@ -143,6 +201,10 @@ public struct CloudControlReport: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         .cloudControlAssessmentDetails(cloudControlAssessmentDetails))
     }
     self.assessmentDetails = assessmentDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -169,6 +231,9 @@ public struct CloudControlReport: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .cloudControlAssessmentDetails(let value):
         try container.encode(value, forKey: .cloudControlAssessmentDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

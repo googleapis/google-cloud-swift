@@ -50,6 +50,8 @@ public struct ResourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
   public var ancestors: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceContext`.
   public init() {}
 
@@ -64,6 +66,50 @@ public struct ResourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resource = CodingKeys(stringValue: "resource")
+    static let assetType = CodingKeys(stringValue: "assetType")
+    static let ancestors = CodingKeys(stringValue: "ancestors")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resource",
+      "assetType",
+      "ancestors",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetType) {
+      self.assetType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ancestors) {
+      self.ancestors = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.assetType, forKey: .assetType)
+    try container.encode(self.ancestors, forKey: .ancestors)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

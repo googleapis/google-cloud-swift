@@ -30,6 +30,8 @@ public struct CreateChannelConnectionRequest: Codable, Equatable, GoogleCloudWKT
   /// Required. The user-provided ID to be assigned to the channel connection.
   public var channelConnectionId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateChannelConnectionRequest`.
   public init() {}
 
@@ -44,6 +46,49 @@ public struct CreateChannelConnectionRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let channelConnection = CodingKeys(stringValue: "channelConnection")
+    static let channelConnectionId = CodingKeys(stringValue: "channelConnectionId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "channelConnection",
+      "channelConnectionId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.channelConnection = try container.decodeIfPresent(
+      ChannelConnection.self, forKey: .channelConnection)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channelConnectionId) {
+      self.channelConnectionId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.channelConnection, forKey: .channelConnection)
+    try container.encode(self.channelConnectionId, forKey: .channelConnectionId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

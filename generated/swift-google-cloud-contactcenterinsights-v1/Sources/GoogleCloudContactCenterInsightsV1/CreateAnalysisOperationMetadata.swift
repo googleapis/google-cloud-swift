@@ -33,6 +33,8 @@ public struct CreateAnalysisOperationMetadata: Codable, Equatable, GoogleCloudWK
   /// Output only. The annotator selector used for the analysis (if any).
   public var annotatorSelector: AnnotatorSelector? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateAnalysisOperationMetadata`.
   public init() {}
 
@@ -47,6 +49,52 @@ public struct CreateAnalysisOperationMetadata: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let conversation = CodingKeys(stringValue: "conversation")
+    static let annotatorSelector = CodingKeys(stringValue: "annotatorSelector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "conversation",
+      "annotatorSelector",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversation) {
+      self.conversation = value
+    }
+    self.annotatorSelector = try container.decodeIfPresent(
+      AnnotatorSelector.self, forKey: .annotatorSelector)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.conversation, forKey: .conversation)
+    try container.encodeIfPresent(self.annotatorSelector, forKey: .annotatorSelector)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

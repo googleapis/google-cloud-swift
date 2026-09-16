@@ -51,6 +51,8 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._An
   /// The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
   public var recurrence: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecurringMaintenanceWindow`.
   public init() {}
 
@@ -65,6 +67,52 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let delayUntil = CodingKeys(stringValue: "delayUntil")
+    static let windowStartTime = CodingKeys(stringValue: "windowStartTime")
+    static let windowDuration = CodingKeys(stringValue: "windowDuration")
+    static let recurrence = CodingKeys(stringValue: "recurrence")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "delayUntil",
+      "windowStartTime",
+      "windowDuration",
+      "recurrence",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.delayUntil = try container.decodeIfPresent(GoogleType.Date.self, forKey: .delayUntil)
+    self.windowStartTime = try container.decodeIfPresent(
+      GoogleType.TimeOfDay.self, forKey: .windowStartTime)
+    self.windowDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .windowDuration)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recurrence) {
+      self.recurrence = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.delayUntil, forKey: .delayUntil)
+    try container.encodeIfPresent(self.windowStartTime, forKey: .windowStartTime)
+    try container.encodeIfPresent(self.windowDuration, forKey: .windowDuration)
+    try container.encode(self.recurrence, forKey: .recurrence)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

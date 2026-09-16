@@ -41,6 +41,8 @@ public struct AutopilotCompatibilityIssue: Codable, Equatable, GoogleCloudWKT._A
   /// The description of the issue.
   public var description: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutopilotCompatibilityIssue`.
   public init() {}
 
@@ -55,6 +57,69 @@ public struct AutopilotCompatibilityIssue: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lastObservation = CodingKeys(stringValue: "lastObservation")
+    static let constraintType = CodingKeys(stringValue: "constraintType")
+    static let incompatibilityType = CodingKeys(stringValue: "incompatibilityType")
+    static let subjects = CodingKeys(stringValue: "subjects")
+    static let documentationUrl = CodingKeys(stringValue: "documentationUrl")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lastObservation",
+      "constraintType",
+      "incompatibilityType",
+      "subjects",
+      "documentationUrl",
+      "description",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.lastObservation = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastObservation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .constraintType) {
+      self.constraintType = value
+    }
+    if let value = try container.decodeIfPresent(
+      AutopilotCompatibilityIssue.IssueType.self, forKey: .incompatibilityType)
+    {
+      self.incompatibilityType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subjects) {
+      self.subjects = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentationUrl) {
+      self.documentationUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.lastObservation, forKey: .lastObservation)
+    try container.encode(self.constraintType, forKey: .constraintType)
+    try container.encode(self.incompatibilityType, forKey: .incompatibilityType)
+    try container.encode(self.subjects, forKey: .subjects)
+    try container.encode(self.documentationUrl, forKey: .documentationUrl)
+    try container.encode(self.description, forKey: .description)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the reported issue.

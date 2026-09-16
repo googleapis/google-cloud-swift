@@ -152,6 +152,8 @@
     /// [google.cloud.aiplatform.v1.TrainingPipeline.encryption_spec]: <doc:TrainingPipeline/encryptionSpec>
     public var encryptionSpec: EncryptionSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TrainingPipeline`.
     public init() {}
 
@@ -166,6 +168,125 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let inputDataConfig = CodingKeys(stringValue: "inputDataConfig")
+      static let trainingTaskDefinition = CodingKeys(stringValue: "trainingTaskDefinition")
+      static let trainingTaskInputs = CodingKeys(stringValue: "trainingTaskInputs")
+      static let trainingTaskMetadata = CodingKeys(stringValue: "trainingTaskMetadata")
+      static let modelToUpload = CodingKeys(stringValue: "modelToUpload")
+      static let modelId = CodingKeys(stringValue: "modelId")
+      static let parentModel = CodingKeys(stringValue: "parentModel")
+      static let state = CodingKeys(stringValue: "state")
+      static let error = CodingKeys(stringValue: "error")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let endTime = CodingKeys(stringValue: "endTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "inputDataConfig",
+        "trainingTaskDefinition",
+        "trainingTaskInputs",
+        "trainingTaskMetadata",
+        "modelToUpload",
+        "modelId",
+        "parentModel",
+        "state",
+        "error",
+        "createTime",
+        "startTime",
+        "endTime",
+        "updateTime",
+        "labels",
+        "encryptionSpec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.inputDataConfig = try container.decodeIfPresent(
+        InputDataConfig.self, forKey: .inputDataConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .trainingTaskDefinition)
+      {
+        self.trainingTaskDefinition = value
+      }
+      self.trainingTaskInputs = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .trainingTaskInputs)
+      self.trainingTaskMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .trainingTaskMetadata)
+      self.modelToUpload = try container.decodeIfPresent(Model.self, forKey: .modelToUpload)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+        self.modelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentModel) {
+        self.parentModel = value
+      }
+      if let value = try container.decodeIfPresent(PipelineState.self, forKey: .state) {
+        self.state = value
+      }
+      self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.startTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.inputDataConfig, forKey: .inputDataConfig)
+      try container.encode(self.trainingTaskDefinition, forKey: .trainingTaskDefinition)
+      try container.encodeIfPresent(self.trainingTaskInputs, forKey: .trainingTaskInputs)
+      try container.encodeIfPresent(self.trainingTaskMetadata, forKey: .trainingTaskMetadata)
+      try container.encodeIfPresent(self.modelToUpload, forKey: .modelToUpload)
+      try container.encode(self.modelId, forKey: .modelId)
+      try container.encode(self.parentModel, forKey: .parentModel)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.endTime, forKey: .endTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -44,6 +44,8 @@ public struct Probe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var probeType: OneOf_ProbeType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Probe`.
   public init() {}
 
@@ -60,22 +62,45 @@ public struct Probe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case initialDelaySeconds = "initialDelaySeconds"
-    case timeoutSeconds = "timeoutSeconds"
-    case periodSeconds = "periodSeconds"
-    case failureThreshold = "failureThreshold"
-    case httpGet = "httpGet"
-    case tcpSocket = "tcpSocket"
-    case grpc = "grpc"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let initialDelaySeconds = CodingKeys(stringValue: "initialDelaySeconds")
+    static let timeoutSeconds = CodingKeys(stringValue: "timeoutSeconds")
+    static let periodSeconds = CodingKeys(stringValue: "periodSeconds")
+    static let failureThreshold = CodingKeys(stringValue: "failureThreshold")
+    static let httpGet = CodingKeys(stringValue: "httpGet")
+    static let tcpSocket = CodingKeys(stringValue: "tcpSocket")
+    static let grpc = CodingKeys(stringValue: "grpc")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "initialDelaySeconds",
+      "timeoutSeconds",
+      "periodSeconds",
+      "failureThreshold",
+      "httpGet",
+      "tcpSocket",
+      "grpc",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.initialDelaySeconds = try container.decode(Swift.Int32.self, forKey: .initialDelaySeconds)
-    self.timeoutSeconds = try container.decode(Swift.Int32.self, forKey: .timeoutSeconds)
-    self.periodSeconds = try container.decode(Swift.Int32.self, forKey: .periodSeconds)
-    self.failureThreshold = try container.decode(Swift.Int32.self, forKey: .failureThreshold)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .initialDelaySeconds) {
+      self.initialDelaySeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeoutSeconds) {
+      self.timeoutSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .periodSeconds) {
+      self.periodSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .failureThreshold) {
+      self.failureThreshold = value
+    }
 
     var probeType: OneOf_ProbeType? = nil
     let probeTypeCheckAndSet = {
@@ -97,6 +122,10 @@ public struct Probe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try probeTypeCheckAndSet(.grpc(grpc))
     }
     self.probeType = probeType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +144,9 @@ public struct Probe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .grpc(let value):
         try container.encode(value, forKey: .grpc)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

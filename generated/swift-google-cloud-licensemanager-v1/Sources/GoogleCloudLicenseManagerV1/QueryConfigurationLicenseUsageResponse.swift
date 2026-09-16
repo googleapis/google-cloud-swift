@@ -26,6 +26,8 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
   /// will be populated.
   public var details: OneOf_Details? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryConfigurationLicenseUsageResponse`.
   public init() {}
 
@@ -42,8 +44,17 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case userCountUsage = "userCountUsage"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userCountUsage = CodingKeys(stringValue: "userCountUsage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userCountUsage"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -65,6 +76,10 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
       try detailsCheckAndSet(.userCountUsage(userCountUsage))
     }
     self.details = details
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -75,6 +90,9 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
       case .userCountUsage(let value):
         try container.encode(value, forKey: .userCountUsage)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

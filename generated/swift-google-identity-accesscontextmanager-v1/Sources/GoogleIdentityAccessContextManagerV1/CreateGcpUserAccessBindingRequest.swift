@@ -29,6 +29,8 @@ public struct CreateGcpUserAccessBindingRequest: Codable, Equatable, GoogleCloud
   /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
   public var gcpUserAccessBinding: GcpUserAccessBinding? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateGcpUserAccessBindingRequest`.
   public init() {}
 
@@ -43,6 +45,43 @@ public struct CreateGcpUserAccessBindingRequest: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let gcpUserAccessBinding = CodingKeys(stringValue: "gcpUserAccessBinding")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "gcpUserAccessBinding",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.gcpUserAccessBinding = try container.decodeIfPresent(
+      GcpUserAccessBinding.self, forKey: .gcpUserAccessBinding)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.gcpUserAccessBinding, forKey: .gcpUserAccessBinding)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

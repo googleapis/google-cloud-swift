@@ -39,6 +39,8 @@ public struct Stage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The deploy parameters to use for the target in this stage.
   public var deployParameters: [DeployParameters] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Stage`.
   public init() {}
 
@@ -53,6 +55,55 @@ public struct Stage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let profiles = CodingKeys(stringValue: "profiles")
+    static let strategy = CodingKeys(stringValue: "strategy")
+    static let deployParameters = CodingKeys(stringValue: "deployParameters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetId",
+      "profiles",
+      "strategy",
+      "deployParameters",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .profiles) {
+      self.profiles = value
+    }
+    self.strategy = try container.decodeIfPresent(Strategy.self, forKey: .strategy)
+    if let value = try container.decodeIfPresent([DeployParameters].self, forKey: .deployParameters)
+    {
+      self.deployParameters = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.targetId, forKey: .targetId)
+    try container.encode(self.profiles, forKey: .profiles)
+    try container.encodeIfPresent(self.strategy, forKey: .strategy)
+    try container.encode(self.deployParameters, forKey: .deployParameters)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -32,6 +32,8 @@ public struct CapacityQuantityInterval: Codable, Equatable, GoogleCloudWKT._AnyP
 
   public var maxValue: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CapacityQuantityInterval`.
   public init() {}
 
@@ -46,6 +48,46 @@ public struct CapacityQuantityInterval: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let minValue = CodingKeys(stringValue: "minValue")
+    static let maxValue = CodingKeys(stringValue: "maxValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "minValue",
+      "maxValue",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    self.minValue = try container.decodeIfPresent(Swift.Int64.self, forKey: .minValue)
+    self.maxValue = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxValue)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encodeIfPresent(self.minValue, forKey: .minValue)
+    try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

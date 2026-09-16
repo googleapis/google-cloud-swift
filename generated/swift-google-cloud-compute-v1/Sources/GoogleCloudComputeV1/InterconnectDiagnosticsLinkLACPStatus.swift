@@ -35,6 +35,8 @@
     ///    that the rest of the object should be empty.
     public var state: InterconnectDiagnosticsLinkLACPStatus.State? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectDiagnosticsLinkLACPStatus`.
     public init() {}
 
@@ -49,6 +51,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let googleSystemId = CodingKeys(stringValue: "googleSystemId")
+      static let neighborSystemId = CodingKeys(stringValue: "neighborSystemId")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "googleSystemId",
+        "neighborSystemId",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.googleSystemId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .googleSystemId)
+      self.neighborSystemId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .neighborSystemId)
+      self.state = try container.decodeIfPresent(
+        InterconnectDiagnosticsLinkLACPStatus.State.self, forKey: .state)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.googleSystemId, forKey: .googleSystemId)
+      try container.encodeIfPresent(self.neighborSystemId, forKey: .neighborSystemId)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [state][google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.state] field.

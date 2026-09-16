@@ -34,6 +34,8 @@
     /// include directives regarding slower scale in, as described above.
     public var timeWindowSec: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutoscalingPolicyScaleInControl`.
     public init() {}
 
@@ -48,6 +50,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxScaledInReplicas = CodingKeys(stringValue: "maxScaledInReplicas")
+      static let timeWindowSec = CodingKeys(stringValue: "timeWindowSec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxScaledInReplicas",
+        "timeWindowSec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxScaledInReplicas = try container.decodeIfPresent(
+        FixedOrPercent.self, forKey: .maxScaledInReplicas)
+      self.timeWindowSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .timeWindowSec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxScaledInReplicas, forKey: .maxScaledInReplicas)
+      try container.encodeIfPresent(self.timeWindowSec, forKey: .timeWindowSec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -62,6 +62,8 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Service state.
   public var state: Service.State = Service.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Service`.
   public init() {}
 
@@ -76,6 +78,92 @@ public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let serviceReference = CodingKeys(stringValue: "serviceReference")
+    static let serviceProperties = CodingKeys(stringValue: "serviceProperties")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let discoveredService = CodingKeys(stringValue: "discoveredService")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "serviceReference",
+      "serviceProperties",
+      "attributes",
+      "discoveredService",
+      "createTime",
+      "updateTime",
+      "uid",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.serviceReference = try container.decodeIfPresent(
+      ServiceReference.self, forKey: .serviceReference)
+    self.serviceProperties = try container.decodeIfPresent(
+      ServiceProperties.self, forKey: .serviceProperties)
+    self.attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .discoveredService) {
+      self.discoveredService = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Service.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.serviceReference, forKey: .serviceReference)
+    try container.encodeIfPresent(self.serviceProperties, forKey: .serviceProperties)
+    try container.encodeIfPresent(self.attributes, forKey: .attributes)
+    try container.encode(self.discoveredService, forKey: .discoveredService)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Service state.

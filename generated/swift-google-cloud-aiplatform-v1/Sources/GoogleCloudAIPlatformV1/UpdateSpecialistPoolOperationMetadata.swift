@@ -34,6 +34,8 @@
     /// The operation generic information.
     public var genericMetadata: GenericOperationMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UpdateSpecialistPoolOperationMetadata`.
     public init() {}
 
@@ -48,6 +50,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let specialistPool = CodingKeys(stringValue: "specialistPool")
+      static let genericMetadata = CodingKeys(stringValue: "genericMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "specialistPool",
+        "genericMetadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .specialistPool) {
+        self.specialistPool = value
+      }
+      self.genericMetadata = try container.decodeIfPresent(
+        GenericOperationMetadata.self, forKey: .genericMetadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.specialistPool, forKey: .specialistPool)
+      try container.encodeIfPresent(self.genericMetadata, forKey: .genericMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -75,6 +75,8 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// INVALID_ARGUMENT will be returned if either condition is violated.
   public var control: OneOf_Control? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Control`.
   public init() {}
 
@@ -91,24 +93,50 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case rule = "rule"
-    case name = "name"
-    case displayName = "displayName"
-    case associatedServingConfigIds = "associatedServingConfigIds"
-    case solutionTypes = "solutionTypes"
-    case searchSolutionUseCase = "searchSolutionUseCase"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rule = CodingKeys(stringValue: "rule")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let associatedServingConfigIds = CodingKeys(stringValue: "associatedServingConfigIds")
+    static let solutionTypes = CodingKeys(stringValue: "solutionTypes")
+    static let searchSolutionUseCase = CodingKeys(stringValue: "searchSolutionUseCase")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rule",
+      "name",
+      "displayName",
+      "associatedServingConfigIds",
+      "solutionTypes",
+      "searchSolutionUseCase",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.associatedServingConfigIds = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .associatedServingConfigIds)
-    self.solutionTypes = try container.decode([SolutionType].self, forKey: .solutionTypes)
-    self.searchSolutionUseCase = try container.decode(
+    {
+      self.associatedServingConfigIds = value
+    }
+    if let value = try container.decodeIfPresent([SolutionType].self, forKey: .solutionTypes) {
+      self.solutionTypes = value
+    }
+    if let value = try container.decodeIfPresent(
       [SearchSolutionUseCase].self, forKey: .searchSolutionUseCase)
+    {
+      self.searchSolutionUseCase = value
+    }
 
     var control: OneOf_Control? = nil
     let controlCheckAndSet = {
@@ -124,6 +152,10 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try controlCheckAndSet(.rule(rule))
     }
     self.control = control
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -139,6 +171,9 @@ public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .rule(let value):
         try container.encode(value, forKey: .rule)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

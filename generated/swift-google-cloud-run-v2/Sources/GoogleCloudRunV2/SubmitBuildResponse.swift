@@ -32,6 +32,8 @@ public struct SubmitBuildResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Warning message for the base image.
   public var baseImageWarning: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubmitBuildResponse`.
   public init() {}
 
@@ -46,6 +48,49 @@ public struct SubmitBuildResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let buildOperation = CodingKeys(stringValue: "buildOperation")
+    static let baseImageUri = CodingKeys(stringValue: "baseImageUri")
+    static let baseImageWarning = CodingKeys(stringValue: "baseImageWarning")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "buildOperation",
+      "baseImageUri",
+      "baseImageWarning",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.buildOperation = try container.decodeIfPresent(
+      GoogleLongRunning.Operation.self, forKey: .buildOperation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseImageUri) {
+      self.baseImageUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseImageWarning) {
+      self.baseImageWarning = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.buildOperation, forKey: .buildOperation)
+    try container.encode(self.baseImageUri, forKey: .baseImageUri)
+    try container.encode(self.baseImageWarning, forKey: .baseImageWarning)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -59,6 +59,8 @@
     /// Output only. Metadata related to url context retrieval tool.
     public var urlContextMetadata: UrlContextMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Candidate`.
     public init() {}
 
@@ -73,6 +75,92 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let index = CodingKeys(stringValue: "index")
+      static let content = CodingKeys(stringValue: "content")
+      static let score = CodingKeys(stringValue: "score")
+      static let avgLogprobs = CodingKeys(stringValue: "avgLogprobs")
+      static let logprobsResult = CodingKeys(stringValue: "logprobsResult")
+      static let finishReason = CodingKeys(stringValue: "finishReason")
+      static let safetyRatings = CodingKeys(stringValue: "safetyRatings")
+      static let finishMessage = CodingKeys(stringValue: "finishMessage")
+      static let citationMetadata = CodingKeys(stringValue: "citationMetadata")
+      static let groundingMetadata = CodingKeys(stringValue: "groundingMetadata")
+      static let urlContextMetadata = CodingKeys(stringValue: "urlContextMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "index",
+        "content",
+        "score",
+        "avgLogprobs",
+        "logprobsResult",
+        "finishReason",
+        "safetyRatings",
+        "finishMessage",
+        "citationMetadata",
+        "groundingMetadata",
+        "urlContextMetadata",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
+        self.index = value
+      }
+      self.content = try container.decodeIfPresent(Content.self, forKey: .content)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .score) {
+        self.score = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .avgLogprobs) {
+        self.avgLogprobs = value
+      }
+      self.logprobsResult = try container.decodeIfPresent(
+        LogprobsResult.self, forKey: .logprobsResult)
+      if let value = try container.decodeIfPresent(
+        Candidate.FinishReason.self, forKey: .finishReason)
+      {
+        self.finishReason = value
+      }
+      if let value = try container.decodeIfPresent([SafetyRating].self, forKey: .safetyRatings) {
+        self.safetyRatings = value
+      }
+      self.finishMessage = try container.decodeIfPresent(Swift.String.self, forKey: .finishMessage)
+      self.citationMetadata = try container.decodeIfPresent(
+        CitationMetadata.self, forKey: .citationMetadata)
+      self.groundingMetadata = try container.decodeIfPresent(
+        GroundingMetadata.self, forKey: .groundingMetadata)
+      self.urlContextMetadata = try container.decodeIfPresent(
+        UrlContextMetadata.self, forKey: .urlContextMetadata)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.index, forKey: .index)
+      try container.encodeIfPresent(self.content, forKey: .content)
+      try container.encode(self.score, forKey: .score)
+      try container.encode(self.avgLogprobs, forKey: .avgLogprobs)
+      try container.encodeIfPresent(self.logprobsResult, forKey: .logprobsResult)
+      try container.encode(self.finishReason, forKey: .finishReason)
+      try container.encode(self.safetyRatings, forKey: .safetyRatings)
+      try container.encodeIfPresent(self.finishMessage, forKey: .finishMessage)
+      try container.encodeIfPresent(self.citationMetadata, forKey: .citationMetadata)
+      try container.encodeIfPresent(self.groundingMetadata, forKey: .groundingMetadata)
+      try container.encodeIfPresent(self.urlContextMetadata, forKey: .urlContextMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The reason why the model stopped generating tokens.

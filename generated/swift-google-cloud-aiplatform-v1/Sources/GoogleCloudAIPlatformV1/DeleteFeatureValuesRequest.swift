@@ -34,6 +34,8 @@
     /// Defines options to select feature values to be deleted.
     public var deleteOption: OneOf_DeleteOption? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeleteFeatureValuesRequest`.
     public init() {}
 
@@ -50,15 +52,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case selectEntity = "selectEntity"
-      case selectTimeRangeAndFeature = "selectTimeRangeAndFeature"
-      case entityType = "entityType"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let selectEntity = CodingKeys(stringValue: "selectEntity")
+      static let selectTimeRangeAndFeature = CodingKeys(stringValue: "selectTimeRangeAndFeature")
+      static let entityType = CodingKeys(stringValue: "entityType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "selectEntity",
+        "selectTimeRangeAndFeature",
+        "entityType",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.entityType = try container.decode(Swift.String.self, forKey: .entityType)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+        self.entityType = value
+      }
 
       var deleteOption: OneOf_DeleteOption? = nil
       let deleteOptionCheckAndSet = {
@@ -82,6 +97,10 @@
         try deleteOptionCheckAndSet(.selectTimeRangeAndFeature(selectTimeRangeAndFeature))
       }
       self.deleteOption = deleteOption
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,6 +115,9 @@
           try container.encode(value, forKey: .selectTimeRangeAndFeature)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Message to select entity.
@@ -107,6 +129,8 @@
       /// Required. Selectors choosing feature values of which entity id to be
       /// deleted from the EntityType.
       public var entityIdSelector: EntityIdSelector? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SelectEntity`.
       public init() {}
@@ -122,6 +146,37 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let entityIdSelector = CodingKeys(stringValue: "entityIdSelector")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "entityIdSelector"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.entityIdSelector = try container.decodeIfPresent(
+          EntityIdSelector.self, forKey: .entityIdSelector)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.entityIdSelector, forKey: .entityIdSelector)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -158,6 +213,8 @@
       /// be true will make the deletion have no impact on online serving.
       public var skipOnlineStorageDelete: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SelectTimeRangeAndFeature`.
       public init() {}
 
@@ -172,6 +229,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let timeRange = CodingKeys(stringValue: "timeRange")
+        static let featureSelector = CodingKeys(stringValue: "featureSelector")
+        static let skipOnlineStorageDelete = CodingKeys(stringValue: "skipOnlineStorageDelete")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "timeRange",
+          "featureSelector",
+          "skipOnlineStorageDelete",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
+        self.featureSelector = try container.decodeIfPresent(
+          FeatureSelector.self, forKey: .featureSelector)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .skipOnlineStorageDelete)
+        {
+          self.skipOnlineStorageDelete = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
+        try container.encodeIfPresent(self.featureSelector, forKey: .featureSelector)
+        try container.encode(self.skipOnlineStorageDelete, forKey: .skipOnlineStorageDelete)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

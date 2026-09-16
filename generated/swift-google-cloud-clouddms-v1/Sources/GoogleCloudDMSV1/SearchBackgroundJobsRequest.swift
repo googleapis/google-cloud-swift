@@ -39,6 +39,8 @@ public struct SearchBackgroundJobsRequest: Codable, Equatable, GoogleCloudWKT._A
   /// including) the given timestamp.
   public var completedUntilTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchBackgroundJobsRequest`.
   public init() {}
 
@@ -53,6 +55,57 @@ public struct SearchBackgroundJobsRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let conversionWorkspace = CodingKeys(stringValue: "conversionWorkspace")
+    static let returnMostRecentPerJobType = CodingKeys(stringValue: "returnMostRecentPerJobType")
+    static let maxSize = CodingKeys(stringValue: "maxSize")
+    static let completedUntilTime = CodingKeys(stringValue: "completedUntilTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "conversionWorkspace",
+      "returnMostRecentPerJobType",
+      "maxSize",
+      "completedUntilTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversionWorkspace) {
+      self.conversionWorkspace = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .returnMostRecentPerJobType)
+    {
+      self.returnMostRecentPerJobType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxSize) {
+      self.maxSize = value
+    }
+    self.completedUntilTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completedUntilTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.conversionWorkspace, forKey: .conversionWorkspace)
+    try container.encode(self.returnMostRecentPerJobType, forKey: .returnMostRecentPerJobType)
+    try container.encode(self.maxSize, forKey: .maxSize)
+    try container.encodeIfPresent(self.completedUntilTime, forKey: .completedUntilTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

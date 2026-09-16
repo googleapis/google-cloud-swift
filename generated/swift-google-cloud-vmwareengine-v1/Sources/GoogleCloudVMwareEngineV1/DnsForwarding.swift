@@ -39,6 +39,8 @@ public struct DnsForwarding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. List of domain mappings to configure
   public var forwardingRules: [DnsForwarding.ForwardingRule] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DnsForwarding`.
   public init() {}
 
@@ -55,6 +57,56 @@ public struct DnsForwarding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let forwardingRules = CodingKeys(stringValue: "forwardingRules")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "forwardingRules",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      [DnsForwarding.ForwardingRule].self, forKey: .forwardingRules)
+    {
+      self.forwardingRules = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.forwardingRules, forKey: .forwardingRules)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A forwarding rule is a mapping of a `domain` to `name_servers`.
   /// This mapping allows VMware Engine to resolve domains for attached private
   /// clouds by forwarding DNS requests for a given domain to the specified
@@ -67,6 +119,8 @@ public struct DnsForwarding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Required. List of DNS servers to use for domain resolution
     public var nameServers: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ForwardingRule`.
     public init() {}
@@ -82,6 +136,44 @@ public struct DnsForwarding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let domain = CodingKeys(stringValue: "domain")
+      static let nameServers = CodingKeys(stringValue: "nameServers")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "domain",
+        "nameServers",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+        self.domain = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nameServers) {
+        self.nameServers = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.domain, forKey: .domain)
+      try container.encode(self.nameServers, forKey: .nameServers)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -200,6 +200,8 @@
     @available(*, deprecated)
     public var populateDataStoreConnectionSignals: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryParameters`.
     public init() {}
 
@@ -214,6 +216,140 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let geoLocation = CodingKeys(stringValue: "geoLocation")
+      static let sessionEntityTypes = CodingKeys(stringValue: "sessionEntityTypes")
+      static let payload = CodingKeys(stringValue: "payload")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let parameterScope = CodingKeys(stringValue: "parameterScope")
+      static let currentPage = CodingKeys(stringValue: "currentPage")
+      static let disableWebhook = CodingKeys(stringValue: "disableWebhook")
+      static let analyzeQueryTextSentiment = CodingKeys(stringValue: "analyzeQueryTextSentiment")
+      static let webhookHeaders = CodingKeys(stringValue: "webhookHeaders")
+      static let flowVersions = CodingKeys(stringValue: "flowVersions")
+      static let currentPlaybook = CodingKeys(stringValue: "currentPlaybook")
+      static let llmModelSettings = CodingKeys(stringValue: "llmModelSettings")
+      static let channel = CodingKeys(stringValue: "channel")
+      static let sessionTtl = CodingKeys(stringValue: "sessionTtl")
+      static let endUserMetadata = CodingKeys(stringValue: "endUserMetadata")
+      static let searchConfig = CodingKeys(stringValue: "searchConfig")
+      static let populateDataStoreConnectionSignals = CodingKeys(
+        stringValue: "populateDataStoreConnectionSignals")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeZone",
+        "geoLocation",
+        "sessionEntityTypes",
+        "payload",
+        "parameters",
+        "parameterScope",
+        "currentPage",
+        "disableWebhook",
+        "analyzeQueryTextSentiment",
+        "webhookHeaders",
+        "flowVersions",
+        "currentPlaybook",
+        "llmModelSettings",
+        "channel",
+        "sessionTtl",
+        "endUserMetadata",
+        "searchConfig",
+        "populateDataStoreConnectionSignals",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      self.geoLocation = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .geoLocation)
+      if let value = try container.decodeIfPresent(
+        [SessionEntityType].self, forKey: .sessionEntityTypes)
+      {
+        self.sessionEntityTypes = value
+      }
+      self.payload = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .payload)
+      self.parameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .parameters)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameterScope) {
+        self.parameterScope = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentPage) {
+        self.currentPage = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableWebhook) {
+        self.disableWebhook = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .analyzeQueryTextSentiment)
+      {
+        self.analyzeQueryTextSentiment = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .webhookHeaders)
+      {
+        self.webhookHeaders = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .flowVersions) {
+        self.flowVersions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentPlaybook) {
+        self.currentPlaybook = value
+      }
+      self.llmModelSettings = try container.decodeIfPresent(
+        LlmModelSettings.self, forKey: .llmModelSettings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
+        self.channel = value
+      }
+      self.sessionTtl = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .sessionTtl)
+      self.endUserMetadata = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .endUserMetadata)
+      self.searchConfig = try container.decodeIfPresent(SearchConfig.self, forKey: .searchConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .populateDataStoreConnectionSignals)
+      {
+        self.populateDataStoreConnectionSignals = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.geoLocation, forKey: .geoLocation)
+      try container.encode(self.sessionEntityTypes, forKey: .sessionEntityTypes)
+      try container.encodeIfPresent(self.payload, forKey: .payload)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encode(self.parameterScope, forKey: .parameterScope)
+      try container.encode(self.currentPage, forKey: .currentPage)
+      try container.encode(self.disableWebhook, forKey: .disableWebhook)
+      try container.encode(self.analyzeQueryTextSentiment, forKey: .analyzeQueryTextSentiment)
+      try container.encode(self.webhookHeaders, forKey: .webhookHeaders)
+      try container.encode(self.flowVersions, forKey: .flowVersions)
+      try container.encode(self.currentPlaybook, forKey: .currentPlaybook)
+      try container.encodeIfPresent(self.llmModelSettings, forKey: .llmModelSettings)
+      try container.encode(self.channel, forKey: .channel)
+      try container.encodeIfPresent(self.sessionTtl, forKey: .sessionTtl)
+      try container.encodeIfPresent(self.endUserMetadata, forKey: .endUserMetadata)
+      try container.encodeIfPresent(self.searchConfig, forKey: .searchConfig)
+      try container.encode(
+        self.populateDataStoreConnectionSignals, forKey: .populateDataStoreConnectionSignals)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

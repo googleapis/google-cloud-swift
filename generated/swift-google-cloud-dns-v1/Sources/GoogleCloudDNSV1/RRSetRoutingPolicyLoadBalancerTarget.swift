@@ -44,6 +44,8 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleCl
   /// The region in which the load balancer is located.
   public var region: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RRSetRoutingPolicyLoadBalancerTarget`.
   public init() {}
 
@@ -58,6 +60,66 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let ipProtocol = CodingKeys(stringValue: "ipProtocol")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let loadBalancerType = CodingKeys(stringValue: "loadBalancerType")
+    static let networkUrl = CodingKeys(stringValue: "networkUrl")
+    static let port = CodingKeys(stringValue: "port")
+    static let project = CodingKeys(stringValue: "project")
+    static let region = CodingKeys(stringValue: "region")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ipAddress",
+      "ipProtocol",
+      "kind",
+      "loadBalancerType",
+      "networkUrl",
+      "port",
+      "project",
+      "region",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+    self.ipProtocol = try container.decodeIfPresent(
+      RRSetRoutingPolicyLoadBalancerTarget.IpProtocol.self, forKey: .ipProtocol)
+    self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    self.loadBalancerType = try container.decodeIfPresent(
+      RRSetRoutingPolicyLoadBalancerTarget.LoadBalancerType.self, forKey: .loadBalancerType)
+    self.networkUrl = try container.decodeIfPresent(Swift.String.self, forKey: .networkUrl)
+    self.port = try container.decodeIfPresent(Swift.String.self, forKey: .port)
+    self.project = try container.decodeIfPresent(Swift.String.self, forKey: .project)
+    self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+    try container.encodeIfPresent(self.ipProtocol, forKey: .ipProtocol)
+    try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encodeIfPresent(self.loadBalancerType, forKey: .loadBalancerType)
+    try container.encodeIfPresent(self.networkUrl, forKey: .networkUrl)
+    try container.encodeIfPresent(self.port, forKey: .port)
+    try container.encodeIfPresent(self.project, forKey: .project)
+    try container.encodeIfPresent(self.region, forKey: .region)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enumerated type for the [ipProtocol][.RRSetRoutingPolicyLoadBalancerTarget.ipProtocol] field.

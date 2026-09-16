@@ -38,6 +38,8 @@
     /// [Output Only] Count of VMs originally planned to be created.
     public var targetVmCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BulkInsertOperationStatus`.
     public init() {}
 
@@ -52,6 +54,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let createdVmCount = CodingKeys(stringValue: "createdVmCount")
+      static let deletedVmCount = CodingKeys(stringValue: "deletedVmCount")
+      static let failedToCreateVmCount = CodingKeys(stringValue: "failedToCreateVmCount")
+      static let status = CodingKeys(stringValue: "status")
+      static let targetVmCount = CodingKeys(stringValue: "targetVmCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "createdVmCount",
+        "deletedVmCount",
+        "failedToCreateVmCount",
+        "status",
+        "targetVmCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.createdVmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .createdVmCount)
+      self.deletedVmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .deletedVmCount)
+      self.failedToCreateVmCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .failedToCreateVmCount)
+      self.status = try container.decodeIfPresent(
+        BulkInsertOperationStatus.Status.self, forKey: .status)
+      self.targetVmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .targetVmCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.createdVmCount, forKey: .createdVmCount)
+      try container.encodeIfPresent(self.deletedVmCount, forKey: .deletedVmCount)
+      try container.encodeIfPresent(self.failedToCreateVmCount, forKey: .failedToCreateVmCount)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.targetVmCount, forKey: .targetVmCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.BulkInsertOperationStatus.status] field.

@@ -26,6 +26,8 @@
     /// Specifies the type of handler to invoke.
     public var handler: OneOf_Handler? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Handler`.
     public init() {}
 
@@ -42,9 +44,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case eventHandler = "eventHandler"
-      case lifecycleHandler = "lifecycleHandler"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eventHandler = CodingKeys(stringValue: "eventHandler")
+      static let lifecycleHandler = CodingKeys(stringValue: "lifecycleHandler")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eventHandler",
+        "lifecycleHandler",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -71,6 +83,10 @@
         try handlerCheckAndSet(.lifecycleHandler(lifecycleHandler))
       }
       self.handler = handler
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -83,6 +99,9 @@
         case .lifecycleHandler(let value):
           try container.encode(value, forKey: .lifecycleHandler)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -102,6 +121,8 @@
       /// Required. The fulfillment to call when the event occurs.
       public var fulfillment: Fulfillment? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `EventHandler`.
       public init() {}
 
@@ -116,6 +137,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let event = CodingKeys(stringValue: "event")
+        static let condition = CodingKeys(stringValue: "condition")
+        static let fulfillment = CodingKeys(stringValue: "fulfillment")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "event",
+          "condition",
+          "fulfillment",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
+          self.event = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+          self.condition = value
+        }
+        self.fulfillment = try container.decodeIfPresent(Fulfillment.self, forKey: .fulfillment)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.event, forKey: .event)
+        try container.encode(self.condition, forKey: .condition)
+        try container.encodeIfPresent(self.fulfillment, forKey: .fulfillment)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -150,6 +213,8 @@
       /// Required. The fulfillment to call when this handler is triggered.
       public var fulfillment: Fulfillment? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LifecycleHandler`.
       public init() {}
 
@@ -164,6 +229,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let lifecycleStage = CodingKeys(stringValue: "lifecycleStage")
+        static let condition = CodingKeys(stringValue: "condition")
+        static let fulfillment = CodingKeys(stringValue: "fulfillment")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "lifecycleStage",
+          "condition",
+          "fulfillment",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleStage) {
+          self.lifecycleStage = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+          self.condition = value
+        }
+        self.fulfillment = try container.decodeIfPresent(Fulfillment.self, forKey: .fulfillment)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.lifecycleStage, forKey: .lifecycleStage)
+        try container.encode(self.condition, forKey: .condition)
+        try container.encodeIfPresent(self.fulfillment, forKey: .fulfillment)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

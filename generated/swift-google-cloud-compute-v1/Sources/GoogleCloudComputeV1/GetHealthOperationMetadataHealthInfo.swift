@@ -39,6 +39,8 @@
     /// Output only. The time when health info was updated.
     public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GetHealthOperationMetadataHealthInfo`.
     public init() {}
 
@@ -53,6 +55,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let availabilitySloStatus = CodingKeys(stringValue: "availabilitySloStatus")
+      static let healthStatus = CodingKeys(stringValue: "healthStatus")
+      static let repairCategory = CodingKeys(stringValue: "repairCategory")
+      static let unhealthyReason = CodingKeys(stringValue: "unhealthyReason")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "availabilitySloStatus",
+        "healthStatus",
+        "repairCategory",
+        "unhealthyReason",
+        "updateTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.availabilitySloStatus = try container.decodeIfPresent(
+        GetHealthOperationMetadataHealthInfo.AvailabilitySloStatus.self,
+        forKey: .availabilitySloStatus)
+      self.healthStatus = try container.decodeIfPresent(
+        GetHealthOperationMetadataHealthInfo.HealthStatus.self, forKey: .healthStatus)
+      self.repairCategory = try container.decodeIfPresent(
+        GetHealthOperationMetadataHealthInfo.RepairCategory.self, forKey: .repairCategory)
+      self.unhealthyReason = try container.decodeIfPresent(
+        GetHealthOperationMetadataHealthInfo.UnhealthyReason.self, forKey: .unhealthyReason)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.availabilitySloStatus, forKey: .availabilitySloStatus)
+      try container.encodeIfPresent(self.healthStatus, forKey: .healthStatus)
+      try container.encodeIfPresent(self.repairCategory, forKey: .repairCategory)
+      try container.encodeIfPresent(self.unhealthyReason, forKey: .unhealthyReason)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [availabilitySloStatus][google.cloud.compute.v1.GetHealthOperationMetadataHealthInfo.availabilitySloStatus] field.

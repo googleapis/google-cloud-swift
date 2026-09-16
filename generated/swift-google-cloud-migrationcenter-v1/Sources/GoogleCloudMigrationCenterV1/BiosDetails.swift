@@ -42,6 +42,8 @@ public struct BiosDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// SMBIOS UUID.
   public var smbiosUuid: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BiosDetails`.
   public init() {}
 
@@ -56,6 +58,66 @@ public struct BiosDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let biosName = CodingKeys(stringValue: "biosName")
+    static let id = CodingKeys(stringValue: "id")
+    static let manufacturer = CodingKeys(stringValue: "manufacturer")
+    static let version = CodingKeys(stringValue: "version")
+    static let releaseDate = CodingKeys(stringValue: "releaseDate")
+    static let smbiosUuid = CodingKeys(stringValue: "smbiosUuid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "biosName",
+      "id",
+      "manufacturer",
+      "version",
+      "releaseDate",
+      "smbiosUuid",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .biosName) {
+      self.biosName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manufacturer) {
+      self.manufacturer = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    self.releaseDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .releaseDate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .smbiosUuid) {
+      self.smbiosUuid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.biosName, forKey: .biosName)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.manufacturer, forKey: .manufacturer)
+    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.releaseDate, forKey: .releaseDate)
+    try container.encode(self.smbiosUuid, forKey: .smbiosUuid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

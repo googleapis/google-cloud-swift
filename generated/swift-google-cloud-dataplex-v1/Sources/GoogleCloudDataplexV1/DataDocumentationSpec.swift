@@ -30,6 +30,8 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// documentation components will be generated.
   public var generationScopes: [DataDocumentationSpec.GenerationScope] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataDocumentationSpec`.
   public init() {}
 
@@ -44,6 +46,47 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let catalogPublishingEnabled = CodingKeys(stringValue: "catalogPublishingEnabled")
+    static let generationScopes = CodingKeys(stringValue: "generationScopes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "catalogPublishingEnabled",
+      "generationScopes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .catalogPublishingEnabled)
+    {
+      self.catalogPublishingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DataDocumentationSpec.GenerationScope].self, forKey: .generationScopes)
+    {
+      self.generationScopes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.catalogPublishingEnabled, forKey: .catalogPublishingEnabled)
+    try container.encode(self.generationScopes, forKey: .generationScopes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The data documentation generation scope. This field contains the possible

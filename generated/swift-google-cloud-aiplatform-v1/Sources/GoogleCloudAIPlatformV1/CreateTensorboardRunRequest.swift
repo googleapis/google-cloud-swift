@@ -40,6 +40,8 @@
     /// are `/[a-z][0-9]-/`.
     public var tensorboardRunId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateTensorboardRunRequest`.
     public init() {}
 
@@ -54,6 +56,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let tensorboardRun = CodingKeys(stringValue: "tensorboardRun")
+      static let tensorboardRunId = CodingKeys(stringValue: "tensorboardRunId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "tensorboardRun",
+        "tensorboardRunId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.tensorboardRun = try container.decodeIfPresent(
+        TensorboardRun.self, forKey: .tensorboardRun)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tensorboardRunId) {
+        self.tensorboardRunId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.tensorboardRun, forKey: .tensorboardRun)
+      try container.encode(self.tensorboardRunId, forKey: .tensorboardRunId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

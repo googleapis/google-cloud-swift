@@ -102,6 +102,8 @@ public struct DenyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// functions and operators are not supported.
   public var denialCondition: GoogleType.Expr? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DenyRule`.
   public init() {}
 
@@ -116,6 +118,63 @@ public struct DenyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deniedPrincipals = CodingKeys(stringValue: "deniedPrincipals")
+    static let exceptionPrincipals = CodingKeys(stringValue: "exceptionPrincipals")
+    static let deniedPermissions = CodingKeys(stringValue: "deniedPermissions")
+    static let exceptionPermissions = CodingKeys(stringValue: "exceptionPermissions")
+    static let denialCondition = CodingKeys(stringValue: "denialCondition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deniedPrincipals",
+      "exceptionPrincipals",
+      "deniedPermissions",
+      "exceptionPermissions",
+      "denialCondition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .deniedPrincipals) {
+      self.deniedPrincipals = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exceptionPrincipals)
+    {
+      self.exceptionPrincipals = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .deniedPermissions) {
+      self.deniedPermissions = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exceptionPermissions)
+    {
+      self.exceptionPermissions = value
+    }
+    self.denialCondition = try container.decodeIfPresent(
+      GoogleType.Expr.self, forKey: .denialCondition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.deniedPrincipals, forKey: .deniedPrincipals)
+    try container.encode(self.exceptionPrincipals, forKey: .exceptionPrincipals)
+    try container.encode(self.deniedPermissions, forKey: .deniedPermissions)
+    try container.encode(self.exceptionPermissions, forKey: .exceptionPermissions)
+    try container.encodeIfPresent(self.denialCondition, forKey: .denialCondition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

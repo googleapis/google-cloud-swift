@@ -70,6 +70,8 @@ public struct PutMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// in https://cloud.google.com/storage/docs/object-lock
   public var objectRetention: ObjectRetention? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PutMetadata`.
   public init() {}
 
@@ -84,6 +86,72 @@ public struct PutMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let contentDisposition = CodingKeys(stringValue: "contentDisposition")
+    static let contentEncoding = CodingKeys(stringValue: "contentEncoding")
+    static let contentLanguage = CodingKeys(stringValue: "contentLanguage")
+    static let contentType = CodingKeys(stringValue: "contentType")
+    static let cacheControl = CodingKeys(stringValue: "cacheControl")
+    static let customTime = CodingKeys(stringValue: "customTime")
+    static let customMetadata = CodingKeys(stringValue: "customMetadata")
+    static let objectRetention = CodingKeys(stringValue: "objectRetention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "contentDisposition",
+      "contentEncoding",
+      "contentLanguage",
+      "contentType",
+      "cacheControl",
+      "customTime",
+      "customMetadata",
+      "objectRetention",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.contentDisposition = try container.decodeIfPresent(
+      Swift.String.self, forKey: .contentDisposition)
+    self.contentEncoding = try container.decodeIfPresent(
+      Swift.String.self, forKey: .contentEncoding)
+    self.contentLanguage = try container.decodeIfPresent(
+      Swift.String.self, forKey: .contentLanguage)
+    self.contentType = try container.decodeIfPresent(Swift.String.self, forKey: .contentType)
+    self.cacheControl = try container.decodeIfPresent(Swift.String.self, forKey: .cacheControl)
+    self.customTime = try container.decodeIfPresent(Swift.String.self, forKey: .customTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .customMetadata)
+    {
+      self.customMetadata = value
+    }
+    self.objectRetention = try container.decodeIfPresent(
+      ObjectRetention.self, forKey: .objectRetention)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.contentDisposition, forKey: .contentDisposition)
+    try container.encodeIfPresent(self.contentEncoding, forKey: .contentEncoding)
+    try container.encodeIfPresent(self.contentLanguage, forKey: .contentLanguage)
+    try container.encodeIfPresent(self.contentType, forKey: .contentType)
+    try container.encodeIfPresent(self.cacheControl, forKey: .cacheControl)
+    try container.encodeIfPresent(self.customTime, forKey: .customTime)
+    try container.encode(self.customMetadata, forKey: .customMetadata)
+    try container.encodeIfPresent(self.objectRetention, forKey: .objectRetention)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

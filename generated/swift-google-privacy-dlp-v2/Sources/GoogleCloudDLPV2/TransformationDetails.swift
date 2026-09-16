@@ -51,6 +51,8 @@ public struct TransformationDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The precise location of the transformed content in the original container.
   public var transformationLocation: TransformationLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationDetails`.
   public init() {}
 
@@ -65,6 +67,68 @@ public struct TransformationDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let containerName = CodingKeys(stringValue: "containerName")
+    static let transformation = CodingKeys(stringValue: "transformation")
+    static let statusDetails = CodingKeys(stringValue: "statusDetails")
+    static let transformedBytes = CodingKeys(stringValue: "transformedBytes")
+    static let transformationLocation = CodingKeys(stringValue: "transformationLocation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceName",
+      "containerName",
+      "transformation",
+      "statusDetails",
+      "transformedBytes",
+      "transformationLocation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerName) {
+      self.containerName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TransformationDescription].self, forKey: .transformation)
+    {
+      self.transformation = value
+    }
+    self.statusDetails = try container.decodeIfPresent(
+      TransformationResultStatus.self, forKey: .statusDetails)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .transformedBytes) {
+      self.transformedBytes = value
+    }
+    self.transformationLocation = try container.decodeIfPresent(
+      TransformationLocation.self, forKey: .transformationLocation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.containerName, forKey: .containerName)
+    try container.encode(self.transformation, forKey: .transformation)
+    try container.encodeIfPresent(self.statusDetails, forKey: .statusDetails)
+    try container.encode(self.transformedBytes, forKey: .transformedBytes)
+    try container.encodeIfPresent(self.transformationLocation, forKey: .transformationLocation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -58,6 +58,8 @@ public struct CryptoKeyVersionTemplate: Codable, Equatable, GoogleCloudWKT._AnyP
   public var algorithm: CryptoKeyVersion.CryptoKeyVersionAlgorithm =
     CryptoKeyVersion.CryptoKeyVersionAlgorithm()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoKeyVersionTemplate`.
   public init() {}
 
@@ -72,6 +74,46 @@ public struct CryptoKeyVersionTemplate: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "protectionLevel",
+      "algorithm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
+    {
+      self.algorithm = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    try container.encode(self.algorithm, forKey: .algorithm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

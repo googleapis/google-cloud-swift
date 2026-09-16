@@ -46,6 +46,8 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Display options for the chart.
   public var chartOptions: ChartOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `XyChart`.
   public init() {}
 
@@ -60,6 +62,65 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataSets = CodingKeys(stringValue: "dataSets")
+    static let timeshiftDuration = CodingKeys(stringValue: "timeshiftDuration")
+    static let thresholds = CodingKeys(stringValue: "thresholds")
+    static let xAxis = CodingKeys(stringValue: "xAxis")
+    static let yAxis = CodingKeys(stringValue: "yAxis")
+    static let y2Axis = CodingKeys(stringValue: "y2Axis")
+    static let chartOptions = CodingKeys(stringValue: "chartOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataSets",
+      "timeshiftDuration",
+      "thresholds",
+      "xAxis",
+      "yAxis",
+      "y2Axis",
+      "chartOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([XyChart.DataSet].self, forKey: .dataSets) {
+      self.dataSets = value
+    }
+    self.timeshiftDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .timeshiftDuration)
+    if let value = try container.decodeIfPresent([Threshold].self, forKey: .thresholds) {
+      self.thresholds = value
+    }
+    self.xAxis = try container.decodeIfPresent(XyChart.Axis.self, forKey: .xAxis)
+    self.yAxis = try container.decodeIfPresent(XyChart.Axis.self, forKey: .yAxis)
+    self.y2Axis = try container.decodeIfPresent(XyChart.Axis.self, forKey: .y2Axis)
+    self.chartOptions = try container.decodeIfPresent(ChartOptions.self, forKey: .chartOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dataSets, forKey: .dataSets)
+    try container.encodeIfPresent(self.timeshiftDuration, forKey: .timeshiftDuration)
+    try container.encode(self.thresholds, forKey: .thresholds)
+    try container.encodeIfPresent(self.xAxis, forKey: .xAxis)
+    try container.encodeIfPresent(self.yAxis, forKey: .yAxis)
+    try container.encodeIfPresent(self.y2Axis, forKey: .y2Axis)
+    try container.encodeIfPresent(self.chartOptions, forKey: .chartOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Groups a time series query definition with charting options.
@@ -88,6 +149,8 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The target axis to use for plotting the metric.
     public var targetAxis: XyChart.DataSet.TargetAxis = XyChart.DataSet.TargetAxis()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DataSet`.
     public init() {}
 
@@ -102,6 +165,63 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeSeriesQuery = CodingKeys(stringValue: "timeSeriesQuery")
+      static let plotType = CodingKeys(stringValue: "plotType")
+      static let legendTemplate = CodingKeys(stringValue: "legendTemplate")
+      static let minAlignmentPeriod = CodingKeys(stringValue: "minAlignmentPeriod")
+      static let targetAxis = CodingKeys(stringValue: "targetAxis")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeSeriesQuery",
+        "plotType",
+        "legendTemplate",
+        "minAlignmentPeriod",
+        "targetAxis",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.timeSeriesQuery = try container.decodeIfPresent(
+        TimeSeriesQuery.self, forKey: .timeSeriesQuery)
+      if let value = try container.decodeIfPresent(XyChart.DataSet.PlotType.self, forKey: .plotType)
+      {
+        self.plotType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .legendTemplate) {
+        self.legendTemplate = value
+      }
+      self.minAlignmentPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minAlignmentPeriod)
+      if let value = try container.decodeIfPresent(
+        XyChart.DataSet.TargetAxis.self, forKey: .targetAxis)
+      {
+        self.targetAxis = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
+      try container.encode(self.plotType, forKey: .plotType)
+      try container.encode(self.legendTemplate, forKey: .legendTemplate)
+      try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
+      try container.encode(self.targetAxis, forKey: .targetAxis)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The types of plotting strategies for data sets.
@@ -358,6 +478,8 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The axis scale. By default, a linear scale is used.
     public var scale: XyChart.Axis.Scale = XyChart.Axis.Scale()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Axis`.
     public init() {}
 
@@ -372,6 +494,44 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let label = CodingKeys(stringValue: "label")
+      static let scale = CodingKeys(stringValue: "scale")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "label",
+        "scale",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
+        self.label = value
+      }
+      if let value = try container.decodeIfPresent(XyChart.Axis.Scale.self, forKey: .scale) {
+        self.scale = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.label, forKey: .label)
+      try container.encode(self.scale, forKey: .scale)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Types of scales used in axes.

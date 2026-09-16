@@ -48,6 +48,8 @@ public struct DbNodeProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The date and time that the database node was created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbNodeProperties`.
   public init() {}
 
@@ -62,6 +64,85 @@ public struct DbNodeProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let ocpuCount = CodingKeys(stringValue: "ocpuCount")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let dbNodeStorageSizeGb = CodingKeys(stringValue: "dbNodeStorageSizeGb")
+    static let dbServerOcid = CodingKeys(stringValue: "dbServerOcid")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let state = CodingKeys(stringValue: "state")
+    static let totalCpuCoreCount = CodingKeys(stringValue: "totalCpuCoreCount")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ocid",
+      "ocpuCount",
+      "memorySizeGb",
+      "dbNodeStorageSizeGb",
+      "dbServerOcid",
+      "hostname",
+      "state",
+      "totalCpuCoreCount",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .ocpuCount) {
+      self.ocpuCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dbNodeStorageSizeGb) {
+      self.dbNodeStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dbServerOcid) {
+      self.dbServerOcid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(DbNodeProperties.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCpuCoreCount) {
+      self.totalCpuCoreCount = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.ocpuCount, forKey: .ocpuCount)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.dbNodeStorageSizeGb, forKey: .dbNodeStorageSizeGb)
+    try container.encode(self.dbServerOcid, forKey: .dbServerOcid)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.totalCpuCoreCount, forKey: .totalCpuCoreCount)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The various lifecycle states of the database node.

@@ -38,6 +38,8 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
   public var publicKey: OneOf_PublicKey? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttestorPublicKey`.
   public init() {}
 
@@ -54,17 +56,33 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case comment = "comment"
-    case id = "id"
-    case asciiArmoredPgpPublicKey = "asciiArmoredPgpPublicKey"
-    case pkixPublicKey = "pkixPublicKey"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let comment = CodingKeys(stringValue: "comment")
+    static let id = CodingKeys(stringValue: "id")
+    static let asciiArmoredPgpPublicKey = CodingKeys(stringValue: "asciiArmoredPgpPublicKey")
+    static let pkixPublicKey = CodingKeys(stringValue: "pkixPublicKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "comment",
+      "id",
+      "asciiArmoredPgpPublicKey",
+      "pkixPublicKey",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.comment = try container.decode(Swift.String.self, forKey: .comment)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comment) {
+      self.comment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
 
     var publicKey: OneOf_PublicKey? = nil
     let publicKeyCheckAndSet = {
@@ -87,6 +105,10 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try publicKeyCheckAndSet(.pkixPublicKey(pkixPublicKey))
     }
     self.publicKey = publicKey
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +123,9 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .pkixPublicKey(let value):
         try container.encode(value, forKey: .pkixPublicKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

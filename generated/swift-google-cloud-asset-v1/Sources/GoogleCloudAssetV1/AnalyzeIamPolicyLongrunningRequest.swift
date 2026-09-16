@@ -49,6 +49,8 @@ public struct AnalyzeIamPolicyLongrunningRequest: Codable, Equatable, GoogleClou
   /// to.
   public var outputConfig: IamPolicyAnalysisOutputConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeIamPolicyLongrunningRequest`.
   public init() {}
 
@@ -63,6 +65,48 @@ public struct AnalyzeIamPolicyLongrunningRequest: Codable, Equatable, GoogleClou
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let analysisQuery = CodingKeys(stringValue: "analysisQuery")
+    static let savedAnalysisQuery = CodingKeys(stringValue: "savedAnalysisQuery")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "analysisQuery",
+      "savedAnalysisQuery",
+      "outputConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.analysisQuery = try container.decodeIfPresent(
+      IamPolicyAnalysisQuery.self, forKey: .analysisQuery)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .savedAnalysisQuery) {
+      self.savedAnalysisQuery = value
+    }
+    self.outputConfig = try container.decodeIfPresent(
+      IamPolicyAnalysisOutputConfig.self, forKey: .outputConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.analysisQuery, forKey: .analysisQuery)
+    try container.encode(self.savedAnalysisQuery, forKey: .savedAnalysisQuery)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

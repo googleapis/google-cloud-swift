@@ -43,6 +43,8 @@ public struct CreateKeyHandleRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   public var keyHandle: KeyHandle? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateKeyHandleRequest`.
   public init() {}
 
@@ -57,6 +59,48 @@ public struct CreateKeyHandleRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let keyHandleId = CodingKeys(stringValue: "keyHandleId")
+    static let keyHandle = CodingKeys(stringValue: "keyHandle")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "keyHandleId",
+      "keyHandle",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyHandleId) {
+      self.keyHandleId = value
+    }
+    self.keyHandle = try container.decodeIfPresent(KeyHandle.self, forKey: .keyHandle)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.keyHandleId, forKey: .keyHandleId)
+    try container.encodeIfPresent(self.keyHandle, forKey: .keyHandle)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

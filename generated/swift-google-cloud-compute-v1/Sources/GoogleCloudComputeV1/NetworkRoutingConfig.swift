@@ -53,6 +53,8 @@
     /// routes with all subnets of this network, across regions.
     public var routingMode: NetworkRoutingConfig.RoutingMode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkRoutingConfig`.
     public init() {}
 
@@ -67,6 +69,67 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bgpAlwaysCompareMed = CodingKeys(stringValue: "bgpAlwaysCompareMed")
+      static let bgpBestPathSelectionMode = CodingKeys(stringValue: "bgpBestPathSelectionMode")
+      static let bgpInterRegionCost = CodingKeys(stringValue: "bgpInterRegionCost")
+      static let effectiveBgpAlwaysCompareMed = CodingKeys(
+        stringValue: "effectiveBgpAlwaysCompareMed")
+      static let effectiveBgpInterRegionCost = CodingKeys(
+        stringValue: "effectiveBgpInterRegionCost")
+      static let routingMode = CodingKeys(stringValue: "routingMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bgpAlwaysCompareMed",
+        "bgpBestPathSelectionMode",
+        "bgpInterRegionCost",
+        "effectiveBgpAlwaysCompareMed",
+        "effectiveBgpInterRegionCost",
+        "routingMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bgpAlwaysCompareMed = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .bgpAlwaysCompareMed)
+      self.bgpBestPathSelectionMode = try container.decodeIfPresent(
+        NetworkRoutingConfig.BgpBestPathSelectionMode.self, forKey: .bgpBestPathSelectionMode)
+      self.bgpInterRegionCost = try container.decodeIfPresent(
+        NetworkRoutingConfig.BgpInterRegionCost.self, forKey: .bgpInterRegionCost)
+      self.effectiveBgpAlwaysCompareMed = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .effectiveBgpAlwaysCompareMed)
+      self.effectiveBgpInterRegionCost = try container.decodeIfPresent(
+        NetworkRoutingConfig.EffectiveBgpInterRegionCost.self, forKey: .effectiveBgpInterRegionCost)
+      self.routingMode = try container.decodeIfPresent(
+        NetworkRoutingConfig.RoutingMode.self, forKey: .routingMode)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.bgpAlwaysCompareMed, forKey: .bgpAlwaysCompareMed)
+      try container.encodeIfPresent(
+        self.bgpBestPathSelectionMode, forKey: .bgpBestPathSelectionMode)
+      try container.encodeIfPresent(self.bgpInterRegionCost, forKey: .bgpInterRegionCost)
+      try container.encodeIfPresent(
+        self.effectiveBgpAlwaysCompareMed, forKey: .effectiveBgpAlwaysCompareMed)
+      try container.encodeIfPresent(
+        self.effectiveBgpInterRegionCost, forKey: .effectiveBgpInterRegionCost)
+      try container.encodeIfPresent(self.routingMode, forKey: .routingMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [bgpBestPathSelectionMode][google.cloud.compute.v1.NetworkRoutingConfig.bgpBestPathSelectionMode] field.

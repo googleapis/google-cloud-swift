@@ -46,6 +46,8 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Metadata for FloorSetting
   public var floorSettingMetadata: FloorSetting.FloorSettingMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FloorSetting`.
   public init() {}
 
@@ -62,6 +64,77 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let filterConfig = CodingKeys(stringValue: "filterConfig")
+    static let enableFloorSettingEnforcement = CodingKeys(
+      stringValue: "enableFloorSettingEnforcement")
+    static let integratedServices = CodingKeys(stringValue: "integratedServices")
+    static let aiPlatformFloorSetting = CodingKeys(stringValue: "aiPlatformFloorSetting")
+    static let floorSettingMetadata = CodingKeys(stringValue: "floorSettingMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "filterConfig",
+      "enableFloorSettingEnforcement",
+      "integratedServices",
+      "aiPlatformFloorSetting",
+      "floorSettingMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.filterConfig = try container.decodeIfPresent(FilterConfig.self, forKey: .filterConfig)
+    self.enableFloorSettingEnforcement = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableFloorSettingEnforcement)
+    if let value = try container.decodeIfPresent(
+      [FloorSetting.IntegratedService].self, forKey: .integratedServices)
+    {
+      self.integratedServices = value
+    }
+    self.aiPlatformFloorSetting = try container.decodeIfPresent(
+      AiPlatformFloorSetting.self, forKey: .aiPlatformFloorSetting)
+    self.floorSettingMetadata = try container.decodeIfPresent(
+      FloorSetting.FloorSettingMetadata.self, forKey: .floorSettingMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.filterConfig, forKey: .filterConfig)
+    try container.encodeIfPresent(
+      self.enableFloorSettingEnforcement, forKey: .enableFloorSettingEnforcement)
+    try container.encode(self.integratedServices, forKey: .integratedServices)
+    try container.encodeIfPresent(self.aiPlatformFloorSetting, forKey: .aiPlatformFloorSetting)
+    try container.encodeIfPresent(self.floorSettingMetadata, forKey: .floorSettingMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// message describing FloorSetting Metadata
   public struct FloorSettingMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -69,6 +142,8 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Metadata for multi language detection.
     public var multiLanguageDetection: FloorSetting.FloorSettingMetadata.MultiLanguageDetection? =
       nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `FloorSettingMetadata`.
     public init() {}
@@ -86,12 +161,46 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let multiLanguageDetection = CodingKeys(stringValue: "multiLanguageDetection")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "multiLanguageDetection"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.multiLanguageDetection = try container.decodeIfPresent(
+        FloorSetting.FloorSettingMetadata.MultiLanguageDetection.self,
+        forKey: .multiLanguageDetection)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.multiLanguageDetection, forKey: .multiLanguageDetection)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Metadata to enable multi language detection via floor setting.
     public struct MultiLanguageDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. If true, multi language detection will be enabled.
       public var enableMultiLanguageDetection: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MultiLanguageDetection`.
       public init() {}
@@ -107,6 +216,42 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableMultiLanguageDetection = CodingKeys(
+          stringValue: "enableMultiLanguageDetection")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableMultiLanguageDetection"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableMultiLanguageDetection)
+        {
+          self.enableMultiLanguageDetection = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.enableMultiLanguageDetection, forKey: .enableMultiLanguageDetection)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

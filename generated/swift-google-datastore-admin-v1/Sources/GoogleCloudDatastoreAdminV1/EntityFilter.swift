@@ -51,6 +51,8 @@ public struct EntityFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Each namespace in this list must be unique.
   public var namespaceIds: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntityFilter`.
   public init() {}
 
@@ -65,6 +67,44 @@ public struct EntityFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kinds = CodingKeys(stringValue: "kinds")
+    static let namespaceIds = CodingKeys(stringValue: "namespaceIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kinds",
+      "namespaceIds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kinds) {
+      self.kinds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .namespaceIds) {
+      self.namespaceIds = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.kinds, forKey: .kinds)
+    try container.encode(self.namespaceIds, forKey: .namespaceIds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

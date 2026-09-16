@@ -29,6 +29,8 @@
     /// The percent of intents in the agent that are covered.
     public var coverageScore: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IntentCoverage`.
     public init() {}
 
@@ -45,6 +47,44 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intents = CodingKeys(stringValue: "intents")
+      static let coverageScore = CodingKeys(stringValue: "coverageScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intents",
+        "coverageScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([IntentCoverage.Intent].self, forKey: .intents) {
+        self.intents = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .coverageScore) {
+        self.coverageScore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.intents, forKey: .intents)
+      try container.encode(self.coverageScore, forKey: .coverageScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The agent's intent.
     public struct Intent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -55,6 +95,8 @@
       /// Whether the intent is covered by at least one of the agent's
       /// test cases.
       public var covered: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Intent`.
       public init() {}
@@ -70,6 +112,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let intent = CodingKeys(stringValue: "intent")
+        static let covered = CodingKeys(stringValue: "covered")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "intent",
+          "covered",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .intent) {
+          self.intent = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .covered) {
+          self.covered = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.intent, forKey: .intent)
+        try container.encode(self.covered, forKey: .covered)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

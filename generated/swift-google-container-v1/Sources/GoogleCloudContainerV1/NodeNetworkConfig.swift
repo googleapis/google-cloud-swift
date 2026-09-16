@@ -122,6 +122,8 @@ public struct NodeNetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// machine types, zone, etc.
   public var acceleratorNetworkProfile: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeNetworkConfig`.
   public init() {}
 
@@ -138,12 +140,118 @@ public struct NodeNetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createPodRange = CodingKeys(stringValue: "createPodRange")
+    static let podRange = CodingKeys(stringValue: "podRange")
+    static let podIpv4CidrBlock = CodingKeys(stringValue: "podIpv4CidrBlock")
+    static let enablePrivateNodes = CodingKeys(stringValue: "enablePrivateNodes")
+    static let networkPerformanceConfig = CodingKeys(stringValue: "networkPerformanceConfig")
+    static let podCidrOverprovisionConfig = CodingKeys(stringValue: "podCidrOverprovisionConfig")
+    static let additionalNodeNetworkConfigs = CodingKeys(
+      stringValue: "additionalNodeNetworkConfigs")
+    static let additionalPodNetworkConfigs = CodingKeys(stringValue: "additionalPodNetworkConfigs")
+    static let podIpv4RangeUtilization = CodingKeys(stringValue: "podIpv4RangeUtilization")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let networkTierConfig = CodingKeys(stringValue: "networkTierConfig")
+    static let acceleratorNetworkProfile = CodingKeys(stringValue: "acceleratorNetworkProfile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createPodRange",
+      "podRange",
+      "podIpv4CidrBlock",
+      "enablePrivateNodes",
+      "networkPerformanceConfig",
+      "podCidrOverprovisionConfig",
+      "additionalNodeNetworkConfigs",
+      "additionalPodNetworkConfigs",
+      "podIpv4RangeUtilization",
+      "subnetwork",
+      "networkTierConfig",
+      "acceleratorNetworkProfile",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .createPodRange) {
+      self.createPodRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podRange) {
+      self.podRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podIpv4CidrBlock) {
+      self.podIpv4CidrBlock = value
+    }
+    self.enablePrivateNodes = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enablePrivateNodes)
+    self.networkPerformanceConfig = try container.decodeIfPresent(
+      NodeNetworkConfig.NetworkPerformanceConfig.self, forKey: .networkPerformanceConfig)
+    self.podCidrOverprovisionConfig = try container.decodeIfPresent(
+      PodCIDROverprovisionConfig.self, forKey: .podCidrOverprovisionConfig)
+    if let value = try container.decodeIfPresent(
+      [AdditionalNodeNetworkConfig].self, forKey: .additionalNodeNetworkConfigs)
+    {
+      self.additionalNodeNetworkConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AdditionalPodNetworkConfig].self, forKey: .additionalPodNetworkConfigs)
+    {
+      self.additionalPodNetworkConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .podIpv4RangeUtilization)
+    {
+      self.podIpv4RangeUtilization = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    self.networkTierConfig = try container.decodeIfPresent(
+      NetworkTierConfig.self, forKey: .networkTierConfig)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .acceleratorNetworkProfile)
+    {
+      self.acceleratorNetworkProfile = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.createPodRange, forKey: .createPodRange)
+    try container.encode(self.podRange, forKey: .podRange)
+    try container.encode(self.podIpv4CidrBlock, forKey: .podIpv4CidrBlock)
+    try container.encodeIfPresent(self.enablePrivateNodes, forKey: .enablePrivateNodes)
+    try container.encodeIfPresent(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
+    try container.encodeIfPresent(
+      self.podCidrOverprovisionConfig, forKey: .podCidrOverprovisionConfig)
+    try container.encode(self.additionalNodeNetworkConfigs, forKey: .additionalNodeNetworkConfigs)
+    try container.encode(self.additionalPodNetworkConfigs, forKey: .additionalPodNetworkConfigs)
+    try container.encode(self.podIpv4RangeUtilization, forKey: .podIpv4RangeUtilization)
+    try container.encode(self.subnetwork, forKey: .subnetwork)
+    try container.encodeIfPresent(self.networkTierConfig, forKey: .networkTierConfig)
+    try container.encode(self.acceleratorNetworkProfile, forKey: .acceleratorNetworkProfile)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration of all network bandwidth tiers
   public struct NetworkPerformanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies the total network bandwidth tier for the NodePool.
     public var totalEgressBandwidthTier: NodeNetworkConfig.NetworkPerformanceConfig.Tier? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NetworkPerformanceConfig`.
     public init() {}
@@ -159,6 +267,38 @@ public struct NodeNetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let totalEgressBandwidthTier = CodingKeys(stringValue: "totalEgressBandwidthTier")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "totalEgressBandwidthTier"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.totalEgressBandwidthTier = try container.decodeIfPresent(
+        NodeNetworkConfig.NetworkPerformanceConfig.Tier.self, forKey: .totalEgressBandwidthTier)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.totalEgressBandwidthTier, forKey: .totalEgressBandwidthTier)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Node network tier

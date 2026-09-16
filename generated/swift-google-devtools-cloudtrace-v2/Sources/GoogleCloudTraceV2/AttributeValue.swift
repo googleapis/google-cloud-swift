@@ -24,6 +24,8 @@ public struct AttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the value.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttributeValue`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct AttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValue = "stringValue"
-    case intValue = "intValue"
-    case boolValue = "boolValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let intValue = CodingKeys(stringValue: "intValue")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValue",
+      "intValue",
+      "boolValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +84,10 @@ public struct AttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.boolValue(boolValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +102,9 @@ public struct AttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .boolValue(let value):
         try container.encode(value, forKey: .boolValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

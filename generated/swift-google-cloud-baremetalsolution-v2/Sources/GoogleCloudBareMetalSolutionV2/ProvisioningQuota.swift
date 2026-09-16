@@ -42,6 +42,8 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Available quantity based on asset type.
   public var availability: OneOf_Availability? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProvisioningQuota`.
   public init() {}
 
@@ -58,25 +60,54 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case assetType = "assetType"
-    case gcpService = "gcpService"
-    case location = "location"
-    case availableCount = "availableCount"
-    case instanceQuota = "instanceQuota"
-    case serverCount = "serverCount"
-    case networkBandwidth = "networkBandwidth"
-    case storageGib = "storageGib"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let assetType = CodingKeys(stringValue: "assetType")
+    static let gcpService = CodingKeys(stringValue: "gcpService")
+    static let location = CodingKeys(stringValue: "location")
+    static let availableCount = CodingKeys(stringValue: "availableCount")
+    static let instanceQuota = CodingKeys(stringValue: "instanceQuota")
+    static let serverCount = CodingKeys(stringValue: "serverCount")
+    static let networkBandwidth = CodingKeys(stringValue: "networkBandwidth")
+    static let storageGib = CodingKeys(stringValue: "storageGib")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "assetType",
+      "gcpService",
+      "location",
+      "availableCount",
+      "instanceQuota",
+      "serverCount",
+      "networkBandwidth",
+      "storageGib",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.assetType = try container.decode(ProvisioningQuota.AssetType.self, forKey: .assetType)
-    self.gcpService = try container.decode(Swift.String.self, forKey: .gcpService)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
-    self.availableCount = try container.decode(Swift.Int32.self, forKey: .availableCount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      ProvisioningQuota.AssetType.self, forKey: .assetType)
+    {
+      self.assetType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpService) {
+      self.gcpService = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .availableCount) {
+      self.availableCount = value
+    }
 
     var quota: OneOf_Quota? = nil
     let quotaCheckAndSet = {
@@ -117,6 +148,10 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try availabilityCheckAndSet(.storageGib(storageGib))
     }
     self.availability = availability
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -143,6 +178,9 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .storageGib(let value):
         try container.encode(value, forKey: .storageGib)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

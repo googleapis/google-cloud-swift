@@ -99,6 +99,8 @@
     /// Output only. [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HealthCheckService`.
     public init() {}
 
@@ -115,19 +117,40 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case healthChecks = "healthChecks"
-      case healthStatusAggregationPolicy = "healthStatusAggregationPolicy"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case networkEndpointGroups = "networkEndpointGroups"
-      case notificationEndpoints = "notificationEndpoints"
-      case region = "region"
-      case selfLink = "selfLink"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let healthChecks = CodingKeys(stringValue: "healthChecks")
+      static let healthStatusAggregationPolicy = CodingKeys(
+        stringValue: "healthStatusAggregationPolicy")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let networkEndpointGroups = CodingKeys(stringValue: "networkEndpointGroups")
+      static let notificationEndpoints = CodingKeys(stringValue: "notificationEndpoints")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "healthChecks",
+        "healthStatusAggregationPolicy",
+        "id",
+        "kind",
+        "name",
+        "networkEndpointGroups",
+        "notificationEndpoints",
+        "region",
+        "selfLink",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -144,40 +167,55 @@
         }
         self.fingerprint = v
       }
-      self.healthChecks = try container.decode([Swift.String].self, forKey: .healthChecks)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .healthChecks) {
+        self.healthChecks = value
+      }
       self.healthStatusAggregationPolicy = try container.decodeIfPresent(
         HealthCheckService.HealthStatusAggregationPolicy.self,
         forKey: .healthStatusAggregationPolicy)
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
-      self.networkEndpointGroups = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .networkEndpointGroups)
-      self.notificationEndpoints = try container.decode(
+      {
+        self.networkEndpointGroups = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .notificationEndpoints)
+      {
+        self.notificationEndpoints = value
+      }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.healthChecks, forKey: .healthChecks)
-      try container.encode(
+      try container.encodeIfPresent(
         self.healthStatusAggregationPolicy, forKey: .healthStatusAggregationPolicy)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.networkEndpointGroups, forKey: .networkEndpointGroups)
       try container.encode(self.notificationEndpoints, forKey: .notificationEndpoints)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [healthStatusAggregationPolicy][google.cloud.compute.v1.HealthCheckService.healthStatusAggregationPolicy] field.

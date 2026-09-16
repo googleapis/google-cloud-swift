@@ -24,6 +24,8 @@ public struct Citations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of cited pieces of information.
   public var citedChunks: [Citations.CitedChunk] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Citations`.
   public init() {}
 
@@ -38,6 +40,39 @@ public struct Citations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let citedChunks = CodingKeys(stringValue: "citedChunks")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "citedChunks"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Citations.CitedChunk].self, forKey: .citedChunks)
+    {
+      self.citedChunks = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.citedChunks, forKey: .citedChunks)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Piece of cited information.
@@ -56,6 +91,8 @@ public struct Citations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Whether this citation requires attribution to be shown to the end users.
     public var requiresAttribution: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CitedChunk`.
     public init() {}
 
@@ -70,6 +107,56 @@ public struct Citations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let uri = CodingKeys(stringValue: "uri")
+      static let title = CodingKeys(stringValue: "title")
+      static let text = CodingKeys(stringValue: "text")
+      static let requiresAttribution = CodingKeys(stringValue: "requiresAttribution")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "uri",
+        "title",
+        "text",
+        "requiresAttribution",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+        self.text = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requiresAttribution) {
+        self.requiresAttribution = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.text, forKey: .text)
+      try container.encode(self.requiresAttribution, forKey: .requiresAttribution)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

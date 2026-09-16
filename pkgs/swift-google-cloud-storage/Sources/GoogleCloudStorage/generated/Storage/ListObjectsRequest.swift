@@ -93,6 +93,8 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// filter.
   public var filter: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListObjectsRequest`.
   public init() {}
 
@@ -109,41 +111,93 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case delimiter = "delimiter"
-    case includeTrailingDelimiter = "includeTrailingDelimiter"
-    case `prefix` = "prefix"
-    case versions = "versions"
-    case readMask = "readMask"
-    case lexicographicStart = "lexicographicStart"
-    case lexicographicEnd = "lexicographicEnd"
-    case softDeleted = "softDeleted"
-    case includeFoldersAsPrefixes = "includeFoldersAsPrefixes"
-    case matchGlob = "matchGlob"
-    case filter = "filter"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let delimiter = CodingKeys(stringValue: "delimiter")
+    static let includeTrailingDelimiter = CodingKeys(stringValue: "includeTrailingDelimiter")
+    static let `prefix` = CodingKeys(stringValue: "prefix")
+    static let versions = CodingKeys(stringValue: "versions")
+    static let readMask = CodingKeys(stringValue: "readMask")
+    static let lexicographicStart = CodingKeys(stringValue: "lexicographicStart")
+    static let lexicographicEnd = CodingKeys(stringValue: "lexicographicEnd")
+    static let softDeleted = CodingKeys(stringValue: "softDeleted")
+    static let includeFoldersAsPrefixes = CodingKeys(stringValue: "includeFoldersAsPrefixes")
+    static let matchGlob = CodingKeys(stringValue: "matchGlob")
+    static let filter = CodingKeys(stringValue: "filter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "pageSize",
+      "pageToken",
+      "delimiter",
+      "includeTrailingDelimiter",
+      "prefix",
+      "versions",
+      "readMask",
+      "lexicographicStart",
+      "lexicographicEnd",
+      "softDeleted",
+      "includeFoldersAsPrefixes",
+      "matchGlob",
+      "filter",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
-    self.delimiter = try container.decode(Swift.String.self, forKey: .delimiter)
-    self.includeTrailingDelimiter = try container.decode(
-      Swift.Bool.self, forKey: .includeTrailingDelimiter)
-    self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-    self.versions = try container.decode(Swift.Bool.self, forKey: .versions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .delimiter) {
+      self.delimiter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeTrailingDelimiter)
+    {
+      self.includeTrailingDelimiter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+      self.`prefix` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .versions) {
+      self.versions = value
+    }
     self.readMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .readMask)
-    self.lexicographicStart = try container.decode(Swift.String.self, forKey: .lexicographicStart)
-    self.lexicographicEnd = try container.decode(Swift.String.self, forKey: .lexicographicEnd)
-    self.softDeleted = try container.decode(Swift.Bool.self, forKey: .softDeleted)
-    self.includeFoldersAsPrefixes = try container.decode(
-      Swift.Bool.self, forKey: .includeFoldersAsPrefixes)
-    self.matchGlob = try container.decode(Swift.String.self, forKey: .matchGlob)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lexicographicStart) {
+      self.lexicographicStart = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lexicographicEnd) {
+      self.lexicographicEnd = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .softDeleted) {
+      self.softDeleted = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeFoldersAsPrefixes)
+    {
+      self.includeFoldersAsPrefixes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .matchGlob) {
+      self.matchGlob = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -155,13 +209,16 @@ public struct ListObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.includeTrailingDelimiter, forKey: .includeTrailingDelimiter)
     try container.encode(self.`prefix`, forKey: .`prefix`)
     try container.encode(self.versions, forKey: .versions)
-    try container.encode(self.readMask, forKey: .readMask)
+    try container.encodeIfPresent(self.readMask, forKey: .readMask)
     try container.encode(self.lexicographicStart, forKey: .lexicographicStart)
     try container.encode(self.lexicographicEnd, forKey: .lexicographicEnd)
     try container.encode(self.softDeleted, forKey: .softDeleted)
     try container.encode(self.includeFoldersAsPrefixes, forKey: .includeFoldersAsPrefixes)
     try container.encode(self.matchGlob, forKey: .matchGlob)
     try container.encode(self.filter, forKey: .filter)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

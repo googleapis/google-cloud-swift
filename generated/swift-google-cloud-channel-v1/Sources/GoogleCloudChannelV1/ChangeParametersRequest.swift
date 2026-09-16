@@ -56,6 +56,8 @@ public struct ChangeParametersRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Purchase order ID provided by the reseller.
   public var purchaseOrderId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChangeParametersRequest`.
   public init() {}
 
@@ -70,6 +72,56 @@ public struct ChangeParametersRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let purchaseOrderId = CodingKeys(stringValue: "purchaseOrderId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "parameters",
+      "requestId",
+      "purchaseOrderId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Parameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .purchaseOrderId) {
+      self.purchaseOrderId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.purchaseOrderId, forKey: .purchaseOrderId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

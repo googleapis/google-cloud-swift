@@ -28,6 +28,8 @@ public struct EkmMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Assured Workload creation.
   public var ekmEndpointUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EkmMetadata`.
   public init() {}
 
@@ -42,6 +44,45 @@ public struct EkmMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ekmSolution = CodingKeys(stringValue: "ekmSolution")
+    static let ekmEndpointUri = CodingKeys(stringValue: "ekmEndpointUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ekmSolution",
+      "ekmEndpointUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(EkmMetadata.EkmSolution.self, forKey: .ekmSolution)
+    {
+      self.ekmSolution = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ekmEndpointUri) {
+      self.ekmEndpointUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ekmSolution, forKey: .ekmSolution)
+    try container.encode(self.ekmEndpointUri, forKey: .ekmEndpointUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents Google Cloud supported external key management partners

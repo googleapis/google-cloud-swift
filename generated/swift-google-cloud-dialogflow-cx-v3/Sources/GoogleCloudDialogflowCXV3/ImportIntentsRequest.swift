@@ -35,6 +35,8 @@
     /// Required. The intents to import.
     public var intents: OneOf_Intents? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportIntentsRequest`.
     public init() {}
 
@@ -51,18 +53,35 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case parent = "parent"
-      case intentsUri = "intentsUri"
-      case intentsContent = "intentsContent"
-      case mergeOption = "mergeOption"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let intentsUri = CodingKeys(stringValue: "intentsUri")
+      static let intentsContent = CodingKeys(stringValue: "intentsContent")
+      static let mergeOption = CodingKeys(stringValue: "mergeOption")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "intentsUri",
+        "intentsContent",
+        "mergeOption",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.mergeOption = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(
         ImportIntentsRequest.MergeOption.self, forKey: .mergeOption)
+      {
+        self.mergeOption = value
+      }
 
       var intents: OneOf_Intents? = nil
       let intentsCheckAndSet = {
@@ -83,6 +102,10 @@
         try intentsCheckAndSet(.intentsContent(intentsContent))
       }
       self.intents = intents
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -97,6 +120,9 @@
         case .intentsContent(let value):
           try container.encode(value, forKey: .intentsContent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

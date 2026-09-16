@@ -53,6 +53,8 @@ public struct PatchConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Allows the patch job to run on Managed instance groups (MIGs).
   public var migInstancesAllowed: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PatchConfig`.
   public init() {}
 
@@ -67,6 +69,75 @@ public struct PatchConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rebootConfig = CodingKeys(stringValue: "rebootConfig")
+    static let apt = CodingKeys(stringValue: "apt")
+    static let yum = CodingKeys(stringValue: "yum")
+    static let goo = CodingKeys(stringValue: "goo")
+    static let zypper = CodingKeys(stringValue: "zypper")
+    static let windowsUpdate = CodingKeys(stringValue: "windowsUpdate")
+    static let preStep = CodingKeys(stringValue: "preStep")
+    static let postStep = CodingKeys(stringValue: "postStep")
+    static let migInstancesAllowed = CodingKeys(stringValue: "migInstancesAllowed")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rebootConfig",
+      "apt",
+      "yum",
+      "goo",
+      "zypper",
+      "windowsUpdate",
+      "preStep",
+      "postStep",
+      "migInstancesAllowed",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      PatchConfig.RebootConfig.self, forKey: .rebootConfig)
+    {
+      self.rebootConfig = value
+    }
+    self.apt = try container.decodeIfPresent(AptSettings.self, forKey: .apt)
+    self.yum = try container.decodeIfPresent(YumSettings.self, forKey: .yum)
+    self.goo = try container.decodeIfPresent(GooSettings.self, forKey: .goo)
+    self.zypper = try container.decodeIfPresent(ZypperSettings.self, forKey: .zypper)
+    self.windowsUpdate = try container.decodeIfPresent(
+      WindowsUpdateSettings.self, forKey: .windowsUpdate)
+    self.preStep = try container.decodeIfPresent(ExecStep.self, forKey: .preStep)
+    self.postStep = try container.decodeIfPresent(ExecStep.self, forKey: .postStep)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .migInstancesAllowed) {
+      self.migInstancesAllowed = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rebootConfig, forKey: .rebootConfig)
+    try container.encodeIfPresent(self.apt, forKey: .apt)
+    try container.encodeIfPresent(self.yum, forKey: .yum)
+    try container.encodeIfPresent(self.goo, forKey: .goo)
+    try container.encodeIfPresent(self.zypper, forKey: .zypper)
+    try container.encodeIfPresent(self.windowsUpdate, forKey: .windowsUpdate)
+    try container.encodeIfPresent(self.preStep, forKey: .preStep)
+    try container.encodeIfPresent(self.postStep, forKey: .postStep)
+    try container.encode(self.migInstancesAllowed, forKey: .migInstancesAllowed)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Post-patch reboot settings.

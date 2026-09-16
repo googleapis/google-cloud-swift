@@ -34,6 +34,8 @@ public struct Completeness: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// some controls to prevent network access. Sometimes called "hermetic".
   public var materials: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Completeness`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct Completeness: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let arguments = CodingKeys(stringValue: "arguments")
+    static let environment = CodingKeys(stringValue: "environment")
+    static let materials = CodingKeys(stringValue: "materials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "arguments",
+      "environment",
+      "materials",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .arguments) {
+      self.arguments = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .environment) {
+      self.environment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .materials) {
+      self.materials = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.arguments, forKey: .arguments)
+    try container.encode(self.environment, forKey: .environment)
+    try container.encode(self.materials, forKey: .materials)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

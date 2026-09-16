@@ -69,6 +69,8 @@
     /// header.
     public var maxAge: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CorsPolicy`.
     public init() {}
 
@@ -83,6 +85,76 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allowCredentials = CodingKeys(stringValue: "allowCredentials")
+      static let allowHeaders = CodingKeys(stringValue: "allowHeaders")
+      static let allowMethods = CodingKeys(stringValue: "allowMethods")
+      static let allowOriginRegexes = CodingKeys(stringValue: "allowOriginRegexes")
+      static let allowOrigins = CodingKeys(stringValue: "allowOrigins")
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let exposeHeaders = CodingKeys(stringValue: "exposeHeaders")
+      static let maxAge = CodingKeys(stringValue: "maxAge")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allowCredentials",
+        "allowHeaders",
+        "allowMethods",
+        "allowOriginRegexes",
+        "allowOrigins",
+        "disabled",
+        "exposeHeaders",
+        "maxAge",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.allowCredentials = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allowCredentials)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowHeaders) {
+        self.allowHeaders = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowMethods) {
+        self.allowMethods = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowOriginRegexes)
+      {
+        self.allowOriginRegexes = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowOrigins) {
+        self.allowOrigins = value
+      }
+      self.disabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exposeHeaders) {
+        self.exposeHeaders = value
+      }
+      self.maxAge = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxAge)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.allowCredentials, forKey: .allowCredentials)
+      try container.encode(self.allowHeaders, forKey: .allowHeaders)
+      try container.encode(self.allowMethods, forKey: .allowMethods)
+      try container.encode(self.allowOriginRegexes, forKey: .allowOriginRegexes)
+      try container.encode(self.allowOrigins, forKey: .allowOrigins)
+      try container.encodeIfPresent(self.disabled, forKey: .disabled)
+      try container.encode(self.exposeHeaders, forKey: .exposeHeaders)
+      try container.encodeIfPresent(self.maxAge, forKey: .maxAge)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

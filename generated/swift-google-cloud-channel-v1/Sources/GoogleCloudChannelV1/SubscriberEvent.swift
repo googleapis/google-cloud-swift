@@ -26,6 +26,8 @@ public struct SubscriberEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This is a required field.
   public var event: OneOf_Event? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubscriberEvent`.
   public init() {}
 
@@ -42,9 +44,19 @@ public struct SubscriberEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case customerEvent = "customerEvent"
-    case entitlementEvent = "entitlementEvent"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customerEvent = CodingKeys(stringValue: "customerEvent")
+    static let entitlementEvent = CodingKeys(stringValue: "entitlementEvent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customerEvent",
+      "entitlementEvent",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +83,10 @@ public struct SubscriberEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try eventCheckAndSet(.entitlementEvent(entitlementEvent))
     }
     self.event = event
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +99,9 @@ public struct SubscriberEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .entitlementEvent(let value):
         try container.encode(value, forKey: .entitlementEvent)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

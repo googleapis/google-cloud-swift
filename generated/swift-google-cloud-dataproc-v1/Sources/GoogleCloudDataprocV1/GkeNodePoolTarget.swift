@@ -43,6 +43,8 @@ public struct GkeNodePoolTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// This is an input only field. It will not be returned by the API.
   public var nodePoolConfig: GkeNodePoolConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GkeNodePoolTarget`.
   public init() {}
 
@@ -57,6 +59,49 @@ public struct GkeNodePoolTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nodePool = CodingKeys(stringValue: "nodePool")
+    static let roles = CodingKeys(stringValue: "roles")
+    static let nodePoolConfig = CodingKeys(stringValue: "nodePoolConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nodePool",
+      "roles",
+      "nodePoolConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodePool) {
+      self.nodePool = value
+    }
+    if let value = try container.decodeIfPresent([GkeNodePoolTarget.Role].self, forKey: .roles) {
+      self.roles = value
+    }
+    self.nodePoolConfig = try container.decodeIfPresent(
+      GkeNodePoolConfig.self, forKey: .nodePoolConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nodePool, forKey: .nodePool)
+    try container.encode(self.roles, forKey: .roles)
+    try container.encodeIfPresent(self.nodePoolConfig, forKey: .nodePoolConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// `Role` specifies the tasks that will run on the node pool. Roles can be

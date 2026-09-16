@@ -43,6 +43,8 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var sourceDetails: OneOf_SourceDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Source`.
   public init() {}
 
@@ -59,27 +61,51 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vmware = "vmware"
-    case aws = "aws"
-    case azure = "azure"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case description = "description"
-    case encryption = "encryption"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmware = CodingKeys(stringValue: "vmware")
+    static let aws = CodingKeys(stringValue: "aws")
+    static let azure = CodingKeys(stringValue: "azure")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let encryption = CodingKeys(stringValue: "encryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmware",
+      "aws",
+      "azure",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "encryption",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
     var sourceDetails: OneOf_SourceDetails? = nil
@@ -102,16 +128,20 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceDetailsCheckAndSet(.azure(azure))
     }
     self.sourceDetails = sourceDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.encryption, forKey: .encryption)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
 
     if let choice = self.sourceDetails {
       switch choice {
@@ -122,6 +152,9 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .azure(let value):
         try container.encode(value, forKey: .azure)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

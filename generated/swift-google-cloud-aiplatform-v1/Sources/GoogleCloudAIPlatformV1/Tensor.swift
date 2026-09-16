@@ -95,6 +95,8 @@
     /// Serialized raw tensor content.
     public var tensorVal: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Tensor`.
     public init() {}
 
@@ -109,6 +111,117 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dtype = CodingKeys(stringValue: "dtype")
+      static let shape = CodingKeys(stringValue: "shape")
+      static let boolVal = CodingKeys(stringValue: "boolVal")
+      static let stringVal = CodingKeys(stringValue: "stringVal")
+      static let bytesVal = CodingKeys(stringValue: "bytesVal")
+      static let floatVal = CodingKeys(stringValue: "floatVal")
+      static let doubleVal = CodingKeys(stringValue: "doubleVal")
+      static let intVal = CodingKeys(stringValue: "intVal")
+      static let int64Val = CodingKeys(stringValue: "int64Val")
+      static let uintVal = CodingKeys(stringValue: "uintVal")
+      static let uint64Val = CodingKeys(stringValue: "uint64Val")
+      static let listVal = CodingKeys(stringValue: "listVal")
+      static let structVal = CodingKeys(stringValue: "structVal")
+      static let tensorVal = CodingKeys(stringValue: "tensorVal")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dtype",
+        "shape",
+        "boolVal",
+        "stringVal",
+        "bytesVal",
+        "floatVal",
+        "doubleVal",
+        "intVal",
+        "int64Val",
+        "uintVal",
+        "uint64Val",
+        "listVal",
+        "structVal",
+        "tensorVal",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Tensor.DataType.self, forKey: .dtype) {
+        self.dtype = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .shape) {
+        self.shape = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Bool].self, forKey: .boolVal) {
+        self.boolVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .stringVal) {
+        self.stringVal = value
+      }
+      if let value = try container.decodeIfPresent([Foundation.Data].self, forKey: .bytesVal) {
+        self.bytesVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .floatVal) {
+        self.floatVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Double].self, forKey: .doubleVal) {
+        self.doubleVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .intVal) {
+        self.intVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .int64Val) {
+        self.int64Val = value
+      }
+      if let value = try container.decodeIfPresent([Swift.UInt32].self, forKey: .uintVal) {
+        self.uintVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.UInt64].self, forKey: .uint64Val) {
+        self.uint64Val = value
+      }
+      if let value = try container.decodeIfPresent([Tensor].self, forKey: .listVal) {
+        self.listVal = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Tensor].self, forKey: .structVal)
+      {
+        self.structVal = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .tensorVal) {
+        self.tensorVal = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dtype, forKey: .dtype)
+      try container.encode(self.shape, forKey: .shape)
+      try container.encode(self.boolVal, forKey: .boolVal)
+      try container.encode(self.stringVal, forKey: .stringVal)
+      try container.encode(self.bytesVal, forKey: .bytesVal)
+      try container.encode(self.floatVal, forKey: .floatVal)
+      try container.encode(self.doubleVal, forKey: .doubleVal)
+      try container.encode(self.intVal, forKey: .intVal)
+      try container.encode(self.int64Val, forKey: .int64Val)
+      try container.encode(self.uintVal, forKey: .uintVal)
+      try container.encode(self.uint64Val, forKey: .uint64Val)
+      try container.encode(self.listVal, forKey: .listVal)
+      try container.encode(self.structVal, forKey: .structVal)
+      try container.encode(self.tensorVal, forKey: .tensorVal)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Data type of the tensor.

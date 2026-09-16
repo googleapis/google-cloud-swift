@@ -33,6 +33,8 @@ public struct UpdateLogMetricRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Required. The updated metric.
   public var metric: LogMetric? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateLogMetricRequest`.
   public init() {}
 
@@ -47,6 +49,42 @@ public struct UpdateLogMetricRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let metricName = CodingKeys(stringValue: "metricName")
+    static let metric = CodingKeys(stringValue: "metric")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "metricName",
+      "metric",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricName) {
+      self.metricName = value
+    }
+    self.metric = try container.decodeIfPresent(LogMetric.self, forKey: .metric)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.metricName, forKey: .metricName)
+    try container.encodeIfPresent(self.metric, forKey: .metric)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

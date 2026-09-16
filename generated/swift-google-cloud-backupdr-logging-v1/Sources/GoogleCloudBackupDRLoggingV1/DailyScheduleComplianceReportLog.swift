@@ -70,6 +70,8 @@ public struct DailyScheduleComplianceReportLog: Codable, Equatable, GoogleCloudW
   /// Required. Appliance Id.
   public var applianceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DailyScheduleComplianceReportLog`.
   public init() {}
 
@@ -84,6 +86,133 @@ public struct DailyScheduleComplianceReportLog: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceName = CodingKeys(stringValue: "resourceName")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let backupRulePolicyName = CodingKeys(stringValue: "backupRulePolicyName")
+    static let backupPlanPolicyTemplate = CodingKeys(stringValue: "backupPlanPolicyTemplate")
+    static let hostName = CodingKeys(stringValue: "hostName")
+    static let applianceName = CodingKeys(stringValue: "applianceName")
+    static let date = CodingKeys(stringValue: "date")
+    static let backupWindowStartTime = CodingKeys(stringValue: "backupWindowStartTime")
+    static let jobType = CodingKeys(stringValue: "jobType")
+    static let status = CodingKeys(stringValue: "status")
+    static let comment = CodingKeys(stringValue: "comment")
+    static let resourceId = CodingKeys(stringValue: "resourceId")
+    static let hostId = CodingKeys(stringValue: "hostId")
+    static let backupPlanPolicyTemplateId = CodingKeys(stringValue: "backupPlanPolicyTemplateId")
+    static let backupRulePolicyId = CodingKeys(stringValue: "backupRulePolicyId")
+    static let applianceId = CodingKeys(stringValue: "applianceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceName",
+      "resourceType",
+      "backupRulePolicyName",
+      "backupPlanPolicyTemplate",
+      "hostName",
+      "applianceName",
+      "date",
+      "backupWindowStartTime",
+      "jobType",
+      "status",
+      "comment",
+      "resourceId",
+      "hostId",
+      "backupPlanPolicyTemplateId",
+      "backupRulePolicyId",
+      "applianceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+      self.resourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRulePolicyName) {
+      self.backupRulePolicyName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanPolicyTemplate)
+    {
+      self.backupPlanPolicyTemplate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+      self.hostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceName) {
+      self.applianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .date) {
+      self.date = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupWindowStartTime)
+    {
+      self.backupWindowStartTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobType) {
+      self.jobType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .comment) {
+      self.comment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceId) {
+      self.resourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostId) {
+      self.hostId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupPlanPolicyTemplateId)
+    {
+      self.backupPlanPolicyTemplateId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRulePolicyId) {
+      self.backupRulePolicyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applianceId) {
+      self.applianceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceName, forKey: .resourceName)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.backupRulePolicyName, forKey: .backupRulePolicyName)
+    try container.encode(self.backupPlanPolicyTemplate, forKey: .backupPlanPolicyTemplate)
+    try container.encode(self.hostName, forKey: .hostName)
+    try container.encode(self.applianceName, forKey: .applianceName)
+    try container.encode(self.date, forKey: .date)
+    try container.encode(self.backupWindowStartTime, forKey: .backupWindowStartTime)
+    try container.encode(self.jobType, forKey: .jobType)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.comment, forKey: .comment)
+    try container.encode(self.resourceId, forKey: .resourceId)
+    try container.encode(self.hostId, forKey: .hostId)
+    try container.encode(self.backupPlanPolicyTemplateId, forKey: .backupPlanPolicyTemplateId)
+    try container.encode(self.backupRulePolicyId, forKey: .backupRulePolicyId)
+    try container.encode(self.applianceId, forKey: .applianceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

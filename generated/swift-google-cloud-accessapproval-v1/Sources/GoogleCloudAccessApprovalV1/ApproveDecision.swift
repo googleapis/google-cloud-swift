@@ -36,6 +36,8 @@ public struct ApproveDecision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// True when the request has been auto-approved.
   public var autoApproved: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApproveDecision`.
   public init() {}
 
@@ -50,6 +52,57 @@ public struct ApproveDecision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let approveTime = CodingKeys(stringValue: "approveTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let invalidateTime = CodingKeys(stringValue: "invalidateTime")
+    static let signatureInfo = CodingKeys(stringValue: "signatureInfo")
+    static let autoApproved = CodingKeys(stringValue: "autoApproved")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "approveTime",
+      "expireTime",
+      "invalidateTime",
+      "signatureInfo",
+      "autoApproved",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.approveTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .approveTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    self.invalidateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .invalidateTime)
+    self.signatureInfo = try container.decodeIfPresent(SignatureInfo.self, forKey: .signatureInfo)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoApproved) {
+      self.autoApproved = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.approveTime, forKey: .approveTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.invalidateTime, forKey: .invalidateTime)
+    try container.encodeIfPresent(self.signatureInfo, forKey: .signatureInfo)
+    try container.encode(self.autoApproved, forKey: .autoApproved)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

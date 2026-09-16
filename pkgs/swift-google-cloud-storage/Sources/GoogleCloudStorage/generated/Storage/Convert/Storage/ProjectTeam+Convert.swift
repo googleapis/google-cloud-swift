@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ProjectTeam {
@@ -28,12 +28,16 @@ extension ProjectTeam {
     self.init()
     self.projectNumber = proto.projectNumber
     self.team = proto.team
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.projectNumber = self.projectNumber
     proto.team = self.team
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

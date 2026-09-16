@@ -43,6 +43,8 @@
     /// The MAC address of the Interconnect's bundle interface.
     public var macAddress: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectDiagnostics`.
     public init() {}
 
@@ -57,6 +59,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let arpCaches = CodingKeys(stringValue: "arpCaches")
+      static let bundleAggregationType = CodingKeys(stringValue: "bundleAggregationType")
+      static let bundleOperationalStatus = CodingKeys(stringValue: "bundleOperationalStatus")
+      static let links = CodingKeys(stringValue: "links")
+      static let macAddress = CodingKeys(stringValue: "macAddress")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "arpCaches",
+        "bundleAggregationType",
+        "bundleOperationalStatus",
+        "links",
+        "macAddress",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [InterconnectDiagnosticsARPEntry].self, forKey: .arpCaches)
+      {
+        self.arpCaches = value
+      }
+      self.bundleAggregationType = try container.decodeIfPresent(
+        InterconnectDiagnostics.BundleAggregationType.self, forKey: .bundleAggregationType)
+      self.bundleOperationalStatus = try container.decodeIfPresent(
+        InterconnectDiagnostics.BundleOperationalStatus.self, forKey: .bundleOperationalStatus)
+      if let value = try container.decodeIfPresent(
+        [InterconnectDiagnosticsLinkStatus].self, forKey: .links)
+      {
+        self.links = value
+      }
+      self.macAddress = try container.decodeIfPresent(Swift.String.self, forKey: .macAddress)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.arpCaches, forKey: .arpCaches)
+      try container.encodeIfPresent(self.bundleAggregationType, forKey: .bundleAggregationType)
+      try container.encodeIfPresent(self.bundleOperationalStatus, forKey: .bundleOperationalStatus)
+      try container.encode(self.links, forKey: .links)
+      try container.encodeIfPresent(self.macAddress, forKey: .macAddress)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [bundleAggregationType][google.cloud.compute.v1.InterconnectDiagnostics.bundleAggregationType] field.

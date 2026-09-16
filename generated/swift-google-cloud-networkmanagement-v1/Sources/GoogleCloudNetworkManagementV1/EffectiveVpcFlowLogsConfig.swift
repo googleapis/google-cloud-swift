@@ -76,6 +76,8 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleCloudWKT._An
   /// This field is not supported for organization level configurations.
   public var targetResource: OneOf_TargetResource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EffectiveVpcFlowLogsConfig`.
   public init() {}
 
@@ -92,32 +94,57 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case state = "state"
-    case aggregationInterval = "aggregationInterval"
-    case flowSampling = "flowSampling"
-    case metadata = "metadata"
-    case metadataFields = "metadataFields"
-    case filterExpr = "filterExpr"
-    case crossProjectMetadata = "crossProjectMetadata"
-    case network = "network"
-    case subnet = "subnet"
-    case interconnectAttachment = "interconnectAttachment"
-    case vpnTunnel = "vpnTunnel"
-    case scope = "scope"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let aggregationInterval = CodingKeys(stringValue: "aggregationInterval")
+    static let flowSampling = CodingKeys(stringValue: "flowSampling")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let metadataFields = CodingKeys(stringValue: "metadataFields")
+    static let filterExpr = CodingKeys(stringValue: "filterExpr")
+    static let crossProjectMetadata = CodingKeys(stringValue: "crossProjectMetadata")
+    static let network = CodingKeys(stringValue: "network")
+    static let subnet = CodingKeys(stringValue: "subnet")
+    static let interconnectAttachment = CodingKeys(stringValue: "interconnectAttachment")
+    static let vpnTunnel = CodingKeys(stringValue: "vpnTunnel")
+    static let scope = CodingKeys(stringValue: "scope")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "aggregationInterval",
+      "flowSampling",
+      "metadata",
+      "metadataFields",
+      "filterExpr",
+      "crossProjectMetadata",
+      "network",
+      "subnet",
+      "interconnectAttachment",
+      "vpnTunnel",
+      "scope",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.state = try container.decodeIfPresent(VpcFlowLogsConfig.State.self, forKey: .state)
     self.aggregationInterval = try container.decodeIfPresent(
       VpcFlowLogsConfig.AggregationInterval.self, forKey: .aggregationInterval)
     self.flowSampling = try container.decodeIfPresent(Swift.Float.self, forKey: .flowSampling)
     self.metadata = try container.decodeIfPresent(
       VpcFlowLogsConfig.Metadata.self, forKey: .metadata)
-    self.metadataFields = try container.decode([Swift.String].self, forKey: .metadataFields)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .metadataFields) {
+      self.metadataFields = value
+    }
     self.filterExpr = try container.decodeIfPresent(Swift.String.self, forKey: .filterExpr)
     self.crossProjectMetadata = try container.decodeIfPresent(
       VpcFlowLogsConfig.CrossProjectMetadata.self, forKey: .crossProjectMetadata)
@@ -149,19 +176,23 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleCloudWKT._An
       try targetResourceCheckAndSet(.vpnTunnel(vpnTunnel))
     }
     self.targetResource = targetResource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.aggregationInterval, forKey: .aggregationInterval)
-    try container.encode(self.flowSampling, forKey: .flowSampling)
-    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.state, forKey: .state)
+    try container.encodeIfPresent(self.aggregationInterval, forKey: .aggregationInterval)
+    try container.encodeIfPresent(self.flowSampling, forKey: .flowSampling)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
     try container.encode(self.metadataFields, forKey: .metadataFields)
-    try container.encode(self.filterExpr, forKey: .filterExpr)
-    try container.encode(self.crossProjectMetadata, forKey: .crossProjectMetadata)
-    try container.encode(self.scope, forKey: .scope)
+    try container.encodeIfPresent(self.filterExpr, forKey: .filterExpr)
+    try container.encodeIfPresent(self.crossProjectMetadata, forKey: .crossProjectMetadata)
+    try container.encodeIfPresent(self.scope, forKey: .scope)
 
     if let choice = self.targetResource {
       switch choice {
@@ -174,6 +205,9 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleCloudWKT._An
       case .vpnTunnel(let value):
         try container.encode(value, forKey: .vpnTunnel)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

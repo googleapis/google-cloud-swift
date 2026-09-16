@@ -28,6 +28,8 @@ public struct Escalation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Provides additional context on why the case is being escalated.
   public var justification: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Escalation`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct Escalation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let reason = CodingKeys(stringValue: "reason")
+    static let justification = CodingKeys(stringValue: "justification")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "reason",
+      "justification",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Escalation.Reason.self, forKey: .reason) {
+      self.reason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .justification) {
+      self.justification = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.reason, forKey: .reason)
+    try container.encode(self.justification, forKey: .justification)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An enum detailing the possible reasons a case may be escalated.

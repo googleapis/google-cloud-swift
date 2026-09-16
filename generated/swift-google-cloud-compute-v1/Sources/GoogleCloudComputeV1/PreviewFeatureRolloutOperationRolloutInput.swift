@@ -36,6 +36,8 @@
     public var predefinedRolloutPlan:
       PreviewFeatureRolloutOperationRolloutInput.PredefinedRolloutPlan? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PreviewFeatureRolloutOperationRolloutInput`.
     public init() {}
 
@@ -50,6 +52,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let predefinedRolloutPlan = CodingKeys(stringValue: "predefinedRolloutPlan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "predefinedRolloutPlan",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.predefinedRolloutPlan = try container.decodeIfPresent(
+        PreviewFeatureRolloutOperationRolloutInput.PredefinedRolloutPlan.self,
+        forKey: .predefinedRolloutPlan)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.predefinedRolloutPlan, forKey: .predefinedRolloutPlan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [predefinedRolloutPlan][google.cloud.compute.v1.PreviewFeatureRolloutOperationRolloutInput.predefinedRolloutPlan] field.

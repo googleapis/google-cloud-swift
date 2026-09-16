@@ -47,6 +47,8 @@
     /// The value must be unique within an EntityType/FeatureGroup.
     public var featureId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateFeatureRequest`.
     public init() {}
 
@@ -61,6 +63,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let feature = CodingKeys(stringValue: "feature")
+      static let featureId = CodingKeys(stringValue: "featureId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "feature",
+        "featureId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      self.feature = try container.decodeIfPresent(Feature.self, forKey: .feature)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureId) {
+        self.featureId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.feature, forKey: .feature)
+      try container.encode(self.featureId, forKey: .featureId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

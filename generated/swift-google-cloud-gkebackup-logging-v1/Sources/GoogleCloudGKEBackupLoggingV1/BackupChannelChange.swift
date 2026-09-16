@@ -43,6 +43,8 @@ public struct BackupChannelChange: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The error code and message.
   public var error: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupChannelChange`.
   public init() {}
 
@@ -57,6 +59,58 @@ public struct BackupChannelChange: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupChannel = CodingKeys(stringValue: "backupChannel")
+    static let changeType = CodingKeys(stringValue: "changeType")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let inputBackupChannel = CodingKeys(stringValue: "inputBackupChannel")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupChannel",
+      "changeType",
+      "updateMask",
+      "inputBackupChannel",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupChannel) {
+      self.backupChannel = value
+    }
+    if let value = try container.decodeIfPresent(ChangeType.self, forKey: .changeType) {
+      self.changeType = value
+    }
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.inputBackupChannel = try container.decodeIfPresent(
+      LoggedBackupChannel.self, forKey: .inputBackupChannel)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backupChannel, forKey: .backupChannel)
+    try container.encode(self.changeType, forKey: .changeType)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.inputBackupChannel, forKey: .inputBackupChannel)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

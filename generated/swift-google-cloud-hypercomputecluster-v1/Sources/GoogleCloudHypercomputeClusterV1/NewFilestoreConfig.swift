@@ -45,6 +45,8 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// instance. Defaults to NFS V3 if not set.
   public var `protocol`: NewFilestoreConfig.Protocol_ = NewFilestoreConfig.Protocol_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NewFilestoreConfig`.
   public init() {}
 
@@ -61,21 +63,50 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case filestore = "filestore"
-    case description = "description"
-    case fileShares = "fileShares"
-    case tier = "tier"
-    case `protocol` = "protocol"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filestore = CodingKeys(stringValue: "filestore")
+    static let description = CodingKeys(stringValue: "description")
+    static let fileShares = CodingKeys(stringValue: "fileShares")
+    static let tier = CodingKeys(stringValue: "tier")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filestore",
+      "description",
+      "fileShares",
+      "tier",
+      "protocol",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.filestore = try container.decode(Swift.String.self, forKey: .filestore)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.fileShares = try container.decode([FileShareConfig].self, forKey: .fileShares)
-    self.tier = try container.decode(NewFilestoreConfig.Tier.self, forKey: .tier)
-    self.`protocol` = try container.decode(NewFilestoreConfig.Protocol_.self, forKey: .`protocol`)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filestore) {
+      self.filestore = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([FileShareConfig].self, forKey: .fileShares) {
+      self.fileShares = value
+    }
+    if let value = try container.decodeIfPresent(NewFilestoreConfig.Tier.self, forKey: .tier) {
+      self.tier = value
+    }
+    if let value = try container.decodeIfPresent(
+      NewFilestoreConfig.Protocol_.self, forKey: .`protocol`)
+    {
+      self.`protocol` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +116,9 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.fileShares, forKey: .fileShares)
     try container.encode(self.tier, forKey: .tier)
     try container.encode(self.`protocol`, forKey: .`protocol`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Available [service

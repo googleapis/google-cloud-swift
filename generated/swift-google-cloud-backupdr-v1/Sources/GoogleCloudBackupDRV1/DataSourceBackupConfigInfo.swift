@@ -27,6 +27,8 @@ public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWKT._An
   /// Output only. Timestamp of the last successful backup to this DataSource.
   public var lastSuccessfulBackupConsistencyTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSourceBackupConfigInfo`.
   public init() {}
 
@@ -41,6 +43,47 @@ public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lastBackupState = CodingKeys(stringValue: "lastBackupState")
+    static let lastSuccessfulBackupConsistencyTime = CodingKeys(
+      stringValue: "lastSuccessfulBackupConsistencyTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lastBackupState",
+      "lastSuccessfulBackupConsistencyTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      BackupConfigInfo.LastBackupState.self, forKey: .lastBackupState)
+    {
+      self.lastBackupState = value
+    }
+    self.lastSuccessfulBackupConsistencyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastSuccessfulBackupConsistencyTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    try container.encodeIfPresent(
+      self.lastSuccessfulBackupConsistencyTime, forKey: .lastSuccessfulBackupConsistencyTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

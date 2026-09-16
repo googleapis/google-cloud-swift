@@ -40,6 +40,8 @@
     /// Output only. Whether the flag recommender is enabled.
     public var flagRecommenderEnabled: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GeminiInstanceConfig`.
     public init() {}
 
@@ -54,6 +56,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entitled = CodingKeys(stringValue: "entitled")
+      static let googleVacuumMgmtEnabled = CodingKeys(stringValue: "googleVacuumMgmtEnabled")
+      static let oomSessionCancelEnabled = CodingKeys(stringValue: "oomSessionCancelEnabled")
+      static let activeQueryEnabled = CodingKeys(stringValue: "activeQueryEnabled")
+      static let indexAdvisorEnabled = CodingKeys(stringValue: "indexAdvisorEnabled")
+      static let flagRecommenderEnabled = CodingKeys(stringValue: "flagRecommenderEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entitled",
+        "googleVacuumMgmtEnabled",
+        "oomSessionCancelEnabled",
+        "activeQueryEnabled",
+        "indexAdvisorEnabled",
+        "flagRecommenderEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.entitled = try container.decodeIfPresent(Swift.Bool.self, forKey: .entitled)
+      self.googleVacuumMgmtEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .googleVacuumMgmtEnabled)
+      self.oomSessionCancelEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .oomSessionCancelEnabled)
+      self.activeQueryEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .activeQueryEnabled)
+      self.indexAdvisorEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .indexAdvisorEnabled)
+      self.flagRecommenderEnabled = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .flagRecommenderEnabled)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.entitled, forKey: .entitled)
+      try container.encodeIfPresent(self.googleVacuumMgmtEnabled, forKey: .googleVacuumMgmtEnabled)
+      try container.encodeIfPresent(self.oomSessionCancelEnabled, forKey: .oomSessionCancelEnabled)
+      try container.encodeIfPresent(self.activeQueryEnabled, forKey: .activeQueryEnabled)
+      try container.encodeIfPresent(self.indexAdvisorEnabled, forKey: .indexAdvisorEnabled)
+      try container.encodeIfPresent(self.flagRecommenderEnabled, forKey: .flagRecommenderEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

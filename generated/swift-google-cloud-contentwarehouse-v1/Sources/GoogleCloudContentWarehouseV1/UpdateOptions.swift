@@ -33,6 +33,8 @@ public struct UpdateOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options for merging.
   public var mergeFieldsOptions: MergeFieldsOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateOptions`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct UpdateOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let updateType = CodingKeys(stringValue: "updateType")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let mergeFieldsOptions = CodingKeys(stringValue: "mergeFieldsOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "updateType",
+      "updateMask",
+      "mergeFieldsOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(UpdateType.self, forKey: .updateType) {
+      self.updateType = value
+    }
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.mergeFieldsOptions = try container.decodeIfPresent(
+      MergeFieldsOptions.self, forKey: .mergeFieldsOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.updateType, forKey: .updateType)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.mergeFieldsOptions, forKey: .mergeFieldsOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

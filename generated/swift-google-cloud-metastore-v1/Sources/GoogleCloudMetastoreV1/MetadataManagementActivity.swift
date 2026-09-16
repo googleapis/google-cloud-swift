@@ -27,6 +27,8 @@ public struct MetadataManagementActivity: Codable, Equatable, GoogleCloudWKT._An
   /// Output only. The latest restores of the metastore service.
   public var restores: [Restore] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataManagementActivity`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct MetadataManagementActivity: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let metadataExports = CodingKeys(stringValue: "metadataExports")
+    static let restores = CodingKeys(stringValue: "restores")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "metadataExports",
+      "restores",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([MetadataExport].self, forKey: .metadataExports) {
+      self.metadataExports = value
+    }
+    if let value = try container.decodeIfPresent([Restore].self, forKey: .restores) {
+      self.restores = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.metadataExports, forKey: .metadataExports)
+    try container.encode(self.restores, forKey: .restores)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

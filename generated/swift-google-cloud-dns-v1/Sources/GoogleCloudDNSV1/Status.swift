@@ -30,6 +30,8 @@ public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
   public var message: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Status`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let details = CodingKeys(stringValue: "details")
+    static let message = CodingKeys(stringValue: "message")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "details",
+      "message",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.code = try container.decodeIfPresent(Swift.Int32.self, forKey: .code)
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.`Any`].self, forKey: .details) {
+      self.details = value
+    }
+    self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.code, forKey: .code)
+    try container.encode(self.details, forKey: .details)
+    try container.encodeIfPresent(self.message, forKey: .message)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

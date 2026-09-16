@@ -38,6 +38,8 @@ public struct PropertyChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Representations of the object value after the actions.
   public var after: GoogleCloudWKT.Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PropertyChange`.
   public init() {}
 
@@ -52,6 +54,60 @@ public struct PropertyChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let path = CodingKeys(stringValue: "path")
+    static let beforeSensitivePaths = CodingKeys(stringValue: "beforeSensitivePaths")
+    static let before = CodingKeys(stringValue: "before")
+    static let afterSensitivePaths = CodingKeys(stringValue: "afterSensitivePaths")
+    static let after = CodingKeys(stringValue: "after")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "path",
+      "beforeSensitivePaths",
+      "before",
+      "afterSensitivePaths",
+      "after",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .beforeSensitivePaths)
+    {
+      self.beforeSensitivePaths = value
+    }
+    self.before = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .before)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .afterSensitivePaths)
+    {
+      self.afterSensitivePaths = value
+    }
+    self.after = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .after)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.beforeSensitivePaths, forKey: .beforeSensitivePaths)
+    try container.encodeIfPresent(self.before, forKey: .before)
+    try container.encode(self.afterSensitivePaths, forKey: .afterSensitivePaths)
+    try container.encodeIfPresent(self.after, forKey: .after)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

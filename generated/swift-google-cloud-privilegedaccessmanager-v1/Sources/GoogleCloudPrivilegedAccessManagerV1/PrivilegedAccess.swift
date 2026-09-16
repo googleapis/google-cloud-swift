@@ -23,6 +23,8 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var accessType: OneOf_AccessType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivilegedAccess`.
   public init() {}
 
@@ -39,8 +41,17 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcpIamAccess = "gcpIamAccess"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcpIamAccess = CodingKeys(stringValue: "gcpIamAccess")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcpIamAccess"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -62,6 +73,10 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try accessTypeCheckAndSet(.gcpIamAccess(gcpIamAccess))
     }
     self.accessType = accessType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +87,9 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcpIamAccess(let value):
         try container.encode(value, forKey: .gcpIamAccess)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -90,6 +108,8 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Role bindings that are created on successful grant.
     public var roleBindings: [PrivilegedAccess.GcpIamAccess.RoleBinding] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcpIamAccess`.
     public init() {}
 
@@ -104,6 +124,52 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceType = CodingKeys(stringValue: "resourceType")
+      static let resource = CodingKeys(stringValue: "resource")
+      static let roleBindings = CodingKeys(stringValue: "roleBindings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceType",
+        "resource",
+        "roleBindings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+        self.resourceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+        self.resource = value
+      }
+      if let value = try container.decodeIfPresent(
+        [PrivilegedAccess.GcpIamAccess.RoleBinding].self, forKey: .roleBindings)
+      {
+        self.roleBindings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceType, forKey: .resourceType)
+      try container.encode(self.resource, forKey: .resource)
+      try container.encode(self.roleBindings, forKey: .roleBindings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// IAM role bindings that are created after a successful grant.
@@ -124,6 +190,8 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// https://cloud.google.com/iam/docs/conditions-overview#attributes.
       public var conditionExpression: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `RoleBinding`.
       public init() {}
 
@@ -138,6 +206,46 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let role = CodingKeys(stringValue: "role")
+        static let conditionExpression = CodingKeys(stringValue: "conditionExpression")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "role",
+          "conditionExpression",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
+          self.role = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .conditionExpression)
+        {
+          self.conditionExpression = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.role, forKey: .role)
+        try container.encode(self.conditionExpression, forKey: .conditionExpression)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

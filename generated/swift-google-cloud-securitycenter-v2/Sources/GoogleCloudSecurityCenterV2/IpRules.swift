@@ -43,6 +43,8 @@ public struct IpRules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// protocol and port-range tuple that describes a permitted connection.
   public var rules: OneOf_Rules? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IpRules`.
   public init() {}
 
@@ -59,22 +61,44 @@ public struct IpRules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case direction = "direction"
-    case allowed = "allowed"
-    case denied = "denied"
-    case sourceIpRanges = "sourceIpRanges"
-    case destinationIpRanges = "destinationIpRanges"
-    case exposedServices = "exposedServices"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let direction = CodingKeys(stringValue: "direction")
+    static let allowed = CodingKeys(stringValue: "allowed")
+    static let denied = CodingKeys(stringValue: "denied")
+    static let sourceIpRanges = CodingKeys(stringValue: "sourceIpRanges")
+    static let destinationIpRanges = CodingKeys(stringValue: "destinationIpRanges")
+    static let exposedServices = CodingKeys(stringValue: "exposedServices")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "direction",
+      "allowed",
+      "denied",
+      "sourceIpRanges",
+      "destinationIpRanges",
+      "exposedServices",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.direction = try container.decode(IpRules.Direction.self, forKey: .direction)
-    self.sourceIpRanges = try container.decode([Swift.String].self, forKey: .sourceIpRanges)
-    self.destinationIpRanges = try container.decode(
-      [Swift.String].self, forKey: .destinationIpRanges)
-    self.exposedServices = try container.decode([Swift.String].self, forKey: .exposedServices)
+    if let value = try container.decodeIfPresent(IpRules.Direction.self, forKey: .direction) {
+      self.direction = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceIpRanges) {
+      self.sourceIpRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationIpRanges)
+    {
+      self.destinationIpRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exposedServices) {
+      self.exposedServices = value
+    }
 
     var rules: OneOf_Rules? = nil
     let rulesCheckAndSet = {
@@ -93,6 +117,10 @@ public struct IpRules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try rulesCheckAndSet(.denied(denied))
     }
     self.rules = rules
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +137,9 @@ public struct IpRules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .denied(let value):
         try container.encode(value, forKey: .denied)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

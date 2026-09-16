@@ -32,6 +32,8 @@ public struct AdvancedDatapathObservabilityConfig: Codable, Equatable, GoogleClo
   /// Enable Relay component
   public var enableRelay: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdvancedDatapathObservabilityConfig`.
   public init() {}
 
@@ -46,6 +48,50 @@ public struct AdvancedDatapathObservabilityConfig: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableMetrics = CodingKeys(stringValue: "enableMetrics")
+    static let relayMode = CodingKeys(stringValue: "relayMode")
+    static let enableRelay = CodingKeys(stringValue: "enableRelay")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableMetrics",
+      "relayMode",
+      "enableRelay",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableMetrics) {
+      self.enableMetrics = value
+    }
+    if let value = try container.decodeIfPresent(
+      AdvancedDatapathObservabilityConfig.RelayMode.self, forKey: .relayMode)
+    {
+      self.relayMode = value
+    }
+    self.enableRelay = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRelay)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enableMetrics, forKey: .enableMetrics)
+    try container.encode(self.relayMode, forKey: .relayMode)
+    try container.encodeIfPresent(self.enableRelay, forKey: .enableRelay)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Supported Relay modes

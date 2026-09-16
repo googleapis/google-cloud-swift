@@ -27,6 +27,8 @@ public struct DebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Additional debugging information provided by the server.
   public var detail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DebugInfo`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct DebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stackEntries = CodingKeys(stringValue: "stackEntries")
+    static let detail = CodingKeys(stringValue: "detail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stackEntries",
+      "detail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .stackEntries) {
+      self.stackEntries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detail) {
+      self.detail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.stackEntries, forKey: .stackEntries)
+    try container.encode(self.detail, forKey: .detail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

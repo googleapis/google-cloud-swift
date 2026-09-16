@@ -90,6 +90,8 @@ public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Using this flags guarantees a full recall of the search results.
   public var adminSearch: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchCatalogRequest`.
   public init() {}
 
@@ -104,6 +106,66 @@ public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let query = CodingKeys(stringValue: "query")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let orderBy = CodingKeys(stringValue: "orderBy")
+    static let adminSearch = CodingKeys(stringValue: "adminSearch")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "query",
+      "pageSize",
+      "pageToken",
+      "orderBy",
+      "adminSearch",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.scope = try container.decodeIfPresent(SearchCatalogRequest.Scope.self, forKey: .scope)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+      self.orderBy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminSearch) {
+      self.adminSearch = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.scope, forKey: .scope)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.orderBy, forKey: .orderBy)
+    try container.encode(self.adminSearch, forKey: .adminSearch)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The criteria that select the subspace used for query matching.
@@ -152,6 +214,8 @@ public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     @available(*, deprecated)
     public var includePublicTagTemplates: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Scope`.
     public init() {}
 
@@ -166,6 +230,75 @@ public struct SearchCatalogRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let includeOrgIds = CodingKeys(stringValue: "includeOrgIds")
+      static let includeProjectIds = CodingKeys(stringValue: "includeProjectIds")
+      static let includeGcpPublicDatasets = CodingKeys(stringValue: "includeGcpPublicDatasets")
+      static let restrictedLocations = CodingKeys(stringValue: "restrictedLocations")
+      static let starredOnly = CodingKeys(stringValue: "starredOnly")
+      static let includePublicTagTemplates = CodingKeys(stringValue: "includePublicTagTemplates")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "includeOrgIds",
+        "includeProjectIds",
+        "includeGcpPublicDatasets",
+        "restrictedLocations",
+        "starredOnly",
+        "includePublicTagTemplates",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeOrgIds) {
+        self.includeOrgIds = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeProjectIds)
+      {
+        self.includeProjectIds = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeGcpPublicDatasets)
+      {
+        self.includeGcpPublicDatasets = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .restrictedLocations)
+      {
+        self.restrictedLocations = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .starredOnly) {
+        self.starredOnly = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includePublicTagTemplates)
+      {
+        self.includePublicTagTemplates = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.includeOrgIds, forKey: .includeOrgIds)
+      try container.encode(self.includeProjectIds, forKey: .includeProjectIds)
+      try container.encode(self.includeGcpPublicDatasets, forKey: .includeGcpPublicDatasets)
+      try container.encode(self.restrictedLocations, forKey: .restrictedLocations)
+      try container.encode(self.starredOnly, forKey: .starredOnly)
+      try container.encode(self.includePublicTagTemplates, forKey: .includePublicTagTemplates)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

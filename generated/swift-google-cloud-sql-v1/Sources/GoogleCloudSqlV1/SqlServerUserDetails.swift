@@ -28,6 +28,8 @@
     /// The server roles for this user
     public var serverRoles: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlServerUserDetails`.
     public init() {}
 
@@ -42,6 +44,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let serverRoles = CodingKeys(stringValue: "serverRoles")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disabled",
+        "serverRoles",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serverRoles) {
+        self.serverRoles = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.disabled, forKey: .disabled)
+      try container.encode(self.serverRoles, forKey: .serverRoles)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

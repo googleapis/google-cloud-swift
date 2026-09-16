@@ -46,6 +46,8 @@ public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// CLUSTER_VIEW_CONTINUOUS_BACKUP cluster view is provided.
   public var earliestRestorableTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ContinuousBackupInfo`.
   public init() {}
 
@@ -60,6 +62,53 @@ public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let encryptionInfo = CodingKeys(stringValue: "encryptionInfo")
+    static let enabledTime = CodingKeys(stringValue: "enabledTime")
+    static let schedule = CodingKeys(stringValue: "schedule")
+    static let earliestRestorableTime = CodingKeys(stringValue: "earliestRestorableTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "encryptionInfo",
+      "enabledTime",
+      "schedule",
+      "earliestRestorableTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.encryptionInfo = try container.decodeIfPresent(
+      EncryptionInfo.self, forKey: .encryptionInfo)
+    self.enabledTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .enabledTime)
+    if let value = try container.decodeIfPresent([GoogleType.DayOfWeek].self, forKey: .schedule) {
+      self.schedule = value
+    }
+    self.earliestRestorableTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .earliestRestorableTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.encryptionInfo, forKey: .encryptionInfo)
+    try container.encodeIfPresent(self.enabledTime, forKey: .enabledTime)
+    try container.encode(self.schedule, forKey: .schedule)
+    try container.encodeIfPresent(self.earliestRestorableTime, forKey: .earliestRestorableTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

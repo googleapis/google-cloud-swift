@@ -36,6 +36,8 @@
     /// Output only. [Output only] Status of the managed certificate resource.
     public var status: SslCertificateManagedSslCertificate.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SslCertificateManagedSslCertificate`.
     public init() {}
 
@@ -50,6 +52,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let domainStatus = CodingKeys(stringValue: "domainStatus")
+      static let domains = CodingKeys(stringValue: "domains")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "domainStatus",
+        "domains",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: SslCertificateManagedSslCertificate.DomainStatus].self, forKey: .domainStatus
+      ) {
+        self.domainStatus = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .domains) {
+        self.domains = value
+      }
+      self.status = try container.decodeIfPresent(
+        SslCertificateManagedSslCertificate.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.domainStatus, forKey: .domainStatus)
+      try container.encode(self.domains, forKey: .domains)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [domainStatus][google.cloud.compute.v1.SslCertificateManagedSslCertificate.domainStatus] field.

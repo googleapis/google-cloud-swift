@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension RewriteResponse {
@@ -31,6 +31,7 @@ extension RewriteResponse {
     self.done = proto.done
     self.rewriteToken = proto.rewriteToken
     self.resource = proto.hasResource ? try .init(proto: proto.resource) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -40,6 +41,9 @@ extension RewriteResponse {
     proto.done = self.done
     proto.rewriteToken = self.rewriteToken
     if let resource = self.resource { proto.resource = try resource.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

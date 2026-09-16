@@ -51,6 +51,8 @@
     /// Required. The webhook configuration.
     public var webhook: OneOf_Webhook? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Webhook`.
     public init() {}
 
@@ -67,21 +69,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case genericWebService = "genericWebService"
-      case serviceDirectory = "serviceDirectory"
-      case timeout = "timeout"
-      case disabled = "disabled"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let genericWebService = CodingKeys(stringValue: "genericWebService")
+      static let serviceDirectory = CodingKeys(stringValue: "serviceDirectory")
+      static let timeout = CodingKeys(stringValue: "timeout")
+      static let disabled = CodingKeys(stringValue: "disabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "genericWebService",
+        "serviceDirectory",
+        "timeout",
+        "disabled",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
       self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
-      self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
 
       var webhook: OneOf_Webhook? = nil
       let webhookCheckAndSet = {
@@ -104,13 +126,17 @@
         try webhookCheckAndSet(.serviceDirectory(serviceDirectory))
       }
       self.webhook = webhook
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
-      try container.encode(self.timeout, forKey: .timeout)
+      try container.encodeIfPresent(self.timeout, forKey: .timeout)
       try container.encode(self.disabled, forKey: .disabled)
 
       if let choice = self.webhook {
@@ -120,6 +146,9 @@
         case .serviceDirectory(let value):
           try container.encode(value, forKey: .serviceDirectory)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -204,6 +233,8 @@
       /// - Value: field path in the webhook response
       public var parameterMapping: [Swift.String: Swift.String] = [:]
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GenericWebService`.
       public init() {}
 
@@ -220,6 +251,137 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+        static let username = CodingKeys(stringValue: "username")
+        static let password = CodingKeys(stringValue: "password")
+        static let secretVersionForUsernamePassword = CodingKeys(
+          stringValue: "secretVersionForUsernamePassword")
+        static let requestHeaders = CodingKeys(stringValue: "requestHeaders")
+        static let secretVersionsForRequestHeaders = CodingKeys(
+          stringValue: "secretVersionsForRequestHeaders")
+        static let allowedCaCerts = CodingKeys(stringValue: "allowedCaCerts")
+        static let oauthConfig = CodingKeys(stringValue: "oauthConfig")
+        static let serviceAgentAuth = CodingKeys(stringValue: "serviceAgentAuth")
+        static let serviceAccountAuthConfig = CodingKeys(stringValue: "serviceAccountAuthConfig")
+        static let webhookType = CodingKeys(stringValue: "webhookType")
+        static let httpMethod = CodingKeys(stringValue: "httpMethod")
+        static let requestBody = CodingKeys(stringValue: "requestBody")
+        static let parameterMapping = CodingKeys(stringValue: "parameterMapping")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri",
+          "username",
+          "password",
+          "secretVersionForUsernamePassword",
+          "requestHeaders",
+          "secretVersionsForRequestHeaders",
+          "allowedCaCerts",
+          "oauthConfig",
+          "serviceAgentAuth",
+          "serviceAccountAuthConfig",
+          "webhookType",
+          "httpMethod",
+          "requestBody",
+          "parameterMapping",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+          self.username = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+          self.password = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .secretVersionForUsernamePassword)
+        {
+          self.secretVersionForUsernamePassword = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .requestHeaders)
+        {
+          self.requestHeaders = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Webhook.GenericWebService.SecretVersionHeaderValue].self,
+          forKey: .secretVersionsForRequestHeaders)
+        {
+          self.secretVersionsForRequestHeaders = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Foundation.Data].self, forKey: .allowedCaCerts)
+        {
+          self.allowedCaCerts = value
+        }
+        self.oauthConfig = try container.decodeIfPresent(
+          Webhook.GenericWebService.OAuthConfig.self, forKey: .oauthConfig)
+        if let value = try container.decodeIfPresent(
+          Webhook.GenericWebService.ServiceAgentAuth.self, forKey: .serviceAgentAuth)
+        {
+          self.serviceAgentAuth = value
+        }
+        self.serviceAccountAuthConfig = try container.decodeIfPresent(
+          Webhook.GenericWebService.ServiceAccountAuthConfig.self, forKey: .serviceAccountAuthConfig
+        )
+        if let value = try container.decodeIfPresent(
+          Webhook.GenericWebService.WebhookType.self, forKey: .webhookType)
+        {
+          self.webhookType = value
+        }
+        if let value = try container.decodeIfPresent(
+          Webhook.GenericWebService.HttpMethod.self, forKey: .httpMethod)
+        {
+          self.httpMethod = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestBody) {
+          self.requestBody = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .parameterMapping)
+        {
+          self.parameterMapping = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        try container.encode(self.username, forKey: .username)
+        try container.encode(self.password, forKey: .password)
+        try container.encode(
+          self.secretVersionForUsernamePassword, forKey: .secretVersionForUsernamePassword)
+        try container.encode(self.requestHeaders, forKey: .requestHeaders)
+        try container.encode(
+          self.secretVersionsForRequestHeaders, forKey: .secretVersionsForRequestHeaders)
+        try container.encode(self.allowedCaCerts, forKey: .allowedCaCerts)
+        try container.encodeIfPresent(self.oauthConfig, forKey: .oauthConfig)
+        try container.encode(self.serviceAgentAuth, forKey: .serviceAgentAuth)
+        try container.encodeIfPresent(
+          self.serviceAccountAuthConfig, forKey: .serviceAccountAuthConfig)
+        try container.encode(self.webhookType, forKey: .webhookType)
+        try container.encode(self.httpMethod, forKey: .httpMethod)
+        try container.encode(self.requestBody, forKey: .requestBody)
+        try container.encode(self.parameterMapping, forKey: .parameterMapping)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Represents the value of an HTTP header stored in a SecretManager secret
       /// version.
       public struct SecretVersionHeaderValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -228,6 +390,9 @@
         /// Required. The SecretManager secret version resource storing the header
         /// value. Format: `projects/{project}/secrets/{secret}/versions/{version}`
         public var secretVersion: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `SecretVersionHeaderValue`.
         public init() {}
@@ -243,6 +408,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let secretVersion = CodingKeys(stringValue: "secretVersion")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "secretVersion"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretVersion) {
+            self.secretVersion = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.secretVersion, forKey: .secretVersion)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -281,6 +478,9 @@
         /// Optional. The OAuth scopes to grant.
         public var scopes: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `OAuthConfig`.
         public init() {}
 
@@ -295,6 +495,66 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let clientId = CodingKeys(stringValue: "clientId")
+          static let clientSecret = CodingKeys(stringValue: "clientSecret")
+          static let secretVersionForClientSecret = CodingKeys(
+            stringValue: "secretVersionForClientSecret")
+          static let tokenEndpoint = CodingKeys(stringValue: "tokenEndpoint")
+          static let scopes = CodingKeys(stringValue: "scopes")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "clientId",
+            "clientSecret",
+            "secretVersionForClientSecret",
+            "tokenEndpoint",
+            "scopes",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+            self.clientId = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientSecret) {
+            self.clientSecret = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.String.self, forKey: .secretVersionForClientSecret)
+          {
+            self.secretVersionForClientSecret = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenEndpoint) {
+            self.tokenEndpoint = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+            self.scopes = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.clientId, forKey: .clientId)
+          try container.encode(self.clientSecret, forKey: .clientSecret)
+          try container.encode(
+            self.secretVersionForClientSecret, forKey: .secretVersionForClientSecret)
+          try container.encode(self.tokenEndpoint, forKey: .tokenEndpoint)
+          try container.encode(self.scopes, forKey: .scopes)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -324,6 +584,9 @@
         /// agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
         public var serviceAccount: Swift.String = Swift.String()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ServiceAccountAuthConfig`.
         public init() {}
 
@@ -338,6 +601,38 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "serviceAccount"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+            self.serviceAccount = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.serviceAccount, forKey: .serviceAccount)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -745,6 +1040,8 @@
       /// Generic Service configuration of this webhook.
       public var genericWebService: Webhook.GenericWebService? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ServiceDirectoryConfig`.
       public init() {}
 
@@ -759,6 +1056,43 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let service = CodingKeys(stringValue: "service")
+        static let genericWebService = CodingKeys(stringValue: "genericWebService")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "service",
+          "genericWebService",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+          self.service = value
+        }
+        self.genericWebService = try container.decodeIfPresent(
+          Webhook.GenericWebService.self, forKey: .genericWebService)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.service, forKey: .service)
+        try container.encodeIfPresent(self.genericWebService, forKey: .genericWebService)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

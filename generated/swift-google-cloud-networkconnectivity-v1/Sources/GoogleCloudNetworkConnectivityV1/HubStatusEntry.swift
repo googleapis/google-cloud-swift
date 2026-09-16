@@ -34,6 +34,8 @@ public struct HubStatusEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The Private Service Connect propagation status.
   public var pscPropagationStatus: PscPropagationStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HubStatusEntry`.
   public init() {}
 
@@ -48,6 +50,49 @@ public struct HubStatusEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let count = CodingKeys(stringValue: "count")
+    static let groupBy = CodingKeys(stringValue: "groupBy")
+    static let pscPropagationStatus = CodingKeys(stringValue: "pscPropagationStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "count",
+      "groupBy",
+      "pscPropagationStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+      self.count = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupBy) {
+      self.groupBy = value
+    }
+    self.pscPropagationStatus = try container.decodeIfPresent(
+      PscPropagationStatus.self, forKey: .pscPropagationStatus)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.count, forKey: .count)
+    try container.encode(self.groupBy, forKey: .groupBy)
+    try container.encodeIfPresent(self.pscPropagationStatus, forKey: .pscPropagationStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

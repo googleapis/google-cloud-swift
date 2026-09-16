@@ -34,6 +34,8 @@ public struct BoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Height of the bounding box in pixels.
   public var height: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BoundingBox`.
   public init() {}
 
@@ -50,19 +52,43 @@ public struct BoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case top = "top"
-    case `left` = "left"
-    case width = "width"
-    case height = "height"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let top = CodingKeys(stringValue: "top")
+    static let `left` = CodingKeys(stringValue: "left")
+    static let width = CodingKeys(stringValue: "width")
+    static let height = CodingKeys(stringValue: "height")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "top",
+      "left",
+      "width",
+      "height",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.top = try container.decode(Swift.Int32.self, forKey: .top)
-    self.`left` = try container.decode(Swift.Int32.self, forKey: .`left`)
-    self.width = try container.decode(Swift.Int32.self, forKey: .width)
-    self.height = try container.decode(Swift.Int32.self, forKey: .height)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .top) {
+      self.top = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .`left`) {
+      self.`left` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .width) {
+      self.width = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .height) {
+      self.height = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -71,6 +97,9 @@ public struct BoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.`left`, forKey: .`left`)
     try container.encode(self.width, forKey: .width)
     try container.encode(self.height, forKey: .height)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

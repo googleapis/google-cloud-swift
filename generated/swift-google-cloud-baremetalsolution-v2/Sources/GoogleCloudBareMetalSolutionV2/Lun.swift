@@ -59,6 +59,8 @@ public struct Lun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Instances this Lun is attached to.
   public var instances: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Lun`.
   public init() {}
 
@@ -73,6 +75,105 @@ public struct Lun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let state = CodingKeys(stringValue: "state")
+    static let sizeGb = CodingKeys(stringValue: "sizeGb")
+    static let multiprotocolType = CodingKeys(stringValue: "multiprotocolType")
+    static let storageVolume = CodingKeys(stringValue: "storageVolume")
+    static let shareable = CodingKeys(stringValue: "shareable")
+    static let bootLun = CodingKeys(stringValue: "bootLun")
+    static let storageType = CodingKeys(stringValue: "storageType")
+    static let wwid = CodingKeys(stringValue: "wwid")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let instances = CodingKeys(stringValue: "instances")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "state",
+      "sizeGb",
+      "multiprotocolType",
+      "storageVolume",
+      "shareable",
+      "bootLun",
+      "storageType",
+      "wwid",
+      "expireTime",
+      "instances",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Lun.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGb) {
+      self.sizeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      Lun.MultiprotocolType.self, forKey: .multiprotocolType)
+    {
+      self.multiprotocolType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageVolume) {
+      self.storageVolume = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .shareable) {
+      self.shareable = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bootLun) {
+      self.bootLun = value
+    }
+    if let value = try container.decodeIfPresent(Lun.StorageType.self, forKey: .storageType) {
+      self.storageType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .wwid) {
+      self.wwid = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+      self.instances = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.sizeGb, forKey: .sizeGb)
+    try container.encode(self.multiprotocolType, forKey: .multiprotocolType)
+    try container.encode(self.storageVolume, forKey: .storageVolume)
+    try container.encode(self.shareable, forKey: .shareable)
+    try container.encode(self.bootLun, forKey: .bootLun)
+    try container.encode(self.storageType, forKey: .storageType)
+    try container.encode(self.wwid, forKey: .wwid)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.instances, forKey: .instances)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states for the LUN.

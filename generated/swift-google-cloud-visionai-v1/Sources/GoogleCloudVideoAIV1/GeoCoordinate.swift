@@ -27,6 +27,8 @@ public struct GeoCoordinate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Longitude Coordinate. Degrees [-180 .. 180]
   public var longitude: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GeoCoordinate`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct GeoCoordinate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let latitude = CodingKeys(stringValue: "latitude")
+    static let longitude = CodingKeys(stringValue: "longitude")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "latitude",
+      "longitude",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .latitude) {
+      self.latitude = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .longitude) {
+      self.longitude = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.latitude, forKey: .latitude)
+    try container.encode(self.longitude, forKey: .longitude)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

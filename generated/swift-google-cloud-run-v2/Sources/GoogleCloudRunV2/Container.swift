@@ -89,6 +89,8 @@ public struct Container: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The build info of the container image.
   public var buildInfo: BuildInfo? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Container`.
   public init() {}
 
@@ -103,6 +105,116 @@ public struct Container: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let image = CodingKeys(stringValue: "image")
+    static let sourceCode = CodingKeys(stringValue: "sourceCode")
+    static let command = CodingKeys(stringValue: "command")
+    static let args = CodingKeys(stringValue: "args")
+    static let env = CodingKeys(stringValue: "env")
+    static let resources = CodingKeys(stringValue: "resources")
+    static let ports = CodingKeys(stringValue: "ports")
+    static let volumeMounts = CodingKeys(stringValue: "volumeMounts")
+    static let workingDir = CodingKeys(stringValue: "workingDir")
+    static let livenessProbe = CodingKeys(stringValue: "livenessProbe")
+    static let startupProbe = CodingKeys(stringValue: "startupProbe")
+    static let readinessProbe = CodingKeys(stringValue: "readinessProbe")
+    static let dependsOn = CodingKeys(stringValue: "dependsOn")
+    static let baseImageUri = CodingKeys(stringValue: "baseImageUri")
+    static let buildInfo = CodingKeys(stringValue: "buildInfo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "image",
+      "sourceCode",
+      "command",
+      "args",
+      "env",
+      "resources",
+      "ports",
+      "volumeMounts",
+      "workingDir",
+      "livenessProbe",
+      "startupProbe",
+      "readinessProbe",
+      "dependsOn",
+      "baseImageUri",
+      "buildInfo",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .image) {
+      self.image = value
+    }
+    self.sourceCode = try container.decodeIfPresent(SourceCode.self, forKey: .sourceCode)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .command) {
+      self.command = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .args) {
+      self.args = value
+    }
+    if let value = try container.decodeIfPresent([EnvVar].self, forKey: .env) {
+      self.env = value
+    }
+    self.resources = try container.decodeIfPresent(ResourceRequirements.self, forKey: .resources)
+    if let value = try container.decodeIfPresent([ContainerPort].self, forKey: .ports) {
+      self.ports = value
+    }
+    if let value = try container.decodeIfPresent([VolumeMount].self, forKey: .volumeMounts) {
+      self.volumeMounts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workingDir) {
+      self.workingDir = value
+    }
+    self.livenessProbe = try container.decodeIfPresent(Probe.self, forKey: .livenessProbe)
+    self.startupProbe = try container.decodeIfPresent(Probe.self, forKey: .startupProbe)
+    self.readinessProbe = try container.decodeIfPresent(Probe.self, forKey: .readinessProbe)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dependsOn) {
+      self.dependsOn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseImageUri) {
+      self.baseImageUri = value
+    }
+    self.buildInfo = try container.decodeIfPresent(BuildInfo.self, forKey: .buildInfo)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.image, forKey: .image)
+    try container.encodeIfPresent(self.sourceCode, forKey: .sourceCode)
+    try container.encode(self.command, forKey: .command)
+    try container.encode(self.args, forKey: .args)
+    try container.encode(self.env, forKey: .env)
+    try container.encodeIfPresent(self.resources, forKey: .resources)
+    try container.encode(self.ports, forKey: .ports)
+    try container.encode(self.volumeMounts, forKey: .volumeMounts)
+    try container.encode(self.workingDir, forKey: .workingDir)
+    try container.encodeIfPresent(self.livenessProbe, forKey: .livenessProbe)
+    try container.encodeIfPresent(self.startupProbe, forKey: .startupProbe)
+    try container.encodeIfPresent(self.readinessProbe, forKey: .readinessProbe)
+    try container.encode(self.dependsOn, forKey: .dependsOn)
+    try container.encode(self.baseImageUri, forKey: .baseImageUri)
+    try container.encodeIfPresent(self.buildInfo, forKey: .buildInfo)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

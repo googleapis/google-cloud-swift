@@ -37,6 +37,8 @@ public struct PollAirflowCommandRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// Line number from which new logs should be fetched.
   public var nextLineNumber: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PollAirflowCommandRequest`.
   public init() {}
 
@@ -51,6 +53,62 @@ public struct PollAirflowCommandRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let environment = CodingKeys(stringValue: "environment")
+    static let executionId = CodingKeys(stringValue: "executionId")
+    static let pod = CodingKeys(stringValue: "pod")
+    static let podNamespace = CodingKeys(stringValue: "podNamespace")
+    static let nextLineNumber = CodingKeys(stringValue: "nextLineNumber")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "environment",
+      "executionId",
+      "pod",
+      "podNamespace",
+      "nextLineNumber",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environment) {
+      self.environment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .executionId) {
+      self.executionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pod) {
+      self.pod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .podNamespace) {
+      self.podNamespace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nextLineNumber) {
+      self.nextLineNumber = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.environment, forKey: .environment)
+    try container.encode(self.executionId, forKey: .executionId)
+    try container.encode(self.pod, forKey: .pod)
+    try container.encode(self.podNamespace, forKey: .podNamespace)
+    try container.encode(self.nextLineNumber, forKey: .nextLineNumber)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

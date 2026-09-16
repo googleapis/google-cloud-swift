@@ -45,6 +45,8 @@ public struct RestorePlanChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The metadata of the RestorePlan.
   public var restorePlanMetadata: LoggedRestorePlanMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestorePlanChange`.
   public init() {}
 
@@ -59,6 +61,63 @@ public struct RestorePlanChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let restorePlan = CodingKeys(stringValue: "restorePlan")
+    static let changeType = CodingKeys(stringValue: "changeType")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let inputRestorePlan = CodingKeys(stringValue: "inputRestorePlan")
+    static let error = CodingKeys(stringValue: "error")
+    static let restorePlanMetadata = CodingKeys(stringValue: "restorePlanMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "restorePlan",
+      "changeType",
+      "updateMask",
+      "inputRestorePlan",
+      "error",
+      "restorePlanMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .restorePlan) {
+      self.restorePlan = value
+    }
+    if let value = try container.decodeIfPresent(ChangeType.self, forKey: .changeType) {
+      self.changeType = value
+    }
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.inputRestorePlan = try container.decodeIfPresent(
+      LoggedRestorePlan.self, forKey: .inputRestorePlan)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    self.restorePlanMetadata = try container.decodeIfPresent(
+      LoggedRestorePlanMetadata.self, forKey: .restorePlanMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.restorePlan, forKey: .restorePlan)
+    try container.encode(self.changeType, forKey: .changeType)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(self.inputRestorePlan, forKey: .inputRestorePlan)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encodeIfPresent(self.restorePlanMetadata, forKey: .restorePlanMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

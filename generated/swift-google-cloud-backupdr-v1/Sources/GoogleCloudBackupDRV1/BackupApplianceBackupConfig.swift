@@ -43,6 +43,8 @@ public struct BackupApplianceBackupConfig: Codable, Equatable, GoogleCloudWKT._A
   /// The name of the SLP associated with the application.
   public var slpName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupApplianceBackupConfig`.
   public init() {}
 
@@ -57,6 +59,74 @@ public struct BackupApplianceBackupConfig: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupApplianceName = CodingKeys(stringValue: "backupApplianceName")
+    static let backupApplianceId = CodingKeys(stringValue: "backupApplianceId")
+    static let slaId = CodingKeys(stringValue: "slaId")
+    static let applicationName = CodingKeys(stringValue: "applicationName")
+    static let hostName = CodingKeys(stringValue: "hostName")
+    static let sltName = CodingKeys(stringValue: "sltName")
+    static let slpName = CodingKeys(stringValue: "slpName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupApplianceName",
+      "backupApplianceId",
+      "slaId",
+      "applicationName",
+      "hostName",
+      "sltName",
+      "slpName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupApplianceName) {
+      self.backupApplianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .backupApplianceId) {
+      self.backupApplianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .slaId) {
+      self.slaId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applicationName) {
+      self.applicationName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostName) {
+      self.hostName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sltName) {
+      self.sltName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .slpName) {
+      self.slpName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.backupApplianceName, forKey: .backupApplianceName)
+    try container.encode(self.backupApplianceId, forKey: .backupApplianceId)
+    try container.encode(self.slaId, forKey: .slaId)
+    try container.encode(self.applicationName, forKey: .applicationName)
+    try container.encode(self.hostName, forKey: .hostName)
+    try container.encode(self.sltName, forKey: .sltName)
+    try container.encode(self.slpName, forKey: .slpName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

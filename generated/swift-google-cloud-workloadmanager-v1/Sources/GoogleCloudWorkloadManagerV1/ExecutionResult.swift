@@ -45,6 +45,8 @@ public struct ExecutionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Execution result type of the scanned resource.
   public var type: ExecutionResult.Type_ = ExecutionResult.Type_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExecutionResult`.
   public init() {}
 
@@ -59,6 +61,77 @@ public struct ExecutionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let violationMessage = CodingKeys(stringValue: "violationMessage")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let rule = CodingKeys(stringValue: "rule")
+    static let documentationUrl = CodingKeys(stringValue: "documentationUrl")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let violationDetails = CodingKeys(stringValue: "violationDetails")
+    static let commands = CodingKeys(stringValue: "commands")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "violationMessage",
+      "severity",
+      "rule",
+      "documentationUrl",
+      "resource",
+      "violationDetails",
+      "commands",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .violationMessage) {
+      self.violationMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rule) {
+      self.rule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentationUrl) {
+      self.documentationUrl = value
+    }
+    self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
+    self.violationDetails = try container.decodeIfPresent(
+      ViolationDetails.self, forKey: .violationDetails)
+    if let value = try container.decodeIfPresent([Command].self, forKey: .commands) {
+      self.commands = value
+    }
+    if let value = try container.decodeIfPresent(ExecutionResult.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.violationMessage, forKey: .violationMessage)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.rule, forKey: .rule)
+    try container.encode(self.documentationUrl, forKey: .documentationUrl)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encodeIfPresent(self.violationDetails, forKey: .violationDetails)
+    try container.encode(self.commands, forKey: .commands)
+    try container.encode(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum of execution result type.

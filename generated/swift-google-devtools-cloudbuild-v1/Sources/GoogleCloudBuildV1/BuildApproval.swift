@@ -31,6 +31,8 @@ public struct BuildApproval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Result of manual approval for this Build.
   public var result: ApprovalResult? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BuildApproval`.
   public init() {}
 
@@ -45,6 +47,46 @@ public struct BuildApproval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let config = CodingKeys(stringValue: "config")
+    static let result = CodingKeys(stringValue: "result")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "config",
+      "result",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(BuildApproval.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.config = try container.decodeIfPresent(ApprovalConfig.self, forKey: .config)
+    self.result = try container.decodeIfPresent(ApprovalResult.self, forKey: .result)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encodeIfPresent(self.result, forKey: .result)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies the current state of a build's approval.

@@ -28,6 +28,8 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output-only metadata about the dimension.
   public var dimensionMetadata: OneOf_DimensionMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dimension`.
   public init() {}
 
@@ -44,17 +46,34 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case issueDimensionMetadata = "issueDimensionMetadata"
-    case agentDimensionMetadata = "agentDimensionMetadata"
-    case qaQuestionDimensionMetadata = "qaQuestionDimensionMetadata"
-    case qaQuestionAnswerDimensionMetadata = "qaQuestionAnswerDimensionMetadata"
-    case dimensionKey = "dimensionKey"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let issueDimensionMetadata = CodingKeys(stringValue: "issueDimensionMetadata")
+    static let agentDimensionMetadata = CodingKeys(stringValue: "agentDimensionMetadata")
+    static let qaQuestionDimensionMetadata = CodingKeys(stringValue: "qaQuestionDimensionMetadata")
+    static let qaQuestionAnswerDimensionMetadata = CodingKeys(
+      stringValue: "qaQuestionAnswerDimensionMetadata")
+    static let dimensionKey = CodingKeys(stringValue: "dimensionKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "issueDimensionMetadata",
+      "agentDimensionMetadata",
+      "qaQuestionDimensionMetadata",
+      "qaQuestionAnswerDimensionMetadata",
+      "dimensionKey",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.dimensionKey = try container.decode(Dimension.DimensionKey.self, forKey: .dimensionKey)
+    if let value = try container.decodeIfPresent(Dimension.DimensionKey.self, forKey: .dimensionKey)
+    {
+      self.dimensionKey = value
+    }
 
     var dimensionMetadata: OneOf_DimensionMetadata? = nil
     let dimensionMetadataCheckAndSet = {
@@ -88,6 +107,10 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .qaQuestionAnswerDimensionMetadata(qaQuestionAnswerDimensionMetadata))
     }
     self.dimensionMetadata = dimensionMetadata
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -106,6 +129,9 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .qaQuestionAnswerDimensionMetadata)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Metadata about the issue dimension.
@@ -121,6 +147,8 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The parent issue model ID.
     public var issueModelId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IssueDimensionMetadata`.
     public init() {}
 
@@ -135,6 +163,50 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let issueId = CodingKeys(stringValue: "issueId")
+      static let issueDisplayName = CodingKeys(stringValue: "issueDisplayName")
+      static let issueModelId = CodingKeys(stringValue: "issueModelId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "issueId",
+        "issueDisplayName",
+        "issueModelId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issueId) {
+        self.issueId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issueDisplayName) {
+        self.issueDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issueModelId) {
+        self.issueModelId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.issueId, forKey: .issueId)
+      try container.encode(self.issueDisplayName, forKey: .issueDisplayName)
+      try container.encode(self.issueModelId, forKey: .issueModelId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -162,6 +234,8 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. A user-specified string representing the agent's team.
     public var agentTeam: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AgentDimensionMetadata`.
     public init() {}
 
@@ -176,6 +250,50 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agentId = CodingKeys(stringValue: "agentId")
+      static let agentDisplayName = CodingKeys(stringValue: "agentDisplayName")
+      static let agentTeam = CodingKeys(stringValue: "agentTeam")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agentId",
+        "agentDisplayName",
+        "agentTeam",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
+        self.agentId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentDisplayName) {
+        self.agentDisplayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentTeam) {
+        self.agentTeam = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.agentId, forKey: .agentId)
+      try container.encode(self.agentDisplayName, forKey: .agentDisplayName)
+      try container.encode(self.agentTeam, forKey: .agentTeam)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -203,6 +321,8 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The full body of the question.
     public var questionBody: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaQuestionDimensionMetadata`.
     public init() {}
 
@@ -217,6 +337,50 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let qaScorecardId = CodingKeys(stringValue: "qaScorecardId")
+      static let qaQuestionId = CodingKeys(stringValue: "qaQuestionId")
+      static let questionBody = CodingKeys(stringValue: "questionBody")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "qaScorecardId",
+        "qaQuestionId",
+        "questionBody",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaScorecardId) {
+        self.qaScorecardId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaQuestionId) {
+        self.qaQuestionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .questionBody) {
+        self.questionBody = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.qaScorecardId, forKey: .qaScorecardId)
+      try container.encode(self.qaQuestionId, forKey: .qaQuestionId)
+      try container.encode(self.questionBody, forKey: .questionBody)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -249,6 +413,8 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The full body of the question.
     public var answerValue: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaQuestionAnswerDimensionMetadata`.
     public init() {}
 
@@ -263,6 +429,56 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let qaScorecardId = CodingKeys(stringValue: "qaScorecardId")
+      static let qaQuestionId = CodingKeys(stringValue: "qaQuestionId")
+      static let questionBody = CodingKeys(stringValue: "questionBody")
+      static let answerValue = CodingKeys(stringValue: "answerValue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "qaScorecardId",
+        "qaQuestionId",
+        "questionBody",
+        "answerValue",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaScorecardId) {
+        self.qaScorecardId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qaQuestionId) {
+        self.qaQuestionId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .questionBody) {
+        self.questionBody = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .answerValue) {
+        self.answerValue = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.qaScorecardId, forKey: .qaScorecardId)
+      try container.encode(self.qaQuestionId, forKey: .qaQuestionId)
+      try container.encode(self.questionBody, forKey: .questionBody)
+      try container.encode(self.answerValue, forKey: .answerValue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

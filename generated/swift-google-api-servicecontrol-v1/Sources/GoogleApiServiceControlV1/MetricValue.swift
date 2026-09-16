@@ -53,6 +53,8 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the MetricValue is rejected.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetricValue`.
   public init() {}
 
@@ -69,20 +71,39 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case labels = "labels"
-    case startTime = "startTime"
-    case endTime = "endTime"
-    case boolValue = "boolValue"
-    case int64Value = "int64Value"
-    case doubleValue = "doubleValue"
-    case stringValue = "stringValue"
-    case distributionValue = "distributionValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labels = CodingKeys(stringValue: "labels")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let boolValue = CodingKeys(stringValue: "boolValue")
+    static let int64Value = CodingKeys(stringValue: "int64Value")
+    static let doubleValue = CodingKeys(stringValue: "doubleValue")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let distributionValue = CodingKeys(stringValue: "distributionValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labels",
+      "startTime",
+      "endTime",
+      "boolValue",
+      "int64Value",
+      "doubleValue",
+      "stringValue",
+      "distributionValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.startTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
@@ -115,13 +136,17 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.distributionValue(distributionValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
     if let choice = self.value {
       switch choice {
@@ -136,6 +161,9 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .distributionValue(let value):
         try container.encode(value, forKey: .distributionValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

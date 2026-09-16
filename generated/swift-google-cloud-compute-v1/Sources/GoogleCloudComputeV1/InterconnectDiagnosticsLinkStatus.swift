@@ -48,6 +48,8 @@
     /// describing the current value and status of the transmitted light level.
     public var transmittingOpticalPower: InterconnectDiagnosticsLinkOpticalPower? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectDiagnosticsLinkStatus`.
     public init() {}
 
@@ -62,6 +64,74 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let arpCaches = CodingKeys(stringValue: "arpCaches")
+      static let circuitId = CodingKeys(stringValue: "circuitId")
+      static let googleDemarc = CodingKeys(stringValue: "googleDemarc")
+      static let lacpStatus = CodingKeys(stringValue: "lacpStatus")
+      static let macsec = CodingKeys(stringValue: "macsec")
+      static let operationalStatus = CodingKeys(stringValue: "operationalStatus")
+      static let receivingOpticalPower = CodingKeys(stringValue: "receivingOpticalPower")
+      static let transmittingOpticalPower = CodingKeys(stringValue: "transmittingOpticalPower")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "arpCaches",
+        "circuitId",
+        "googleDemarc",
+        "lacpStatus",
+        "macsec",
+        "operationalStatus",
+        "receivingOpticalPower",
+        "transmittingOpticalPower",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [InterconnectDiagnosticsARPEntry].self, forKey: .arpCaches)
+      {
+        self.arpCaches = value
+      }
+      self.circuitId = try container.decodeIfPresent(Swift.String.self, forKey: .circuitId)
+      self.googleDemarc = try container.decodeIfPresent(Swift.String.self, forKey: .googleDemarc)
+      self.lacpStatus = try container.decodeIfPresent(
+        InterconnectDiagnosticsLinkLACPStatus.self, forKey: .lacpStatus)
+      self.macsec = try container.decodeIfPresent(
+        InterconnectDiagnosticsMacsecStatus.self, forKey: .macsec)
+      self.operationalStatus = try container.decodeIfPresent(
+        InterconnectDiagnosticsLinkStatus.OperationalStatus.self, forKey: .operationalStatus)
+      self.receivingOpticalPower = try container.decodeIfPresent(
+        InterconnectDiagnosticsLinkOpticalPower.self, forKey: .receivingOpticalPower)
+      self.transmittingOpticalPower = try container.decodeIfPresent(
+        InterconnectDiagnosticsLinkOpticalPower.self, forKey: .transmittingOpticalPower)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.arpCaches, forKey: .arpCaches)
+      try container.encodeIfPresent(self.circuitId, forKey: .circuitId)
+      try container.encodeIfPresent(self.googleDemarc, forKey: .googleDemarc)
+      try container.encodeIfPresent(self.lacpStatus, forKey: .lacpStatus)
+      try container.encodeIfPresent(self.macsec, forKey: .macsec)
+      try container.encodeIfPresent(self.operationalStatus, forKey: .operationalStatus)
+      try container.encodeIfPresent(self.receivingOpticalPower, forKey: .receivingOpticalPower)
+      try container.encodeIfPresent(
+        self.transmittingOpticalPower, forKey: .transmittingOpticalPower)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [operationalStatus][google.cloud.compute.v1.InterconnectDiagnosticsLinkStatus.operationalStatus] field.

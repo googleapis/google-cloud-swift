@@ -54,6 +54,8 @@
 
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureGroup`.
     public init() {}
 
@@ -70,26 +72,51 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case bigQuery = "bigQuery"
-      case name = "name"
-      case createTime = "createTime"
-      case updateTime = "updateTime"
-      case etag = "etag"
-      case labels = "labels"
-      case description = "description"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bigQuery = CodingKeys(stringValue: "bigQuery")
+      static let name = CodingKeys(stringValue: "name")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let description = CodingKeys(stringValue: "description")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bigQuery",
+        "name",
+        "createTime",
+        "updateTime",
+        "etag",
+        "labels",
+        "description",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-      self.etag = try container.decode(Swift.String.self, forKey: .etag)
-      self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -107,13 +134,17 @@
         try sourceCheckAndSet(.bigQuery(bigQuery))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.createTime, forKey: .createTime)
-      try container.encode(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.etag, forKey: .etag)
       try container.encode(self.labels, forKey: .labels)
       try container.encode(self.description, forKey: .description)
@@ -123,6 +154,9 @@
         case .bigQuery(let value):
           try container.encode(value, forKey: .bigQuery)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -163,6 +197,8 @@
       /// not set, `(e1, 20, 15)` is synced to online stores.
       public var dense: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BigQuery`.
       public init() {}
 
@@ -179,6 +215,61 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bigQuerySource = CodingKeys(stringValue: "bigQuerySource")
+        static let entityIdColumns = CodingKeys(stringValue: "entityIdColumns")
+        static let staticDataSource = CodingKeys(stringValue: "staticDataSource")
+        static let timeSeries = CodingKeys(stringValue: "timeSeries")
+        static let dense = CodingKeys(stringValue: "dense")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bigQuerySource",
+          "entityIdColumns",
+          "staticDataSource",
+          "timeSeries",
+          "dense",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.bigQuerySource = try container.decodeIfPresent(
+          BigQuerySource.self, forKey: .bigQuerySource)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entityIdColumns)
+        {
+          self.entityIdColumns = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .staticDataSource) {
+          self.staticDataSource = value
+        }
+        self.timeSeries = try container.decodeIfPresent(
+          FeatureGroup.BigQuery.TimeSeries.self, forKey: .timeSeries)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dense) {
+          self.dense = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.bigQuerySource, forKey: .bigQuerySource)
+        try container.encode(self.entityIdColumns, forKey: .entityIdColumns)
+        try container.encode(self.staticDataSource, forKey: .staticDataSource)
+        try container.encodeIfPresent(self.timeSeries, forKey: .timeSeries)
+        try container.encode(self.dense, forKey: .dense)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       public struct TimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
@@ -187,6 +278,9 @@
         /// Optional. If not provided, column named `feature_timestamp` of
         /// type `TIMESTAMP` will be used.
         public var timestampColumn: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `TimeSeries`.
         public init() {}
@@ -202,6 +296,39 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let timestampColumn = CodingKeys(stringValue: "timestampColumn")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "timestampColumn"
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timestampColumn)
+          {
+            self.timestampColumn = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.timestampColumn, forKey: .timestampColumn)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

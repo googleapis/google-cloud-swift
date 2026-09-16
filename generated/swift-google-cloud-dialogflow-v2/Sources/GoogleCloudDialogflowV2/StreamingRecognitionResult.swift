@@ -99,6 +99,8 @@
     /// Detected language code for the transcript.
     public var languageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamingRecognitionResult`.
     public init() {}
 
@@ -113,6 +115,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let messageType = CodingKeys(stringValue: "messageType")
+      static let transcript = CodingKeys(stringValue: "transcript")
+      static let isFinal = CodingKeys(stringValue: "isFinal")
+      static let confidence = CodingKeys(stringValue: "confidence")
+      static let speechWordInfo = CodingKeys(stringValue: "speechWordInfo")
+      static let speechEndOffset = CodingKeys(stringValue: "speechEndOffset")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "messageType",
+        "transcript",
+        "isFinal",
+        "confidence",
+        "speechWordInfo",
+        "speechEndOffset",
+        "languageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        StreamingRecognitionResult.MessageType.self, forKey: .messageType)
+      {
+        self.messageType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transcript) {
+        self.transcript = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFinal) {
+        self.isFinal = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidence) {
+        self.confidence = value
+      }
+      if let value = try container.decodeIfPresent([SpeechWordInfo].self, forKey: .speechWordInfo) {
+        self.speechWordInfo = value
+      }
+      self.speechEndOffset = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .speechEndOffset)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.messageType, forKey: .messageType)
+      try container.encode(self.transcript, forKey: .transcript)
+      try container.encode(self.isFinal, forKey: .isFinal)
+      try container.encode(self.confidence, forKey: .confidence)
+      try container.encode(self.speechWordInfo, forKey: .speechWordInfo)
+      try container.encodeIfPresent(self.speechEndOffset, forKey: .speechEndOffset)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Type of the response message.

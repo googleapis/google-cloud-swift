@@ -27,6 +27,8 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Output only.
   public var typeSpec: OneOf_TypeSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryTableSpec`.
   public init() {}
 
@@ -43,15 +45,28 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tableSourceType = "tableSourceType"
-    case viewSpec = "viewSpec"
-    case tableSpec = "tableSpec"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tableSourceType = CodingKeys(stringValue: "tableSourceType")
+    static let viewSpec = CodingKeys(stringValue: "viewSpec")
+    static let tableSpec = CodingKeys(stringValue: "tableSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tableSourceType",
+      "viewSpec",
+      "tableSpec",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.tableSourceType = try container.decode(TableSourceType.self, forKey: .tableSourceType)
+    if let value = try container.decodeIfPresent(TableSourceType.self, forKey: .tableSourceType) {
+      self.tableSourceType = value
+    }
 
     var typeSpec: OneOf_TypeSpec? = nil
     let typeSpecCheckAndSet = {
@@ -70,6 +85,10 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try typeSpecCheckAndSet(.tableSpec(tableSpec))
     }
     self.typeSpec = typeSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,6 +102,9 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .tableSpec(let value):
         try container.encode(value, forKey: .tableSpec)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

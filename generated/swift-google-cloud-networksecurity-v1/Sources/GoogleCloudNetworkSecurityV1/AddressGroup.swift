@@ -54,6 +54,8 @@ public struct AddressGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. List of supported purposes of the Address Group.
   public var purpose: [AddressGroup.Purpose] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddressGroup`.
   public init() {}
 
@@ -68,6 +70,91 @@ public struct AddressGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let type = CodingKeys(stringValue: "type")
+    static let items = CodingKeys(stringValue: "items")
+    static let capacity = CodingKeys(stringValue: "capacity")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let purpose = CodingKeys(stringValue: "purpose")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "labels",
+      "type",
+      "items",
+      "capacity",
+      "selfLink",
+      "purpose",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(AddressGroup.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .items) {
+      self.items = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .capacity) {
+      self.capacity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    if let value = try container.decodeIfPresent([AddressGroup.Purpose].self, forKey: .purpose) {
+      self.purpose = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.items, forKey: .items)
+    try container.encode(self.capacity, forKey: .capacity)
+    try container.encode(self.selfLink, forKey: .selfLink)
+    try container.encode(self.purpose, forKey: .purpose)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible type of the Address Group.

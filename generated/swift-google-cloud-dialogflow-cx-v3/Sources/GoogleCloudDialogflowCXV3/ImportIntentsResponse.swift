@@ -35,6 +35,8 @@
     /// set in ImportIntentsRequest.
     public var conflictingResources: ImportIntentsResponse.ConflictingResources? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportIntentsResponse`.
     public init() {}
 
@@ -51,6 +53,43 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let intents = CodingKeys(stringValue: "intents")
+      static let conflictingResources = CodingKeys(stringValue: "conflictingResources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "intents",
+        "conflictingResources",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .intents) {
+        self.intents = value
+      }
+      self.conflictingResources = try container.decodeIfPresent(
+        ImportIntentsResponse.ConflictingResources.self, forKey: .conflictingResources)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.intents, forKey: .intents)
+      try container.encodeIfPresent(self.conflictingResources, forKey: .conflictingResources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Conflicting resources detected during the import process. Only filled when
     /// [REPORT_CONFLICT][ImportIntentsResponse.REPORT_CONFLICT] is set in the
     /// request and there are conflicts in the display names.
@@ -62,6 +101,8 @@
 
       /// Display names of conflicting entities.
       public var entityDisplayNames: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ConflictingResources`.
       public init() {}
@@ -77,6 +118,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let intentDisplayNames = CodingKeys(stringValue: "intentDisplayNames")
+        static let entityDisplayNames = CodingKeys(stringValue: "entityDisplayNames")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "intentDisplayNames",
+          "entityDisplayNames",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .intentDisplayNames)
+        {
+          self.intentDisplayNames = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .entityDisplayNames)
+        {
+          self.entityDisplayNames = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.intentDisplayNames, forKey: .intentDisplayNames)
+        try container.encode(self.entityDisplayNames, forKey: .entityDisplayNames)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

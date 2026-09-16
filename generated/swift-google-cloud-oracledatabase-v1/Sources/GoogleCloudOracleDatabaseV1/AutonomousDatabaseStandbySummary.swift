@@ -41,6 +41,8 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudW
   /// the standby Autonomous Database.
   public var disasterRecoveryRoleChangedTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutonomousDatabaseStandbySummary`.
   public init() {}
 
@@ -55,6 +57,61 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lagTimeDuration = CodingKeys(stringValue: "lagTimeDuration")
+    static let lifecycleDetails = CodingKeys(stringValue: "lifecycleDetails")
+    static let state = CodingKeys(stringValue: "state")
+    static let dataGuardRoleChangedTime = CodingKeys(stringValue: "dataGuardRoleChangedTime")
+    static let disasterRecoveryRoleChangedTime = CodingKeys(
+      stringValue: "disasterRecoveryRoleChangedTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lagTimeDuration",
+      "lifecycleDetails",
+      "state",
+      "dataGuardRoleChangedTime",
+      "disasterRecoveryRoleChangedTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.lagTimeDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .lagTimeDuration)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
+      self.lifecycleDetails = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
+    self.dataGuardRoleChangedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .dataGuardRoleChangedTime)
+    self.disasterRecoveryRoleChangedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .disasterRecoveryRoleChangedTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.lagTimeDuration, forKey: .lagTimeDuration)
+    try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.dataGuardRoleChangedTime, forKey: .dataGuardRoleChangedTime)
+    try container.encodeIfPresent(
+      self.disasterRecoveryRoleChangedTime, forKey: .disasterRecoveryRoleChangedTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

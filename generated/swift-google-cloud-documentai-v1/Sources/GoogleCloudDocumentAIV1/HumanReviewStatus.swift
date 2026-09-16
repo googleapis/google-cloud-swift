@@ -38,6 +38,8 @@ public struct HumanReviewStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// [google.cloud.documentai.v1.HumanReviewStatus.state]: <doc:HumanReviewStatus/state>
   public var humanReviewOperation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HumanReviewStatus`.
   public init() {}
 
@@ -52,6 +54,50 @@ public struct HumanReviewStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let humanReviewOperation = CodingKeys(stringValue: "humanReviewOperation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "stateMessage",
+      "humanReviewOperation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(HumanReviewStatus.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .humanReviewOperation) {
+      self.humanReviewOperation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encode(self.humanReviewOperation, forKey: .humanReviewOperation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The final state of human review on a processed document.

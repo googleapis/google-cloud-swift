@@ -40,6 +40,8 @@ public struct GenerateChatTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Optional. Indicates if live handoff is enabled for the session.
   public var liveHandoffEnabled: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateChatTokenRequest`.
   public init() {}
 
@@ -54,6 +56,56 @@ public struct GenerateChatTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let recaptchaToken = CodingKeys(stringValue: "recaptchaToken")
+    static let liveHandoffEnabled = CodingKeys(stringValue: "liveHandoffEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "deployment",
+      "recaptchaToken",
+      "liveHandoffEnabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+      self.deployment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recaptchaToken) {
+      self.recaptchaToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .liveHandoffEnabled) {
+      self.liveHandoffEnabled = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.deployment, forKey: .deployment)
+    try container.encode(self.recaptchaToken, forKey: .recaptchaToken)
+    try container.encode(self.liveHandoffEnabled, forKey: .liveHandoffEnabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

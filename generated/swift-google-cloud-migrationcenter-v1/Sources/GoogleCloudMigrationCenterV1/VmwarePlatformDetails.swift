@@ -40,6 +40,8 @@ public struct VmwarePlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// vCenter VM ID.
   public var vcenterVmId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmwarePlatformDetails`.
   public init() {}
 
@@ -54,6 +56,68 @@ public struct VmwarePlatformDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vcenterVersion = CodingKeys(stringValue: "vcenterVersion")
+    static let esxVersion = CodingKeys(stringValue: "esxVersion")
+    static let osid = CodingKeys(stringValue: "osid")
+    static let vcenterFolder = CodingKeys(stringValue: "vcenterFolder")
+    static let vcenterUri = CodingKeys(stringValue: "vcenterUri")
+    static let vcenterVmId = CodingKeys(stringValue: "vcenterVmId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vcenterVersion",
+      "esxVersion",
+      "osid",
+      "vcenterFolder",
+      "vcenterUri",
+      "vcenterVmId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vcenterVersion) {
+      self.vcenterVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .esxVersion) {
+      self.esxVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osid) {
+      self.osid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vcenterFolder) {
+      self.vcenterFolder = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vcenterUri) {
+      self.vcenterUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vcenterVmId) {
+      self.vcenterVmId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vcenterVersion, forKey: .vcenterVersion)
+    try container.encode(self.esxVersion, forKey: .esxVersion)
+    try container.encode(self.osid, forKey: .osid)
+    try container.encode(self.vcenterFolder, forKey: .vcenterFolder)
+    try container.encode(self.vcenterUri, forKey: .vcenterUri)
+    try container.encode(self.vcenterVmId, forKey: .vcenterVmId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

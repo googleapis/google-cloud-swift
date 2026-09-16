@@ -27,6 +27,8 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The source that contains the Skaffold Config modules.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SkaffoldModules`.
   public init() {}
 
@@ -43,16 +45,30 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case configs = "configs"
-    case git = "git"
-    case googleCloudStorage = "googleCloudStorage"
-    case googleCloudBuildRepo = "googleCloudBuildRepo"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let configs = CodingKeys(stringValue: "configs")
+    static let git = CodingKeys(stringValue: "git")
+    static let googleCloudStorage = CodingKeys(stringValue: "googleCloudStorage")
+    static let googleCloudBuildRepo = CodingKeys(stringValue: "googleCloudBuildRepo")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "configs",
+      "git",
+      "googleCloudStorage",
+      "googleCloudBuildRepo",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.configs = try container.decode([Swift.String].self, forKey: .configs)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .configs) {
+      self.configs = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -80,6 +96,10 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.googleCloudBuildRepo(googleCloudBuildRepo))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,6 +116,9 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .googleCloudBuildRepo)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Git repository containing Skaffold Config modules.
@@ -111,6 +134,8 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Git branch or tag to use when cloning the repository.
     public var ref: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SkaffoldGitSource`.
     public init() {}
 
@@ -125,6 +150,50 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repo = CodingKeys(stringValue: "repo")
+      static let path = CodingKeys(stringValue: "path")
+      static let ref = CodingKeys(stringValue: "ref")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repo",
+        "path",
+        "ref",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repo) {
+        self.repo = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
+        self.ref = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repo, forKey: .repo)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.ref, forKey: .ref)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -150,6 +219,8 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Relative path from the source to the Skaffold file.
     public var path: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SkaffoldGCSSource`.
     public init() {}
 
@@ -164,6 +235,44 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let source = CodingKeys(stringValue: "source")
+      static let path = CodingKeys(stringValue: "path")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "source",
+        "path",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+        self.source = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.source, forKey: .source)
+      try container.encode(self.path, forKey: .path)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -193,6 +302,8 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. Branch or tag to use when cloning the repository.
     public var ref: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SkaffoldGCBRepoSource`.
     public init() {}
 
@@ -207,6 +318,50 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repository = CodingKeys(stringValue: "repository")
+      static let path = CodingKeys(stringValue: "path")
+      static let ref = CodingKeys(stringValue: "ref")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repository",
+        "path",
+        "ref",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+        self.repository = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
+        self.ref = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repository, forKey: .repository)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.ref, forKey: .ref)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

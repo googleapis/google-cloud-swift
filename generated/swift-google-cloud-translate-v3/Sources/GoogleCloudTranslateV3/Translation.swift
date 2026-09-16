@@ -45,6 +45,8 @@ public struct Translation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The `glossary_config` used for this translation.
   public var glossaryConfig: TranslateTextGlossaryConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Translation`.
   public init() {}
 
@@ -59,6 +61,55 @@ public struct Translation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let translatedText = CodingKeys(stringValue: "translatedText")
+    static let model = CodingKeys(stringValue: "model")
+    static let detectedLanguageCode = CodingKeys(stringValue: "detectedLanguageCode")
+    static let glossaryConfig = CodingKeys(stringValue: "glossaryConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "translatedText",
+      "model",
+      "detectedLanguageCode",
+      "glossaryConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .translatedText) {
+      self.translatedText = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .detectedLanguageCode) {
+      self.detectedLanguageCode = value
+    }
+    self.glossaryConfig = try container.decodeIfPresent(
+      TranslateTextGlossaryConfig.self, forKey: .glossaryConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.translatedText, forKey: .translatedText)
+    try container.encode(self.model, forKey: .model)
+    try container.encode(self.detectedLanguageCode, forKey: .detectedLanguageCode)
+    try container.encodeIfPresent(self.glossaryConfig, forKey: .glossaryConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

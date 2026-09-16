@@ -73,6 +73,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var nextHop: OneOf_NextHop? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PolicyBasedRoute`.
   public init() {}
 
@@ -89,39 +91,81 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case virtualMachine = "virtualMachine"
-    case interconnectAttachment = "interconnectAttachment"
-    case nextHopIlbIp = "nextHopIlbIp"
-    case nextHopOtherRoutes = "nextHopOtherRoutes"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case description = "description"
-    case network = "network"
-    case filter = "filter"
-    case priority = "priority"
-    case warnings = "warnings"
-    case selfLink = "selfLink"
-    case kind = "kind"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let virtualMachine = CodingKeys(stringValue: "virtualMachine")
+    static let interconnectAttachment = CodingKeys(stringValue: "interconnectAttachment")
+    static let nextHopIlbIp = CodingKeys(stringValue: "nextHopIlbIp")
+    static let nextHopOtherRoutes = CodingKeys(stringValue: "nextHopOtherRoutes")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let network = CodingKeys(stringValue: "network")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let warnings = CodingKeys(stringValue: "warnings")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let kind = CodingKeys(stringValue: "kind")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "virtualMachine",
+      "interconnectAttachment",
+      "nextHopIlbIp",
+      "nextHopOtherRoutes",
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "network",
+      "filter",
+      "priority",
+      "warnings",
+      "selfLink",
+      "kind",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.network = try container.decode(Swift.String.self, forKey: .network)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
     self.filter = try container.decodeIfPresent(PolicyBasedRoute.Filter.self, forKey: .filter)
-    self.priority = try container.decode(Swift.Int32.self, forKey: .priority)
-    self.warnings = try container.decode([PolicyBasedRoute.Warnings].self, forKey: .warnings)
-    self.selfLink = try container.decode(Swift.String.self, forKey: .selfLink)
-    self.kind = try container.decode(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PolicyBasedRoute.Warnings].self, forKey: .warnings)
+    {
+      self.warnings = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+      self.kind = value
+    }
 
     var target: OneOf_Target? = nil
     let targetCheckAndSet = {
@@ -164,17 +208,21 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try nextHopCheckAndSet(.nextHopOtherRoutes(nextHopOtherRoutes))
     }
     self.nextHop = nextHop
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.network, forKey: .network)
-    try container.encode(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
     try container.encode(self.priority, forKey: .priority)
     try container.encode(self.warnings, forKey: .warnings)
     try container.encode(self.selfLink, forKey: .selfLink)
@@ -197,6 +245,9 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .nextHopOtherRoutes)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// VM instances that this policy-based route applies to.
@@ -206,6 +257,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. A list of VM instance tags that this policy-based route applies
     /// to. VM instances that have ANY of tags specified here installs this PBR.
     public var tags: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `VirtualMachine`.
     public init() {}
@@ -221,6 +274,38 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let tags = CodingKeys(stringValue: "tags")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "tags"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+        self.tags = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.tags, forKey: .tags)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -243,6 +328,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// attachment. Use `all` to install it on all interconnect attachments.
     public var region: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachment`.
     public init() {}
 
@@ -257,6 +344,38 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let region = CodingKeys(stringValue: "region")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "region"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+        self.region = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.region, forKey: .region)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -293,6 +412,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var protocolVersion: PolicyBasedRoute.Filter.ProtocolVersion = PolicyBasedRoute.Filter
       .ProtocolVersion()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Filter`.
     public init() {}
 
@@ -307,6 +428,58 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipProtocol = CodingKeys(stringValue: "ipProtocol")
+      static let srcRange = CodingKeys(stringValue: "srcRange")
+      static let destRange = CodingKeys(stringValue: "destRange")
+      static let protocolVersion = CodingKeys(stringValue: "protocolVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipProtocol",
+        "srcRange",
+        "destRange",
+        "protocolVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipProtocol) {
+        self.ipProtocol = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .srcRange) {
+        self.srcRange = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destRange) {
+        self.destRange = value
+      }
+      if let value = try container.decodeIfPresent(
+        PolicyBasedRoute.Filter.ProtocolVersion.self, forKey: .protocolVersion)
+      {
+        self.protocolVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.ipProtocol, forKey: .ipProtocol)
+      try container.encode(self.srcRange, forKey: .srcRange)
+      try container.encode(self.destRange, forKey: .destRange)
+      try container.encode(self.protocolVersion, forKey: .protocolVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The internet protocol version.
@@ -436,6 +609,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. A human-readable description of the warning code.
     public var warningMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Warnings`.
     public init() {}
 
@@ -450,6 +625,53 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let code = CodingKeys(stringValue: "code")
+      static let data = CodingKeys(stringValue: "data")
+      static let warningMessage = CodingKeys(stringValue: "warningMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "code",
+        "data",
+        "warningMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        PolicyBasedRoute.Warnings.Code.self, forKey: .code)
+      {
+        self.code = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .data)
+      {
+        self.data = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .warningMessage) {
+        self.warningMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.code, forKey: .code)
+      try container.encode(self.data, forKey: .data)
+      try container.encode(self.warningMessage, forKey: .warningMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Warning code for policy-based routing. Expect to add values in the

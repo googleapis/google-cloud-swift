@@ -38,6 +38,8 @@ public struct AssessmentTaskDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Optional. A collection of additional feature flags for this assessment.
   public var featureHandle: AssessmentFeatureHandle? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AssessmentTaskDetails`.
   public init() {}
 
@@ -52,6 +54,61 @@ public struct AssessmentTaskDetails: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputPath = CodingKeys(stringValue: "inputPath")
+    static let outputDataset = CodingKeys(stringValue: "outputDataset")
+    static let querylogsPath = CodingKeys(stringValue: "querylogsPath")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let featureHandle = CodingKeys(stringValue: "featureHandle")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputPath",
+      "outputDataset",
+      "querylogsPath",
+      "dataSource",
+      "featureHandle",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputPath) {
+      self.inputPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputDataset) {
+      self.outputDataset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .querylogsPath) {
+      self.querylogsPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    self.featureHandle = try container.decodeIfPresent(
+      AssessmentFeatureHandle.self, forKey: .featureHandle)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputPath, forKey: .inputPath)
+    try container.encode(self.outputDataset, forKey: .outputDataset)
+    try container.encode(self.querylogsPath, forKey: .querylogsPath)
+    try container.encode(self.dataSource, forKey: .dataSource)
+    try container.encodeIfPresent(self.featureHandle, forKey: .featureHandle)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

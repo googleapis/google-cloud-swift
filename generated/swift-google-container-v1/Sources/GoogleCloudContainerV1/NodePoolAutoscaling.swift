@@ -52,6 +52,8 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// fields.
   public var totalMaxNodeCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodePoolAutoscaling`.
   public init() {}
 
@@ -66,6 +68,76 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let minNodeCount = CodingKeys(stringValue: "minNodeCount")
+    static let maxNodeCount = CodingKeys(stringValue: "maxNodeCount")
+    static let autoprovisioned = CodingKeys(stringValue: "autoprovisioned")
+    static let locationPolicy = CodingKeys(stringValue: "locationPolicy")
+    static let totalMinNodeCount = CodingKeys(stringValue: "totalMinNodeCount")
+    static let totalMaxNodeCount = CodingKeys(stringValue: "totalMaxNodeCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "minNodeCount",
+      "maxNodeCount",
+      "autoprovisioned",
+      "locationPolicy",
+      "totalMinNodeCount",
+      "totalMaxNodeCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount) {
+      self.minNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodeCount) {
+      self.maxNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoprovisioned) {
+      self.autoprovisioned = value
+    }
+    if let value = try container.decodeIfPresent(
+      NodePoolAutoscaling.LocationPolicy.self, forKey: .locationPolicy)
+    {
+      self.locationPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalMinNodeCount) {
+      self.totalMinNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalMaxNodeCount) {
+      self.totalMaxNodeCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encode(self.minNodeCount, forKey: .minNodeCount)
+    try container.encode(self.maxNodeCount, forKey: .maxNodeCount)
+    try container.encode(self.autoprovisioned, forKey: .autoprovisioned)
+    try container.encode(self.locationPolicy, forKey: .locationPolicy)
+    try container.encode(self.totalMinNodeCount, forKey: .totalMinNodeCount)
+    try container.encode(self.totalMaxNodeCount, forKey: .totalMaxNodeCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Location policy specifies how zones are picked when scaling up the

@@ -71,6 +71,8 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// If no retention policy is set, a default of 14 days is used.
   public var retention: OneOf_Retention? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutomatedBackupPolicy`.
   public init() {}
 
@@ -87,15 +89,31 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case weeklySchedule = "weeklySchedule"
-    case timeBasedRetention = "timeBasedRetention"
-    case quantityBasedRetention = "quantityBasedRetention"
-    case enabled = "enabled"
-    case backupWindow = "backupWindow"
-    case encryptionConfig = "encryptionConfig"
-    case location = "location"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let weeklySchedule = CodingKeys(stringValue: "weeklySchedule")
+    static let timeBasedRetention = CodingKeys(stringValue: "timeBasedRetention")
+    static let quantityBasedRetention = CodingKeys(stringValue: "quantityBasedRetention")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let backupWindow = CodingKeys(stringValue: "backupWindow")
+    static let encryptionConfig = CodingKeys(stringValue: "encryptionConfig")
+    static let location = CodingKeys(stringValue: "location")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "weeklySchedule",
+      "timeBasedRetention",
+      "quantityBasedRetention",
+      "enabled",
+      "backupWindow",
+      "encryptionConfig",
+      "location",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -105,8 +123,13 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       GoogleCloudWKT.Duration.self, forKey: .backupWindow)
     self.encryptionConfig = try container.decodeIfPresent(
       EncryptionConfig.self, forKey: .encryptionConfig)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var schedule: OneOf_Schedule? = nil
     let scheduleCheckAndSet = {
@@ -146,13 +169,17 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       try retentionCheckAndSet(.quantityBasedRetention(quantityBasedRetention))
     }
     self.retention = retention
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.enabled, forKey: .enabled)
-    try container.encode(self.backupWindow, forKey: .backupWindow)
-    try container.encode(self.encryptionConfig, forKey: .encryptionConfig)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encodeIfPresent(self.backupWindow, forKey: .backupWindow)
+    try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
     try container.encode(self.location, forKey: .location)
     try container.encode(self.labels, forKey: .labels)
 
@@ -170,6 +197,9 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .quantityBasedRetention(let value):
         try container.encode(value, forKey: .quantityBasedRetention)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -196,6 +226,8 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// used.
     public var daysOfWeek: [GoogleType.DayOfWeek] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WeeklySchedule`.
     public init() {}
 
@@ -210,6 +242,46 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startTimes = CodingKeys(stringValue: "startTimes")
+      static let daysOfWeek = CodingKeys(stringValue: "daysOfWeek")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startTimes",
+        "daysOfWeek",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([GoogleType.TimeOfDay].self, forKey: .startTimes)
+      {
+        self.startTimes = value
+      }
+      if let value = try container.decodeIfPresent([GoogleType.DayOfWeek].self, forKey: .daysOfWeek)
+      {
+        self.daysOfWeek = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.startTimes, forKey: .startTimes)
+      try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -231,6 +303,8 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The retention period.
     public var retentionPeriod: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TimeBasedRetention`.
     public init() {}
 
@@ -245,6 +319,37 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let retentionPeriod = CodingKeys(stringValue: "retentionPeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "retentionPeriod"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.retentionPeriod = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .retentionPeriod)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.retentionPeriod, forKey: .retentionPeriod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -266,6 +371,8 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The number of backups to retain.
     public var count: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QuantityBasedRetention`.
     public init() {}
 
@@ -280,6 +387,38 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let count = CodingKeys(stringValue: "count")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "count"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
+        self.count = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.count, forKey: .count)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -116,6 +116,8 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The deploy parameters to use for all targets in this release.
   public var deployParameters: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Release`.
   public init() {}
 
@@ -130,6 +132,170 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let description = CodingKeys(stringValue: "description")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let abandoned = CodingKeys(stringValue: "abandoned")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let renderStartTime = CodingKeys(stringValue: "renderStartTime")
+    static let renderEndTime = CodingKeys(stringValue: "renderEndTime")
+    static let skaffoldConfigUri = CodingKeys(stringValue: "skaffoldConfigUri")
+    static let skaffoldConfigPath = CodingKeys(stringValue: "skaffoldConfigPath")
+    static let buildArtifacts = CodingKeys(stringValue: "buildArtifacts")
+    static let deliveryPipelineSnapshot = CodingKeys(stringValue: "deliveryPipelineSnapshot")
+    static let targetSnapshots = CodingKeys(stringValue: "targetSnapshots")
+    static let customTargetTypeSnapshots = CodingKeys(stringValue: "customTargetTypeSnapshots")
+    static let renderState = CodingKeys(stringValue: "renderState")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let skaffoldVersion = CodingKeys(stringValue: "skaffoldVersion")
+    static let targetArtifacts = CodingKeys(stringValue: "targetArtifacts")
+    static let targetRenders = CodingKeys(stringValue: "targetRenders")
+    static let condition = CodingKeys(stringValue: "condition")
+    static let deployParameters = CodingKeys(stringValue: "deployParameters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "description",
+      "annotations",
+      "labels",
+      "abandoned",
+      "createTime",
+      "renderStartTime",
+      "renderEndTime",
+      "skaffoldConfigUri",
+      "skaffoldConfigPath",
+      "buildArtifacts",
+      "deliveryPipelineSnapshot",
+      "targetSnapshots",
+      "customTargetTypeSnapshots",
+      "renderState",
+      "etag",
+      "skaffoldVersion",
+      "targetArtifacts",
+      "targetRenders",
+      "condition",
+      "deployParameters",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .abandoned) {
+      self.abandoned = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.renderStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .renderStartTime)
+    self.renderEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .renderEndTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldConfigUri) {
+      self.skaffoldConfigUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldConfigPath) {
+      self.skaffoldConfigPath = value
+    }
+    if let value = try container.decodeIfPresent([BuildArtifact].self, forKey: .buildArtifacts) {
+      self.buildArtifacts = value
+    }
+    self.deliveryPipelineSnapshot = try container.decodeIfPresent(
+      DeliveryPipeline.self, forKey: .deliveryPipelineSnapshot)
+    if let value = try container.decodeIfPresent([Target].self, forKey: .targetSnapshots) {
+      self.targetSnapshots = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CustomTargetType].self, forKey: .customTargetTypeSnapshots)
+    {
+      self.customTargetTypeSnapshots = value
+    }
+    if let value = try container.decodeIfPresent(Release.RenderState.self, forKey: .renderState) {
+      self.renderState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .skaffoldVersion) {
+      self.skaffoldVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: TargetArtifact].self, forKey: .targetArtifacts)
+    {
+      self.targetArtifacts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Release.TargetRender].self, forKey: .targetRenders)
+    {
+      self.targetRenders = value
+    }
+    self.condition = try container.decodeIfPresent(
+      Release.ReleaseCondition.self, forKey: .condition)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .deployParameters)
+    {
+      self.deployParameters = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.abandoned, forKey: .abandoned)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.renderStartTime, forKey: .renderStartTime)
+    try container.encodeIfPresent(self.renderEndTime, forKey: .renderEndTime)
+    try container.encode(self.skaffoldConfigUri, forKey: .skaffoldConfigUri)
+    try container.encode(self.skaffoldConfigPath, forKey: .skaffoldConfigPath)
+    try container.encode(self.buildArtifacts, forKey: .buildArtifacts)
+    try container.encodeIfPresent(self.deliveryPipelineSnapshot, forKey: .deliveryPipelineSnapshot)
+    try container.encode(self.targetSnapshots, forKey: .targetSnapshots)
+    try container.encode(self.customTargetTypeSnapshots, forKey: .customTargetTypeSnapshots)
+    try container.encode(self.renderState, forKey: .renderState)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.skaffoldVersion, forKey: .skaffoldVersion)
+    try container.encode(self.targetArtifacts, forKey: .targetArtifacts)
+    try container.encode(self.targetRenders, forKey: .targetRenders)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    try container.encode(self.deployParameters, forKey: .deployParameters)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Details of rendering for a single target.
@@ -156,6 +322,8 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// available.
     public var failureMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetRender`.
     public init() {}
 
@@ -170,6 +338,64 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let renderingBuild = CodingKeys(stringValue: "renderingBuild")
+      static let renderingState = CodingKeys(stringValue: "renderingState")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let failureCause = CodingKeys(stringValue: "failureCause")
+      static let failureMessage = CodingKeys(stringValue: "failureMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "renderingBuild",
+        "renderingState",
+        "metadata",
+        "failureCause",
+        "failureMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .renderingBuild) {
+        self.renderingBuild = value
+      }
+      if let value = try container.decodeIfPresent(
+        Release.TargetRender.TargetRenderState.self, forKey: .renderingState)
+      {
+        self.renderingState = value
+      }
+      self.metadata = try container.decodeIfPresent(RenderMetadata.self, forKey: .metadata)
+      if let value = try container.decodeIfPresent(
+        Release.TargetRender.FailureCause.self, forKey: .failureCause)
+      {
+        self.failureCause = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureMessage) {
+        self.failureMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.renderingBuild, forKey: .renderingBuild)
+      try container.encode(self.renderingState, forKey: .renderingState)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encode(self.failureCause, forKey: .failureCause)
+      try container.encode(self.failureMessage, forKey: .failureMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Valid states of the render operation.
@@ -458,6 +684,8 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// is wrong with the Release.
     public var status: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReleaseReadyCondition`.
     public init() {}
 
@@ -472,6 +700,38 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "status"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .status) {
+        self.status = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -504,6 +764,8 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// supported.
     public var supportExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SkaffoldSupportedCondition`.
     public init() {}
 
@@ -518,6 +780,56 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let status = CodingKeys(stringValue: "status")
+      static let skaffoldSupportState = CodingKeys(stringValue: "skaffoldSupportState")
+      static let maintenanceModeTime = CodingKeys(stringValue: "maintenanceModeTime")
+      static let supportExpirationTime = CodingKeys(stringValue: "supportExpirationTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "status",
+        "skaffoldSupportState",
+        "maintenanceModeTime",
+        "supportExpirationTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .status) {
+        self.status = value
+      }
+      if let value = try container.decodeIfPresent(
+        SkaffoldSupportState.self, forKey: .skaffoldSupportState)
+      {
+        self.skaffoldSupportState = value
+      }
+      self.maintenanceModeTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .maintenanceModeTime)
+      self.supportExpirationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .supportExpirationTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.status, forKey: .status)
+      try container.encode(self.skaffoldSupportState, forKey: .skaffoldSupportState)
+      try container.encodeIfPresent(self.maintenanceModeTime, forKey: .maintenanceModeTime)
+      try container.encodeIfPresent(self.supportExpirationTime, forKey: .supportExpirationTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -542,6 +854,8 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// version.
     public var skaffoldSupportedCondition: Release.SkaffoldSupportedCondition? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReleaseCondition`.
     public init() {}
 
@@ -556,6 +870,43 @@ public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let releaseReadyCondition = CodingKeys(stringValue: "releaseReadyCondition")
+      static let skaffoldSupportedCondition = CodingKeys(stringValue: "skaffoldSupportedCondition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "releaseReadyCondition",
+        "skaffoldSupportedCondition",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.releaseReadyCondition = try container.decodeIfPresent(
+        Release.ReleaseReadyCondition.self, forKey: .releaseReadyCondition)
+      self.skaffoldSupportedCondition = try container.decodeIfPresent(
+        Release.SkaffoldSupportedCondition.self, forKey: .skaffoldSupportedCondition)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.releaseReadyCondition, forKey: .releaseReadyCondition)
+      try container.encodeIfPresent(
+        self.skaffoldSupportedCondition, forKey: .skaffoldSupportedCondition)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

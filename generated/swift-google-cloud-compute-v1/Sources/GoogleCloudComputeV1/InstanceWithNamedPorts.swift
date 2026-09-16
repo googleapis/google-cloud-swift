@@ -30,6 +30,8 @@
     /// Output only. [Output Only] The status of the instance.
     public var status: InstanceWithNamedPorts.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceWithNamedPorts`.
     public init() {}
 
@@ -44,6 +46,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let namedPorts = CodingKeys(stringValue: "namedPorts")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "namedPorts",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      if let value = try container.decodeIfPresent([NamedPort].self, forKey: .namedPorts) {
+        self.namedPorts = value
+      }
+      self.status = try container.decodeIfPresent(
+        InstanceWithNamedPorts.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encode(self.namedPorts, forKey: .namedPorts)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.InstanceWithNamedPorts.status] field.

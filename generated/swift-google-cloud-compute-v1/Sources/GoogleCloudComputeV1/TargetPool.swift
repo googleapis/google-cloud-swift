@@ -116,6 +116,8 @@
     ///     pool while that instance remains healthy.
     public var sessionAffinity: TargetPool.SessionAffinity? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetPool`.
     public init() {}
 
@@ -130,6 +132,91 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let backupPool = CodingKeys(stringValue: "backupPool")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let failoverRatio = CodingKeys(stringValue: "failoverRatio")
+      static let healthChecks = CodingKeys(stringValue: "healthChecks")
+      static let id = CodingKeys(stringValue: "id")
+      static let instances = CodingKeys(stringValue: "instances")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let region = CodingKeys(stringValue: "region")
+      static let securityPolicy = CodingKeys(stringValue: "securityPolicy")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let sessionAffinity = CodingKeys(stringValue: "sessionAffinity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "backupPool",
+        "creationTimestamp",
+        "description",
+        "failoverRatio",
+        "healthChecks",
+        "id",
+        "instances",
+        "kind",
+        "name",
+        "region",
+        "securityPolicy",
+        "selfLink",
+        "sessionAffinity",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.backupPool = try container.decodeIfPresent(Swift.String.self, forKey: .backupPool)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.failoverRatio = try container.decodeIfPresent(Swift.Float.self, forKey: .failoverRatio)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .healthChecks) {
+        self.healthChecks = value
+      }
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instances) {
+        self.instances = value
+      }
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.securityPolicy = try container.decodeIfPresent(
+        Swift.String.self, forKey: .securityPolicy)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.sessionAffinity = try container.decodeIfPresent(
+        TargetPool.SessionAffinity.self, forKey: .sessionAffinity)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.backupPool, forKey: .backupPool)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.failoverRatio, forKey: .failoverRatio)
+      try container.encode(self.healthChecks, forKey: .healthChecks)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encode(self.instances, forKey: .instances)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.securityPolicy, forKey: .securityPolicy)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.sessionAffinity, forKey: .sessionAffinity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [sessionAffinity][google.cloud.compute.v1.TargetPool.sessionAffinity] field.

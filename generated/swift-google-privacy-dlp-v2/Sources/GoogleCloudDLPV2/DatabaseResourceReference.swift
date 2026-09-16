@@ -36,6 +36,8 @@ public struct DatabaseResourceReference: Codable, Equatable, GoogleCloudWKT._Any
   /// database.
   public var databaseResource: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseResourceReference`.
   public init() {}
 
@@ -50,6 +52,56 @@ public struct DatabaseResourceReference: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let instance = CodingKeys(stringValue: "instance")
+    static let database = CodingKeys(stringValue: "database")
+    static let databaseResource = CodingKeys(stringValue: "databaseResource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "instance",
+      "database",
+      "databaseResource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+      self.instance = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseResource) {
+      self.databaseResource = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.instance, forKey: .instance)
+    try container.encode(self.database, forKey: .database)
+    try container.encode(self.databaseResource, forKey: .databaseResource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

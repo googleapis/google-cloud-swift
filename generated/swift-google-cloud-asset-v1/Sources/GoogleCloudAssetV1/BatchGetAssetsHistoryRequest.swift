@@ -65,6 +65,8 @@ public struct BatchGetAssetsHistoryRequest: Codable, Equatable, GoogleCloudWKT._
   /// supported asset types and relationship types.
   public var relationshipTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchGetAssetsHistoryRequest`.
   public init() {}
 
@@ -79,6 +81,60 @@ public struct BatchGetAssetsHistoryRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let assetNames = CodingKeys(stringValue: "assetNames")
+    static let contentType = CodingKeys(stringValue: "contentType")
+    static let readTimeWindow = CodingKeys(stringValue: "readTimeWindow")
+    static let relationshipTypes = CodingKeys(stringValue: "relationshipTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "assetNames",
+      "contentType",
+      "readTimeWindow",
+      "relationshipTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .assetNames) {
+      self.assetNames = value
+    }
+    if let value = try container.decodeIfPresent(ContentType.self, forKey: .contentType) {
+      self.contentType = value
+    }
+    self.readTimeWindow = try container.decodeIfPresent(TimeWindow.self, forKey: .readTimeWindow)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .relationshipTypes) {
+      self.relationshipTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.assetNames, forKey: .assetNames)
+    try container.encode(self.contentType, forKey: .contentType)
+    try container.encodeIfPresent(self.readTimeWindow, forKey: .readTimeWindow)
+    try container.encode(self.relationshipTypes, forKey: .relationshipTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

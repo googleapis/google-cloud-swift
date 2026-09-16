@@ -33,6 +33,8 @@
     /// The list of named ports to set for this instance group.
     public var namedPorts: [NamedPort] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RegionInstanceGroupsSetNamedPortsRequest`.
     public init() {}
 
@@ -49,9 +51,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fingerprint = "fingerprint"
-      case namedPorts = "namedPorts"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let namedPorts = CodingKeys(stringValue: "namedPorts")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fingerprint",
+        "namedPorts",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -65,7 +77,13 @@
         }
         self.fingerprint = v
       }
-      self.namedPorts = try container.decode([NamedPort].self, forKey: .namedPorts)
+      if let value = try container.decodeIfPresent([NamedPort].self, forKey: .namedPorts) {
+        self.namedPorts = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,6 +94,9 @@
         )
       }
       try container.encode(self.namedPorts, forKey: .namedPorts)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

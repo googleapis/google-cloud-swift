@@ -42,6 +42,8 @@ public struct AuditContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Audit resource name which is scrubbed.
   public var targetResource: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditContext`.
   public init() {}
 
@@ -56,6 +58,62 @@ public struct AuditContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let auditLog = CodingKeys(stringValue: "auditLog")
+    static let scrubbedRequest = CodingKeys(stringValue: "scrubbedRequest")
+    static let scrubbedResponse = CodingKeys(stringValue: "scrubbedResponse")
+    static let scrubbedResponseItemCount = CodingKeys(stringValue: "scrubbedResponseItemCount")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "auditLog",
+      "scrubbedRequest",
+      "scrubbedResponse",
+      "scrubbedResponseItemCount",
+      "targetResource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .auditLog) {
+      self.auditLog = value
+    }
+    self.scrubbedRequest = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .scrubbedRequest)
+    self.scrubbedResponse = try container.decodeIfPresent(
+      GoogleCloudWKT.Struct.self, forKey: .scrubbedResponse)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .scrubbedResponseItemCount)
+    {
+      self.scrubbedResponseItemCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.auditLog, forKey: .auditLog)
+    try container.encodeIfPresent(self.scrubbedRequest, forKey: .scrubbedRequest)
+    try container.encodeIfPresent(self.scrubbedResponse, forKey: .scrubbedResponse)
+    try container.encode(self.scrubbedResponseItemCount, forKey: .scrubbedResponseItemCount)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

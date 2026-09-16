@@ -159,6 +159,8 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Task`.
   public init() {}
 
@@ -173,6 +175,221 @@ public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let generation = CodingKeys(stringValue: "generation")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let scheduledTime = CodingKeys(stringValue: "scheduledTime")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let completionTime = CodingKeys(stringValue: "completionTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let job = CodingKeys(stringValue: "job")
+    static let execution = CodingKeys(stringValue: "execution")
+    static let containers = CodingKeys(stringValue: "containers")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let maxRetries = CodingKeys(stringValue: "maxRetries")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let executionEnvironment = CodingKeys(stringValue: "executionEnvironment")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let observedGeneration = CodingKeys(stringValue: "observedGeneration")
+    static let index = CodingKeys(stringValue: "index")
+    static let retried = CodingKeys(stringValue: "retried")
+    static let lastAttemptResult = CodingKeys(stringValue: "lastAttemptResult")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
+    static let logUri = CodingKeys(stringValue: "logUri")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
+    static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "generation",
+      "labels",
+      "annotations",
+      "createTime",
+      "scheduledTime",
+      "startTime",
+      "completionTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "job",
+      "execution",
+      "containers",
+      "volumes",
+      "maxRetries",
+      "timeout",
+      "serviceAccount",
+      "executionEnvironment",
+      "reconciling",
+      "conditions",
+      "observedGeneration",
+      "index",
+      "retried",
+      "lastAttemptResult",
+      "encryptionKey",
+      "vpcAccess",
+      "logUri",
+      "satisfiesPzs",
+      "nodeSelector",
+      "gpuZonalRedundancyDisabled",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generation) {
+      self.generation = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.scheduledTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .scheduledTime)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.completionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .completionTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .job) {
+      self.job = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .execution) {
+      self.execution = value
+    }
+    if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
+      self.containers = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRetries) {
+      self.maxRetries = value
+    }
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
+      ExecutionEnvironment.self, forKey: .executionEnvironment)
+    {
+      self.executionEnvironment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent([Condition].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .observedGeneration) {
+      self.observedGeneration = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
+      self.index = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .retried) {
+      self.retried = value
+    }
+    self.lastAttemptResult = try container.decodeIfPresent(
+      TaskAttemptResult.self, forKey: .lastAttemptResult)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encryptionKey) {
+      self.encryptionKey = value
+    }
+    self.vpcAccess = try container.decodeIfPresent(VpcAccess.self, forKey: .vpcAccess)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logUri) {
+      self.logUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
+    self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.generation, forKey: .generation)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.scheduledTime, forKey: .scheduledTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.job, forKey: .job)
+    try container.encode(self.execution, forKey: .execution)
+    try container.encode(self.containers, forKey: .containers)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encode(self.maxRetries, forKey: .maxRetries)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.conditions, forKey: .conditions)
+    try container.encode(self.observedGeneration, forKey: .observedGeneration)
+    try container.encode(self.index, forKey: .index)
+    try container.encode(self.retried, forKey: .retried)
+    try container.encodeIfPresent(self.lastAttemptResult, forKey: .lastAttemptResult)
+    try container.encode(self.encryptionKey, forKey: .encryptionKey)
+    try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
+    try container.encode(self.logUri, forKey: .logUri)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
+    try container.encodeIfPresent(
+      self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

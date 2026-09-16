@@ -51,6 +51,8 @@ public struct LoggingServer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. System-generated unique identifier for the resource.
   public var uid: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LoggingServer`.
   public init() {}
 
@@ -67,41 +69,78 @@ public struct LoggingServer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case hostname = "hostname"
-    case port = "port"
-    case `protocol` = "protocol"
-    case sourceType = "sourceType"
-    case uid = "uid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let port = CodingKeys(stringValue: "port")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let uid = CodingKeys(stringValue: "uid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "hostname",
+      "port",
+      "protocol",
+      "sourceType",
+      "uid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.hostname = try container.decode(Swift.String.self, forKey: .hostname)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.`protocol` = try container.decode(LoggingServer.Protocol_.self, forKey: .`protocol`)
-    self.sourceType = try container.decode(LoggingServer.SourceType.self, forKey: .sourceType)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(LoggingServer.Protocol_.self, forKey: .`protocol`)
+    {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(LoggingServer.SourceType.self, forKey: .sourceType)
+    {
+      self.sourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encode(self.port, forKey: .port)
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.sourceType, forKey: .sourceType)
     try container.encode(self.uid, forKey: .uid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Defines possible protocols used to send logs to

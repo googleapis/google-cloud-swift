@@ -47,6 +47,8 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleC
   /// resource.
   public var supportEndTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDeploymentVersionProperties`.
   public init() {}
 
@@ -61,6 +63,70 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleC
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let deploymentType = CodingKeys(stringValue: "deploymentType")
+    static let securityFix = CodingKeys(stringValue: "securityFix")
+    static let oggVersion = CodingKeys(stringValue: "oggVersion")
+    static let releaseType = CodingKeys(stringValue: "releaseType")
+    static let releaseTime = CodingKeys(stringValue: "releaseTime")
+    static let supportEndTime = CodingKeys(stringValue: "supportEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "deploymentType",
+      "securityFix",
+      "oggVersion",
+      "releaseType",
+      "releaseTime",
+      "supportEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentVersionProperties.DeploymentType.self, forKey: .deploymentType)
+    {
+      self.deploymentType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .securityFix) {
+      self.securityFix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oggVersion) {
+      self.oggVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      GoldengateDeploymentVersionProperties.DeploymentReleaseType.self, forKey: .releaseType)
+    {
+      self.releaseType = value
+    }
+    self.releaseTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .releaseTime)
+    self.supportEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .supportEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.deploymentType, forKey: .deploymentType)
+    try container.encode(self.securityFix, forKey: .securityFix)
+    try container.encode(self.oggVersion, forKey: .oggVersion)
+    try container.encode(self.releaseType, forKey: .releaseType)
+    try container.encodeIfPresent(self.releaseTime, forKey: .releaseTime)
+    try container.encodeIfPresent(self.supportEndTime, forKey: .supportEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The deployment type of the Goldengate Deployment Version resource.

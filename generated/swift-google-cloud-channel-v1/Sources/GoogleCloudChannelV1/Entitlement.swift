@@ -95,6 +95,8 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// consistent between quoting the offer and placing the order.
   public var priceReferenceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Entitlement`.
   public init() {}
 
@@ -109,6 +111,113 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let offer = CodingKeys(stringValue: "offer")
+    static let commitmentSettings = CodingKeys(stringValue: "commitmentSettings")
+    static let provisioningState = CodingKeys(stringValue: "provisioningState")
+    static let provisionedService = CodingKeys(stringValue: "provisionedService")
+    static let suspensionReasons = CodingKeys(stringValue: "suspensionReasons")
+    static let purchaseOrderId = CodingKeys(stringValue: "purchaseOrderId")
+    static let trialSettings = CodingKeys(stringValue: "trialSettings")
+    static let associationInfo = CodingKeys(stringValue: "associationInfo")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let billingAccount = CodingKeys(stringValue: "billingAccount")
+    static let priceReferenceId = CodingKeys(stringValue: "priceReferenceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "offer",
+      "commitmentSettings",
+      "provisioningState",
+      "provisionedService",
+      "suspensionReasons",
+      "purchaseOrderId",
+      "trialSettings",
+      "associationInfo",
+      "parameters",
+      "billingAccount",
+      "priceReferenceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offer) {
+      self.offer = value
+    }
+    self.commitmentSettings = try container.decodeIfPresent(
+      CommitmentSettings.self, forKey: .commitmentSettings)
+    if let value = try container.decodeIfPresent(
+      Entitlement.ProvisioningState.self, forKey: .provisioningState)
+    {
+      self.provisioningState = value
+    }
+    self.provisionedService = try container.decodeIfPresent(
+      ProvisionedService.self, forKey: .provisionedService)
+    if let value = try container.decodeIfPresent(
+      [Entitlement.SuspensionReason].self, forKey: .suspensionReasons)
+    {
+      self.suspensionReasons = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .purchaseOrderId) {
+      self.purchaseOrderId = value
+    }
+    self.trialSettings = try container.decodeIfPresent(TrialSettings.self, forKey: .trialSettings)
+    self.associationInfo = try container.decodeIfPresent(
+      AssociationInfo.self, forKey: .associationInfo)
+    if let value = try container.decodeIfPresent([Parameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .billingAccount) {
+      self.billingAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .priceReferenceId) {
+      self.priceReferenceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.offer, forKey: .offer)
+    try container.encodeIfPresent(self.commitmentSettings, forKey: .commitmentSettings)
+    try container.encode(self.provisioningState, forKey: .provisioningState)
+    try container.encodeIfPresent(self.provisionedService, forKey: .provisionedService)
+    try container.encode(self.suspensionReasons, forKey: .suspensionReasons)
+    try container.encode(self.purchaseOrderId, forKey: .purchaseOrderId)
+    try container.encodeIfPresent(self.trialSettings, forKey: .trialSettings)
+    try container.encodeIfPresent(self.associationInfo, forKey: .associationInfo)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encode(self.billingAccount, forKey: .billingAccount)
+    try container.encode(self.priceReferenceId, forKey: .priceReferenceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Indicates the current provisioning state of the entitlement.

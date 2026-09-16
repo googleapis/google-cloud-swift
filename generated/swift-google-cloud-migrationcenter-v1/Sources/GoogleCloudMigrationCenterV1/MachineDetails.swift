@@ -54,6 +54,8 @@ public struct MachineDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Platform specific information.
   public var platform: PlatformDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MachineDetails`.
   public init() {}
 
@@ -68,6 +70,90 @@ public struct MachineDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uuid = CodingKeys(stringValue: "uuid")
+    static let machineName = CodingKeys(stringValue: "machineName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let coreCount = CodingKeys(stringValue: "coreCount")
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let powerState = CodingKeys(stringValue: "powerState")
+    static let architecture = CodingKeys(stringValue: "architecture")
+    static let guestOs = CodingKeys(stringValue: "guestOs")
+    static let network = CodingKeys(stringValue: "network")
+    static let disks = CodingKeys(stringValue: "disks")
+    static let platform = CodingKeys(stringValue: "platform")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uuid",
+      "machineName",
+      "createTime",
+      "coreCount",
+      "memoryMb",
+      "powerState",
+      "architecture",
+      "guestOs",
+      "network",
+      "disks",
+      "platform",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+      self.uuid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineName) {
+      self.machineName = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .coreCount) {
+      self.coreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(
+      MachineDetails.PowerState.self, forKey: .powerState)
+    {
+      self.powerState = value
+    }
+    self.architecture = try container.decodeIfPresent(
+      MachineArchitectureDetails.self, forKey: .architecture)
+    self.guestOs = try container.decodeIfPresent(GuestOsDetails.self, forKey: .guestOs)
+    self.network = try container.decodeIfPresent(MachineNetworkDetails.self, forKey: .network)
+    self.disks = try container.decodeIfPresent(MachineDiskDetails.self, forKey: .disks)
+    self.platform = try container.decodeIfPresent(PlatformDetails.self, forKey: .platform)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uuid, forKey: .uuid)
+    try container.encode(self.machineName, forKey: .machineName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.coreCount, forKey: .coreCount)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.powerState, forKey: .powerState)
+    try container.encodeIfPresent(self.architecture, forKey: .architecture)
+    try container.encodeIfPresent(self.guestOs, forKey: .guestOs)
+    try container.encodeIfPresent(self.network, forKey: .network)
+    try container.encodeIfPresent(self.disks, forKey: .disks)
+    try container.encodeIfPresent(self.platform, forKey: .platform)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Machine power state.

@@ -59,6 +59,8 @@ public struct UserOwnedGrafeasNote: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote.note_reference]: <doc:UserOwnedGrafeasNote/noteReference>
   public var delegationServiceAccountEmail: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UserOwnedGrafeasNote`.
   public init() {}
 
@@ -73,6 +75,53 @@ public struct UserOwnedGrafeasNote: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let noteReference = CodingKeys(stringValue: "noteReference")
+    static let publicKeys = CodingKeys(stringValue: "publicKeys")
+    static let delegationServiceAccountEmail = CodingKeys(
+      stringValue: "delegationServiceAccountEmail")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "noteReference",
+      "publicKeys",
+      "delegationServiceAccountEmail",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .noteReference) {
+      self.noteReference = value
+    }
+    if let value = try container.decodeIfPresent([AttestorPublicKey].self, forKey: .publicKeys) {
+      self.publicKeys = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .delegationServiceAccountEmail)
+    {
+      self.delegationServiceAccountEmail = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.noteReference, forKey: .noteReference)
+    try container.encode(self.publicKeys, forKey: .publicKeys)
+    try container.encode(self.delegationServiceAccountEmail, forKey: .delegationServiceAccountEmail)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

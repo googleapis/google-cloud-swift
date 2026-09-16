@@ -26,6 +26,8 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not set, the system's default value will be used.
   public var startPosition: OneOf_StartPosition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CdcStrategy`.
   public init() {}
 
@@ -42,10 +44,21 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mostRecentStartPosition = "mostRecentStartPosition"
-    case nextAvailableStartPosition = "nextAvailableStartPosition"
-    case specificStartPosition = "specificStartPosition"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mostRecentStartPosition = CodingKeys(stringValue: "mostRecentStartPosition")
+    static let nextAvailableStartPosition = CodingKeys(stringValue: "nextAvailableStartPosition")
+    static let specificStartPosition = CodingKeys(stringValue: "specificStartPosition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mostRecentStartPosition",
+      "nextAvailableStartPosition",
+      "specificStartPosition",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -77,6 +90,10 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try startPositionCheckAndSet(.specificStartPosition(specificStartPosition))
     }
     self.startPosition = startPosition
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -92,6 +109,9 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .specificStartPosition)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// CDC strategy to start replicating from the most recent position in the
@@ -99,6 +119,8 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct MostRecentStartPosition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MostRecentStartPosition`.
     public init() {}
 
@@ -113,6 +135,30 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -131,6 +177,8 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct NextAvailableStartPosition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NextAvailableStartPosition`.
     public init() {}
 
@@ -145,6 +193,30 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -164,6 +236,8 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     public var position: OneOf_Position? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpecificStartPosition`.
     public init() {}
 
@@ -180,11 +254,23 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case mysqlLogPosition = "mysqlLogPosition"
-      case oracleScnPosition = "oracleScnPosition"
-      case sqlServerLsnPosition = "sqlServerLsnPosition"
-      case mysqlGtidPosition = "mysqlGtidPosition"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let mysqlLogPosition = CodingKeys(stringValue: "mysqlLogPosition")
+      static let oracleScnPosition = CodingKeys(stringValue: "oracleScnPosition")
+      static let sqlServerLsnPosition = CodingKeys(stringValue: "sqlServerLsnPosition")
+      static let mysqlGtidPosition = CodingKeys(stringValue: "mysqlGtidPosition")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "mysqlLogPosition",
+        "oracleScnPosition",
+        "sqlServerLsnPosition",
+        "mysqlGtidPosition",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -221,6 +307,10 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try positionCheckAndSet(.mysqlGtidPosition(mysqlGtidPosition))
       }
       self.position = position
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -237,6 +327,9 @@ public struct CdcStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .mysqlGtidPosition(let value):
           try container.encode(value, forKey: .mysqlGtidPosition)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

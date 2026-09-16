@@ -40,6 +40,8 @@ public struct AdvanceRolloutRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. Information around the state of the Automation rule.
   public var condition: AutomationRuleCondition? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdvanceRolloutRule`.
   public init() {}
 
@@ -54,6 +56,52 @@ public struct AdvanceRolloutRule: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let sourcePhases = CodingKeys(stringValue: "sourcePhases")
+    static let wait = CodingKeys(stringValue: "wait")
+    static let condition = CodingKeys(stringValue: "condition")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "sourcePhases",
+      "wait",
+      "condition",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourcePhases) {
+      self.sourcePhases = value
+    }
+    self.wait = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .wait)
+    self.condition = try container.decodeIfPresent(AutomationRuleCondition.self, forKey: .condition)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.sourcePhases, forKey: .sourcePhases)
+    try container.encodeIfPresent(self.wait, forKey: .wait)
+    try container.encodeIfPresent(self.condition, forKey: .condition)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

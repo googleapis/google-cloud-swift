@@ -23,6 +23,8 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var insight: OneOf_Insight? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Insight`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case migrationInsight = "migrationInsight"
-    case genericInsight = "genericInsight"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let migrationInsight = CodingKeys(stringValue: "migrationInsight")
+    static let genericInsight = CodingKeys(stringValue: "genericInsight")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "migrationInsight",
+      "genericInsight",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try insightCheckAndSet(.genericInsight(genericInsight))
     }
     self.insight = insight
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .genericInsight(let value):
         try container.encode(value, forKey: .genericInsight)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

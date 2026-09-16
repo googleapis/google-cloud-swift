@@ -33,6 +33,8 @@ public struct DeploymentJobs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The postdeploy Job, which is the last job on the phase.
   public var postdeployJob: Job? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentJobs`.
   public init() {}
 
@@ -47,6 +49,48 @@ public struct DeploymentJobs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let predeployJob = CodingKeys(stringValue: "predeployJob")
+    static let deployJob = CodingKeys(stringValue: "deployJob")
+    static let verifyJob = CodingKeys(stringValue: "verifyJob")
+    static let postdeployJob = CodingKeys(stringValue: "postdeployJob")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "predeployJob",
+      "deployJob",
+      "verifyJob",
+      "postdeployJob",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.predeployJob = try container.decodeIfPresent(Job.self, forKey: .predeployJob)
+    self.deployJob = try container.decodeIfPresent(Job.self, forKey: .deployJob)
+    self.verifyJob = try container.decodeIfPresent(Job.self, forKey: .verifyJob)
+    self.postdeployJob = try container.decodeIfPresent(Job.self, forKey: .postdeployJob)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.predeployJob, forKey: .predeployJob)
+    try container.encodeIfPresent(self.deployJob, forKey: .deployJob)
+    try container.encodeIfPresent(self.verifyJob, forKey: .verifyJob)
+    try container.encodeIfPresent(self.postdeployJob, forKey: .postdeployJob)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

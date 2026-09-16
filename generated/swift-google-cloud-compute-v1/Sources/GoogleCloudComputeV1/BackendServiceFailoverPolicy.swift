@@ -68,6 +68,8 @@
     /// Balancing](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
     public var failoverRatio: Swift.Float? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceFailoverPolicy`.
     public init() {}
 
@@ -82,6 +84,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disableConnectionDrainOnFailover = CodingKeys(
+        stringValue: "disableConnectionDrainOnFailover")
+      static let dropTrafficIfUnhealthy = CodingKeys(stringValue: "dropTrafficIfUnhealthy")
+      static let failoverRatio = CodingKeys(stringValue: "failoverRatio")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disableConnectionDrainOnFailover",
+        "dropTrafficIfUnhealthy",
+        "failoverRatio",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.disableConnectionDrainOnFailover = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableConnectionDrainOnFailover)
+      self.dropTrafficIfUnhealthy = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .dropTrafficIfUnhealthy)
+      self.failoverRatio = try container.decodeIfPresent(Swift.Float.self, forKey: .failoverRatio)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.disableConnectionDrainOnFailover, forKey: .disableConnectionDrainOnFailover)
+      try container.encodeIfPresent(self.dropTrafficIfUnhealthy, forKey: .dropTrafficIfUnhealthy)
+      try container.encodeIfPresent(self.failoverRatio, forKey: .failoverRatio)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

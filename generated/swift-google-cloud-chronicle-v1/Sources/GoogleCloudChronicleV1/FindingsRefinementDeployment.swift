@@ -44,6 +44,8 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleCloudWKT._
   /// the type of the findings refinement.
   public var findingsRefinementApplication: OneOf_FindingsRefinementApplication? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FindingsRefinementDeployment`.
   public init() {}
 
@@ -60,19 +62,39 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case detectionExclusionApplication = "detectionExclusionApplication"
-    case name = "name"
-    case enabled = "enabled"
-    case archived = "archived"
-    case updateTime = "updateTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let detectionExclusionApplication = CodingKeys(
+      stringValue: "detectionExclusionApplication")
+    static let name = CodingKeys(stringValue: "name")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let archived = CodingKeys(stringValue: "archived")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "detectionExclusionApplication",
+      "name",
+      "enabled",
+      "archived",
+      "updateTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
-    self.archived = try container.decode(Swift.Bool.self, forKey: .archived)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .archived) {
+      self.archived = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
@@ -93,6 +115,10 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleCloudWKT._
         .detectionExclusionApplication(detectionExclusionApplication))
     }
     self.findingsRefinementApplication = findingsRefinementApplication
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -100,13 +126,16 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleCloudWKT._
     try container.encode(self.name, forKey: .name)
     try container.encode(self.enabled, forKey: .enabled)
     try container.encode(self.archived, forKey: .archived)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.findingsRefinementApplication {
       switch choice {
       case .detectionExclusionApplication(let value):
         try container.encode(value, forKey: .detectionExclusionApplication)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

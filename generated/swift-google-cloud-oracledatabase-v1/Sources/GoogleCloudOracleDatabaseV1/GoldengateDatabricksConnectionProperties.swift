@@ -51,6 +51,8 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
   /// Only applicable for authentication_type == PERSONAL_ACCESS_TOKEN.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDatabricksConnectionProperties`.
   public init() {}
 
@@ -67,27 +69,56 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case authenticationType = "authenticationType"
-    case connectionUrl = "connectionUrl"
-    case clientId = "clientId"
-    case clientSecret = "clientSecret"
-    case storageCredential = "storageCredential"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let connectionUrl = CodingKeys(stringValue: "connectionUrl")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let clientSecret = CodingKeys(stringValue: "clientSecret")
+    static let storageCredential = CodingKeys(stringValue: "storageCredential")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "authenticationType",
+      "connectionUrl",
+      "clientId",
+      "clientSecret",
+      "storageCredential",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.authenticationType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateDatabricksConnectionProperties.DatabricksAuthenticationType.self,
       forKey: .authenticationType)
-    self.connectionUrl = try container.decode(Swift.String.self, forKey: .connectionUrl)
-    self.clientId = try container.decode(Swift.String.self, forKey: .clientId)
-    self.clientSecret = try container.decode(Swift.String.self, forKey: .clientSecret)
-    self.storageCredential = try container.decode(Swift.String.self, forKey: .storageCredential)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionUrl) {
+      self.connectionUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientSecret) {
+      self.clientSecret = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageCredential) {
+      self.storageCredential = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -108,6 +139,10 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,6 +161,9 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

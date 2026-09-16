@@ -31,6 +31,8 @@ public struct CreateDomainMappingRequest: Codable, Equatable, GoogleCloudWKT._An
   /// domain. By default, overrides are rejected.
   public var overrideStrategy: DomainOverrideStrategy = DomainOverrideStrategy()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDomainMappingRequest`.
   public init() {}
 
@@ -45,6 +47,50 @@ public struct CreateDomainMappingRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let domainMapping = CodingKeys(stringValue: "domainMapping")
+    static let overrideStrategy = CodingKeys(stringValue: "overrideStrategy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "domainMapping",
+      "overrideStrategy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.domainMapping = try container.decodeIfPresent(DomainMapping.self, forKey: .domainMapping)
+    if let value = try container.decodeIfPresent(
+      DomainOverrideStrategy.self, forKey: .overrideStrategy)
+    {
+      self.overrideStrategy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.domainMapping, forKey: .domainMapping)
+    try container.encode(self.overrideStrategy, forKey: .overrideStrategy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

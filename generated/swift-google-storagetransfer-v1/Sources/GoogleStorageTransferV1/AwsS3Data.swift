@@ -97,6 +97,8 @@ public struct AwsS3Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var privateNetwork: OneOf_PrivateNetwork? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsS3Data`.
   public init() {}
 
@@ -113,24 +115,49 @@ public struct AwsS3Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case bucketName = "bucketName"
-    case awsAccessKey = "awsAccessKey"
-    case path = "path"
-    case roleArn = "roleArn"
-    case cloudfrontDomain = "cloudfrontDomain"
-    case credentialsSecret = "credentialsSecret"
-    case managedPrivateNetwork = "managedPrivateNetwork"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucketName = CodingKeys(stringValue: "bucketName")
+    static let awsAccessKey = CodingKeys(stringValue: "awsAccessKey")
+    static let path = CodingKeys(stringValue: "path")
+    static let roleArn = CodingKeys(stringValue: "roleArn")
+    static let cloudfrontDomain = CodingKeys(stringValue: "cloudfrontDomain")
+    static let credentialsSecret = CodingKeys(stringValue: "credentialsSecret")
+    static let managedPrivateNetwork = CodingKeys(stringValue: "managedPrivateNetwork")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucketName",
+      "awsAccessKey",
+      "path",
+      "roleArn",
+      "cloudfrontDomain",
+      "credentialsSecret",
+      "managedPrivateNetwork",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.bucketName = try container.decode(Swift.String.self, forKey: .bucketName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
+      self.bucketName = value
+    }
     self.awsAccessKey = try container.decodeIfPresent(AwsAccessKey.self, forKey: .awsAccessKey)
-    self.path = try container.decode(Swift.String.self, forKey: .path)
-    self.roleArn = try container.decode(Swift.String.self, forKey: .roleArn)
-    self.cloudfrontDomain = try container.decode(Swift.String.self, forKey: .cloudfrontDomain)
-    self.credentialsSecret = try container.decode(Swift.String.self, forKey: .credentialsSecret)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .roleArn) {
+      self.roleArn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudfrontDomain) {
+      self.cloudfrontDomain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .credentialsSecret) {
+      self.credentialsSecret = value
+    }
 
     var privateNetwork: OneOf_PrivateNetwork? = nil
     let privateNetworkCheckAndSet = {
@@ -148,12 +175,16 @@ public struct AwsS3Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try privateNetworkCheckAndSet(.managedPrivateNetwork(managedPrivateNetwork))
     }
     self.privateNetwork = privateNetwork
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucketName, forKey: .bucketName)
-    try container.encode(self.awsAccessKey, forKey: .awsAccessKey)
+    try container.encodeIfPresent(self.awsAccessKey, forKey: .awsAccessKey)
     try container.encode(self.path, forKey: .path)
     try container.encode(self.roleArn, forKey: .roleArn)
     try container.encode(self.cloudfrontDomain, forKey: .cloudfrontDomain)
@@ -164,6 +195,9 @@ public struct AwsS3Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .managedPrivateNetwork(let value):
         try container.encode(value, forKey: .managedPrivateNetwork)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

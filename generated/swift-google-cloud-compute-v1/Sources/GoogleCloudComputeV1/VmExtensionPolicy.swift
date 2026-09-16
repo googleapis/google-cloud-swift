@@ -82,6 +82,8 @@
     /// text format.
     public var updateTimestamp: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VmExtensionPolicy`.
     public init() {}
 
@@ -96,6 +98,101 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let extensionPolicies = CodingKeys(stringValue: "extensionPolicies")
+      static let globalResourceLink = CodingKeys(stringValue: "globalResourceLink")
+      static let id = CodingKeys(stringValue: "id")
+      static let instanceSelectors = CodingKeys(stringValue: "instanceSelectors")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let managedByGlobal = CodingKeys(stringValue: "managedByGlobal")
+      static let name = CodingKeys(stringValue: "name")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let state = CodingKeys(stringValue: "state")
+      static let updateTimestamp = CodingKeys(stringValue: "updateTimestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "extensionPolicies",
+        "globalResourceLink",
+        "id",
+        "instanceSelectors",
+        "kind",
+        "managedByGlobal",
+        "name",
+        "priority",
+        "selfLink",
+        "selfLinkWithId",
+        "state",
+        "updateTimestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: VmExtensionPolicyExtensionPolicy].self, forKey: .extensionPolicies)
+      {
+        self.extensionPolicies = value
+      }
+      self.globalResourceLink = try container.decodeIfPresent(
+        Swift.String.self, forKey: .globalResourceLink)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      if let value = try container.decodeIfPresent(
+        [VmExtensionPolicyInstanceSelector].self, forKey: .instanceSelectors)
+      {
+        self.instanceSelectors = value
+      }
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.managedByGlobal = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .managedByGlobal)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      self.state = try container.decodeIfPresent(VmExtensionPolicy.State.self, forKey: .state)
+      self.updateTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .updateTimestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.extensionPolicies, forKey: .extensionPolicies)
+      try container.encodeIfPresent(self.globalResourceLink, forKey: .globalResourceLink)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encode(self.instanceSelectors, forKey: .instanceSelectors)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.managedByGlobal, forKey: .managedByGlobal)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.updateTimestamp, forKey: .updateTimestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [state][google.cloud.compute.v1.VmExtensionPolicy.state] field.

@@ -36,6 +36,8 @@ public struct CancelOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public var cancellationPolicy: CancelOrderRequest.CancellationPolicy =
     CancelOrderRequest.CancellationPolicy()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CancelOrderRequest`.
   public init() {}
 
@@ -50,6 +52,52 @@ public struct CancelOrderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let cancellationPolicy = CodingKeys(stringValue: "cancellationPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "etag",
+      "cancellationPolicy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      CancelOrderRequest.CancellationPolicy.self, forKey: .cancellationPolicy)
+    {
+      self.cancellationPolicy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.cancellationPolicy, forKey: .cancellationPolicy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Indicates the cancellation policy the customer uses to cancel the order.

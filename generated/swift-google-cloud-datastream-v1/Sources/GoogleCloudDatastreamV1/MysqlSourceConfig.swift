@@ -39,6 +39,8 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The CDC method to use for the stream.
   public var cdcMethod: OneOf_CdcMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MysqlSourceConfig`.
   public init() {}
 
@@ -55,23 +57,41 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeObjects = "includeObjects"
-    case excludeObjects = "excludeObjects"
-    case maxConcurrentCdcTasks = "maxConcurrentCdcTasks"
-    case maxConcurrentBackfillTasks = "maxConcurrentBackfillTasks"
-    case binaryLogPosition = "binaryLogPosition"
-    case gtid = "gtid"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeObjects = CodingKeys(stringValue: "includeObjects")
+    static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
+    static let maxConcurrentCdcTasks = CodingKeys(stringValue: "maxConcurrentCdcTasks")
+    static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+    static let binaryLogPosition = CodingKeys(stringValue: "binaryLogPosition")
+    static let gtid = CodingKeys(stringValue: "gtid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeObjects",
+      "excludeObjects",
+      "maxConcurrentCdcTasks",
+      "maxConcurrentBackfillTasks",
+      "binaryLogPosition",
+      "gtid",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.includeObjects = try container.decodeIfPresent(MysqlRdbms.self, forKey: .includeObjects)
     self.excludeObjects = try container.decodeIfPresent(MysqlRdbms.self, forKey: .excludeObjects)
-    self.maxConcurrentCdcTasks = try container.decode(
-      Swift.Int32.self, forKey: .maxConcurrentCdcTasks)
-    self.maxConcurrentBackfillTasks = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConcurrentCdcTasks) {
+      self.maxConcurrentCdcTasks = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .maxConcurrentBackfillTasks)
+    {
+      self.maxConcurrentBackfillTasks = value
+    }
 
     var cdcMethod: OneOf_CdcMethod? = nil
     let cdcMethodCheckAndSet = {
@@ -92,12 +112,16 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try cdcMethodCheckAndSet(.gtid(gtid))
     }
     self.cdcMethod = cdcMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.includeObjects, forKey: .includeObjects)
-    try container.encode(self.excludeObjects, forKey: .excludeObjects)
+    try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
+    try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
     try container.encode(self.maxConcurrentCdcTasks, forKey: .maxConcurrentCdcTasks)
     try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
 
@@ -109,12 +133,17 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try container.encode(value, forKey: .gtid)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Use Binary log position based replication.
   public struct BinaryLogPosition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BinaryLogPosition`.
     public init() {}
 
@@ -129,6 +158,30 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -146,6 +199,8 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public struct Gtid: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Gtid`.
     public init() {}
 
@@ -160,6 +215,30 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

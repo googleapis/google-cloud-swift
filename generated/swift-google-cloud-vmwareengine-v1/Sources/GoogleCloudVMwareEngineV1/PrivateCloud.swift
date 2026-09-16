@@ -75,6 +75,8 @@ public struct PrivateCloud: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Type of the private cloud. Defaults to STANDARD.
   public var type: PrivateCloud.Type_ = PrivateCloud.Type_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PrivateCloud`.
   public init() {}
 
@@ -89,6 +91,103 @@ public struct PrivateCloud: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let managementCluster = CodingKeys(stringValue: "managementCluster")
+    static let description = CodingKeys(stringValue: "description")
+    static let hcx = CodingKeys(stringValue: "hcx")
+    static let nsx = CodingKeys(stringValue: "nsx")
+    static let vcenter = CodingKeys(stringValue: "vcenter")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "state",
+      "networkConfig",
+      "managementCluster",
+      "description",
+      "hcx",
+      "nsx",
+      "vcenter",
+      "uid",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(PrivateCloud.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
+    self.managementCluster = try container.decodeIfPresent(
+      PrivateCloud.ManagementCluster.self, forKey: .managementCluster)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.hcx = try container.decodeIfPresent(Hcx.self, forKey: .hcx)
+    self.nsx = try container.decodeIfPresent(Nsx.self, forKey: .nsx)
+    self.vcenter = try container.decodeIfPresent(Vcenter.self, forKey: .vcenter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(PrivateCloud.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.managementCluster, forKey: .managementCluster)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.hcx, forKey: .hcx)
+    try container.encodeIfPresent(self.nsx, forKey: .nsx)
+    try container.encodeIfPresent(self.vcenter, forKey: .vcenter)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Management cluster configuration.
@@ -114,6 +213,8 @@ public struct PrivateCloud: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// private clouds.
     public var stretchedClusterConfig: StretchedClusterConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManagementCluster`.
     public init() {}
 
@@ -128,6 +229,51 @@ public struct PrivateCloud: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clusterId = CodingKeys(stringValue: "clusterId")
+      static let nodeTypeConfigs = CodingKeys(stringValue: "nodeTypeConfigs")
+      static let stretchedClusterConfig = CodingKeys(stringValue: "stretchedClusterConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clusterId",
+        "nodeTypeConfigs",
+        "stretchedClusterConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterId) {
+        self.clusterId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: NodeTypeConfig].self, forKey: .nodeTypeConfigs)
+      {
+        self.nodeTypeConfigs = value
+      }
+      self.stretchedClusterConfig = try container.decodeIfPresent(
+        StretchedClusterConfig.self, forKey: .stretchedClusterConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.clusterId, forKey: .clusterId)
+      try container.encode(self.nodeTypeConfigs, forKey: .nodeTypeConfigs)
+      try container.encodeIfPresent(self.stretchedClusterConfig, forKey: .stretchedClusterConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

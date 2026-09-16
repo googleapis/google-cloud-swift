@@ -49,6 +49,8 @@ public struct TrinoJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// either an HCFS file URI or as a list of queries.
   public var queries: OneOf_Queries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrinoJob`.
   public init() {}
 
@@ -65,22 +67,47 @@ public struct TrinoJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case queryFileUri = "queryFileUri"
-    case queryList = "queryList"
-    case continueOnFailure = "continueOnFailure"
-    case outputFormat = "outputFormat"
-    case clientTags = "clientTags"
-    case properties = "properties"
-    case loggingConfig = "loggingConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let queryFileUri = CodingKeys(stringValue: "queryFileUri")
+    static let queryList = CodingKeys(stringValue: "queryList")
+    static let continueOnFailure = CodingKeys(stringValue: "continueOnFailure")
+    static let outputFormat = CodingKeys(stringValue: "outputFormat")
+    static let clientTags = CodingKeys(stringValue: "clientTags")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "queryFileUri",
+      "queryList",
+      "continueOnFailure",
+      "outputFormat",
+      "clientTags",
+      "properties",
+      "loggingConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.continueOnFailure = try container.decode(Swift.Bool.self, forKey: .continueOnFailure)
-    self.outputFormat = try container.decode(Swift.String.self, forKey: .outputFormat)
-    self.clientTags = try container.decode([Swift.String].self, forKey: .clientTags)
-    self.properties = try container.decode([Swift.String: Swift.String].self, forKey: .properties)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .continueOnFailure) {
+      self.continueOnFailure = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputFormat) {
+      self.outputFormat = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .clientTags) {
+      self.clientTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .properties)
+    {
+      self.properties = value
+    }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
     var queries: OneOf_Queries? = nil
@@ -100,6 +127,10 @@ public struct TrinoJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try queriesCheckAndSet(.queryList(queryList))
     }
     self.queries = queries
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -108,7 +139,7 @@ public struct TrinoJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.outputFormat, forKey: .outputFormat)
     try container.encode(self.clientTags, forKey: .clientTags)
     try container.encode(self.properties, forKey: .properties)
-    try container.encode(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
 
     if let choice = self.queries {
       switch choice {
@@ -117,6 +148,9 @@ public struct TrinoJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .queryList(let value):
         try container.encode(value, forKey: .queryList)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -44,6 +44,8 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The state of the index.
   public var state: Index.State = Index.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Index`.
   public init() {}
 
@@ -60,6 +62,69 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let indexId = CodingKeys(stringValue: "indexId")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let ancestor = CodingKeys(stringValue: "ancestor")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "indexId",
+      "kind",
+      "ancestor",
+      "properties",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexId) {
+      self.indexId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent(Index.AncestorMode.self, forKey: .ancestor) {
+      self.ancestor = value
+    }
+    if let value = try container.decodeIfPresent([Index.IndexedProperty].self, forKey: .properties)
+    {
+      self.properties = value
+    }
+    if let value = try container.decodeIfPresent(Index.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.indexId, forKey: .indexId)
+    try container.encode(self.kind, forKey: .kind)
+    try container.encode(self.ancestor, forKey: .ancestor)
+    try container.encode(self.properties, forKey: .properties)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A property of an index.
   public struct IndexedProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -70,6 +135,8 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. The indexed property's direction.  Must not be
     /// DIRECTION_UNSPECIFIED.
     public var direction: Index.Direction = Index.Direction()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `IndexedProperty`.
     public init() {}
@@ -85,6 +152,44 @@ public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let direction = CodingKeys(stringValue: "direction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "direction",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Index.Direction.self, forKey: .direction) {
+        self.direction = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.direction, forKey: .direction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

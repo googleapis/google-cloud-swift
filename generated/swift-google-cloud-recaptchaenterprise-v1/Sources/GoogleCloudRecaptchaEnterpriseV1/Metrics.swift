@@ -38,6 +38,8 @@ public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// challenge-based data.
   public var challengeMetrics: [ChallengeMetrics] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Metrics`.
   public init() {}
 
@@ -52,6 +54,56 @@ public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let scoreMetrics = CodingKeys(stringValue: "scoreMetrics")
+    static let challengeMetrics = CodingKeys(stringValue: "challengeMetrics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "startTime",
+      "scoreMetrics",
+      "challengeMetrics",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    if let value = try container.decodeIfPresent([ScoreMetrics].self, forKey: .scoreMetrics) {
+      self.scoreMetrics = value
+    }
+    if let value = try container.decodeIfPresent([ChallengeMetrics].self, forKey: .challengeMetrics)
+    {
+      self.challengeMetrics = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encode(self.scoreMetrics, forKey: .scoreMetrics)
+    try container.encode(self.challengeMetrics, forKey: .challengeMetrics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

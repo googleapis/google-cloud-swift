@@ -24,6 +24,8 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
 {
   public var environment: OneOf_Environment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SharingEnvironmentConfig`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case defaultExchangeConfig = "defaultExchangeConfig"
-    case dcrExchangeConfig = "dcrExchangeConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let defaultExchangeConfig = CodingKeys(stringValue: "defaultExchangeConfig")
+    static let dcrExchangeConfig = CodingKeys(stringValue: "dcrExchangeConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "defaultExchangeConfig",
+      "dcrExchangeConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
       try environmentCheckAndSet(.dcrExchangeConfig(dcrExchangeConfig))
     }
     self.environment = environment
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,12 +98,17 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
         try container.encode(value, forKey: .dcrExchangeConfig)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Default Analytics Hub data exchange, used for secured data sharing.
   public struct DefaultExchangeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DefaultExchangeConfig`.
     public init() {}
 
@@ -102,6 +123,30 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -135,6 +180,8 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     /// default, all new DCRs will have the restriction set to True.
     public var singleLinkedDatasetPerCleanroom: Swift.Bool? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DcrExchangeConfig`.
     public init() {}
 
@@ -149,6 +196,47 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyP
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let singleSelectedResourceSharingRestriction = CodingKeys(
+        stringValue: "singleSelectedResourceSharingRestriction")
+      static let singleLinkedDatasetPerCleanroom = CodingKeys(
+        stringValue: "singleLinkedDatasetPerCleanroom")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "singleSelectedResourceSharingRestriction",
+        "singleLinkedDatasetPerCleanroom",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.singleSelectedResourceSharingRestriction = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .singleSelectedResourceSharingRestriction)
+      self.singleLinkedDatasetPerCleanroom = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .singleLinkedDatasetPerCleanroom)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.singleSelectedResourceSharingRestriction,
+        forKey: .singleSelectedResourceSharingRestriction)
+      try container.encodeIfPresent(
+        self.singleLinkedDatasetPerCleanroom, forKey: .singleLinkedDatasetPerCleanroom)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

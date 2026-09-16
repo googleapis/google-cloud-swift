@@ -48,6 +48,8 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The detail information of a specific event type.
   public var event: OneOf_Event? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClientEvent`.
   public init() {}
 
@@ -64,21 +66,40 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case requestId = "requestId"
-    case eventId = "eventId"
-    case createTime = "createTime"
-    case jobEvent = "jobEvent"
-    case eventNotes = "eventNotes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let eventId = CodingKeys(stringValue: "eventId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let jobEvent = CodingKeys(stringValue: "jobEvent")
+    static let eventNotes = CodingKeys(stringValue: "eventNotes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestId",
+      "eventId",
+      "createTime",
+      "jobEvent",
+      "eventNotes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
-    self.eventId = try container.decode(Swift.String.self, forKey: .eventId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventId) {
+      self.eventId = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.eventNotes = try container.decode(Swift.String.self, forKey: .eventNotes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventNotes) {
+      self.eventNotes = value
+    }
 
     var event: OneOf_Event? = nil
     let eventCheckAndSet = {
@@ -94,13 +115,17 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try eventCheckAndSet(.jobEvent(jobEvent))
     }
     self.event = event
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.requestId, forKey: .requestId)
     try container.encode(self.eventId, forKey: .eventId)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.eventNotes, forKey: .eventNotes)
 
     if let choice = self.event {
@@ -108,6 +133,9 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .jobEvent(let value):
         try container.encode(value, forKey: .jobEvent)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

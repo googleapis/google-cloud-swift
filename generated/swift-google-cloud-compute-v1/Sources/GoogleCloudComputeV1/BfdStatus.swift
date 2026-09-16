@@ -60,6 +60,8 @@
     /// Session uptime in milliseconds. Value will be 0 if session is not up.
     public var uptimeMs: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BfdStatus`.
     public init() {}
 
@@ -74,6 +76,88 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bfdSessionInitializationMode = CodingKeys(
+        stringValue: "bfdSessionInitializationMode")
+      static let configUpdateTimestampMicros = CodingKeys(
+        stringValue: "configUpdateTimestampMicros")
+      static let controlPacketCounts = CodingKeys(stringValue: "controlPacketCounts")
+      static let controlPacketIntervals = CodingKeys(stringValue: "controlPacketIntervals")
+      static let localDiagnostic = CodingKeys(stringValue: "localDiagnostic")
+      static let localState = CodingKeys(stringValue: "localState")
+      static let negotiatedLocalControlTxIntervalMs = CodingKeys(
+        stringValue: "negotiatedLocalControlTxIntervalMs")
+      static let rxPacket = CodingKeys(stringValue: "rxPacket")
+      static let txPacket = CodingKeys(stringValue: "txPacket")
+      static let uptimeMs = CodingKeys(stringValue: "uptimeMs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bfdSessionInitializationMode",
+        "configUpdateTimestampMicros",
+        "controlPacketCounts",
+        "controlPacketIntervals",
+        "localDiagnostic",
+        "localState",
+        "negotiatedLocalControlTxIntervalMs",
+        "rxPacket",
+        "txPacket",
+        "uptimeMs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bfdSessionInitializationMode = try container.decodeIfPresent(
+        BfdStatus.BfdSessionInitializationMode.self, forKey: .bfdSessionInitializationMode)
+      self.configUpdateTimestampMicros = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .configUpdateTimestampMicros)
+      self.controlPacketCounts = try container.decodeIfPresent(
+        BfdStatusPacketCounts.self, forKey: .controlPacketCounts)
+      if let value = try container.decodeIfPresent(
+        [PacketIntervals].self, forKey: .controlPacketIntervals)
+      {
+        self.controlPacketIntervals = value
+      }
+      self.localDiagnostic = try container.decodeIfPresent(
+        BfdStatus.LocalDiagnostic.self, forKey: .localDiagnostic)
+      self.localState = try container.decodeIfPresent(
+        BfdStatus.LocalState.self, forKey: .localState)
+      self.negotiatedLocalControlTxIntervalMs = try container.decodeIfPresent(
+        Swift.UInt32.self, forKey: .negotiatedLocalControlTxIntervalMs)
+      self.rxPacket = try container.decodeIfPresent(BfdPacket.self, forKey: .rxPacket)
+      self.txPacket = try container.decodeIfPresent(BfdPacket.self, forKey: .txPacket)
+      self.uptimeMs = try container.decodeIfPresent(Swift.Int64.self, forKey: .uptimeMs)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.bfdSessionInitializationMode, forKey: .bfdSessionInitializationMode)
+      try container.encodeIfPresent(
+        self.configUpdateTimestampMicros, forKey: .configUpdateTimestampMicros)
+      try container.encodeIfPresent(self.controlPacketCounts, forKey: .controlPacketCounts)
+      try container.encode(self.controlPacketIntervals, forKey: .controlPacketIntervals)
+      try container.encodeIfPresent(self.localDiagnostic, forKey: .localDiagnostic)
+      try container.encodeIfPresent(self.localState, forKey: .localState)
+      try container.encodeIfPresent(
+        self.negotiatedLocalControlTxIntervalMs, forKey: .negotiatedLocalControlTxIntervalMs)
+      try container.encodeIfPresent(self.rxPacket, forKey: .rxPacket)
+      try container.encodeIfPresent(self.txPacket, forKey: .txPacket)
+      try container.encodeIfPresent(self.uptimeMs, forKey: .uptimeMs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [bfdSessionInitializationMode][google.cloud.compute.v1.BfdStatus.bfdSessionInitializationMode] field.

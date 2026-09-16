@@ -33,6 +33,8 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleCloudWKT.
   /// A list of locations that could not be reached.
   public var unreachable: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResolveAppConnectionsResponse`.
   public init() {}
 
@@ -49,6 +51,52 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let appConnectionDetails = CodingKeys(stringValue: "appConnectionDetails")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let unreachable = CodingKeys(stringValue: "unreachable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "appConnectionDetails",
+      "nextPageToken",
+      "unreachable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ResolveAppConnectionsResponse.AppConnectionDetails].self, forKey: .appConnectionDetails)
+    {
+      self.appConnectionDetails = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachable) {
+      self.unreachable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.appConnectionDetails, forKey: .appConnectionDetails)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.unreachable, forKey: .unreachable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Details of the AppConnection.
   public struct AppConnectionDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +107,8 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleCloudWKT.
     /// If type=GCP_REGIONAL_MIG, contains most recent VM instances, like
     /// `https://www.googleapis.com/compute/v1/projects/{project_id}/zones/{zone_id}/instances/{instance_id}`.
     public var recentMigVms: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AppConnectionDetails`.
     public init() {}
@@ -74,6 +124,42 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let appConnection = CodingKeys(stringValue: "appConnection")
+      static let recentMigVms = CodingKeys(stringValue: "recentMigVms")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "appConnection",
+        "recentMigVms",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.appConnection = try container.decodeIfPresent(AppConnection.self, forKey: .appConnection)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .recentMigVms) {
+        self.recentMigVms = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.appConnection, forKey: .appConnection)
+      try container.encode(self.recentMigVms, forKey: .recentMigVms)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

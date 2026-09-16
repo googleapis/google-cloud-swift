@@ -75,6 +75,8 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var resourceName: OneOf_ResourceName? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Subscription`.
   public init() {}
 
@@ -91,41 +93,84 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case listing = "listing"
-    case dataExchange = "dataExchange"
-    case name = "name"
-    case creationTime = "creationTime"
-    case lastModifyTime = "lastModifyTime"
-    case organizationId = "organizationId"
-    case organizationDisplayName = "organizationDisplayName"
-    case state = "state"
-    case linkedDatasetMap = "linkedDatasetMap"
-    case subscriberContact = "subscriberContact"
-    case linkedResources = "linkedResources"
-    case resourceType = "resourceType"
-    case commercialInfo = "commercialInfo"
-    case logLinkedDatasetQueryUserEmail = "logLinkedDatasetQueryUserEmail"
-    case destinationDataset = "destinationDataset"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let listing = CodingKeys(stringValue: "listing")
+    static let dataExchange = CodingKeys(stringValue: "dataExchange")
+    static let name = CodingKeys(stringValue: "name")
+    static let creationTime = CodingKeys(stringValue: "creationTime")
+    static let lastModifyTime = CodingKeys(stringValue: "lastModifyTime")
+    static let organizationId = CodingKeys(stringValue: "organizationId")
+    static let organizationDisplayName = CodingKeys(stringValue: "organizationDisplayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let linkedDatasetMap = CodingKeys(stringValue: "linkedDatasetMap")
+    static let subscriberContact = CodingKeys(stringValue: "subscriberContact")
+    static let linkedResources = CodingKeys(stringValue: "linkedResources")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let commercialInfo = CodingKeys(stringValue: "commercialInfo")
+    static let logLinkedDatasetQueryUserEmail = CodingKeys(
+      stringValue: "logLinkedDatasetQueryUserEmail")
+    static let destinationDataset = CodingKeys(stringValue: "destinationDataset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "listing",
+      "dataExchange",
+      "name",
+      "creationTime",
+      "lastModifyTime",
+      "organizationId",
+      "organizationDisplayName",
+      "state",
+      "linkedDatasetMap",
+      "subscriberContact",
+      "linkedResources",
+      "resourceType",
+      "commercialInfo",
+      "logLinkedDatasetQueryUserEmail",
+      "destinationDataset",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.creationTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .creationTime)
     self.lastModifyTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .lastModifyTime)
-    self.organizationId = try container.decode(Swift.String.self, forKey: .organizationId)
-    self.organizationDisplayName = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organizationId) {
+      self.organizationId = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .organizationDisplayName)
-    self.state = try container.decode(Subscription.State.self, forKey: .state)
-    self.linkedDatasetMap = try container.decode(
+    {
+      self.organizationDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Subscription.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Subscription.LinkedResource].self, forKey: .linkedDatasetMap)
-    self.subscriberContact = try container.decode(Swift.String.self, forKey: .subscriberContact)
-    self.linkedResources = try container.decode(
+    {
+      self.linkedDatasetMap = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscriberContact) {
+      self.subscriberContact = value
+    }
+    if let value = try container.decodeIfPresent(
       [Subscription.LinkedResource].self, forKey: .linkedResources)
-    self.resourceType = try container.decode(SharedResourceType.self, forKey: .resourceType)
+    {
+      self.linkedResources = value
+    }
+    if let value = try container.decodeIfPresent(SharedResourceType.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
     self.commercialInfo = try container.decodeIfPresent(
       Subscription.CommercialInfo.self, forKey: .commercialInfo)
     self.logLinkedDatasetQueryUserEmail = try container.decodeIfPresent(
@@ -150,13 +195,17 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resourceNameCheckAndSet(.dataExchange(dataExchange))
     }
     self.resourceName = resourceName
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.creationTime, forKey: .creationTime)
-    try container.encode(self.lastModifyTime, forKey: .lastModifyTime)
+    try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
+    try container.encodeIfPresent(self.lastModifyTime, forKey: .lastModifyTime)
     try container.encode(self.organizationId, forKey: .organizationId)
     try container.encode(self.organizationDisplayName, forKey: .organizationDisplayName)
     try container.encode(self.state, forKey: .state)
@@ -164,10 +213,10 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.subscriberContact, forKey: .subscriberContact)
     try container.encode(self.linkedResources, forKey: .linkedResources)
     try container.encode(self.resourceType, forKey: .resourceType)
-    try container.encode(self.commercialInfo, forKey: .commercialInfo)
-    try container.encode(
+    try container.encodeIfPresent(self.commercialInfo, forKey: .commercialInfo)
+    try container.encodeIfPresent(
       self.logLinkedDatasetQueryUserEmail, forKey: .logLinkedDatasetQueryUserEmail)
-    try container.encode(self.destinationDataset, forKey: .destinationDataset)
+    try container.encodeIfPresent(self.destinationDataset, forKey: .destinationDataset)
 
     if let choice = self.resourceName {
       switch choice {
@@ -176,6 +225,9 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dataExchange(let value):
         try container.encode(value, forKey: .dataExchange)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -187,6 +239,8 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var listing: Swift.String = Swift.String()
 
     public var reference: OneOf_Reference? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `LinkedResource`.
     public init() {}
@@ -204,15 +258,28 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case linkedDataset = "linkedDataset"
-      case linkedPubsubSubscription = "linkedPubsubSubscription"
-      case listing = "listing"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let linkedDataset = CodingKeys(stringValue: "linkedDataset")
+      static let linkedPubsubSubscription = CodingKeys(stringValue: "linkedPubsubSubscription")
+      static let listing = CodingKeys(stringValue: "listing")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "linkedDataset",
+        "linkedPubsubSubscription",
+        "listing",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.listing = try container.decode(Swift.String.self, forKey: .listing)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .listing) {
+        self.listing = value
+      }
 
       var reference: OneOf_Reference? = nil
       let referenceCheckAndSet = {
@@ -235,6 +302,10 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try referenceCheckAndSet(.linkedPubsubSubscription(linkedPubsubSubscription))
       }
       self.reference = reference
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -248,6 +319,9 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .linkedPubsubSubscription(let value):
           try container.encode(value, forKey: .linkedPubsubSubscription)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -279,6 +353,8 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Cloud Marketplace.
     public var cloudMarketplace: Subscription.CommercialInfo.GoogleCloudMarketplaceInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CommercialInfo`.
     public init() {}
 
@@ -295,12 +371,45 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cloudMarketplace = CodingKeys(stringValue: "cloudMarketplace")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cloudMarketplace"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cloudMarketplace = try container.decodeIfPresent(
+        Subscription.CommercialInfo.GoogleCloudMarketplaceInfo.self, forKey: .cloudMarketplace)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cloudMarketplace, forKey: .cloudMarketplace)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Cloud Marketplace commercial metadata for this subscription.
     public struct GoogleCloudMarketplaceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Resource name of the Marketplace Order.
       public var order: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GoogleCloudMarketplaceInfo`.
       public init() {}
@@ -316,6 +425,38 @@ public struct Subscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let order = CodingKeys(stringValue: "order")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "order"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .order) {
+          self.order = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.order, forKey: .order)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

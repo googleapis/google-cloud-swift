@@ -68,6 +68,8 @@ public struct ExplainedAllowPolicy: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// is empty.
   public var policy: GoogleIAMV1.Policy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExplainedAllowPolicy`.
   public init() {}
 
@@ -82,6 +84,62 @@ public struct ExplainedAllowPolicy: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowAccessState = CodingKeys(stringValue: "allowAccessState")
+    static let fullResourceName = CodingKeys(stringValue: "fullResourceName")
+    static let bindingExplanations = CodingKeys(stringValue: "bindingExplanations")
+    static let relevance = CodingKeys(stringValue: "relevance")
+    static let policy = CodingKeys(stringValue: "policy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowAccessState",
+      "fullResourceName",
+      "bindingExplanations",
+      "relevance",
+      "policy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AllowAccessState.self, forKey: .allowAccessState) {
+      self.allowAccessState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
+      self.fullResourceName = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AllowBindingExplanation].self, forKey: .bindingExplanations)
+    {
+      self.bindingExplanations = value
+    }
+    if let value = try container.decodeIfPresent(HeuristicRelevance.self, forKey: .relevance) {
+      self.relevance = value
+    }
+    self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.allowAccessState, forKey: .allowAccessState)
+    try container.encode(self.fullResourceName, forKey: .fullResourceName)
+    try container.encode(self.bindingExplanations, forKey: .bindingExplanations)
+    try container.encode(self.relevance, forKey: .relevance)
+    try container.encodeIfPresent(self.policy, forKey: .policy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

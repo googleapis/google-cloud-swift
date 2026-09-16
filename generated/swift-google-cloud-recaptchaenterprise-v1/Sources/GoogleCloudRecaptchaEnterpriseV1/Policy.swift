@@ -34,6 +34,8 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// first matching rule group is found.
   public var challengeRuleGroups: [ChallengeRuleGroup] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Policy`.
   public init() {}
 
@@ -48,6 +50,51 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let clientSettings = CodingKeys(stringValue: "clientSettings")
+    static let challengeRuleGroups = CodingKeys(stringValue: "challengeRuleGroups")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "clientSettings",
+      "challengeRuleGroups",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.clientSettings = try container.decodeIfPresent(
+      ClientSettings.self, forKey: .clientSettings)
+    if let value = try container.decodeIfPresent(
+      [ChallengeRuleGroup].self, forKey: .challengeRuleGroups)
+    {
+      self.challengeRuleGroups = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.clientSettings, forKey: .clientSettings)
+    try container.encode(self.challengeRuleGroups, forKey: .challengeRuleGroups)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

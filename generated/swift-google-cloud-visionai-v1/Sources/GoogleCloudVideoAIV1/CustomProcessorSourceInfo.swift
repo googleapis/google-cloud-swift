@@ -39,6 +39,8 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
   /// The path where App Platform loads the artifacts for the custom processor.
   public var artifactPath: OneOf_ArtifactPath? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomProcessorSourceInfo`.
   public init() {}
 
@@ -55,20 +57,39 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vertexModel = "vertexModel"
-    case productRecognizerArtifact = "productRecognizerArtifact"
-    case sourceType = "sourceType"
-    case additionalInfo = "additionalInfo"
-    case modelSchema = "modelSchema"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vertexModel = CodingKeys(stringValue: "vertexModel")
+    static let productRecognizerArtifact = CodingKeys(stringValue: "productRecognizerArtifact")
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let additionalInfo = CodingKeys(stringValue: "additionalInfo")
+    static let modelSchema = CodingKeys(stringValue: "modelSchema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vertexModel",
+      "productRecognizerArtifact",
+      "sourceType",
+      "additionalInfo",
+      "modelSchema",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sourceType = try container.decode(
+    if let value = try container.decodeIfPresent(
       CustomProcessorSourceInfo.SourceType.self, forKey: .sourceType)
-    self.additionalInfo = try container.decode(
+    {
+      self.sourceType = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .additionalInfo)
+    {
+      self.additionalInfo = value
+    }
     self.modelSchema = try container.decodeIfPresent(
       CustomProcessorSourceInfo.ModelSchema.self, forKey: .modelSchema)
 
@@ -91,13 +112,17 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       try artifactPathCheckAndSet(.productRecognizerArtifact(productRecognizerArtifact))
     }
     self.artifactPath = artifactPath
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sourceType, forKey: .sourceType)
     try container.encode(self.additionalInfo, forKey: .additionalInfo)
-    try container.encode(self.modelSchema, forKey: .modelSchema)
+    try container.encodeIfPresent(self.modelSchema, forKey: .modelSchema)
 
     if let choice = self.artifactPath {
       switch choice {
@@ -106,6 +131,9 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       case .productRecognizerArtifact(let value):
         try container.encode(value, forKey: .productRecognizerArtifact)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -122,6 +150,8 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
     /// Platform.
     public var vertexModel: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProductRecognizerArtifact`.
     public init() {}
 
@@ -136,6 +166,48 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let retailProductRecognitionIndex = CodingKeys(
+        stringValue: "retailProductRecognitionIndex")
+      static let vertexModel = CodingKeys(stringValue: "vertexModel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "retailProductRecognitionIndex",
+        "vertexModel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .retailProductRecognitionIndex)
+      {
+        self.retailProductRecognitionIndex = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vertexModel) {
+        self.vertexModel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.retailProductRecognitionIndex, forKey: .retailProductRecognitionIndex)
+      try container.encode(self.vertexModel, forKey: .vertexModel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -167,6 +239,8 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
     /// prediction or explanation.
     public var predictionsSchema: GcsSource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelSchema`.
     public init() {}
 
@@ -181,6 +255,46 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instancesSchema = CodingKeys(stringValue: "instancesSchema")
+      static let parametersSchema = CodingKeys(stringValue: "parametersSchema")
+      static let predictionsSchema = CodingKeys(stringValue: "predictionsSchema")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instancesSchema",
+        "parametersSchema",
+        "predictionsSchema",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.instancesSchema = try container.decodeIfPresent(GcsSource.self, forKey: .instancesSchema)
+      self.parametersSchema = try container.decodeIfPresent(
+        GcsSource.self, forKey: .parametersSchema)
+      self.predictionsSchema = try container.decodeIfPresent(
+        GcsSource.self, forKey: .predictionsSchema)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.instancesSchema, forKey: .instancesSchema)
+      try container.encodeIfPresent(self.parametersSchema, forKey: .parametersSchema)
+      try container.encodeIfPresent(self.predictionsSchema, forKey: .predictionsSchema)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -25,6 +25,8 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWKT._
   /// a single entry for any given file.
   public var uncommittedFileChanges: [FetchFileGitStatusesResponse.UncommittedFileChange] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FetchFileGitStatusesResponse`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uncommittedFileChanges = CodingKeys(stringValue: "uncommittedFileChanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uncommittedFileChanges"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [FetchFileGitStatusesResponse.UncommittedFileChange].self, forKey: .uncommittedFileChanges)
+    {
+      self.uncommittedFileChanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uncommittedFileChanges, forKey: .uncommittedFileChanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Represents the Git state of a file with uncommitted changes.
   public struct UncommittedFileChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -51,6 +87,8 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWKT._
     /// Output only. Indicates the status of the file.
     public var state: FetchFileGitStatusesResponse.UncommittedFileChange.State =
       FetchFileGitStatusesResponse.UncommittedFileChange.State()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `UncommittedFileChange`.
     public init() {}
@@ -66,6 +104,46 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let path = CodingKeys(stringValue: "path")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "path",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(
+        FetchFileGitStatusesResponse.UncommittedFileChange.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Indicates the status of an uncommitted file change.

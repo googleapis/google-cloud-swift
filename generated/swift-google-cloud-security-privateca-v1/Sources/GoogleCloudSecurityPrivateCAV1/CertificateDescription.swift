@@ -62,6 +62,8 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// populated.
   public var tbsCertificateDigest: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateDescription`.
   public init() {}
 
@@ -76,6 +78,83 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subjectDescription = CodingKeys(stringValue: "subjectDescription")
+    static let x509Description = CodingKeys(stringValue: "x509Description")
+    static let publicKey = CodingKeys(stringValue: "publicKey")
+    static let subjectKeyId = CodingKeys(stringValue: "subjectKeyId")
+    static let authorityKeyId = CodingKeys(stringValue: "authorityKeyId")
+    static let crlDistributionPoints = CodingKeys(stringValue: "crlDistributionPoints")
+    static let aiaIssuingCertificateUrls = CodingKeys(stringValue: "aiaIssuingCertificateUrls")
+    static let certFingerprint = CodingKeys(stringValue: "certFingerprint")
+    static let tbsCertificateDigest = CodingKeys(stringValue: "tbsCertificateDigest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subjectDescription",
+      "x509Description",
+      "publicKey",
+      "subjectKeyId",
+      "authorityKeyId",
+      "crlDistributionPoints",
+      "aiaIssuingCertificateUrls",
+      "certFingerprint",
+      "tbsCertificateDigest",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.subjectDescription = try container.decodeIfPresent(
+      CertificateDescription.SubjectDescription.self, forKey: .subjectDescription)
+    self.x509Description = try container.decodeIfPresent(
+      X509Parameters.self, forKey: .x509Description)
+    self.publicKey = try container.decodeIfPresent(PublicKey.self, forKey: .publicKey)
+    self.subjectKeyId = try container.decodeIfPresent(
+      CertificateDescription.KeyId.self, forKey: .subjectKeyId)
+    self.authorityKeyId = try container.decodeIfPresent(
+      CertificateDescription.KeyId.self, forKey: .authorityKeyId)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .crlDistributionPoints)
+    {
+      self.crlDistributionPoints = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .aiaIssuingCertificateUrls)
+    {
+      self.aiaIssuingCertificateUrls = value
+    }
+    self.certFingerprint = try container.decodeIfPresent(
+      CertificateDescription.CertificateFingerprint.self, forKey: .certFingerprint)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tbsCertificateDigest) {
+      self.tbsCertificateDigest = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.subjectDescription, forKey: .subjectDescription)
+    try container.encodeIfPresent(self.x509Description, forKey: .x509Description)
+    try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
+    try container.encodeIfPresent(self.subjectKeyId, forKey: .subjectKeyId)
+    try container.encodeIfPresent(self.authorityKeyId, forKey: .authorityKeyId)
+    try container.encode(self.crlDistributionPoints, forKey: .crlDistributionPoints)
+    try container.encode(self.aiaIssuingCertificateUrls, forKey: .aiaIssuingCertificateUrls)
+    try container.encodeIfPresent(self.certFingerprint, forKey: .certFingerprint)
+    try container.encode(self.tbsCertificateDigest, forKey: .tbsCertificateDigest)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// These values describe fields in an issued X.509 certificate such as the
@@ -105,6 +184,8 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// Corresponds to 'not_before_time' + 'lifetime' - 1 second.
     public var notAfterTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubjectDescription`.
     public init() {}
 
@@ -119,6 +200,61 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subject = CodingKeys(stringValue: "subject")
+      static let subjectAltName = CodingKeys(stringValue: "subjectAltName")
+      static let hexSerialNumber = CodingKeys(stringValue: "hexSerialNumber")
+      static let lifetime = CodingKeys(stringValue: "lifetime")
+      static let notBeforeTime = CodingKeys(stringValue: "notBeforeTime")
+      static let notAfterTime = CodingKeys(stringValue: "notAfterTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subject",
+        "subjectAltName",
+        "hexSerialNumber",
+        "lifetime",
+        "notBeforeTime",
+        "notAfterTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.subject = try container.decodeIfPresent(Subject.self, forKey: .subject)
+      self.subjectAltName = try container.decodeIfPresent(
+        SubjectAltNames.self, forKey: .subjectAltName)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hexSerialNumber) {
+        self.hexSerialNumber = value
+      }
+      self.lifetime = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .lifetime)
+      self.notBeforeTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .notBeforeTime)
+      self.notAfterTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .notAfterTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.subject, forKey: .subject)
+      try container.encodeIfPresent(self.subjectAltName, forKey: .subjectAltName)
+      try container.encode(self.hexSerialNumber, forKey: .hexSerialNumber)
+      try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
+      try container.encodeIfPresent(self.notBeforeTime, forKey: .notBeforeTime)
+      try container.encodeIfPresent(self.notAfterTime, forKey: .notAfterTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -142,6 +278,8 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// is most likely the 160 bit SHA-1 hash of the public key.
     public var keyId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KeyId`.
     public init() {}
 
@@ -156,6 +294,38 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let keyId = CodingKeys(stringValue: "keyId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "keyId"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
+        self.keyId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.keyId, forKey: .keyId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -176,6 +346,8 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
     /// The SHA 256 hash, encoded in hexadecimal, of the DER x509 certificate.
     public var sha256Hash: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CertificateFingerprint`.
     public init() {}
 
@@ -190,6 +362,38 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sha256Hash = CodingKeys(stringValue: "sha256Hash")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sha256Hash"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha256Hash) {
+        self.sha256Hash = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sha256Hash, forKey: .sha256Hash)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

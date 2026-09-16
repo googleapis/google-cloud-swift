@@ -91,6 +91,8 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The minimum interval for scheduler to schedule runs.
   public var minimumScheduleInterval: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSource`.
   public init() {}
 
@@ -105,6 +107,148 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dataSourceId = CodingKeys(stringValue: "dataSourceId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let scopes = CodingKeys(stringValue: "scopes")
+    static let transferType = CodingKeys(stringValue: "transferType")
+    static let supportsMultipleTransfers = CodingKeys(stringValue: "supportsMultipleTransfers")
+    static let updateDeadlineSeconds = CodingKeys(stringValue: "updateDeadlineSeconds")
+    static let defaultSchedule = CodingKeys(stringValue: "defaultSchedule")
+    static let supportsCustomSchedule = CodingKeys(stringValue: "supportsCustomSchedule")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let helpUrl = CodingKeys(stringValue: "helpUrl")
+    static let authorizationType = CodingKeys(stringValue: "authorizationType")
+    static let dataRefreshType = CodingKeys(stringValue: "dataRefreshType")
+    static let defaultDataRefreshWindowDays = CodingKeys(
+      stringValue: "defaultDataRefreshWindowDays")
+    static let manualRunsDisabled = CodingKeys(stringValue: "manualRunsDisabled")
+    static let minimumScheduleInterval = CodingKeys(stringValue: "minimumScheduleInterval")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dataSourceId",
+      "displayName",
+      "description",
+      "clientId",
+      "scopes",
+      "transferType",
+      "supportsMultipleTransfers",
+      "updateDeadlineSeconds",
+      "defaultSchedule",
+      "supportsCustomSchedule",
+      "parameters",
+      "helpUrl",
+      "authorizationType",
+      "dataRefreshType",
+      "defaultDataRefreshWindowDays",
+      "manualRunsDisabled",
+      "minimumScheduleInterval",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSourceId) {
+      self.dataSourceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+      self.scopes = value
+    }
+    if let value = try container.decodeIfPresent(TransferType.self, forKey: .transferType) {
+      self.transferType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .supportsMultipleTransfers)
+    {
+      self.supportsMultipleTransfers = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .updateDeadlineSeconds) {
+      self.updateDeadlineSeconds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultSchedule) {
+      self.defaultSchedule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsCustomSchedule) {
+      self.supportsCustomSchedule = value
+    }
+    if let value = try container.decodeIfPresent([DataSourceParameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .helpUrl) {
+      self.helpUrl = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataSource.AuthorizationType.self, forKey: .authorizationType)
+    {
+      self.authorizationType = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataSource.DataRefreshType.self, forKey: .dataRefreshType)
+    {
+      self.dataRefreshType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .defaultDataRefreshWindowDays)
+    {
+      self.defaultDataRefreshWindowDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .manualRunsDisabled) {
+      self.manualRunsDisabled = value
+    }
+    self.minimumScheduleInterval = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .minimumScheduleInterval)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.dataSourceId, forKey: .dataSourceId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.clientId, forKey: .clientId)
+    try container.encode(self.scopes, forKey: .scopes)
+    try container.encode(self.transferType, forKey: .transferType)
+    try container.encode(self.supportsMultipleTransfers, forKey: .supportsMultipleTransfers)
+    try container.encode(self.updateDeadlineSeconds, forKey: .updateDeadlineSeconds)
+    try container.encode(self.defaultSchedule, forKey: .defaultSchedule)
+    try container.encode(self.supportsCustomSchedule, forKey: .supportsCustomSchedule)
+    try container.encode(self.parameters, forKey: .parameters)
+    try container.encode(self.helpUrl, forKey: .helpUrl)
+    try container.encode(self.authorizationType, forKey: .authorizationType)
+    try container.encode(self.dataRefreshType, forKey: .dataRefreshType)
+    try container.encode(self.defaultDataRefreshWindowDays, forKey: .defaultDataRefreshWindowDays)
+    try container.encode(self.manualRunsDisabled, forKey: .manualRunsDisabled)
+    try container.encodeIfPresent(self.minimumScheduleInterval, forKey: .minimumScheduleInterval)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of authorization needed for this data source.

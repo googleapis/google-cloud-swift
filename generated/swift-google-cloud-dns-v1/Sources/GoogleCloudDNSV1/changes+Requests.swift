@@ -34,6 +34,8 @@ extension ChangesClient {
     /// Synthetic request body field for the [create()][.changes.create] method.
     public var body: Change? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CreateRequest`.
     public init() {}
 
@@ -48,6 +50,53 @@ extension ChangesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let managedZone = CodingKeys(stringValue: "managedZone")
+      static let project = CodingKeys(stringValue: "project")
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "clientOperationId",
+        "managedZone",
+        "project",
+        "body",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
+        self.managedZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      self.body = try container.decodeIfPresent(Change.self, forKey: .body)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.managedZone, forKey: .managedZone)
+      try container.encode(self.project, forKey: .project)
+      try container.encodeIfPresent(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -77,6 +126,8 @@ extension ChangesClient {
     /// Identifies the project addressed by this request.
     public var project: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GetRequest`.
     public init() {}
 
@@ -91,6 +142,55 @@ extension ChangesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let changeId = CodingKeys(stringValue: "changeId")
+      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
+      static let managedZone = CodingKeys(stringValue: "managedZone")
+      static let project = CodingKeys(stringValue: "project")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "changeId",
+        "clientOperationId",
+        "managedZone",
+        "project",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .changeId) {
+        self.changeId = value
+      }
+      self.clientOperationId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .clientOperationId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
+        self.managedZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.changeId, forKey: .changeId)
+      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
+      try container.encode(self.managedZone, forKey: .managedZone)
+      try container.encode(self.project, forKey: .project)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -126,6 +226,8 @@ extension ChangesClient {
     /// Sorting order direction: 'ascending' or 'descending'.
     public var sortOrder: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ListRequest`.
     public init() {}
 
@@ -140,6 +242,61 @@ extension ChangesClient {
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let managedZone = CodingKeys(stringValue: "managedZone")
+      static let maxResults = CodingKeys(stringValue: "maxResults")
+      static let pageToken = CodingKeys(stringValue: "pageToken")
+      static let project = CodingKeys(stringValue: "project")
+      static let sortBy = CodingKeys(stringValue: "sortBy")
+      static let sortOrder = CodingKeys(stringValue: "sortOrder")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "managedZone",
+        "maxResults",
+        "pageToken",
+        "project",
+        "sortBy",
+        "sortOrder",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
+        self.managedZone = value
+      }
+      self.maxResults = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults)
+      self.pageToken = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      self.sortBy = try container.decodeIfPresent(
+        ChangesClient.ListRequest.SortBy.self, forKey: .sortBy)
+      self.sortOrder = try container.decodeIfPresent(Swift.String.self, forKey: .sortOrder)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.managedZone, forKey: .managedZone)
+      try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
+      try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
+      try container.encode(self.project, forKey: .project)
+      try container.encodeIfPresent(self.sortBy, forKey: .sortBy)
+      try container.encodeIfPresent(self.sortOrder, forKey: .sortOrder)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [sortBy][.changes.listRequest.sortBy] field.

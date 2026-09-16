@@ -40,6 +40,8 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the output.
   public var outputType: OneOf_OutputType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionOutput`.
   public init() {}
 
@@ -56,27 +58,52 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case audio = "audio"
-    case toolCalls = "toolCalls"
-    case citations = "citations"
-    case googleSearchSuggestions = "googleSearchSuggestions"
-    case endSession = "endSession"
-    case payload = "payload"
-    case turnIndex = "turnIndex"
-    case turnCompleted = "turnCompleted"
-    case diagnosticInfo = "diagnosticInfo"
-    case context = "context"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let audio = CodingKeys(stringValue: "audio")
+    static let toolCalls = CodingKeys(stringValue: "toolCalls")
+    static let citations = CodingKeys(stringValue: "citations")
+    static let googleSearchSuggestions = CodingKeys(stringValue: "googleSearchSuggestions")
+    static let endSession = CodingKeys(stringValue: "endSession")
+    static let payload = CodingKeys(stringValue: "payload")
+    static let turnIndex = CodingKeys(stringValue: "turnIndex")
+    static let turnCompleted = CodingKeys(stringValue: "turnCompleted")
+    static let diagnosticInfo = CodingKeys(stringValue: "diagnosticInfo")
+    static let context = CodingKeys(stringValue: "context")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "audio",
+      "toolCalls",
+      "citations",
+      "googleSearchSuggestions",
+      "endSession",
+      "payload",
+      "turnIndex",
+      "turnCompleted",
+      "diagnosticInfo",
+      "context",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.turnIndex = try container.decode(Swift.Int32.self, forKey: .turnIndex)
-    self.turnCompleted = try container.decode(Swift.Bool.self, forKey: .turnCompleted)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .turnIndex) {
+      self.turnIndex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .turnCompleted) {
+      self.turnCompleted = value
+    }
     self.diagnosticInfo = try container.decodeIfPresent(
       SessionOutput.DiagnosticInfo.self, forKey: .diagnosticInfo)
-    self.context = try container.decode([GoogleCloudWKT.`Any`].self, forKey: .context)
+    if let value = try container.decodeIfPresent([GoogleCloudWKT.`Any`].self, forKey: .context) {
+      self.context = value
+    }
 
     var outputType: OneOf_OutputType? = nil
     let outputTypeCheckAndSet = {
@@ -112,13 +139,17 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try outputTypeCheckAndSet(.payload(payload))
     }
     self.outputType = outputType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.turnIndex, forKey: .turnIndex)
     try container.encode(self.turnCompleted, forKey: .turnCompleted)
-    try container.encode(self.diagnosticInfo, forKey: .diagnosticInfo)
+    try container.encodeIfPresent(self.diagnosticInfo, forKey: .diagnosticInfo)
     try container.encode(self.context, forKey: .context)
 
     if let choice = self.outputType {
@@ -139,6 +170,9 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .payload)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains execution details during the processing.
@@ -151,6 +185,8 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A trace of the entire request processing, represented as a root span.
     /// This span can contain nested child spans for specific operations.
     public var rootSpan: Span? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DiagnosticInfo`.
     public init() {}
@@ -166,6 +202,42 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let messages = CodingKeys(stringValue: "messages")
+      static let rootSpan = CodingKeys(stringValue: "rootSpan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "messages",
+        "rootSpan",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Message].self, forKey: .messages) {
+        self.messages = value
+      }
+      self.rootSpan = try container.decodeIfPresent(Span.self, forKey: .rootSpan)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.messages, forKey: .messages)
+      try container.encodeIfPresent(self.rootSpan, forKey: .rootSpan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -140,6 +140,8 @@
     /// Only allowed at the root of the schema.
     public var defs: [Swift.String: Schema] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Schema`.
     public init() {}
 
@@ -156,63 +158,143 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case type = "type"
-      case format = "format"
-      case title = "title"
-      case description = "description"
-      case nullable = "nullable"
-      case `default` = "default"
-      case items = "items"
-      case minItems = "minItems"
-      case maxItems = "maxItems"
-      case `enum` = "enum"
-      case properties = "properties"
-      case propertyOrdering = "propertyOrdering"
-      case `required` = "required"
-      case minProperties = "minProperties"
-      case maxProperties = "maxProperties"
-      case minimum = "minimum"
-      case maximum = "maximum"
-      case minLength = "minLength"
-      case maxLength = "maxLength"
-      case pattern = "pattern"
-      case example = "example"
-      case anyOf = "anyOf"
-      case additionalProperties = "additionalProperties"
-      case ref = "ref"
-      case defs = "defs"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let format = CodingKeys(stringValue: "format")
+      static let title = CodingKeys(stringValue: "title")
+      static let description = CodingKeys(stringValue: "description")
+      static let nullable = CodingKeys(stringValue: "nullable")
+      static let `default` = CodingKeys(stringValue: "default")
+      static let items = CodingKeys(stringValue: "items")
+      static let minItems = CodingKeys(stringValue: "minItems")
+      static let maxItems = CodingKeys(stringValue: "maxItems")
+      static let `enum` = CodingKeys(stringValue: "enum")
+      static let properties = CodingKeys(stringValue: "properties")
+      static let propertyOrdering = CodingKeys(stringValue: "propertyOrdering")
+      static let `required` = CodingKeys(stringValue: "required")
+      static let minProperties = CodingKeys(stringValue: "minProperties")
+      static let maxProperties = CodingKeys(stringValue: "maxProperties")
+      static let minimum = CodingKeys(stringValue: "minimum")
+      static let maximum = CodingKeys(stringValue: "maximum")
+      static let minLength = CodingKeys(stringValue: "minLength")
+      static let maxLength = CodingKeys(stringValue: "maxLength")
+      static let pattern = CodingKeys(stringValue: "pattern")
+      static let example = CodingKeys(stringValue: "example")
+      static let anyOf = CodingKeys(stringValue: "anyOf")
+      static let additionalProperties = CodingKeys(stringValue: "additionalProperties")
+      static let ref = CodingKeys(stringValue: "ref")
+      static let defs = CodingKeys(stringValue: "defs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "format",
+        "title",
+        "description",
+        "nullable",
+        "default",
+        "items",
+        "minItems",
+        "maxItems",
+        "enum",
+        "properties",
+        "propertyOrdering",
+        "required",
+        "minProperties",
+        "maxProperties",
+        "minimum",
+        "maximum",
+        "minLength",
+        "maxLength",
+        "pattern",
+        "example",
+        "anyOf",
+        "additionalProperties",
+        "ref",
+        "defs",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.type = try container.decode(Type_.self, forKey: .type)
-      self.format = try container.decode(Swift.String.self, forKey: .format)
-      self.title = try container.decode(Swift.String.self, forKey: .title)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
-      self.nullable = try container.decode(Swift.Bool.self, forKey: .nullable)
+      if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .format) {
+        self.format = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
+        self.nullable = value
+      }
       self.`default` = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .`default`)
       self.items = try container.decodeIfPresent(
         GoogleCloudWKT.Recursive<Schema>.self, forKey: .items)
-      self.minItems = try container.decode(Swift.Int64.self, forKey: .minItems)
-      self.maxItems = try container.decode(Swift.Int64.self, forKey: .maxItems)
-      self.`enum` = try container.decode([Swift.String].self, forKey: .`enum`)
-      self.properties = try container.decode([Swift.String: Schema].self, forKey: .properties)
-      self.propertyOrdering = try container.decode([Swift.String].self, forKey: .propertyOrdering)
-      self.`required` = try container.decode([Swift.String].self, forKey: .`required`)
-      self.minProperties = try container.decode(Swift.Int64.self, forKey: .minProperties)
-      self.maxProperties = try container.decode(Swift.Int64.self, forKey: .maxProperties)
-      self.minimum = try container.decode(Swift.Double.self, forKey: .minimum)
-      self.maximum = try container.decode(Swift.Double.self, forKey: .maximum)
-      self.minLength = try container.decode(Swift.Int64.self, forKey: .minLength)
-      self.maxLength = try container.decode(Swift.Int64.self, forKey: .maxLength)
-      self.pattern = try container.decode(Swift.String.self, forKey: .pattern)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minItems) {
+        self.minItems = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxItems) {
+        self.maxItems = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .`enum`) {
+        self.`enum` = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Schema].self, forKey: .properties)
+      {
+        self.properties = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .propertyOrdering) {
+        self.propertyOrdering = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .`required`) {
+        self.`required` = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minProperties) {
+        self.minProperties = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxProperties) {
+        self.maxProperties = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .minimum) {
+        self.minimum = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .maximum) {
+        self.maximum = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minLength) {
+        self.minLength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxLength) {
+        self.maxLength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pattern) {
+        self.pattern = value
+      }
       self.example = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .example)
-      self.anyOf = try container.decode([Schema].self, forKey: .anyOf)
+      if let value = try container.decodeIfPresent([Schema].self, forKey: .anyOf) {
+        self.anyOf = value
+      }
       self.additionalProperties = try container.decodeIfPresent(
         GoogleCloudWKT.Value.self, forKey: .additionalProperties)
-      self.ref = try container.decode(Swift.String.self, forKey: .ref)
-      self.defs = try container.decode([Swift.String: Schema].self, forKey: .defs)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
+        self.ref = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String: Schema].self, forKey: .defs) {
+        self.defs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -222,8 +304,8 @@
       try container.encode(self.title, forKey: .title)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.nullable, forKey: .nullable)
-      try container.encode(self.`default`, forKey: .`default`)
-      try container.encode(self.items, forKey: .items)
+      try container.encodeIfPresent(self.`default`, forKey: .`default`)
+      try container.encodeIfPresent(self.items, forKey: .items)
       try container.encode(self.minItems, forKey: .minItems)
       try container.encode(self.maxItems, forKey: .maxItems)
       try container.encode(self.`enum`, forKey: .`enum`)
@@ -237,11 +319,14 @@
       try container.encode(self.minLength, forKey: .minLength)
       try container.encode(self.maxLength, forKey: .maxLength)
       try container.encode(self.pattern, forKey: .pattern)
-      try container.encode(self.example, forKey: .example)
+      try container.encodeIfPresent(self.example, forKey: .example)
       try container.encode(self.anyOf, forKey: .anyOf)
-      try container.encode(self.additionalProperties, forKey: .additionalProperties)
+      try container.encodeIfPresent(self.additionalProperties, forKey: .additionalProperties)
       try container.encode(self.ref, forKey: .ref)
       try container.encode(self.defs, forKey: .defs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

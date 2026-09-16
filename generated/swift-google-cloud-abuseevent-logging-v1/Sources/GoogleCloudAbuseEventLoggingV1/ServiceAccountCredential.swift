@@ -27,6 +27,8 @@ public struct ServiceAccountCredential: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Private Key ID for any leaked keys.
   public var keyId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceAccountCredential`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct ServiceAccountCredential: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let keyId = CodingKeys(stringValue: "keyId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "serviceAccount",
+      "keyId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
+      self.keyId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.keyId, forKey: .keyId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

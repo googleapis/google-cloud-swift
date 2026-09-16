@@ -38,6 +38,8 @@ public struct AzureAuthorization: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
   public var adminGroups: [AzureClusterGroup] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureAuthorization`.
   public init() {}
 
@@ -52,6 +54,44 @@ public struct AzureAuthorization: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let adminUsers = CodingKeys(stringValue: "adminUsers")
+    static let adminGroups = CodingKeys(stringValue: "adminGroups")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "adminUsers",
+      "adminGroups",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([AzureClusterUser].self, forKey: .adminUsers) {
+      self.adminUsers = value
+    }
+    if let value = try container.decodeIfPresent([AzureClusterGroup].self, forKey: .adminGroups) {
+      self.adminGroups = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.adminUsers, forKey: .adminUsers)
+    try container.encode(self.adminGroups, forKey: .adminGroups)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

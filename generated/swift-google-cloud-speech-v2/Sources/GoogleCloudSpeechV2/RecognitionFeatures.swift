@@ -72,6 +72,8 @@ public struct RecognitionFeatures: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. Configuration to enable custom prompt for chirp3.
   public var customPromptConfig: CustomPromptConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognitionFeatures`.
   public init() {}
 
@@ -86,6 +88,95 @@ public struct RecognitionFeatures: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let profanityFilter = CodingKeys(stringValue: "profanityFilter")
+    static let enableWordTimeOffsets = CodingKeys(stringValue: "enableWordTimeOffsets")
+    static let enableWordConfidence = CodingKeys(stringValue: "enableWordConfidence")
+    static let enableAutomaticPunctuation = CodingKeys(stringValue: "enableAutomaticPunctuation")
+    static let enableSpokenPunctuation = CodingKeys(stringValue: "enableSpokenPunctuation")
+    static let enableSpokenEmojis = CodingKeys(stringValue: "enableSpokenEmojis")
+    static let multiChannelMode = CodingKeys(stringValue: "multiChannelMode")
+    static let diarizationConfig = CodingKeys(stringValue: "diarizationConfig")
+    static let maxAlternatives = CodingKeys(stringValue: "maxAlternatives")
+    static let customPromptConfig = CodingKeys(stringValue: "customPromptConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "profanityFilter",
+      "enableWordTimeOffsets",
+      "enableWordConfidence",
+      "enableAutomaticPunctuation",
+      "enableSpokenPunctuation",
+      "enableSpokenEmojis",
+      "multiChannelMode",
+      "diarizationConfig",
+      "maxAlternatives",
+      "customPromptConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .profanityFilter) {
+      self.profanityFilter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWordTimeOffsets) {
+      self.enableWordTimeOffsets = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWordConfidence) {
+      self.enableWordConfidence = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableAutomaticPunctuation)
+    {
+      self.enableAutomaticPunctuation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSpokenPunctuation)
+    {
+      self.enableSpokenPunctuation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSpokenEmojis) {
+      self.enableSpokenEmojis = value
+    }
+    if let value = try container.decodeIfPresent(
+      RecognitionFeatures.MultiChannelMode.self, forKey: .multiChannelMode)
+    {
+      self.multiChannelMode = value
+    }
+    self.diarizationConfig = try container.decodeIfPresent(
+      SpeakerDiarizationConfig.self, forKey: .diarizationConfig)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxAlternatives) {
+      self.maxAlternatives = value
+    }
+    self.customPromptConfig = try container.decodeIfPresent(
+      CustomPromptConfig.self, forKey: .customPromptConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.profanityFilter, forKey: .profanityFilter)
+    try container.encode(self.enableWordTimeOffsets, forKey: .enableWordTimeOffsets)
+    try container.encode(self.enableWordConfidence, forKey: .enableWordConfidence)
+    try container.encode(self.enableAutomaticPunctuation, forKey: .enableAutomaticPunctuation)
+    try container.encode(self.enableSpokenPunctuation, forKey: .enableSpokenPunctuation)
+    try container.encode(self.enableSpokenEmojis, forKey: .enableSpokenEmojis)
+    try container.encode(self.multiChannelMode, forKey: .multiChannelMode)
+    try container.encodeIfPresent(self.diarizationConfig, forKey: .diarizationConfig)
+    try container.encode(self.maxAlternatives, forKey: .maxAlternatives)
+    try container.encodeIfPresent(self.customPromptConfig, forKey: .customPromptConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Options for how to recognize multi-channel audio.

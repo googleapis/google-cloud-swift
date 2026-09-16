@@ -42,6 +42,8 @@ public struct FacetGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///  - STRING (DataSchema.SearchStrategy.EXACT_SEARCH only)
   public var fetchMatchedAnnotations: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FacetGroup`.
   public init() {}
 
@@ -56,6 +58,63 @@ public struct FacetGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let facetId = CodingKeys(stringValue: "facetId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let buckets = CodingKeys(stringValue: "buckets")
+    static let bucketType = CodingKeys(stringValue: "bucketType")
+    static let fetchMatchedAnnotations = CodingKeys(stringValue: "fetchMatchedAnnotations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "facetId",
+      "displayName",
+      "buckets",
+      "bucketType",
+      "fetchMatchedAnnotations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .facetId) {
+      self.facetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([FacetBucket].self, forKey: .buckets) {
+      self.buckets = value
+    }
+    if let value = try container.decodeIfPresent(FacetBucketType.self, forKey: .bucketType) {
+      self.bucketType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fetchMatchedAnnotations)
+    {
+      self.fetchMatchedAnnotations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.facetId, forKey: .facetId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.buckets, forKey: .buckets)
+    try container.encode(self.bucketType, forKey: .bucketType)
+    try container.encode(self.fetchMatchedAnnotations, forKey: .fetchMatchedAnnotations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@
     /// years (1825 days) and no later than one year (366 days) in the future.
     public var featureValues: [Swift.String: FeatureValue] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WriteFeatureValuesPayload`.
     public init() {}
 
@@ -45,6 +47,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityId = CodingKeys(stringValue: "entityId")
+      static let featureValues = CodingKeys(stringValue: "featureValues")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityId",
+        "featureValues",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityId) {
+        self.entityId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: FeatureValue].self, forKey: .featureValues)
+      {
+        self.featureValues = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entityId, forKey: .entityId)
+      try container.encode(self.featureValues, forKey: .featureValues)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

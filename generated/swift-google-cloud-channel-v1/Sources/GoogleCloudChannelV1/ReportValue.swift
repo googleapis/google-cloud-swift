@@ -26,6 +26,8 @@ public struct ReportValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A single report value.
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportValue`.
   public init() {}
 
@@ -42,13 +44,27 @@ public struct ReportValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case stringValue = "stringValue"
-    case intValue = "intValue"
-    case decimalValue = "decimalValue"
-    case moneyValue = "moneyValue"
-    case dateValue = "dateValue"
-    case dateTimeValue = "dateTimeValue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let intValue = CodingKeys(stringValue: "intValue")
+    static let decimalValue = CodingKeys(stringValue: "decimalValue")
+    static let moneyValue = CodingKeys(stringValue: "moneyValue")
+    static let dateValue = CodingKeys(stringValue: "dateValue")
+    static let dateTimeValue = CodingKeys(stringValue: "dateTimeValue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stringValue",
+      "intValue",
+      "decimalValue",
+      "moneyValue",
+      "dateValue",
+      "dateTimeValue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -87,6 +103,10 @@ public struct ReportValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.dateTimeValue(dateTimeValue))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -107,6 +127,9 @@ public struct ReportValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dateTimeValue(let value):
         try container.encode(value, forKey: .dateTimeValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

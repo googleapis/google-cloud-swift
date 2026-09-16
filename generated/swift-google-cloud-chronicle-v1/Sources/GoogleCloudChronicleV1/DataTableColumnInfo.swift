@@ -44,6 +44,8 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public var pathOrType: OneOf_PathOrType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataTableColumnInfo`.
   public init() {}
 
@@ -60,21 +62,43 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case mappedColumnPath = "mappedColumnPath"
-    case columnType = "columnType"
-    case columnIndex = "columnIndex"
-    case originalColumn = "originalColumn"
-    case keyColumn = "keyColumn"
-    case repeatedValues = "repeatedValues"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let mappedColumnPath = CodingKeys(stringValue: "mappedColumnPath")
+    static let columnType = CodingKeys(stringValue: "columnType")
+    static let columnIndex = CodingKeys(stringValue: "columnIndex")
+    static let originalColumn = CodingKeys(stringValue: "originalColumn")
+    static let keyColumn = CodingKeys(stringValue: "keyColumn")
+    static let repeatedValues = CodingKeys(stringValue: "repeatedValues")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "mappedColumnPath",
+      "columnType",
+      "columnIndex",
+      "originalColumn",
+      "keyColumn",
+      "repeatedValues",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.columnIndex = try container.decode(Swift.Int32.self, forKey: .columnIndex)
-    self.originalColumn = try container.decode(Swift.String.self, forKey: .originalColumn)
-    self.keyColumn = try container.decode(Swift.Bool.self, forKey: .keyColumn)
-    self.repeatedValues = try container.decode(Swift.Bool.self, forKey: .repeatedValues)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .columnIndex) {
+      self.columnIndex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .originalColumn) {
+      self.originalColumn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .keyColumn) {
+      self.keyColumn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .repeatedValues) {
+      self.repeatedValues = value
+    }
 
     var pathOrType: OneOf_PathOrType? = nil
     let pathOrTypeCheckAndSet = {
@@ -97,6 +121,10 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try pathOrTypeCheckAndSet(.columnType(columnType))
     }
     self.pathOrType = pathOrType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -113,6 +141,9 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .columnType(let value):
         try container.encode(value, forKey: .columnType)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

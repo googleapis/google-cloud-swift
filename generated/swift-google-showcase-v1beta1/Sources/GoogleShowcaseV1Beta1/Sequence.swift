@@ -28,6 +28,8 @@ public struct Sequence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// default response is an immediate OK.
   public var responses: [Sequence.Response] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Sequence`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct Sequence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let responses = CodingKeys(stringValue: "responses")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "responses",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Sequence.Response].self, forKey: .responses) {
+      self.responses = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.responses, forKey: .responses)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A server response to an RPC Attempt in a sequence.
   public struct Response: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -53,6 +93,8 @@ public struct Sequence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The amount of time to delay sending the response.
     public var delay: GoogleCloudWKT.Duration? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Response`.
     public init() {}
@@ -68,6 +110,40 @@ public struct Sequence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let status = CodingKeys(stringValue: "status")
+      static let delay = CodingKeys(stringValue: "delay")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "status",
+        "delay",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      self.delay = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .delay)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.delay, forKey: .delay)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

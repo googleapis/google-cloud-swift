@@ -35,6 +35,8 @@ public struct AggregateDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Required. The aggregation method to apply to the query.
   public var aggregate: AggregationMethod = AggregationMethod()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AggregateDataObjectsRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct AggregateDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let aggregate = CodingKeys(stringValue: "aggregate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "filter",
+      "aggregate",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.filter = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .filter)
+    if let value = try container.decodeIfPresent(AggregationMethod.self, forKey: .aggregate) {
+      self.aggregate = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encode(self.aggregate, forKey: .aggregate)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleIAMV1
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleIAMV1
 internal import GoogleCloudWKTConvert
 
 extension GoogleIAMV1.AuditLogConfig {
@@ -29,12 +29,16 @@ extension GoogleIAMV1.AuditLogConfig {
     self.init()
     self.logType = .init(proto: proto.logType)
     self.exemptedMembers = proto.exemptedMembers
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.logType = try self.logType.toProto()
     proto.exemptedMembers = self.exemptedMembers
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

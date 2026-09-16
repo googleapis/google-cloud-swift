@@ -44,6 +44,8 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
   /// indicates the job has completed i.e. 100%.
   public var tuningCompletionRatio: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TuneQaScorecardRevisionMetadata`.
   public init() {}
 
@@ -58,6 +60,75 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let request = CodingKeys(stringValue: "request")
+    static let qaQuestionDatasetValidationResults = CodingKeys(
+      stringValue: "qaQuestionDatasetValidationResults")
+    static let qaQuestionDatasetTuningMetrics = CodingKeys(
+      stringValue: "qaQuestionDatasetTuningMetrics")
+    static let tuningCompletionRatio = CodingKeys(stringValue: "tuningCompletionRatio")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "endTime",
+      "request",
+      "qaQuestionDatasetValidationResults",
+      "qaQuestionDatasetTuningMetrics",
+      "tuningCompletionRatio",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.request = try container.decodeIfPresent(
+      TuneQaScorecardRevisionRequest.self, forKey: .request)
+    if let value = try container.decodeIfPresent(
+      [TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult].self,
+      forKey: .qaQuestionDatasetValidationResults)
+    {
+      self.qaQuestionDatasetValidationResults = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics].self,
+      forKey: .qaQuestionDatasetTuningMetrics)
+    {
+      self.qaQuestionDatasetTuningMetrics = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .tuningCompletionRatio)
+    {
+      self.tuningCompletionRatio = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.request, forKey: .request)
+    try container.encode(
+      self.qaQuestionDatasetValidationResults, forKey: .qaQuestionDatasetValidationResults)
+    try container.encode(
+      self.qaQuestionDatasetTuningMetrics, forKey: .qaQuestionDatasetTuningMetrics)
+    try container.encode(self.tuningCompletionRatio, forKey: .tuningCompletionRatio)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains validation results for a question in the tuning request.
@@ -75,6 +146,8 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
     /// The number of valid feedback labels in the question's dataset.
     public var validFeedbackLabelsCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaQuestionDatasetValidationResult`.
     public init() {}
 
@@ -89,6 +162,54 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let question = CodingKeys(stringValue: "question")
+      static let datasetValidationWarnings = CodingKeys(stringValue: "datasetValidationWarnings")
+      static let validFeedbackLabelsCount = CodingKeys(stringValue: "validFeedbackLabelsCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "question",
+        "datasetValidationWarnings",
+        "validFeedbackLabelsCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
+        self.question = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DatasetValidationWarning].self, forKey: .datasetValidationWarnings)
+      {
+        self.datasetValidationWarnings = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .validFeedbackLabelsCount)
+      {
+        self.validFeedbackLabelsCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.question, forKey: .question)
+      try container.encode(self.datasetValidationWarnings, forKey: .datasetValidationWarnings)
+      try container.encode(self.validFeedbackLabelsCount, forKey: .validFeedbackLabelsCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -116,6 +237,8 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
     public var metrics: TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics? =
       nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QaQuestionDatasetTuningMetrics`.
     public init() {}
 
@@ -132,6 +255,44 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let question = CodingKeys(stringValue: "question")
+      static let metrics = CodingKeys(stringValue: "metrics")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "question",
+        "metrics",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
+        self.question = value
+      }
+      self.metrics = try container.decodeIfPresent(
+        TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics.self,
+        forKey: .metrics)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.question, forKey: .question)
+      try container.encodeIfPresent(self.metrics, forKey: .metrics)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Performance metrics for the question's dataset calculated over the tuned
     /// model.
     public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -139,6 +300,8 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
     {
       /// Accuracy of the question's dataset.
       public var accuracy: Swift.Double = Swift.Double()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Metrics`.
       public init() {}
@@ -154,6 +317,38 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWK
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let accuracy = CodingKeys(stringValue: "accuracy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "accuracy"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .accuracy) {
+          self.accuracy = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.accuracy, forKey: .accuracy)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

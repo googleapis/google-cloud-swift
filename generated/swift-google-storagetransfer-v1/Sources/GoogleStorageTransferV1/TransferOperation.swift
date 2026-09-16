@@ -54,6 +54,8 @@ public struct TransferOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The name of the transfer job that triggers this transfer operation.
   public var transferJobName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferOperation`.
   public init() {}
 
@@ -68,6 +70,88 @@ public struct TransferOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let transferSpec = CodingKeys(stringValue: "transferSpec")
+    static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let status = CodingKeys(stringValue: "status")
+    static let counters = CodingKeys(stringValue: "counters")
+    static let errorBreakdowns = CodingKeys(stringValue: "errorBreakdowns")
+    static let transferJobName = CodingKeys(stringValue: "transferJobName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "projectId",
+      "transferSpec",
+      "notificationConfig",
+      "loggingConfig",
+      "startTime",
+      "endTime",
+      "status",
+      "counters",
+      "errorBreakdowns",
+      "transferJobName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    self.transferSpec = try container.decodeIfPresent(TransferSpec.self, forKey: .transferSpec)
+    self.notificationConfig = try container.decodeIfPresent(
+      NotificationConfig.self, forKey: .notificationConfig)
+    self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(TransferOperation.Status.self, forKey: .status) {
+      self.status = value
+    }
+    self.counters = try container.decodeIfPresent(TransferCounters.self, forKey: .counters)
+    if let value = try container.decodeIfPresent([ErrorSummary].self, forKey: .errorBreakdowns) {
+      self.errorBreakdowns = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .transferJobName) {
+      self.transferJobName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encodeIfPresent(self.transferSpec, forKey: .transferSpec)
+    try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.status, forKey: .status)
+    try container.encodeIfPresent(self.counters, forKey: .counters)
+    try container.encode(self.errorBreakdowns, forKey: .errorBreakdowns)
+    try container.encode(self.transferJobName, forKey: .transferJobName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The status of a TransferOperation.

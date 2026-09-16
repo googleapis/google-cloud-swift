@@ -24,6 +24,8 @@ public struct CreateTransferJobRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Required. The job to create.
   public var transferJob: TransferJob? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateTransferJobRequest`.
   public init() {}
 
@@ -38,6 +40,36 @@ public struct CreateTransferJobRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transferJob = CodingKeys(stringValue: "transferJob")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transferJob"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.transferJob = try container.decodeIfPresent(TransferJob.self, forKey: .transferJob)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.transferJob, forKey: .transferJob)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

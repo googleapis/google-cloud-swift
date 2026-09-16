@@ -24,6 +24,8 @@ public struct ApiHubResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var resource: OneOf_Resource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApiHubResource`.
   public init() {}
 
@@ -40,13 +42,27 @@ public struct ApiHubResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case api = "api"
-    case operation = "operation"
-    case deployment = "deployment"
-    case spec = "spec"
-    case definition = "definition"
-    case version = "version"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let api = CodingKeys(stringValue: "api")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let spec = CodingKeys(stringValue: "spec")
+    static let definition = CodingKeys(stringValue: "definition")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "api",
+      "operation",
+      "deployment",
+      "spec",
+      "definition",
+      "version",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -81,6 +97,10 @@ public struct ApiHubResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resourceCheckAndSet(.version(version))
     }
     self.resource = resource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +121,9 @@ public struct ApiHubResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .version(let value):
         try container.encode(value, forKey: .version)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

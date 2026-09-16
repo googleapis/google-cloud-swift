@@ -108,6 +108,8 @@
     /// the BackendService.
     public var urlMap: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetHttpProxy`.
     public init() {}
 
@@ -124,18 +126,37 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case httpKeepAliveTimeoutSec = "httpKeepAliveTimeoutSec"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case proxyBind = "proxyBind"
-      case region = "region"
-      case selfLink = "selfLink"
-      case urlMap = "urlMap"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let httpKeepAliveTimeoutSec = CodingKeys(stringValue: "httpKeepAliveTimeoutSec")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let proxyBind = CodingKeys(stringValue: "proxyBind")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let urlMap = CodingKeys(stringValue: "urlMap")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "httpKeepAliveTimeoutSec",
+        "id",
+        "kind",
+        "name",
+        "proxyBind",
+        "region",
+        "selfLink",
+        "urlMap",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -161,25 +182,32 @@
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.urlMap = try container.decodeIfPresent(Swift.String.self, forKey: .urlMap)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.httpKeepAliveTimeoutSec, forKey: .httpKeepAliveTimeoutSec)
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.proxyBind, forKey: .proxyBind)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.urlMap, forKey: .urlMap)
+      try container.encodeIfPresent(self.httpKeepAliveTimeoutSec, forKey: .httpKeepAliveTimeoutSec)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.proxyBind, forKey: .proxyBind)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.urlMap, forKey: .urlMap)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

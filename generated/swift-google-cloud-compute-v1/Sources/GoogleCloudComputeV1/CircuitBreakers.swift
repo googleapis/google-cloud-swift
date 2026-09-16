@@ -57,6 +57,8 @@
     /// bound to target gRPC proxy that has validateForProxyless field set to true.
     public var maxRetries: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CircuitBreakers`.
     public init() {}
 
@@ -71,6 +73,55 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxConnections = CodingKeys(stringValue: "maxConnections")
+      static let maxPendingRequests = CodingKeys(stringValue: "maxPendingRequests")
+      static let maxRequests = CodingKeys(stringValue: "maxRequests")
+      static let maxRequestsPerConnection = CodingKeys(stringValue: "maxRequestsPerConnection")
+      static let maxRetries = CodingKeys(stringValue: "maxRetries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxConnections",
+        "maxPendingRequests",
+        "maxRequests",
+        "maxRequestsPerConnection",
+        "maxRetries",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxConnections = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConnections)
+      self.maxPendingRequests = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxPendingRequests)
+      self.maxRequests = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRequests)
+      self.maxRequestsPerConnection = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxRequestsPerConnection)
+      self.maxRetries = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxRetries)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxConnections, forKey: .maxConnections)
+      try container.encodeIfPresent(self.maxPendingRequests, forKey: .maxPendingRequests)
+      try container.encodeIfPresent(self.maxRequests, forKey: .maxRequests)
+      try container.encodeIfPresent(
+        self.maxRequestsPerConnection, forKey: .maxRequestsPerConnection)
+      try container.encodeIfPresent(self.maxRetries, forKey: .maxRetries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@ public struct Attack: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var volumeBps: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attack`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct Attack: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let volumePpsLong = CodingKeys(stringValue: "volumePpsLong")
+    static let volumeBpsLong = CodingKeys(stringValue: "volumeBpsLong")
+    static let classification = CodingKeys(stringValue: "classification")
+    static let volumePps = CodingKeys(stringValue: "volumePps")
+    static let volumeBps = CodingKeys(stringValue: "volumeBps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "volumePpsLong",
+      "volumeBpsLong",
+      "classification",
+      "volumePps",
+      "volumeBps",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .volumePpsLong) {
+      self.volumePpsLong = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .volumeBpsLong) {
+      self.volumeBpsLong = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .classification) {
+      self.classification = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .volumePps) {
+      self.volumePps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .volumeBps) {
+      self.volumeBps = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.volumePpsLong, forKey: .volumePpsLong)
+    try container.encode(self.volumeBpsLong, forKey: .volumeBpsLong)
+    try container.encode(self.classification, forKey: .classification)
+    try container.encode(self.volumePps, forKey: .volumePps)
+    try container.encode(self.volumeBps, forKey: .volumeBps)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

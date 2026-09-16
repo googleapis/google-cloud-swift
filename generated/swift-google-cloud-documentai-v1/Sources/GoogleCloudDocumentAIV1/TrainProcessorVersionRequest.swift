@@ -49,6 +49,8 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
 
   public var processorFlags: OneOf_ProcessorFlags? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrainProcessorVersionRequest`.
   public init() {}
 
@@ -65,27 +67,47 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case customDocumentExtractionOptions = "customDocumentExtractionOptions"
-    case foundationModelTuningOptions = "foundationModelTuningOptions"
-    case parent = "parent"
-    case processorVersion = "processorVersion"
-    case documentSchema = "documentSchema"
-    case inputData = "inputData"
-    case baseProcessorVersion = "baseProcessorVersion"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let customDocumentExtractionOptions = CodingKeys(
+      stringValue: "customDocumentExtractionOptions")
+    static let foundationModelTuningOptions = CodingKeys(
+      stringValue: "foundationModelTuningOptions")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let processorVersion = CodingKeys(stringValue: "processorVersion")
+    static let documentSchema = CodingKeys(stringValue: "documentSchema")
+    static let inputData = CodingKeys(stringValue: "inputData")
+    static let baseProcessorVersion = CodingKeys(stringValue: "baseProcessorVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "customDocumentExtractionOptions",
+      "foundationModelTuningOptions",
+      "parent",
+      "processorVersion",
+      "documentSchema",
+      "inputData",
+      "baseProcessorVersion",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
     self.processorVersion = try container.decodeIfPresent(
       ProcessorVersion.self, forKey: .processorVersion)
     self.documentSchema = try container.decodeIfPresent(
       DocumentSchema.self, forKey: .documentSchema)
     self.inputData = try container.decodeIfPresent(
       TrainProcessorVersionRequest.InputData.self, forKey: .inputData)
-    self.baseProcessorVersion = try container.decode(
-      Swift.String.self, forKey: .baseProcessorVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseProcessorVersion) {
+      self.baseProcessorVersion = value
+    }
 
     var processorFlags: OneOf_ProcessorFlags? = nil
     let processorFlagsCheckAndSet = {
@@ -111,14 +133,18 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       try processorFlagsCheckAndSet(.foundationModelTuningOptions(foundationModelTuningOptions))
     }
     self.processorFlags = processorFlags
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.processorVersion, forKey: .processorVersion)
-    try container.encode(self.documentSchema, forKey: .documentSchema)
-    try container.encode(self.inputData, forKey: .inputData)
+    try container.encodeIfPresent(self.processorVersion, forKey: .processorVersion)
+    try container.encodeIfPresent(self.documentSchema, forKey: .documentSchema)
+    try container.encodeIfPresent(self.inputData, forKey: .inputData)
     try container.encode(self.baseProcessorVersion, forKey: .baseProcessorVersion)
 
     if let choice = self.processorFlags {
@@ -128,6 +154,9 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       case .foundationModelTuningOptions(let value):
         try container.encode(value, forKey: .foundationModelTuningOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -144,6 +173,8 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
     /// The documents used for testing the trained version.
     public var testDocuments: BatchDocumentsInputConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputData`.
     public init() {}
 
@@ -158,6 +189,42 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingDocuments = CodingKeys(stringValue: "trainingDocuments")
+      static let testDocuments = CodingKeys(stringValue: "testDocuments")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingDocuments",
+        "testDocuments",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.trainingDocuments = try container.decodeIfPresent(
+        BatchDocumentsInputConfig.self, forKey: .trainingDocuments)
+      self.testDocuments = try container.decodeIfPresent(
+        BatchDocumentsInputConfig.self, forKey: .testDocuments)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.trainingDocuments, forKey: .trainingDocuments)
+      try container.encodeIfPresent(self.testDocuments, forKey: .testDocuments)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -181,6 +248,8 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod =
         TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomDocumentExtractionOptions`.
     public init() {}
 
@@ -195,6 +264,41 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainingMethod = CodingKeys(stringValue: "trainingMethod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainingMethod"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod.self,
+        forKey: .trainingMethod)
+      {
+        self.trainingMethod = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trainingMethod, forKey: .trainingMethod)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Training Method for CDE. `TRAINING_METHOD_UNSPECIFIED` will fall back to
@@ -325,6 +429,8 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
     /// will be used.
     public var learningRateMultiplier: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FoundationModelTuningOptions`.
     public init() {}
 
@@ -339,6 +445,46 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trainSteps = CodingKeys(stringValue: "trainSteps")
+      static let learningRateMultiplier = CodingKeys(stringValue: "learningRateMultiplier")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trainSteps",
+        "learningRateMultiplier",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .trainSteps) {
+        self.trainSteps = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .learningRateMultiplier)
+      {
+        self.learningRateMultiplier = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trainSteps, forKey: .trainSteps)
+      try container.encode(self.learningRateMultiplier, forKey: .learningRateMultiplier)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

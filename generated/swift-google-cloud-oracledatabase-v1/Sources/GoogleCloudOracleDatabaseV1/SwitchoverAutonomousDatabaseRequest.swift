@@ -29,6 +29,8 @@ public struct SwitchoverAutonomousDatabaseRequest: Codable, Equatable, GoogleClo
   /// cross-region standby, and must be omitted for in-region Data Guard.
   public var peerAutonomousDatabase: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SwitchoverAutonomousDatabaseRequest`.
   public init() {}
 
@@ -43,6 +45,45 @@ public struct SwitchoverAutonomousDatabaseRequest: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let peerAutonomousDatabase = CodingKeys(stringValue: "peerAutonomousDatabase")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "peerAutonomousDatabase",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerAutonomousDatabase)
+    {
+      self.peerAutonomousDatabase = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.peerAutonomousDatabase, forKey: .peerAutonomousDatabase)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

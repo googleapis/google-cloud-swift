@@ -56,6 +56,8 @@ public struct GetSupportedLanguagesRequest: Codable, Equatable, GoogleCloudWKT._
   /// If missing, we get supported languages of Google general NMT model.
   public var model: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GetSupportedLanguagesRequest`.
   public init() {}
 
@@ -70,6 +72,50 @@ public struct GetSupportedLanguagesRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let displayLanguageCode = CodingKeys(stringValue: "displayLanguageCode")
+    static let model = CodingKeys(stringValue: "model")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "displayLanguageCode",
+      "model",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayLanguageCode) {
+      self.displayLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+      self.model = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.displayLanguageCode, forKey: .displayLanguageCode)
+    try container.encode(self.model, forKey: .model)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

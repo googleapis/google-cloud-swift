@@ -52,6 +52,8 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Additional SSL related field values
   public var additionalVariables: [ConfigVariable] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SslConfig`.
   public init() {}
 
@@ -66,6 +68,88 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let trustModel = CodingKeys(stringValue: "trustModel")
+    static let privateServerCertificate = CodingKeys(stringValue: "privateServerCertificate")
+    static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+    static let clientPrivateKey = CodingKeys(stringValue: "clientPrivateKey")
+    static let clientPrivateKeyPass = CodingKeys(stringValue: "clientPrivateKeyPass")
+    static let serverCertType = CodingKeys(stringValue: "serverCertType")
+    static let clientCertType = CodingKeys(stringValue: "clientCertType")
+    static let useSsl = CodingKeys(stringValue: "useSsl")
+    static let additionalVariables = CodingKeys(stringValue: "additionalVariables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "trustModel",
+      "privateServerCertificate",
+      "clientCertificate",
+      "clientPrivateKey",
+      "clientPrivateKeyPass",
+      "serverCertType",
+      "clientCertType",
+      "useSsl",
+      "additionalVariables",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(SslType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(SslConfig.TrustModel.self, forKey: .trustModel) {
+      self.trustModel = value
+    }
+    self.privateServerCertificate = try container.decodeIfPresent(
+      Secret.self, forKey: .privateServerCertificate)
+    self.clientCertificate = try container.decodeIfPresent(Secret.self, forKey: .clientCertificate)
+    self.clientPrivateKey = try container.decodeIfPresent(Secret.self, forKey: .clientPrivateKey)
+    self.clientPrivateKeyPass = try container.decodeIfPresent(
+      Secret.self, forKey: .clientPrivateKeyPass)
+    if let value = try container.decodeIfPresent(CertType.self, forKey: .serverCertType) {
+      self.serverCertType = value
+    }
+    if let value = try container.decodeIfPresent(CertType.self, forKey: .clientCertType) {
+      self.clientCertType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useSsl) {
+      self.useSsl = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ConfigVariable].self, forKey: .additionalVariables)
+    {
+      self.additionalVariables = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.trustModel, forKey: .trustModel)
+    try container.encodeIfPresent(self.privateServerCertificate, forKey: .privateServerCertificate)
+    try container.encodeIfPresent(self.clientCertificate, forKey: .clientCertificate)
+    try container.encodeIfPresent(self.clientPrivateKey, forKey: .clientPrivateKey)
+    try container.encodeIfPresent(self.clientPrivateKeyPass, forKey: .clientPrivateKeyPass)
+    try container.encode(self.serverCertType, forKey: .serverCertType)
+    try container.encode(self.clientCertType, forKey: .clientCertType)
+    try container.encode(self.useSsl, forKey: .useSsl)
+    try container.encode(self.additionalVariables, forKey: .additionalVariables)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum for Ttust Model

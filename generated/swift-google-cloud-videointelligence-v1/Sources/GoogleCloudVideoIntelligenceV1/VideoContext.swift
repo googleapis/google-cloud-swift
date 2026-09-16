@@ -50,6 +50,8 @@ public struct VideoContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Config for OBJECT_TRACKING.
   public var objectTrackingConfig: ObjectTrackingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoContext`.
   public init() {}
 
@@ -64,6 +66,82 @@ public struct VideoContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let segments = CodingKeys(stringValue: "segments")
+    static let labelDetectionConfig = CodingKeys(stringValue: "labelDetectionConfig")
+    static let shotChangeDetectionConfig = CodingKeys(stringValue: "shotChangeDetectionConfig")
+    static let explicitContentDetectionConfig = CodingKeys(
+      stringValue: "explicitContentDetectionConfig")
+    static let faceDetectionConfig = CodingKeys(stringValue: "faceDetectionConfig")
+    static let speechTranscriptionConfig = CodingKeys(stringValue: "speechTranscriptionConfig")
+    static let textDetectionConfig = CodingKeys(stringValue: "textDetectionConfig")
+    static let personDetectionConfig = CodingKeys(stringValue: "personDetectionConfig")
+    static let objectTrackingConfig = CodingKeys(stringValue: "objectTrackingConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "segments",
+      "labelDetectionConfig",
+      "shotChangeDetectionConfig",
+      "explicitContentDetectionConfig",
+      "faceDetectionConfig",
+      "speechTranscriptionConfig",
+      "textDetectionConfig",
+      "personDetectionConfig",
+      "objectTrackingConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([VideoSegment].self, forKey: .segments) {
+      self.segments = value
+    }
+    self.labelDetectionConfig = try container.decodeIfPresent(
+      LabelDetectionConfig.self, forKey: .labelDetectionConfig)
+    self.shotChangeDetectionConfig = try container.decodeIfPresent(
+      ShotChangeDetectionConfig.self, forKey: .shotChangeDetectionConfig)
+    self.explicitContentDetectionConfig = try container.decodeIfPresent(
+      ExplicitContentDetectionConfig.self, forKey: .explicitContentDetectionConfig)
+    self.faceDetectionConfig = try container.decodeIfPresent(
+      FaceDetectionConfig.self, forKey: .faceDetectionConfig)
+    self.speechTranscriptionConfig = try container.decodeIfPresent(
+      SpeechTranscriptionConfig.self, forKey: .speechTranscriptionConfig)
+    self.textDetectionConfig = try container.decodeIfPresent(
+      TextDetectionConfig.self, forKey: .textDetectionConfig)
+    self.personDetectionConfig = try container.decodeIfPresent(
+      PersonDetectionConfig.self, forKey: .personDetectionConfig)
+    self.objectTrackingConfig = try container.decodeIfPresent(
+      ObjectTrackingConfig.self, forKey: .objectTrackingConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.segments, forKey: .segments)
+    try container.encodeIfPresent(self.labelDetectionConfig, forKey: .labelDetectionConfig)
+    try container.encodeIfPresent(
+      self.shotChangeDetectionConfig, forKey: .shotChangeDetectionConfig)
+    try container.encodeIfPresent(
+      self.explicitContentDetectionConfig, forKey: .explicitContentDetectionConfig)
+    try container.encodeIfPresent(self.faceDetectionConfig, forKey: .faceDetectionConfig)
+    try container.encodeIfPresent(
+      self.speechTranscriptionConfig, forKey: .speechTranscriptionConfig)
+    try container.encodeIfPresent(self.textDetectionConfig, forKey: .textDetectionConfig)
+    try container.encodeIfPresent(self.personDetectionConfig, forKey: .personDetectionConfig)
+    try container.encodeIfPresent(self.objectTrackingConfig, forKey: .objectTrackingConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

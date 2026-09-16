@@ -40,6 +40,8 @@ public struct DatabaseResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// resources match.
   public var databaseResourceNameRegex: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseResourceRegex`.
   public init() {}
 
@@ -54,6 +56,58 @@ public struct DatabaseResourceRegex: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectIdRegex = CodingKeys(stringValue: "projectIdRegex")
+    static let instanceRegex = CodingKeys(stringValue: "instanceRegex")
+    static let databaseRegex = CodingKeys(stringValue: "databaseRegex")
+    static let databaseResourceNameRegex = CodingKeys(stringValue: "databaseResourceNameRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectIdRegex",
+      "instanceRegex",
+      "databaseRegex",
+      "databaseResourceNameRegex",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectIdRegex) {
+      self.projectIdRegex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceRegex) {
+      self.instanceRegex = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseRegex) {
+      self.databaseRegex = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .databaseResourceNameRegex)
+    {
+      self.databaseResourceNameRegex = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectIdRegex, forKey: .projectIdRegex)
+    try container.encode(self.instanceRegex, forKey: .instanceRegex)
+    try container.encode(self.databaseRegex, forKey: .databaseRegex)
+    try container.encode(self.databaseResourceNameRegex, forKey: .databaseResourceNameRegex)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -54,6 +54,8 @@
     ///      disks.
     public var instantiateFrom: DiskInstantiationConfig.InstantiateFrom? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DiskInstantiationConfig`.
     public init() {}
 
@@ -68,6 +70,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoDelete = CodingKeys(stringValue: "autoDelete")
+      static let customImage = CodingKeys(stringValue: "customImage")
+      static let deviceName = CodingKeys(stringValue: "deviceName")
+      static let instantiateFrom = CodingKeys(stringValue: "instantiateFrom")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoDelete",
+        "customImage",
+        "deviceName",
+        "instantiateFrom",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoDelete = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoDelete)
+      self.customImage = try container.decodeIfPresent(Swift.String.self, forKey: .customImage)
+      self.deviceName = try container.decodeIfPresent(Swift.String.self, forKey: .deviceName)
+      self.instantiateFrom = try container.decodeIfPresent(
+        DiskInstantiationConfig.InstantiateFrom.self, forKey: .instantiateFrom)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoDelete, forKey: .autoDelete)
+      try container.encodeIfPresent(self.customImage, forKey: .customImage)
+      try container.encodeIfPresent(self.deviceName, forKey: .deviceName)
+      try container.encodeIfPresent(self.instantiateFrom, forKey: .instantiateFrom)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [instantiateFrom][google.cloud.compute.v1.DiskInstantiationConfig.instantiateFrom] field.

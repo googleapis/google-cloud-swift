@@ -40,6 +40,8 @@ public struct ResourcePolicyMember: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// `principal://parametermanager.googleapis.com/projects/12345/uid/locations/us-central1-a/parameters/a918fed5`
   public var iamPolicyUidPrincipal: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourcePolicyMember`.
   public init() {}
 
@@ -54,6 +56,46 @@ public struct ResourcePolicyMember: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let iamPolicyNamePrincipal = CodingKeys(stringValue: "iamPolicyNamePrincipal")
+    static let iamPolicyUidPrincipal = CodingKeys(stringValue: "iamPolicyUidPrincipal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "iamPolicyNamePrincipal",
+      "iamPolicyUidPrincipal",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamPolicyNamePrincipal)
+    {
+      self.iamPolicyNamePrincipal = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamPolicyUidPrincipal)
+    {
+      self.iamPolicyUidPrincipal = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.iamPolicyNamePrincipal, forKey: .iamPolicyNamePrincipal)
+    try container.encode(self.iamPolicyUidPrincipal, forKey: .iamPolicyUidPrincipal)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

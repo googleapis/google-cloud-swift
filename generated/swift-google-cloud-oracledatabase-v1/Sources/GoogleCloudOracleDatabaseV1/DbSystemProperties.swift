@@ -93,6 +93,8 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Optional. The options for the DbSystem.
   public var dbSystemOptions: DbSystemOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DbSystemProperties`.
   public init() {}
 
@@ -107,6 +109,162 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let shape = CodingKeys(stringValue: "shape")
+    static let computeCount = CodingKeys(stringValue: "computeCount")
+    static let initialDataStorageSizeGb = CodingKeys(stringValue: "initialDataStorageSizeGb")
+    static let databaseEdition = CodingKeys(stringValue: "databaseEdition")
+    static let licenseModel = CodingKeys(stringValue: "licenseModel")
+    static let sshPublicKeys = CodingKeys(stringValue: "sshPublicKeys")
+    static let hostnamePrefix = CodingKeys(stringValue: "hostnamePrefix")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let privateIp = CodingKeys(stringValue: "privateIp")
+    static let dataCollectionOptions = CodingKeys(stringValue: "dataCollectionOptions")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let dbHome = CodingKeys(stringValue: "dbHome")
+    static let ocid = CodingKeys(stringValue: "ocid")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let computeModel = CodingKeys(stringValue: "computeModel")
+    static let dataStorageSizeGb = CodingKeys(stringValue: "dataStorageSizeGb")
+    static let recoStorageSizeGb = CodingKeys(stringValue: "recoStorageSizeGb")
+    static let domain = CodingKeys(stringValue: "domain")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let dbSystemOptions = CodingKeys(stringValue: "dbSystemOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "shape",
+      "computeCount",
+      "initialDataStorageSizeGb",
+      "databaseEdition",
+      "licenseModel",
+      "sshPublicKeys",
+      "hostnamePrefix",
+      "hostname",
+      "privateIp",
+      "dataCollectionOptions",
+      "timeZone",
+      "lifecycleState",
+      "dbHome",
+      "ocid",
+      "memorySizeGb",
+      "computeModel",
+      "dataStorageSizeGb",
+      "recoStorageSizeGb",
+      "domain",
+      "nodeCount",
+      "dbSystemOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shape) {
+      self.shape = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .computeCount) {
+      self.computeCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .initialDataStorageSizeGb)
+    {
+      self.initialDataStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbSystemProperties.DbSystemDatabaseEdition.self, forKey: .databaseEdition)
+    {
+      self.databaseEdition = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbSystemProperties.LicenseModel.self, forKey: .licenseModel)
+    {
+      self.licenseModel = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sshPublicKeys) {
+      self.sshPublicKeys = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostnamePrefix) {
+      self.hostnamePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateIp) {
+      self.privateIp = value
+    }
+    self.dataCollectionOptions = try container.decodeIfPresent(
+      DataCollectionOptionsDbSystem.self, forKey: .dataCollectionOptions)
+    self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
+    if let value = try container.decodeIfPresent(
+      DbSystemProperties.DbSystemLifecycleState.self, forKey: .lifecycleState)
+    {
+      self.lifecycleState = value
+    }
+    self.dbHome = try container.decodeIfPresent(DbHome.self, forKey: .dbHome)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ocid) {
+      self.ocid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(
+      DbSystemProperties.ComputeModel.self, forKey: .computeModel)
+    {
+      self.computeModel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .dataStorageSizeGb) {
+      self.dataStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .recoStorageSizeGb) {
+      self.recoStorageSizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+      self.domain = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    self.dbSystemOptions = try container.decodeIfPresent(
+      DbSystemOptions.self, forKey: .dbSystemOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.shape, forKey: .shape)
+    try container.encode(self.computeCount, forKey: .computeCount)
+    try container.encode(self.initialDataStorageSizeGb, forKey: .initialDataStorageSizeGb)
+    try container.encode(self.databaseEdition, forKey: .databaseEdition)
+    try container.encode(self.licenseModel, forKey: .licenseModel)
+    try container.encode(self.sshPublicKeys, forKey: .sshPublicKeys)
+    try container.encode(self.hostnamePrefix, forKey: .hostnamePrefix)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.privateIp, forKey: .privateIp)
+    try container.encodeIfPresent(self.dataCollectionOptions, forKey: .dataCollectionOptions)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    try container.encodeIfPresent(self.dbHome, forKey: .dbHome)
+    try container.encode(self.ocid, forKey: .ocid)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.computeModel, forKey: .computeModel)
+    try container.encode(self.dataStorageSizeGb, forKey: .dataStorageSizeGb)
+    try container.encode(self.recoStorageSizeGb, forKey: .recoStorageSizeGb)
+    try container.encode(self.domain, forKey: .domain)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encodeIfPresent(self.dbSystemOptions, forKey: .dbSystemOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The editions available for DbSystem.

@@ -33,6 +33,8 @@
     /// deleted. If this instance is deleted, then you must set the timestamp.
     public var sourceInstanceDeletionTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlInstancesGetLatestRecoveryTimeRequest`.
     public init() {}
 
@@ -47,6 +49,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let sourceInstanceDeletionTime = CodingKeys(stringValue: "sourceInstanceDeletionTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "project",
+        "sourceInstanceDeletionTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      self.sourceInstanceDeletionTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .sourceInstanceDeletionTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.instance, forKey: .instance)
+      try container.encode(self.project, forKey: .project)
+      try container.encodeIfPresent(
+        self.sourceInstanceDeletionTime, forKey: .sourceInstanceDeletionTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

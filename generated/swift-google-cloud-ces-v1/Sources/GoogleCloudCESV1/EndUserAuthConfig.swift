@@ -26,6 +26,8 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The auth configuration.
   public var authConfig: OneOf_AuthConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EndUserAuthConfig`.
   public init() {}
 
@@ -42,9 +44,19 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case oauth2AuthCodeConfig = "oauth2AuthCodeConfig"
-    case oauth2JwtBearerConfig = "oauth2JwtBearerConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let oauth2AuthCodeConfig = CodingKeys(stringValue: "oauth2AuthCodeConfig")
+    static let oauth2JwtBearerConfig = CodingKeys(stringValue: "oauth2JwtBearerConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "oauth2AuthCodeConfig",
+      "oauth2JwtBearerConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +83,10 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try authConfigCheckAndSet(.oauth2JwtBearerConfig(oauth2JwtBearerConfig))
     }
     self.authConfig = authConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +100,9 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         try container.encode(value, forKey: .oauth2JwtBearerConfig)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Oauth 2.0 Authorization Code authentication configuration.
@@ -93,6 +112,8 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Required. Oauth token parameter name to pass through.
     /// Must be in the format `$context.variables.<name_of_variable>`.
     public var oauthToken: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Oauth2AuthCodeConfig`.
     public init() {}
@@ -108,6 +129,38 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let oauthToken = CodingKeys(stringValue: "oauthToken")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "oauthToken"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oauthToken) {
+        self.oauthToken = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.oauthToken, forKey: .oauthToken)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -137,6 +190,8 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Must be in the format `$context.variables.<name_of_variable>`.
     public var clientKey: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Oauth2JwtBearerConfig`.
     public init() {}
 
@@ -151,6 +206,50 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let issuer = CodingKeys(stringValue: "issuer")
+      static let subject = CodingKeys(stringValue: "subject")
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "issuer",
+        "subject",
+        "clientKey",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
+        self.issuer = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subject) {
+        self.subject = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+        self.clientKey = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.issuer, forKey: .issuer)
+      try container.encode(self.subject, forKey: .subject)
+      try container.encode(self.clientKey, forKey: .clientKey)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

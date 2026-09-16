@@ -36,6 +36,8 @@ public struct InTotoProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// equivalent to empty.
   public var materials: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InTotoProvenance`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct InTotoProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let builderConfig = CodingKeys(stringValue: "builderConfig")
+    static let recipe = CodingKeys(stringValue: "recipe")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let materials = CodingKeys(stringValue: "materials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "builderConfig",
+      "recipe",
+      "metadata",
+      "materials",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.builderConfig = try container.decodeIfPresent(BuilderConfig.self, forKey: .builderConfig)
+    self.recipe = try container.decodeIfPresent(Recipe.self, forKey: .recipe)
+    self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .materials) {
+      self.materials = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.builderConfig, forKey: .builderConfig)
+    try container.encodeIfPresent(self.recipe, forKey: .recipe)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
+    try container.encode(self.materials, forKey: .materials)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

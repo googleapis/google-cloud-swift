@@ -47,6 +47,8 @@ public struct MappingRuleFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// fully qualified names.
   public var entities: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MappingRuleFilter`.
   public init() {}
 
@@ -61,6 +63,62 @@ public struct MappingRuleFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parentEntity = CodingKeys(stringValue: "parentEntity")
+    static let entityNamePrefix = CodingKeys(stringValue: "entityNamePrefix")
+    static let entityNameSuffix = CodingKeys(stringValue: "entityNameSuffix")
+    static let entityNameContains = CodingKeys(stringValue: "entityNameContains")
+    static let entities = CodingKeys(stringValue: "entities")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parentEntity",
+      "entityNamePrefix",
+      "entityNameSuffix",
+      "entityNameContains",
+      "entities",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentEntity) {
+      self.parentEntity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityNamePrefix) {
+      self.entityNamePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityNameSuffix) {
+      self.entityNameSuffix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityNameContains) {
+      self.entityNameContains = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entities) {
+      self.entities = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parentEntity, forKey: .parentEntity)
+    try container.encode(self.entityNamePrefix, forKey: .entityNamePrefix)
+    try container.encode(self.entityNameSuffix, forKey: .entityNameSuffix)
+    try container.encode(self.entityNameContains, forKey: .entityNameContains)
+    try container.encode(self.entities, forKey: .entities)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

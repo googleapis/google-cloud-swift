@@ -35,6 +35,8 @@
     /// The total number of queries in the observation window.
     public var totalQueryCount: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RiskDetailsGlobalDnsInsight`.
     public init() {}
 
@@ -49,6 +51,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let projectDefaultIsGlobalDns = CodingKeys(stringValue: "projectDefaultIsGlobalDns")
+      static let queryObservationWindow = CodingKeys(stringValue: "queryObservationWindow")
+      static let riskyQueryCount = CodingKeys(stringValue: "riskyQueryCount")
+      static let totalQueryCount = CodingKeys(stringValue: "totalQueryCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "projectDefaultIsGlobalDns",
+        "queryObservationWindow",
+        "riskyQueryCount",
+        "totalQueryCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.projectDefaultIsGlobalDns = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .projectDefaultIsGlobalDns)
+      self.queryObservationWindow = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .queryObservationWindow)
+      self.riskyQueryCount = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .riskyQueryCount)
+      self.totalQueryCount = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .totalQueryCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.projectDefaultIsGlobalDns, forKey: .projectDefaultIsGlobalDns)
+      try container.encodeIfPresent(self.queryObservationWindow, forKey: .queryObservationWindow)
+      try container.encodeIfPresent(self.riskyQueryCount, forKey: .riskyQueryCount)
+      try container.encodeIfPresent(self.totalQueryCount, forKey: .totalQueryCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

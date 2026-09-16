@@ -24,6 +24,8 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// A masking expression to bind to the data masking rule.
   public var maskingExpression: OneOf_MaskingExpression? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataMaskingPolicy`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case predefinedExpression = "predefinedExpression"
-    case routine = "routine"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let predefinedExpression = CodingKeys(stringValue: "predefinedExpression")
+    static let routine = CodingKeys(stringValue: "routine")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "predefinedExpression",
+      "routine",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try maskingExpressionCheckAndSet(.routine(routine))
     }
     self.maskingExpression = maskingExpression
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .routine(let value):
         try container.encode(value, forKey: .routine)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

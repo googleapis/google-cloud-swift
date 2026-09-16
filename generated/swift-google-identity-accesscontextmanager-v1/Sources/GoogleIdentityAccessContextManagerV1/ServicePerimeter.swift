@@ -80,6 +80,8 @@ public struct ServicePerimeter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// fields in the spec are set to non-default values.
   public var useExplicitDryRunSpec: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServicePerimeter`.
   public init() {}
 
@@ -94,6 +96,82 @@ public struct ServicePerimeter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let perimeterType = CodingKeys(stringValue: "perimeterType")
+    static let status = CodingKeys(stringValue: "status")
+    static let spec = CodingKeys(stringValue: "spec")
+    static let useExplicitDryRunSpec = CodingKeys(stringValue: "useExplicitDryRunSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "title",
+      "description",
+      "createTime",
+      "updateTime",
+      "perimeterType",
+      "status",
+      "spec",
+      "useExplicitDryRunSpec",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      ServicePerimeter.PerimeterType.self, forKey: .perimeterType)
+    {
+      self.perimeterType = value
+    }
+    self.status = try container.decodeIfPresent(ServicePerimeterConfig.self, forKey: .status)
+    self.spec = try container.decodeIfPresent(ServicePerimeterConfig.self, forKey: .spec)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useExplicitDryRunSpec) {
+      self.useExplicitDryRunSpec = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.perimeterType, forKey: .perimeterType)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encodeIfPresent(self.spec, forKey: .spec)
+    try container.encode(self.useExplicitDryRunSpec, forKey: .useExplicitDryRunSpec)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specifies the type of the Perimeter. There are two types: regular and

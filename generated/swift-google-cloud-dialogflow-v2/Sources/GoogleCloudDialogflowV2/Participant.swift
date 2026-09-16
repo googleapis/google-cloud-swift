@@ -117,6 +117,8 @@
     /// [google.cloud.dialogflow.v2.UpdateParticipantRequest.participant]: <doc:UpdateParticipantRequest/participant>
     public var agentDesktopSource: Participant.AgentDesktopSource = Participant.AgentDesktopSource()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Participant`.
     public init() {}
 
@@ -131,6 +133,76 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let role = CodingKeys(stringValue: "role")
+      static let sipRecordingMediaLabel = CodingKeys(stringValue: "sipRecordingMediaLabel")
+      static let obfuscatedExternalUserId = CodingKeys(stringValue: "obfuscatedExternalUserId")
+      static let documentsMetadataFilters = CodingKeys(stringValue: "documentsMetadataFilters")
+      static let agentDesktopSource = CodingKeys(stringValue: "agentDesktopSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "role",
+        "sipRecordingMediaLabel",
+        "obfuscatedExternalUserId",
+        "documentsMetadataFilters",
+        "agentDesktopSource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Participant.Role.self, forKey: .role) {
+        self.role = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sipRecordingMediaLabel)
+      {
+        self.sipRecordingMediaLabel = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .obfuscatedExternalUserId)
+      {
+        self.obfuscatedExternalUserId = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .documentsMetadataFilters)
+      {
+        self.documentsMetadataFilters = value
+      }
+      if let value = try container.decodeIfPresent(
+        Participant.AgentDesktopSource.self, forKey: .agentDesktopSource)
+      {
+        self.agentDesktopSource = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.role, forKey: .role)
+      try container.encode(self.sipRecordingMediaLabel, forKey: .sipRecordingMediaLabel)
+      try container.encode(self.obfuscatedExternalUserId, forKey: .obfuscatedExternalUserId)
+      try container.encode(self.documentsMetadataFilters, forKey: .documentsMetadataFilters)
+      try container.encode(self.agentDesktopSource, forKey: .agentDesktopSource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Enumeration of the roles a participant can play in a conversation.

@@ -43,6 +43,8 @@ public struct AllocateQuotaResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// ID of the actual config used to process the request.
   public var serviceConfigId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AllocateQuotaResponse`.
   public init() {}
 
@@ -57,6 +59,56 @@ public struct AllocateQuotaResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let operationId = CodingKeys(stringValue: "operationId")
+    static let allocateErrors = CodingKeys(stringValue: "allocateErrors")
+    static let quotaMetrics = CodingKeys(stringValue: "quotaMetrics")
+    static let serviceConfigId = CodingKeys(stringValue: "serviceConfigId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "operationId",
+      "allocateErrors",
+      "quotaMetrics",
+      "serviceConfigId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
+      self.operationId = value
+    }
+    if let value = try container.decodeIfPresent([QuotaError].self, forKey: .allocateErrors) {
+      self.allocateErrors = value
+    }
+    if let value = try container.decodeIfPresent([MetricValueSet].self, forKey: .quotaMetrics) {
+      self.quotaMetrics = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceConfigId) {
+      self.serviceConfigId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.operationId, forKey: .operationId)
+    try container.encode(self.allocateErrors, forKey: .allocateErrors)
+    try container.encode(self.quotaMetrics, forKey: .quotaMetrics)
+    try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

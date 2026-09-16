@@ -110,6 +110,8 @@
     /// specified in this HttpRouteAction.
     public var weightedBackendServices: [WeightedBackendService] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HttpRouteAction`.
     public init() {}
 
@@ -124,6 +126,75 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cachePolicy = CodingKeys(stringValue: "cachePolicy")
+      static let corsPolicy = CodingKeys(stringValue: "corsPolicy")
+      static let faultInjectionPolicy = CodingKeys(stringValue: "faultInjectionPolicy")
+      static let maxStreamDuration = CodingKeys(stringValue: "maxStreamDuration")
+      static let requestMirrorPolicy = CodingKeys(stringValue: "requestMirrorPolicy")
+      static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
+      static let timeout = CodingKeys(stringValue: "timeout")
+      static let urlRewrite = CodingKeys(stringValue: "urlRewrite")
+      static let weightedBackendServices = CodingKeys(stringValue: "weightedBackendServices")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cachePolicy",
+        "corsPolicy",
+        "faultInjectionPolicy",
+        "maxStreamDuration",
+        "requestMirrorPolicy",
+        "retryPolicy",
+        "timeout",
+        "urlRewrite",
+        "weightedBackendServices",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.cachePolicy = try container.decodeIfPresent(CachePolicy.self, forKey: .cachePolicy)
+      self.corsPolicy = try container.decodeIfPresent(CorsPolicy.self, forKey: .corsPolicy)
+      self.faultInjectionPolicy = try container.decodeIfPresent(
+        HttpFaultInjection.self, forKey: .faultInjectionPolicy)
+      self.maxStreamDuration = try container.decodeIfPresent(
+        Duration.self, forKey: .maxStreamDuration)
+      self.requestMirrorPolicy = try container.decodeIfPresent(
+        RequestMirrorPolicy.self, forKey: .requestMirrorPolicy)
+      self.retryPolicy = try container.decodeIfPresent(HttpRetryPolicy.self, forKey: .retryPolicy)
+      self.timeout = try container.decodeIfPresent(Duration.self, forKey: .timeout)
+      self.urlRewrite = try container.decodeIfPresent(UrlRewrite.self, forKey: .urlRewrite)
+      if let value = try container.decodeIfPresent(
+        [WeightedBackendService].self, forKey: .weightedBackendServices)
+      {
+        self.weightedBackendServices = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.cachePolicy, forKey: .cachePolicy)
+      try container.encodeIfPresent(self.corsPolicy, forKey: .corsPolicy)
+      try container.encodeIfPresent(self.faultInjectionPolicy, forKey: .faultInjectionPolicy)
+      try container.encodeIfPresent(self.maxStreamDuration, forKey: .maxStreamDuration)
+      try container.encodeIfPresent(self.requestMirrorPolicy, forKey: .requestMirrorPolicy)
+      try container.encodeIfPresent(self.retryPolicy, forKey: .retryPolicy)
+      try container.encodeIfPresent(self.timeout, forKey: .timeout)
+      try container.encodeIfPresent(self.urlRewrite, forKey: .urlRewrite)
+      try container.encode(self.weightedBackendServices, forKey: .weightedBackendServices)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

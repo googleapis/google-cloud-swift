@@ -89,6 +89,8 @@ public struct PostureDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// CREATE_FAILED or DELETE_FAILED.
   public var failureMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostureDeployment`.
   public init() {}
 
@@ -103,6 +105,118 @@ public struct PostureDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let targetResource = CodingKeys(stringValue: "targetResource")
+    static let state = CodingKeys(stringValue: "state")
+    static let postureId = CodingKeys(stringValue: "postureId")
+    static let postureRevisionId = CodingKeys(stringValue: "postureRevisionId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let desiredPostureId = CodingKeys(stringValue: "desiredPostureId")
+    static let desiredPostureRevisionId = CodingKeys(stringValue: "desiredPostureRevisionId")
+    static let failureMessage = CodingKeys(stringValue: "failureMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "targetResource",
+      "state",
+      "postureId",
+      "postureRevisionId",
+      "createTime",
+      "updateTime",
+      "description",
+      "etag",
+      "annotations",
+      "reconciling",
+      "desiredPostureId",
+      "desiredPostureRevisionId",
+      "failureMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetResource) {
+      self.targetResource = value
+    }
+    if let value = try container.decodeIfPresent(PostureDeployment.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .postureId) {
+      self.postureId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .postureRevisionId) {
+      self.postureRevisionId = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .desiredPostureId) {
+      self.desiredPostureId = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .desiredPostureRevisionId)
+    {
+      self.desiredPostureRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .failureMessage) {
+      self.failureMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.targetResource, forKey: .targetResource)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.postureId, forKey: .postureId)
+    try container.encode(self.postureRevisionId, forKey: .postureRevisionId)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.desiredPostureId, forKey: .desiredPostureId)
+    try container.encode(self.desiredPostureRevisionId, forKey: .desiredPostureRevisionId)
+    try container.encode(self.failureMessage, forKey: .failureMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// State of a PostureDeployment.

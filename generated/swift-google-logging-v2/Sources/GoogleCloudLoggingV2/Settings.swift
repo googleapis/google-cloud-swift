@@ -81,6 +81,8 @@ public struct Settings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the hierarchy. The _Default sink can be re-enabled manually if needed.
   public var disableDefaultSink: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Settings`.
   public init() {}
 
@@ -95,6 +97,62 @@ public struct Settings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+    static let kmsServiceAccountId = CodingKeys(stringValue: "kmsServiceAccountId")
+    static let storageLocation = CodingKeys(stringValue: "storageLocation")
+    static let disableDefaultSink = CodingKeys(stringValue: "disableDefaultSink")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "kmsKeyName",
+      "kmsServiceAccountId",
+      "storageLocation",
+      "disableDefaultSink",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+      self.kmsKeyName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsServiceAccountId) {
+      self.kmsServiceAccountId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageLocation) {
+      self.storageLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableDefaultSink) {
+      self.disableDefaultSink = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+    try container.encode(self.kmsServiceAccountId, forKey: .kmsServiceAccountId)
+    try container.encode(self.storageLocation, forKey: .storageLocation)
+    try container.encode(self.disableDefaultSink, forKey: .disableDefaultSink)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

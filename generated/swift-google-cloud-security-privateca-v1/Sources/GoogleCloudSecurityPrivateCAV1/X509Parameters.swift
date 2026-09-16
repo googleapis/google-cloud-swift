@@ -54,6 +54,8 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Describes custom X.509 extensions.
   public var additionalExtensions: [X509Extension] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `X509Parameters`.
   public init() {}
 
@@ -68,6 +70,66 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let keyUsage = CodingKeys(stringValue: "keyUsage")
+    static let caOptions = CodingKeys(stringValue: "caOptions")
+    static let policyIds = CodingKeys(stringValue: "policyIds")
+    static let aiaOcspServers = CodingKeys(stringValue: "aiaOcspServers")
+    static let nameConstraints = CodingKeys(stringValue: "nameConstraints")
+    static let additionalExtensions = CodingKeys(stringValue: "additionalExtensions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "keyUsage",
+      "caOptions",
+      "policyIds",
+      "aiaOcspServers",
+      "nameConstraints",
+      "additionalExtensions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.keyUsage = try container.decodeIfPresent(KeyUsage.self, forKey: .keyUsage)
+    self.caOptions = try container.decodeIfPresent(
+      X509Parameters.CaOptions.self, forKey: .caOptions)
+    if let value = try container.decodeIfPresent([ObjectId].self, forKey: .policyIds) {
+      self.policyIds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .aiaOcspServers) {
+      self.aiaOcspServers = value
+    }
+    self.nameConstraints = try container.decodeIfPresent(
+      X509Parameters.NameConstraints.self, forKey: .nameConstraints)
+    if let value = try container.decodeIfPresent(
+      [X509Extension].self, forKey: .additionalExtensions)
+    {
+      self.additionalExtensions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.keyUsage, forKey: .keyUsage)
+    try container.encodeIfPresent(self.caOptions, forKey: .caOptions)
+    try container.encode(self.policyIds, forKey: .policyIds)
+    try container.encode(self.aiaOcspServers, forKey: .aiaOcspServers)
+    try container.encodeIfPresent(self.nameConstraints, forKey: .nameConstraints)
+    try container.encode(self.additionalExtensions, forKey: .additionalExtensions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes the X.509 basic constraints extension, per [RFC 5280
@@ -87,6 +149,8 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// will be omitted from the certificate.
     public var maxIssuerPathLength: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CaOptions`.
     public init() {}
 
@@ -101,6 +165,41 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let isCa = CodingKeys(stringValue: "isCa")
+      static let maxIssuerPathLength = CodingKeys(stringValue: "maxIssuerPathLength")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "isCa",
+        "maxIssuerPathLength",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.isCa = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCa)
+      self.maxIssuerPathLength = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxIssuerPathLength)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.isCa, forKey: .isCa)
+      try container.encodeIfPresent(self.maxIssuerPathLength, forKey: .maxIssuerPathLength)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -170,6 +269,8 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// leading period (like `.example.com`)
     public var excludedUris: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NameConstraints`.
     public init() {}
 
@@ -184,6 +285,92 @@ public struct X509Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let critical = CodingKeys(stringValue: "critical")
+      static let permittedDnsNames = CodingKeys(stringValue: "permittedDnsNames")
+      static let excludedDnsNames = CodingKeys(stringValue: "excludedDnsNames")
+      static let permittedIpRanges = CodingKeys(stringValue: "permittedIpRanges")
+      static let excludedIpRanges = CodingKeys(stringValue: "excludedIpRanges")
+      static let permittedEmailAddresses = CodingKeys(stringValue: "permittedEmailAddresses")
+      static let excludedEmailAddresses = CodingKeys(stringValue: "excludedEmailAddresses")
+      static let permittedUris = CodingKeys(stringValue: "permittedUris")
+      static let excludedUris = CodingKeys(stringValue: "excludedUris")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "critical",
+        "permittedDnsNames",
+        "excludedDnsNames",
+        "permittedIpRanges",
+        "excludedIpRanges",
+        "permittedEmailAddresses",
+        "excludedEmailAddresses",
+        "permittedUris",
+        "excludedUris",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .critical) {
+        self.critical = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permittedDnsNames)
+      {
+        self.permittedDnsNames = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedDnsNames) {
+        self.excludedDnsNames = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permittedIpRanges)
+      {
+        self.permittedIpRanges = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedIpRanges) {
+        self.excludedIpRanges = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .permittedEmailAddresses)
+      {
+        self.permittedEmailAddresses = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .excludedEmailAddresses)
+      {
+        self.excludedEmailAddresses = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permittedUris) {
+        self.permittedUris = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedUris) {
+        self.excludedUris = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.critical, forKey: .critical)
+      try container.encode(self.permittedDnsNames, forKey: .permittedDnsNames)
+      try container.encode(self.excludedDnsNames, forKey: .excludedDnsNames)
+      try container.encode(self.permittedIpRanges, forKey: .permittedIpRanges)
+      try container.encode(self.excludedIpRanges, forKey: .excludedIpRanges)
+      try container.encode(self.permittedEmailAddresses, forKey: .permittedEmailAddresses)
+      try container.encode(self.excludedEmailAddresses, forKey: .excludedEmailAddresses)
+      try container.encode(self.permittedUris, forKey: .permittedUris)
+      try container.encode(self.excludedUris, forKey: .excludedUris)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

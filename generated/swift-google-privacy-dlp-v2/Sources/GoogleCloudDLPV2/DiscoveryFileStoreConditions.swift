@@ -34,6 +34,8 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWKT._
   /// File store specific conditions.
   public var conditions: OneOf_Conditions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryFileStoreConditions`.
   public init() {}
 
@@ -50,10 +52,21 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case createdAfter = "createdAfter"
-    case minAge = "minAge"
-    case cloudStorageConditions = "cloudStorageConditions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createdAfter = CodingKeys(stringValue: "createdAfter")
+    static let minAge = CodingKeys(stringValue: "minAge")
+    static let cloudStorageConditions = CodingKeys(stringValue: "cloudStorageConditions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createdAfter",
+      "minAge",
+      "cloudStorageConditions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -78,18 +91,25 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWKT._
       try conditionsCheckAndSet(.cloudStorageConditions(cloudStorageConditions))
     }
     self.conditions = conditions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.createdAfter, forKey: .createdAfter)
-    try container.encode(self.minAge, forKey: .minAge)
+    try container.encodeIfPresent(self.createdAfter, forKey: .createdAfter)
+    try container.encodeIfPresent(self.minAge, forKey: .minAge)
 
     if let choice = self.conditions {
       switch choice {
       case .cloudStorageConditions(let value):
         try container.encode(value, forKey: .cloudStorageConditions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

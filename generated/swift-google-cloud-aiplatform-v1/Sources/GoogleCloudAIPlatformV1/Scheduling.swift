@@ -44,6 +44,8 @@
     /// If set to 0, the job will wait indefinitely. The default is 24 hours.
     public var maxWaitDuration: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Scheduling`.
     public init() {}
 
@@ -58,6 +60,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeout = CodingKeys(stringValue: "timeout")
+      static let restartJobOnWorkerRestart = CodingKeys(stringValue: "restartJobOnWorkerRestart")
+      static let strategy = CodingKeys(stringValue: "strategy")
+      static let disableRetries = CodingKeys(stringValue: "disableRetries")
+      static let maxWaitDuration = CodingKeys(stringValue: "maxWaitDuration")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeout",
+        "restartJobOnWorkerRestart",
+        "strategy",
+        "disableRetries",
+        "maxWaitDuration",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .restartJobOnWorkerRestart)
+      {
+        self.restartJobOnWorkerRestart = value
+      }
+      if let value = try container.decodeIfPresent(Scheduling.Strategy.self, forKey: .strategy) {
+        self.strategy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableRetries) {
+        self.disableRetries = value
+      }
+      self.maxWaitDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxWaitDuration)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.timeout, forKey: .timeout)
+      try container.encode(self.restartJobOnWorkerRestart, forKey: .restartJobOnWorkerRestart)
+      try container.encode(self.strategy, forKey: .strategy)
+      try container.encode(self.disableRetries, forKey: .disableRetries)
+      try container.encodeIfPresent(self.maxWaitDuration, forKey: .maxWaitDuration)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Optional. This determines which type of scheduling strategy to use. Right

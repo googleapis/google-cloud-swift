@@ -27,6 +27,8 @@ public struct SourceTargetMapping: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The target SQL or the path for it.
   public var targetSpec: TargetSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceTargetMapping`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct SourceTargetMapping: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceSpec = CodingKeys(stringValue: "sourceSpec")
+    static let targetSpec = CodingKeys(stringValue: "targetSpec")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceSpec",
+      "targetSpec",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.sourceSpec = try container.decodeIfPresent(SourceSpec.self, forKey: .sourceSpec)
+    self.targetSpec = try container.decodeIfPresent(TargetSpec.self, forKey: .targetSpec)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.sourceSpec, forKey: .sourceSpec)
+    try container.encodeIfPresent(self.targetSpec, forKey: .targetSpec)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

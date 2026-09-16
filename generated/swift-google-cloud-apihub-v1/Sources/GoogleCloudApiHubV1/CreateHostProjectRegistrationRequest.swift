@@ -38,6 +38,8 @@ public struct CreateHostProjectRegistrationRequest: Codable, Equatable, GoogleCl
   /// Required. The host project registration to register.
   public var hostProjectRegistration: HostProjectRegistration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateHostProjectRegistrationRequest`.
   public init() {}
 
@@ -52,6 +54,51 @@ public struct CreateHostProjectRegistrationRequest: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let hostProjectRegistrationId = CodingKeys(stringValue: "hostProjectRegistrationId")
+    static let hostProjectRegistration = CodingKeys(stringValue: "hostProjectRegistration")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "hostProjectRegistrationId",
+      "hostProjectRegistration",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .hostProjectRegistrationId)
+    {
+      self.hostProjectRegistrationId = value
+    }
+    self.hostProjectRegistration = try container.decodeIfPresent(
+      HostProjectRegistration.self, forKey: .hostProjectRegistration)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.hostProjectRegistrationId, forKey: .hostProjectRegistrationId)
+    try container.encodeIfPresent(self.hostProjectRegistration, forKey: .hostProjectRegistration)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

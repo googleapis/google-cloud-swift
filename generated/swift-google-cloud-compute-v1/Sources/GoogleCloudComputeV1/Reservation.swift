@@ -153,6 +153,8 @@
     /// reservation is created within a commitment.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Reservation`.
     public init() {}
 
@@ -167,6 +169,175 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advancedDeploymentControl = CodingKeys(stringValue: "advancedDeploymentControl")
+      static let aggregateReservation = CodingKeys(stringValue: "aggregateReservation")
+      static let commitment = CodingKeys(stringValue: "commitment")
+      static let confidentialComputeType = CodingKeys(stringValue: "confidentialComputeType")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let deleteAfterDuration = CodingKeys(stringValue: "deleteAfterDuration")
+      static let deleteAtTime = CodingKeys(stringValue: "deleteAtTime")
+      static let deploymentType = CodingKeys(stringValue: "deploymentType")
+      static let description = CodingKeys(stringValue: "description")
+      static let earlyAccessMaintenance = CodingKeys(stringValue: "earlyAccessMaintenance")
+      static let enableEmergentMaintenance = CodingKeys(stringValue: "enableEmergentMaintenance")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let linkedCommitments = CodingKeys(stringValue: "linkedCommitments")
+      static let name = CodingKeys(stringValue: "name")
+      static let params = CodingKeys(stringValue: "params")
+      static let protectionTier = CodingKeys(stringValue: "protectionTier")
+      static let reservationSharingPolicy = CodingKeys(stringValue: "reservationSharingPolicy")
+      static let resourceMetadata = CodingKeys(stringValue: "resourceMetadata")
+      static let resourcePolicies = CodingKeys(stringValue: "resourcePolicies")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let schedulingType = CodingKeys(stringValue: "schedulingType")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let shareSettings = CodingKeys(stringValue: "shareSettings")
+      static let specificReservation = CodingKeys(stringValue: "specificReservation")
+      static let specificReservationRequired = CodingKeys(
+        stringValue: "specificReservationRequired")
+      static let status = CodingKeys(stringValue: "status")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advancedDeploymentControl",
+        "aggregateReservation",
+        "commitment",
+        "confidentialComputeType",
+        "creationTimestamp",
+        "deleteAfterDuration",
+        "deleteAtTime",
+        "deploymentType",
+        "description",
+        "earlyAccessMaintenance",
+        "enableEmergentMaintenance",
+        "id",
+        "kind",
+        "linkedCommitments",
+        "name",
+        "params",
+        "protectionTier",
+        "reservationSharingPolicy",
+        "resourceMetadata",
+        "resourcePolicies",
+        "resourceStatus",
+        "satisfiesPzs",
+        "schedulingType",
+        "selfLink",
+        "shareSettings",
+        "specificReservation",
+        "specificReservationRequired",
+        "status",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.advancedDeploymentControl = try container.decodeIfPresent(
+        ReservationAdvancedDeploymentControl.self, forKey: .advancedDeploymentControl)
+      self.aggregateReservation = try container.decodeIfPresent(
+        AllocationAggregateReservation.self, forKey: .aggregateReservation)
+      self.commitment = try container.decodeIfPresent(Swift.String.self, forKey: .commitment)
+      self.confidentialComputeType = try container.decodeIfPresent(
+        Reservation.ConfidentialComputeType.self, forKey: .confidentialComputeType)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.deleteAfterDuration = try container.decodeIfPresent(
+        Duration.self, forKey: .deleteAfterDuration)
+      self.deleteAtTime = try container.decodeIfPresent(Swift.String.self, forKey: .deleteAtTime)
+      self.deploymentType = try container.decodeIfPresent(
+        Reservation.DeploymentType.self, forKey: .deploymentType)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.earlyAccessMaintenance = try container.decodeIfPresent(
+        Reservation.EarlyAccessMaintenance.self, forKey: .earlyAccessMaintenance)
+      self.enableEmergentMaintenance = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableEmergentMaintenance)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .linkedCommitments)
+      {
+        self.linkedCommitments = value
+      }
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.params = try container.decodeIfPresent(ReservationParams.self, forKey: .params)
+      self.protectionTier = try container.decodeIfPresent(
+        Reservation.ProtectionTier.self, forKey: .protectionTier)
+      self.reservationSharingPolicy = try container.decodeIfPresent(
+        AllocationReservationSharingPolicy.self, forKey: .reservationSharingPolicy)
+      self.resourceMetadata = try container.decodeIfPresent(
+        ResourceMetadata.self, forKey: .resourceMetadata)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .resourcePolicies)
+      {
+        self.resourcePolicies = value
+      }
+      self.resourceStatus = try container.decodeIfPresent(
+        AllocationResourceStatus.self, forKey: .resourceStatus)
+      self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
+      self.schedulingType = try container.decodeIfPresent(
+        Reservation.SchedulingType.self, forKey: .schedulingType)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.shareSettings = try container.decodeIfPresent(ShareSettings.self, forKey: .shareSettings)
+      self.specificReservation = try container.decodeIfPresent(
+        AllocationSpecificSKUReservation.self, forKey: .specificReservation)
+      self.specificReservationRequired = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .specificReservationRequired)
+      self.status = try container.decodeIfPresent(Reservation.Status.self, forKey: .status)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.advancedDeploymentControl, forKey: .advancedDeploymentControl)
+      try container.encodeIfPresent(self.aggregateReservation, forKey: .aggregateReservation)
+      try container.encodeIfPresent(self.commitment, forKey: .commitment)
+      try container.encodeIfPresent(self.confidentialComputeType, forKey: .confidentialComputeType)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.deleteAfterDuration, forKey: .deleteAfterDuration)
+      try container.encodeIfPresent(self.deleteAtTime, forKey: .deleteAtTime)
+      try container.encodeIfPresent(self.deploymentType, forKey: .deploymentType)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.earlyAccessMaintenance, forKey: .earlyAccessMaintenance)
+      try container.encodeIfPresent(
+        self.enableEmergentMaintenance, forKey: .enableEmergentMaintenance)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encode(self.linkedCommitments, forKey: .linkedCommitments)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.params, forKey: .params)
+      try container.encodeIfPresent(self.protectionTier, forKey: .protectionTier)
+      try container.encodeIfPresent(
+        self.reservationSharingPolicy, forKey: .reservationSharingPolicy)
+      try container.encodeIfPresent(self.resourceMetadata, forKey: .resourceMetadata)
+      try container.encode(self.resourcePolicies, forKey: .resourcePolicies)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encodeIfPresent(self.schedulingType, forKey: .schedulingType)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.shareSettings, forKey: .shareSettings)
+      try container.encodeIfPresent(self.specificReservation, forKey: .specificReservation)
+      try container.encodeIfPresent(
+        self.specificReservationRequired, forKey: .specificReservationRequired)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [confidentialComputeType][google.cloud.compute.v1.Reservation.confidentialComputeType] field.

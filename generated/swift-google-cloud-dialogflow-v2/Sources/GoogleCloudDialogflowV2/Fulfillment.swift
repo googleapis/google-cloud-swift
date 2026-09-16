@@ -56,6 +56,8 @@
     /// Required. The fulfillment configuration.
     public var fulfillment: OneOf_Fulfillment? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Fulfillment`.
     public init() {}
 
@@ -72,20 +74,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case displayName = "displayName"
-      case genericWebService = "genericWebService"
-      case enabled = "enabled"
-      case features = "features"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let genericWebService = CodingKeys(stringValue: "genericWebService")
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let features = CodingKeys(stringValue: "features")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "genericWebService",
+        "enabled",
+        "features",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-      self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
-      self.features = try container.decode([Fulfillment.Feature].self, forKey: .features)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      if let value = try container.decodeIfPresent([Fulfillment.Feature].self, forKey: .features) {
+        self.features = value
+      }
 
       var fulfillment: OneOf_Fulfillment? = nil
       let fulfillmentCheckAndSet = {
@@ -103,6 +126,10 @@
         try fulfillmentCheckAndSet(.genericWebService(genericWebService))
       }
       self.fulfillment = fulfillment
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,6 +144,9 @@
         case .genericWebService(let value):
           try container.encode(value, forKey: .genericWebService)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -153,6 +183,8 @@
       @available(*, deprecated)
       public var isCloudFunction: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `GenericWebService`.
       public init() {}
 
@@ -167,6 +199,64 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uri = CodingKeys(stringValue: "uri")
+        static let username = CodingKeys(stringValue: "username")
+        static let password = CodingKeys(stringValue: "password")
+        static let requestHeaders = CodingKeys(stringValue: "requestHeaders")
+        static let isCloudFunction = CodingKeys(stringValue: "isCloudFunction")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uri",
+          "username",
+          "password",
+          "requestHeaders",
+          "isCloudFunction",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+          self.uri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+          self.username = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+          self.password = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .requestHeaders)
+        {
+          self.requestHeaders = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCloudFunction) {
+          self.isCloudFunction = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uri, forKey: .uri)
+        try container.encode(self.username, forKey: .username)
+        try container.encode(self.password, forKey: .password)
+        try container.encode(self.requestHeaders, forKey: .requestHeaders)
+        try container.encode(self.isCloudFunction, forKey: .isCloudFunction)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -187,6 +277,8 @@
       /// The type of the feature that enabled for fulfillment.
       public var type: Fulfillment.Feature.Type_ = Fulfillment.Feature.Type_()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Feature`.
       public init() {}
 
@@ -201,6 +293,39 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let type = CodingKeys(stringValue: "type")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "type"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Fulfillment.Feature.Type_.self, forKey: .type)
+        {
+          self.type = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.type, forKey: .type)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The type of the feature.

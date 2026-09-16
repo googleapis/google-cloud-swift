@@ -40,6 +40,8 @@ public struct NameMappingKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// warehouse).
   public var attribute: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NameMappingKey`.
   public init() {}
 
@@ -54,6 +56,62 @@ public struct NameMappingKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let database = CodingKeys(stringValue: "database")
+    static let schema = CodingKeys(stringValue: "schema")
+    static let relation = CodingKeys(stringValue: "relation")
+    static let attribute = CodingKeys(stringValue: "attribute")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "database",
+      "schema",
+      "relation",
+      "attribute",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(NameMappingKey.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+      self.schema = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .relation) {
+      self.relation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attribute) {
+      self.attribute = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.database, forKey: .database)
+    try container.encode(self.schema, forKey: .schema)
+    try container.encode(self.relation, forKey: .relation)
+    try container.encode(self.attribute, forKey: .attribute)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the object that is being mapped.

@@ -54,6 +54,8 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
   public var keyAlgorithm: CertificateIssuanceConfig.KeyAlgorithm =
     CertificateIssuanceConfig.KeyAlgorithm()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateIssuanceConfig`.
   public init() {}
 
@@ -70,12 +72,96 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let certificateAuthorityConfig = CodingKeys(stringValue: "certificateAuthorityConfig")
+    static let lifetime = CodingKeys(stringValue: "lifetime")
+    static let rotationWindowPercentage = CodingKeys(stringValue: "rotationWindowPercentage")
+    static let keyAlgorithm = CodingKeys(stringValue: "keyAlgorithm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "certificateAuthorityConfig",
+      "lifetime",
+      "rotationWindowPercentage",
+      "keyAlgorithm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.certificateAuthorityConfig = try container.decodeIfPresent(
+      CertificateIssuanceConfig.CertificateAuthorityConfig.self, forKey: .certificateAuthorityConfig
+    )
+    self.lifetime = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .lifetime)
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .rotationWindowPercentage)
+    {
+      self.rotationWindowPercentage = value
+    }
+    if let value = try container.decodeIfPresent(
+      CertificateIssuanceConfig.KeyAlgorithm.self, forKey: .keyAlgorithm)
+    {
+      self.keyAlgorithm = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(
+      self.certificateAuthorityConfig, forKey: .certificateAuthorityConfig)
+    try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
+    try container.encode(self.rotationWindowPercentage, forKey: .rotationWindowPercentage)
+    try container.encode(self.keyAlgorithm, forKey: .keyAlgorithm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The CA that issues the workload certificate. It includes CA address, type,
   /// authentication to CA service, etc.
   public struct CertificateAuthorityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var kind: OneOf_Kind? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CertificateAuthorityConfig`.
     public init() {}
@@ -93,8 +179,18 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case certificateAuthorityServiceConfig = "certificateAuthorityServiceConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let certificateAuthorityServiceConfig = CodingKeys(
+        stringValue: "certificateAuthorityServiceConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "certificateAuthorityServiceConfig"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -117,6 +213,10 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
         try kindCheckAndSet(.certificateAuthorityServiceConfig(certificateAuthorityServiceConfig))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,6 +227,9 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
         case .certificateAuthorityServiceConfig(let value):
           try container.encode(value, forKey: .certificateAuthorityServiceConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -139,6 +242,8 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
       /// The CA pool string has a relative resource path following the form
       /// "projects/{project}/locations/{location}/caPools/{ca_pool}".
       public var caPool: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `CertificateAuthorityServiceConfig`.
       public init() {}
@@ -154,6 +259,38 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let caPool = CodingKeys(stringValue: "caPool")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "caPool"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caPool) {
+          self.caPool = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.caPool, forKey: .caPool)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

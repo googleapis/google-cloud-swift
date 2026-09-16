@@ -54,6 +54,8 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleCloudWKT
   /// [google.cloud.security.privateca.v1.SubjectAltNames]: <doc:SubjectAltNames>
   public var allowSubjectAltNamesPassthrough: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateIdentityConstraints`.
   public init() {}
 
@@ -68,6 +70,48 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let celExpression = CodingKeys(stringValue: "celExpression")
+    static let allowSubjectPassthrough = CodingKeys(stringValue: "allowSubjectPassthrough")
+    static let allowSubjectAltNamesPassthrough = CodingKeys(
+      stringValue: "allowSubjectAltNamesPassthrough")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "celExpression",
+      "allowSubjectPassthrough",
+      "allowSubjectAltNamesPassthrough",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.celExpression = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .celExpression)
+    self.allowSubjectPassthrough = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .allowSubjectPassthrough)
+    self.allowSubjectAltNamesPassthrough = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .allowSubjectAltNamesPassthrough)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.celExpression, forKey: .celExpression)
+    try container.encodeIfPresent(self.allowSubjectPassthrough, forKey: .allowSubjectPassthrough)
+    try container.encodeIfPresent(
+      self.allowSubjectAltNamesPassthrough, forKey: .allowSubjectAltNamesPassthrough)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

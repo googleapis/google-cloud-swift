@@ -25,6 +25,8 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The runtime configuration details.
   public var runtimeConfig: OneOf_RuntimeConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RuntimeConfig`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case kubernetes = "kubernetes"
-    case cloudRun = "cloudRun"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kubernetes = CodingKeys(stringValue: "kubernetes")
+    static let cloudRun = CodingKeys(stringValue: "cloudRun")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kubernetes",
+      "cloudRun",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -66,6 +78,10 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try runtimeConfigCheckAndSet(.cloudRun(cloudRun))
     }
     self.runtimeConfig = runtimeConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +94,9 @@ public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .cloudRun(let value):
         try container.encode(value, forKey: .cloudRun)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

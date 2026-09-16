@@ -36,6 +36,8 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// The information about this lock.
   public var lockSource: OneOf_LockSource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupApplianceLockInfo`.
   public init() {}
 
@@ -52,20 +54,40 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case backupApplianceId = "backupApplianceId"
-    case backupApplianceName = "backupApplianceName"
-    case lockReason = "lockReason"
-    case jobName = "jobName"
-    case backupImage = "backupImage"
-    case slaId = "slaId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let backupApplianceId = CodingKeys(stringValue: "backupApplianceId")
+    static let backupApplianceName = CodingKeys(stringValue: "backupApplianceName")
+    static let lockReason = CodingKeys(stringValue: "lockReason")
+    static let jobName = CodingKeys(stringValue: "jobName")
+    static let backupImage = CodingKeys(stringValue: "backupImage")
+    static let slaId = CodingKeys(stringValue: "slaId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "backupApplianceId",
+      "backupApplianceName",
+      "lockReason",
+      "jobName",
+      "backupImage",
+      "slaId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.backupApplianceId = try container.decode(Swift.Int64.self, forKey: .backupApplianceId)
-    self.backupApplianceName = try container.decode(Swift.String.self, forKey: .backupApplianceName)
-    self.lockReason = try container.decode(Swift.String.self, forKey: .lockReason)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .backupApplianceId) {
+      self.backupApplianceId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupApplianceName) {
+      self.backupApplianceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lockReason) {
+      self.lockReason = value
+    }
 
     var lockSource: OneOf_LockSource? = nil
     let lockSourceCheckAndSet = {
@@ -87,6 +109,10 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
       try lockSourceCheckAndSet(.slaId(slaId))
     }
     self.lockSource = lockSource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +130,9 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .slaId(let value):
         try container.encode(value, forKey: .slaId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

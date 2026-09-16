@@ -40,6 +40,8 @@ public struct TaskAttemptResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// At most one of exit_code or term_signal will be set.
   public var termSignal: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskAttemptResult`.
   public init() {}
 
@@ -54,6 +56,48 @@ public struct TaskAttemptResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let status = CodingKeys(stringValue: "status")
+    static let exitCode = CodingKeys(stringValue: "exitCode")
+    static let termSignal = CodingKeys(stringValue: "termSignal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "status",
+      "exitCode",
+      "termSignal",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .exitCode) {
+      self.exitCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .termSignal) {
+      self.termSignal = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.exitCode, forKey: .exitCode)
+    try container.encode(self.termSignal, forKey: .termSignal)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

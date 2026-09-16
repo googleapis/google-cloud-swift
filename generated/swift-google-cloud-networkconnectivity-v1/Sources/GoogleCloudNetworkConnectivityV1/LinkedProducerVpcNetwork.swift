@@ -49,6 +49,8 @@ public struct LinkedProducerVpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyP
   /// administration's approval.
   public var proposedExcludeExportRanges: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LinkedProducerVpcNetwork`.
   public init() {}
 
@@ -63,6 +65,88 @@ public struct LinkedProducerVpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let serviceConsumerVpcSpoke = CodingKeys(stringValue: "serviceConsumerVpcSpoke")
+    static let peering = CodingKeys(stringValue: "peering")
+    static let producerNetwork = CodingKeys(stringValue: "producerNetwork")
+    static let excludeExportRanges = CodingKeys(stringValue: "excludeExportRanges")
+    static let includeExportRanges = CodingKeys(stringValue: "includeExportRanges")
+    static let proposedIncludeExportRanges = CodingKeys(stringValue: "proposedIncludeExportRanges")
+    static let proposedExcludeExportRanges = CodingKeys(stringValue: "proposedExcludeExportRanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "serviceConsumerVpcSpoke",
+      "peering",
+      "producerNetwork",
+      "excludeExportRanges",
+      "includeExportRanges",
+      "proposedIncludeExportRanges",
+      "proposedExcludeExportRanges",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .serviceConsumerVpcSpoke)
+    {
+      self.serviceConsumerVpcSpoke = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peering) {
+      self.peering = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .producerNetwork) {
+      self.producerNetwork = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeExportRanges)
+    {
+      self.excludeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeExportRanges)
+    {
+      self.includeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .proposedIncludeExportRanges)
+    {
+      self.proposedIncludeExportRanges = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .proposedExcludeExportRanges)
+    {
+      self.proposedExcludeExportRanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.serviceConsumerVpcSpoke, forKey: .serviceConsumerVpcSpoke)
+    try container.encode(self.peering, forKey: .peering)
+    try container.encode(self.producerNetwork, forKey: .producerNetwork)
+    try container.encode(self.excludeExportRanges, forKey: .excludeExportRanges)
+    try container.encode(self.includeExportRanges, forKey: .includeExportRanges)
+    try container.encode(self.proposedIncludeExportRanges, forKey: .proposedIncludeExportRanges)
+    try container.encode(self.proposedExcludeExportRanges, forKey: .proposedExcludeExportRanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -156,6 +156,8 @@
     /// The original conversational query.
     public var query: OneOf_Query? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryResult`.
     public init() {}
 
@@ -172,45 +174,89 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case triggerIntent = "triggerIntent"
-      case transcript = "transcript"
-      case triggerEvent = "triggerEvent"
-      case dtmf = "dtmf"
-      case languageCode = "languageCode"
-      case parameters = "parameters"
-      case responseMessages = "responseMessages"
-      case webhookStatuses = "webhookStatuses"
-      case webhookPayloads = "webhookPayloads"
-      case currentPage = "currentPage"
-      case currentFlow = "currentFlow"
-      case intent = "intent"
-      case intentDetectionConfidence = "intentDetectionConfidence"
-      case match = "match"
-      case diagnosticInfo = "diagnosticInfo"
-      case sentimentAnalysisResult = "sentimentAnalysisResult"
-      case advancedSettings = "advancedSettings"
-      case allowAnswerFeedback = "allowAnswerFeedback"
-      case dataStoreConnectionSignals = "dataStoreConnectionSignals"
-      case traceBlocks = "traceBlocks"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let triggerIntent = CodingKeys(stringValue: "triggerIntent")
+      static let transcript = CodingKeys(stringValue: "transcript")
+      static let triggerEvent = CodingKeys(stringValue: "triggerEvent")
+      static let dtmf = CodingKeys(stringValue: "dtmf")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let responseMessages = CodingKeys(stringValue: "responseMessages")
+      static let webhookStatuses = CodingKeys(stringValue: "webhookStatuses")
+      static let webhookPayloads = CodingKeys(stringValue: "webhookPayloads")
+      static let currentPage = CodingKeys(stringValue: "currentPage")
+      static let currentFlow = CodingKeys(stringValue: "currentFlow")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let intentDetectionConfidence = CodingKeys(stringValue: "intentDetectionConfidence")
+      static let match = CodingKeys(stringValue: "match")
+      static let diagnosticInfo = CodingKeys(stringValue: "diagnosticInfo")
+      static let sentimentAnalysisResult = CodingKeys(stringValue: "sentimentAnalysisResult")
+      static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
+      static let allowAnswerFeedback = CodingKeys(stringValue: "allowAnswerFeedback")
+      static let dataStoreConnectionSignals = CodingKeys(stringValue: "dataStoreConnectionSignals")
+      static let traceBlocks = CodingKeys(stringValue: "traceBlocks")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "triggerIntent",
+        "transcript",
+        "triggerEvent",
+        "dtmf",
+        "languageCode",
+        "parameters",
+        "responseMessages",
+        "webhookStatuses",
+        "webhookPayloads",
+        "currentPage",
+        "currentFlow",
+        "intent",
+        "intentDetectionConfidence",
+        "match",
+        "diagnosticInfo",
+        "sentimentAnalysisResult",
+        "advancedSettings",
+        "allowAnswerFeedback",
+        "dataStoreConnectionSignals",
+        "traceBlocks",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
       self.parameters = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .parameters)
-      self.responseMessages = try container.decode(
+      if let value = try container.decodeIfPresent(
         [ResponseMessage].self, forKey: .responseMessages)
-      self.webhookStatuses = try container.decode([GoogleRpc.Status].self, forKey: .webhookStatuses)
-      self.webhookPayloads = try container.decode(
+      {
+        self.responseMessages = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GoogleRpc.Status].self, forKey: .webhookStatuses)
+      {
+        self.webhookStatuses = value
+      }
+      if let value = try container.decodeIfPresent(
         [GoogleCloudWKT.Struct].self, forKey: .webhookPayloads)
+      {
+        self.webhookPayloads = value
+      }
       self.currentPage = try container.decodeIfPresent(Page.self, forKey: .currentPage)
       self.currentFlow = try container.decodeIfPresent(Flow.self, forKey: .currentFlow)
       self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
-      self.intentDetectionConfidence = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.Float.self, forKey: .intentDetectionConfidence)
+      {
+        self.intentDetectionConfidence = value
+      }
       self.match = try container.decodeIfPresent(Match.self, forKey: .match)
       self.diagnosticInfo = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .diagnosticInfo)
@@ -218,10 +264,14 @@
         SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
       self.advancedSettings = try container.decodeIfPresent(
         AdvancedSettings.self, forKey: .advancedSettings)
-      self.allowAnswerFeedback = try container.decode(Swift.Bool.self, forKey: .allowAnswerFeedback)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAnswerFeedback) {
+        self.allowAnswerFeedback = value
+      }
       self.dataStoreConnectionSignals = try container.decodeIfPresent(
         DataStoreConnectionSignals.self, forKey: .dataStoreConnectionSignals)
-      self.traceBlocks = try container.decode([TraceBlock].self, forKey: .traceBlocks)
+      if let value = try container.decodeIfPresent([TraceBlock].self, forKey: .traceBlocks) {
+        self.traceBlocks = value
+      }
 
       var query: OneOf_Query? = nil
       let queryCheckAndSet = {
@@ -252,25 +302,30 @@
         try queryCheckAndSet(.dtmf(dtmf))
       }
       self.query = query
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.languageCode, forKey: .languageCode)
-      try container.encode(self.parameters, forKey: .parameters)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
       try container.encode(self.responseMessages, forKey: .responseMessages)
       try container.encode(self.webhookStatuses, forKey: .webhookStatuses)
       try container.encode(self.webhookPayloads, forKey: .webhookPayloads)
-      try container.encode(self.currentPage, forKey: .currentPage)
-      try container.encode(self.currentFlow, forKey: .currentFlow)
-      try container.encode(self.intent, forKey: .intent)
+      try container.encodeIfPresent(self.currentPage, forKey: .currentPage)
+      try container.encodeIfPresent(self.currentFlow, forKey: .currentFlow)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
       try container.encode(self.intentDetectionConfidence, forKey: .intentDetectionConfidence)
-      try container.encode(self.match, forKey: .match)
-      try container.encode(self.diagnosticInfo, forKey: .diagnosticInfo)
-      try container.encode(self.sentimentAnalysisResult, forKey: .sentimentAnalysisResult)
-      try container.encode(self.advancedSettings, forKey: .advancedSettings)
+      try container.encodeIfPresent(self.match, forKey: .match)
+      try container.encodeIfPresent(self.diagnosticInfo, forKey: .diagnosticInfo)
+      try container.encodeIfPresent(self.sentimentAnalysisResult, forKey: .sentimentAnalysisResult)
+      try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
       try container.encode(self.allowAnswerFeedback, forKey: .allowAnswerFeedback)
-      try container.encode(self.dataStoreConnectionSignals, forKey: .dataStoreConnectionSignals)
+      try container.encodeIfPresent(
+        self.dataStoreConnectionSignals, forKey: .dataStoreConnectionSignals)
       try container.encode(self.traceBlocks, forKey: .traceBlocks)
 
       if let choice = self.query {
@@ -286,6 +341,9 @@
         case .dtmf(let value):
           try container.encode(value, forKey: .dtmf)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

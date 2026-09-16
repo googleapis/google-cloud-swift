@@ -44,6 +44,8 @@ public struct PscPropagationStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// propagation status.
   public var message: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PscPropagationStatus`.
   public init() {}
 
@@ -58,6 +60,74 @@ public struct PscPropagationStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceSpoke = CodingKeys(stringValue: "sourceSpoke")
+    static let sourceGroup = CodingKeys(stringValue: "sourceGroup")
+    static let sourceForwardingRule = CodingKeys(stringValue: "sourceForwardingRule")
+    static let targetSpoke = CodingKeys(stringValue: "targetSpoke")
+    static let targetGroup = CodingKeys(stringValue: "targetGroup")
+    static let code = CodingKeys(stringValue: "code")
+    static let message = CodingKeys(stringValue: "message")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceSpoke",
+      "sourceGroup",
+      "sourceForwardingRule",
+      "targetSpoke",
+      "targetGroup",
+      "code",
+      "message",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSpoke) {
+      self.sourceSpoke = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGroup) {
+      self.sourceGroup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceForwardingRule) {
+      self.sourceForwardingRule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetSpoke) {
+      self.targetSpoke = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetGroup) {
+      self.targetGroup = value
+    }
+    if let value = try container.decodeIfPresent(PscPropagationStatus.Code.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sourceSpoke, forKey: .sourceSpoke)
+    try container.encode(self.sourceGroup, forKey: .sourceGroup)
+    try container.encode(self.sourceForwardingRule, forKey: .sourceForwardingRule)
+    try container.encode(self.targetSpoke, forKey: .targetSpoke)
+    try container.encode(self.targetGroup, forKey: .targetGroup)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.message, forKey: .message)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Code enum represents the state of the Private Service Connect

@@ -34,6 +34,8 @@ public struct SubmitUriRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Provides additional information about how the submission was discovered.
   public var threatDiscovery: ThreatDiscovery? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubmitUriRequest`.
   public init() {}
 
@@ -48,6 +50,51 @@ public struct SubmitUriRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let submission = CodingKeys(stringValue: "submission")
+    static let threatInfo = CodingKeys(stringValue: "threatInfo")
+    static let threatDiscovery = CodingKeys(stringValue: "threatDiscovery")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "submission",
+      "threatInfo",
+      "threatDiscovery",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.submission = try container.decodeIfPresent(Submission.self, forKey: .submission)
+    self.threatInfo = try container.decodeIfPresent(ThreatInfo.self, forKey: .threatInfo)
+    self.threatDiscovery = try container.decodeIfPresent(
+      ThreatDiscovery.self, forKey: .threatDiscovery)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.submission, forKey: .submission)
+    try container.encodeIfPresent(self.threatInfo, forKey: .threatInfo)
+    try container.encodeIfPresent(self.threatDiscovery, forKey: .threatDiscovery)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

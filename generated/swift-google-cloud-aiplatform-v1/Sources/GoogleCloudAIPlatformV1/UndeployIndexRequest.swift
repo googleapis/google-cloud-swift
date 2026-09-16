@@ -34,6 +34,8 @@
     /// IndexEndpoint.
     public var deployedIndexId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `UndeployIndexRequest`.
     public init() {}
 
@@ -48,6 +50,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let indexEndpoint = CodingKeys(stringValue: "indexEndpoint")
+      static let deployedIndexId = CodingKeys(stringValue: "deployedIndexId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "indexEndpoint",
+        "deployedIndexId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
+        self.indexEndpoint = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedIndexId) {
+        self.deployedIndexId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.indexEndpoint, forKey: .indexEndpoint)
+      try container.encode(self.deployedIndexId, forKey: .deployedIndexId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

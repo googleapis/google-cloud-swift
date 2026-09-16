@@ -42,6 +42,8 @@ public struct RequestMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to the same session later.
   public var leaseTerm: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RequestMetadata`.
   public init() {}
 
@@ -56,6 +58,66 @@ public struct RequestMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let stream = CodingKeys(stringValue: "stream")
+    static let event = CodingKeys(stringValue: "event")
+    static let series = CodingKeys(stringValue: "series")
+    static let leaseId = CodingKeys(stringValue: "leaseId")
+    static let owner = CodingKeys(stringValue: "owner")
+    static let leaseTerm = CodingKeys(stringValue: "leaseTerm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "stream",
+      "event",
+      "series",
+      "leaseId",
+      "owner",
+      "leaseTerm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stream) {
+      self.stream = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
+      self.event = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .series) {
+      self.series = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leaseId) {
+      self.leaseId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .owner) {
+      self.owner = value
+    }
+    self.leaseTerm = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .leaseTerm)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.stream, forKey: .stream)
+    try container.encode(self.event, forKey: .event)
+    try container.encode(self.series, forKey: .series)
+    try container.encode(self.leaseId, forKey: .leaseId)
+    try container.encode(self.owner, forKey: .owner)
+    try container.encodeIfPresent(self.leaseTerm, forKey: .leaseTerm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

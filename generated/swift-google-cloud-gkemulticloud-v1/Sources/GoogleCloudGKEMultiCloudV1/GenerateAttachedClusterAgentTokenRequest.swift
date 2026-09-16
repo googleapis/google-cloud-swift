@@ -48,6 +48,8 @@ public struct GenerateAttachedClusterAgentTokenRequest: Codable, Equatable, Goog
   /// Optional.
   public var options: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateAttachedClusterAgentTokenRequest`.
   public init() {}
 
@@ -62,6 +64,86 @@ public struct GenerateAttachedClusterAgentTokenRequest: Codable, Equatable, Goog
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let attachedCluster = CodingKeys(stringValue: "attachedCluster")
+    static let subjectToken = CodingKeys(stringValue: "subjectToken")
+    static let subjectTokenType = CodingKeys(stringValue: "subjectTokenType")
+    static let version = CodingKeys(stringValue: "version")
+    static let grantType = CodingKeys(stringValue: "grantType")
+    static let audience = CodingKeys(stringValue: "audience")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let requestedTokenType = CodingKeys(stringValue: "requestedTokenType")
+    static let options = CodingKeys(stringValue: "options")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "attachedCluster",
+      "subjectToken",
+      "subjectTokenType",
+      "version",
+      "grantType",
+      "audience",
+      "scope",
+      "requestedTokenType",
+      "options",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attachedCluster) {
+      self.attachedCluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subjectToken) {
+      self.subjectToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subjectTokenType) {
+      self.subjectTokenType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .grantType) {
+      self.grantType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+      self.audience = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestedTokenType) {
+      self.requestedTokenType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .options) {
+      self.options = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.attachedCluster, forKey: .attachedCluster)
+    try container.encode(self.subjectToken, forKey: .subjectToken)
+    try container.encode(self.subjectTokenType, forKey: .subjectTokenType)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.grantType, forKey: .grantType)
+    try container.encode(self.audience, forKey: .audience)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.requestedTokenType, forKey: .requestedTokenType)
+    try container.encode(self.options, forKey: .options)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

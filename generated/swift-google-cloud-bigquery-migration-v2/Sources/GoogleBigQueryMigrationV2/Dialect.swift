@@ -24,6 +24,8 @@ public struct Dialect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The possible dialect options that this message represents.
   public var dialectValue: OneOf_DialectValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Dialect`.
   public init() {}
 
@@ -40,24 +42,49 @@ public struct Dialect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case bigqueryDialect = "bigqueryDialect"
-    case hiveqlDialect = "hiveqlDialect"
-    case redshiftDialect = "redshiftDialect"
-    case teradataDialect = "teradataDialect"
-    case oracleDialect = "oracleDialect"
-    case sparksqlDialect = "sparksqlDialect"
-    case snowflakeDialect = "snowflakeDialect"
-    case netezzaDialect = "netezzaDialect"
-    case azureSynapseDialect = "azureSynapseDialect"
-    case verticaDialect = "verticaDialect"
-    case sqlServerDialect = "sqlServerDialect"
-    case postgresqlDialect = "postgresqlDialect"
-    case prestoDialect = "prestoDialect"
-    case mysqlDialect = "mysqlDialect"
-    case db2Dialect = "db2Dialect"
-    case sqliteDialect = "sqliteDialect"
-    case greenplumDialect = "greenplumDialect"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bigqueryDialect = CodingKeys(stringValue: "bigqueryDialect")
+    static let hiveqlDialect = CodingKeys(stringValue: "hiveqlDialect")
+    static let redshiftDialect = CodingKeys(stringValue: "redshiftDialect")
+    static let teradataDialect = CodingKeys(stringValue: "teradataDialect")
+    static let oracleDialect = CodingKeys(stringValue: "oracleDialect")
+    static let sparksqlDialect = CodingKeys(stringValue: "sparksqlDialect")
+    static let snowflakeDialect = CodingKeys(stringValue: "snowflakeDialect")
+    static let netezzaDialect = CodingKeys(stringValue: "netezzaDialect")
+    static let azureSynapseDialect = CodingKeys(stringValue: "azureSynapseDialect")
+    static let verticaDialect = CodingKeys(stringValue: "verticaDialect")
+    static let sqlServerDialect = CodingKeys(stringValue: "sqlServerDialect")
+    static let postgresqlDialect = CodingKeys(stringValue: "postgresqlDialect")
+    static let prestoDialect = CodingKeys(stringValue: "prestoDialect")
+    static let mysqlDialect = CodingKeys(stringValue: "mysqlDialect")
+    static let db2Dialect = CodingKeys(stringValue: "db2Dialect")
+    static let sqliteDialect = CodingKeys(stringValue: "sqliteDialect")
+    static let greenplumDialect = CodingKeys(stringValue: "greenplumDialect")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bigqueryDialect",
+      "hiveqlDialect",
+      "redshiftDialect",
+      "teradataDialect",
+      "oracleDialect",
+      "sparksqlDialect",
+      "snowflakeDialect",
+      "netezzaDialect",
+      "azureSynapseDialect",
+      "verticaDialect",
+      "sqlServerDialect",
+      "postgresqlDialect",
+      "prestoDialect",
+      "mysqlDialect",
+      "db2Dialect",
+      "sqliteDialect",
+      "greenplumDialect",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -155,6 +182,10 @@ public struct Dialect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dialectValueCheckAndSet(.greenplumDialect(greenplumDialect))
     }
     self.dialectValue = dialectValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -197,6 +228,9 @@ public struct Dialect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .greenplumDialect(let value):
         try container.encode(value, forKey: .greenplumDialect)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

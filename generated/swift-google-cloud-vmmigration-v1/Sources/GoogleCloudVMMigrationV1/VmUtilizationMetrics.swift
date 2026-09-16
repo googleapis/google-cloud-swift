@@ -47,6 +47,8 @@ public struct VmUtilizationMetrics: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// kilobytes per second.
   public var networkThroughputAverageKbps: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmUtilizationMetrics`.
   public init() {}
 
@@ -61,6 +63,85 @@ public struct VmUtilizationMetrics: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuMaxPercent = CodingKeys(stringValue: "cpuMaxPercent")
+    static let cpuAveragePercent = CodingKeys(stringValue: "cpuAveragePercent")
+    static let memoryMaxPercent = CodingKeys(stringValue: "memoryMaxPercent")
+    static let memoryAveragePercent = CodingKeys(stringValue: "memoryAveragePercent")
+    static let diskIoRateMaxKbps = CodingKeys(stringValue: "diskIoRateMaxKbps")
+    static let diskIoRateAverageKbps = CodingKeys(stringValue: "diskIoRateAverageKbps")
+    static let networkThroughputMaxKbps = CodingKeys(stringValue: "networkThroughputMaxKbps")
+    static let networkThroughputAverageKbps = CodingKeys(
+      stringValue: "networkThroughputAverageKbps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuMaxPercent",
+      "cpuAveragePercent",
+      "memoryMaxPercent",
+      "memoryAveragePercent",
+      "diskIoRateMaxKbps",
+      "diskIoRateAverageKbps",
+      "networkThroughputMaxKbps",
+      "networkThroughputAverageKbps",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuMaxPercent) {
+      self.cpuMaxPercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuAveragePercent) {
+      self.cpuAveragePercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMaxPercent) {
+      self.memoryMaxPercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryAveragePercent) {
+      self.memoryAveragePercent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskIoRateMaxKbps) {
+      self.diskIoRateMaxKbps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskIoRateAverageKbps) {
+      self.diskIoRateAverageKbps = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .networkThroughputMaxKbps)
+    {
+      self.networkThroughputMaxKbps = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .networkThroughputAverageKbps)
+    {
+      self.networkThroughputAverageKbps = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuMaxPercent, forKey: .cpuMaxPercent)
+    try container.encode(self.cpuAveragePercent, forKey: .cpuAveragePercent)
+    try container.encode(self.memoryMaxPercent, forKey: .memoryMaxPercent)
+    try container.encode(self.memoryAveragePercent, forKey: .memoryAveragePercent)
+    try container.encode(self.diskIoRateMaxKbps, forKey: .diskIoRateMaxKbps)
+    try container.encode(self.diskIoRateAverageKbps, forKey: .diskIoRateAverageKbps)
+    try container.encode(self.networkThroughputMaxKbps, forKey: .networkThroughputMaxKbps)
+    try container.encode(self.networkThroughputAverageKbps, forKey: .networkThroughputAverageKbps)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

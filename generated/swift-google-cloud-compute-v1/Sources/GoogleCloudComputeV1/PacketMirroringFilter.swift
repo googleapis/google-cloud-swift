@@ -40,6 +40,8 @@
     /// The default is BOTH.
     public var direction: PacketMirroringFilter.Direction? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PacketMirroringFilter`.
     public init() {}
 
@@ -56,25 +58,47 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case ipprotocols = "IPProtocols"
-      case cidrRanges = "cidrRanges"
-      case direction = "direction"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipprotocols = CodingKeys(stringValue: "IPProtocols")
+      static let cidrRanges = CodingKeys(stringValue: "cidrRanges")
+      static let direction = CodingKeys(stringValue: "direction")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "IPProtocols",
+        "cidrRanges",
+        "direction",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.ipprotocols = try container.decode([Swift.String].self, forKey: .ipprotocols)
-      self.cidrRanges = try container.decode([Swift.String].self, forKey: .cidrRanges)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipprotocols) {
+        self.ipprotocols = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .cidrRanges) {
+        self.cidrRanges = value
+      }
       self.direction = try container.decodeIfPresent(
         PacketMirroringFilter.Direction.self, forKey: .direction)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.ipprotocols, forKey: .ipprotocols)
       try container.encode(self.cidrRanges, forKey: .cidrRanges)
-      try container.encode(self.direction, forKey: .direction)
+      try container.encodeIfPresent(self.direction, forKey: .direction)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [direction][google.cloud.compute.v1.PacketMirroringFilter.direction] field.

@@ -43,6 +43,8 @@ public struct ReplicationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The destination for replicated objects.
   public var dataSink: OneOf_DataSink? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplicationSpec`.
   public init() {}
 
@@ -59,11 +61,23 @@ public struct ReplicationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsDataSource = "gcsDataSource"
-    case gcsDataSink = "gcsDataSink"
-    case objectConditions = "objectConditions"
-    case transferOptions = "transferOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsDataSource = CodingKeys(stringValue: "gcsDataSource")
+    static let gcsDataSink = CodingKeys(stringValue: "gcsDataSink")
+    static let objectConditions = CodingKeys(stringValue: "objectConditions")
+    static let transferOptions = CodingKeys(stringValue: "transferOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsDataSource",
+      "gcsDataSink",
+      "objectConditions",
+      "transferOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -102,12 +116,16 @@ public struct ReplicationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataSinkCheckAndSet(.gcsDataSink(gcsDataSink))
     }
     self.dataSink = dataSink
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.objectConditions, forKey: .objectConditions)
-    try container.encode(self.transferOptions, forKey: .transferOptions)
+    try container.encodeIfPresent(self.objectConditions, forKey: .objectConditions)
+    try container.encodeIfPresent(self.transferOptions, forKey: .transferOptions)
 
     if let choice = self.dataSource {
       switch choice {
@@ -121,6 +139,9 @@ public struct ReplicationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsDataSink(let value):
         try container.encode(value, forKey: .gcsDataSink)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -54,6 +54,8 @@ public struct SecurityProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// SecurityProfile.
   public var profile: OneOf_Profile? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecurityProfile`.
   public init() {}
 
@@ -70,31 +72,61 @@ public struct SecurityProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case threatPreventionProfile = "threatPreventionProfile"
-    case customMirroringProfile = "customMirroringProfile"
-    case customInterceptProfile = "customInterceptProfile"
-    case urlFilteringProfile = "urlFilteringProfile"
-    case name = "name"
-    case description = "description"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case etag = "etag"
-    case labels = "labels"
-    case type = "type"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let threatPreventionProfile = CodingKeys(stringValue: "threatPreventionProfile")
+    static let customMirroringProfile = CodingKeys(stringValue: "customMirroringProfile")
+    static let customInterceptProfile = CodingKeys(stringValue: "customInterceptProfile")
+    static let urlFilteringProfile = CodingKeys(stringValue: "urlFilteringProfile")
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "threatPreventionProfile",
+      "customMirroringProfile",
+      "customInterceptProfile",
+      "urlFilteringProfile",
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "etag",
+      "labels",
+      "type",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.type = try container.decode(SecurityProfile.ProfileType.self, forKey: .type)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(SecurityProfile.ProfileType.self, forKey: .type) {
+      self.type = value
+    }
 
     var profile: OneOf_Profile? = nil
     let profileCheckAndSet = {
@@ -127,14 +159,18 @@ public struct SecurityProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try profileCheckAndSet(.urlFilteringProfile(urlFilteringProfile))
     }
     self.profile = profile
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.type, forKey: .type)
@@ -150,6 +186,9 @@ public struct SecurityProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .urlFilteringProfile(let value):
         try container.encode(value, forKey: .urlFilteringProfile)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

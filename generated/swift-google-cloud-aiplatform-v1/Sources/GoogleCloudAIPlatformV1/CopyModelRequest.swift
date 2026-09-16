@@ -53,6 +53,8 @@
     /// If both fields are unset, a new Model will be created with a generated ID.
     public var destinationModel: OneOf_DestinationModel? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CopyModelRequest`.
     public init() {}
 
@@ -69,23 +71,43 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case modelId = "modelId"
-      case parentModel = "parentModel"
-      case parent = "parent"
-      case sourceModel = "sourceModel"
-      case encryptionSpec = "encryptionSpec"
-      case customServiceAccount = "customServiceAccount"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modelId = CodingKeys(stringValue: "modelId")
+      static let parentModel = CodingKeys(stringValue: "parentModel")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let sourceModel = CodingKeys(stringValue: "sourceModel")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let customServiceAccount = CodingKeys(stringValue: "customServiceAccount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modelId",
+        "parentModel",
+        "parent",
+        "sourceModel",
+        "encryptionSpec",
+        "customServiceAccount",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.sourceModel = try container.decode(Swift.String.self, forKey: .sourceModel)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceModel) {
+        self.sourceModel = value
+      }
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
-      self.customServiceAccount = try container.decode(
-        Swift.String.self, forKey: .customServiceAccount)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customServiceAccount)
+      {
+        self.customServiceAccount = value
+      }
 
       var destinationModel: OneOf_DestinationModel? = nil
       let destinationModelCheckAndSet = {
@@ -104,13 +126,17 @@
         try destinationModelCheckAndSet(.parentModel(parentModel))
       }
       self.destinationModel = destinationModel
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.sourceModel, forKey: .sourceModel)
-      try container.encode(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
       try container.encode(self.customServiceAccount, forKey: .customServiceAccount)
 
       if let choice = self.destinationModel {
@@ -120,6 +146,9 @@
         case .parentModel(let value):
           try container.encode(value, forKey: .parentModel)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

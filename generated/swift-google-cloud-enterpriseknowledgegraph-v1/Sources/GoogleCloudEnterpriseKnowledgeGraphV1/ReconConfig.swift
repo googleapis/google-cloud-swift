@@ -30,6 +30,8 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Choice of clustering algorithm. Default is ConnectedComponentsConfig.
   public var clusteringConfig: OneOf_ClusteringConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReconConfig`.
   public init() {}
 
@@ -46,11 +48,23 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case connectedComponentsConfig = "connectedComponentsConfig"
-    case affinityClusteringConfig = "affinityClusteringConfig"
-    case options = "options"
-    case modelConfig = "modelConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectedComponentsConfig = CodingKeys(stringValue: "connectedComponentsConfig")
+    static let affinityClusteringConfig = CodingKeys(stringValue: "affinityClusteringConfig")
+    static let options = CodingKeys(stringValue: "options")
+    static let modelConfig = CodingKeys(stringValue: "modelConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectedComponentsConfig",
+      "affinityClusteringConfig",
+      "options",
+      "modelConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -80,12 +94,16 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try clusteringConfigCheckAndSet(.affinityClusteringConfig(affinityClusteringConfig))
     }
     self.clusteringConfig = clusteringConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.options, forKey: .options)
-    try container.encode(self.modelConfig, forKey: .modelConfig)
+    try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encodeIfPresent(self.modelConfig, forKey: .modelConfig)
 
     if let choice = self.clusteringConfig {
       switch choice {
@@ -94,6 +112,9 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .affinityClusteringConfig(let value):
         try container.encode(value, forKey: .affinityClusteringConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -110,6 +131,8 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Warning: processing will no longer be regionalized!
     public var enableGeocodingSeparation: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Options`.
     public init() {}
 
@@ -124,6 +147,40 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enableGeocodingSeparation = CodingKeys(stringValue: "enableGeocodingSeparation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enableGeocodingSeparation"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableGeocodingSeparation)
+      {
+        self.enableGeocodingSeparation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enableGeocodingSeparation, forKey: .enableGeocodingSeparation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -149,6 +206,8 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// If unspecified, it defaults to the one mentioned in the documentation.
     public var versionTag: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelConfig`.
     public init() {}
 
@@ -163,6 +222,44 @@ public struct ReconConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let modelName = CodingKeys(stringValue: "modelName")
+      static let versionTag = CodingKeys(stringValue: "versionTag")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "modelName",
+        "versionTag",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelName) {
+        self.modelName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionTag) {
+        self.versionTag = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.modelName, forKey: .modelName)
+      try container.encode(self.versionTag, forKey: .versionTag)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

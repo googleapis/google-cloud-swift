@@ -78,6 +78,8 @@ public struct MacSignResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
   public var protectionLevel: ProtectionLevel = ProtectionLevel()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MacSignResponse`.
   public init() {}
 
@@ -94,31 +96,59 @@ public struct MacSignResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case mac = "mac"
-    case macCrc32C = "macCrc32c"
-    case verifiedDataCrc32C = "verifiedDataCrc32c"
-    case protectionLevel = "protectionLevel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let mac = CodingKeys(stringValue: "mac")
+    static let macCrc32C = CodingKeys(stringValue: "macCrc32c")
+    static let verifiedDataCrc32C = CodingKeys(stringValue: "verifiedDataCrc32c")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "mac",
+      "macCrc32c",
+      "verifiedDataCrc32c",
+      "protectionLevel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.mac = try container.decode(Foundation.Data.self, forKey: .mac)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .mac) {
+      self.mac = value
+    }
     self.macCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .macCrc32C)
-    self.verifiedDataCrc32C = try container.decode(Swift.Bool.self, forKey: .verifiedDataCrc32C)
-    self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedDataCrc32C) {
+      self.verifiedDataCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.mac, forKey: .mac)
-    try container.encode(self.macCrc32C, forKey: .macCrc32C)
+    try container.encodeIfPresent(self.macCrc32C, forKey: .macCrc32C)
     try container.encode(self.verifiedDataCrc32C, forKey: .verifiedDataCrc32C)
     try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -112,6 +112,8 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// process, without having to reserve these blocks
   public var excludeCidrRanges: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InternalRange`.
   public init() {}
 
@@ -126,6 +128,130 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+    static let network = CodingKeys(stringValue: "network")
+    static let usage = CodingKeys(stringValue: "usage")
+    static let peering = CodingKeys(stringValue: "peering")
+    static let prefixLength = CodingKeys(stringValue: "prefixLength")
+    static let targetCidrRange = CodingKeys(stringValue: "targetCidrRange")
+    static let users = CodingKeys(stringValue: "users")
+    static let overlaps = CodingKeys(stringValue: "overlaps")
+    static let migration = CodingKeys(stringValue: "migration")
+    static let immutable = CodingKeys(stringValue: "immutable")
+    static let allocationOptions = CodingKeys(stringValue: "allocationOptions")
+    static let excludeCidrRanges = CodingKeys(stringValue: "excludeCidrRanges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "ipCidrRange",
+      "network",
+      "usage",
+      "peering",
+      "prefixLength",
+      "targetCidrRange",
+      "users",
+      "overlaps",
+      "migration",
+      "immutable",
+      "allocationOptions",
+      "excludeCidrRanges",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange) {
+      self.ipCidrRange = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(InternalRange.Usage.self, forKey: .usage) {
+      self.usage = value
+    }
+    if let value = try container.decodeIfPresent(InternalRange.Peering.self, forKey: .peering) {
+      self.peering = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .prefixLength) {
+      self.prefixLength = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetCidrRange) {
+      self.targetCidrRange = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .users) {
+      self.users = value
+    }
+    if let value = try container.decodeIfPresent([InternalRange.Overlap].self, forKey: .overlaps) {
+      self.overlaps = value
+    }
+    self.migration = try container.decodeIfPresent(InternalRange.Migration.self, forKey: .migration)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .immutable) {
+      self.immutable = value
+    }
+    self.allocationOptions = try container.decodeIfPresent(
+      InternalRange.AllocationOptions.self, forKey: .allocationOptions)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeCidrRanges) {
+      self.excludeCidrRanges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.usage, forKey: .usage)
+    try container.encode(self.peering, forKey: .peering)
+    try container.encode(self.prefixLength, forKey: .prefixLength)
+    try container.encode(self.targetCidrRange, forKey: .targetCidrRange)
+    try container.encode(self.users, forKey: .users)
+    try container.encode(self.overlaps, forKey: .overlaps)
+    try container.encodeIfPresent(self.migration, forKey: .migration)
+    try container.encode(self.immutable, forKey: .immutable)
+    try container.encodeIfPresent(self.allocationOptions, forKey: .allocationOptions)
+    try container.encode(self.excludeCidrRanges, forKey: .excludeCidrRanges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Specification for migration with source and target resource names.
@@ -144,6 +270,8 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///   /projects/{project}/regions/{region}/subnetworks/{subnet}
     public var target: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Migration`.
     public init() {}
 
@@ -158,6 +286,44 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let source = CodingKeys(stringValue: "source")
+      static let target = CodingKeys(stringValue: "target")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "source",
+        "target",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+        self.source = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+        self.target = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.source, forKey: .source)
+      try container.encode(self.target, forKey: .target)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -187,6 +353,8 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// requests issued to the same space of peered netwroks.
     public var firstAvailableRangesLookupSize: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllocationOptions`.
     public init() {}
 
@@ -201,6 +369,50 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let allocationStrategy = CodingKeys(stringValue: "allocationStrategy")
+      static let firstAvailableRangesLookupSize = CodingKeys(
+        stringValue: "firstAvailableRangesLookupSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "allocationStrategy",
+        "firstAvailableRangesLookupSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        InternalRange.AllocationStrategy.self, forKey: .allocationStrategy)
+      {
+        self.allocationStrategy = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .firstAvailableRangesLookupSize)
+      {
+        self.firstAvailableRangesLookupSize = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.allocationStrategy, forKey: .allocationStrategy)
+      try container.encode(
+        self.firstAvailableRangesLookupSize, forKey: .firstAvailableRangesLookupSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

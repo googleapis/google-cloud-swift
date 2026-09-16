@@ -46,6 +46,8 @@
     /// The domain of the source.
     public var domain: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FactChunk`.
     public init() {}
 
@@ -60,6 +62,76 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let chunkText = CodingKeys(stringValue: "chunkText")
+      static let source = CodingKeys(stringValue: "source")
+      static let index = CodingKeys(stringValue: "index")
+      static let sourceMetadata = CodingKeys(stringValue: "sourceMetadata")
+      static let uri = CodingKeys(stringValue: "uri")
+      static let title = CodingKeys(stringValue: "title")
+      static let domain = CodingKeys(stringValue: "domain")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "chunkText",
+        "source",
+        "index",
+        "sourceMetadata",
+        "uri",
+        "title",
+        "domain",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .chunkText) {
+        self.chunkText = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+        self.source = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
+        self.index = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .sourceMetadata)
+      {
+        self.sourceMetadata = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+        self.uri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
+        self.domain = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.chunkText, forKey: .chunkText)
+      try container.encode(self.source, forKey: .source)
+      try container.encode(self.index, forKey: .index)
+      try container.encode(self.sourceMetadata, forKey: .sourceMetadata)
+      try container.encode(self.uri, forKey: .uri)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.domain, forKey: .domain)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

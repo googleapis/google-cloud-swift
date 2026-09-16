@@ -46,6 +46,8 @@
     /// If not set, defaults to 0.
     public var rank: Swift.Int64? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceFlexibilityPolicyInstanceSelection`.
     public init() {}
 
@@ -60,6 +62,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disks = CodingKeys(stringValue: "disks")
+      static let machineTypes = CodingKeys(stringValue: "machineTypes")
+      static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+      static let rank = CodingKeys(stringValue: "rank")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disks",
+        "machineTypes",
+        "minCpuPlatform",
+        "rank",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disks) {
+        self.disks = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .machineTypes) {
+        self.machineTypes = value
+      }
+      self.minCpuPlatform = try container.decodeIfPresent(
+        Swift.String.self, forKey: .minCpuPlatform)
+      self.rank = try container.decodeIfPresent(Swift.Int64.self, forKey: .rank)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.disks, forKey: .disks)
+      try container.encode(self.machineTypes, forKey: .machineTypes)
+      try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
+      try container.encodeIfPresent(self.rank, forKey: .rank)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

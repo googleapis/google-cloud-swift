@@ -24,6 +24,8 @@ public struct DestinationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The specific destination where the audit report and evidence are stored.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DestinationDetails`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct DestinationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsBucketUri = "gcsBucketUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsBucketUri = CodingKeys(stringValue: "gcsBucketUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsBucketUri"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -61,6 +72,10 @@ public struct DestinationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try destinationCheckAndSet(.gcsBucketUri(gcsBucketUri))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -71,6 +86,9 @@ public struct DestinationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .gcsBucketUri(let value):
         try container.encode(value, forKey: .gcsBucketUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

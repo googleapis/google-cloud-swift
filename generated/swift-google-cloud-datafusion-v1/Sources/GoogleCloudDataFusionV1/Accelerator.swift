@@ -27,6 +27,8 @@ public struct Accelerator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The state of the accelerator
   public var state: Accelerator.State = Accelerator.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Accelerator`.
   public init() {}
 
@@ -41,6 +43,46 @@ public struct Accelerator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "acceleratorType",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Accelerator.AcceleratorType.self, forKey: .acceleratorType)
+    {
+      self.acceleratorType = value
+    }
+    if let value = try container.decodeIfPresent(Accelerator.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Each type represents an Accelerator (Add-On) supported by Cloud Data Fusion

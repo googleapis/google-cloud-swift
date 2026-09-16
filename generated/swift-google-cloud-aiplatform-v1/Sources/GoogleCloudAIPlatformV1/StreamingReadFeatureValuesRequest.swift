@@ -42,6 +42,8 @@
     /// will be deduplicated.
     public var featureSelector: FeatureSelector? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamingReadFeatureValuesRequest`.
     public init() {}
 
@@ -56,6 +58,49 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityType = CodingKeys(stringValue: "entityType")
+      static let entityIds = CodingKeys(stringValue: "entityIds")
+      static let featureSelector = CodingKeys(stringValue: "featureSelector")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityType",
+        "entityIds",
+        "featureSelector",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+        self.entityType = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entityIds) {
+        self.entityIds = value
+      }
+      self.featureSelector = try container.decodeIfPresent(
+        FeatureSelector.self, forKey: .featureSelector)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entityType, forKey: .entityType)
+      try container.encode(self.entityIds, forKey: .entityIds)
+      try container.encodeIfPresent(self.featureSelector, forKey: .featureSelector)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

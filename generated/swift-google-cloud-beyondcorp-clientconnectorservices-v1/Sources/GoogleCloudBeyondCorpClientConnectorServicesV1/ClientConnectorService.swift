@@ -46,6 +46,8 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. The operational state of the ClientConnectorService.
   public var state: ClientConnectorService.State = ClientConnectorService.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ClientConnectorService`.
   public init() {}
 
@@ -62,12 +64,78 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let ingress = CodingKeys(stringValue: "ingress")
+    static let egress = CodingKeys(stringValue: "egress")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "displayName",
+      "ingress",
+      "egress",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    self.ingress = try container.decodeIfPresent(
+      ClientConnectorService.Ingress.self, forKey: .ingress)
+    self.egress = try container.decodeIfPresent(ClientConnectorService.Egress.self, forKey: .egress)
+    if let value = try container.decodeIfPresent(ClientConnectorService.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encodeIfPresent(self.ingress, forKey: .ingress)
+    try container.encodeIfPresent(self.egress, forKey: .egress)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Settings of how to connect to the ClientGateway.
   /// One of the following options should be set.
   public struct Ingress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var ingressConfig: OneOf_IngressConfig? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Ingress`.
     public init() {}
@@ -85,8 +153,17 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case config = "config"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let config = CodingKeys(stringValue: "config")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "config"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -108,6 +185,10 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         try ingressConfigCheckAndSet(.config(config))
       }
       self.ingressConfig = ingressConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -118,6 +199,9 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         case .config(let value):
           try container.encode(value, forKey: .config)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -132,6 +216,8 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
 
       /// Required. The settings used to configure basic ClientGateways.
       public var destinationRoutes: [ClientConnectorService.Ingress.Config.DestinationRoute] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Config`.
       public init() {}
@@ -149,6 +235,48 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let transportProtocol = CodingKeys(stringValue: "transportProtocol")
+        static let destinationRoutes = CodingKeys(stringValue: "destinationRoutes")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "transportProtocol",
+          "destinationRoutes",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          ClientConnectorService.Ingress.Config.TransportProtocol.self, forKey: .transportProtocol)
+        {
+          self.transportProtocol = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ClientConnectorService.Ingress.Config.DestinationRoute].self, forKey: .destinationRoutes)
+        {
+          self.destinationRoutes = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.transportProtocol, forKey: .transportProtocol)
+        try container.encode(self.destinationRoutes, forKey: .destinationRoutes)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// The setting used to configure ClientGateways.
       /// It is adding routes to the client's routing table
       /// after the connection is established.
@@ -162,6 +290,9 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         /// Required. The network mask of the subnet
         /// for which the packet is routed to the ClientGateway.
         public var netmask: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `DestinationRoute`.
         public init() {}
@@ -177,6 +308,44 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let address = CodingKeys(stringValue: "address")
+          static let netmask = CodingKeys(stringValue: "netmask")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "address",
+            "netmask",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+            self.address = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .netmask) {
+            self.netmask = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.address, forKey: .address)
+          try container.encode(self.netmask, forKey: .netmask)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -324,6 +493,8 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
   {
     public var destinationType: OneOf_DestinationType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Egress`.
     public init() {}
 
@@ -340,8 +511,17 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case peeredVpc = "peeredVpc"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let peeredVpc = CodingKeys(stringValue: "peeredVpc")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "peeredVpc"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -363,6 +543,10 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         try destinationTypeCheckAndSet(.peeredVpc(peeredVpc))
       }
       self.destinationType = destinationType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -374,6 +558,9 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
           try container.encode(value, forKey: .peeredVpc)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The peered VPC owned by the consumer project.
@@ -382,6 +569,8 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
     {
       /// Required. The name of the peered VPC owned by the consumer project.
       public var networkVpc: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `PeeredVpc`.
       public init() {}
@@ -397,6 +586,38 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPac
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let networkVpc = CodingKeys(stringValue: "networkVpc")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "networkVpc"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkVpc) {
+          self.networkVpc = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.networkVpc, forKey: .networkVpc)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -47,6 +47,8 @@
     public var locationStatus:
       [Swift.String: RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutWaveDetailsOrchestratedWaveDetails`.
     public init() {}
 
@@ -61,6 +63,69 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let completedResourcesCount = CodingKeys(stringValue: "completedResourcesCount")
+      static let estimatedCompletionTime = CodingKeys(stringValue: "estimatedCompletionTime")
+      static let estimatedTotalResourcesCount = CodingKeys(
+        stringValue: "estimatedTotalResourcesCount")
+      static let failedLocations = CodingKeys(stringValue: "failedLocations")
+      static let failedResourcesCount = CodingKeys(stringValue: "failedResourcesCount")
+      static let locationStatus = CodingKeys(stringValue: "locationStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "completedResourcesCount",
+        "estimatedCompletionTime",
+        "estimatedTotalResourcesCount",
+        "failedLocations",
+        "failedResourcesCount",
+        "locationStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.completedResourcesCount = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .completedResourcesCount)
+      self.estimatedCompletionTime = try container.decodeIfPresent(
+        Swift.String.self, forKey: .estimatedCompletionTime)
+      self.estimatedTotalResourcesCount = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .estimatedTotalResourcesCount)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .failedLocations) {
+        self.failedLocations = value
+      }
+      self.failedResourcesCount = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .failedResourcesCount)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus].self,
+        forKey: .locationStatus)
+      {
+        self.locationStatus = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.completedResourcesCount, forKey: .completedResourcesCount)
+      try container.encodeIfPresent(self.estimatedCompletionTime, forKey: .estimatedCompletionTime)
+      try container.encodeIfPresent(
+        self.estimatedTotalResourcesCount, forKey: .estimatedTotalResourcesCount)
+      try container.encode(self.failedLocations, forKey: .failedLocations)
+      try container.encodeIfPresent(self.failedResourcesCount, forKey: .failedResourcesCount)
+      try container.encode(self.locationStatus, forKey: .locationStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

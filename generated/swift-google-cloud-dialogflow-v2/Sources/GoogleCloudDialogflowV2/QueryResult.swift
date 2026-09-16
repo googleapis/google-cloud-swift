@@ -131,6 +131,8 @@
     /// `sentiment_analysis_request_config` specified in the request.
     public var sentimentAnalysisResult: SentimentAnalysisResult? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryResult`.
     public init() {}
 
@@ -145,6 +147,131 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let queryText = CodingKeys(stringValue: "queryText")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let speechRecognitionConfidence = CodingKeys(
+        stringValue: "speechRecognitionConfidence")
+      static let action = CodingKeys(stringValue: "action")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let allRequiredParamsPresent = CodingKeys(stringValue: "allRequiredParamsPresent")
+      static let cancelsSlotFilling = CodingKeys(stringValue: "cancelsSlotFilling")
+      static let fulfillmentText = CodingKeys(stringValue: "fulfillmentText")
+      static let fulfillmentMessages = CodingKeys(stringValue: "fulfillmentMessages")
+      static let webhookSource = CodingKeys(stringValue: "webhookSource")
+      static let webhookPayload = CodingKeys(stringValue: "webhookPayload")
+      static let outputContexts = CodingKeys(stringValue: "outputContexts")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let intentDetectionConfidence = CodingKeys(stringValue: "intentDetectionConfidence")
+      static let diagnosticInfo = CodingKeys(stringValue: "diagnosticInfo")
+      static let sentimentAnalysisResult = CodingKeys(stringValue: "sentimentAnalysisResult")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "queryText",
+        "languageCode",
+        "speechRecognitionConfidence",
+        "action",
+        "parameters",
+        "allRequiredParamsPresent",
+        "cancelsSlotFilling",
+        "fulfillmentText",
+        "fulfillmentMessages",
+        "webhookSource",
+        "webhookPayload",
+        "outputContexts",
+        "intent",
+        "intentDetectionConfidence",
+        "diagnosticInfo",
+        "sentimentAnalysisResult",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryText) {
+        self.queryText = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .speechRecognitionConfidence)
+      {
+        self.speechRecognitionConfidence = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+        self.action = value
+      }
+      self.parameters = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .parameters)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .allRequiredParamsPresent)
+      {
+        self.allRequiredParamsPresent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cancelsSlotFilling) {
+        self.cancelsSlotFilling = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fulfillmentText) {
+        self.fulfillmentText = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.Message].self, forKey: .fulfillmentMessages)
+      {
+        self.fulfillmentMessages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webhookSource) {
+        self.webhookSource = value
+      }
+      self.webhookPayload = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .webhookPayload)
+      if let value = try container.decodeIfPresent([Context].self, forKey: .outputContexts) {
+        self.outputContexts = value
+      }
+      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      if let value = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .intentDetectionConfidence)
+      {
+        self.intentDetectionConfidence = value
+      }
+      self.diagnosticInfo = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .diagnosticInfo)
+      self.sentimentAnalysisResult = try container.decodeIfPresent(
+        SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.queryText, forKey: .queryText)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encode(self.speechRecognitionConfidence, forKey: .speechRecognitionConfidence)
+      try container.encode(self.action, forKey: .action)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encode(self.allRequiredParamsPresent, forKey: .allRequiredParamsPresent)
+      try container.encode(self.cancelsSlotFilling, forKey: .cancelsSlotFilling)
+      try container.encode(self.fulfillmentText, forKey: .fulfillmentText)
+      try container.encode(self.fulfillmentMessages, forKey: .fulfillmentMessages)
+      try container.encode(self.webhookSource, forKey: .webhookSource)
+      try container.encodeIfPresent(self.webhookPayload, forKey: .webhookPayload)
+      try container.encode(self.outputContexts, forKey: .outputContexts)
+      try container.encodeIfPresent(self.intent, forKey: .intent)
+      try container.encode(self.intentDetectionConfidence, forKey: .intentDetectionConfidence)
+      try container.encodeIfPresent(self.diagnosticInfo, forKey: .diagnosticInfo)
+      try container.encodeIfPresent(self.sentimentAnalysisResult, forKey: .sentimentAnalysisResult)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

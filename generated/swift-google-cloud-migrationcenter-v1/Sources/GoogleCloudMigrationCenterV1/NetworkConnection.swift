@@ -44,6 +44,8 @@ public struct NetworkConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Process or service name.
   public var processName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConnection`.
   public init() {}
 
@@ -60,27 +62,63 @@ public struct NetworkConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `protocol` = "protocol"
-    case localIpAddress = "localIpAddress"
-    case localPort = "localPort"
-    case remoteIpAddress = "remoteIpAddress"
-    case remotePort = "remotePort"
-    case state = "state"
-    case pid = "pid"
-    case processName = "processName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let localIpAddress = CodingKeys(stringValue: "localIpAddress")
+    static let localPort = CodingKeys(stringValue: "localPort")
+    static let remoteIpAddress = CodingKeys(stringValue: "remoteIpAddress")
+    static let remotePort = CodingKeys(stringValue: "remotePort")
+    static let state = CodingKeys(stringValue: "state")
+    static let pid = CodingKeys(stringValue: "pid")
+    static let processName = CodingKeys(stringValue: "processName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "protocol",
+      "localIpAddress",
+      "localPort",
+      "remoteIpAddress",
+      "remotePort",
+      "state",
+      "pid",
+      "processName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.localIpAddress = try container.decode(Swift.String.self, forKey: .localIpAddress)
-    self.localPort = try container.decode(Swift.Int32.self, forKey: .localPort)
-    self.remoteIpAddress = try container.decode(Swift.String.self, forKey: .remoteIpAddress)
-    self.remotePort = try container.decode(Swift.Int32.self, forKey: .remotePort)
-    self.state = try container.decode(NetworkConnection.State.self, forKey: .state)
-    self.pid = try container.decode(Swift.Int64.self, forKey: .pid)
-    self.processName = try container.decode(Swift.String.self, forKey: .processName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .localIpAddress) {
+      self.localIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .localPort) {
+      self.localPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteIpAddress) {
+      self.remoteIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .remotePort) {
+      self.remotePort = value
+    }
+    if let value = try container.decodeIfPresent(NetworkConnection.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .pid) {
+      self.pid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processName) {
+      self.processName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -93,6 +131,9 @@ public struct NetworkConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     try container.encode(self.state, forKey: .state)
     try container.encode(self.pid, forKey: .pid)
     try container.encode(self.processName, forKey: .processName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Network connection state.

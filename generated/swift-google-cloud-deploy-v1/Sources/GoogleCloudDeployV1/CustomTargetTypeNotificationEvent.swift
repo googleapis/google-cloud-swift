@@ -35,6 +35,8 @@ public struct CustomTargetTypeNotificationEvent: Codable, Equatable, GoogleCloud
   /// Type of this notification, e.g. for a Pub/Sub failure.
   public var type: Type_ = Type_()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomTargetTypeNotificationEvent`.
   public init() {}
 
@@ -49,6 +51,56 @@ public struct CustomTargetTypeNotificationEvent: Codable, Equatable, GoogleCloud
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let message = CodingKeys(stringValue: "message")
+    static let customTargetTypeUid = CodingKeys(stringValue: "customTargetTypeUid")
+    static let customTargetType = CodingKeys(stringValue: "customTargetType")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "message",
+      "customTargetTypeUid",
+      "customTargetType",
+      "type",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTargetTypeUid) {
+      self.customTargetTypeUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTargetType) {
+      self.customTargetType = value
+    }
+    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+      self.type = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.customTargetTypeUid, forKey: .customTargetTypeUid)
+    try container.encode(self.customTargetType, forKey: .customTargetType)
+    try container.encode(self.type, forKey: .type)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

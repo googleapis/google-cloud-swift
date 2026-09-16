@@ -75,6 +75,8 @@ public struct EventTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The field is only applicable to 1st Gen functions.
   public var service: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EventTrigger`.
   public init() {}
 
@@ -89,6 +91,88 @@ public struct EventTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let trigger = CodingKeys(stringValue: "trigger")
+    static let triggerRegion = CodingKeys(stringValue: "triggerRegion")
+    static let eventType = CodingKeys(stringValue: "eventType")
+    static let eventFilters = CodingKeys(stringValue: "eventFilters")
+    static let pubsubTopic = CodingKeys(stringValue: "pubsubTopic")
+    static let serviceAccountEmail = CodingKeys(stringValue: "serviceAccountEmail")
+    static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
+    static let channel = CodingKeys(stringValue: "channel")
+    static let service = CodingKeys(stringValue: "service")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "trigger",
+      "triggerRegion",
+      "eventType",
+      "eventFilters",
+      "pubsubTopic",
+      "serviceAccountEmail",
+      "retryPolicy",
+      "channel",
+      "service",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trigger) {
+      self.trigger = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .triggerRegion) {
+      self.triggerRegion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventType) {
+      self.eventType = value
+    }
+    if let value = try container.decodeIfPresent([EventFilter].self, forKey: .eventFilters) {
+      self.eventFilters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pubsubTopic) {
+      self.pubsubTopic = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccountEmail) {
+      self.serviceAccountEmail = value
+    }
+    if let value = try container.decodeIfPresent(
+      EventTrigger.RetryPolicy.self, forKey: .retryPolicy)
+    {
+      self.retryPolicy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .channel) {
+      self.channel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.trigger, forKey: .trigger)
+    try container.encode(self.triggerRegion, forKey: .triggerRegion)
+    try container.encode(self.eventType, forKey: .eventType)
+    try container.encode(self.eventFilters, forKey: .eventFilters)
+    try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
+    try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
+    try container.encode(self.retryPolicy, forKey: .retryPolicy)
+    try container.encode(self.channel, forKey: .channel)
+    try container.encode(self.service, forKey: .service)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes the retry policy in case of function's execution failure.

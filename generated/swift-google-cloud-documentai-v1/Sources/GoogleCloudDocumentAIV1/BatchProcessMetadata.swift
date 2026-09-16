@@ -41,6 +41,8 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The list of response details of each document.
   public var individualProcessStatuses: [BatchProcessMetadata.IndividualProcessStatus] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchProcessMetadata`.
   public init() {}
 
@@ -55,6 +57,62 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let individualProcessStatuses = CodingKeys(stringValue: "individualProcessStatuses")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "stateMessage",
+      "createTime",
+      "updateTime",
+      "individualProcessStatuses",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(BatchProcessMetadata.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      [BatchProcessMetadata.IndividualProcessStatus].self, forKey: .individualProcessStatuses)
+    {
+      self.individualProcessStatuses = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.individualProcessStatuses, forKey: .individualProcessStatuses)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The status of a each individual document in the batch process.
@@ -81,6 +139,8 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// The status of human review on the processed document.
     public var humanReviewStatus: HumanReviewStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IndividualProcessStatus`.
     public init() {}
 
@@ -95,6 +155,54 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputGcsSource = CodingKeys(stringValue: "inputGcsSource")
+      static let status = CodingKeys(stringValue: "status")
+      static let outputGcsDestination = CodingKeys(stringValue: "outputGcsDestination")
+      static let humanReviewStatus = CodingKeys(stringValue: "humanReviewStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputGcsSource",
+        "status",
+        "outputGcsDestination",
+        "humanReviewStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputGcsSource) {
+        self.inputGcsSource = value
+      }
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputGcsDestination)
+      {
+        self.outputGcsDestination = value
+      }
+      self.humanReviewStatus = try container.decodeIfPresent(
+        HumanReviewStatus.self, forKey: .humanReviewStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.inputGcsSource, forKey: .inputGcsSource)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encode(self.outputGcsDestination, forKey: .outputGcsDestination)
+      try container.encodeIfPresent(self.humanReviewStatus, forKey: .humanReviewStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

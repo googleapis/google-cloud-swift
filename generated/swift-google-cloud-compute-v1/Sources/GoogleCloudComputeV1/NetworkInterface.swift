@@ -147,6 +147,8 @@
     /// from 2 to 255 inclusively.
     public var vlan: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkInterface`.
     public init() {}
 
@@ -163,36 +165,72 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case accessConfigs = "accessConfigs"
-      case aliasIpRanges = "aliasIpRanges"
-      case aliasIpv6Ranges = "aliasIpv6Ranges"
-      case enableVpcScopedDns = "enableVpcScopedDns"
-      case fingerprint = "fingerprint"
-      case igmpQuery = "igmpQuery"
-      case internalIpv6PrefixLength = "internalIpv6PrefixLength"
-      case ipv6AccessConfigs = "ipv6AccessConfigs"
-      case ipv6AccessType = "ipv6AccessType"
-      case ipv6Address = "ipv6Address"
-      case kind = "kind"
-      case name = "name"
-      case network = "network"
-      case networkAttachment = "networkAttachment"
-      case networkIp = "networkIP"
-      case nicType = "nicType"
-      case parentNicName = "parentNicName"
-      case queueCount = "queueCount"
-      case serviceClassId = "serviceClassId"
-      case stackType = "stackType"
-      case subnetwork = "subnetwork"
-      case vlan = "vlan"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let accessConfigs = CodingKeys(stringValue: "accessConfigs")
+      static let aliasIpRanges = CodingKeys(stringValue: "aliasIpRanges")
+      static let aliasIpv6Ranges = CodingKeys(stringValue: "aliasIpv6Ranges")
+      static let enableVpcScopedDns = CodingKeys(stringValue: "enableVpcScopedDns")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let igmpQuery = CodingKeys(stringValue: "igmpQuery")
+      static let internalIpv6PrefixLength = CodingKeys(stringValue: "internalIpv6PrefixLength")
+      static let ipv6AccessConfigs = CodingKeys(stringValue: "ipv6AccessConfigs")
+      static let ipv6AccessType = CodingKeys(stringValue: "ipv6AccessType")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
+      static let networkIp = CodingKeys(stringValue: "networkIP")
+      static let nicType = CodingKeys(stringValue: "nicType")
+      static let parentNicName = CodingKeys(stringValue: "parentNicName")
+      static let queueCount = CodingKeys(stringValue: "queueCount")
+      static let serviceClassId = CodingKeys(stringValue: "serviceClassId")
+      static let stackType = CodingKeys(stringValue: "stackType")
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let vlan = CodingKeys(stringValue: "vlan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "accessConfigs",
+        "aliasIpRanges",
+        "aliasIpv6Ranges",
+        "enableVpcScopedDns",
+        "fingerprint",
+        "igmpQuery",
+        "internalIpv6PrefixLength",
+        "ipv6AccessConfigs",
+        "ipv6AccessType",
+        "ipv6Address",
+        "kind",
+        "name",
+        "network",
+        "networkAttachment",
+        "networkIP",
+        "nicType",
+        "parentNicName",
+        "queueCount",
+        "serviceClassId",
+        "stackType",
+        "subnetwork",
+        "vlan",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.accessConfigs = try container.decode([AccessConfig].self, forKey: .accessConfigs)
-      self.aliasIpRanges = try container.decode([AliasIpRange].self, forKey: .aliasIpRanges)
-      self.aliasIpv6Ranges = try container.decode([AliasIpRange].self, forKey: .aliasIpv6Ranges)
+      if let value = try container.decodeIfPresent([AccessConfig].self, forKey: .accessConfigs) {
+        self.accessConfigs = value
+      }
+      if let value = try container.decodeIfPresent([AliasIpRange].self, forKey: .aliasIpRanges) {
+        self.aliasIpRanges = value
+      }
+      if let value = try container.decodeIfPresent([AliasIpRange].self, forKey: .aliasIpv6Ranges) {
+        self.aliasIpv6Ranges = value
+      }
       self.enableVpcScopedDns = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableVpcScopedDns)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
@@ -208,7 +246,10 @@
         NetworkInterface.IgmpQuery.self, forKey: .igmpQuery)
       self.internalIpv6PrefixLength = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .internalIpv6PrefixLength)
-      self.ipv6AccessConfigs = try container.decode([AccessConfig].self, forKey: .ipv6AccessConfigs)
+      if let value = try container.decodeIfPresent([AccessConfig].self, forKey: .ipv6AccessConfigs)
+      {
+        self.ipv6AccessConfigs = value
+      }
       self.ipv6AccessType = try container.decodeIfPresent(
         NetworkInterface.Ipv6AccessType.self, forKey: .ipv6AccessType)
       self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
@@ -227,6 +268,10 @@
         NetworkInterface.StackType.self, forKey: .stackType)
       self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
       self.vlan = try container.decodeIfPresent(Swift.Int32.self, forKey: .vlan)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -234,29 +279,33 @@
       try container.encode(self.accessConfigs, forKey: .accessConfigs)
       try container.encode(self.aliasIpRanges, forKey: .aliasIpRanges)
       try container.encode(self.aliasIpv6Ranges, forKey: .aliasIpv6Ranges)
-      try container.encode(self.enableVpcScopedDns, forKey: .enableVpcScopedDns)
+      try container.encodeIfPresent(self.enableVpcScopedDns, forKey: .enableVpcScopedDns)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.igmpQuery, forKey: .igmpQuery)
-      try container.encode(self.internalIpv6PrefixLength, forKey: .internalIpv6PrefixLength)
+      try container.encodeIfPresent(self.igmpQuery, forKey: .igmpQuery)
+      try container.encodeIfPresent(
+        self.internalIpv6PrefixLength, forKey: .internalIpv6PrefixLength)
       try container.encode(self.ipv6AccessConfigs, forKey: .ipv6AccessConfigs)
-      try container.encode(self.ipv6AccessType, forKey: .ipv6AccessType)
-      try container.encode(self.ipv6Address, forKey: .ipv6Address)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
-      try container.encode(self.networkAttachment, forKey: .networkAttachment)
-      try container.encode(self.networkIp, forKey: .networkIp)
-      try container.encode(self.nicType, forKey: .nicType)
-      try container.encode(self.parentNicName, forKey: .parentNicName)
-      try container.encode(self.queueCount, forKey: .queueCount)
-      try container.encode(self.serviceClassId, forKey: .serviceClassId)
-      try container.encode(self.stackType, forKey: .stackType)
-      try container.encode(self.subnetwork, forKey: .subnetwork)
-      try container.encode(self.vlan, forKey: .vlan)
+      try container.encodeIfPresent(self.ipv6AccessType, forKey: .ipv6AccessType)
+      try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.networkAttachment, forKey: .networkAttachment)
+      try container.encodeIfPresent(self.networkIp, forKey: .networkIp)
+      try container.encodeIfPresent(self.nicType, forKey: .nicType)
+      try container.encodeIfPresent(self.parentNicName, forKey: .parentNicName)
+      try container.encodeIfPresent(self.queueCount, forKey: .queueCount)
+      try container.encodeIfPresent(self.serviceClassId, forKey: .serviceClassId)
+      try container.encodeIfPresent(self.stackType, forKey: .stackType)
+      try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
+      try container.encodeIfPresent(self.vlan, forKey: .vlan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [igmpQuery][google.cloud.compute.v1.NetworkInterface.igmpQuery] field.

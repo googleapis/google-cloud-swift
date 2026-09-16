@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension UpdateAnywhereCacheMetadata {
@@ -33,6 +33,7 @@ extension UpdateAnywhereCacheMetadata {
     self.ttl = proto.hasTtl ? try .init(proto: proto.ttl) : nil
     self.admissionPolicy = proto.hasAdmissionPolicy ? proto.admissionPolicy : nil
     self.ingestOnWrite = proto.hasIngestOnWrite ? proto.ingestOnWrite : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -45,6 +46,9 @@ extension UpdateAnywhereCacheMetadata {
     if let ttl = self.ttl { proto.ttl = try ttl.toProto() }
     if let admissionPolicy = self.admissionPolicy { proto.admissionPolicy = admissionPolicy }
     if let ingestOnWrite = self.ingestOnWrite { proto.ingestOnWrite = ingestOnWrite }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

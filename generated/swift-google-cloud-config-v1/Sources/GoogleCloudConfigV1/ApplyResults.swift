@@ -32,6 +32,8 @@ public struct ApplyResults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Map of output name to output info.
   public var outputs: [Swift.String: TerraformOutput] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApplyResults`.
   public init() {}
 
@@ -46,6 +48,52 @@ public struct ApplyResults: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let content = CodingKeys(stringValue: "content")
+    static let artifacts = CodingKeys(stringValue: "artifacts")
+    static let outputs = CodingKeys(stringValue: "outputs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "content",
+      "artifacts",
+      "outputs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifacts) {
+      self.artifacts = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: TerraformOutput].self, forKey: .outputs)
+    {
+      self.outputs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.artifacts, forKey: .artifacts)
+    try container.encode(self.outputs, forKey: .outputs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

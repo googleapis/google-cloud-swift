@@ -42,6 +42,8 @@
     /// Required. The mode in which Feature values are exported.
     public var mode: OneOf_Mode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportFeatureValuesRequest`.
     public init() {}
 
@@ -58,23 +60,43 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case snapshotExport = "snapshotExport"
-      case fullExport = "fullExport"
-      case entityType = "entityType"
-      case destination = "destination"
-      case featureSelector = "featureSelector"
-      case settings = "settings"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let snapshotExport = CodingKeys(stringValue: "snapshotExport")
+      static let fullExport = CodingKeys(stringValue: "fullExport")
+      static let entityType = CodingKeys(stringValue: "entityType")
+      static let destination = CodingKeys(stringValue: "destination")
+      static let featureSelector = CodingKeys(stringValue: "featureSelector")
+      static let settings = CodingKeys(stringValue: "settings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "snapshotExport",
+        "fullExport",
+        "entityType",
+        "destination",
+        "featureSelector",
+        "settings",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.entityType = try container.decode(Swift.String.self, forKey: .entityType)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+        self.entityType = value
+      }
       self.destination = try container.decodeIfPresent(
         FeatureValueDestination.self, forKey: .destination)
       self.featureSelector = try container.decodeIfPresent(
         FeatureSelector.self, forKey: .featureSelector)
-      self.settings = try container.decode([DestinationFeatureSetting].self, forKey: .settings)
+      if let value = try container.decodeIfPresent(
+        [DestinationFeatureSetting].self, forKey: .settings)
+      {
+        self.settings = value
+      }
 
       var mode: OneOf_Mode? = nil
       let modeCheckAndSet = {
@@ -97,13 +119,17 @@
         try modeCheckAndSet(.fullExport(fullExport))
       }
       self.mode = mode
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityType, forKey: .entityType)
-      try container.encode(self.destination, forKey: .destination)
-      try container.encode(self.featureSelector, forKey: .featureSelector)
+      try container.encodeIfPresent(self.destination, forKey: .destination)
+      try container.encodeIfPresent(self.featureSelector, forKey: .featureSelector)
       try container.encode(self.settings, forKey: .settings)
 
       if let choice = self.mode {
@@ -113,6 +139,9 @@
         case .fullExport(let value):
           try container.encode(value, forKey: .fullExport)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -131,6 +160,8 @@
       /// Timestamp, if present, must not have higher than millisecond precision.
       public var startTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SnapshotExport`.
       public init() {}
 
@@ -145,6 +176,42 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let snapshotTime = CodingKeys(stringValue: "snapshotTime")
+        static let startTime = CodingKeys(stringValue: "startTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "snapshotTime",
+          "startTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.snapshotTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .snapshotTime)
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.snapshotTime, forKey: .snapshotTime)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -174,6 +241,8 @@
       /// than millisecond precision.
       public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `FullExport`.
       public init() {}
 
@@ -188,6 +257,42 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let endTime = CodingKeys(stringValue: "endTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "startTime",
+          "endTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        self.endTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

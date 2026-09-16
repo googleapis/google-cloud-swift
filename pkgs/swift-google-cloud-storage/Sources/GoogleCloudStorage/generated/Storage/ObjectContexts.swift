@@ -27,6 +27,8 @@ public struct ObjectContexts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The maximum total serialized size of all entries is `25KiB`.
   public var custom: [Swift.String: ObjectCustomContextPayload] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectContexts`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct ObjectContexts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let custom = CodingKeys(stringValue: "custom")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "custom"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ObjectCustomContextPayload].self, forKey: .custom)
+    {
+      self.custom = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.custom, forKey: .custom)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

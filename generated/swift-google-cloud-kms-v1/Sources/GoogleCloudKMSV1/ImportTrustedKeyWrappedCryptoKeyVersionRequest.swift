@@ -82,6 +82,8 @@ public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable
   public var algorithm: CryptoKeyVersion.CryptoKeyVersionAlgorithm =
     CryptoKeyVersion.CryptoKeyVersionAlgorithm()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportTrustedKeyWrappedCryptoKeyVersionRequest`.
   public init() {}
 
@@ -96,6 +98,64 @@ public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let importingKey = CodingKeys(stringValue: "importingKey")
+    static let cryptoKeyVersion = CodingKeys(stringValue: "cryptoKeyVersion")
+    static let wrappedKey = CodingKeys(stringValue: "wrappedKey")
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "importingKey",
+      "cryptoKeyVersion",
+      "wrappedKey",
+      "algorithm",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importingKey) {
+      self.importingKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyVersion) {
+      self.cryptoKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .wrappedKey) {
+      self.wrappedKey = value
+    }
+    if let value = try container.decodeIfPresent(
+      CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
+    {
+      self.algorithm = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.importingKey, forKey: .importingKey)
+    try container.encode(self.cryptoKeyVersion, forKey: .cryptoKeyVersion)
+    try container.encode(self.wrappedKey, forKey: .wrappedKey)
+    try container.encode(self.algorithm, forKey: .algorithm)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

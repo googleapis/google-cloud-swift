@@ -37,6 +37,8 @@ public struct CreateAppProfileRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// If true, ignore safety checks when creating the app profile.
   public var ignoreWarnings: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateAppProfileRequest`.
   public init() {}
 
@@ -51,6 +53,54 @@ public struct CreateAppProfileRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let appProfileId = CodingKeys(stringValue: "appProfileId")
+    static let appProfile = CodingKeys(stringValue: "appProfile")
+    static let ignoreWarnings = CodingKeys(stringValue: "ignoreWarnings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "appProfileId",
+      "appProfile",
+      "ignoreWarnings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appProfileId) {
+      self.appProfileId = value
+    }
+    self.appProfile = try container.decodeIfPresent(AppProfile.self, forKey: .appProfile)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreWarnings) {
+      self.ignoreWarnings = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.appProfileId, forKey: .appProfileId)
+    try container.encodeIfPresent(self.appProfile, forKey: .appProfile)
+    try container.encode(self.ignoreWarnings, forKey: .ignoreWarnings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

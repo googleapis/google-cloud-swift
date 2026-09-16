@@ -92,6 +92,8 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWKT._An
   /// Optional. True if GPU zonal redundancy is disabled on this worker pool.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkerPoolRevisionTemplate`.
   public init() {}
 
@@ -106,6 +108,111 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let revision = CodingKeys(stringValue: "revision")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let containers = CodingKeys(stringValue: "containers")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let serviceMesh = CodingKeys(stringValue: "serviceMesh")
+    static let encryptionKeyRevocationAction = CodingKeys(
+      stringValue: "encryptionKeyRevocationAction")
+    static let encryptionKeyShutdownDuration = CodingKeys(
+      stringValue: "encryptionKeyShutdownDuration")
+    static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
+    static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "revision",
+      "labels",
+      "annotations",
+      "vpcAccess",
+      "serviceAccount",
+      "containers",
+      "volumes",
+      "encryptionKey",
+      "serviceMesh",
+      "encryptionKeyRevocationAction",
+      "encryptionKeyShutdownDuration",
+      "nodeSelector",
+      "gpuZonalRedundancyDisabled",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    self.vpcAccess = try container.decodeIfPresent(VpcAccess.self, forKey: .vpcAccess)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
+      self.containers = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encryptionKey) {
+      self.encryptionKey = value
+    }
+    self.serviceMesh = try container.decodeIfPresent(ServiceMesh.self, forKey: .serviceMesh)
+    if let value = try container.decodeIfPresent(
+      EncryptionKeyRevocationAction.self, forKey: .encryptionKeyRevocationAction)
+    {
+      self.encryptionKeyRevocationAction = value
+    }
+    self.encryptionKeyShutdownDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .encryptionKeyShutdownDuration)
+    self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
+    self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.containers, forKey: .containers)
+    try container.encode(self.volumes, forKey: .volumes)
+    try container.encode(self.encryptionKey, forKey: .encryptionKey)
+    try container.encodeIfPresent(self.serviceMesh, forKey: .serviceMesh)
+    try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    try container.encodeIfPresent(
+      self.encryptionKeyShutdownDuration, forKey: .encryptionKeyShutdownDuration)
+    try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
+    try container.encodeIfPresent(
+      self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

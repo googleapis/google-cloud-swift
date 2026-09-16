@@ -37,6 +37,8 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// gcp_Properties has properties of the Google Cloud Resource.
   public var gcpResourceProperties: OneOf_GcpResourceProperties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSourceGcpResource`.
   public init() {}
 
@@ -53,21 +55,45 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcpResourcename = "gcpResourcename"
-    case location = "location"
-    case type = "type"
-    case computeInstanceDatasourceProperties = "computeInstanceDatasourceProperties"
-    case cloudSqlInstanceDatasourceProperties = "cloudSqlInstanceDatasourceProperties"
-    case alloyDbClusterDatasourceProperties = "alloyDbClusterDatasourceProperties"
-    case diskDatasourceProperties = "diskDatasourceProperties"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcpResourcename = CodingKeys(stringValue: "gcpResourcename")
+    static let location = CodingKeys(stringValue: "location")
+    static let type = CodingKeys(stringValue: "type")
+    static let computeInstanceDatasourceProperties = CodingKeys(
+      stringValue: "computeInstanceDatasourceProperties")
+    static let cloudSqlInstanceDatasourceProperties = CodingKeys(
+      stringValue: "cloudSqlInstanceDatasourceProperties")
+    static let alloyDbClusterDatasourceProperties = CodingKeys(
+      stringValue: "alloyDbClusterDatasourceProperties")
+    static let diskDatasourceProperties = CodingKeys(stringValue: "diskDatasourceProperties")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcpResourcename",
+      "location",
+      "type",
+      "computeInstanceDatasourceProperties",
+      "cloudSqlInstanceDatasourceProperties",
+      "alloyDbClusterDatasourceProperties",
+      "diskDatasourceProperties",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.gcpResourcename = try container.decode(Swift.String.self, forKey: .gcpResourcename)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
-    self.type = try container.decode(Swift.String.self, forKey: .type)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpResourcename) {
+      self.gcpResourcename = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
 
     var gcpResourceProperties: OneOf_GcpResourceProperties? = nil
     let gcpResourcePropertiesCheckAndSet = {
@@ -103,6 +129,10 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleCloudWKT._AnyPack
       try gcpResourcePropertiesCheckAndSet(.diskDatasourceProperties(diskDatasourceProperties))
     }
     self.gcpResourceProperties = gcpResourceProperties
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -122,6 +152,9 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .diskDatasourceProperties(let value):
         try container.encode(value, forKey: .diskDatasourceProperties)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

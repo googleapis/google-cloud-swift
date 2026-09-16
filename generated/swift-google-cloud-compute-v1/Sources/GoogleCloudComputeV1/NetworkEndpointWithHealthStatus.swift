@@ -30,6 +30,8 @@
     /// Output only. [Output only] The network endpoint.
     public var networkEndpoint: NetworkEndpoint? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkEndpointWithHealthStatus`.
     public init() {}
 
@@ -44,6 +46,45 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let healths = CodingKeys(stringValue: "healths")
+      static let networkEndpoint = CodingKeys(stringValue: "networkEndpoint")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "healths",
+        "networkEndpoint",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [HealthStatusForNetworkEndpoint].self, forKey: .healths)
+      {
+        self.healths = value
+      }
+      self.networkEndpoint = try container.decodeIfPresent(
+        NetworkEndpoint.self, forKey: .networkEndpoint)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.healths, forKey: .healths)
+      try container.encodeIfPresent(self.networkEndpoint, forKey: .networkEndpoint)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

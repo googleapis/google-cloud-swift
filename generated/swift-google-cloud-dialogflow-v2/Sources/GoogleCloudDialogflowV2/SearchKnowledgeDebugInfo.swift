@@ -38,6 +38,8 @@
     /// Optional. Debug info from the Customer Engagement Suite (CES) execution.
     public var cesDebugInfo: GoogleCloudWKT.Struct? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchKnowledgeDebugInfo`.
     public init() {}
 
@@ -52,6 +54,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datastoreResponseReason = CodingKeys(stringValue: "datastoreResponseReason")
+      static let searchKnowledgeBehavior = CodingKeys(stringValue: "searchKnowledgeBehavior")
+      static let ingestedContextReferenceDebugInfo = CodingKeys(
+        stringValue: "ingestedContextReferenceDebugInfo")
+      static let serviceLatency = CodingKeys(stringValue: "serviceLatency")
+      static let cesDebugInfo = CodingKeys(stringValue: "cesDebugInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datastoreResponseReason",
+        "searchKnowledgeBehavior",
+        "ingestedContextReferenceDebugInfo",
+        "serviceLatency",
+        "cesDebugInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        DatastoreResponseReason.self, forKey: .datastoreResponseReason)
+      {
+        self.datastoreResponseReason = value
+      }
+      self.searchKnowledgeBehavior = try container.decodeIfPresent(
+        SearchKnowledgeDebugInfo.SearchKnowledgeBehavior.self, forKey: .searchKnowledgeBehavior)
+      self.ingestedContextReferenceDebugInfo = try container.decodeIfPresent(
+        IngestedContextReferenceDebugInfo.self, forKey: .ingestedContextReferenceDebugInfo)
+      self.serviceLatency = try container.decodeIfPresent(
+        ServiceLatency.self, forKey: .serviceLatency)
+      self.cesDebugInfo = try container.decodeIfPresent(
+        GoogleCloudWKT.Struct.self, forKey: .cesDebugInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      try container.encodeIfPresent(self.searchKnowledgeBehavior, forKey: .searchKnowledgeBehavior)
+      try container.encodeIfPresent(
+        self.ingestedContextReferenceDebugInfo, forKey: .ingestedContextReferenceDebugInfo)
+      try container.encodeIfPresent(self.serviceLatency, forKey: .serviceLatency)
+      try container.encodeIfPresent(self.cesDebugInfo, forKey: .cesDebugInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configured behaviors for SearchKnowledge.
@@ -69,6 +127,8 @@
       /// allowlisted for connectors.
       public var thirdPartyConnectorAllowed: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SearchKnowledgeBehavior`.
       public init() {}
 
@@ -83,6 +143,58 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let answerGenerationRewriterOn = CodingKeys(
+          stringValue: "answerGenerationRewriterOn")
+        static let endUserMetadataIncluded = CodingKeys(stringValue: "endUserMetadataIncluded")
+        static let thirdPartyConnectorAllowed = CodingKeys(
+          stringValue: "thirdPartyConnectorAllowed")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "answerGenerationRewriterOn",
+          "endUserMetadataIncluded",
+          "thirdPartyConnectorAllowed",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .answerGenerationRewriterOn)
+        {
+          self.answerGenerationRewriterOn = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .endUserMetadataIncluded)
+        {
+          self.endUserMetadataIncluded = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .thirdPartyConnectorAllowed)
+        {
+          self.thirdPartyConnectorAllowed = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.answerGenerationRewriterOn, forKey: .answerGenerationRewriterOn)
+        try container.encode(self.endUserMetadataIncluded, forKey: .endUserMetadataIncluded)
+        try container.encode(self.thirdPartyConnectorAllowed, forKey: .thirdPartyConnectorAllowed)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

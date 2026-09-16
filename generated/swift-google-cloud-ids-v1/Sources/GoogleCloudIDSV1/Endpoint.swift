@@ -56,6 +56,8 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether the endpoint should report traffic logs in addition to threat logs.
   public var trafficLogs: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Endpoint`.
   public init() {}
 
@@ -70,6 +72,98 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let network = CodingKeys(stringValue: "network")
+    static let endpointForwardingRule = CodingKeys(stringValue: "endpointForwardingRule")
+    static let endpointIp = CodingKeys(stringValue: "endpointIp")
+    static let description = CodingKeys(stringValue: "description")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let state = CodingKeys(stringValue: "state")
+    static let trafficLogs = CodingKeys(stringValue: "trafficLogs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "network",
+      "endpointForwardingRule",
+      "endpointIp",
+      "description",
+      "severity",
+      "state",
+      "trafficLogs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointForwardingRule)
+    {
+      self.endpointForwardingRule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointIp) {
+      self.endpointIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Endpoint.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Endpoint.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trafficLogs) {
+      self.trafficLogs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.endpointForwardingRule, forKey: .endpointForwardingRule)
+    try container.encode(self.endpointIp, forKey: .endpointIp)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.trafficLogs, forKey: .trafficLogs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Threat severity levels.

@@ -40,6 +40,8 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The time diagnostic end.
   public var diagnosticEndTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentDiagnosticData`.
   public init() {}
 
@@ -54,6 +56,68 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let namespace = CodingKeys(stringValue: "namespace")
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let object = CodingKeys(stringValue: "object")
+    static let diagnosticState = CodingKeys(stringValue: "diagnosticState")
+    static let diagnosticStartTime = CodingKeys(stringValue: "diagnosticStartTime")
+    static let diagnosticEndTime = CodingKeys(stringValue: "diagnosticEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "namespace",
+      "bucket",
+      "object",
+      "diagnosticState",
+      "diagnosticStartTime",
+      "diagnosticEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespace) {
+      self.namespace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .object) {
+      self.object = value
+    }
+    if let value = try container.decodeIfPresent(
+      DeploymentDiagnosticData.DiagnosticState.self, forKey: .diagnosticState)
+    {
+      self.diagnosticState = value
+    }
+    self.diagnosticStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .diagnosticStartTime)
+    self.diagnosticEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .diagnosticEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.namespace, forKey: .namespace)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.object, forKey: .object)
+    try container.encode(self.diagnosticState, forKey: .diagnosticState)
+    try container.encodeIfPresent(self.diagnosticStartTime, forKey: .diagnosticStartTime)
+    try container.encodeIfPresent(self.diagnosticEndTime, forKey: .diagnosticEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible states of the diagnostic data.

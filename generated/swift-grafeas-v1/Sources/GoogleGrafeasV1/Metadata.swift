@@ -40,6 +40,8 @@ public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// produce bit-for-bit identical output.
   public var reproducible: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Metadata`.
   public init() {}
 
@@ -54,6 +56,58 @@ public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let buildInvocationId = CodingKeys(stringValue: "buildInvocationId")
+    static let buildStartedOn = CodingKeys(stringValue: "buildStartedOn")
+    static let buildFinishedOn = CodingKeys(stringValue: "buildFinishedOn")
+    static let completeness = CodingKeys(stringValue: "completeness")
+    static let reproducible = CodingKeys(stringValue: "reproducible")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "buildInvocationId",
+      "buildStartedOn",
+      "buildFinishedOn",
+      "completeness",
+      "reproducible",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildInvocationId) {
+      self.buildInvocationId = value
+    }
+    self.buildStartedOn = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .buildStartedOn)
+    self.buildFinishedOn = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .buildFinishedOn)
+    self.completeness = try container.decodeIfPresent(Completeness.self, forKey: .completeness)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reproducible) {
+      self.reproducible = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.buildInvocationId, forKey: .buildInvocationId)
+    try container.encodeIfPresent(self.buildStartedOn, forKey: .buildStartedOn)
+    try container.encodeIfPresent(self.buildFinishedOn, forKey: .buildFinishedOn)
+    try container.encodeIfPresent(self.completeness, forKey: .completeness)
+    try container.encode(self.reproducible, forKey: .reproducible)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

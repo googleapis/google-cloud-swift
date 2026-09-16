@@ -70,6 +70,8 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Used as additional context for the endpoint group.
   public var description: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InterceptEndpointGroup`.
   public init() {}
 
@@ -86,6 +88,95 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let interceptDeploymentGroup = CodingKeys(stringValue: "interceptDeploymentGroup")
+    static let connectedDeploymentGroup = CodingKeys(stringValue: "connectedDeploymentGroup")
+    static let state = CodingKeys(stringValue: "state")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let associations = CodingKeys(stringValue: "associations")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "interceptDeploymentGroup",
+      "connectedDeploymentGroup",
+      "state",
+      "reconciling",
+      "associations",
+      "description",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .interceptDeploymentGroup)
+    {
+      self.interceptDeploymentGroup = value
+    }
+    self.connectedDeploymentGroup = try container.decodeIfPresent(
+      InterceptEndpointGroup.ConnectedDeploymentGroup.self, forKey: .connectedDeploymentGroup)
+    if let value = try container.decodeIfPresent(InterceptEndpointGroup.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(
+      [InterceptEndpointGroup.AssociationDetails].self, forKey: .associations)
+    {
+      self.associations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.interceptDeploymentGroup, forKey: .interceptDeploymentGroup)
+    try container.encodeIfPresent(self.connectedDeploymentGroup, forKey: .connectedDeploymentGroup)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.associations, forKey: .associations)
+    try container.encode(self.description, forKey: .description)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The endpoint group's view of a connected deployment group.
   public struct ConnectedDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -97,6 +188,8 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
 
     /// Output only. The list of locations where the deployment group is present.
     public var locations: [InterceptLocation] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ConnectedDeploymentGroup`.
     public init() {}
@@ -112,6 +205,44 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let locations = CodingKeys(stringValue: "locations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "locations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent([InterceptLocation].self, forKey: .locations) {
+        self.locations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.locations, forKey: .locations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -144,6 +275,8 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
     public var state: InterceptEndpointGroupAssociation.State =
       InterceptEndpointGroupAssociation.State()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AssociationDetails`.
     public init() {}
 
@@ -158,6 +291,52 @@ public struct InterceptEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPac
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let state = CodingKeys(stringValue: "state")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "network",
+        "state",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(
+        InterceptEndpointGroupAssociation.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.state, forKey: .state)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

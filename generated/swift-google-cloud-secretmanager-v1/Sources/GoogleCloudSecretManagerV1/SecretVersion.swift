@@ -96,6 +96,8 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
   public var customerManagedEncryption: CustomerManagedEncryptionStatus? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SecretVersion`.
   public init() {}
 
@@ -110,6 +112,86 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let destroyTime = CodingKeys(stringValue: "destroyTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let replicationStatus = CodingKeys(stringValue: "replicationStatus")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let clientSpecifiedPayloadChecksum = CodingKeys(
+      stringValue: "clientSpecifiedPayloadChecksum")
+    static let scheduledDestroyTime = CodingKeys(stringValue: "scheduledDestroyTime")
+    static let customerManagedEncryption = CodingKeys(stringValue: "customerManagedEncryption")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "destroyTime",
+      "state",
+      "replicationStatus",
+      "etag",
+      "clientSpecifiedPayloadChecksum",
+      "scheduledDestroyTime",
+      "customerManagedEncryption",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.destroyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .destroyTime)
+    if let value = try container.decodeIfPresent(SecretVersion.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.replicationStatus = try container.decodeIfPresent(
+      ReplicationStatus.self, forKey: .replicationStatus)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .clientSpecifiedPayloadChecksum)
+    {
+      self.clientSpecifiedPayloadChecksum = value
+    }
+    self.scheduledDestroyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .scheduledDestroyTime)
+    self.customerManagedEncryption = try container.decodeIfPresent(
+      CustomerManagedEncryptionStatus.self, forKey: .customerManagedEncryption)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.destroyTime, forKey: .destroyTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.replicationStatus, forKey: .replicationStatus)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(
+      self.clientSpecifiedPayloadChecksum, forKey: .clientSpecifiedPayloadChecksum)
+    try container.encodeIfPresent(self.scheduledDestroyTime, forKey: .scheduledDestroyTime)
+    try container.encodeIfPresent(
+      self.customerManagedEncryption, forKey: .customerManagedEncryption)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The state of a

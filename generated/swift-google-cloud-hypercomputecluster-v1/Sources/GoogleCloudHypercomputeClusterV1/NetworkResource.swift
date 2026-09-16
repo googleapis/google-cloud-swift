@@ -33,6 +33,8 @@ public struct NetworkResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// fields will be populated based on the configured type of network resource.
   public var reference: OneOf_Reference? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkResource`.
   public init() {}
 
@@ -49,9 +51,19 @@ public struct NetworkResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case network = "network"
-    case config = "config"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let config = CodingKeys(stringValue: "config")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "config",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,17 +84,24 @@ public struct NetworkResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try referenceCheckAndSet(.network(network))
     }
     self.reference = reference
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.config, forKey: .config)
+    try container.encodeIfPresent(self.config, forKey: .config)
 
     if let choice = self.reference {
       switch choice {
       case .network(let value):
         try container.encode(value, forKey: .network)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

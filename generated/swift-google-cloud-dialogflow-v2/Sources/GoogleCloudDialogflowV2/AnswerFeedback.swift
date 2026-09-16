@@ -45,6 +45,8 @@
     /// Normally, detail feedback is provided when answer is not fully correct.
     public var detailFeedback: OneOf_DetailFeedback? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnswerFeedback`.
     public init() {}
 
@@ -61,23 +63,45 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case correctnessLevel = "correctnessLevel"
-      case agentAssistantDetailFeedback = "agentAssistantDetailFeedback"
-      case clicked = "clicked"
-      case clickTime = "clickTime"
-      case displayed = "displayed"
-      case displayTime = "displayTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let correctnessLevel = CodingKeys(stringValue: "correctnessLevel")
+      static let agentAssistantDetailFeedback = CodingKeys(
+        stringValue: "agentAssistantDetailFeedback")
+      static let clicked = CodingKeys(stringValue: "clicked")
+      static let clickTime = CodingKeys(stringValue: "clickTime")
+      static let displayed = CodingKeys(stringValue: "displayed")
+      static let displayTime = CodingKeys(stringValue: "displayTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "correctnessLevel",
+        "agentAssistantDetailFeedback",
+        "clicked",
+        "clickTime",
+        "displayed",
+        "displayTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.correctnessLevel = try container.decode(
+      if let value = try container.decodeIfPresent(
         AnswerFeedback.CorrectnessLevel.self, forKey: .correctnessLevel)
-      self.clicked = try container.decode(Swift.Bool.self, forKey: .clicked)
+      {
+        self.correctnessLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clicked) {
+        self.clicked = value
+      }
       self.clickTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .clickTime)
-      self.displayed = try container.decode(Swift.Bool.self, forKey: .displayed)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .displayed) {
+        self.displayed = value
+      }
       self.displayTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .displayTime)
 
@@ -97,21 +121,28 @@
         try detailFeedbackCheckAndSet(.agentAssistantDetailFeedback(agentAssistantDetailFeedback))
       }
       self.detailFeedback = detailFeedback
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.correctnessLevel, forKey: .correctnessLevel)
       try container.encode(self.clicked, forKey: .clicked)
-      try container.encode(self.clickTime, forKey: .clickTime)
+      try container.encodeIfPresent(self.clickTime, forKey: .clickTime)
       try container.encode(self.displayed, forKey: .displayed)
-      try container.encode(self.displayTime, forKey: .displayTime)
+      try container.encodeIfPresent(self.displayTime, forKey: .displayTime)
 
       if let choice = self.detailFeedback {
         switch choice {
         case .agentAssistantDetailFeedback(let value):
           try container.encode(value, forKey: .agentAssistantDetailFeedback)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

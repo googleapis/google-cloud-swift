@@ -25,6 +25,8 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The runtimes that match the request.
   public var runtimes: [ListRuntimesResponse.Runtime] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListRuntimesResponse`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let runtimes = CodingKeys(stringValue: "runtimes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "runtimes"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ListRuntimesResponse.Runtime].self, forKey: .runtimes)
+    {
+      self.runtimes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.runtimes, forKey: .runtimes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes a runtime and any special information (e.g., deprecation status)
@@ -67,6 +103,8 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Decommission date for the runtime.
     public var decommissionDate: GoogleType.Date? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Runtime`.
     public init() {}
 
@@ -81,6 +119,74 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let stage = CodingKeys(stringValue: "stage")
+      static let warnings = CodingKeys(stringValue: "warnings")
+      static let environment = CodingKeys(stringValue: "environment")
+      static let deprecationDate = CodingKeys(stringValue: "deprecationDate")
+      static let decommissionDate = CodingKeys(stringValue: "decommissionDate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "stage",
+        "warnings",
+        "environment",
+        "deprecationDate",
+        "decommissionDate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(
+        ListRuntimesResponse.RuntimeStage.self, forKey: .stage)
+      {
+        self.stage = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .warnings) {
+        self.warnings = value
+      }
+      if let value = try container.decodeIfPresent(Environment.self, forKey: .environment) {
+        self.environment = value
+      }
+      self.deprecationDate = try container.decodeIfPresent(
+        GoogleType.Date.self, forKey: .deprecationDate)
+      self.decommissionDate = try container.decodeIfPresent(
+        GoogleType.Date.self, forKey: .decommissionDate)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.stage, forKey: .stage)
+      try container.encode(self.warnings, forKey: .warnings)
+      try container.encode(self.environment, forKey: .environment)
+      try container.encodeIfPresent(self.deprecationDate, forKey: .deprecationDate)
+      try container.encodeIfPresent(self.decommissionDate, forKey: .decommissionDate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

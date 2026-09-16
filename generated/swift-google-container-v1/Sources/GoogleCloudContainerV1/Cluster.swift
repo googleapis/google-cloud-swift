@@ -447,6 +447,8 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Configuration for Node Creation Mode.
   public var nodeCreationConfig: NodeCreationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Cluster`.
   public init() {}
 
@@ -463,117 +465,243 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case initialNodeCount = "initialNodeCount"
-    case nodeConfig = "nodeConfig"
-    case masterAuth = "masterAuth"
-    case loggingService = "loggingService"
-    case monitoringService = "monitoringService"
-    case network = "network"
-    case clusterIpv4Cidr = "clusterIpv4Cidr"
-    case addonsConfig = "addonsConfig"
-    case subnetwork = "subnetwork"
-    case nodePools = "nodePools"
-    case locations = "locations"
-    case enableKubernetesAlpha = "enableKubernetesAlpha"
-    case alphaClusterFeatureGates = "alphaClusterFeatureGates"
-    case resourceLabels = "resourceLabels"
-    case labelFingerprint = "labelFingerprint"
-    case legacyAbac = "legacyAbac"
-    case networkPolicy = "networkPolicy"
-    case ipAllocationPolicy = "ipAllocationPolicy"
-    case masterAuthorizedNetworksConfig = "masterAuthorizedNetworksConfig"
-    case maintenancePolicy = "maintenancePolicy"
-    case binaryAuthorization = "binaryAuthorization"
-    case autoscaling = "autoscaling"
-    case networkConfig = "networkConfig"
-    case defaultMaxPodsConstraint = "defaultMaxPodsConstraint"
-    case resourceUsageExportConfig = "resourceUsageExportConfig"
-    case authenticatorGroupsConfig = "authenticatorGroupsConfig"
-    case privateClusterConfig = "privateClusterConfig"
-    case databaseEncryption = "databaseEncryption"
-    case verticalPodAutoscaling = "verticalPodAutoscaling"
-    case shieldedNodes = "shieldedNodes"
-    case releaseChannel = "releaseChannel"
-    case workloadIdentityConfig = "workloadIdentityConfig"
-    case meshCertificates = "meshCertificates"
-    case costManagementConfig = "costManagementConfig"
-    case notificationConfig = "notificationConfig"
-    case confidentialNodes = "confidentialNodes"
-    case identityServiceConfig = "identityServiceConfig"
-    case selfLink = "selfLink"
-    case zone = "zone"
-    case endpoint = "endpoint"
-    case initialClusterVersion = "initialClusterVersion"
-    case currentMasterVersion = "currentMasterVersion"
-    case currentEmulatedVersion = "currentEmulatedVersion"
-    case rollbackSafeUpgrade = "rollbackSafeUpgrade"
-    case currentNodeVersion = "currentNodeVersion"
-    case createTime = "createTime"
-    case status = "status"
-    case statusMessage = "statusMessage"
-    case nodeIpv4CidrSize = "nodeIpv4CidrSize"
-    case servicesIpv4Cidr = "servicesIpv4Cidr"
-    case instanceGroupUrls = "instanceGroupUrls"
-    case currentNodeCount = "currentNodeCount"
-    case expireTime = "expireTime"
-    case location = "location"
-    case enableTpu = "enableTpu"
-    case tpuIpv4CidrBlock = "tpuIpv4CidrBlock"
-    case conditions = "conditions"
-    case autopilot = "autopilot"
-    case id = "id"
-    case nodePoolDefaults = "nodePoolDefaults"
-    case loggingConfig = "loggingConfig"
-    case monitoringConfig = "monitoringConfig"
-    case nodePoolAutoConfig = "nodePoolAutoConfig"
-    case podAutoscaling = "podAutoscaling"
-    case etag = "etag"
-    case fleet = "fleet"
-    case securityPostureConfig = "securityPostureConfig"
-    case controlPlaneEndpointsConfig = "controlPlaneEndpointsConfig"
-    case enableK8SBetaApis = "enableK8sBetaApis"
-    case enterpriseConfig = "enterpriseConfig"
-    case secretManagerConfig = "secretManagerConfig"
-    case compliancePostureConfig = "compliancePostureConfig"
-    case satisfiesPzs = "satisfiesPzs"
-    case satisfiesPzi = "satisfiesPzi"
-    case userManagedKeysConfig = "userManagedKeysConfig"
-    case rbacBindingConfig = "rbacBindingConfig"
-    case gkeAutoUpgradeConfig = "gkeAutoUpgradeConfig"
-    case anonymousAuthenticationConfig = "anonymousAuthenticationConfig"
-    case scheduleUpgradeConfig = "scheduleUpgradeConfig"
-    case secretSyncConfig = "secretSyncConfig"
-    case managedOpentelemetryConfig = "managedOpentelemetryConfig"
-    case controlPlaneEgress = "controlPlaneEgress"
-    case managedMachineLearningDiagnosticsConfig = "managedMachineLearningDiagnosticsConfig"
-    case nodeCreationConfig = "nodeCreationConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let initialNodeCount = CodingKeys(stringValue: "initialNodeCount")
+    static let nodeConfig = CodingKeys(stringValue: "nodeConfig")
+    static let masterAuth = CodingKeys(stringValue: "masterAuth")
+    static let loggingService = CodingKeys(stringValue: "loggingService")
+    static let monitoringService = CodingKeys(stringValue: "monitoringService")
+    static let network = CodingKeys(stringValue: "network")
+    static let clusterIpv4Cidr = CodingKeys(stringValue: "clusterIpv4Cidr")
+    static let addonsConfig = CodingKeys(stringValue: "addonsConfig")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let nodePools = CodingKeys(stringValue: "nodePools")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let enableKubernetesAlpha = CodingKeys(stringValue: "enableKubernetesAlpha")
+    static let alphaClusterFeatureGates = CodingKeys(stringValue: "alphaClusterFeatureGates")
+    static let resourceLabels = CodingKeys(stringValue: "resourceLabels")
+    static let labelFingerprint = CodingKeys(stringValue: "labelFingerprint")
+    static let legacyAbac = CodingKeys(stringValue: "legacyAbac")
+    static let networkPolicy = CodingKeys(stringValue: "networkPolicy")
+    static let ipAllocationPolicy = CodingKeys(stringValue: "ipAllocationPolicy")
+    static let masterAuthorizedNetworksConfig = CodingKeys(
+      stringValue: "masterAuthorizedNetworksConfig")
+    static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+    static let binaryAuthorization = CodingKeys(stringValue: "binaryAuthorization")
+    static let autoscaling = CodingKeys(stringValue: "autoscaling")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let defaultMaxPodsConstraint = CodingKeys(stringValue: "defaultMaxPodsConstraint")
+    static let resourceUsageExportConfig = CodingKeys(stringValue: "resourceUsageExportConfig")
+    static let authenticatorGroupsConfig = CodingKeys(stringValue: "authenticatorGroupsConfig")
+    static let privateClusterConfig = CodingKeys(stringValue: "privateClusterConfig")
+    static let databaseEncryption = CodingKeys(stringValue: "databaseEncryption")
+    static let verticalPodAutoscaling = CodingKeys(stringValue: "verticalPodAutoscaling")
+    static let shieldedNodes = CodingKeys(stringValue: "shieldedNodes")
+    static let releaseChannel = CodingKeys(stringValue: "releaseChannel")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
+    static let meshCertificates = CodingKeys(stringValue: "meshCertificates")
+    static let costManagementConfig = CodingKeys(stringValue: "costManagementConfig")
+    static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+    static let confidentialNodes = CodingKeys(stringValue: "confidentialNodes")
+    static let identityServiceConfig = CodingKeys(stringValue: "identityServiceConfig")
+    static let selfLink = CodingKeys(stringValue: "selfLink")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let initialClusterVersion = CodingKeys(stringValue: "initialClusterVersion")
+    static let currentMasterVersion = CodingKeys(stringValue: "currentMasterVersion")
+    static let currentEmulatedVersion = CodingKeys(stringValue: "currentEmulatedVersion")
+    static let rollbackSafeUpgrade = CodingKeys(stringValue: "rollbackSafeUpgrade")
+    static let currentNodeVersion = CodingKeys(stringValue: "currentNodeVersion")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let status = CodingKeys(stringValue: "status")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let nodeIpv4CidrSize = CodingKeys(stringValue: "nodeIpv4CidrSize")
+    static let servicesIpv4Cidr = CodingKeys(stringValue: "servicesIpv4Cidr")
+    static let instanceGroupUrls = CodingKeys(stringValue: "instanceGroupUrls")
+    static let currentNodeCount = CodingKeys(stringValue: "currentNodeCount")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let location = CodingKeys(stringValue: "location")
+    static let enableTpu = CodingKeys(stringValue: "enableTpu")
+    static let tpuIpv4CidrBlock = CodingKeys(stringValue: "tpuIpv4CidrBlock")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let autopilot = CodingKeys(stringValue: "autopilot")
+    static let id = CodingKeys(stringValue: "id")
+    static let nodePoolDefaults = CodingKeys(stringValue: "nodePoolDefaults")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let monitoringConfig = CodingKeys(stringValue: "monitoringConfig")
+    static let nodePoolAutoConfig = CodingKeys(stringValue: "nodePoolAutoConfig")
+    static let podAutoscaling = CodingKeys(stringValue: "podAutoscaling")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let fleet = CodingKeys(stringValue: "fleet")
+    static let securityPostureConfig = CodingKeys(stringValue: "securityPostureConfig")
+    static let controlPlaneEndpointsConfig = CodingKeys(stringValue: "controlPlaneEndpointsConfig")
+    static let enableK8SBetaApis = CodingKeys(stringValue: "enableK8sBetaApis")
+    static let enterpriseConfig = CodingKeys(stringValue: "enterpriseConfig")
+    static let secretManagerConfig = CodingKeys(stringValue: "secretManagerConfig")
+    static let compliancePostureConfig = CodingKeys(stringValue: "compliancePostureConfig")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let userManagedKeysConfig = CodingKeys(stringValue: "userManagedKeysConfig")
+    static let rbacBindingConfig = CodingKeys(stringValue: "rbacBindingConfig")
+    static let gkeAutoUpgradeConfig = CodingKeys(stringValue: "gkeAutoUpgradeConfig")
+    static let anonymousAuthenticationConfig = CodingKeys(
+      stringValue: "anonymousAuthenticationConfig")
+    static let scheduleUpgradeConfig = CodingKeys(stringValue: "scheduleUpgradeConfig")
+    static let secretSyncConfig = CodingKeys(stringValue: "secretSyncConfig")
+    static let managedOpentelemetryConfig = CodingKeys(stringValue: "managedOpentelemetryConfig")
+    static let controlPlaneEgress = CodingKeys(stringValue: "controlPlaneEgress")
+    static let managedMachineLearningDiagnosticsConfig = CodingKeys(
+      stringValue: "managedMachineLearningDiagnosticsConfig")
+    static let nodeCreationConfig = CodingKeys(stringValue: "nodeCreationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "initialNodeCount",
+      "nodeConfig",
+      "masterAuth",
+      "loggingService",
+      "monitoringService",
+      "network",
+      "clusterIpv4Cidr",
+      "addonsConfig",
+      "subnetwork",
+      "nodePools",
+      "locations",
+      "enableKubernetesAlpha",
+      "alphaClusterFeatureGates",
+      "resourceLabels",
+      "labelFingerprint",
+      "legacyAbac",
+      "networkPolicy",
+      "ipAllocationPolicy",
+      "masterAuthorizedNetworksConfig",
+      "maintenancePolicy",
+      "binaryAuthorization",
+      "autoscaling",
+      "networkConfig",
+      "defaultMaxPodsConstraint",
+      "resourceUsageExportConfig",
+      "authenticatorGroupsConfig",
+      "privateClusterConfig",
+      "databaseEncryption",
+      "verticalPodAutoscaling",
+      "shieldedNodes",
+      "releaseChannel",
+      "workloadIdentityConfig",
+      "meshCertificates",
+      "costManagementConfig",
+      "notificationConfig",
+      "confidentialNodes",
+      "identityServiceConfig",
+      "selfLink",
+      "zone",
+      "endpoint",
+      "initialClusterVersion",
+      "currentMasterVersion",
+      "currentEmulatedVersion",
+      "rollbackSafeUpgrade",
+      "currentNodeVersion",
+      "createTime",
+      "status",
+      "statusMessage",
+      "nodeIpv4CidrSize",
+      "servicesIpv4Cidr",
+      "instanceGroupUrls",
+      "currentNodeCount",
+      "expireTime",
+      "location",
+      "enableTpu",
+      "tpuIpv4CidrBlock",
+      "conditions",
+      "autopilot",
+      "id",
+      "nodePoolDefaults",
+      "loggingConfig",
+      "monitoringConfig",
+      "nodePoolAutoConfig",
+      "podAutoscaling",
+      "etag",
+      "fleet",
+      "securityPostureConfig",
+      "controlPlaneEndpointsConfig",
+      "enableK8sBetaApis",
+      "enterpriseConfig",
+      "secretManagerConfig",
+      "compliancePostureConfig",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "userManagedKeysConfig",
+      "rbacBindingConfig",
+      "gkeAutoUpgradeConfig",
+      "anonymousAuthenticationConfig",
+      "scheduleUpgradeConfig",
+      "secretSyncConfig",
+      "managedOpentelemetryConfig",
+      "controlPlaneEgress",
+      "managedMachineLearningDiagnosticsConfig",
+      "nodeCreationConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.initialNodeCount = try container.decode(Swift.Int32.self, forKey: .initialNodeCount)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .initialNodeCount) {
+      self.initialNodeCount = value
+    }
     self.nodeConfig = try container.decodeIfPresent(NodeConfig.self, forKey: .nodeConfig)
     self.masterAuth = try container.decodeIfPresent(MasterAuth.self, forKey: .masterAuth)
-    self.loggingService = try container.decode(Swift.String.self, forKey: .loggingService)
-    self.monitoringService = try container.decode(Swift.String.self, forKey: .monitoringService)
-    self.network = try container.decode(Swift.String.self, forKey: .network)
-    self.clusterIpv4Cidr = try container.decode(Swift.String.self, forKey: .clusterIpv4Cidr)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loggingService) {
+      self.loggingService = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .monitoringService) {
+      self.monitoringService = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterIpv4Cidr) {
+      self.clusterIpv4Cidr = value
+    }
     self.addonsConfig = try container.decodeIfPresent(AddonsConfig.self, forKey: .addonsConfig)
-    self.subnetwork = try container.decode(Swift.String.self, forKey: .subnetwork)
-    self.nodePools = try container.decode([NodePool].self, forKey: .nodePools)
-    self.locations = try container.decode([Swift.String].self, forKey: .locations)
-    self.enableKubernetesAlpha = try container.decode(
-      Swift.Bool.self, forKey: .enableKubernetesAlpha)
-    self.alphaClusterFeatureGates = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent([NodePool].self, forKey: .nodePools) {
+      self.nodePools = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableKubernetesAlpha) {
+      self.enableKubernetesAlpha = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String].self, forKey: .alphaClusterFeatureGates)
-    self.resourceLabels = try container.decode(
+    {
+      self.alphaClusterFeatureGates = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .resourceLabels)
-    self.labelFingerprint = try container.decode(Swift.String.self, forKey: .labelFingerprint)
+    {
+      self.resourceLabels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
+      self.labelFingerprint = value
+    }
     self.legacyAbac = try container.decodeIfPresent(LegacyAbac.self, forKey: .legacyAbac)
     self.networkPolicy = try container.decodeIfPresent(NetworkPolicy.self, forKey: .networkPolicy)
     self.ipAllocationPolicy = try container.decodeIfPresent(
@@ -613,32 +741,71 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       ConfidentialNodes.self, forKey: .confidentialNodes)
     self.identityServiceConfig = try container.decodeIfPresent(
       IdentityServiceConfig.self, forKey: .identityServiceConfig)
-    self.selfLink = try container.decode(Swift.String.self, forKey: .selfLink)
-    self.zone = try container.decode(Swift.String.self, forKey: .zone)
-    self.endpoint = try container.decode(Swift.String.self, forKey: .endpoint)
-    self.initialClusterVersion = try container.decode(
-      Swift.String.self, forKey: .initialClusterVersion)
-    self.currentMasterVersion = try container.decode(
-      Swift.String.self, forKey: .currentMasterVersion)
-    self.currentEmulatedVersion = try container.decode(
-      Swift.String.self, forKey: .currentEmulatedVersion)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+      self.selfLink = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .initialClusterVersion)
+    {
+      self.initialClusterVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentMasterVersion) {
+      self.currentMasterVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentEmulatedVersion)
+    {
+      self.currentEmulatedVersion = value
+    }
     self.rollbackSafeUpgrade = try container.decodeIfPresent(
       RollbackSafeUpgrade.self, forKey: .rollbackSafeUpgrade)
-    self.currentNodeVersion = try container.decode(Swift.String.self, forKey: .currentNodeVersion)
-    self.createTime = try container.decode(Swift.String.self, forKey: .createTime)
-    self.status = try container.decode(Cluster.Status.self, forKey: .status)
-    self.statusMessage = try container.decode(Swift.String.self, forKey: .statusMessage)
-    self.nodeIpv4CidrSize = try container.decode(Swift.Int32.self, forKey: .nodeIpv4CidrSize)
-    self.servicesIpv4Cidr = try container.decode(Swift.String.self, forKey: .servicesIpv4Cidr)
-    self.instanceGroupUrls = try container.decode([Swift.String].self, forKey: .instanceGroupUrls)
-    self.currentNodeCount = try container.decode(Swift.Int32.self, forKey: .currentNodeCount)
-    self.expireTime = try container.decode(Swift.String.self, forKey: .expireTime)
-    self.location = try container.decode(Swift.String.self, forKey: .location)
-    self.enableTpu = try container.decode(Swift.Bool.self, forKey: .enableTpu)
-    self.tpuIpv4CidrBlock = try container.decode(Swift.String.self, forKey: .tpuIpv4CidrBlock)
-    self.conditions = try container.decode([StatusCondition].self, forKey: .conditions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentNodeVersion) {
+      self.currentNodeVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .createTime) {
+      self.createTime = value
+    }
+    if let value = try container.decodeIfPresent(Cluster.Status.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeIpv4CidrSize) {
+      self.nodeIpv4CidrSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servicesIpv4Cidr) {
+      self.servicesIpv4Cidr = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .instanceGroupUrls) {
+      self.instanceGroupUrls = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .currentNodeCount) {
+      self.currentNodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expireTime) {
+      self.expireTime = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTpu) {
+      self.enableTpu = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tpuIpv4CidrBlock) {
+      self.tpuIpv4CidrBlock = value
+    }
+    if let value = try container.decodeIfPresent([StatusCondition].self, forKey: .conditions) {
+      self.conditions = value
+    }
     self.autopilot = try container.decodeIfPresent(Autopilot.self, forKey: .autopilot)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
     self.nodePoolDefaults = try container.decodeIfPresent(
       NodePoolDefaults.self, forKey: .nodePoolDefaults)
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
@@ -648,7 +815,9 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       NodePoolAutoConfig.self, forKey: .nodePoolAutoConfig)
     self.podAutoscaling = try container.decodeIfPresent(
       PodAutoscaling.self, forKey: .podAutoscaling)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
     self.fleet = try container.decodeIfPresent(Fleet.self, forKey: .fleet)
     self.securityPostureConfig = try container.decodeIfPresent(
       SecurityPostureConfig.self, forKey: .securityPostureConfig)
@@ -685,6 +854,10 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     )
     self.nodeCreationConfig = try container.decodeIfPresent(
       NodeCreationConfig.self, forKey: .nodeCreationConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -692,13 +865,13 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.initialNodeCount, forKey: .initialNodeCount)
-    try container.encode(self.nodeConfig, forKey: .nodeConfig)
-    try container.encode(self.masterAuth, forKey: .masterAuth)
+    try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
+    try container.encodeIfPresent(self.masterAuth, forKey: .masterAuth)
     try container.encode(self.loggingService, forKey: .loggingService)
     try container.encode(self.monitoringService, forKey: .monitoringService)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.clusterIpv4Cidr, forKey: .clusterIpv4Cidr)
-    try container.encode(self.addonsConfig, forKey: .addonsConfig)
+    try container.encodeIfPresent(self.addonsConfig, forKey: .addonsConfig)
     try container.encode(self.subnetwork, forKey: .subnetwork)
     try container.encode(self.nodePools, forKey: .nodePools)
     try container.encode(self.locations, forKey: .locations)
@@ -706,36 +879,38 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.alphaClusterFeatureGates, forKey: .alphaClusterFeatureGates)
     try container.encode(self.resourceLabels, forKey: .resourceLabels)
     try container.encode(self.labelFingerprint, forKey: .labelFingerprint)
-    try container.encode(self.legacyAbac, forKey: .legacyAbac)
-    try container.encode(self.networkPolicy, forKey: .networkPolicy)
-    try container.encode(self.ipAllocationPolicy, forKey: .ipAllocationPolicy)
-    try container.encode(
+    try container.encodeIfPresent(self.legacyAbac, forKey: .legacyAbac)
+    try container.encodeIfPresent(self.networkPolicy, forKey: .networkPolicy)
+    try container.encodeIfPresent(self.ipAllocationPolicy, forKey: .ipAllocationPolicy)
+    try container.encodeIfPresent(
       self.masterAuthorizedNetworksConfig, forKey: .masterAuthorizedNetworksConfig)
-    try container.encode(self.maintenancePolicy, forKey: .maintenancePolicy)
-    try container.encode(self.binaryAuthorization, forKey: .binaryAuthorization)
-    try container.encode(self.autoscaling, forKey: .autoscaling)
-    try container.encode(self.networkConfig, forKey: .networkConfig)
-    try container.encode(self.defaultMaxPodsConstraint, forKey: .defaultMaxPodsConstraint)
-    try container.encode(self.resourceUsageExportConfig, forKey: .resourceUsageExportConfig)
-    try container.encode(self.authenticatorGroupsConfig, forKey: .authenticatorGroupsConfig)
-    try container.encode(self.privateClusterConfig, forKey: .privateClusterConfig)
-    try container.encode(self.databaseEncryption, forKey: .databaseEncryption)
-    try container.encode(self.verticalPodAutoscaling, forKey: .verticalPodAutoscaling)
-    try container.encode(self.shieldedNodes, forKey: .shieldedNodes)
-    try container.encode(self.releaseChannel, forKey: .releaseChannel)
-    try container.encode(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
-    try container.encode(self.meshCertificates, forKey: .meshCertificates)
-    try container.encode(self.costManagementConfig, forKey: .costManagementConfig)
-    try container.encode(self.notificationConfig, forKey: .notificationConfig)
-    try container.encode(self.confidentialNodes, forKey: .confidentialNodes)
-    try container.encode(self.identityServiceConfig, forKey: .identityServiceConfig)
+    try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+    try container.encodeIfPresent(self.binaryAuthorization, forKey: .binaryAuthorization)
+    try container.encodeIfPresent(self.autoscaling, forKey: .autoscaling)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.defaultMaxPodsConstraint, forKey: .defaultMaxPodsConstraint)
+    try container.encodeIfPresent(
+      self.resourceUsageExportConfig, forKey: .resourceUsageExportConfig)
+    try container.encodeIfPresent(
+      self.authenticatorGroupsConfig, forKey: .authenticatorGroupsConfig)
+    try container.encodeIfPresent(self.privateClusterConfig, forKey: .privateClusterConfig)
+    try container.encodeIfPresent(self.databaseEncryption, forKey: .databaseEncryption)
+    try container.encodeIfPresent(self.verticalPodAutoscaling, forKey: .verticalPodAutoscaling)
+    try container.encodeIfPresent(self.shieldedNodes, forKey: .shieldedNodes)
+    try container.encodeIfPresent(self.releaseChannel, forKey: .releaseChannel)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
+    try container.encodeIfPresent(self.meshCertificates, forKey: .meshCertificates)
+    try container.encodeIfPresent(self.costManagementConfig, forKey: .costManagementConfig)
+    try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+    try container.encodeIfPresent(self.confidentialNodes, forKey: .confidentialNodes)
+    try container.encodeIfPresent(self.identityServiceConfig, forKey: .identityServiceConfig)
     try container.encode(self.selfLink, forKey: .selfLink)
     try container.encode(self.zone, forKey: .zone)
     try container.encode(self.endpoint, forKey: .endpoint)
     try container.encode(self.initialClusterVersion, forKey: .initialClusterVersion)
     try container.encode(self.currentMasterVersion, forKey: .currentMasterVersion)
     try container.encode(self.currentEmulatedVersion, forKey: .currentEmulatedVersion)
-    try container.encode(self.rollbackSafeUpgrade, forKey: .rollbackSafeUpgrade)
+    try container.encodeIfPresent(self.rollbackSafeUpgrade, forKey: .rollbackSafeUpgrade)
     try container.encode(self.currentNodeVersion, forKey: .currentNodeVersion)
     try container.encode(self.createTime, forKey: .createTime)
     try container.encode(self.status, forKey: .status)
@@ -749,35 +924,41 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.enableTpu, forKey: .enableTpu)
     try container.encode(self.tpuIpv4CidrBlock, forKey: .tpuIpv4CidrBlock)
     try container.encode(self.conditions, forKey: .conditions)
-    try container.encode(self.autopilot, forKey: .autopilot)
+    try container.encodeIfPresent(self.autopilot, forKey: .autopilot)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.nodePoolDefaults, forKey: .nodePoolDefaults)
-    try container.encode(self.loggingConfig, forKey: .loggingConfig)
-    try container.encode(self.monitoringConfig, forKey: .monitoringConfig)
-    try container.encode(self.nodePoolAutoConfig, forKey: .nodePoolAutoConfig)
-    try container.encode(self.podAutoscaling, forKey: .podAutoscaling)
+    try container.encodeIfPresent(self.nodePoolDefaults, forKey: .nodePoolDefaults)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.monitoringConfig, forKey: .monitoringConfig)
+    try container.encodeIfPresent(self.nodePoolAutoConfig, forKey: .nodePoolAutoConfig)
+    try container.encodeIfPresent(self.podAutoscaling, forKey: .podAutoscaling)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.fleet, forKey: .fleet)
-    try container.encode(self.securityPostureConfig, forKey: .securityPostureConfig)
-    try container.encode(self.controlPlaneEndpointsConfig, forKey: .controlPlaneEndpointsConfig)
-    try container.encode(self.enableK8SBetaApis, forKey: .enableK8SBetaApis)
-    try container.encode(self.enterpriseConfig, forKey: .enterpriseConfig)
-    try container.encode(self.secretManagerConfig, forKey: .secretManagerConfig)
-    try container.encode(self.compliancePostureConfig, forKey: .compliancePostureConfig)
-    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
-    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
-    try container.encode(self.userManagedKeysConfig, forKey: .userManagedKeysConfig)
-    try container.encode(self.rbacBindingConfig, forKey: .rbacBindingConfig)
-    try container.encode(self.gkeAutoUpgradeConfig, forKey: .gkeAutoUpgradeConfig)
-    try container.encode(self.anonymousAuthenticationConfig, forKey: .anonymousAuthenticationConfig)
-    try container.encode(self.scheduleUpgradeConfig, forKey: .scheduleUpgradeConfig)
-    try container.encode(self.secretSyncConfig, forKey: .secretSyncConfig)
-    try container.encode(self.managedOpentelemetryConfig, forKey: .managedOpentelemetryConfig)
-    try container.encode(self.controlPlaneEgress, forKey: .controlPlaneEgress)
-    try container.encode(
+    try container.encodeIfPresent(self.fleet, forKey: .fleet)
+    try container.encodeIfPresent(self.securityPostureConfig, forKey: .securityPostureConfig)
+    try container.encodeIfPresent(
+      self.controlPlaneEndpointsConfig, forKey: .controlPlaneEndpointsConfig)
+    try container.encodeIfPresent(self.enableK8SBetaApis, forKey: .enableK8SBetaApis)
+    try container.encodeIfPresent(self.enterpriseConfig, forKey: .enterpriseConfig)
+    try container.encodeIfPresent(self.secretManagerConfig, forKey: .secretManagerConfig)
+    try container.encodeIfPresent(self.compliancePostureConfig, forKey: .compliancePostureConfig)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encodeIfPresent(self.userManagedKeysConfig, forKey: .userManagedKeysConfig)
+    try container.encodeIfPresent(self.rbacBindingConfig, forKey: .rbacBindingConfig)
+    try container.encodeIfPresent(self.gkeAutoUpgradeConfig, forKey: .gkeAutoUpgradeConfig)
+    try container.encodeIfPresent(
+      self.anonymousAuthenticationConfig, forKey: .anonymousAuthenticationConfig)
+    try container.encodeIfPresent(self.scheduleUpgradeConfig, forKey: .scheduleUpgradeConfig)
+    try container.encodeIfPresent(self.secretSyncConfig, forKey: .secretSyncConfig)
+    try container.encodeIfPresent(
+      self.managedOpentelemetryConfig, forKey: .managedOpentelemetryConfig)
+    try container.encodeIfPresent(self.controlPlaneEgress, forKey: .controlPlaneEgress)
+    try container.encodeIfPresent(
       self.managedMachineLearningDiagnosticsConfig, forKey: .managedMachineLearningDiagnosticsConfig
     )
-    try container.encode(self.nodeCreationConfig, forKey: .nodeCreationConfig)
+    try container.encodeIfPresent(self.nodeCreationConfig, forKey: .nodeCreationConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The current status of the cluster.

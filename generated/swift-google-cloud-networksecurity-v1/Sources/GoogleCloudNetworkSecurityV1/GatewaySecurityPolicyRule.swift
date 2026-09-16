@@ -58,6 +58,8 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleCloudWKT._Any
 
   public var profile: OneOf_Profile? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GatewaySecurityPolicyRule`.
   public init() {}
 
@@ -74,32 +76,64 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case basicProfile = "basicProfile"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case enabled = "enabled"
-    case priority = "priority"
-    case description = "description"
-    case sessionMatcher = "sessionMatcher"
-    case applicationMatcher = "applicationMatcher"
-    case tlsInspectionEnabled = "tlsInspectionEnabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let basicProfile = CodingKeys(stringValue: "basicProfile")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let description = CodingKeys(stringValue: "description")
+    static let sessionMatcher = CodingKeys(stringValue: "sessionMatcher")
+    static let applicationMatcher = CodingKeys(stringValue: "applicationMatcher")
+    static let tlsInspectionEnabled = CodingKeys(stringValue: "tlsInspectionEnabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "basicProfile",
+      "name",
+      "createTime",
+      "updateTime",
+      "enabled",
+      "priority",
+      "description",
+      "sessionMatcher",
+      "applicationMatcher",
+      "tlsInspectionEnabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
-    self.priority = try container.decode(Swift.Int32.self, forKey: .priority)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.sessionMatcher = try container.decode(Swift.String.self, forKey: .sessionMatcher)
-    self.applicationMatcher = try container.decode(Swift.String.self, forKey: .applicationMatcher)
-    self.tlsInspectionEnabled = try container.decode(Swift.Bool.self, forKey: .tlsInspectionEnabled)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+      self.priority = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionMatcher) {
+      self.sessionMatcher = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .applicationMatcher) {
+      self.applicationMatcher = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .tlsInspectionEnabled) {
+      self.tlsInspectionEnabled = value
+    }
 
     var profile: OneOf_Profile? = nil
     let profileCheckAndSet = {
@@ -117,13 +151,17 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleCloudWKT._Any
       try profileCheckAndSet(.basicProfile(basicProfile))
     }
     self.profile = profile
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.enabled, forKey: .enabled)
     try container.encode(self.priority, forKey: .priority)
     try container.encode(self.description, forKey: .description)
@@ -136,6 +174,9 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleCloudWKT._Any
       case .basicProfile(let value):
         try container.encode(value, forKey: .basicProfile)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

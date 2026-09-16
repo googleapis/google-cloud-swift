@@ -56,6 +56,8 @@ public struct DistanceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The cost must be nonnegative.
   public var costPerKilometerAboveSoftMax: Swift.Double? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DistanceLimit`.
   public init() {}
 
@@ -70,6 +72,54 @@ public struct DistanceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maxMeters = CodingKeys(stringValue: "maxMeters")
+    static let softMaxMeters = CodingKeys(stringValue: "softMaxMeters")
+    static let costPerKilometerBelowSoftMax = CodingKeys(
+      stringValue: "costPerKilometerBelowSoftMax")
+    static let costPerKilometerAboveSoftMax = CodingKeys(
+      stringValue: "costPerKilometerAboveSoftMax")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maxMeters",
+      "softMaxMeters",
+      "costPerKilometerBelowSoftMax",
+      "costPerKilometerAboveSoftMax",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.maxMeters = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxMeters)
+    self.softMaxMeters = try container.decodeIfPresent(Swift.Int64.self, forKey: .softMaxMeters)
+    self.costPerKilometerBelowSoftMax = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .costPerKilometerBelowSoftMax)
+    self.costPerKilometerAboveSoftMax = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .costPerKilometerAboveSoftMax)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.maxMeters, forKey: .maxMeters)
+    try container.encodeIfPresent(self.softMaxMeters, forKey: .softMaxMeters)
+    try container.encodeIfPresent(
+      self.costPerKilometerBelowSoftMax, forKey: .costPerKilometerBelowSoftMax)
+    try container.encodeIfPresent(
+      self.costPerKilometerAboveSoftMax, forKey: .costPerKilometerAboveSoftMax)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

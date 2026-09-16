@@ -31,6 +31,8 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
 
   public var connectionSpec: OneOf_ConnectionSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryConnectionSpec`.
   public init() {}
 
@@ -47,17 +49,33 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case connectionType = "connectionType"
-    case cloudSql = "cloudSql"
-    case hasCredential = "hasCredential"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectionType = CodingKeys(stringValue: "connectionType")
+    static let cloudSql = CodingKeys(stringValue: "cloudSql")
+    static let hasCredential = CodingKeys(stringValue: "hasCredential")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectionType",
+      "cloudSql",
+      "hasCredential",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.connectionType = try container.decode(
+    if let value = try container.decodeIfPresent(
       BigQueryConnectionSpec.ConnectionType.self, forKey: .connectionType)
-    self.hasCredential = try container.decode(Swift.Bool.self, forKey: .hasCredential)
+    {
+      self.connectionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasCredential) {
+      self.hasCredential = value
+    }
 
     var connectionSpec: OneOf_ConnectionSpec? = nil
     let connectionSpecCheckAndSet = {
@@ -75,6 +93,10 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
       try connectionSpecCheckAndSet(.cloudSql(cloudSql))
     }
     self.connectionSpec = connectionSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -87,6 +109,9 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .cloudSql(let value):
         try container.encode(value, forKey: .cloudSql)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

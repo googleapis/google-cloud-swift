@@ -35,6 +35,8 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Specification for an action to configure for the tool to use.
   public var actionSpec: OneOf_ActionSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Action`.
   public init() {}
 
@@ -51,17 +53,33 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case connectionActionId = "connectionActionId"
-    case entityOperation = "entityOperation"
-    case inputFields = "inputFields"
-    case outputFields = "outputFields"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let connectionActionId = CodingKeys(stringValue: "connectionActionId")
+    static let entityOperation = CodingKeys(stringValue: "entityOperation")
+    static let inputFields = CodingKeys(stringValue: "inputFields")
+    static let outputFields = CodingKeys(stringValue: "outputFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "connectionActionId",
+      "entityOperation",
+      "inputFields",
+      "outputFields",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.inputFields = try container.decode([Swift.String].self, forKey: .inputFields)
-    self.outputFields = try container.decode([Swift.String].self, forKey: .outputFields)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputFields) {
+      self.inputFields = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .outputFields) {
+      self.outputFields = value
+    }
 
     var actionSpec: OneOf_ActionSpec? = nil
     let actionSpecCheckAndSet = {
@@ -84,6 +102,10 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try actionSpecCheckAndSet(.entityOperation(entityOperation))
     }
     self.actionSpec = actionSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -99,6 +121,9 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .entityOperation)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Entity CRUD operation specification.
@@ -111,6 +136,8 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. Operation to perform on the entity.
     public var operation: Action.EntityOperation.OperationType = Action.EntityOperation
       .OperationType()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `EntityOperation`.
     public init() {}
@@ -126,6 +153,46 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityId = CodingKeys(stringValue: "entityId")
+      static let operation = CodingKeys(stringValue: "operation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityId",
+        "operation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityId) {
+        self.entityId = value
+      }
+      if let value = try container.decodeIfPresent(
+        Action.EntityOperation.OperationType.self, forKey: .operation)
+      {
+        self.operation = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entityId, forKey: .entityId)
+      try container.encode(self.operation, forKey: .operation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The operation to perform on the entity.

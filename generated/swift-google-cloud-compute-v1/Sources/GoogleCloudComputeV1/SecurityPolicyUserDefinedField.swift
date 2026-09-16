@@ -52,6 +52,8 @@
     /// Size of the field in bytes. Valid values: 1-4.
     public var size: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyUserDefinedField`.
     public init() {}
 
@@ -66,6 +68,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let base = CodingKeys(stringValue: "base")
+      static let mask = CodingKeys(stringValue: "mask")
+      static let name = CodingKeys(stringValue: "name")
+      static let offset = CodingKeys(stringValue: "offset")
+      static let size = CodingKeys(stringValue: "size")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "base",
+        "mask",
+        "name",
+        "offset",
+        "size",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.base = try container.decodeIfPresent(
+        SecurityPolicyUserDefinedField.Base.self, forKey: .base)
+      self.mask = try container.decodeIfPresent(Swift.String.self, forKey: .mask)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.offset = try container.decodeIfPresent(Swift.Int32.self, forKey: .offset)
+      self.size = try container.decodeIfPresent(Swift.Int32.self, forKey: .size)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.base, forKey: .base)
+      try container.encodeIfPresent(self.mask, forKey: .mask)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.offset, forKey: .offset)
+      try container.encodeIfPresent(self.size, forKey: .size)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [base][google.cloud.compute.v1.SecurityPolicyUserDefinedField.base] field.

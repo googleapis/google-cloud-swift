@@ -64,6 +64,8 @@ public struct ListJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// insertTime <= "2025-01-01T00:00:00Z"
   public var filter: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListJobsRequest`.
   public init() {}
 
@@ -78,6 +80,76 @@ public struct ListJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let region = CodingKeys(stringValue: "region")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let jobStateMatcher = CodingKeys(stringValue: "jobStateMatcher")
+    static let filter = CodingKeys(stringValue: "filter")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "region",
+      "pageSize",
+      "pageToken",
+      "clusterName",
+      "jobStateMatcher",
+      "filter",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(
+      ListJobsRequest.JobStateMatcher.self, forKey: .jobStateMatcher)
+    {
+      self.jobStateMatcher = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.jobStateMatcher, forKey: .jobStateMatcher)
+    try container.encode(self.filter, forKey: .filter)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A matcher that specifies categories of job states.

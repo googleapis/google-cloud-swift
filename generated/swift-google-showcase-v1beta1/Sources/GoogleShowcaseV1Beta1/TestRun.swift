@@ -29,6 +29,8 @@ public struct TestRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// An issue found with the test run. If empty, this test run was successful.
   public var issue: Issue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TestRun`.
   public init() {}
 
@@ -43,6 +45,42 @@ public struct TestRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let test = CodingKeys(stringValue: "test")
+    static let issue = CodingKeys(stringValue: "issue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "test",
+      "issue",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .test) {
+      self.test = value
+    }
+    self.issue = try container.decodeIfPresent(Issue.self, forKey: .issue)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.test, forKey: .test)
+    try container.encodeIfPresent(self.issue, forKey: .issue)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -35,6 +35,8 @@ public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Output only. The starting phase of the rollout created by this operation.
   public var phase: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PromoteReleaseOperation`.
   public init() {}
 
@@ -49,6 +51,54 @@ public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let wait = CodingKeys(stringValue: "wait")
+    static let rollout = CodingKeys(stringValue: "rollout")
+    static let phase = CodingKeys(stringValue: "phase")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "targetId",
+      "wait",
+      "rollout",
+      "phase",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    self.wait = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .wait)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rollout) {
+      self.rollout = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phase) {
+      self.phase = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.targetId, forKey: .targetId)
+    try container.encodeIfPresent(self.wait, forKey: .wait)
+    try container.encode(self.rollout, forKey: .rollout)
+    try container.encode(self.phase, forKey: .phase)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

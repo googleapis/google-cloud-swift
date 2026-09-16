@@ -49,6 +49,8 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. Target VM Version, like m63.
   public var targetVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpgradeHistoryEntry`.
   public init() {}
 
@@ -63,6 +65,85 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let snapshot = CodingKeys(stringValue: "snapshot")
+    static let vmImage = CodingKeys(stringValue: "vmImage")
+    static let containerImage = CodingKeys(stringValue: "containerImage")
+    static let framework = CodingKeys(stringValue: "framework")
+    static let version = CodingKeys(stringValue: "version")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let action = CodingKeys(stringValue: "action")
+    static let targetVersion = CodingKeys(stringValue: "targetVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "snapshot",
+      "vmImage",
+      "containerImage",
+      "framework",
+      "version",
+      "state",
+      "createTime",
+      "action",
+      "targetVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snapshot) {
+      self.snapshot = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmImage) {
+      self.vmImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerImage) {
+      self.containerImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .framework) {
+      self.framework = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(UpgradeHistoryEntry.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(UpgradeHistoryEntry.Action.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetVersion) {
+      self.targetVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.snapshot, forKey: .snapshot)
+    try container.encode(self.vmImage, forKey: .vmImage)
+    try container.encode(self.containerImage, forKey: .containerImage)
+    try container.encode(self.framework, forKey: .framework)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.action, forKey: .action)
+    try container.encode(self.targetVersion, forKey: .targetVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The definition of the states of this upgrade history entry.

@@ -30,6 +30,8 @@ public struct AdRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The response metadata received from the ad request.
   public var responseMetadata: ResponseMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdRequest`.
   public init() {}
 
@@ -44,6 +46,48 @@ public struct AdRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let requestMetadata = CodingKeys(stringValue: "requestMetadata")
+    static let responseMetadata = CodingKeys(stringValue: "responseMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "requestMetadata",
+      "responseMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    self.requestMetadata = try container.decodeIfPresent(
+      RequestMetadata.self, forKey: .requestMetadata)
+    self.responseMetadata = try container.decodeIfPresent(
+      ResponseMetadata.self, forKey: .responseMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encodeIfPresent(self.requestMetadata, forKey: .requestMetadata)
+    try container.encodeIfPresent(self.responseMetadata, forKey: .responseMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

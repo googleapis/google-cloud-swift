@@ -33,6 +33,8 @@ public struct ListGoogleApiSourcesResponse: Codable, Equatable, GoogleCloudWKT._
   /// Unreachable resources, if any.
   public var unreachable: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListGoogleApiSourcesResponse`.
   public init() {}
 
@@ -47,6 +49,51 @@ public struct ListGoogleApiSourcesResponse: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let googleApiSources = CodingKeys(stringValue: "googleApiSources")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+    static let unreachable = CodingKeys(stringValue: "unreachable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "googleApiSources",
+      "nextPageToken",
+      "unreachable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([GoogleApiSource].self, forKey: .googleApiSources)
+    {
+      self.googleApiSources = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .unreachable) {
+      self.unreachable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.googleApiSources, forKey: .googleApiSources)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    try container.encode(self.unreachable, forKey: .unreachable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

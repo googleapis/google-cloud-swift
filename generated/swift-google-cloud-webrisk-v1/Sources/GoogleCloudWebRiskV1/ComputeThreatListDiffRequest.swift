@@ -36,6 +36,8 @@ public struct ComputeThreatListDiffRequest: Codable, Equatable, GoogleCloudWKT._
   /// Required. The constraints associated with this request.
   public var constraints: ComputeThreatListDiffRequest.Constraints? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeThreatListDiffRequest`.
   public init() {}
 
@@ -50,6 +52,49 @@ public struct ComputeThreatListDiffRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let threatType = CodingKeys(stringValue: "threatType")
+    static let versionToken = CodingKeys(stringValue: "versionToken")
+    static let constraints = CodingKeys(stringValue: "constraints")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "threatType",
+      "versionToken",
+      "constraints",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ThreatType.self, forKey: .threatType) {
+      self.threatType = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .versionToken) {
+      self.versionToken = value
+    }
+    self.constraints = try container.decodeIfPresent(
+      ComputeThreatListDiffRequest.Constraints.self, forKey: .constraints)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.threatType, forKey: .threatType)
+    try container.encode(self.versionToken, forKey: .versionToken)
+    try container.encodeIfPresent(self.constraints, forKey: .constraints)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The constraints for this diff.
@@ -69,6 +114,8 @@ public struct ComputeThreatListDiffRequest: Codable, Equatable, GoogleCloudWKT._
     /// The compression types supported by the client.
     public var supportedCompressions: [CompressionType] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Constraints`.
     public init() {}
 
@@ -83,6 +130,52 @@ public struct ComputeThreatListDiffRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDiffEntries = CodingKeys(stringValue: "maxDiffEntries")
+      static let maxDatabaseEntries = CodingKeys(stringValue: "maxDatabaseEntries")
+      static let supportedCompressions = CodingKeys(stringValue: "supportedCompressions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDiffEntries",
+        "maxDatabaseEntries",
+        "supportedCompressions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDiffEntries) {
+        self.maxDiffEntries = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDatabaseEntries) {
+        self.maxDatabaseEntries = value
+      }
+      if let value = try container.decodeIfPresent(
+        [CompressionType].self, forKey: .supportedCompressions)
+      {
+        self.supportedCompressions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxDiffEntries, forKey: .maxDiffEntries)
+      try container.encode(self.maxDatabaseEntries, forKey: .maxDatabaseEntries)
+      try container.encode(self.supportedCompressions, forKey: .supportedCompressions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

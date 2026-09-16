@@ -41,6 +41,8 @@
     /// batch prediction.
     public var successfulForecastPointCount: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompletionStats`.
     public init() {}
 
@@ -55,6 +57,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let successfulCount = CodingKeys(stringValue: "successfulCount")
+      static let failedCount = CodingKeys(stringValue: "failedCount")
+      static let incompleteCount = CodingKeys(stringValue: "incompleteCount")
+      static let successfulForecastPointCount = CodingKeys(
+        stringValue: "successfulForecastPointCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "successfulCount",
+        "failedCount",
+        "incompleteCount",
+        "successfulForecastPointCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .successfulCount) {
+        self.successfulCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .failedCount) {
+        self.failedCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .incompleteCount) {
+        self.incompleteCount = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .successfulForecastPointCount)
+      {
+        self.successfulForecastPointCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.successfulCount, forKey: .successfulCount)
+      try container.encode(self.failedCount, forKey: .failedCount)
+      try container.encode(self.incompleteCount, forKey: .incompleteCount)
+      try container.encode(self.successfulForecastPointCount, forKey: .successfulForecastPointCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

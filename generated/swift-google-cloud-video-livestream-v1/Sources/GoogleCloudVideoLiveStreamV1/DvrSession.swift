@@ -55,6 +55,8 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The specified ranges of segments to generate a DVR recording.
   public var dvrWindows: [DvrSession.DvrWindow] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DvrSession`.
   public init() {}
 
@@ -69,6 +71,79 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let error = CodingKeys(stringValue: "error")
+    static let dvrManifests = CodingKeys(stringValue: "dvrManifests")
+    static let dvrWindows = CodingKeys(stringValue: "dvrWindows")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "state",
+      "error",
+      "dvrManifests",
+      "dvrWindows",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(DvrSession.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent(
+      [DvrSession.DvrManifest].self, forKey: .dvrManifests)
+    {
+      self.dvrManifests = value
+    }
+    if let value = try container.decodeIfPresent([DvrSession.DvrWindow].self, forKey: .dvrWindows) {
+      self.dvrWindows = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.dvrManifests, forKey: .dvrManifests)
+    try container.encode(self.dvrWindows, forKey: .dvrWindows)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// DvrManifest identifies a source manifest and specifies a file name for the
@@ -88,6 +163,8 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Example: gs://my-bucket/outputs/dvr/my-dvr-session/main.m3u8
     public var outputUri: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DvrManifest`.
     public init() {}
 
@@ -102,6 +179,44 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let manifestKey = CodingKeys(stringValue: "manifestKey")
+      static let outputUri = CodingKeys(stringValue: "outputUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "manifestKey",
+        "outputUri",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifestKey) {
+        self.manifestKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputUri) {
+        self.outputUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.manifestKey, forKey: .manifestKey)
+      try container.encode(self.outputUri, forKey: .outputUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -122,6 +237,8 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The allowlist forms of a DVR window.
     public var kind: OneOf_Kind? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DvrWindow`.
     public init() {}
 
@@ -138,8 +255,17 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case timeInterval = "timeInterval"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let timeInterval = CodingKeys(stringValue: "timeInterval")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "timeInterval"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -160,6 +286,10 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try kindCheckAndSet(.timeInterval(timeInterval))
       }
       self.kind = kind
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -170,6 +300,9 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .timeInterval(let value):
           try container.encode(value, forKey: .timeInterval)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

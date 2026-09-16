@@ -70,6 +70,8 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWKT._AnyP
   /// collected.
   public var sourceMetadata: SourceMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveredApiObservation`.
   public init() {}
 
@@ -84,6 +86,117 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let style = CodingKeys(stringValue: "style")
+    static let serverIps = CodingKeys(stringValue: "serverIps")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let lastEventDetectedTime = CodingKeys(stringValue: "lastEventDetectedTime")
+    static let sourceLocations = CodingKeys(stringValue: "sourceLocations")
+    static let apiOperationCount = CodingKeys(stringValue: "apiOperationCount")
+    static let origin = CodingKeys(stringValue: "origin")
+    static let sourceTypes = CodingKeys(stringValue: "sourceTypes")
+    static let knownOperationsCount = CodingKeys(stringValue: "knownOperationsCount")
+    static let unknownOperationsCount = CodingKeys(stringValue: "unknownOperationsCount")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let sourceMetadata = CodingKeys(stringValue: "sourceMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "style",
+      "serverIps",
+      "hostname",
+      "lastEventDetectedTime",
+      "sourceLocations",
+      "apiOperationCount",
+      "origin",
+      "sourceTypes",
+      "knownOperationsCount",
+      "unknownOperationsCount",
+      "createTime",
+      "updateTime",
+      "sourceMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      DiscoveredApiObservation.Style.self, forKey: .style)
+    {
+      self.style = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serverIps) {
+      self.serverIps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    self.lastEventDetectedTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastEventDetectedTime)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceLocations) {
+      self.sourceLocations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .apiOperationCount) {
+      self.apiOperationCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .origin) {
+      self.origin = value
+    }
+    if let value = try container.decodeIfPresent(
+      [DiscoveredApiObservation.SourceType].self, forKey: .sourceTypes)
+    {
+      self.sourceTypes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .knownOperationsCount) {
+      self.knownOperationsCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .unknownOperationsCount)
+    {
+      self.unknownOperationsCount = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.sourceMetadata = try container.decodeIfPresent(
+      SourceMetadata.self, forKey: .sourceMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.style, forKey: .style)
+    try container.encode(self.serverIps, forKey: .serverIps)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encodeIfPresent(self.lastEventDetectedTime, forKey: .lastEventDetectedTime)
+    try container.encode(self.sourceLocations, forKey: .sourceLocations)
+    try container.encode(self.apiOperationCount, forKey: .apiOperationCount)
+    try container.encode(self.origin, forKey: .origin)
+    try container.encode(self.sourceTypes, forKey: .sourceTypes)
+    try container.encode(self.knownOperationsCount, forKey: .knownOperationsCount)
+    try container.encode(self.unknownOperationsCount, forKey: .unknownOperationsCount)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.sourceMetadata, forKey: .sourceMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// DiscoveredApiObservation protocol style

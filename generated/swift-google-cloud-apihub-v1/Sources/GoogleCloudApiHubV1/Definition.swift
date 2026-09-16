@@ -55,6 +55,8 @@ public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var value: OneOf_Value? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Definition`.
   public init() {}
 
@@ -71,27 +73,51 @@ public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case schema = "schema"
-    case name = "name"
-    case spec = "spec"
-    case type = "type"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case attributes = "attributes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schema = CodingKeys(stringValue: "schema")
+    static let name = CodingKeys(stringValue: "name")
+    static let spec = CodingKeys(stringValue: "spec")
+    static let type = CodingKeys(stringValue: "type")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let attributes = CodingKeys(stringValue: "attributes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schema",
+      "name",
+      "spec",
+      "type",
+      "createTime",
+      "updateTime",
+      "attributes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.spec = try container.decode(Swift.String.self, forKey: .spec)
-    self.type = try container.decode(Definition.Type_.self, forKey: .type)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .spec) {
+      self.spec = value
+    }
+    if let value = try container.decodeIfPresent(Definition.Type_.self, forKey: .type) {
+      self.type = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.attributes = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: AttributeValues].self, forKey: .attributes)
+    {
+      self.attributes = value
+    }
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -107,6 +133,10 @@ public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try valueCheckAndSet(.schema(schema))
     }
     self.value = value
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,8 +144,8 @@ public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.spec, forKey: .spec)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.attributes, forKey: .attributes)
 
     if let choice = self.value {
@@ -123,6 +153,9 @@ public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .schema(let value):
         try container.encode(value, forKey: .schema)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

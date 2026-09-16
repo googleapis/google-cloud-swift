@@ -100,6 +100,8 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The result of the data scan.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataScan`.
   public init() {}
 
@@ -116,38 +118,80 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case description = "description"
-    case displayName = "displayName"
-    case labels = "labels"
-    case state = "state"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case data = "data"
-    case executionSpec = "executionSpec"
-    case executionStatus = "executionStatus"
-    case type = "type"
-    case dataQualitySpec = "dataQualitySpec"
-    case dataProfileSpec = "dataProfileSpec"
-    case dataDiscoverySpec = "dataDiscoverySpec"
-    case dataDocumentationSpec = "dataDocumentationSpec"
-    case dataQualityResult = "dataQualityResult"
-    case dataProfileResult = "dataProfileResult"
-    case dataDiscoveryResult = "dataDiscoveryResult"
-    case dataDocumentationResult = "dataDocumentationResult"
-    case executionIdentity = "executionIdentity"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let description = CodingKeys(stringValue: "description")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let data = CodingKeys(stringValue: "data")
+    static let executionSpec = CodingKeys(stringValue: "executionSpec")
+    static let executionStatus = CodingKeys(stringValue: "executionStatus")
+    static let type = CodingKeys(stringValue: "type")
+    static let dataQualitySpec = CodingKeys(stringValue: "dataQualitySpec")
+    static let dataProfileSpec = CodingKeys(stringValue: "dataProfileSpec")
+    static let dataDiscoverySpec = CodingKeys(stringValue: "dataDiscoverySpec")
+    static let dataDocumentationSpec = CodingKeys(stringValue: "dataDocumentationSpec")
+    static let dataQualityResult = CodingKeys(stringValue: "dataQualityResult")
+    static let dataProfileResult = CodingKeys(stringValue: "dataProfileResult")
+    static let dataDiscoveryResult = CodingKeys(stringValue: "dataDiscoveryResult")
+    static let dataDocumentationResult = CodingKeys(stringValue: "dataDocumentationResult")
+    static let executionIdentity = CodingKeys(stringValue: "executionIdentity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "description",
+      "displayName",
+      "labels",
+      "state",
+      "createTime",
+      "updateTime",
+      "data",
+      "executionSpec",
+      "executionStatus",
+      "type",
+      "dataQualitySpec",
+      "dataProfileSpec",
+      "dataDiscoverySpec",
+      "dataDocumentationSpec",
+      "dataQualityResult",
+      "dataProfileResult",
+      "dataDiscoveryResult",
+      "dataDocumentationResult",
+      "executionIdentity",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.state = try container.decode(State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      self.state = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -157,7 +201,9 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       DataScan.ExecutionSpec.self, forKey: .executionSpec)
     self.executionStatus = try container.decodeIfPresent(
       DataScan.ExecutionStatus.self, forKey: .executionStatus)
-    self.type = try container.decode(DataScanType.self, forKey: .type)
+    if let value = try container.decodeIfPresent(DataScanType.self, forKey: .type) {
+      self.type = value
+    }
     self.executionIdentity = try container.decodeIfPresent(
       ExecutionIdentity.self, forKey: .executionIdentity)
 
@@ -224,6 +270,10 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.dataDocumentationResult(dataDocumentationResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -234,13 +284,13 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.data, forKey: .data)
-    try container.encode(self.executionSpec, forKey: .executionSpec)
-    try container.encode(self.executionStatus, forKey: .executionStatus)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.data, forKey: .data)
+    try container.encodeIfPresent(self.executionSpec, forKey: .executionSpec)
+    try container.encodeIfPresent(self.executionStatus, forKey: .executionStatus)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.executionIdentity, forKey: .executionIdentity)
+    try container.encodeIfPresent(self.executionIdentity, forKey: .executionIdentity)
 
     if let choice = self.spec {
       switch choice {
@@ -267,6 +317,9 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .dataDocumentationResult)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// DataScan execution settings.
@@ -286,6 +339,8 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// table.
     public var incremental: OneOf_Incremental? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExecutionSpec`.
     public init() {}
 
@@ -302,9 +357,19 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case trigger = "trigger"
-      case field = "field"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trigger = CodingKeys(stringValue: "trigger")
+      static let field = CodingKeys(stringValue: "field")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trigger",
+        "field",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -325,17 +390,24 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try incrementalCheckAndSet(.field(field))
       }
       self.incremental = incremental
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.trigger, forKey: .trigger)
+      try container.encodeIfPresent(self.trigger, forKey: .trigger)
 
       if let choice = self.incremental {
         switch choice {
         case .field(let value):
           try container.encode(value, forKey: .field)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -376,6 +448,8 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The time when the DataScanJob execution was created.
     public var latestJobCreateTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExecutionStatus`.
     public init() {}
 
@@ -390,6 +464,47 @@ public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let latestJobStartTime = CodingKeys(stringValue: "latestJobStartTime")
+      static let latestJobEndTime = CodingKeys(stringValue: "latestJobEndTime")
+      static let latestJobCreateTime = CodingKeys(stringValue: "latestJobCreateTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "latestJobStartTime",
+        "latestJobEndTime",
+        "latestJobCreateTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.latestJobStartTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .latestJobStartTime)
+      self.latestJobEndTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .latestJobEndTime)
+      self.latestJobCreateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .latestJobCreateTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.latestJobStartTime, forKey: .latestJobStartTime)
+      try container.encodeIfPresent(self.latestJobEndTime, forKey: .latestJobEndTime)
+      try container.encodeIfPresent(self.latestJobCreateTime, forKey: .latestJobCreateTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

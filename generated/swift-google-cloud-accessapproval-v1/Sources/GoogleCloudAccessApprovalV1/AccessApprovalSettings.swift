@@ -75,6 +75,8 @@ public struct AccessApprovalSettings: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// versions are inherited top-down.
   public var invalidKeyVersion: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessApprovalSettings`.
   public init() {}
 
@@ -89,6 +91,77 @@ public struct AccessApprovalSettings: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let notificationEmails = CodingKeys(stringValue: "notificationEmails")
+    static let enrolledServices = CodingKeys(stringValue: "enrolledServices")
+    static let enrolledAncestor = CodingKeys(stringValue: "enrolledAncestor")
+    static let activeKeyVersion = CodingKeys(stringValue: "activeKeyVersion")
+    static let ancestorHasActiveKeyVersion = CodingKeys(stringValue: "ancestorHasActiveKeyVersion")
+    static let invalidKeyVersion = CodingKeys(stringValue: "invalidKeyVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "notificationEmails",
+      "enrolledServices",
+      "enrolledAncestor",
+      "activeKeyVersion",
+      "ancestorHasActiveKeyVersion",
+      "invalidKeyVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .notificationEmails) {
+      self.notificationEmails = value
+    }
+    if let value = try container.decodeIfPresent([EnrolledService].self, forKey: .enrolledServices)
+    {
+      self.enrolledServices = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enrolledAncestor) {
+      self.enrolledAncestor = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .activeKeyVersion) {
+      self.activeKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .ancestorHasActiveKeyVersion)
+    {
+      self.ancestorHasActiveKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invalidKeyVersion) {
+      self.invalidKeyVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.notificationEmails, forKey: .notificationEmails)
+    try container.encode(self.enrolledServices, forKey: .enrolledServices)
+    try container.encode(self.enrolledAncestor, forKey: .enrolledAncestor)
+    try container.encode(self.activeKeyVersion, forKey: .activeKeyVersion)
+    try container.encode(self.ancestorHasActiveKeyVersion, forKey: .ancestorHasActiveKeyVersion)
+    try container.encode(self.invalidKeyVersion, forKey: .invalidKeyVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

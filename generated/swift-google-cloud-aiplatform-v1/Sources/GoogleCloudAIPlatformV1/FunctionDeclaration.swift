@@ -83,6 +83,8 @@
     /// This field is mutually exclusive with `response`.
     public var responseJsonSchema: GoogleCloudWKT.Value? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FunctionDeclaration`.
     public init() {}
 
@@ -97,6 +99,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let description = CodingKeys(stringValue: "description")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let parametersJsonSchema = CodingKeys(stringValue: "parametersJsonSchema")
+      static let response = CodingKeys(stringValue: "response")
+      static let responseJsonSchema = CodingKeys(stringValue: "responseJsonSchema")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "description",
+        "parameters",
+        "parametersJsonSchema",
+        "response",
+        "responseJsonSchema",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.parameters = try container.decodeIfPresent(Schema.self, forKey: .parameters)
+      self.parametersJsonSchema = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .parametersJsonSchema)
+      self.response = try container.decodeIfPresent(Schema.self, forKey: .response)
+      self.responseJsonSchema = try container.decodeIfPresent(
+        GoogleCloudWKT.Value.self, forKey: .responseJsonSchema)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
+      try container.encodeIfPresent(self.parametersJsonSchema, forKey: .parametersJsonSchema)
+      try container.encodeIfPresent(self.response, forKey: .response)
+      try container.encodeIfPresent(self.responseJsonSchema, forKey: .responseJsonSchema)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

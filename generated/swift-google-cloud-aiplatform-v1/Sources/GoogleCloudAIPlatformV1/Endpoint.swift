@@ -167,6 +167,8 @@
     /// If true, the model server will be isolated from the external internet.
     public var privateModelServerEnabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Endpoint`.
     public init() {}
 
@@ -181,6 +183,178 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let deployedModels = CodingKeys(stringValue: "deployedModels")
+      static let trafficSplit = CodingKeys(stringValue: "trafficSplit")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let network = CodingKeys(stringValue: "network")
+      static let enablePrivateServiceConnect = CodingKeys(
+        stringValue: "enablePrivateServiceConnect")
+      static let privateServiceConnectConfig = CodingKeys(
+        stringValue: "privateServiceConnectConfig")
+      static let modelDeploymentMonitoringJob = CodingKeys(
+        stringValue: "modelDeploymentMonitoringJob")
+      static let predictRequestResponseLoggingConfig = CodingKeys(
+        stringValue: "predictRequestResponseLoggingConfig")
+      static let dedicatedEndpointEnabled = CodingKeys(stringValue: "dedicatedEndpointEnabled")
+      static let dedicatedEndpointDns = CodingKeys(stringValue: "dedicatedEndpointDns")
+      static let clientConnectionConfig = CodingKeys(stringValue: "clientConnectionConfig")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let genAiAdvancedFeaturesConfig = CodingKeys(
+        stringValue: "genAiAdvancedFeaturesConfig")
+      static let privateModelServerEnabled = CodingKeys(stringValue: "privateModelServerEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "deployedModels",
+        "trafficSplit",
+        "etag",
+        "labels",
+        "createTime",
+        "updateTime",
+        "encryptionSpec",
+        "network",
+        "enablePrivateServiceConnect",
+        "privateServiceConnectConfig",
+        "modelDeploymentMonitoringJob",
+        "predictRequestResponseLoggingConfig",
+        "dedicatedEndpointEnabled",
+        "dedicatedEndpointDns",
+        "clientConnectionConfig",
+        "satisfiesPzs",
+        "satisfiesPzi",
+        "genAiAdvancedFeaturesConfig",
+        "privateModelServerEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent([DeployedModel].self, forKey: .deployedModels) {
+        self.deployedModels = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.Int32].self, forKey: .trafficSplit)
+      {
+        self.trafficSplit = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+        self.network = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enablePrivateServiceConnect)
+      {
+        self.enablePrivateServiceConnect = value
+      }
+      self.privateServiceConnectConfig = try container.decodeIfPresent(
+        PrivateServiceConnectConfig.self, forKey: .privateServiceConnectConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .modelDeploymentMonitoringJob)
+      {
+        self.modelDeploymentMonitoringJob = value
+      }
+      self.predictRequestResponseLoggingConfig = try container.decodeIfPresent(
+        PredictRequestResponseLoggingConfig.self, forKey: .predictRequestResponseLoggingConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .dedicatedEndpointEnabled)
+      {
+        self.dedicatedEndpointEnabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dedicatedEndpointDns)
+      {
+        self.dedicatedEndpointDns = value
+      }
+      self.clientConnectionConfig = try container.decodeIfPresent(
+        ClientConnectionConfig.self, forKey: .clientConnectionConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      self.genAiAdvancedFeaturesConfig = try container.decodeIfPresent(
+        GenAiAdvancedFeaturesConfig.self, forKey: .genAiAdvancedFeaturesConfig)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .privateModelServerEnabled)
+      {
+        self.privateModelServerEnabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.deployedModels, forKey: .deployedModels)
+      try container.encode(self.trafficSplit, forKey: .trafficSplit)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.network, forKey: .network)
+      try container.encode(self.enablePrivateServiceConnect, forKey: .enablePrivateServiceConnect)
+      try container.encodeIfPresent(
+        self.privateServiceConnectConfig, forKey: .privateServiceConnectConfig)
+      try container.encode(self.modelDeploymentMonitoringJob, forKey: .modelDeploymentMonitoringJob)
+      try container.encodeIfPresent(
+        self.predictRequestResponseLoggingConfig, forKey: .predictRequestResponseLoggingConfig)
+      try container.encode(self.dedicatedEndpointEnabled, forKey: .dedicatedEndpointEnabled)
+      try container.encode(self.dedicatedEndpointDns, forKey: .dedicatedEndpointDns)
+      try container.encodeIfPresent(self.clientConnectionConfig, forKey: .clientConnectionConfig)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encodeIfPresent(
+        self.genAiAdvancedFeaturesConfig, forKey: .genAiAdvancedFeaturesConfig)
+      try container.encode(self.privateModelServerEnabled, forKey: .privateModelServerEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

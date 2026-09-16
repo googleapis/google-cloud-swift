@@ -37,6 +37,8 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Response data for each BigQuery method.
   public var response: OneOf_Response? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditData`.
   public init() {}
 
@@ -53,36 +55,68 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tableInsertRequest = "tableInsertRequest"
-    case tableUpdateRequest = "tableUpdateRequest"
-    case datasetListRequest = "datasetListRequest"
-    case datasetInsertRequest = "datasetInsertRequest"
-    case datasetUpdateRequest = "datasetUpdateRequest"
-    case jobInsertRequest = "jobInsertRequest"
-    case jobQueryRequest = "jobQueryRequest"
-    case jobGetQueryResultsRequest = "jobGetQueryResultsRequest"
-    case tableDataListRequest = "tableDataListRequest"
-    case setIamPolicyRequest = "setIamPolicyRequest"
-    case tableInsertResponse = "tableInsertResponse"
-    case tableUpdateResponse = "tableUpdateResponse"
-    case datasetInsertResponse = "datasetInsertResponse"
-    case datasetUpdateResponse = "datasetUpdateResponse"
-    case jobInsertResponse = "jobInsertResponse"
-    case jobQueryResponse = "jobQueryResponse"
-    case jobGetQueryResultsResponse = "jobGetQueryResultsResponse"
-    case jobQueryDoneResponse = "jobQueryDoneResponse"
-    case policyResponse = "policyResponse"
-    case jobCompletedEvent = "jobCompletedEvent"
-    case tableDataReadEvents = "tableDataReadEvents"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tableInsertRequest = CodingKeys(stringValue: "tableInsertRequest")
+    static let tableUpdateRequest = CodingKeys(stringValue: "tableUpdateRequest")
+    static let datasetListRequest = CodingKeys(stringValue: "datasetListRequest")
+    static let datasetInsertRequest = CodingKeys(stringValue: "datasetInsertRequest")
+    static let datasetUpdateRequest = CodingKeys(stringValue: "datasetUpdateRequest")
+    static let jobInsertRequest = CodingKeys(stringValue: "jobInsertRequest")
+    static let jobQueryRequest = CodingKeys(stringValue: "jobQueryRequest")
+    static let jobGetQueryResultsRequest = CodingKeys(stringValue: "jobGetQueryResultsRequest")
+    static let tableDataListRequest = CodingKeys(stringValue: "tableDataListRequest")
+    static let setIamPolicyRequest = CodingKeys(stringValue: "setIamPolicyRequest")
+    static let tableInsertResponse = CodingKeys(stringValue: "tableInsertResponse")
+    static let tableUpdateResponse = CodingKeys(stringValue: "tableUpdateResponse")
+    static let datasetInsertResponse = CodingKeys(stringValue: "datasetInsertResponse")
+    static let datasetUpdateResponse = CodingKeys(stringValue: "datasetUpdateResponse")
+    static let jobInsertResponse = CodingKeys(stringValue: "jobInsertResponse")
+    static let jobQueryResponse = CodingKeys(stringValue: "jobQueryResponse")
+    static let jobGetQueryResultsResponse = CodingKeys(stringValue: "jobGetQueryResultsResponse")
+    static let jobQueryDoneResponse = CodingKeys(stringValue: "jobQueryDoneResponse")
+    static let policyResponse = CodingKeys(stringValue: "policyResponse")
+    static let jobCompletedEvent = CodingKeys(stringValue: "jobCompletedEvent")
+    static let tableDataReadEvents = CodingKeys(stringValue: "tableDataReadEvents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tableInsertRequest",
+      "tableUpdateRequest",
+      "datasetListRequest",
+      "datasetInsertRequest",
+      "datasetUpdateRequest",
+      "jobInsertRequest",
+      "jobQueryRequest",
+      "jobGetQueryResultsRequest",
+      "tableDataListRequest",
+      "setIamPolicyRequest",
+      "tableInsertResponse",
+      "tableUpdateResponse",
+      "datasetInsertResponse",
+      "datasetUpdateResponse",
+      "jobInsertResponse",
+      "jobQueryResponse",
+      "jobGetQueryResultsResponse",
+      "jobQueryDoneResponse",
+      "policyResponse",
+      "jobCompletedEvent",
+      "tableDataReadEvents",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.jobCompletedEvent = try container.decodeIfPresent(
       JobCompletedEvent.self, forKey: .jobCompletedEvent)
-    self.tableDataReadEvents = try container.decode(
+    if let value = try container.decodeIfPresent(
       [TableDataReadEvent].self, forKey: .tableDataReadEvents)
+    {
+      self.tableDataReadEvents = value
+    }
 
     var request: OneOf_Request? = nil
     let requestCheckAndSet = {
@@ -202,11 +236,15 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try responseCheckAndSet(.policyResponse(policyResponse))
     }
     self.response = response
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.jobCompletedEvent, forKey: .jobCompletedEvent)
+    try container.encodeIfPresent(self.jobCompletedEvent, forKey: .jobCompletedEvent)
     try container.encode(self.tableDataReadEvents, forKey: .tableDataReadEvents)
 
     if let choice = self.request {
@@ -255,6 +293,9 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .policyResponse(let value):
         try container.encode(value, forKey: .policyResponse)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

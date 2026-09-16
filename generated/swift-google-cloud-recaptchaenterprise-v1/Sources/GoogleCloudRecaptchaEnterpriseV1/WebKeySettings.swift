@@ -50,6 +50,8 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Challenge settings.
   public var challengeSettings: WebKeySettings.ChallengeSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WebKeySettings`.
   public init() {}
 
@@ -66,6 +68,71 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowAllDomains = CodingKeys(stringValue: "allowAllDomains")
+    static let allowedDomains = CodingKeys(stringValue: "allowedDomains")
+    static let allowAmpTraffic = CodingKeys(stringValue: "allowAmpTraffic")
+    static let integrationType = CodingKeys(stringValue: "integrationType")
+    static let challengeSecurityPreference = CodingKeys(stringValue: "challengeSecurityPreference")
+    static let challengeSettings = CodingKeys(stringValue: "challengeSettings")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowAllDomains",
+      "allowedDomains",
+      "allowAmpTraffic",
+      "integrationType",
+      "challengeSecurityPreference",
+      "challengeSettings",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAllDomains) {
+      self.allowAllDomains = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedDomains) {
+      self.allowedDomains = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAmpTraffic) {
+      self.allowAmpTraffic = value
+    }
+    if let value = try container.decodeIfPresent(
+      WebKeySettings.IntegrationType.self, forKey: .integrationType)
+    {
+      self.integrationType = value
+    }
+    if let value = try container.decodeIfPresent(
+      WebKeySettings.ChallengeSecurityPreference.self, forKey: .challengeSecurityPreference)
+    {
+      self.challengeSecurityPreference = value
+    }
+    self.challengeSettings = try container.decodeIfPresent(
+      WebKeySettings.ChallengeSettings.self, forKey: .challengeSettings)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.allowAllDomains, forKey: .allowAllDomains)
+    try container.encode(self.allowedDomains, forKey: .allowedDomains)
+    try container.encode(self.allowAmpTraffic, forKey: .allowAmpTraffic)
+    try container.encode(self.integrationType, forKey: .integrationType)
+    try container.encode(self.challengeSecurityPreference, forKey: .challengeSecurityPreference)
+    try container.encodeIfPresent(self.challengeSettings, forKey: .challengeSettings)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Per-action challenge settings.
   public struct ActionSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -73,6 +140,8 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. A challenge is triggered if the end-user score is below that
     /// threshold. Value must be between 0 and 1 (inclusive).
     public var scoreThreshold: Swift.Float = Swift.Float()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ActionSettings`.
     public init() {}
@@ -88,6 +157,38 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scoreThreshold = CodingKeys(stringValue: "scoreThreshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scoreThreshold"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .scoreThreshold) {
+        self.scoreThreshold = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.scoreThreshold, forKey: .scoreThreshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -119,6 +220,8 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// An action name has a maximum length of 100.
     public var actionSettings: [Swift.String: WebKeySettings.ActionSettings] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ChallengeSettings`.
     public init() {}
 
@@ -133,6 +236,45 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultSettings = CodingKeys(stringValue: "defaultSettings")
+      static let actionSettings = CodingKeys(stringValue: "actionSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultSettings",
+        "actionSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.defaultSettings = try container.decodeIfPresent(
+        WebKeySettings.ActionSettings.self, forKey: .defaultSettings)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: WebKeySettings.ActionSettings].self, forKey: .actionSettings)
+      {
+        self.actionSettings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.defaultSettings, forKey: .defaultSettings)
+      try container.encode(self.actionSettings, forKey: .actionSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

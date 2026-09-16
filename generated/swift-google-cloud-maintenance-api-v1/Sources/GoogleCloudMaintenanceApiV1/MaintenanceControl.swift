@@ -32,6 +32,8 @@ public struct MaintenanceControl: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// only when `isCustom` is `true`.
   public var documentation: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenanceControl`.
   public init() {}
 
@@ -46,6 +48,51 @@ public struct MaintenanceControl: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let control = CodingKeys(stringValue: "control")
+    static let isCustom = CodingKeys(stringValue: "isCustom")
+    static let documentation = CodingKeys(stringValue: "documentation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "control",
+      "isCustom",
+      "documentation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(MaintenanceControl.Control.self, forKey: .control)
+    {
+      self.control = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCustom) {
+      self.isCustom = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentation) {
+      self.documentation = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.control, forKey: .control)
+    try container.encode(self.isCustom, forKey: .isCustom)
+    try container.encode(self.documentation, forKey: .documentation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Sets the type of control supported. comment (as in logs).

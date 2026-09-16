@@ -61,6 +61,8 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleCloud
   /// database.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateDb2ConnectionProperties`.
   public init() {}
 
@@ -77,38 +79,82 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleCloud
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case host = "host"
-    case port = "port"
-    case database = "database"
-    case username = "username"
-    case securityProtocol = "securityProtocol"
-    case additionalAttributes = "additionalAttributes"
-    case sslClientKeystoredbFile = "sslClientKeystoredbFile"
-    case sslClientKeystashFile = "sslClientKeystashFile"
-    case sslServerCertificateFile = "sslServerCertificateFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let database = CodingKeys(stringValue: "database")
+    static let username = CodingKeys(stringValue: "username")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let additionalAttributes = CodingKeys(stringValue: "additionalAttributes")
+    static let sslClientKeystoredbFile = CodingKeys(stringValue: "sslClientKeystoredbFile")
+    static let sslClientKeystashFile = CodingKeys(stringValue: "sslClientKeystashFile")
+    static let sslServerCertificateFile = CodingKeys(stringValue: "sslServerCertificateFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "host",
+      "port",
+      "database",
+      "username",
+      "securityProtocol",
+      "additionalAttributes",
+      "sslClientKeystoredbFile",
+      "sslClientKeystashFile",
+      "sslServerCertificateFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.database = try container.decode(Swift.String.self, forKey: .database)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.securityProtocol = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateDb2ConnectionProperties.Db2SecurityProtocol.self, forKey: .securityProtocol)
-    self.additionalAttributes = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
       [NameValuePair].self, forKey: .additionalAttributes)
-    self.sslClientKeystoredbFile = try container.decode(
+    {
+      self.additionalAttributes = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .sslClientKeystoredbFile)
-    self.sslClientKeystashFile = try container.decode(
-      Swift.String.self, forKey: .sslClientKeystashFile)
-    self.sslServerCertificateFile = try container.decode(
+    {
+      self.sslClientKeystoredbFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sslClientKeystashFile)
+    {
+      self.sslClientKeystashFile = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .sslServerCertificateFile)
+    {
+      self.sslServerCertificateFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -129,6 +175,10 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleCloud
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -151,6 +201,9 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleCloud
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -350,6 +350,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options for job processing.
   public var processingOptions: Job.ProcessingOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Job`.
   public init() {}
 
@@ -364,6 +366,203 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let company = CodingKeys(stringValue: "company")
+    static let requisitionId = CodingKeys(stringValue: "requisitionId")
+    static let title = CodingKeys(stringValue: "title")
+    static let description = CodingKeys(stringValue: "description")
+    static let addresses = CodingKeys(stringValue: "addresses")
+    static let applicationInfo = CodingKeys(stringValue: "applicationInfo")
+    static let jobBenefits = CodingKeys(stringValue: "jobBenefits")
+    static let compensationInfo = CodingKeys(stringValue: "compensationInfo")
+    static let customAttributes = CodingKeys(stringValue: "customAttributes")
+    static let degreeTypes = CodingKeys(stringValue: "degreeTypes")
+    static let department = CodingKeys(stringValue: "department")
+    static let employmentTypes = CodingKeys(stringValue: "employmentTypes")
+    static let incentives = CodingKeys(stringValue: "incentives")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let jobLevel = CodingKeys(stringValue: "jobLevel")
+    static let promotionValue = CodingKeys(stringValue: "promotionValue")
+    static let qualifications = CodingKeys(stringValue: "qualifications")
+    static let responsibilities = CodingKeys(stringValue: "responsibilities")
+    static let postingRegion = CodingKeys(stringValue: "postingRegion")
+    static let visibility = CodingKeys(stringValue: "visibility")
+    static let jobStartTime = CodingKeys(stringValue: "jobStartTime")
+    static let jobEndTime = CodingKeys(stringValue: "jobEndTime")
+    static let postingPublishTime = CodingKeys(stringValue: "postingPublishTime")
+    static let postingExpireTime = CodingKeys(stringValue: "postingExpireTime")
+    static let postingCreateTime = CodingKeys(stringValue: "postingCreateTime")
+    static let postingUpdateTime = CodingKeys(stringValue: "postingUpdateTime")
+    static let companyDisplayName = CodingKeys(stringValue: "companyDisplayName")
+    static let derivedInfo = CodingKeys(stringValue: "derivedInfo")
+    static let processingOptions = CodingKeys(stringValue: "processingOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "company",
+      "requisitionId",
+      "title",
+      "description",
+      "addresses",
+      "applicationInfo",
+      "jobBenefits",
+      "compensationInfo",
+      "customAttributes",
+      "degreeTypes",
+      "department",
+      "employmentTypes",
+      "incentives",
+      "languageCode",
+      "jobLevel",
+      "promotionValue",
+      "qualifications",
+      "responsibilities",
+      "postingRegion",
+      "visibility",
+      "jobStartTime",
+      "jobEndTime",
+      "postingPublishTime",
+      "postingExpireTime",
+      "postingCreateTime",
+      "postingUpdateTime",
+      "companyDisplayName",
+      "derivedInfo",
+      "processingOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .company) {
+      self.company = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requisitionId) {
+      self.requisitionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addresses) {
+      self.addresses = value
+    }
+    self.applicationInfo = try container.decodeIfPresent(
+      Job.ApplicationInfo.self, forKey: .applicationInfo)
+    if let value = try container.decodeIfPresent([JobBenefit].self, forKey: .jobBenefits) {
+      self.jobBenefits = value
+    }
+    self.compensationInfo = try container.decodeIfPresent(
+      CompensationInfo.self, forKey: .compensationInfo)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CustomAttribute].self, forKey: .customAttributes)
+    {
+      self.customAttributes = value
+    }
+    if let value = try container.decodeIfPresent([DegreeType].self, forKey: .degreeTypes) {
+      self.degreeTypes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .department) {
+      self.department = value
+    }
+    if let value = try container.decodeIfPresent([EmploymentType].self, forKey: .employmentTypes) {
+      self.employmentTypes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .incentives) {
+      self.incentives = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(JobLevel.self, forKey: .jobLevel) {
+      self.jobLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .promotionValue) {
+      self.promotionValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .qualifications) {
+      self.qualifications = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responsibilities) {
+      self.responsibilities = value
+    }
+    if let value = try container.decodeIfPresent(PostingRegion.self, forKey: .postingRegion) {
+      self.postingRegion = value
+    }
+    if let value = try container.decodeIfPresent(Visibility.self, forKey: .visibility) {
+      self.visibility = value
+    }
+    self.jobStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .jobStartTime)
+    self.jobEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .jobEndTime)
+    self.postingPublishTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .postingPublishTime)
+    self.postingExpireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .postingExpireTime)
+    self.postingCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .postingCreateTime)
+    self.postingUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .postingUpdateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .companyDisplayName) {
+      self.companyDisplayName = value
+    }
+    self.derivedInfo = try container.decodeIfPresent(Job.DerivedInfo.self, forKey: .derivedInfo)
+    self.processingOptions = try container.decodeIfPresent(
+      Job.ProcessingOptions.self, forKey: .processingOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.company, forKey: .company)
+    try container.encode(self.requisitionId, forKey: .requisitionId)
+    try container.encode(self.title, forKey: .title)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.addresses, forKey: .addresses)
+    try container.encodeIfPresent(self.applicationInfo, forKey: .applicationInfo)
+    try container.encode(self.jobBenefits, forKey: .jobBenefits)
+    try container.encodeIfPresent(self.compensationInfo, forKey: .compensationInfo)
+    try container.encode(self.customAttributes, forKey: .customAttributes)
+    try container.encode(self.degreeTypes, forKey: .degreeTypes)
+    try container.encode(self.department, forKey: .department)
+    try container.encode(self.employmentTypes, forKey: .employmentTypes)
+    try container.encode(self.incentives, forKey: .incentives)
+    try container.encode(self.languageCode, forKey: .languageCode)
+    try container.encode(self.jobLevel, forKey: .jobLevel)
+    try container.encode(self.promotionValue, forKey: .promotionValue)
+    try container.encode(self.qualifications, forKey: .qualifications)
+    try container.encode(self.responsibilities, forKey: .responsibilities)
+    try container.encode(self.postingRegion, forKey: .postingRegion)
+    try container.encode(self.visibility, forKey: .visibility)
+    try container.encodeIfPresent(self.jobStartTime, forKey: .jobStartTime)
+    try container.encodeIfPresent(self.jobEndTime, forKey: .jobEndTime)
+    try container.encodeIfPresent(self.postingPublishTime, forKey: .postingPublishTime)
+    try container.encodeIfPresent(self.postingExpireTime, forKey: .postingExpireTime)
+    try container.encodeIfPresent(self.postingCreateTime, forKey: .postingCreateTime)
+    try container.encodeIfPresent(self.postingUpdateTime, forKey: .postingUpdateTime)
+    try container.encode(self.companyDisplayName, forKey: .companyDisplayName)
+    try container.encodeIfPresent(self.derivedInfo, forKey: .derivedInfo)
+    try container.encodeIfPresent(self.processingOptions, forKey: .processingOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Application related details of a job posting.
@@ -391,6 +590,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The maximum number of allowed characters for each entry is 2,000.
     public var uris: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ApplicationInfo`.
     public init() {}
 
@@ -405,6 +606,50 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let emails = CodingKeys(stringValue: "emails")
+      static let instruction = CodingKeys(stringValue: "instruction")
+      static let uris = CodingKeys(stringValue: "uris")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "emails",
+        "instruction",
+        "uris",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .emails) {
+        self.emails = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instruction) {
+        self.instruction = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .uris) {
+        self.uris = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.emails, forKey: .emails)
+      try container.encode(self.instruction, forKey: .instruction)
+      try container.encode(self.uris, forKey: .uris)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -440,6 +685,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.talent.v4.Job.title]: <doc:Job/title>
     public var jobCategories: [JobCategory] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DerivedInfo`.
     public init() {}
 
@@ -454,6 +701,44 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locations = CodingKeys(stringValue: "locations")
+      static let jobCategories = CodingKeys(stringValue: "jobCategories")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locations",
+        "jobCategories",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Location].self, forKey: .locations) {
+        self.locations = value
+      }
+      if let value = try container.decodeIfPresent([JobCategory].self, forKey: .jobCategories) {
+        self.jobCategories = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.locations, forKey: .locations)
+      try container.encode(self.jobCategories, forKey: .jobCategories)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -492,6 +777,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.cloud.talent.v4.HtmlSanitization.SIMPLE_FORMATTING_ONLY]: <doc:HtmlSanitization/simpleFormattingOnly>
     public var htmlSanitization: HtmlSanitization = HtmlSanitization()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ProcessingOptions`.
     public init() {}
 
@@ -506,6 +793,49 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let disableStreetAddressResolution = CodingKeys(
+        stringValue: "disableStreetAddressResolution")
+      static let htmlSanitization = CodingKeys(stringValue: "htmlSanitization")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "disableStreetAddressResolution",
+        "htmlSanitization",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableStreetAddressResolution)
+      {
+        self.disableStreetAddressResolution = value
+      }
+      if let value = try container.decodeIfPresent(HtmlSanitization.self, forKey: .htmlSanitization)
+      {
+        self.htmlSanitization = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.disableStreetAddressResolution, forKey: .disableStreetAddressResolution)
+      try container.encode(self.htmlSanitization, forKey: .htmlSanitization)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

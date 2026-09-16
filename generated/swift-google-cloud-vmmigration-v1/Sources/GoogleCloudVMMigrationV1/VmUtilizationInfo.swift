@@ -29,6 +29,8 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
   public var vmDetails: OneOf_VmDetails? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VmUtilizationInfo`.
   public init() {}
 
@@ -45,15 +47,28 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case vmwareVmDetails = "vmwareVmDetails"
-    case vmId = "vmId"
-    case utilization = "utilization"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmwareVmDetails = CodingKeys(stringValue: "vmwareVmDetails")
+    static let vmId = CodingKeys(stringValue: "vmId")
+    static let utilization = CodingKeys(stringValue: "utilization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmwareVmDetails",
+      "vmId",
+      "utilization",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.vmId = try container.decode(Swift.String.self, forKey: .vmId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmId) {
+      self.vmId = value
+    }
     self.utilization = try container.decodeIfPresent(
       VmUtilizationMetrics.self, forKey: .utilization)
 
@@ -73,18 +88,25 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try vmDetailsCheckAndSet(.vmwareVmDetails(vmwareVmDetails))
     }
     self.vmDetails = vmDetails
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vmId, forKey: .vmId)
-    try container.encode(self.utilization, forKey: .utilization)
+    try container.encodeIfPresent(self.utilization, forKey: .utilization)
 
     if let choice = self.vmDetails {
       switch choice {
       case .vmwareVmDetails(let value):
         try container.encode(value, forKey: .vmwareVmDetails)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

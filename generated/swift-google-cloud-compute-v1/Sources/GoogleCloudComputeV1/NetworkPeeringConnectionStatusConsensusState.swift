@@ -31,6 +31,8 @@
     /// The status of the update request.
     public var updateStatus: NetworkPeeringConnectionStatusConsensusState.UpdateStatus? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkPeeringConnectionStatusConsensusState`.
     public init() {}
 
@@ -45,6 +47,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deleteStatus = CodingKeys(stringValue: "deleteStatus")
+      static let updateStatus = CodingKeys(stringValue: "updateStatus")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deleteStatus",
+        "updateStatus",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.deleteStatus = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatusConsensusState.DeleteStatus.self, forKey: .deleteStatus)
+      self.updateStatus = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatusConsensusState.UpdateStatus.self, forKey: .updateStatus)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.deleteStatus, forKey: .deleteStatus)
+      try container.encodeIfPresent(self.updateStatus, forKey: .updateStatus)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [deleteStatus][google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState.deleteStatus] field.

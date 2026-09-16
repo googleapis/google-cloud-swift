@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleLongRunning
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleLongRunning
 internal import GoogleCloudWKTConvert
 
 extension GoogleLongRunning.OperationInfo {
@@ -29,12 +29,16 @@ extension GoogleLongRunning.OperationInfo {
     self.init()
     self.responseType = proto.responseType
     self.metadataType = proto.metadataType
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.responseType = self.responseType
     proto.metadataType = self.metadataType
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

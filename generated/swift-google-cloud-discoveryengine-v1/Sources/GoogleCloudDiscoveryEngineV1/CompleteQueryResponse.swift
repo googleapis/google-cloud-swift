@@ -36,6 +36,8 @@
     /// must be true and there must be no suggestions that match the full query.
     public var tailMatchTriggered: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompleteQueryResponse`.
     public init() {}
 
@@ -52,6 +54,46 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let querySuggestions = CodingKeys(stringValue: "querySuggestions")
+      static let tailMatchTriggered = CodingKeys(stringValue: "tailMatchTriggered")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "querySuggestions",
+        "tailMatchTriggered",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [CompleteQueryResponse.QuerySuggestion].self, forKey: .querySuggestions)
+      {
+        self.querySuggestions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .tailMatchTriggered) {
+        self.tailMatchTriggered = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.querySuggestions, forKey: .querySuggestions)
+      try container.encode(self.tailMatchTriggered, forKey: .tailMatchTriggered)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Suggestions as search queries.
     public struct QuerySuggestion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -64,6 +106,8 @@
       ///
       /// This field is only populated for the document-completable model.
       public var completableFieldPaths: [Swift.String] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `QuerySuggestion`.
       public init() {}
@@ -79,6 +123,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let suggestion = CodingKeys(stringValue: "suggestion")
+        static let completableFieldPaths = CodingKeys(stringValue: "completableFieldPaths")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "suggestion",
+          "completableFieldPaths",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suggestion) {
+          self.suggestion = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .completableFieldPaths)
+        {
+          self.completableFieldPaths = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.suggestion, forKey: .suggestion)
+        try container.encode(self.completableFieldPaths, forKey: .completableFieldPaths)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

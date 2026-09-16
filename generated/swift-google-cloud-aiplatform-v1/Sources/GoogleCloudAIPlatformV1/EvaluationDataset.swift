@@ -25,6 +25,8 @@
     /// The source of the dataset.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EvaluationDataset`.
     public init() {}
 
@@ -41,9 +43,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
-      case bigquerySource = "bigquerySource"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let bigquerySource = CodingKeys(stringValue: "bigquerySource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource",
+        "bigquerySource",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@
         case .bigquerySource(let value):
           try container.encode(value, forKey: .bigquerySource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

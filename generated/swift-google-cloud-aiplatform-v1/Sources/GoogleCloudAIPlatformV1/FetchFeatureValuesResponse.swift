@@ -32,6 +32,8 @@
 
     public var format: OneOf_Format? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FetchFeatureValuesResponse`.
     public init() {}
 
@@ -48,10 +50,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case keyValues = "keyValues"
-      case protoStruct = "protoStruct"
-      case dataKey = "dataKey"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let keyValues = CodingKeys(stringValue: "keyValues")
+      static let protoStruct = CodingKeys(stringValue: "protoStruct")
+      static let dataKey = CodingKeys(stringValue: "dataKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "keyValues",
+        "protoStruct",
+        "dataKey",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -79,11 +92,15 @@
         try formatCheckAndSet(.protoStruct(protoStruct))
       }
       self.format = format
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.dataKey, forKey: .dataKey)
+      try container.encodeIfPresent(self.dataKey, forKey: .dataKey)
 
       if let choice = self.format {
         switch choice {
@@ -92,6 +109,9 @@
         case .protoStruct(let value):
           try container.encode(value, forKey: .protoStruct)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -103,6 +123,8 @@
       /// List of feature names and values.
       public var features:
         [FetchFeatureValuesResponse.FeatureNameValuePairList.FeatureNameValuePair] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FeatureNameValuePairList`.
       public init() {}
@@ -120,6 +142,41 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let features = CodingKeys(stringValue: "features")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "features"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [FetchFeatureValuesResponse.FeatureNameValuePairList.FeatureNameValuePair].self,
+          forKey: .features)
+        {
+          self.features = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.features, forKey: .features)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Feature name & value pair.
       public struct FeatureNameValuePair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -128,6 +185,9 @@
         public var name: Swift.String = Swift.String()
 
         public var data: OneOf_Data? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `FeatureNameValuePair`.
         public init() {}
@@ -145,14 +205,26 @@
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case value = "value"
-          case name = "name"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let value = CodingKeys(stringValue: "value")
+          static let name = CodingKeys(stringValue: "name")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "value",
+            "name",
+          ]
         }
 
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.name = try container.decode(Swift.String.self, forKey: .name)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+            self.name = value
+          }
 
           var data: OneOf_Data? = nil
           let dataCheckAndSet = {
@@ -168,6 +240,10 @@
             try dataCheckAndSet(.value(value))
           }
           self.data = data
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -179,6 +255,9 @@
             case .value(let value):
               try container.encode(value, forKey: .value)
             }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
         }
 

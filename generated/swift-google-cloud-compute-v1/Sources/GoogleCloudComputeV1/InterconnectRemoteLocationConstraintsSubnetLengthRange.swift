@@ -26,6 +26,8 @@
 
     public var min: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectRemoteLocationConstraintsSubnetLengthRange`.
     public init() {}
 
@@ -40,6 +42,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let max = CodingKeys(stringValue: "max")
+      static let min = CodingKeys(stringValue: "min")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "max",
+        "min",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.max = try container.decodeIfPresent(Swift.Int32.self, forKey: .max)
+      self.min = try container.decodeIfPresent(Swift.Int32.self, forKey: .min)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.max, forKey: .max)
+      try container.encodeIfPresent(self.min, forKey: .min)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

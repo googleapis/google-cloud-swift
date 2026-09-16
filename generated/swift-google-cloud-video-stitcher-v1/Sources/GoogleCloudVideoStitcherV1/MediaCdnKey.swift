@@ -31,6 +31,8 @@ public struct MediaCdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Otherwise, the URL would be signed using the standard Media CDN signature.
   public var tokenConfig: MediaCdnKey.TokenConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MediaCdnKey`.
   public init() {}
 
@@ -47,6 +49,49 @@ public struct MediaCdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let privateKey = CodingKeys(stringValue: "privateKey")
+    static let keyName = CodingKeys(stringValue: "keyName")
+    static let tokenConfig = CodingKeys(stringValue: "tokenConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "privateKey",
+      "keyName",
+      "tokenConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .privateKey) {
+      self.privateKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyName) {
+      self.keyName = value
+    }
+    self.tokenConfig = try container.decodeIfPresent(
+      MediaCdnKey.TokenConfig.self, forKey: .tokenConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.privateKey, forKey: .privateKey)
+    try container.encode(self.keyName, forKey: .keyName)
+    try container.encodeIfPresent(self.tokenConfig, forKey: .tokenConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Configuration for a Media CDN token.
   public struct TokenConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -60,6 +105,8 @@ public struct MediaCdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///
     /// Defaults to `edge-cache-token`.
     public var queryParameter: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TokenConfig`.
     public init() {}
@@ -75,6 +122,38 @@ public struct MediaCdnKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let queryParameter = CodingKeys(stringValue: "queryParameter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "queryParameter"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryParameter) {
+        self.queryParameter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.queryParameter, forKey: .queryParameter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

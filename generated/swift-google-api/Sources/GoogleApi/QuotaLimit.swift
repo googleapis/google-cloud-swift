@@ -103,6 +103,8 @@ public struct QuotaLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// display name generated from the configuration.
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaLimit`.
   public init() {}
 
@@ -117,6 +119,93 @@ public struct QuotaLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let defaultLimit = CodingKeys(stringValue: "defaultLimit")
+    static let maxLimit = CodingKeys(stringValue: "maxLimit")
+    static let freeTier = CodingKeys(stringValue: "freeTier")
+    static let duration = CodingKeys(stringValue: "duration")
+    static let metric = CodingKeys(stringValue: "metric")
+    static let unit = CodingKeys(stringValue: "unit")
+    static let values = CodingKeys(stringValue: "values")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "defaultLimit",
+      "maxLimit",
+      "freeTier",
+      "duration",
+      "metric",
+      "unit",
+      "values",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .defaultLimit) {
+      self.defaultLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxLimit) {
+      self.maxLimit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .freeTier) {
+      self.freeTier = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .duration) {
+      self.duration = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metric) {
+      self.metric = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unit) {
+      self.unit = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.Int64].self, forKey: .values)
+    {
+      self.values = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.defaultLimit, forKey: .defaultLimit)
+    try container.encode(self.maxLimit, forKey: .maxLimit)
+    try container.encode(self.freeTier, forKey: .freeTier)
+    try container.encode(self.duration, forKey: .duration)
+    try container.encode(self.metric, forKey: .metric)
+    try container.encode(self.unit, forKey: .unit)
+    try container.encode(self.values, forKey: .values)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

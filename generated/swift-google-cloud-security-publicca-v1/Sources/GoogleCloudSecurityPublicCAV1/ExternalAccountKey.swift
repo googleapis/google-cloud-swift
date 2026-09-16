@@ -36,6 +36,8 @@ public struct ExternalAccountKey: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// when the ExternalAccountKey is created
   public var b64MacKey: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExternalAccountKey`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct ExternalAccountKey: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let keyId = CodingKeys(stringValue: "keyId")
+    static let b64MacKey = CodingKeys(stringValue: "b64MacKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "keyId",
+      "b64MacKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
+      self.keyId = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .b64MacKey) {
+      self.b64MacKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.keyId, forKey: .keyId)
+    try container.encode(self.b64MacKey, forKey: .b64MacKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

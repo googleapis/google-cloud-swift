@@ -53,6 +53,8 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
   /// the given technology.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateElasticsearchConnectionProperties`.
   public init() {}
 
@@ -69,29 +71,59 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case servers = "servers"
-    case securityProtocol = "securityProtocol"
-    case authenticationType = "authenticationType"
-    case username = "username"
-    case fingerprint = "fingerprint"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let servers = CodingKeys(stringValue: "servers")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let username = CodingKeys(stringValue: "username")
+    static let fingerprint = CodingKeys(stringValue: "fingerprint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "servers",
+      "securityProtocol",
+      "authenticationType",
+      "username",
+      "fingerprint",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.servers = try container.decode(Swift.String.self, forKey: .servers)
-    self.securityProtocol = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servers) {
+      self.servers = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateElasticsearchConnectionProperties.ElasticsearchSecurityProtocol.self,
       forKey: .securityProtocol)
-    self.authenticationType = try container.decode(
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateElasticsearchConnectionProperties.ElasticsearchAuthenticationType.self,
       forKey: .authenticationType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.fingerprint = try container.decode(Swift.String.self, forKey: .fingerprint)
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
+      self.fingerprint = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -112,6 +144,10 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -130,6 +166,9 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

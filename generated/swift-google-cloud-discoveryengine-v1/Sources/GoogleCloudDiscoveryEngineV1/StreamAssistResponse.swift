@@ -56,6 +56,8 @@
     /// of responses. Used for feedback and support.
     public var assistToken: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamAssistResponse`.
     public init() {}
 
@@ -72,6 +74,47 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let answer = CodingKeys(stringValue: "answer")
+      static let sessionInfo = CodingKeys(stringValue: "sessionInfo")
+      static let assistToken = CodingKeys(stringValue: "assistToken")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "answer",
+        "sessionInfo",
+        "assistToken",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.answer = try container.decodeIfPresent(AssistAnswer.self, forKey: .answer)
+      self.sessionInfo = try container.decodeIfPresent(
+        StreamAssistResponse.SessionInfo.self, forKey: .sessionInfo)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assistToken) {
+        self.assistToken = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.answer, forKey: .answer)
+      try container.encodeIfPresent(self.sessionInfo, forKey: .sessionInfo)
+      try container.encode(self.assistToken, forKey: .assistToken)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Information about the session.
     public struct SessionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -81,6 +124,8 @@
       /// Format:
       /// `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`.
       public var session: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SessionInfo`.
       public init() {}
@@ -96,6 +141,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let session = CodingKeys(stringValue: "session")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "session"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+          self.session = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.session, forKey: .session)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

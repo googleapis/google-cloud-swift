@@ -48,6 +48,8 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public var match: OneOf_Match? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateMapEntry`.
   public init() {}
 
@@ -64,29 +66,57 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case hostname = "hostname"
-    case matcher = "matcher"
-    case certificates = "certificates"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let matcher = CodingKeys(stringValue: "matcher")
+    static let certificates = CodingKeys(stringValue: "certificates")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "createTime",
+      "updateTime",
+      "labels",
+      "hostname",
+      "matcher",
+      "certificates",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.certificates = try container.decode([Swift.String].self, forKey: .certificates)
-    self.state = try container.decode(ServingState.self, forKey: .state)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .certificates) {
+      self.certificates = value
+    }
+    if let value = try container.decodeIfPresent(ServingState.self, forKey: .state) {
+      self.state = value
+    }
 
     var match: OneOf_Match? = nil
     let matchCheckAndSet = {
@@ -107,14 +137,18 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try matchCheckAndSet(.matcher(matcher))
     }
     self.match = match
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.certificates, forKey: .certificates)
     try container.encode(self.state, forKey: .state)
@@ -126,6 +160,9 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .matcher(let value):
         try container.encode(value, forKey: .matcher)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

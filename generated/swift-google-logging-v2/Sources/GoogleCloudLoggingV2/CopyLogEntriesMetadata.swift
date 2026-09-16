@@ -48,6 +48,8 @@ public struct CopyLogEntriesMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// For example: `"serviceAccount:foo@bar.com"`
   public var writerIdentity: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CopyLogEntriesMetadata`.
   public init() {}
 
@@ -62,6 +64,69 @@ public struct CopyLogEntriesMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let cancellationRequested = CodingKeys(stringValue: "cancellationRequested")
+    static let request = CodingKeys(stringValue: "request")
+    static let progress = CodingKeys(stringValue: "progress")
+    static let writerIdentity = CodingKeys(stringValue: "writerIdentity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startTime",
+      "endTime",
+      "state",
+      "cancellationRequested",
+      "request",
+      "progress",
+      "writerIdentity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(OperationState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .cancellationRequested) {
+      self.cancellationRequested = value
+    }
+    self.request = try container.decodeIfPresent(CopyLogEntriesRequest.self, forKey: .request)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progress) {
+      self.progress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .writerIdentity) {
+      self.writerIdentity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.cancellationRequested, forKey: .cancellationRequested)
+    try container.encodeIfPresent(self.request, forKey: .request)
+    try container.encode(self.progress, forKey: .progress)
+    try container.encode(self.writerIdentity, forKey: .writerIdentity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

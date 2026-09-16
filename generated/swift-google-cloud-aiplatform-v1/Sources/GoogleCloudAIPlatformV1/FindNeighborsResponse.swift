@@ -28,6 +28,8 @@
     /// The nearest neighbors of the query datapoints.
     public var nearestNeighbors: [FindNeighborsResponse.NearestNeighbors] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FindNeighborsResponse`.
     public init() {}
 
@@ -42,6 +44,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nearestNeighbors = CodingKeys(stringValue: "nearestNeighbors")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nearestNeighbors"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [FindNeighborsResponse.NearestNeighbors].self, forKey: .nearestNeighbors)
+      {
+        self.nearestNeighbors = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nearestNeighbors, forKey: .nearestNeighbors)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A neighbor of the query vector.
@@ -60,6 +96,8 @@
       /// The distance between the neighbor and the query sparse_embedding.
       public var sparseDistance: Swift.Double = Swift.Double()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Neighbor`.
       public init() {}
 
@@ -74,6 +112,48 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let datapoint = CodingKeys(stringValue: "datapoint")
+        static let distance = CodingKeys(stringValue: "distance")
+        static let sparseDistance = CodingKeys(stringValue: "sparseDistance")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "datapoint",
+          "distance",
+          "sparseDistance",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.datapoint = try container.decodeIfPresent(IndexDatapoint.self, forKey: .datapoint)
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .distance) {
+          self.distance = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .sparseDistance) {
+          self.sparseDistance = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.datapoint, forKey: .datapoint)
+        try container.encode(self.distance, forKey: .distance)
+        try container.encode(self.sparseDistance, forKey: .sparseDistance)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -97,6 +177,8 @@
       /// All its neighbors.
       public var neighbors: [FindNeighborsResponse.Neighbor] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NearestNeighbors`.
       public init() {}
 
@@ -111,6 +193,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let neighbors = CodingKeys(stringValue: "neighbors")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "neighbors",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(
+          [FindNeighborsResponse.Neighbor].self, forKey: .neighbors)
+        {
+          self.neighbors = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.neighbors, forKey: .neighbors)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

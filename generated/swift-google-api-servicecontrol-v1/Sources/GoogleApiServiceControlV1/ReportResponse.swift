@@ -44,6 +44,8 @@ public struct ReportResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The current service rollout id used to process the request.
   public var serviceRolloutId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportResponse`.
   public init() {}
 
@@ -58,6 +60,52 @@ public struct ReportResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let reportErrors = CodingKeys(stringValue: "reportErrors")
+    static let serviceConfigId = CodingKeys(stringValue: "serviceConfigId")
+    static let serviceRolloutId = CodingKeys(stringValue: "serviceRolloutId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "reportErrors",
+      "serviceConfigId",
+      "serviceRolloutId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ReportResponse.ReportError].self, forKey: .reportErrors)
+    {
+      self.reportErrors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceConfigId) {
+      self.serviceConfigId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceRolloutId) {
+      self.serviceRolloutId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.reportErrors, forKey: .reportErrors)
+    try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
+    try container.encode(self.serviceRolloutId, forKey: .serviceRolloutId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the processing error of one
@@ -80,6 +128,8 @@ public struct ReportResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.api.servicecontrol.v1.Operation]: <doc:Operation>
     public var status: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReportError`.
     public init() {}
 
@@ -94,6 +144,42 @@ public struct ReportResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let operationId = CodingKeys(stringValue: "operationId")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "operationId",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
+        self.operationId = value
+      }
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.operationId, forKey: .operationId)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

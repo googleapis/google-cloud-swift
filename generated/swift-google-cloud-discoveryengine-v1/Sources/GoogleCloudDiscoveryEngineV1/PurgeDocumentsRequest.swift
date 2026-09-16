@@ -45,6 +45,8 @@
     /// The desired input source for the purging documents based on document IDs.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PurgeDocumentsRequest`.
     public init() {}
 
@@ -61,21 +63,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case gcsSource = "gcsSource"
-      case inlineSource = "inlineSource"
-      case parent = "parent"
-      case filter = "filter"
-      case errorConfig = "errorConfig"
-      case force = "force"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let inlineSource = CodingKeys(stringValue: "inlineSource")
+      static let parent = CodingKeys(stringValue: "parent")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let errorConfig = CodingKeys(stringValue: "errorConfig")
+      static let force = CodingKeys(stringValue: "force")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsSource",
+        "inlineSource",
+        "parent",
+        "filter",
+        "errorConfig",
+        "force",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
-      self.filter = try container.decode(Swift.String.self, forKey: .filter)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
       self.errorConfig = try container.decodeIfPresent(PurgeErrorConfig.self, forKey: .errorConfig)
-      self.force = try container.decode(Swift.Bool.self, forKey: .force)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .force) {
+        self.force = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -96,13 +118,17 @@
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.filter, forKey: .filter)
-      try container.encode(self.errorConfig, forKey: .errorConfig)
+      try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
       try container.encode(self.force, forKey: .force)
 
       if let choice = self.source {
@@ -112,6 +138,9 @@
         case .inlineSource(let value):
           try container.encode(value, forKey: .inlineSource)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -129,6 +158,8 @@
       /// Recommended max of 100 items.
       public var documents: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InlineSource`.
       public init() {}
 
@@ -143,6 +174,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let documents = CodingKeys(stringValue: "documents")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "documents"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documents) {
+          self.documents = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.documents, forKey: .documents)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

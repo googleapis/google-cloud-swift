@@ -37,6 +37,8 @@ public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWKT._An
   /// plane.
   public var imageConfig: ImageConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppConnectorInstanceConfig`.
   public init() {}
 
@@ -51,6 +53,52 @@ public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
+    static let instanceConfig = CodingKeys(stringValue: "instanceConfig")
+    static let notificationConfig = CodingKeys(stringValue: "notificationConfig")
+    static let imageConfig = CodingKeys(stringValue: "imageConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sequenceNumber",
+      "instanceConfig",
+      "notificationConfig",
+      "imageConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sequenceNumber) {
+      self.sequenceNumber = value
+    }
+    self.instanceConfig = try container.decodeIfPresent(
+      GoogleCloudWKT.`Any`.self, forKey: .instanceConfig)
+    self.notificationConfig = try container.decodeIfPresent(
+      NotificationConfig.self, forKey: .notificationConfig)
+    self.imageConfig = try container.decodeIfPresent(ImageConfig.self, forKey: .imageConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.sequenceNumber, forKey: .sequenceNumber)
+    try container.encodeIfPresent(self.instanceConfig, forKey: .instanceConfig)
+    try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
+    try container.encodeIfPresent(self.imageConfig, forKey: .imageConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

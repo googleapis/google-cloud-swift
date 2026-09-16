@@ -53,6 +53,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Guardrail type.
   public var guardrailType: OneOf_GuardrailType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Guardrail`.
   public init() {}
 
@@ -69,34 +71,65 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case contentFilter = "contentFilter"
-    case llmPromptSecurity = "llmPromptSecurity"
-    case llmPolicy = "llmPolicy"
-    case modelSafety = "modelSafety"
-    case codeCallback = "codeCallback"
-    case name = "name"
-    case displayName = "displayName"
-    case description = "description"
-    case enabled = "enabled"
-    case action = "action"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let contentFilter = CodingKeys(stringValue: "contentFilter")
+    static let llmPromptSecurity = CodingKeys(stringValue: "llmPromptSecurity")
+    static let llmPolicy = CodingKeys(stringValue: "llmPolicy")
+    static let modelSafety = CodingKeys(stringValue: "modelSafety")
+    static let codeCallback = CodingKeys(stringValue: "codeCallback")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let action = CodingKeys(stringValue: "action")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "contentFilter",
+      "llmPromptSecurity",
+      "llmPolicy",
+      "modelSafety",
+      "codeCallback",
+      "name",
+      "displayName",
+      "description",
+      "enabled",
+      "action",
+      "createTime",
+      "updateTime",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.enabled = try container.decode(Swift.Bool.self, forKey: .enabled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
     self.action = try container.decodeIfPresent(TriggerAction.self, forKey: .action)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var guardrailType: OneOf_GuardrailType? = nil
     let guardrailTypeCheckAndSet = {
@@ -133,6 +166,10 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try guardrailTypeCheckAndSet(.codeCallback(codeCallback))
     }
     self.guardrailType = guardrailType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -141,9 +178,9 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.enabled, forKey: .enabled)
-    try container.encode(self.action, forKey: .action)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.action, forKey: .action)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.guardrailType {
@@ -159,6 +196,9 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .codeCallback(let value):
         try container.encode(value, forKey: .codeCallback)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -182,6 +222,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. If true, diacritics are ignored during matching.
     public var disregardDiacritics: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ContentFilter`.
     public init() {}
 
@@ -196,6 +238,70 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bannedContents = CodingKeys(stringValue: "bannedContents")
+      static let bannedContentsInUserInput = CodingKeys(stringValue: "bannedContentsInUserInput")
+      static let bannedContentsInAgentResponse = CodingKeys(
+        stringValue: "bannedContentsInAgentResponse")
+      static let matchType = CodingKeys(stringValue: "matchType")
+      static let disregardDiacritics = CodingKeys(stringValue: "disregardDiacritics")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bannedContents",
+        "bannedContentsInUserInput",
+        "bannedContentsInAgentResponse",
+        "matchType",
+        "disregardDiacritics",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .bannedContents) {
+        self.bannedContents = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .bannedContentsInUserInput)
+      {
+        self.bannedContentsInUserInput = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .bannedContentsInAgentResponse)
+      {
+        self.bannedContentsInAgentResponse = value
+      }
+      if let value = try container.decodeIfPresent(
+        Guardrail.ContentFilter.MatchType.self, forKey: .matchType)
+      {
+        self.matchType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disregardDiacritics) {
+        self.disregardDiacritics = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.bannedContents, forKey: .bannedContents)
+      try container.encode(self.bannedContentsInUserInput, forKey: .bannedContentsInUserInput)
+      try container.encode(
+        self.bannedContentsInAgentResponse, forKey: .bannedContentsInAgentResponse)
+      try container.encode(self.matchType, forKey: .matchType)
+      try container.encode(self.disregardDiacritics, forKey: .disregardDiacritics)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Match type for the content filter.
@@ -341,6 +447,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The user must choose one of the following configurations.
     public var securityConfig: OneOf_SecurityConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LlmPromptSecurity`.
     public init() {}
 
@@ -357,15 +465,28 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case defaultSettings = "defaultSettings"
-      case customPolicy = "customPolicy"
-      case failOpen = "failOpen"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let defaultSettings = CodingKeys(stringValue: "defaultSettings")
+      static let customPolicy = CodingKeys(stringValue: "customPolicy")
+      static let failOpen = CodingKeys(stringValue: "failOpen")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "defaultSettings",
+        "customPolicy",
+        "failOpen",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.failOpen = try container.decode(Swift.Bool.self, forKey: .failOpen)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .failOpen) {
+        self.failOpen = value
+      }
 
       var securityConfig: OneOf_SecurityConfig? = nil
       let securityConfigCheckAndSet = {
@@ -388,6 +509,10 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try securityConfigCheckAndSet(.customPolicy(customPolicy))
       }
       self.securityConfig = securityConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -402,6 +527,9 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .customPolicy)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration for default system security settings.
@@ -412,6 +540,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// This field is for display purposes to show the user what prompt
       /// the system uses by default. It is OUTPUT_ONLY.
       public var defaultPromptTemplate: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `DefaultSecuritySettings`.
       public init() {}
@@ -427,6 +557,40 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let defaultPromptTemplate = CodingKeys(stringValue: "defaultPromptTemplate")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "defaultPromptTemplate"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .defaultPromptTemplate)
+        {
+          self.defaultPromptTemplate = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.defaultPromptTemplate, forKey: .defaultPromptTemplate)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -495,6 +659,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// utterances, including those that would normally be skipped.
     public var allowShortUtterance: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LlmPolicy`.
     public init() {}
 
@@ -509,6 +675,70 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxConversationMessages = CodingKeys(stringValue: "maxConversationMessages")
+      static let modelSettings = CodingKeys(stringValue: "modelSettings")
+      static let prompt = CodingKeys(stringValue: "prompt")
+      static let policyScope = CodingKeys(stringValue: "policyScope")
+      static let failOpen = CodingKeys(stringValue: "failOpen")
+      static let allowShortUtterance = CodingKeys(stringValue: "allowShortUtterance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxConversationMessages",
+        "modelSettings",
+        "prompt",
+        "policyScope",
+        "failOpen",
+        "allowShortUtterance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .maxConversationMessages)
+      {
+        self.maxConversationMessages = value
+      }
+      self.modelSettings = try container.decodeIfPresent(ModelSettings.self, forKey: .modelSettings)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .prompt) {
+        self.prompt = value
+      }
+      if let value = try container.decodeIfPresent(
+        Guardrail.LlmPolicy.PolicyScope.self, forKey: .policyScope)
+      {
+        self.policyScope = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .failOpen) {
+        self.failOpen = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowShortUtterance) {
+        self.allowShortUtterance = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxConversationMessages, forKey: .maxConversationMessages)
+      try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
+      try container.encode(self.prompt, forKey: .prompt)
+      try container.encode(self.policyScope, forKey: .policyScope)
+      try container.encode(self.failOpen, forKey: .failOpen)
+      try container.encode(self.allowShortUtterance, forKey: .allowShortUtterance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Defines when to apply the policy check during the conversation.
@@ -647,6 +877,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Required. List of safety settings.
     public var safetySettings: [Guardrail.ModelSafety.SafetySetting] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ModelSafety`.
     public init() {}
 
@@ -663,6 +895,40 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let safetySettings = CodingKeys(stringValue: "safetySettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "safetySettings"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Guardrail.ModelSafety.SafetySetting].self, forKey: .safetySettings)
+      {
+        self.safetySettings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.safetySettings, forKey: .safetySettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Safety setting.
     public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -673,6 +939,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Required. The harm block threshold.
       public var threshold: Guardrail.ModelSafety.HarmBlockThreshold = Guardrail.ModelSafety
         .HarmBlockThreshold()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `SafetySetting`.
       public init() {}
@@ -688,6 +956,48 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let category = CodingKeys(stringValue: "category")
+        static let threshold = CodingKeys(stringValue: "threshold")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "category",
+          "threshold",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Guardrail.ModelSafety.HarmCategory.self, forKey: .category)
+        {
+          self.category = value
+        }
+        if let value = try container.decodeIfPresent(
+          Guardrail.ModelSafety.HarmBlockThreshold.self, forKey: .threshold)
+        {
+          self.threshold = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.category, forKey: .category)
+        try container.encode(self.threshold, forKey: .threshold)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -996,6 +1306,8 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A 'TRIGGER' decision may halt further processing.
     public var afterModelCallback: Callback? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CodeCallback`.
     public init() {}
 
@@ -1010,6 +1322,52 @@ public struct Guardrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let beforeAgentCallback = CodingKeys(stringValue: "beforeAgentCallback")
+      static let afterAgentCallback = CodingKeys(stringValue: "afterAgentCallback")
+      static let beforeModelCallback = CodingKeys(stringValue: "beforeModelCallback")
+      static let afterModelCallback = CodingKeys(stringValue: "afterModelCallback")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "beforeAgentCallback",
+        "afterAgentCallback",
+        "beforeModelCallback",
+        "afterModelCallback",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.beforeAgentCallback = try container.decodeIfPresent(
+        Callback.self, forKey: .beforeAgentCallback)
+      self.afterAgentCallback = try container.decodeIfPresent(
+        Callback.self, forKey: .afterAgentCallback)
+      self.beforeModelCallback = try container.decodeIfPresent(
+        Callback.self, forKey: .beforeModelCallback)
+      self.afterModelCallback = try container.decodeIfPresent(
+        Callback.self, forKey: .afterModelCallback)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.beforeAgentCallback, forKey: .beforeAgentCallback)
+      try container.encodeIfPresent(self.afterAgentCallback, forKey: .afterAgentCallback)
+      try container.encodeIfPresent(self.beforeModelCallback, forKey: .beforeModelCallback)
+      try container.encodeIfPresent(self.afterModelCallback, forKey: .afterModelCallback)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

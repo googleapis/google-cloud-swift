@@ -31,6 +31,8 @@ public struct RecognitionResponseMetadata: Codable, Equatable, GoogleCloudWKT._A
   /// request.
   public var prompt: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognitionResponseMetadata`.
   public init() {}
 
@@ -45,6 +47,47 @@ public struct RecognitionResponseMetadata: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let totalBilledDuration = CodingKeys(stringValue: "totalBilledDuration")
+    static let prompt = CodingKeys(stringValue: "prompt")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestId",
+      "totalBilledDuration",
+      "prompt",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    self.totalBilledDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .totalBilledDuration)
+    self.prompt = try container.decodeIfPresent(Swift.String.self, forKey: .prompt)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.requestId, forKey: .requestId)
+    try container.encodeIfPresent(self.totalBilledDuration, forKey: .totalBilledDuration)
+    try container.encodeIfPresent(self.prompt, forKey: .prompt)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

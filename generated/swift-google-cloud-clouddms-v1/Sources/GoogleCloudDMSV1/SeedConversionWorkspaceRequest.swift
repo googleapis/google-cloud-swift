@@ -35,6 +35,8 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWKT
   /// through a connection profile or a DDL file.
   public var seedFrom: OneOf_SeedFrom? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SeedConversionWorkspaceRequest`.
   public init() {}
 
@@ -51,17 +53,34 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case autoCommit = "autoCommit"
-    case sourceConnectionProfile = "sourceConnectionProfile"
-    case destinationConnectionProfile = "destinationConnectionProfile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let autoCommit = CodingKeys(stringValue: "autoCommit")
+    static let sourceConnectionProfile = CodingKeys(stringValue: "sourceConnectionProfile")
+    static let destinationConnectionProfile = CodingKeys(
+      stringValue: "destinationConnectionProfile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "autoCommit",
+      "sourceConnectionProfile",
+      "destinationConnectionProfile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.autoCommit = try container.decode(Swift.Bool.self, forKey: .autoCommit)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoCommit) {
+      self.autoCommit = value
+    }
 
     var seedFrom: OneOf_SeedFrom? = nil
     let seedFromCheckAndSet = {
@@ -84,6 +103,10 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWKT
       try seedFromCheckAndSet(.destinationConnectionProfile(destinationConnectionProfile))
     }
     self.seedFrom = seedFrom
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,6 +121,9 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWKT
       case .destinationConnectionProfile(let value):
         try container.encode(value, forKey: .destinationConnectionProfile)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

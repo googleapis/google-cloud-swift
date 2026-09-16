@@ -34,6 +34,8 @@ public struct HttpResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The HTTP response body. If the body is not expected, it should be empty.
   public var body: Foundation.Data = Foundation.Data()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HttpResponse`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct HttpResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let status = CodingKeys(stringValue: "status")
+    static let reason = CodingKeys(stringValue: "reason")
+    static let headers = CodingKeys(stringValue: "headers")
+    static let body = CodingKeys(stringValue: "body")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "status",
+      "reason",
+      "headers",
+      "body",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .status) {
+      self.status = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reason) {
+      self.reason = value
+    }
+    if let value = try container.decodeIfPresent([HttpHeader].self, forKey: .headers) {
+      self.headers = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .body) {
+      self.body = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.status, forKey: .status)
+    try container.encode(self.reason, forKey: .reason)
+    try container.encode(self.headers, forKey: .headers)
+    try container.encode(self.body, forKey: .body)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

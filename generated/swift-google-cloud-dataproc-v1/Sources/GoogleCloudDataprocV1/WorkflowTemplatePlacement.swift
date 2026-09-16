@@ -27,6 +27,8 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleCloudWKT._Any
   /// cluster or an existing cluster chosen by labels.
   public var placement: OneOf_Placement? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WorkflowTemplatePlacement`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case managedCluster = "managedCluster"
-    case clusterSelector = "clusterSelector"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let managedCluster = CodingKeys(stringValue: "managedCluster")
+    static let clusterSelector = CodingKeys(stringValue: "clusterSelector")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "managedCluster",
+      "clusterSelector",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -72,6 +84,10 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleCloudWKT._Any
       try placementCheckAndSet(.clusterSelector(clusterSelector))
     }
     self.placement = placement
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -84,6 +100,9 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleCloudWKT._Any
       case .clusterSelector(let value):
         try container.encode(value, forKey: .clusterSelector)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -24,6 +24,8 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleCloudWKT
   /// Destination for the exported data.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExportNativeDashboardsResponse`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inlineDestination = "inlineDestination"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inlineDestination = CodingKeys(stringValue: "inlineDestination")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inlineDestination"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleCloudWKT
       try destinationCheckAndSet(.inlineDestination(inlineDestination))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleCloudWKT
       case .inlineDestination(let value):
         try container.encode(value, forKey: .inlineDestination)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

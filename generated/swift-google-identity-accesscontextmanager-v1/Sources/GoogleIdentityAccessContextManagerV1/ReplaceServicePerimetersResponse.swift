@@ -26,6 +26,8 @@ public struct ReplaceServicePerimetersResponse: Codable, Equatable, GoogleCloudW
   /// [google.identity.accesscontextmanager.v1.ServicePerimeter] instances.
   public var servicePerimeters: [ServicePerimeter] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplaceServicePerimetersResponse`.
   public init() {}
 
@@ -40,6 +42,40 @@ public struct ReplaceServicePerimetersResponse: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let servicePerimeters = CodingKeys(stringValue: "servicePerimeters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "servicePerimeters"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ServicePerimeter].self, forKey: .servicePerimeters)
+    {
+      self.servicePerimeters = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.servicePerimeters, forKey: .servicePerimeters)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

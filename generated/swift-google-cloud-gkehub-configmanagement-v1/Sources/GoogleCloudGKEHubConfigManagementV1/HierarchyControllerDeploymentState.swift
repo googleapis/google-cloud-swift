@@ -27,6 +27,8 @@ public struct HierarchyControllerDeploymentState: Codable, Equatable, GoogleClou
   /// The deployment state for Hierarchy Controller extension (e.g. v0.7.0-hc.1)
   public var `extension`: DeploymentState = DeploymentState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HierarchyControllerDeploymentState`.
   public init() {}
 
@@ -43,21 +45,42 @@ public struct HierarchyControllerDeploymentState: Codable, Equatable, GoogleClou
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hnc = "hnc"
-    case `extension` = "extension"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hnc = CodingKeys(stringValue: "hnc")
+    static let `extension` = CodingKeys(stringValue: "extension")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hnc",
+      "extension",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.hnc = try container.decode(DeploymentState.self, forKey: .hnc)
-    self.`extension` = try container.decode(DeploymentState.self, forKey: .`extension`)
+    if let value = try container.decodeIfPresent(DeploymentState.self, forKey: .hnc) {
+      self.hnc = value
+    }
+    if let value = try container.decodeIfPresent(DeploymentState.self, forKey: .`extension`) {
+      self.`extension` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.hnc, forKey: .hnc)
     try container.encode(self.`extension`, forKey: .`extension`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

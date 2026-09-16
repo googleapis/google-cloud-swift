@@ -51,6 +51,8 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// published.
   public var endpoint: OneOf_Endpoint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataFeed`.
   public init() {}
 
@@ -67,28 +69,51 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case uid = "uid"
-    case scope = "scope"
-    case filters = "filters"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case labels = "labels"
-    case pubsubTopic = "pubsubTopic"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let filters = CodingKeys(stringValue: "filters")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let pubsubTopic = CodingKeys(stringValue: "pubsubTopic")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "uid",
+      "scope",
+      "filters",
+      "createTime",
+      "updateTime",
+      "labels",
+      "pubsubTopic",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.scope = try container.decodeIfPresent(MetadataFeed.Scope.self, forKey: .scope)
     self.filters = try container.decodeIfPresent(MetadataFeed.Filters.self, forKey: .filters)
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var endpoint: OneOf_Endpoint? = nil
     let endpointCheckAndSet = {
@@ -104,16 +129,20 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try endpointCheckAndSet(.pubsubTopic(pubsubTopic))
     }
     self.endpoint = endpoint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.filters, forKey: .filters)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.scope, forKey: .scope)
+    try container.encodeIfPresent(self.filters, forKey: .filters)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
 
     if let choice = self.endpoint {
@@ -121,6 +150,9 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .pubsubTopic(let value):
         try container.encode(value, forKey: .pubsubTopic)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -149,6 +181,8 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
     public var entryGroups: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Scope`.
     public init() {}
 
@@ -163,6 +197,50 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let organizationLevel = CodingKeys(stringValue: "organizationLevel")
+      static let projects = CodingKeys(stringValue: "projects")
+      static let entryGroups = CodingKeys(stringValue: "entryGroups")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "organizationLevel",
+        "projects",
+        "entryGroups",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .organizationLevel) {
+        self.organizationLevel = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .projects) {
+        self.projects = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entryGroups) {
+        self.entryGroups = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.organizationLevel, forKey: .organizationLevel)
+      try container.encode(self.projects, forKey: .projects)
+      try container.encode(self.entryGroups, forKey: .entryGroups)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -199,6 +277,8 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// If not specified, all changes are published.
     public var changeTypes: [MetadataFeed.Filters.ChangeType] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Filters`.
     public init() {}
 
@@ -213,6 +293,52 @@ public struct MetadataFeed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entryTypes = CodingKeys(stringValue: "entryTypes")
+      static let aspectTypes = CodingKeys(stringValue: "aspectTypes")
+      static let changeTypes = CodingKeys(stringValue: "changeTypes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entryTypes",
+        "aspectTypes",
+        "changeTypes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entryTypes) {
+        self.entryTypes = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .aspectTypes) {
+        self.aspectTypes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [MetadataFeed.Filters.ChangeType].self, forKey: .changeTypes)
+      {
+        self.changeTypes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.entryTypes, forKey: .entryTypes)
+      try container.encode(self.aspectTypes, forKey: .aspectTypes)
+      try container.encode(self.changeTypes, forKey: .changeTypes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The type of change that you want to listen to.

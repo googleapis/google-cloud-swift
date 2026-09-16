@@ -37,6 +37,8 @@ public struct SnapshotPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Monthly schedule policy.
   public var monthlySchedule: MonthlySchedule? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SnapshotPolicy`.
   public init() {}
 
@@ -51,6 +53,55 @@ public struct SnapshotPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let hourlySchedule = CodingKeys(stringValue: "hourlySchedule")
+    static let dailySchedule = CodingKeys(stringValue: "dailySchedule")
+    static let weeklySchedule = CodingKeys(stringValue: "weeklySchedule")
+    static let monthlySchedule = CodingKeys(stringValue: "monthlySchedule")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "hourlySchedule",
+      "dailySchedule",
+      "weeklySchedule",
+      "monthlySchedule",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
+    self.hourlySchedule = try container.decodeIfPresent(
+      HourlySchedule.self, forKey: .hourlySchedule)
+    self.dailySchedule = try container.decodeIfPresent(DailySchedule.self, forKey: .dailySchedule)
+    self.weeklySchedule = try container.decodeIfPresent(
+      WeeklySchedule.self, forKey: .weeklySchedule)
+    self.monthlySchedule = try container.decodeIfPresent(
+      MonthlySchedule.self, forKey: .monthlySchedule)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.enabled, forKey: .enabled)
+    try container.encodeIfPresent(self.hourlySchedule, forKey: .hourlySchedule)
+    try container.encodeIfPresent(self.dailySchedule, forKey: .dailySchedule)
+    try container.encodeIfPresent(self.weeklySchedule, forKey: .weeklySchedule)
+    try container.encodeIfPresent(self.monthlySchedule, forKey: .monthlySchedule)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

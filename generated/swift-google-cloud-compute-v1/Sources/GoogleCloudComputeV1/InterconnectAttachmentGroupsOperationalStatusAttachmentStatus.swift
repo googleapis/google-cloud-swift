@@ -40,6 +40,8 @@
     /// Output only. Whether this Attachment is active, and if so, whether BGP is up.
     public var status: InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectAttachmentGroupsOperationalStatusAttachmentStatus`.
     public init() {}
 
@@ -54,6 +56,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let attachment = CodingKeys(stringValue: "attachment")
+      static let isActive = CodingKeys(stringValue: "isActive")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adminEnabled",
+        "attachment",
+        "isActive",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
+      self.attachment = try container.decodeIfPresent(Swift.String.self, forKey: .attachment)
+      self.isActive = try container.decodeIfPresent(
+        InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.IsActive.self,
+        forKey: .isActive)
+      self.status = try container.decodeIfPresent(
+        InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(self.attachment, forKey: .attachment)
+      try container.encodeIfPresent(self.isActive, forKey: .isActive)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [isActive][google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.isActive] field.

@@ -36,6 +36,8 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleCloudWKT._Any
   /// The destination of transfer operation.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferOperationMetadata`.
   public init() {}
 
@@ -52,21 +54,40 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sourceLustrePath = "sourceLustrePath"
-    case sourceGcsPath = "sourceGcsPath"
-    case destinationGcsPath = "destinationGcsPath"
-    case destinationLustrePath = "destinationLustrePath"
-    case counters = "counters"
-    case transferType = "transferType"
-    case errorSummaries = "errorSummaries"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sourceLustrePath = CodingKeys(stringValue: "sourceLustrePath")
+    static let sourceGcsPath = CodingKeys(stringValue: "sourceGcsPath")
+    static let destinationGcsPath = CodingKeys(stringValue: "destinationGcsPath")
+    static let destinationLustrePath = CodingKeys(stringValue: "destinationLustrePath")
+    static let counters = CodingKeys(stringValue: "counters")
+    static let transferType = CodingKeys(stringValue: "transferType")
+    static let errorSummaries = CodingKeys(stringValue: "errorSummaries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sourceLustrePath",
+      "sourceGcsPath",
+      "destinationGcsPath",
+      "destinationLustrePath",
+      "counters",
+      "transferType",
+      "errorSummaries",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.counters = try container.decodeIfPresent(TransferCounters.self, forKey: .counters)
-    self.transferType = try container.decode(TransferType.self, forKey: .transferType)
-    self.errorSummaries = try container.decode([ErrorSummary].self, forKey: .errorSummaries)
+    if let value = try container.decodeIfPresent(TransferType.self, forKey: .transferType) {
+      self.transferType = value
+    }
+    if let value = try container.decodeIfPresent([ErrorSummary].self, forKey: .errorSummaries) {
+      self.errorSummaries = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -109,11 +130,15 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleCloudWKT._Any
       try destinationCheckAndSet(.destinationLustrePath(destinationLustrePath))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.counters, forKey: .counters)
+    try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.transferType, forKey: .transferType)
     try container.encode(self.errorSummaries, forKey: .errorSummaries)
 
@@ -133,6 +158,9 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleCloudWKT._Any
       case .destinationLustrePath(let value):
         try container.encode(value, forKey: .destinationLustrePath)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

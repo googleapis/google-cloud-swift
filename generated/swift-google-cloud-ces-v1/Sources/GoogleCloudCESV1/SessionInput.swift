@@ -35,6 +35,8 @@ public struct SessionInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the input.
   public var inputType: OneOf_InputType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SessionInput`.
   public init() {}
 
@@ -51,21 +53,40 @@ public struct SessionInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case text = "text"
-    case dtmf = "dtmf"
-    case audio = "audio"
-    case toolResponses = "toolResponses"
-    case image = "image"
-    case blob = "blob"
-    case variables = "variables"
-    case event = "event"
-    case willContinue = "willContinue"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let text = CodingKeys(stringValue: "text")
+    static let dtmf = CodingKeys(stringValue: "dtmf")
+    static let audio = CodingKeys(stringValue: "audio")
+    static let toolResponses = CodingKeys(stringValue: "toolResponses")
+    static let image = CodingKeys(stringValue: "image")
+    static let blob = CodingKeys(stringValue: "blob")
+    static let variables = CodingKeys(stringValue: "variables")
+    static let event = CodingKeys(stringValue: "event")
+    static let willContinue = CodingKeys(stringValue: "willContinue")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "text",
+      "dtmf",
+      "audio",
+      "toolResponses",
+      "image",
+      "blob",
+      "variables",
+      "event",
+      "willContinue",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.willContinue = try container.decode(Swift.Bool.self, forKey: .willContinue)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .willContinue) {
+      self.willContinue = value
+    }
 
     var inputType: OneOf_InputType? = nil
     let inputTypeCheckAndSet = {
@@ -106,6 +127,10 @@ public struct SessionInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try inputTypeCheckAndSet(.event(event))
     }
     self.inputType = inputType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -131,6 +156,9 @@ public struct SessionInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .event(let value):
         try container.encode(value, forKey: .event)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

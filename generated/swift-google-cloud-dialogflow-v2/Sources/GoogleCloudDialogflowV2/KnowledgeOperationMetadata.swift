@@ -34,6 +34,8 @@
     /// Additional metadata for the Knowledge operation.
     public var operationMetadata: OneOf_OperationMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KnowledgeOperationMetadata`.
     public init() {}
 
@@ -50,17 +52,35 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case state = "state"
-      case knowledgeBase = "knowledgeBase"
-      case exportOperationMetadata = "exportOperationMetadata"
-      case doneTime = "doneTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let state = CodingKeys(stringValue: "state")
+      static let knowledgeBase = CodingKeys(stringValue: "knowledgeBase")
+      static let exportOperationMetadata = CodingKeys(stringValue: "exportOperationMetadata")
+      static let doneTime = CodingKeys(stringValue: "doneTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "state",
+        "knowledgeBase",
+        "exportOperationMetadata",
+        "doneTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.state = try container.decode(KnowledgeOperationMetadata.State.self, forKey: .state)
-      self.knowledgeBase = try container.decode(Swift.String.self, forKey: .knowledgeBase)
+      if let value = try container.decodeIfPresent(
+        KnowledgeOperationMetadata.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .knowledgeBase) {
+        self.knowledgeBase = value
+      }
       self.doneTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .doneTime)
 
@@ -80,19 +100,26 @@
         try operationMetadataCheckAndSet(.exportOperationMetadata(exportOperationMetadata))
       }
       self.operationMetadata = operationMetadata
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.knowledgeBase, forKey: .knowledgeBase)
-      try container.encode(self.doneTime, forKey: .doneTime)
+      try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
 
       if let choice = self.operationMetadata {
         switch choice {
         case .exportOperationMetadata(let value):
           try container.encode(value, forKey: .exportOperationMetadata)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

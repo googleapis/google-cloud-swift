@@ -65,6 +65,8 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWKT._Any
   /// This field is only valid for SQL assertion rules.
   public var assertionRowCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataQualityScanRuleResult`.
   public init() {}
 
@@ -79,6 +81,116 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let dataSource = CodingKeys(stringValue: "dataSource")
+    static let column = CodingKeys(stringValue: "column")
+    static let ruleName = CodingKeys(stringValue: "ruleName")
+    static let ruleType = CodingKeys(stringValue: "ruleType")
+    static let evalutionType = CodingKeys(stringValue: "evalutionType")
+    static let ruleDimension = CodingKeys(stringValue: "ruleDimension")
+    static let thresholdPercent = CodingKeys(stringValue: "thresholdPercent")
+    static let result = CodingKeys(stringValue: "result")
+    static let evaluatedRowCount = CodingKeys(stringValue: "evaluatedRowCount")
+    static let passedRowCount = CodingKeys(stringValue: "passedRowCount")
+    static let nullRowCount = CodingKeys(stringValue: "nullRowCount")
+    static let assertionRowCount = CodingKeys(stringValue: "assertionRowCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobId",
+      "dataSource",
+      "column",
+      "ruleName",
+      "ruleType",
+      "evalutionType",
+      "ruleDimension",
+      "thresholdPercent",
+      "result",
+      "evaluatedRowCount",
+      "passedRowCount",
+      "nullRowCount",
+      "assertionRowCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobId) {
+      self.jobId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSource) {
+      self.dataSource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
+      self.column = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleName) {
+      self.ruleName = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataQualityScanRuleResult.RuleType.self, forKey: .ruleType)
+    {
+      self.ruleType = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataQualityScanRuleResult.EvaluationType.self, forKey: .evalutionType)
+    {
+      self.evalutionType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ruleDimension) {
+      self.ruleDimension = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .thresholdPercent) {
+      self.thresholdPercent = value
+    }
+    if let value = try container.decodeIfPresent(
+      DataQualityScanRuleResult.Result.self, forKey: .result)
+    {
+      self.result = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .evaluatedRowCount) {
+      self.evaluatedRowCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .passedRowCount) {
+      self.passedRowCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .nullRowCount) {
+      self.nullRowCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .assertionRowCount) {
+      self.assertionRowCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.jobId, forKey: .jobId)
+    try container.encode(self.dataSource, forKey: .dataSource)
+    try container.encode(self.column, forKey: .column)
+    try container.encode(self.ruleName, forKey: .ruleName)
+    try container.encode(self.ruleType, forKey: .ruleType)
+    try container.encode(self.evalutionType, forKey: .evalutionType)
+    try container.encode(self.ruleDimension, forKey: .ruleDimension)
+    try container.encode(self.thresholdPercent, forKey: .thresholdPercent)
+    try container.encode(self.result, forKey: .result)
+    try container.encode(self.evaluatedRowCount, forKey: .evaluatedRowCount)
+    try container.encode(self.passedRowCount, forKey: .passedRowCount)
+    try container.encode(self.nullRowCount, forKey: .nullRowCount)
+    try container.encode(self.assertionRowCount, forKey: .assertionRowCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of the data quality rule.

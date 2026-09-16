@@ -42,6 +42,8 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The document payload.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReviewDocumentRequest`.
   public init() {}
 
@@ -58,20 +60,40 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inlineDocument = "inlineDocument"
-    case humanReviewConfig = "humanReviewConfig"
-    case enableSchemaValidation = "enableSchemaValidation"
-    case priority = "priority"
-    case documentSchema = "documentSchema"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inlineDocument = CodingKeys(stringValue: "inlineDocument")
+    static let humanReviewConfig = CodingKeys(stringValue: "humanReviewConfig")
+    static let enableSchemaValidation = CodingKeys(stringValue: "enableSchemaValidation")
+    static let priority = CodingKeys(stringValue: "priority")
+    static let documentSchema = CodingKeys(stringValue: "documentSchema")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inlineDocument",
+      "humanReviewConfig",
+      "enableSchemaValidation",
+      "priority",
+      "documentSchema",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.humanReviewConfig = try container.decode(Swift.String.self, forKey: .humanReviewConfig)
-    self.enableSchemaValidation = try container.decode(
-      Swift.Bool.self, forKey: .enableSchemaValidation)
-    self.priority = try container.decode(ReviewDocumentRequest.Priority.self, forKey: .priority)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .humanReviewConfig) {
+      self.humanReviewConfig = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSchemaValidation) {
+      self.enableSchemaValidation = value
+    }
+    if let value = try container.decodeIfPresent(
+      ReviewDocumentRequest.Priority.self, forKey: .priority)
+    {
+      self.priority = value
+    }
     self.documentSchema = try container.decodeIfPresent(
       DocumentSchema.self, forKey: .documentSchema)
 
@@ -89,6 +111,10 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try sourceCheckAndSet(.inlineDocument(inlineDocument))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -96,13 +122,16 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     try container.encode(self.humanReviewConfig, forKey: .humanReviewConfig)
     try container.encode(self.enableSchemaValidation, forKey: .enableSchemaValidation)
     try container.encode(self.priority, forKey: .priority)
-    try container.encode(self.documentSchema, forKey: .documentSchema)
+    try container.encodeIfPresent(self.documentSchema, forKey: .documentSchema)
 
     if let choice = self.source {
       switch choice {
       case .inlineDocument(let value):
         try container.encode(value, forKey: .inlineDocument)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

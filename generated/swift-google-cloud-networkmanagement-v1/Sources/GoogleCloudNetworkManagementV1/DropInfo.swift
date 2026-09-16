@@ -42,6 +42,8 @@ public struct DropInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Geolocation (region code) of the destination IP address (if relevant).
   public var destinationGeolocationCode: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DropInfo`.
   public init() {}
 
@@ -56,6 +58,77 @@ public struct DropInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cause = CodingKeys(stringValue: "cause")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let sourceIp = CodingKeys(stringValue: "sourceIp")
+    static let destinationIp = CodingKeys(stringValue: "destinationIp")
+    static let region = CodingKeys(stringValue: "region")
+    static let sourceGeolocationCode = CodingKeys(stringValue: "sourceGeolocationCode")
+    static let destinationGeolocationCode = CodingKeys(stringValue: "destinationGeolocationCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cause",
+      "resourceUri",
+      "sourceIp",
+      "destinationIp",
+      "region",
+      "sourceGeolocationCode",
+      "destinationGeolocationCode",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(DropInfo.Cause.self, forKey: .cause) {
+      self.cause = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceIp) {
+      self.sourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destinationIp) {
+      self.destinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGeolocationCode)
+    {
+      self.sourceGeolocationCode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .destinationGeolocationCode)
+    {
+      self.destinationGeolocationCode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cause, forKey: .cause)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.sourceIp, forKey: .sourceIp)
+    try container.encode(self.destinationIp, forKey: .destinationIp)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.sourceGeolocationCode, forKey: .sourceGeolocationCode)
+    try container.encode(self.destinationGeolocationCode, forKey: .destinationGeolocationCode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Drop cause types:

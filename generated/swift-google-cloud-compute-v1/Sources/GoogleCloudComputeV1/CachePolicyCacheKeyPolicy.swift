@@ -84,6 +84,8 @@
     /// encoded and not treated as delimiters.
     public var includedQueryParameters: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CachePolicyCacheKeyPolicy`.
     public init() {}
 
@@ -98,6 +100,78 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let excludedQueryParameters = CodingKeys(stringValue: "excludedQueryParameters")
+      static let includeHost = CodingKeys(stringValue: "includeHost")
+      static let includeProtocol = CodingKeys(stringValue: "includeProtocol")
+      static let includeQueryString = CodingKeys(stringValue: "includeQueryString")
+      static let includedCookieNames = CodingKeys(stringValue: "includedCookieNames")
+      static let includedHeaderNames = CodingKeys(stringValue: "includedHeaderNames")
+      static let includedQueryParameters = CodingKeys(stringValue: "includedQueryParameters")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "excludedQueryParameters",
+        "includeHost",
+        "includeProtocol",
+        "includeQueryString",
+        "includedCookieNames",
+        "includedHeaderNames",
+        "includedQueryParameters",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .excludedQueryParameters)
+      {
+        self.excludedQueryParameters = value
+      }
+      self.includeHost = try container.decodeIfPresent(Swift.Bool.self, forKey: .includeHost)
+      self.includeProtocol = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeProtocol)
+      self.includeQueryString = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeQueryString)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .includedCookieNames)
+      {
+        self.includedCookieNames = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .includedHeaderNames)
+      {
+        self.includedHeaderNames = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .includedQueryParameters)
+      {
+        self.includedQueryParameters = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.excludedQueryParameters, forKey: .excludedQueryParameters)
+      try container.encodeIfPresent(self.includeHost, forKey: .includeHost)
+      try container.encodeIfPresent(self.includeProtocol, forKey: .includeProtocol)
+      try container.encodeIfPresent(self.includeQueryString, forKey: .includeQueryString)
+      try container.encode(self.includedCookieNames, forKey: .includedCookieNames)
+      try container.encode(self.includedHeaderNames, forKey: .includedHeaderNames)
+      try container.encode(self.includedQueryParameters, forKey: .includedQueryParameters)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -71,6 +71,8 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// * `categories`
   public var attributeResults: [Swift.String: CompleteQueryResponse.AttributeResult] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompleteQueryResponse`.
   public init() {}
 
@@ -85,6 +87,62 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let completionResults = CodingKeys(stringValue: "completionResults")
+    static let attributionToken = CodingKeys(stringValue: "attributionToken")
+    static let recentSearchResults = CodingKeys(stringValue: "recentSearchResults")
+    static let attributeResults = CodingKeys(stringValue: "attributeResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "completionResults",
+      "attributionToken",
+      "recentSearchResults",
+      "attributeResults",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [CompleteQueryResponse.CompletionResult].self, forKey: .completionResults)
+    {
+      self.completionResults = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attributionToken) {
+      self.attributionToken = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CompleteQueryResponse.RecentSearchResult].self, forKey: .recentSearchResults)
+    {
+      self.recentSearchResults = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CompleteQueryResponse.AttributeResult].self, forKey: .attributeResults)
+    {
+      self.attributeResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.completionResults, forKey: .completionResults)
+    try container.encode(self.attributionToken, forKey: .attributionToken)
+    try container.encode(self.recentSearchResults, forKey: .recentSearchResults)
+    try container.encode(self.attributeResults, forKey: .attributeResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Resource that represents completion results.
@@ -107,6 +165,8 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// [google.cloud.retail.v2.UserEvent.product_details]: <doc:UserEvent/productDetails>
     public var attributes: [Swift.String: CustomAttribute] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompletionResult`.
     public init() {}
 
@@ -121,6 +181,46 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let suggestion = CodingKeys(stringValue: "suggestion")
+      static let attributes = CodingKeys(stringValue: "attributes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "suggestion",
+        "attributes",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .suggestion) {
+        self.suggestion = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: CustomAttribute].self, forKey: .attributes)
+      {
+        self.attributes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.suggestion, forKey: .suggestion)
+      try container.encode(self.attributes, forKey: .attributes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -142,6 +242,8 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The recent search query.
     public var recentSearch: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RecentSearchResult`.
     public init() {}
 
@@ -156,6 +258,38 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let recentSearch = CodingKeys(stringValue: "recentSearch")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "recentSearch"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .recentSearch) {
+        self.recentSearch = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.recentSearch, forKey: .recentSearch)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -176,6 +310,8 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The list of suggestions for the attribute.
     public var suggestions: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AttributeResult`.
     public init() {}
 
@@ -190,6 +326,38 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let suggestions = CodingKeys(stringValue: "suggestions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "suggestions"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .suggestions) {
+        self.suggestions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.suggestions, forKey: .suggestions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -67,6 +67,8 @@ public struct BillingAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// currency of an existing billing account.
   public var currencyCode: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BillingAccount`.
   public init() {}
 
@@ -83,24 +85,53 @@ public struct BillingAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case `open` = "open"
-    case displayName = "displayName"
-    case masterBillingAccount = "masterBillingAccount"
-    case parent = "parent"
-    case currencyCode = "currencyCode"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let `open` = CodingKeys(stringValue: "open")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let masterBillingAccount = CodingKeys(stringValue: "masterBillingAccount")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let currencyCode = CodingKeys(stringValue: "currencyCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "open",
+      "displayName",
+      "masterBillingAccount",
+      "parent",
+      "currencyCode",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.`open` = try container.decode(Swift.Bool.self, forKey: .`open`)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.masterBillingAccount = try container.decode(
-      Swift.String.self, forKey: .masterBillingAccount)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.currencyCode = try container.decode(Swift.String.self, forKey: .currencyCode)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`open`) {
+      self.`open` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .masterBillingAccount) {
+      self.masterBillingAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
+      self.currencyCode = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -111,6 +142,9 @@ public struct BillingAccount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.masterBillingAccount, forKey: .masterBillingAccount)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.currencyCode, forKey: .currencyCode)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

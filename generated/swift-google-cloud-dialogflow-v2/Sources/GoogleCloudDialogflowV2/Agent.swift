@@ -90,6 +90,8 @@
     /// Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
     public var tier: Agent.Tier = Agent.Tier()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Agent`.
     public init() {}
 
@@ -104,6 +106,109 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parent = CodingKeys(stringValue: "parent")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let defaultLanguageCode = CodingKeys(stringValue: "defaultLanguageCode")
+      static let supportedLanguageCodes = CodingKeys(stringValue: "supportedLanguageCodes")
+      static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let description = CodingKeys(stringValue: "description")
+      static let avatarUri = CodingKeys(stringValue: "avatarUri")
+      static let enableLogging = CodingKeys(stringValue: "enableLogging")
+      static let matchMode = CodingKeys(stringValue: "matchMode")
+      static let classificationThreshold = CodingKeys(stringValue: "classificationThreshold")
+      static let apiVersion = CodingKeys(stringValue: "apiVersion")
+      static let tier = CodingKeys(stringValue: "tier")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parent",
+        "displayName",
+        "defaultLanguageCode",
+        "supportedLanguageCodes",
+        "timeZone",
+        "description",
+        "avatarUri",
+        "enableLogging",
+        "matchMode",
+        "classificationThreshold",
+        "apiVersion",
+        "tier",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultLanguageCode)
+      {
+        self.defaultLanguageCode = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .supportedLanguageCodes)
+      {
+        self.supportedLanguageCodes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+        self.timeZone = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .avatarUri) {
+        self.avatarUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableLogging) {
+        self.enableLogging = value
+      }
+      if let value = try container.decodeIfPresent(Agent.MatchMode.self, forKey: .matchMode) {
+        self.matchMode = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .classificationThreshold)
+      {
+        self.classificationThreshold = value
+      }
+      if let value = try container.decodeIfPresent(Agent.ApiVersion.self, forKey: .apiVersion) {
+        self.apiVersion = value
+      }
+      if let value = try container.decodeIfPresent(Agent.Tier.self, forKey: .tier) {
+        self.tier = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parent, forKey: .parent)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.defaultLanguageCode, forKey: .defaultLanguageCode)
+      try container.encode(self.supportedLanguageCodes, forKey: .supportedLanguageCodes)
+      try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.avatarUri, forKey: .avatarUri)
+      try container.encode(self.enableLogging, forKey: .enableLogging)
+      try container.encode(self.matchMode, forKey: .matchMode)
+      try container.encode(self.classificationThreshold, forKey: .classificationThreshold)
+      try container.encode(self.apiVersion, forKey: .apiVersion)
+      try container.encode(self.tier, forKey: .tier)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Match mode determines how intents are detected from user queries.

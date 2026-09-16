@@ -125,6 +125,8 @@
     /// modifications to the flow will be rejected.
     public var locked: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Flow`.
     public init() {}
 
@@ -139,6 +141,114 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let transitionRoutes = CodingKeys(stringValue: "transitionRoutes")
+      static let eventHandlers = CodingKeys(stringValue: "eventHandlers")
+      static let transitionRouteGroups = CodingKeys(stringValue: "transitionRouteGroups")
+      static let nluSettings = CodingKeys(stringValue: "nluSettings")
+      static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
+      static let knowledgeConnectorSettings = CodingKeys(stringValue: "knowledgeConnectorSettings")
+      static let inputParameterDefinitions = CodingKeys(stringValue: "inputParameterDefinitions")
+      static let outputParameterDefinitions = CodingKeys(stringValue: "outputParameterDefinitions")
+      static let multiLanguageSettings = CodingKeys(stringValue: "multiLanguageSettings")
+      static let locked = CodingKeys(stringValue: "locked")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "transitionRoutes",
+        "eventHandlers",
+        "transitionRouteGroups",
+        "nluSettings",
+        "advancedSettings",
+        "knowledgeConnectorSettings",
+        "inputParameterDefinitions",
+        "outputParameterDefinitions",
+        "multiLanguageSettings",
+        "locked",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(
+        [TransitionRoute].self, forKey: .transitionRoutes)
+      {
+        self.transitionRoutes = value
+      }
+      if let value = try container.decodeIfPresent([EventHandler].self, forKey: .eventHandlers) {
+        self.eventHandlers = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .transitionRouteGroups)
+      {
+        self.transitionRouteGroups = value
+      }
+      self.nluSettings = try container.decodeIfPresent(NluSettings.self, forKey: .nluSettings)
+      self.advancedSettings = try container.decodeIfPresent(
+        AdvancedSettings.self, forKey: .advancedSettings)
+      self.knowledgeConnectorSettings = try container.decodeIfPresent(
+        KnowledgeConnectorSettings.self, forKey: .knowledgeConnectorSettings)
+      if let value = try container.decodeIfPresent(
+        [ParameterDefinition].self, forKey: .inputParameterDefinitions)
+      {
+        self.inputParameterDefinitions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ParameterDefinition].self, forKey: .outputParameterDefinitions)
+      {
+        self.outputParameterDefinitions = value
+      }
+      self.multiLanguageSettings = try container.decodeIfPresent(
+        Flow.MultiLanguageSettings.self, forKey: .multiLanguageSettings)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .locked) {
+        self.locked = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.transitionRoutes, forKey: .transitionRoutes)
+      try container.encode(self.eventHandlers, forKey: .eventHandlers)
+      try container.encode(self.transitionRouteGroups, forKey: .transitionRouteGroups)
+      try container.encodeIfPresent(self.nluSettings, forKey: .nluSettings)
+      try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
+      try container.encodeIfPresent(
+        self.knowledgeConnectorSettings, forKey: .knowledgeConnectorSettings)
+      try container.encode(self.inputParameterDefinitions, forKey: .inputParameterDefinitions)
+      try container.encode(self.outputParameterDefinitions, forKey: .outputParameterDefinitions)
+      try container.encodeIfPresent(self.multiLanguageSettings, forKey: .multiLanguageSettings)
+      try container.encode(self.locked, forKey: .locked)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Settings for multi-lingual agents.
@@ -165,6 +275,8 @@
       /// [google.cloud.dialogflow.cx.v3.Flow.MultiLanguageSettings.enable_multi_language_detection]: <doc:Flow/MultiLanguageSettings/enableMultiLanguageDetection>
       public var supportedResponseLanguageCodes: [Swift.String] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `MultiLanguageSettings`.
       public init() {}
 
@@ -179,6 +291,52 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableMultiLanguageDetection = CodingKeys(
+          stringValue: "enableMultiLanguageDetection")
+        static let supportedResponseLanguageCodes = CodingKeys(
+          stringValue: "supportedResponseLanguageCodes")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableMultiLanguageDetection",
+          "supportedResponseLanguageCodes",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableMultiLanguageDetection)
+        {
+          self.enableMultiLanguageDetection = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .supportedResponseLanguageCodes)
+        {
+          self.supportedResponseLanguageCodes = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.enableMultiLanguageDetection, forKey: .enableMultiLanguageDetection)
+        try container.encode(
+          self.supportedResponseLanguageCodes, forKey: .supportedResponseLanguageCodes)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

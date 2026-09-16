@@ -45,6 +45,8 @@ public struct DeploymentUnitProgress: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Output only. The intent of the deployment unit.
   public var intent: DeploymentUnitProgress.Intent = DeploymentUnitProgress.Intent()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentUnitProgress`.
   public init() {}
 
@@ -59,6 +61,75 @@ public struct DeploymentUnitProgress: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let unitId = CodingKeys(stringValue: "unitId")
+    static let deployment = CodingKeys(stringValue: "deployment")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDescription = CodingKeys(stringValue: "stateDescription")
+    static let deploymentOperationSummary = CodingKeys(stringValue: "deploymentOperationSummary")
+    static let error = CodingKeys(stringValue: "error")
+    static let intent = CodingKeys(stringValue: "intent")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "unitId",
+      "deployment",
+      "state",
+      "stateDescription",
+      "deploymentOperationSummary",
+      "error",
+      "intent",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .unitId) {
+      self.unitId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
+      self.deployment = value
+    }
+    if let value = try container.decodeIfPresent(DeploymentUnitProgress.State.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDescription) {
+      self.stateDescription = value
+    }
+    self.deploymentOperationSummary = try container.decodeIfPresent(
+      DeploymentOperationSummary.self, forKey: .deploymentOperationSummary)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent(
+      DeploymentUnitProgress.Intent.self, forKey: .intent)
+    {
+      self.intent = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.unitId, forKey: .unitId)
+    try container.encode(self.deployment, forKey: .deployment)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDescription, forKey: .stateDescription)
+    try container.encodeIfPresent(
+      self.deploymentOperationSummary, forKey: .deploymentOperationSummary)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.intent, forKey: .intent)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible steps a deployment unit provisioning may be running.

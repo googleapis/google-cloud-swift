@@ -95,6 +95,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Disable L4 load balancer VPC firewalls to enable firewall policies.
   public var disableL4LbFirewallReconciliation: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -111,47 +113,89 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case network = "network"
-    case subnetwork = "subnetwork"
-    case enableIntraNodeVisibility = "enableIntraNodeVisibility"
-    case defaultSnatStatus = "defaultSnatStatus"
-    case enableL4IlbSubsetting = "enableL4ilbSubsetting"
-    case datapathProvider = "datapathProvider"
-    case privateIpv6GoogleAccess = "privateIpv6GoogleAccess"
-    case dnsConfig = "dnsConfig"
-    case serviceExternalIpsConfig = "serviceExternalIpsConfig"
-    case gatewayApiConfig = "gatewayApiConfig"
-    case enableMultiNetworking = "enableMultiNetworking"
-    case networkPerformanceConfig = "networkPerformanceConfig"
-    case enableFqdnNetworkPolicy = "enableFqdnNetworkPolicy"
-    case inTransitEncryptionConfig = "inTransitEncryptionConfig"
-    case enableCiliumClusterwideNetworkPolicy = "enableCiliumClusterwideNetworkPolicy"
-    case defaultEnablePrivateNodes = "defaultEnablePrivateNodes"
-    case dataplaneV2Config = "dataplaneV2Config"
-    case disableL4LbFirewallReconciliation = "disableL4LbFirewallReconciliation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let subnetwork = CodingKeys(stringValue: "subnetwork")
+    static let enableIntraNodeVisibility = CodingKeys(stringValue: "enableIntraNodeVisibility")
+    static let defaultSnatStatus = CodingKeys(stringValue: "defaultSnatStatus")
+    static let enableL4IlbSubsetting = CodingKeys(stringValue: "enableL4ilbSubsetting")
+    static let datapathProvider = CodingKeys(stringValue: "datapathProvider")
+    static let privateIpv6GoogleAccess = CodingKeys(stringValue: "privateIpv6GoogleAccess")
+    static let dnsConfig = CodingKeys(stringValue: "dnsConfig")
+    static let serviceExternalIpsConfig = CodingKeys(stringValue: "serviceExternalIpsConfig")
+    static let gatewayApiConfig = CodingKeys(stringValue: "gatewayApiConfig")
+    static let enableMultiNetworking = CodingKeys(stringValue: "enableMultiNetworking")
+    static let networkPerformanceConfig = CodingKeys(stringValue: "networkPerformanceConfig")
+    static let enableFqdnNetworkPolicy = CodingKeys(stringValue: "enableFqdnNetworkPolicy")
+    static let inTransitEncryptionConfig = CodingKeys(stringValue: "inTransitEncryptionConfig")
+    static let enableCiliumClusterwideNetworkPolicy = CodingKeys(
+      stringValue: "enableCiliumClusterwideNetworkPolicy")
+    static let defaultEnablePrivateNodes = CodingKeys(stringValue: "defaultEnablePrivateNodes")
+    static let dataplaneV2Config = CodingKeys(stringValue: "dataplaneV2Config")
+    static let disableL4LbFirewallReconciliation = CodingKeys(
+      stringValue: "disableL4LbFirewallReconciliation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "subnetwork",
+      "enableIntraNodeVisibility",
+      "defaultSnatStatus",
+      "enableL4ilbSubsetting",
+      "datapathProvider",
+      "privateIpv6GoogleAccess",
+      "dnsConfig",
+      "serviceExternalIpsConfig",
+      "gatewayApiConfig",
+      "enableMultiNetworking",
+      "networkPerformanceConfig",
+      "enableFqdnNetworkPolicy",
+      "inTransitEncryptionConfig",
+      "enableCiliumClusterwideNetworkPolicy",
+      "defaultEnablePrivateNodes",
+      "dataplaneV2Config",
+      "disableL4LbFirewallReconciliation",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.network = try container.decode(Swift.String.self, forKey: .network)
-    self.subnetwork = try container.decode(Swift.String.self, forKey: .subnetwork)
-    self.enableIntraNodeVisibility = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork) {
+      self.subnetwork = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .enableIntraNodeVisibility)
+    {
+      self.enableIntraNodeVisibility = value
+    }
     self.defaultSnatStatus = try container.decodeIfPresent(
       DefaultSnatStatus.self, forKey: .defaultSnatStatus)
-    self.enableL4IlbSubsetting = try container.decode(
-      Swift.Bool.self, forKey: .enableL4IlbSubsetting)
-    self.datapathProvider = try container.decode(DatapathProvider.self, forKey: .datapathProvider)
-    self.privateIpv6GoogleAccess = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableL4IlbSubsetting) {
+      self.enableL4IlbSubsetting = value
+    }
+    if let value = try container.decodeIfPresent(DatapathProvider.self, forKey: .datapathProvider) {
+      self.datapathProvider = value
+    }
+    if let value = try container.decodeIfPresent(
       PrivateIPv6GoogleAccess.self, forKey: .privateIpv6GoogleAccess)
+    {
+      self.privateIpv6GoogleAccess = value
+    }
     self.dnsConfig = try container.decodeIfPresent(DNSConfig.self, forKey: .dnsConfig)
     self.serviceExternalIpsConfig = try container.decodeIfPresent(
       ServiceExternalIPsConfig.self, forKey: .serviceExternalIpsConfig)
     self.gatewayApiConfig = try container.decodeIfPresent(
       GatewayAPIConfig.self, forKey: .gatewayApiConfig)
-    self.enableMultiNetworking = try container.decode(
-      Swift.Bool.self, forKey: .enableMultiNetworking)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableMultiNetworking) {
+      self.enableMultiNetworking = value
+    }
     self.networkPerformanceConfig = try container.decodeIfPresent(
       NetworkConfig.ClusterNetworkPerformanceConfig.self, forKey: .networkPerformanceConfig)
     self.enableFqdnNetworkPolicy = try container.decodeIfPresent(
@@ -166,6 +210,10 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       DataplaneV2Config.self, forKey: .dataplaneV2Config)
     self.disableL4LbFirewallReconciliation = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .disableL4LbFirewallReconciliation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -173,23 +221,28 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.network, forKey: .network)
     try container.encode(self.subnetwork, forKey: .subnetwork)
     try container.encode(self.enableIntraNodeVisibility, forKey: .enableIntraNodeVisibility)
-    try container.encode(self.defaultSnatStatus, forKey: .defaultSnatStatus)
+    try container.encodeIfPresent(self.defaultSnatStatus, forKey: .defaultSnatStatus)
     try container.encode(self.enableL4IlbSubsetting, forKey: .enableL4IlbSubsetting)
     try container.encode(self.datapathProvider, forKey: .datapathProvider)
     try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
-    try container.encode(self.dnsConfig, forKey: .dnsConfig)
-    try container.encode(self.serviceExternalIpsConfig, forKey: .serviceExternalIpsConfig)
-    try container.encode(self.gatewayApiConfig, forKey: .gatewayApiConfig)
+    try container.encodeIfPresent(self.dnsConfig, forKey: .dnsConfig)
+    try container.encodeIfPresent(self.serviceExternalIpsConfig, forKey: .serviceExternalIpsConfig)
+    try container.encodeIfPresent(self.gatewayApiConfig, forKey: .gatewayApiConfig)
     try container.encode(self.enableMultiNetworking, forKey: .enableMultiNetworking)
-    try container.encode(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
-    try container.encode(self.enableFqdnNetworkPolicy, forKey: .enableFqdnNetworkPolicy)
-    try container.encode(self.inTransitEncryptionConfig, forKey: .inTransitEncryptionConfig)
-    try container.encode(
+    try container.encodeIfPresent(self.networkPerformanceConfig, forKey: .networkPerformanceConfig)
+    try container.encodeIfPresent(self.enableFqdnNetworkPolicy, forKey: .enableFqdnNetworkPolicy)
+    try container.encodeIfPresent(
+      self.inTransitEncryptionConfig, forKey: .inTransitEncryptionConfig)
+    try container.encodeIfPresent(
       self.enableCiliumClusterwideNetworkPolicy, forKey: .enableCiliumClusterwideNetworkPolicy)
-    try container.encode(self.defaultEnablePrivateNodes, forKey: .defaultEnablePrivateNodes)
-    try container.encode(self.dataplaneV2Config, forKey: .dataplaneV2Config)
-    try container.encode(
+    try container.encodeIfPresent(
+      self.defaultEnablePrivateNodes, forKey: .defaultEnablePrivateNodes)
+    try container.encodeIfPresent(self.dataplaneV2Config, forKey: .dataplaneV2Config)
+    try container.encodeIfPresent(
       self.disableL4LbFirewallReconciliation, forKey: .disableL4LbFirewallReconciliation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration of network bandwidth tiers
@@ -198,6 +251,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Specifies the total network bandwidth tier for NodePools in the cluster.
     public var totalEgressBandwidthTier: NetworkConfig.ClusterNetworkPerformanceConfig.Tier? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ClusterNetworkPerformanceConfig`.
     public init() {}
@@ -213,6 +268,38 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let totalEgressBandwidthTier = CodingKeys(stringValue: "totalEgressBandwidthTier")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "totalEgressBandwidthTier"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.totalEgressBandwidthTier = try container.decodeIfPresent(
+        NetworkConfig.ClusterNetworkPerformanceConfig.Tier.self, forKey: .totalEgressBandwidthTier)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.totalEgressBandwidthTier, forKey: .totalEgressBandwidthTier)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Node network tier

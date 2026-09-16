@@ -47,6 +47,8 @@
     /// https://arxiv.org/abs/2004.03383
     public var blurBaselineConfig: BlurBaselineConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IntegratedGradientsAttribution`.
     public init() {}
 
@@ -61,6 +63,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let stepCount = CodingKeys(stringValue: "stepCount")
+      static let smoothGradConfig = CodingKeys(stringValue: "smoothGradConfig")
+      static let blurBaselineConfig = CodingKeys(stringValue: "blurBaselineConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "stepCount",
+        "smoothGradConfig",
+        "blurBaselineConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .stepCount) {
+        self.stepCount = value
+      }
+      self.smoothGradConfig = try container.decodeIfPresent(
+        SmoothGradConfig.self, forKey: .smoothGradConfig)
+      self.blurBaselineConfig = try container.decodeIfPresent(
+        BlurBaselineConfig.self, forKey: .blurBaselineConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.stepCount, forKey: .stepCount)
+      try container.encodeIfPresent(self.smoothGradConfig, forKey: .smoothGradConfig)
+      try container.encodeIfPresent(self.blurBaselineConfig, forKey: .blurBaselineConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

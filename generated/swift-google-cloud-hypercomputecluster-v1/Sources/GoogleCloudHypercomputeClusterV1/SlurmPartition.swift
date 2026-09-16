@@ -34,6 +34,8 @@ public struct SlurmPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.hypercomputecluster.v1.SlurmNodeSet.id]: <doc:SlurmNodeSet/id>
   public var nodeSetIds: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SlurmPartition`.
   public init() {}
 
@@ -48,6 +50,44 @@ public struct SlurmPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let id = CodingKeys(stringValue: "id")
+    static let nodeSetIds = CodingKeys(stringValue: "nodeSetIds")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "id",
+      "nodeSetIds",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nodeSetIds) {
+      self.nodeSetIds = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.nodeSetIds, forKey: .nodeSetIds)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

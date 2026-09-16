@@ -46,6 +46,8 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
   /// The password Oracle Goldengate uses to connect to Snowflake platform.
   public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateSnowflakeConnectionProperties`.
   public init() {}
 
@@ -62,27 +64,57 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case technologyType = "technologyType"
-    case connectionUrl = "connectionUrl"
-    case authenticationType = "authenticationType"
-    case username = "username"
-    case privateKeyFile = "privateKeyFile"
-    case privateKeyPassphraseSecret = "privateKeyPassphraseSecret"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let connectionUrl = CodingKeys(stringValue: "connectionUrl")
+    static let authenticationType = CodingKeys(stringValue: "authenticationType")
+    static let username = CodingKeys(stringValue: "username")
+    static let privateKeyFile = CodingKeys(stringValue: "privateKeyFile")
+    static let privateKeyPassphraseSecret = CodingKeys(stringValue: "privateKeyPassphraseSecret")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "technologyType",
+      "connectionUrl",
+      "authenticationType",
+      "username",
+      "privateKeyFile",
+      "privateKeyPassphraseSecret",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.connectionUrl = try container.decode(Swift.String.self, forKey: .connectionUrl)
-    self.authenticationType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionUrl) {
+      self.connectionUrl = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateSnowflakeConnectionProperties.AuthenticationType.self, forKey: .authenticationType)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.privateKeyFile = try container.decode(Swift.String.self, forKey: .privateKeyFile)
-    self.privateKeyPassphraseSecret = try container.decode(
+    {
+      self.authenticationType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKeyFile) {
+      self.privateKeyFile = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .privateKeyPassphraseSecret)
+    {
+      self.privateKeyPassphraseSecret = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -103,6 +135,10 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
       try connectionPasswordOptionsCheckAndSet(.passwordSecretVersion(passwordSecretVersion))
     }
     self.connectionPasswordOptions = connectionPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -121,6 +157,9 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
       case .passwordSecretVersion(let value):
         try container.encode(value, forKey: .passwordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -87,6 +87,8 @@ public struct Registration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// `Registration` supports.
   public var supportedPrivacy: [ContactPrivacy] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Registration`.
   public init() {}
 
@@ -101,6 +103,98 @@ public struct Registration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let domainName = CodingKeys(stringValue: "domainName")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let issues = CodingKeys(stringValue: "issues")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let managementSettings = CodingKeys(stringValue: "managementSettings")
+    static let dnsSettings = CodingKeys(stringValue: "dnsSettings")
+    static let contactSettings = CodingKeys(stringValue: "contactSettings")
+    static let pendingContactSettings = CodingKeys(stringValue: "pendingContactSettings")
+    static let supportedPrivacy = CodingKeys(stringValue: "supportedPrivacy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "domainName",
+      "createTime",
+      "expireTime",
+      "state",
+      "issues",
+      "labels",
+      "managementSettings",
+      "dnsSettings",
+      "contactSettings",
+      "pendingContactSettings",
+      "supportedPrivacy",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domainName) {
+      self.domainName = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(Registration.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Registration.Issue].self, forKey: .issues) {
+      self.issues = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.managementSettings = try container.decodeIfPresent(
+      ManagementSettings.self, forKey: .managementSettings)
+    self.dnsSettings = try container.decodeIfPresent(DnsSettings.self, forKey: .dnsSettings)
+    self.contactSettings = try container.decodeIfPresent(
+      ContactSettings.self, forKey: .contactSettings)
+    self.pendingContactSettings = try container.decodeIfPresent(
+      ContactSettings.self, forKey: .pendingContactSettings)
+    if let value = try container.decodeIfPresent([ContactPrivacy].self, forKey: .supportedPrivacy) {
+      self.supportedPrivacy = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.domainName, forKey: .domainName)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.issues, forKey: .issues)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.managementSettings, forKey: .managementSettings)
+    try container.encodeIfPresent(self.dnsSettings, forKey: .dnsSettings)
+    try container.encodeIfPresent(self.contactSettings, forKey: .contactSettings)
+    try container.encodeIfPresent(self.pendingContactSettings, forKey: .pendingContactSettings)
+    try container.encode(self.supportedPrivacy, forKey: .supportedPrivacy)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a `Registration`.

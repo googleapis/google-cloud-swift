@@ -110,6 +110,8 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   ///   operators are not supported.
   public var conditions: [Swift.String: GoogleType.Expr] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AccessPolicyRule`.
   public init() {}
 
@@ -124,6 +126,65 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let description = CodingKeys(stringValue: "description")
+    static let effect = CodingKeys(stringValue: "effect")
+    static let principals = CodingKeys(stringValue: "principals")
+    static let excludedPrincipals = CodingKeys(stringValue: "excludedPrincipals")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let conditions = CodingKeys(stringValue: "conditions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "description",
+      "effect",
+      "principals",
+      "excludedPrincipals",
+      "operation",
+      "conditions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+    self.effect = try container.decodeIfPresent(AccessPolicyRule.Effect.self, forKey: .effect)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .principals) {
+      self.principals = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedPrincipals) {
+      self.excludedPrincipals = value
+    }
+    self.operation = try container.decodeIfPresent(
+      AccessPolicyRule.Operation.self, forKey: .operation)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleType.Expr].self, forKey: .conditions)
+    {
+      self.conditions = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.description, forKey: .description)
+    try container.encodeIfPresent(self.effect, forKey: .effect)
+    try container.encode(self.principals, forKey: .principals)
+    try container.encode(self.excludedPrincipals, forKey: .excludedPrincipals)
+    try container.encodeIfPresent(self.operation, forKey: .operation)
+    try container.encode(self.conditions, forKey: .conditions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Attributes that are used to determine whether this rule applies to a
@@ -148,6 +209,8 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `permissions`.
     public var excludedPermissions: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Operation`.
     public init() {}
 
@@ -162,6 +225,46 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let permissions = CodingKeys(stringValue: "permissions")
+      static let excludedPermissions = CodingKeys(stringValue: "excludedPermissions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "permissions",
+        "excludedPermissions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permissions) {
+        self.permissions = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .excludedPermissions)
+      {
+        self.excludedPermissions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.permissions, forKey: .permissions)
+      try container.encode(self.excludedPermissions, forKey: .excludedPermissions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

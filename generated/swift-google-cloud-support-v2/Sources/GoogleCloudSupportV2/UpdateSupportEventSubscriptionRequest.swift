@@ -30,6 +30,8 @@ public struct UpdateSupportEventSubscriptionRequest: Codable, Equatable, GoogleC
   /// pub_sub_topic.
   public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateSupportEventSubscriptionRequest`.
   public init() {}
 
@@ -44,6 +46,42 @@ public struct UpdateSupportEventSubscriptionRequest: Codable, Equatable, GoogleC
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let supportEventSubscription = CodingKeys(stringValue: "supportEventSubscription")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "supportEventSubscription",
+      "updateMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.supportEventSubscription = try container.decodeIfPresent(
+      SupportEventSubscription.self, forKey: .supportEventSubscription)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.supportEventSubscription, forKey: .supportEventSubscription)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

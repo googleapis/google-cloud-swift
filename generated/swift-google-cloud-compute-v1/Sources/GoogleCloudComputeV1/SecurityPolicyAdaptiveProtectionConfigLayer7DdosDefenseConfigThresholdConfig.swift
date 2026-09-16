@@ -46,6 +46,8 @@
       [SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig] =
         []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig`.
     public init() {}
 
@@ -60,6 +62,87 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoDeployConfidenceThreshold = CodingKeys(
+        stringValue: "autoDeployConfidenceThreshold")
+      static let autoDeployExpirationSec = CodingKeys(stringValue: "autoDeployExpirationSec")
+      static let autoDeployImpactedBaselineThreshold = CodingKeys(
+        stringValue: "autoDeployImpactedBaselineThreshold")
+      static let autoDeployLoadThreshold = CodingKeys(stringValue: "autoDeployLoadThreshold")
+      static let detectionAbsoluteQps = CodingKeys(stringValue: "detectionAbsoluteQps")
+      static let detectionLoadThreshold = CodingKeys(stringValue: "detectionLoadThreshold")
+      static let detectionRelativeToBaselineQps = CodingKeys(
+        stringValue: "detectionRelativeToBaselineQps")
+      static let name = CodingKeys(stringValue: "name")
+      static let trafficGranularityConfigs = CodingKeys(stringValue: "trafficGranularityConfigs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoDeployConfidenceThreshold",
+        "autoDeployExpirationSec",
+        "autoDeployImpactedBaselineThreshold",
+        "autoDeployLoadThreshold",
+        "detectionAbsoluteQps",
+        "detectionLoadThreshold",
+        "detectionRelativeToBaselineQps",
+        "name",
+        "trafficGranularityConfigs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoDeployConfidenceThreshold = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .autoDeployConfidenceThreshold)
+      self.autoDeployExpirationSec = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .autoDeployExpirationSec)
+      self.autoDeployImpactedBaselineThreshold = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .autoDeployImpactedBaselineThreshold)
+      self.autoDeployLoadThreshold = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .autoDeployLoadThreshold)
+      self.detectionAbsoluteQps = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .detectionAbsoluteQps)
+      self.detectionLoadThreshold = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .detectionLoadThreshold)
+      self.detectionRelativeToBaselineQps = try container.decodeIfPresent(
+        Swift.Float.self, forKey: .detectionRelativeToBaselineQps)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(
+        [
+          SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig
+        ].self, forKey: .trafficGranularityConfigs)
+      {
+        self.trafficGranularityConfigs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.autoDeployConfidenceThreshold, forKey: .autoDeployConfidenceThreshold)
+      try container.encodeIfPresent(self.autoDeployExpirationSec, forKey: .autoDeployExpirationSec)
+      try container.encodeIfPresent(
+        self.autoDeployImpactedBaselineThreshold, forKey: .autoDeployImpactedBaselineThreshold)
+      try container.encodeIfPresent(self.autoDeployLoadThreshold, forKey: .autoDeployLoadThreshold)
+      try container.encodeIfPresent(self.detectionAbsoluteQps, forKey: .detectionAbsoluteQps)
+      try container.encodeIfPresent(self.detectionLoadThreshold, forKey: .detectionLoadThreshold)
+      try container.encodeIfPresent(
+        self.detectionRelativeToBaselineQps, forKey: .detectionRelativeToBaselineQps)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encode(self.trafficGranularityConfigs, forKey: .trafficGranularityConfigs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

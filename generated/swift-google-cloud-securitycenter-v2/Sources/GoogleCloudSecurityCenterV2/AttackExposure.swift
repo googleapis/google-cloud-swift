@@ -50,6 +50,8 @@ public struct AttackExposure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// finding.
   public var exposedLowValueResourcesCount: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttackExposure`.
   public init() {}
 
@@ -64,6 +66,84 @@ public struct AttackExposure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let score = CodingKeys(stringValue: "score")
+    static let latestCalculationTime = CodingKeys(stringValue: "latestCalculationTime")
+    static let attackExposureResult = CodingKeys(stringValue: "attackExposureResult")
+    static let state = CodingKeys(stringValue: "state")
+    static let exposedHighValueResourcesCount = CodingKeys(
+      stringValue: "exposedHighValueResourcesCount")
+    static let exposedMediumValueResourcesCount = CodingKeys(
+      stringValue: "exposedMediumValueResourcesCount")
+    static let exposedLowValueResourcesCount = CodingKeys(
+      stringValue: "exposedLowValueResourcesCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "score",
+      "latestCalculationTime",
+      "attackExposureResult",
+      "state",
+      "exposedHighValueResourcesCount",
+      "exposedMediumValueResourcesCount",
+      "exposedLowValueResourcesCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .score) {
+      self.score = value
+    }
+    self.latestCalculationTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .latestCalculationTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attackExposureResult) {
+      self.attackExposureResult = value
+    }
+    if let value = try container.decodeIfPresent(AttackExposure.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .exposedHighValueResourcesCount)
+    {
+      self.exposedHighValueResourcesCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .exposedMediumValueResourcesCount)
+    {
+      self.exposedMediumValueResourcesCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .exposedLowValueResourcesCount)
+    {
+      self.exposedLowValueResourcesCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.score, forKey: .score)
+    try container.encodeIfPresent(self.latestCalculationTime, forKey: .latestCalculationTime)
+    try container.encode(self.attackExposureResult, forKey: .attackExposureResult)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(
+      self.exposedHighValueResourcesCount, forKey: .exposedHighValueResourcesCount)
+    try container.encode(
+      self.exposedMediumValueResourcesCount, forKey: .exposedMediumValueResourcesCount)
+    try container.encode(self.exposedLowValueResourcesCount, forKey: .exposedLowValueResourcesCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// This enum defines the various states an AttackExposure can be in.

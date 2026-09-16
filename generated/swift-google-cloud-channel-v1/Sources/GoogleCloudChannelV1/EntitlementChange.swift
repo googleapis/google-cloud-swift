@@ -55,6 +55,8 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The reason the change was made
   public var changeReason: OneOf_ChangeReason? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EntitlementChange`.
   public init() {}
 
@@ -71,34 +73,69 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case suspensionReason = "suspensionReason"
-    case cancellationReason = "cancellationReason"
-    case activationReason = "activationReason"
-    case otherChangeReason = "otherChangeReason"
-    case entitlement = "entitlement"
-    case offer = "offer"
-    case provisionedService = "provisionedService"
-    case changeType = "changeType"
-    case createTime = "createTime"
-    case operatorType = "operatorType"
-    case parameters = "parameters"
-    case `operator` = "operator"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let suspensionReason = CodingKeys(stringValue: "suspensionReason")
+    static let cancellationReason = CodingKeys(stringValue: "cancellationReason")
+    static let activationReason = CodingKeys(stringValue: "activationReason")
+    static let otherChangeReason = CodingKeys(stringValue: "otherChangeReason")
+    static let entitlement = CodingKeys(stringValue: "entitlement")
+    static let offer = CodingKeys(stringValue: "offer")
+    static let provisionedService = CodingKeys(stringValue: "provisionedService")
+    static let changeType = CodingKeys(stringValue: "changeType")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let operatorType = CodingKeys(stringValue: "operatorType")
+    static let parameters = CodingKeys(stringValue: "parameters")
+    static let `operator` = CodingKeys(stringValue: "operator")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "suspensionReason",
+      "cancellationReason",
+      "activationReason",
+      "otherChangeReason",
+      "entitlement",
+      "offer",
+      "provisionedService",
+      "changeType",
+      "createTime",
+      "operatorType",
+      "parameters",
+      "operator",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.entitlement = try container.decode(Swift.String.self, forKey: .entitlement)
-    self.offer = try container.decode(Swift.String.self, forKey: .offer)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlement) {
+      self.entitlement = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offer) {
+      self.offer = value
+    }
     self.provisionedService = try container.decodeIfPresent(
       ProvisionedService.self, forKey: .provisionedService)
-    self.changeType = try container.decode(EntitlementChange.ChangeType.self, forKey: .changeType)
+    if let value = try container.decodeIfPresent(
+      EntitlementChange.ChangeType.self, forKey: .changeType)
+    {
+      self.changeType = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
-    self.operatorType = try container.decode(
+    if let value = try container.decodeIfPresent(
       EntitlementChange.OperatorType.self, forKey: .operatorType)
-    self.parameters = try container.decode([Parameter].self, forKey: .parameters)
-    self.`operator` = try container.decode(Swift.String.self, forKey: .`operator`)
+    {
+      self.operatorType = value
+    }
+    if let value = try container.decodeIfPresent([Parameter].self, forKey: .parameters) {
+      self.parameters = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`operator`) {
+      self.`operator` = value
+    }
 
     var changeReason: OneOf_ChangeReason? = nil
     let changeReasonCheckAndSet = {
@@ -131,15 +168,19 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try changeReasonCheckAndSet(.otherChangeReason(otherChangeReason))
     }
     self.changeReason = changeReason
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entitlement, forKey: .entitlement)
     try container.encode(self.offer, forKey: .offer)
-    try container.encode(self.provisionedService, forKey: .provisionedService)
+    try container.encodeIfPresent(self.provisionedService, forKey: .provisionedService)
     try container.encode(self.changeType, forKey: .changeType)
-    try container.encode(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.operatorType, forKey: .operatorType)
     try container.encode(self.parameters, forKey: .parameters)
     try container.encode(self.`operator`, forKey: .`operator`)
@@ -155,6 +196,9 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .otherChangeReason(let value):
         try container.encode(value, forKey: .otherChangeReason)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

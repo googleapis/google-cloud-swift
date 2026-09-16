@@ -49,6 +49,8 @@
     /// //osconfig.googleapis.com/projects/1/locations/global/policyOrchestrators/po1
     public var orchestrationSource: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RolloutRolloutEntityOrchestratedEntity`.
     public init() {}
 
@@ -63,6 +65,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conflictBehavior = CodingKeys(stringValue: "conflictBehavior")
+      static let orchestrationAction = CodingKeys(stringValue: "orchestrationAction")
+      static let orchestrationSource = CodingKeys(stringValue: "orchestrationSource")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conflictBehavior",
+        "orchestrationAction",
+        "orchestrationSource",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.conflictBehavior = try container.decodeIfPresent(
+        Swift.String.self, forKey: .conflictBehavior)
+      self.orchestrationAction = try container.decodeIfPresent(
+        Swift.String.self, forKey: .orchestrationAction)
+      self.orchestrationSource = try container.decodeIfPresent(
+        Swift.String.self, forKey: .orchestrationSource)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.conflictBehavior, forKey: .conflictBehavior)
+      try container.encodeIfPresent(self.orchestrationAction, forKey: .orchestrationAction)
+      try container.encodeIfPresent(self.orchestrationSource, forKey: .orchestrationSource)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

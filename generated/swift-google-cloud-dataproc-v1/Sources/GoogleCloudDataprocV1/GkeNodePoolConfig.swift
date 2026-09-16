@@ -42,6 +42,8 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// is enabled only when a valid configuration is present.
   public var autoscaling: GkeNodePoolConfig.GkeNodePoolAutoscalingConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GkeNodePoolConfig`.
   public init() {}
 
@@ -56,6 +58,48 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let config = CodingKeys(stringValue: "config")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let autoscaling = CodingKeys(stringValue: "autoscaling")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "config",
+      "locations",
+      "autoscaling",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.config = try container.decodeIfPresent(
+      GkeNodePoolConfig.GkeNodeConfig.self, forKey: .config)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    self.autoscaling = try container.decodeIfPresent(
+      GkeNodePoolConfig.GkeNodePoolAutoscalingConfig.self, forKey: .autoscaling)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encodeIfPresent(self.autoscaling, forKey: .autoscaling)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Parameters that describe cluster nodes.
@@ -118,6 +162,8 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// [google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig.preemptible]: <doc:GkeNodePoolConfig/GkeNodeConfig/preemptible>
     public var spot: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GkeNodeConfig`.
     public init() {}
 
@@ -132,6 +178,76 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let machineType = CodingKeys(stringValue: "machineType")
+      static let localSsdCount = CodingKeys(stringValue: "localSsdCount")
+      static let preemptible = CodingKeys(stringValue: "preemptible")
+      static let accelerators = CodingKeys(stringValue: "accelerators")
+      static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+      static let bootDiskKmsKey = CodingKeys(stringValue: "bootDiskKmsKey")
+      static let spot = CodingKeys(stringValue: "spot")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "machineType",
+        "localSsdCount",
+        "preemptible",
+        "accelerators",
+        "minCpuPlatform",
+        "bootDiskKmsKey",
+        "spot",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+        self.machineType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdCount) {
+        self.localSsdCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preemptible) {
+        self.preemptible = value
+      }
+      if let value = try container.decodeIfPresent(
+        [GkeNodePoolConfig.GkeNodePoolAcceleratorConfig].self, forKey: .accelerators)
+      {
+        self.accelerators = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform) {
+        self.minCpuPlatform = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bootDiskKmsKey) {
+        self.bootDiskKmsKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .spot) {
+        self.spot = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.machineType, forKey: .machineType)
+      try container.encode(self.localSsdCount, forKey: .localSsdCount)
+      try container.encode(self.preemptible, forKey: .preemptible)
+      try container.encode(self.accelerators, forKey: .accelerators)
+      try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
+      try container.encode(self.bootDiskKmsKey, forKey: .bootDiskKmsKey)
+      try container.encode(self.spot, forKey: .spot)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -161,6 +277,8 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
     public var gpuPartitionSize: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GkeNodePoolAcceleratorConfig`.
     public init() {}
 
@@ -175,6 +293,50 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let acceleratorCount = CodingKeys(stringValue: "acceleratorCount")
+      static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+      static let gpuPartitionSize = CodingKeys(stringValue: "gpuPartitionSize")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "acceleratorCount",
+        "acceleratorType",
+        "gpuPartitionSize",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .acceleratorCount) {
+        self.acceleratorCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+        self.acceleratorType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gpuPartitionSize) {
+        self.gpuPartitionSize = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.acceleratorCount, forKey: .acceleratorCount)
+      try container.encode(self.acceleratorType, forKey: .acceleratorType)
+      try container.encode(self.gpuPartitionSize, forKey: .gpuPartitionSize)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -203,6 +365,8 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// **Note:** Quota must be sufficient to scale up the cluster.
     public var maxNodeCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GkeNodePoolAutoscalingConfig`.
     public init() {}
 
@@ -217,6 +381,44 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minNodeCount = CodingKeys(stringValue: "minNodeCount")
+      static let maxNodeCount = CodingKeys(stringValue: "maxNodeCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minNodeCount",
+        "maxNodeCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount) {
+        self.minNodeCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxNodeCount) {
+        self.maxNodeCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.minNodeCount, forKey: .minNodeCount)
+      try container.encode(self.maxNodeCount, forKey: .maxNodeCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

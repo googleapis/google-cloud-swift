@@ -46,6 +46,8 @@
     /// Optional. Whether enhanced query insights feature is enabled.
     public var enhancedQueryInsightsEnabled: GoogleCloudWKT.BoolValue? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InsightsConfig`.
     public init() {}
 
@@ -60,6 +62,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let queryInsightsEnabled = CodingKeys(stringValue: "queryInsightsEnabled")
+      static let recordClientAddress = CodingKeys(stringValue: "recordClientAddress")
+      static let recordApplicationTags = CodingKeys(stringValue: "recordApplicationTags")
+      static let queryStringLength = CodingKeys(stringValue: "queryStringLength")
+      static let queryPlansPerMinute = CodingKeys(stringValue: "queryPlansPerMinute")
+      static let enhancedQueryInsightsEnabled = CodingKeys(
+        stringValue: "enhancedQueryInsightsEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "queryInsightsEnabled",
+        "recordClientAddress",
+        "recordApplicationTags",
+        "queryStringLength",
+        "queryPlansPerMinute",
+        "enhancedQueryInsightsEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .queryInsightsEnabled) {
+        self.queryInsightsEnabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recordClientAddress) {
+        self.recordClientAddress = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recordApplicationTags)
+      {
+        self.recordApplicationTags = value
+      }
+      self.queryStringLength = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .queryStringLength)
+      self.queryPlansPerMinute = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .queryPlansPerMinute)
+      self.enhancedQueryInsightsEnabled = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .enhancedQueryInsightsEnabled)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.queryInsightsEnabled, forKey: .queryInsightsEnabled)
+      try container.encode(self.recordClientAddress, forKey: .recordClientAddress)
+      try container.encode(self.recordApplicationTags, forKey: .recordApplicationTags)
+      try container.encodeIfPresent(self.queryStringLength, forKey: .queryStringLength)
+      try container.encodeIfPresent(self.queryPlansPerMinute, forKey: .queryPlansPerMinute)
+      try container.encodeIfPresent(
+        self.enhancedQueryInsightsEnabled, forKey: .enhancedQueryInsightsEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -37,6 +37,8 @@
     /// peering connection.
     public var updateStrategy: NetworkPeeringConnectionStatus.UpdateStrategy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkPeeringConnectionStatus`.
     public init() {}
 
@@ -51,6 +53,47 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consensusState = CodingKeys(stringValue: "consensusState")
+      static let trafficConfiguration = CodingKeys(stringValue: "trafficConfiguration")
+      static let updateStrategy = CodingKeys(stringValue: "updateStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consensusState",
+        "trafficConfiguration",
+        "updateStrategy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consensusState = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatusConsensusState.self, forKey: .consensusState)
+      self.trafficConfiguration = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatusTrafficConfiguration.self, forKey: .trafficConfiguration)
+      self.updateStrategy = try container.decodeIfPresent(
+        NetworkPeeringConnectionStatus.UpdateStrategy.self, forKey: .updateStrategy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.consensusState, forKey: .consensusState)
+      try container.encodeIfPresent(self.trafficConfiguration, forKey: .trafficConfiguration)
+      try container.encodeIfPresent(self.updateStrategy, forKey: .updateStrategy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [updateStrategy][google.cloud.compute.v1.NetworkPeeringConnectionStatus.updateStrategy] field.

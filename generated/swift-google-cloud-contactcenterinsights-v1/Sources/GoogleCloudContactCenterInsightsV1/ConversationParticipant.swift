@@ -35,6 +35,8 @@ public struct ConversationParticipant: Codable, Equatable, GoogleCloudWKT._AnyPa
 
   public var participant: OneOf_Participant? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConversationParticipant`.
   public init() {}
 
@@ -51,21 +53,41 @@ public struct ConversationParticipant: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case dialogflowParticipantName = "dialogflowParticipantName"
-    case userId = "userId"
-    case dialogflowParticipant = "dialogflowParticipant"
-    case obfuscatedExternalUserId = "obfuscatedExternalUserId"
-    case role = "role"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dialogflowParticipantName = CodingKeys(stringValue: "dialogflowParticipantName")
+    static let userId = CodingKeys(stringValue: "userId")
+    static let dialogflowParticipant = CodingKeys(stringValue: "dialogflowParticipant")
+    static let obfuscatedExternalUserId = CodingKeys(stringValue: "obfuscatedExternalUserId")
+    static let role = CodingKeys(stringValue: "role")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dialogflowParticipantName",
+      "userId",
+      "dialogflowParticipant",
+      "obfuscatedExternalUserId",
+      "role",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.dialogflowParticipant = try container.decode(
-      Swift.String.self, forKey: .dialogflowParticipant)
-    self.obfuscatedExternalUserId = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dialogflowParticipant)
+    {
+      self.dialogflowParticipant = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .obfuscatedExternalUserId)
-    self.role = try container.decode(ConversationParticipant.Role.self, forKey: .role)
+    {
+      self.obfuscatedExternalUserId = value
+    }
+    if let value = try container.decodeIfPresent(ConversationParticipant.Role.self, forKey: .role) {
+      self.role = value
+    }
 
     var participant: OneOf_Participant? = nil
     let participantCheckAndSet = {
@@ -86,6 +108,10 @@ public struct ConversationParticipant: Codable, Equatable, GoogleCloudWKT._AnyPa
       try participantCheckAndSet(.userId(userId))
     }
     self.participant = participant
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -101,6 +127,9 @@ public struct ConversationParticipant: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .userId(let value):
         try container.encode(value, forKey: .userId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

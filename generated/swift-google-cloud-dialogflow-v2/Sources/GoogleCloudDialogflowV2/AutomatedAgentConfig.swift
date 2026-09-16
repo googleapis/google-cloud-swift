@@ -47,6 +47,8 @@
     /// This value should be no longer than 1 day.
     public var sessionTtl: GoogleCloudWKT.Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AutomatedAgentConfig`.
     public init() {}
 
@@ -61,6 +63,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agent = CodingKeys(stringValue: "agent")
+      static let sessionTtl = CodingKeys(stringValue: "sessionTtl")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agent",
+        "sessionTtl",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+        self.agent = value
+      }
+      self.sessionTtl = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .sessionTtl)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.agent, forKey: .agent)
+      try container.encodeIfPresent(self.sessionTtl, forKey: .sessionTtl)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

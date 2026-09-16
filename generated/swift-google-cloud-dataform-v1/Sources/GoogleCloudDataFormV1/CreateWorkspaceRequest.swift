@@ -32,6 +32,8 @@ public struct CreateWorkspaceRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// component of the workspace's resource name.
   public var workspaceId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateWorkspaceRequest`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct CreateWorkspaceRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let workspace = CodingKeys(stringValue: "workspace")
+    static let workspaceId = CodingKeys(stringValue: "workspaceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "workspace",
+      "workspaceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.workspace = try container.decodeIfPresent(Workspace.self, forKey: .workspace)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workspaceId) {
+      self.workspaceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.workspace, forKey: .workspace)
+    try container.encode(self.workspaceId, forKey: .workspaceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

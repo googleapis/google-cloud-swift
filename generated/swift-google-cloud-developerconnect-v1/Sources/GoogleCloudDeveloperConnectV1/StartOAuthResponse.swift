@@ -43,6 +43,8 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The ID of the service provider.
   public var id: OneOf_Id? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StartOAuthResponse`.
   public init() {}
 
@@ -59,24 +61,51 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case systemProviderId = "systemProviderId"
-    case ticket = "ticket"
-    case codeChallenge = "codeChallenge"
-    case codeChallengeMethod = "codeChallengeMethod"
-    case clientId = "clientId"
-    case scopes = "scopes"
-    case authUri = "authUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let systemProviderId = CodingKeys(stringValue: "systemProviderId")
+    static let ticket = CodingKeys(stringValue: "ticket")
+    static let codeChallenge = CodingKeys(stringValue: "codeChallenge")
+    static let codeChallengeMethod = CodingKeys(stringValue: "codeChallengeMethod")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let scopes = CodingKeys(stringValue: "scopes")
+    static let authUri = CodingKeys(stringValue: "authUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "systemProviderId",
+      "ticket",
+      "codeChallenge",
+      "codeChallengeMethod",
+      "clientId",
+      "scopes",
+      "authUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.ticket = try container.decode(Swift.String.self, forKey: .ticket)
-    self.codeChallenge = try container.decode(Swift.String.self, forKey: .codeChallenge)
-    self.codeChallengeMethod = try container.decode(Swift.String.self, forKey: .codeChallengeMethod)
-    self.clientId = try container.decode(Swift.String.self, forKey: .clientId)
-    self.scopes = try container.decode([Swift.String].self, forKey: .scopes)
-    self.authUri = try container.decode(Swift.String.self, forKey: .authUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ticket) {
+      self.ticket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codeChallenge) {
+      self.codeChallenge = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codeChallengeMethod) {
+      self.codeChallengeMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+      self.scopes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .authUri) {
+      self.authUri = value
+    }
 
     var id: OneOf_Id? = nil
     let idCheckAndSet = {
@@ -93,6 +122,10 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try idCheckAndSet(.systemProviderId(systemProviderId))
     }
     self.id = id
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +142,9 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .systemProviderId(let value):
         try container.encode(value, forKey: .systemProviderId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -18,8 +18,8 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
-import GoogleType
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleType
 internal import GoogleCloudWKTConvert
 
 extension GoogleType.Date {
@@ -30,6 +30,7 @@ extension GoogleType.Date {
     self.year = proto.year
     self.month = proto.month
     self.day = proto.day
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -37,6 +38,9 @@ extension GoogleType.Date {
     proto.year = self.year
     proto.month = self.month
     proto.day = self.day
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

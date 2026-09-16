@@ -40,6 +40,8 @@ public struct SoleTenancyPreferences: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// An empty list means that all possible node types will be considered.
   public var nodeTypes: [SoleTenantNodeType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SoleTenancyPreferences`.
   public init() {}
 
@@ -54,6 +56,60 @@ public struct SoleTenancyPreferences: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cpuOvercommitRatio = CodingKeys(stringValue: "cpuOvercommitRatio")
+    static let hostMaintenancePolicy = CodingKeys(stringValue: "hostMaintenancePolicy")
+    static let commitmentPlan = CodingKeys(stringValue: "commitmentPlan")
+    static let nodeTypes = CodingKeys(stringValue: "nodeTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cpuOvercommitRatio",
+      "hostMaintenancePolicy",
+      "commitmentPlan",
+      "nodeTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .cpuOvercommitRatio) {
+      self.cpuOvercommitRatio = value
+    }
+    if let value = try container.decodeIfPresent(
+      SoleTenancyPreferences.HostMaintenancePolicy.self, forKey: .hostMaintenancePolicy)
+    {
+      self.hostMaintenancePolicy = value
+    }
+    if let value = try container.decodeIfPresent(
+      SoleTenancyPreferences.CommitmentPlan.self, forKey: .commitmentPlan)
+    {
+      self.commitmentPlan = value
+    }
+    if let value = try container.decodeIfPresent([SoleTenantNodeType].self, forKey: .nodeTypes) {
+      self.nodeTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.cpuOvercommitRatio, forKey: .cpuOvercommitRatio)
+    try container.encode(self.hostMaintenancePolicy, forKey: .hostMaintenancePolicy)
+    try container.encode(self.commitmentPlan, forKey: .commitmentPlan)
+    try container.encode(self.nodeTypes, forKey: .nodeTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Sole Tenancy nodes maintenance policy.

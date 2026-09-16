@@ -23,6 +23,8 @@ public struct DeviceMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var contents: OneOf_Contents? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeviceMessage`.
   public init() {}
 
@@ -39,10 +41,21 @@ public struct DeviceMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case statusUpdate = "statusUpdate"
-    case streamStatus = "streamStatus"
-    case streamData = "streamData"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let statusUpdate = CodingKeys(stringValue: "statusUpdate")
+    static let streamStatus = CodingKeys(stringValue: "streamStatus")
+    static let streamData = CodingKeys(stringValue: "streamData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "statusUpdate",
+      "streamStatus",
+      "streamData",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +81,10 @@ public struct DeviceMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try contentsCheckAndSet(.streamData(streamData))
     }
     self.contents = contents
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +99,9 @@ public struct DeviceMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .streamData(let value):
         try container.encode(value, forKey: .streamData)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -32,6 +32,8 @@ public struct ResourceManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// cluster.
   public var clusterScoped: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceManifest`.
   public init() {}
 
@@ -46,6 +48,44 @@ public struct ResourceManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let manifest = CodingKeys(stringValue: "manifest")
+    static let clusterScoped = CodingKeys(stringValue: "clusterScoped")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "manifest",
+      "clusterScoped",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifest) {
+      self.manifest = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clusterScoped) {
+      self.clusterScoped = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.manifest, forKey: .manifest)
+    try container.encode(self.clusterScoped, forKey: .clusterScoped)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

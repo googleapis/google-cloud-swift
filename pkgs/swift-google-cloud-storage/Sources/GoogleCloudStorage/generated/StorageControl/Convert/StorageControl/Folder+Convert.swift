@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension Folder {
@@ -32,6 +32,7 @@ extension Folder {
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.pendingRenameInfo =
       proto.hasPendingRenameInfo ? try .init(proto: proto.pendingRenameInfo) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -42,6 +43,9 @@ extension Folder {
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     if let pendingRenameInfo = self.pendingRenameInfo {
       proto.pendingRenameInfo = try pendingRenameInfo.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

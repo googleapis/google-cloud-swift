@@ -36,6 +36,8 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// weekly_maintenance_windows is expected to be one.
   public var weeklyMaintenanceWindow: [WeeklyMaintenanceWindow] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenancePolicy`.
   public init() {}
 
@@ -50,6 +52,56 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let weeklyMaintenanceWindow = CodingKeys(stringValue: "weeklyMaintenanceWindow")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "createTime",
+      "updateTime",
+      "description",
+      "weeklyMaintenanceWindow",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [WeeklyMaintenanceWindow].self, forKey: .weeklyMaintenanceWindow)
+    {
+      self.weeklyMaintenanceWindow = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.weeklyMaintenanceWindow, forKey: .weeklyMaintenanceWindow)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -56,6 +56,8 @@
     /// Optional. Whether to include BigQuery Export setting.
     public var includeBigqueryExportSettings: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportAgentRequest`.
     public init() {}
 
@@ -72,6 +74,73 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let agentUri = CodingKeys(stringValue: "agentUri")
+      static let dataFormat = CodingKeys(stringValue: "dataFormat")
+      static let environment = CodingKeys(stringValue: "environment")
+      static let gitDestination = CodingKeys(stringValue: "gitDestination")
+      static let includeBigqueryExportSettings = CodingKeys(
+        stringValue: "includeBigqueryExportSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "agentUri",
+        "dataFormat",
+        "environment",
+        "gitDestination",
+        "includeBigqueryExportSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentUri) {
+        self.agentUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        ExportAgentRequest.DataFormat.self, forKey: .dataFormat)
+      {
+        self.dataFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .environment) {
+        self.environment = value
+      }
+      self.gitDestination = try container.decodeIfPresent(
+        ExportAgentRequest.GitDestination.self, forKey: .gitDestination)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .includeBigqueryExportSettings)
+      {
+        self.includeBigqueryExportSettings = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.agentUri, forKey: .agentUri)
+      try container.encode(self.dataFormat, forKey: .dataFormat)
+      try container.encode(self.environment, forKey: .environment)
+      try container.encodeIfPresent(self.gitDestination, forKey: .gitDestination)
+      try container.encode(
+        self.includeBigqueryExportSettings, forKey: .includeBigqueryExportSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Settings for exporting to a git branch.
     public struct GitDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -81,6 +150,8 @@
 
       /// Commit message for the git push.
       public var commitMessage: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GitDestination`.
       public init() {}
@@ -96,6 +167,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let trackingBranch = CodingKeys(stringValue: "trackingBranch")
+        static let commitMessage = CodingKeys(stringValue: "commitMessage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "trackingBranch",
+          "commitMessage",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackingBranch) {
+          self.trackingBranch = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commitMessage) {
+          self.commitMessage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.trackingBranch, forKey: .trackingBranch)
+        try container.encode(self.commitMessage, forKey: .commitMessage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

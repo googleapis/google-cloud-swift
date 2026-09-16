@@ -39,6 +39,8 @@ public struct Stage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// State messages from the current Stage.
   public var stateMessages: [StateMessage] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Stage`.
   public init() {}
 
@@ -53,6 +55,68 @@ public struct Stage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let message = CodingKeys(stringValue: "message")
+    static let state = CodingKeys(stringValue: "state")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let resourceUri = CodingKeys(stringValue: "resourceUri")
+    static let stateMessages = CodingKeys(stringValue: "stateMessages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "message",
+      "state",
+      "resource",
+      "resourceUri",
+      "stateMessages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Stage.Name.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+      self.message = value
+    }
+    if let value = try container.decodeIfPresent(Stage.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceUri) {
+      self.resourceUri = value
+    }
+    if let value = try container.decodeIfPresent([StateMessage].self, forKey: .stateMessages) {
+      self.stateMessages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.message, forKey: .message)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.resourceUri, forKey: .resourceUri)
+    try container.encode(self.stateMessages, forKey: .stateMessages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible names for a Stage

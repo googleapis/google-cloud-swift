@@ -25,6 +25,8 @@ public struct BatchCreatePullRequestCommentsResponse: Codable, Equatable, Google
   /// The list of pull request comments created.
   public var pullRequestComments: [PullRequestComment] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchCreatePullRequestCommentsResponse`.
   public init() {}
 
@@ -39,6 +41,40 @@ public struct BatchCreatePullRequestCommentsResponse: Codable, Equatable, Google
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let pullRequestComments = CodingKeys(stringValue: "pullRequestComments")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "pullRequestComments"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [PullRequestComment].self, forKey: .pullRequestComments)
+    {
+      self.pullRequestComments = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.pullRequestComments, forKey: .pullRequestComments)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

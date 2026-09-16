@@ -42,6 +42,8 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWK
   /// Which destination to use when applying the conversion workspace.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApplyConversionWorkspaceRequest`.
   public init() {}
 
@@ -58,20 +60,41 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case filter = "filter"
-    case dryRun = "dryRun"
-    case autoCommit = "autoCommit"
-    case connectionProfile = "connectionProfile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let dryRun = CodingKeys(stringValue: "dryRun")
+    static let autoCommit = CodingKeys(stringValue: "autoCommit")
+    static let connectionProfile = CodingKeys(stringValue: "connectionProfile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "filter",
+      "dryRun",
+      "autoCommit",
+      "connectionProfile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.filter = try container.decode(Swift.String.self, forKey: .filter)
-    self.dryRun = try container.decode(Swift.Bool.self, forKey: .dryRun)
-    self.autoCommit = try container.decode(Swift.Bool.self, forKey: .autoCommit)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
+      self.dryRun = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoCommit) {
+      self.autoCommit = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -89,6 +112,10 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWK
       try destinationCheckAndSet(.connectionProfile(connectionProfile))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -103,6 +130,9 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleCloudWK
       case .connectionProfile(let value):
         try container.encode(value, forKey: .connectionProfile)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -57,6 +57,8 @@ public struct CreateCertificateTemplateRequest: Codable, Equatable, GoogleCloudW
   /// not supported (00000000-0000-0000-0000-000000000000).
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateCertificateTemplateRequest`.
   public init() {}
 
@@ -71,6 +73,56 @@ public struct CreateCertificateTemplateRequest: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let certificateTemplateId = CodingKeys(stringValue: "certificateTemplateId")
+    static let certificateTemplate = CodingKeys(stringValue: "certificateTemplate")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "certificateTemplateId",
+      "certificateTemplate",
+      "requestId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificateTemplateId)
+    {
+      self.certificateTemplateId = value
+    }
+    self.certificateTemplate = try container.decodeIfPresent(
+      CertificateTemplate.self, forKey: .certificateTemplate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.certificateTemplateId, forKey: .certificateTemplateId)
+    try container.encodeIfPresent(self.certificateTemplate, forKey: .certificateTemplate)
+    try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

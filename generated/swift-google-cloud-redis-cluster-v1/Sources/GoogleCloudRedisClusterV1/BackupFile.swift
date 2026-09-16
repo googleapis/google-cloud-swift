@@ -30,6 +30,8 @@ public struct BackupFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time when the backup file was created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackupFile`.
   public init() {}
 
@@ -44,6 +46,49 @@ public struct BackupFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fileName = CodingKeys(stringValue: "fileName")
+    static let sizeBytes = CodingKeys(stringValue: "sizeBytes")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fileName",
+      "sizeBytes",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileName) {
+      self.fileName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeBytes) {
+      self.sizeBytes = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.fileName, forKey: .fileName)
+    try container.encode(self.sizeBytes, forKey: .sizeBytes)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

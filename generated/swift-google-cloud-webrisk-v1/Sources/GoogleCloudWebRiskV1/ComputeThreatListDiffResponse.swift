@@ -49,6 +49,8 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleCloudWKT.
   /// If this field is not set clients may update as soon as they want.
   public var recommendedNextDiff: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeThreatListDiffResponse`.
   public init() {}
 
@@ -65,6 +67,64 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let responseType = CodingKeys(stringValue: "responseType")
+    static let additions = CodingKeys(stringValue: "additions")
+    static let removals = CodingKeys(stringValue: "removals")
+    static let newVersionToken = CodingKeys(stringValue: "newVersionToken")
+    static let checksum = CodingKeys(stringValue: "checksum")
+    static let recommendedNextDiff = CodingKeys(stringValue: "recommendedNextDiff")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "responseType",
+      "additions",
+      "removals",
+      "newVersionToken",
+      "checksum",
+      "recommendedNextDiff",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      ComputeThreatListDiffResponse.ResponseType.self, forKey: .responseType)
+    {
+      self.responseType = value
+    }
+    self.additions = try container.decodeIfPresent(ThreatEntryAdditions.self, forKey: .additions)
+    self.removals = try container.decodeIfPresent(ThreatEntryRemovals.self, forKey: .removals)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .newVersionToken) {
+      self.newVersionToken = value
+    }
+    self.checksum = try container.decodeIfPresent(
+      ComputeThreatListDiffResponse.Checksum.self, forKey: .checksum)
+    self.recommendedNextDiff = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .recommendedNextDiff)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.responseType, forKey: .responseType)
+    try container.encodeIfPresent(self.additions, forKey: .additions)
+    try container.encodeIfPresent(self.removals, forKey: .removals)
+    try container.encode(self.newVersionToken, forKey: .newVersionToken)
+    try container.encodeIfPresent(self.checksum, forKey: .checksum)
+    try container.encodeIfPresent(self.recommendedNextDiff, forKey: .recommendedNextDiff)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The expected state of a client's local database.
   public struct Checksum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -72,6 +132,8 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleCloudWKT.
     /// The SHA256 hash of the client state; that is, of the sorted list of all
     /// hashes present in the database.
     public var sha256: Foundation.Data = Foundation.Data()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Checksum`.
     public init() {}
@@ -87,6 +149,38 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sha256 = CodingKeys(stringValue: "sha256")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sha256"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .sha256) {
+        self.sha256 = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sha256, forKey: .sha256)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

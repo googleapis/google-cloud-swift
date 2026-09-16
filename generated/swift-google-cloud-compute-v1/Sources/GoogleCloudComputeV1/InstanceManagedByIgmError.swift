@@ -32,6 +32,8 @@
     /// Output only. The time that this error occurred. This value is in RFC3339 text format.
     public var timestamp: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceManagedByIgmError`.
     public init() {}
 
@@ -46,6 +48,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let error = CodingKeys(stringValue: "error")
+      static let instanceActionDetails = CodingKeys(stringValue: "instanceActionDetails")
+      static let timestamp = CodingKeys(stringValue: "timestamp")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "error",
+        "instanceActionDetails",
+        "timestamp",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.error = try container.decodeIfPresent(
+        InstanceManagedByIgmErrorManagedInstanceError.self, forKey: .error)
+      self.instanceActionDetails = try container.decodeIfPresent(
+        InstanceManagedByIgmErrorInstanceActionDetails.self, forKey: .instanceActionDetails)
+      self.timestamp = try container.decodeIfPresent(Swift.String.self, forKey: .timestamp)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.error, forKey: .error)
+      try container.encodeIfPresent(self.instanceActionDetails, forKey: .instanceActionDetails)
+      try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

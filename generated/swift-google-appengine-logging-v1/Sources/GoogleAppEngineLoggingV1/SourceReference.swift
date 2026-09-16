@@ -30,6 +30,8 @@ public struct SourceReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Example (git): "0035781c50ec7aa23385dc841529ce8a4b70db1b"
   public var revisionId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceReference`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct SourceReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repository = CodingKeys(stringValue: "repository")
+    static let revisionId = CodingKeys(stringValue: "revisionId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repository",
+      "revisionId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+      self.repository = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revisionId) {
+      self.revisionId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.repository, forKey: .repository)
+    try container.encode(self.revisionId, forKey: .revisionId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

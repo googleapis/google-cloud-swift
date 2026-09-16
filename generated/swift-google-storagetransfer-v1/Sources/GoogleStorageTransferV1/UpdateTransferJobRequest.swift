@@ -70,6 +70,8 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWKT._AnyP
   /// [google.storagetransfer.v1.TransferJob.transfer_spec]: <doc:TransferJob/transferSpec>
   public var updateTransferJobFieldMask: GoogleCloudWKT.FieldMask? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateTransferJobRequest`.
   public init() {}
 
@@ -84,6 +86,54 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobName = CodingKeys(stringValue: "jobName")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let transferJob = CodingKeys(stringValue: "transferJob")
+    static let updateTransferJobFieldMask = CodingKeys(stringValue: "updateTransferJobFieldMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobName",
+      "projectId",
+      "transferJob",
+      "updateTransferJobFieldMask",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobName) {
+      self.jobName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    self.transferJob = try container.decodeIfPresent(TransferJob.self, forKey: .transferJob)
+    self.updateTransferJobFieldMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateTransferJobFieldMask)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.jobName, forKey: .jobName)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encodeIfPresent(self.transferJob, forKey: .transferJob)
+    try container.encodeIfPresent(
+      self.updateTransferJobFieldMask, forKey: .updateTransferJobFieldMask)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

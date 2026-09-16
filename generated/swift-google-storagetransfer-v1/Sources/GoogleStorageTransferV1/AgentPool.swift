@@ -36,6 +36,8 @@ public struct AgentPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// default value is set as 'No Limit'.
   public var bandwidthLimit: AgentPool.BandwidthLimit? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AgentPool`.
   public init() {}
 
@@ -52,6 +54,55 @@ public struct AgentPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let state = CodingKeys(stringValue: "state")
+    static let bandwidthLimit = CodingKeys(stringValue: "bandwidthLimit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "state",
+      "bandwidthLimit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(AgentPool.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.bandwidthLimit = try container.decodeIfPresent(
+      AgentPool.BandwidthLimit.self, forKey: .bandwidthLimit)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.bandwidthLimit, forKey: .bandwidthLimit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Specifies a bandwidth limit for an agent pool.
   public struct BandwidthLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -59,6 +110,8 @@ public struct AgentPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Bandwidth rate in megabytes per second, distributed across all the agents
     /// in the pool.
     public var limitMbps: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `BandwidthLimit`.
     public init() {}
@@ -74,6 +127,38 @@ public struct AgentPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let limitMbps = CodingKeys(stringValue: "limitMbps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "limitMbps"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .limitMbps) {
+        self.limitMbps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.limitMbps, forKey: .limitMbps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

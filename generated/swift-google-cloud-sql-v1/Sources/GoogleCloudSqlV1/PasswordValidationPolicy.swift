@@ -52,6 +52,8 @@
     @available(*, deprecated)
     public var disallowCompromisedCredentials: GoogleCloudWKT.BoolValue? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PasswordValidationPolicy`.
     public init() {}
 
@@ -66,6 +68,73 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minLength = CodingKeys(stringValue: "minLength")
+      static let complexity = CodingKeys(stringValue: "complexity")
+      static let reuseInterval = CodingKeys(stringValue: "reuseInterval")
+      static let disallowUsernameSubstring = CodingKeys(stringValue: "disallowUsernameSubstring")
+      static let passwordChangeInterval = CodingKeys(stringValue: "passwordChangeInterval")
+      static let enablePasswordPolicy = CodingKeys(stringValue: "enablePasswordPolicy")
+      static let disallowCompromisedCredentials = CodingKeys(
+        stringValue: "disallowCompromisedCredentials")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minLength",
+        "complexity",
+        "reuseInterval",
+        "disallowUsernameSubstring",
+        "passwordChangeInterval",
+        "enablePasswordPolicy",
+        "disallowCompromisedCredentials",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.minLength = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .minLength)
+      if let value = try container.decodeIfPresent(
+        PasswordValidationPolicy.Complexity.self, forKey: .complexity)
+      {
+        self.complexity = value
+      }
+      self.reuseInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Int32Value.self, forKey: .reuseInterval)
+      self.disallowUsernameSubstring = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .disallowUsernameSubstring)
+      self.passwordChangeInterval = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .passwordChangeInterval)
+      self.enablePasswordPolicy = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .enablePasswordPolicy)
+      self.disallowCompromisedCredentials = try container.decodeIfPresent(
+        GoogleCloudWKT.BoolValue.self, forKey: .disallowCompromisedCredentials)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.minLength, forKey: .minLength)
+      try container.encode(self.complexity, forKey: .complexity)
+      try container.encodeIfPresent(self.reuseInterval, forKey: .reuseInterval)
+      try container.encodeIfPresent(
+        self.disallowUsernameSubstring, forKey: .disallowUsernameSubstring)
+      try container.encodeIfPresent(self.passwordChangeInterval, forKey: .passwordChangeInterval)
+      try container.encodeIfPresent(self.enablePasswordPolicy, forKey: .enablePasswordPolicy)
+      try container.encodeIfPresent(
+        self.disallowCompromisedCredentials, forKey: .disallowCompromisedCredentials)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The complexity choices of the password.

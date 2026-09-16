@@ -42,6 +42,8 @@ public struct GcpMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The name of the organization that the resource belongs to.
   public var organization: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcpMetadata`.
   public init() {}
 
@@ -56,6 +58,68 @@ public struct GcpMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let project = CodingKeys(stringValue: "project")
+    static let projectDisplayName = CodingKeys(stringValue: "projectDisplayName")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let parentDisplayName = CodingKeys(stringValue: "parentDisplayName")
+    static let folders = CodingKeys(stringValue: "folders")
+    static let organization = CodingKeys(stringValue: "organization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "project",
+      "projectDisplayName",
+      "parent",
+      "parentDisplayName",
+      "folders",
+      "organization",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectDisplayName) {
+      self.projectDisplayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentDisplayName) {
+      self.parentDisplayName = value
+    }
+    if let value = try container.decodeIfPresent([Folder].self, forKey: .folders) {
+      self.folders = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organization) {
+      self.organization = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.projectDisplayName, forKey: .projectDisplayName)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.parentDisplayName, forKey: .parentDisplayName)
+    try container.encode(self.folders, forKey: .folders)
+    try container.encode(self.organization, forKey: .organization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

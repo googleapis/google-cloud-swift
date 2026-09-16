@@ -110,6 +110,8 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Blueprint that was deployed.
   public var blueprint: OneOf_Blueprint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Revision`.
   public init() {}
 
@@ -126,55 +128,116 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case terraformBlueprint = "terraformBlueprint"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case action = "action"
-    case state = "state"
-    case applyResults = "applyResults"
-    case stateDetail = "stateDetail"
-    case errorCode = "errorCode"
-    case build = "build"
-    case logs = "logs"
-    case tfErrors = "tfErrors"
-    case errorLogs = "errorLogs"
-    case serviceAccount = "serviceAccount"
-    case importExistingResources = "importExistingResources"
-    case workerPool = "workerPool"
-    case tfVersionConstraint = "tfVersionConstraint"
-    case tfVersion = "tfVersion"
-    case quotaValidationResults = "quotaValidationResults"
-    case quotaValidation = "quotaValidation"
-    case providerConfig = "providerConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let terraformBlueprint = CodingKeys(stringValue: "terraformBlueprint")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let action = CodingKeys(stringValue: "action")
+    static let state = CodingKeys(stringValue: "state")
+    static let applyResults = CodingKeys(stringValue: "applyResults")
+    static let stateDetail = CodingKeys(stringValue: "stateDetail")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let build = CodingKeys(stringValue: "build")
+    static let logs = CodingKeys(stringValue: "logs")
+    static let tfErrors = CodingKeys(stringValue: "tfErrors")
+    static let errorLogs = CodingKeys(stringValue: "errorLogs")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let importExistingResources = CodingKeys(stringValue: "importExistingResources")
+    static let workerPool = CodingKeys(stringValue: "workerPool")
+    static let tfVersionConstraint = CodingKeys(stringValue: "tfVersionConstraint")
+    static let tfVersion = CodingKeys(stringValue: "tfVersion")
+    static let quotaValidationResults = CodingKeys(stringValue: "quotaValidationResults")
+    static let quotaValidation = CodingKeys(stringValue: "quotaValidation")
+    static let providerConfig = CodingKeys(stringValue: "providerConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "terraformBlueprint",
+      "name",
+      "createTime",
+      "updateTime",
+      "action",
+      "state",
+      "applyResults",
+      "stateDetail",
+      "errorCode",
+      "build",
+      "logs",
+      "tfErrors",
+      "errorLogs",
+      "serviceAccount",
+      "importExistingResources",
+      "workerPool",
+      "tfVersionConstraint",
+      "tfVersion",
+      "quotaValidationResults",
+      "quotaValidation",
+      "providerConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.action = try container.decode(Revision.Action.self, forKey: .action)
-    self.state = try container.decode(Revision.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Revision.Action.self, forKey: .action) {
+      self.action = value
+    }
+    if let value = try container.decodeIfPresent(Revision.State.self, forKey: .state) {
+      self.state = value
+    }
     self.applyResults = try container.decodeIfPresent(ApplyResults.self, forKey: .applyResults)
-    self.stateDetail = try container.decode(Swift.String.self, forKey: .stateDetail)
-    self.errorCode = try container.decode(Revision.ErrorCode.self, forKey: .errorCode)
-    self.build = try container.decode(Swift.String.self, forKey: .build)
-    self.logs = try container.decode(Swift.String.self, forKey: .logs)
-    self.tfErrors = try container.decode([TerraformError].self, forKey: .tfErrors)
-    self.errorLogs = try container.decode(Swift.String.self, forKey: .errorLogs)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.importExistingResources = try container.decode(
-      Swift.Bool.self, forKey: .importExistingResources)
-    self.workerPool = try container.decode(Swift.String.self, forKey: .workerPool)
-    self.tfVersionConstraint = try container.decode(Swift.String.self, forKey: .tfVersionConstraint)
-    self.tfVersion = try container.decode(Swift.String.self, forKey: .tfVersion)
-    self.quotaValidationResults = try container.decode(
-      Swift.String.self, forKey: .quotaValidationResults)
-    self.quotaValidation = try container.decode(QuotaValidation.self, forKey: .quotaValidation)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetail) {
+      self.stateDetail = value
+    }
+    if let value = try container.decodeIfPresent(Revision.ErrorCode.self, forKey: .errorCode) {
+      self.errorCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .build) {
+      self.build = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logs) {
+      self.logs = value
+    }
+    if let value = try container.decodeIfPresent([TerraformError].self, forKey: .tfErrors) {
+      self.tfErrors = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorLogs) {
+      self.errorLogs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .importExistingResources)
+    {
+      self.importExistingResources = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerPool) {
+      self.workerPool = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tfVersionConstraint) {
+      self.tfVersionConstraint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tfVersion) {
+      self.tfVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quotaValidationResults)
+    {
+      self.quotaValidationResults = value
+    }
+    if let value = try container.decodeIfPresent(QuotaValidation.self, forKey: .quotaValidation) {
+      self.quotaValidation = value
+    }
     self.providerConfig = try container.decodeIfPresent(
       ProviderConfig.self, forKey: .providerConfig)
 
@@ -194,16 +257,20 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try blueprintCheckAndSet(.terraformBlueprint(terraformBlueprint))
     }
     self.blueprint = blueprint
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.action, forKey: .action)
     try container.encode(self.state, forKey: .state)
-    try container.encode(self.applyResults, forKey: .applyResults)
+    try container.encodeIfPresent(self.applyResults, forKey: .applyResults)
     try container.encode(self.stateDetail, forKey: .stateDetail)
     try container.encode(self.errorCode, forKey: .errorCode)
     try container.encode(self.build, forKey: .build)
@@ -217,13 +284,16 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.tfVersion, forKey: .tfVersion)
     try container.encode(self.quotaValidationResults, forKey: .quotaValidationResults)
     try container.encode(self.quotaValidation, forKey: .quotaValidation)
-    try container.encode(self.providerConfig, forKey: .providerConfig)
+    try container.encodeIfPresent(self.providerConfig, forKey: .providerConfig)
 
     if let choice = self.blueprint {
       switch choice {
       case .terraformBlueprint(let value):
         try container.encode(value, forKey: .terraformBlueprint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

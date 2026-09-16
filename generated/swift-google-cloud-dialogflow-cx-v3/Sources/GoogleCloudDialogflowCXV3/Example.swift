@@ -66,6 +66,8 @@
     /// Note: example's language code is not currently used in dialogflow agents.
     public var languageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Example`.
     public init() {}
 
@@ -80,6 +82,93 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let playbookInput = CodingKeys(stringValue: "playbookInput")
+      static let playbookOutput = CodingKeys(stringValue: "playbookOutput")
+      static let actions = CodingKeys(stringValue: "actions")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let tokenCount = CodingKeys(stringValue: "tokenCount")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let conversationState = CodingKeys(stringValue: "conversationState")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "playbookInput",
+        "playbookOutput",
+        "actions",
+        "displayName",
+        "description",
+        "tokenCount",
+        "createTime",
+        "updateTime",
+        "conversationState",
+        "languageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.playbookInput = try container.decodeIfPresent(PlaybookInput.self, forKey: .playbookInput)
+      self.playbookOutput = try container.decodeIfPresent(
+        PlaybookOutput.self, forKey: .playbookOutput)
+      if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
+        self.actions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .tokenCount) {
+        self.tokenCount = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent(OutputState.self, forKey: .conversationState) {
+        self.conversationState = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.playbookInput, forKey: .playbookInput)
+      try container.encodeIfPresent(self.playbookOutput, forKey: .playbookOutput)
+      try container.encode(self.actions, forKey: .actions)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.tokenCount, forKey: .tokenCount)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.conversationState, forKey: .conversationState)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

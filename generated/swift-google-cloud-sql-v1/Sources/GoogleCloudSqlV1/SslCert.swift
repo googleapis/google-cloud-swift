@@ -53,6 +53,8 @@
     /// The URI of this resource.
     public var selfLink: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SslCert`.
     public init() {}
 
@@ -67,6 +69,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let certSerialNumber = CodingKeys(stringValue: "certSerialNumber")
+      static let cert = CodingKeys(stringValue: "cert")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let commonName = CodingKeys(stringValue: "commonName")
+      static let expirationTime = CodingKeys(stringValue: "expirationTime")
+      static let sha1Fingerprint = CodingKeys(stringValue: "sha1Fingerprint")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "certSerialNumber",
+        "cert",
+        "createTime",
+        "commonName",
+        "expirationTime",
+        "sha1Fingerprint",
+        "instance",
+        "selfLink",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certSerialNumber) {
+        self.certSerialNumber = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cert) {
+        self.cert = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .commonName) {
+        self.commonName = value
+      }
+      self.expirationTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha1Fingerprint) {
+        self.sha1Fingerprint = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink) {
+        self.selfLink = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.certSerialNumber, forKey: .certSerialNumber)
+      try container.encode(self.cert, forKey: .cert)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encode(self.commonName, forKey: .commonName)
+      try container.encodeIfPresent(self.expirationTime, forKey: .expirationTime)
+      try container.encode(self.sha1Fingerprint, forKey: .sha1Fingerprint)
+      try container.encode(self.instance, forKey: .instance)
+      try container.encode(self.selfLink, forKey: .selfLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

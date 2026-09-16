@@ -94,6 +94,8 @@ public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// for disaster recovery. Format: `project/{project}/locations/{location}`.
   public var disasterRecoverySupportedLocations: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutonomousDatabase`.
   public init() {}
 
@@ -108,6 +110,133 @@ public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let database = CodingKeys(stringValue: "database")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let entitlementId = CodingKeys(stringValue: "entitlementId")
+    static let adminPassword = CodingKeys(stringValue: "adminPassword")
+    static let adminPasswordSecretVersion = CodingKeys(stringValue: "adminPasswordSecretVersion")
+    static let properties = CodingKeys(stringValue: "properties")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let network = CodingKeys(stringValue: "network")
+    static let cidr = CodingKeys(stringValue: "cidr")
+    static let odbNetwork = CodingKeys(stringValue: "odbNetwork")
+    static let odbSubnet = CodingKeys(stringValue: "odbSubnet")
+    static let sourceConfig = CodingKeys(stringValue: "sourceConfig")
+    static let peerAutonomousDatabases = CodingKeys(stringValue: "peerAutonomousDatabases")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let disasterRecoverySupportedLocations = CodingKeys(
+      stringValue: "disasterRecoverySupportedLocations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "database",
+      "displayName",
+      "entitlementId",
+      "adminPassword",
+      "adminPasswordSecretVersion",
+      "properties",
+      "labels",
+      "network",
+      "cidr",
+      "odbNetwork",
+      "odbSubnet",
+      "sourceConfig",
+      "peerAutonomousDatabases",
+      "createTime",
+      "disasterRecoverySupportedLocations",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlementId) {
+      self.entitlementId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .adminPassword) {
+      self.adminPassword = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .adminPasswordSecretVersion)
+    {
+      self.adminPasswordSecretVersion = value
+    }
+    self.properties = try container.decodeIfPresent(
+      AutonomousDatabaseProperties.self, forKey: .properties)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cidr) {
+      self.cidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbNetwork) {
+      self.odbNetwork = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbSubnet) {
+      self.odbSubnet = value
+    }
+    self.sourceConfig = try container.decodeIfPresent(SourceConfig.self, forKey: .sourceConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .peerAutonomousDatabases)
+    {
+      self.peerAutonomousDatabases = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .disasterRecoverySupportedLocations)
+    {
+      self.disasterRecoverySupportedLocations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.database, forKey: .database)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.entitlementId, forKey: .entitlementId)
+    try container.encode(self.adminPassword, forKey: .adminPassword)
+    try container.encode(self.adminPasswordSecretVersion, forKey: .adminPasswordSecretVersion)
+    try container.encodeIfPresent(self.properties, forKey: .properties)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.cidr, forKey: .cidr)
+    try container.encode(self.odbNetwork, forKey: .odbNetwork)
+    try container.encode(self.odbSubnet, forKey: .odbSubnet)
+    try container.encodeIfPresent(self.sourceConfig, forKey: .sourceConfig)
+    try container.encode(self.peerAutonomousDatabases, forKey: .peerAutonomousDatabases)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(
+      self.disasterRecoverySupportedLocations, forKey: .disasterRecoverySupportedLocations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

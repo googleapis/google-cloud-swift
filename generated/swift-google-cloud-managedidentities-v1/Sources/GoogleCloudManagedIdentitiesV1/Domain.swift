@@ -73,6 +73,8 @@ public struct Domain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The current trusts associated with the domain.
   public var trusts: [Trust] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Domain`.
   public init() {}
 
@@ -87,6 +89,103 @@ public struct Domain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let authorizedNetworks = CodingKeys(stringValue: "authorizedNetworks")
+    static let reservedIpRange = CodingKeys(stringValue: "reservedIpRange")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let admin = CodingKeys(stringValue: "admin")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let statusMessage = CodingKeys(stringValue: "statusMessage")
+    static let trusts = CodingKeys(stringValue: "trusts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "labels",
+      "authorizedNetworks",
+      "reservedIpRange",
+      "locations",
+      "admin",
+      "fqdn",
+      "createTime",
+      "updateTime",
+      "state",
+      "statusMessage",
+      "trusts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .authorizedNetworks) {
+      self.authorizedNetworks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reservedIpRange) {
+      self.reservedIpRange = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .admin) {
+      self.admin = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Domain.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .statusMessage) {
+      self.statusMessage = value
+    }
+    if let value = try container.decodeIfPresent([Trust].self, forKey: .trusts) {
+      self.trusts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.authorizedNetworks, forKey: .authorizedNetworks)
+    try container.encode(self.reservedIpRange, forKey: .reservedIpRange)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encode(self.admin, forKey: .admin)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.statusMessage, forKey: .statusMessage)
+    try container.encode(self.trusts, forKey: .trusts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the different states of a managed domain.

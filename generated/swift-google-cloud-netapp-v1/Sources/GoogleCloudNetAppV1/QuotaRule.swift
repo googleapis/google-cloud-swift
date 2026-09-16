@@ -52,6 +52,8 @@ public struct QuotaRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Labels of the quota rule
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QuotaRule`.
   public init() {}
 
@@ -66,6 +68,86 @@ public struct QuotaRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let target = CodingKeys(stringValue: "target")
+    static let type = CodingKeys(stringValue: "type")
+    static let diskLimitMib = CodingKeys(stringValue: "diskLimitMib")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateDetails = CodingKeys(stringValue: "stateDetails")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let description = CodingKeys(stringValue: "description")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "target",
+      "type",
+      "diskLimitMib",
+      "state",
+      "stateDetails",
+      "createTime",
+      "description",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .target) {
+      self.target = value
+    }
+    if let value = try container.decodeIfPresent(QuotaRule.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskLimitMib) {
+      self.diskLimitMib = value
+    }
+    if let value = try container.decodeIfPresent(QuotaRule.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateDetails) {
+      self.stateDetails = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.target, forKey: .target)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.diskLimitMib, forKey: .diskLimitMib)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateDetails, forKey: .stateDetails)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of Quota Rule

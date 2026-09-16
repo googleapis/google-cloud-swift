@@ -539,6 +539,8 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var expiration: OneOf_Expiration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Product`.
   public init() {}
 
@@ -555,83 +557,174 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case expireTime = "expireTime"
-    case ttl = "ttl"
-    case name = "name"
-    case id = "id"
-    case type = "type"
-    case primaryProductId = "primaryProductId"
-    case collectionMemberIds = "collectionMemberIds"
-    case gtin = "gtin"
-    case categories = "categories"
-    case title = "title"
-    case brands = "brands"
-    case description = "description"
-    case languageCode = "languageCode"
-    case attributes = "attributes"
-    case tags = "tags"
-    case priceInfo = "priceInfo"
-    case rating = "rating"
-    case availableTime = "availableTime"
-    case availability = "availability"
-    case availableQuantity = "availableQuantity"
-    case fulfillmentInfo = "fulfillmentInfo"
-    case uri = "uri"
-    case images = "images"
-    case audience = "audience"
-    case colorInfo = "colorInfo"
-    case sizes = "sizes"
-    case materials = "materials"
-    case patterns = "patterns"
-    case conditions = "conditions"
-    case promotions = "promotions"
-    case publishTime = "publishTime"
-    case retrievableFields = "retrievableFields"
-    case variants = "variants"
-    case localInventories = "localInventories"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let ttl = CodingKeys(stringValue: "ttl")
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let type = CodingKeys(stringValue: "type")
+    static let primaryProductId = CodingKeys(stringValue: "primaryProductId")
+    static let collectionMemberIds = CodingKeys(stringValue: "collectionMemberIds")
+    static let gtin = CodingKeys(stringValue: "gtin")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let title = CodingKeys(stringValue: "title")
+    static let brands = CodingKeys(stringValue: "brands")
+    static let description = CodingKeys(stringValue: "description")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+    static let attributes = CodingKeys(stringValue: "attributes")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let priceInfo = CodingKeys(stringValue: "priceInfo")
+    static let rating = CodingKeys(stringValue: "rating")
+    static let availableTime = CodingKeys(stringValue: "availableTime")
+    static let availability = CodingKeys(stringValue: "availability")
+    static let availableQuantity = CodingKeys(stringValue: "availableQuantity")
+    static let fulfillmentInfo = CodingKeys(stringValue: "fulfillmentInfo")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let images = CodingKeys(stringValue: "images")
+    static let audience = CodingKeys(stringValue: "audience")
+    static let colorInfo = CodingKeys(stringValue: "colorInfo")
+    static let sizes = CodingKeys(stringValue: "sizes")
+    static let materials = CodingKeys(stringValue: "materials")
+    static let patterns = CodingKeys(stringValue: "patterns")
+    static let conditions = CodingKeys(stringValue: "conditions")
+    static let promotions = CodingKeys(stringValue: "promotions")
+    static let publishTime = CodingKeys(stringValue: "publishTime")
+    static let retrievableFields = CodingKeys(stringValue: "retrievableFields")
+    static let variants = CodingKeys(stringValue: "variants")
+    static let localInventories = CodingKeys(stringValue: "localInventories")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "expireTime",
+      "ttl",
+      "name",
+      "id",
+      "type",
+      "primaryProductId",
+      "collectionMemberIds",
+      "gtin",
+      "categories",
+      "title",
+      "brands",
+      "description",
+      "languageCode",
+      "attributes",
+      "tags",
+      "priceInfo",
+      "rating",
+      "availableTime",
+      "availability",
+      "availableQuantity",
+      "fulfillmentInfo",
+      "uri",
+      "images",
+      "audience",
+      "colorInfo",
+      "sizes",
+      "materials",
+      "patterns",
+      "conditions",
+      "promotions",
+      "publishTime",
+      "retrievableFields",
+      "variants",
+      "localInventories",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.type = try container.decode(Product.Type_.self, forKey: .type)
-    self.primaryProductId = try container.decode(Swift.String.self, forKey: .primaryProductId)
-    self.collectionMemberIds = try container.decode(
-      [Swift.String].self, forKey: .collectionMemberIds)
-    self.gtin = try container.decode(Swift.String.self, forKey: .gtin)
-    self.categories = try container.decode([Swift.String].self, forKey: .categories)
-    self.title = try container.decode(Swift.String.self, forKey: .title)
-    self.brands = try container.decode([Swift.String].self, forKey: .brands)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
-    self.attributes = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Product.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .primaryProductId) {
+      self.primaryProductId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .collectionMemberIds)
+    {
+      self.collectionMemberIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gtin) {
+      self.gtin = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .categories) {
+      self.categories = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+      self.title = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .brands) {
+      self.brands = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: CustomAttribute].self, forKey: .attributes)
-    self.tags = try container.decode([Swift.String].self, forKey: .tags)
+    {
+      self.attributes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     self.priceInfo = try container.decodeIfPresent(PriceInfo.self, forKey: .priceInfo)
     self.rating = try container.decodeIfPresent(Rating.self, forKey: .rating)
     self.availableTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .availableTime)
-    self.availability = try container.decode(Product.Availability.self, forKey: .availability)
+    if let value = try container.decodeIfPresent(Product.Availability.self, forKey: .availability) {
+      self.availability = value
+    }
     self.availableQuantity = try container.decodeIfPresent(
       GoogleCloudWKT.Int32Value.self, forKey: .availableQuantity)
-    self.fulfillmentInfo = try container.decode([FulfillmentInfo].self, forKey: .fulfillmentInfo)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
-    self.images = try container.decode([Image].self, forKey: .images)
+    if let value = try container.decodeIfPresent([FulfillmentInfo].self, forKey: .fulfillmentInfo) {
+      self.fulfillmentInfo = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent([Image].self, forKey: .images) {
+      self.images = value
+    }
     self.audience = try container.decodeIfPresent(Audience.self, forKey: .audience)
     self.colorInfo = try container.decodeIfPresent(ColorInfo.self, forKey: .colorInfo)
-    self.sizes = try container.decode([Swift.String].self, forKey: .sizes)
-    self.materials = try container.decode([Swift.String].self, forKey: .materials)
-    self.patterns = try container.decode([Swift.String].self, forKey: .patterns)
-    self.conditions = try container.decode([Swift.String].self, forKey: .conditions)
-    self.promotions = try container.decode([Promotion].self, forKey: .promotions)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sizes) {
+      self.sizes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .materials) {
+      self.materials = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .patterns) {
+      self.patterns = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .conditions) {
+      self.conditions = value
+    }
+    if let value = try container.decodeIfPresent([Promotion].self, forKey: .promotions) {
+      self.promotions = value
+    }
     self.publishTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .publishTime)
     self.retrievableFields = try container.decodeIfPresent(
       GoogleCloudWKT.FieldMask.self, forKey: .retrievableFields)
-    self.variants = try container.decode([Product].self, forKey: .variants)
-    self.localInventories = try container.decode([LocalInventory].self, forKey: .localInventories)
+    if let value = try container.decodeIfPresent([Product].self, forKey: .variants) {
+      self.variants = value
+    }
+    if let value = try container.decodeIfPresent([LocalInventory].self, forKey: .localInventories) {
+      self.localInventories = value
+    }
 
     var expiration: OneOf_Expiration? = nil
     let expirationCheckAndSet = {
@@ -652,6 +745,10 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -669,23 +766,23 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.languageCode, forKey: .languageCode)
     try container.encode(self.attributes, forKey: .attributes)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.priceInfo, forKey: .priceInfo)
-    try container.encode(self.rating, forKey: .rating)
-    try container.encode(self.availableTime, forKey: .availableTime)
+    try container.encodeIfPresent(self.priceInfo, forKey: .priceInfo)
+    try container.encodeIfPresent(self.rating, forKey: .rating)
+    try container.encodeIfPresent(self.availableTime, forKey: .availableTime)
     try container.encode(self.availability, forKey: .availability)
-    try container.encode(self.availableQuantity, forKey: .availableQuantity)
+    try container.encodeIfPresent(self.availableQuantity, forKey: .availableQuantity)
     try container.encode(self.fulfillmentInfo, forKey: .fulfillmentInfo)
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.images, forKey: .images)
-    try container.encode(self.audience, forKey: .audience)
-    try container.encode(self.colorInfo, forKey: .colorInfo)
+    try container.encodeIfPresent(self.audience, forKey: .audience)
+    try container.encodeIfPresent(self.colorInfo, forKey: .colorInfo)
     try container.encode(self.sizes, forKey: .sizes)
     try container.encode(self.materials, forKey: .materials)
     try container.encode(self.patterns, forKey: .patterns)
     try container.encode(self.conditions, forKey: .conditions)
     try container.encode(self.promotions, forKey: .promotions)
-    try container.encode(self.publishTime, forKey: .publishTime)
-    try container.encode(self.retrievableFields, forKey: .retrievableFields)
+    try container.encodeIfPresent(self.publishTime, forKey: .publishTime)
+    try container.encodeIfPresent(self.retrievableFields, forKey: .retrievableFields)
     try container.encode(self.variants, forKey: .variants)
     try container.encode(self.localInventories, forKey: .localInventories)
 
@@ -696,6 +793,9 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .ttl(let value):
         try container.encode(value, forKey: .ttl)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

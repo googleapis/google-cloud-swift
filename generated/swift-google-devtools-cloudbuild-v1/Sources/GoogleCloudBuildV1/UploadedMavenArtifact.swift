@@ -33,6 +33,8 @@ public struct UploadedMavenArtifact: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Output only. Path to the artifact in Artifact Registry.
   public var artifactRegistryPackage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UploadedMavenArtifact`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct UploadedMavenArtifact: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let fileHashes = CodingKeys(stringValue: "fileHashes")
+    static let pushTiming = CodingKeys(stringValue: "pushTiming")
+    static let artifactRegistryPackage = CodingKeys(stringValue: "artifactRegistryPackage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "fileHashes",
+      "pushTiming",
+      "artifactRegistryPackage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    self.fileHashes = try container.decodeIfPresent(FileHashes.self, forKey: .fileHashes)
+    self.pushTiming = try container.decodeIfPresent(TimeSpan.self, forKey: .pushTiming)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .artifactRegistryPackage)
+    {
+      self.artifactRegistryPackage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encodeIfPresent(self.fileHashes, forKey: .fileHashes)
+    try container.encodeIfPresent(self.pushTiming, forKey: .pushTiming)
+    try container.encode(self.artifactRegistryPackage, forKey: .artifactRegistryPackage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

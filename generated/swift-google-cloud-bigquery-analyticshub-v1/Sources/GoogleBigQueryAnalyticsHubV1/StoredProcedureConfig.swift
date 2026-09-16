@@ -28,6 +28,8 @@ public struct StoredProcedureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Output only. Types of stored procedure supported to share.
   public var allowedStoredProcedureTypes: [StoredProcedureConfig.StoredProcedureType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `StoredProcedureConfig`.
   public init() {}
 
@@ -42,6 +44,46 @@ public struct StoredProcedureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let allowedStoredProcedureTypes = CodingKeys(stringValue: "allowedStoredProcedureTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "allowedStoredProcedureTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      [StoredProcedureConfig.StoredProcedureType].self, forKey: .allowedStoredProcedureTypes)
+    {
+      self.allowedStoredProcedureTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encode(self.allowedStoredProcedureTypes, forKey: .allowedStoredProcedureTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum to specify the type of stored procedure to share.

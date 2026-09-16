@@ -23,6 +23,8 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var implementation: OneOf_Implementation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Constraint`.
   public init() {}
 
@@ -39,11 +41,25 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case securityHealthAnalyticsModule = "securityHealthAnalyticsModule"
-    case securityHealthAnalyticsCustomModule = "securityHealthAnalyticsCustomModule"
-    case orgPolicyConstraint = "orgPolicyConstraint"
-    case orgPolicyConstraintCustom = "orgPolicyConstraintCustom"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let securityHealthAnalyticsModule = CodingKeys(
+      stringValue: "securityHealthAnalyticsModule")
+    static let securityHealthAnalyticsCustomModule = CodingKeys(
+      stringValue: "securityHealthAnalyticsCustomModule")
+    static let orgPolicyConstraint = CodingKeys(stringValue: "orgPolicyConstraint")
+    static let orgPolicyConstraintCustom = CodingKeys(stringValue: "orgPolicyConstraintCustom")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "securityHealthAnalyticsModule",
+      "securityHealthAnalyticsCustomModule",
+      "orgPolicyConstraint",
+      "orgPolicyConstraintCustom",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -81,6 +97,10 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try implementationCheckAndSet(.orgPolicyConstraintCustom(orgPolicyConstraintCustom))
     }
     self.implementation = implementation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +117,9 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .orgPolicyConstraintCustom(let value):
         try container.encode(value, forKey: .orgPolicyConstraintCustom)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

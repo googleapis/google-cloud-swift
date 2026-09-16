@@ -50,6 +50,8 @@
     /// [google.cloud.dialogflow.cx.v3.WebhookResponse]: <doc:WebhookResponse>
     public var formInfo: PageInfo.FormInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PageInfo`.
     public init() {}
 
@@ -66,6 +68,48 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let currentPage = CodingKeys(stringValue: "currentPage")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let formInfo = CodingKeys(stringValue: "formInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "currentPage",
+        "displayName",
+        "formInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentPage) {
+        self.currentPage = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.formInfo = try container.decodeIfPresent(PageInfo.FormInfo.self, forKey: .formInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.currentPage, forKey: .currentPage)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.formInfo, forKey: .formInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Represents form information.
     public struct FormInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -79,6 +123,8 @@
       /// [google.cloud.dialogflow.cx.v3.WebhookRequest]: <doc:WebhookRequest>
       /// [google.cloud.dialogflow.cx.v3.WebhookResponse]: <doc:WebhookResponse>
       public var parameterInfo: [PageInfo.FormInfo.ParameterInfo] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `FormInfo`.
       public init() {}
@@ -94,6 +140,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let parameterInfo = CodingKeys(stringValue: "parameterInfo")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "parameterInfo"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [PageInfo.FormInfo.ParameterInfo].self, forKey: .parameterInfo)
+        {
+          self.parameterInfo = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.parameterInfo, forKey: .parameterInfo)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// Represents parameter information.
@@ -157,6 +237,9 @@
         /// [google.cloud.dialogflow.cx.v3.WebhookResponse]: <doc:WebhookResponse>
         public var justCollected: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `ParameterInfo`.
         public init() {}
 
@@ -173,22 +256,48 @@
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case displayName = "displayName"
-          case `required` = "required"
-          case state = "state"
-          case value = "value"
-          case justCollected = "justCollected"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let displayName = CodingKeys(stringValue: "displayName")
+          static let `required` = CodingKeys(stringValue: "required")
+          static let state = CodingKeys(stringValue: "state")
+          static let value = CodingKeys(stringValue: "value")
+          static let justCollected = CodingKeys(stringValue: "justCollected")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "displayName",
+            "required",
+            "state",
+            "value",
+            "justCollected",
+          ]
         }
 
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-          self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
-          self.state = try container.decode(
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+            self.displayName = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`required`) {
+            self.`required` = value
+          }
+          if let value = try container.decodeIfPresent(
             PageInfo.FormInfo.ParameterInfo.ParameterState.self, forKey: .state)
+          {
+            self.state = value
+          }
           self.value = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .value)
-          self.justCollected = try container.decode(Swift.Bool.self, forKey: .justCollected)
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .justCollected) {
+            self.justCollected = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -196,8 +305,11 @@
           try container.encode(self.displayName, forKey: .displayName)
           try container.encode(self.`required`, forKey: .`required`)
           try container.encode(self.state, forKey: .state)
-          try container.encode(self.value, forKey: .value)
+          try container.encodeIfPresent(self.value, forKey: .value)
           try container.encode(self.justCollected, forKey: .justCollected)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         /// Represents the state of a parameter.

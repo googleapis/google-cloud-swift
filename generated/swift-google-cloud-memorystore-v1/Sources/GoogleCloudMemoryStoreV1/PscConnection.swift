@@ -59,6 +59,8 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Ports of the exposed endpoint.
   public var ports: OneOf_Ports? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PscConnection`.
   public init() {}
 
@@ -75,29 +77,63 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case port = "port"
-    case pscConnectionId = "pscConnectionId"
-    case ipAddress = "ipAddress"
-    case forwardingRule = "forwardingRule"
-    case projectId = "projectId"
-    case network = "network"
-    case serviceAttachment = "serviceAttachment"
-    case pscConnectionStatus = "pscConnectionStatus"
-    case connectionType = "connectionType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let port = CodingKeys(stringValue: "port")
+    static let pscConnectionId = CodingKeys(stringValue: "pscConnectionId")
+    static let ipAddress = CodingKeys(stringValue: "ipAddress")
+    static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let network = CodingKeys(stringValue: "network")
+    static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
+    static let pscConnectionStatus = CodingKeys(stringValue: "pscConnectionStatus")
+    static let connectionType = CodingKeys(stringValue: "connectionType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "port",
+      "pscConnectionId",
+      "ipAddress",
+      "forwardingRule",
+      "projectId",
+      "network",
+      "serviceAttachment",
+      "pscConnectionStatus",
+      "connectionType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.pscConnectionId = try container.decode(Swift.String.self, forKey: .pscConnectionId)
-    self.ipAddress = try container.decode(Swift.String.self, forKey: .ipAddress)
-    self.forwardingRule = try container.decode(Swift.String.self, forKey: .forwardingRule)
-    self.projectId = try container.decode(Swift.String.self, forKey: .projectId)
-    self.network = try container.decode(Swift.String.self, forKey: .network)
-    self.serviceAttachment = try container.decode(Swift.String.self, forKey: .serviceAttachment)
-    self.pscConnectionStatus = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pscConnectionId) {
+      self.pscConnectionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+      self.ipAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .forwardingRule) {
+      self.forwardingRule = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachment) {
+      self.serviceAttachment = value
+    }
+    if let value = try container.decodeIfPresent(
       PscConnectionStatus.self, forKey: .pscConnectionStatus)
-    self.connectionType = try container.decode(ConnectionType.self, forKey: .connectionType)
+    {
+      self.pscConnectionStatus = value
+    }
+    if let value = try container.decodeIfPresent(ConnectionType.self, forKey: .connectionType) {
+      self.connectionType = value
+    }
 
     var ports: OneOf_Ports? = nil
     let portsCheckAndSet = {
@@ -113,6 +149,10 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try portsCheckAndSet(.port(port))
     }
     self.ports = ports
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -131,6 +171,9 @@ public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .port(let value):
         try container.encode(value, forKey: .port)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

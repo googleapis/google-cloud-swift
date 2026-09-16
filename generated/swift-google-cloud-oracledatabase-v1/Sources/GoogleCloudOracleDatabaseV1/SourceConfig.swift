@@ -68,6 +68,8 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// applicable in case of BACKUP_FROM_TIMESTAMP source type.
   public var useLatestAvailableBackup: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceConfig`.
   public init() {}
 
@@ -82,6 +84,108 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let autonomousDatabase = CodingKeys(stringValue: "autonomousDatabase")
+    static let automaticBackupsReplicationEnabled = CodingKeys(
+      stringValue: "automaticBackupsReplicationEnabled")
+    static let sourceType = CodingKeys(stringValue: "sourceType")
+    static let cloneType = CodingKeys(stringValue: "cloneType")
+    static let refreshableMode = CodingKeys(stringValue: "refreshableMode")
+    static let autoRefreshFrequencySeconds = CodingKeys(stringValue: "autoRefreshFrequencySeconds")
+    static let autoRefreshPointLagSeconds = CodingKeys(stringValue: "autoRefreshPointLagSeconds")
+    static let autoRefreshStartTime = CodingKeys(stringValue: "autoRefreshStartTime")
+    static let autonomousDatabaseBackup = CodingKeys(stringValue: "autonomousDatabaseBackup")
+    static let backupTime = CodingKeys(stringValue: "backupTime")
+    static let useLatestAvailableBackup = CodingKeys(stringValue: "useLatestAvailableBackup")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "autonomousDatabase",
+      "automaticBackupsReplicationEnabled",
+      "sourceType",
+      "cloneType",
+      "refreshableMode",
+      "autoRefreshFrequencySeconds",
+      "autoRefreshPointLagSeconds",
+      "autoRefreshStartTime",
+      "autonomousDatabaseBackup",
+      "backupTime",
+      "useLatestAvailableBackup",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .autonomousDatabase) {
+      self.autonomousDatabase = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .automaticBackupsReplicationEnabled)
+    {
+      self.automaticBackupsReplicationEnabled = value
+    }
+    if let value = try container.decodeIfPresent(SourceConfig.SourceType.self, forKey: .sourceType)
+    {
+      self.sourceType = value
+    }
+    if let value = try container.decodeIfPresent(SourceConfig.CloneType.self, forKey: .cloneType) {
+      self.cloneType = value
+    }
+    if let value = try container.decodeIfPresent(
+      SourceConfig.RefreshableMode.self, forKey: .refreshableMode)
+    {
+      self.refreshableMode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .autoRefreshFrequencySeconds)
+    {
+      self.autoRefreshFrequencySeconds = value
+    }
+    self.autoRefreshPointLagSeconds = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .autoRefreshPointLagSeconds)
+    self.autoRefreshStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .autoRefreshStartTime)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .autonomousDatabaseBackup)
+    {
+      self.autonomousDatabaseBackup = value
+    }
+    self.backupTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .backupTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useLatestAvailableBackup)
+    {
+      self.useLatestAvailableBackup = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.autonomousDatabase, forKey: .autonomousDatabase)
+    try container.encode(
+      self.automaticBackupsReplicationEnabled, forKey: .automaticBackupsReplicationEnabled)
+    try container.encode(self.sourceType, forKey: .sourceType)
+    try container.encode(self.cloneType, forKey: .cloneType)
+    try container.encode(self.refreshableMode, forKey: .refreshableMode)
+    try container.encode(self.autoRefreshFrequencySeconds, forKey: .autoRefreshFrequencySeconds)
+    try container.encodeIfPresent(
+      self.autoRefreshPointLagSeconds, forKey: .autoRefreshPointLagSeconds)
+    try container.encodeIfPresent(self.autoRefreshStartTime, forKey: .autoRefreshStartTime)
+    try container.encode(self.autonomousDatabaseBackup, forKey: .autonomousDatabaseBackup)
+    try container.encodeIfPresent(self.backupTime, forKey: .backupTime)
+    try container.encode(self.useLatestAvailableBackup, forKey: .useLatestAvailableBackup)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The refresh mode of a refreshable clone.

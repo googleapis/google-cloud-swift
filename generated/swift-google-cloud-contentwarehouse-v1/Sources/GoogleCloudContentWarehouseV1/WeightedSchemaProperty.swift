@@ -27,6 +27,8 @@ public struct WeightedSchemaProperty: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The property definition names in the schema.
   public var propertyNames: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `WeightedSchemaProperty`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct WeightedSchemaProperty: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let documentSchemaName = CodingKeys(stringValue: "documentSchemaName")
+    static let propertyNames = CodingKeys(stringValue: "propertyNames")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "documentSchemaName",
+      "propertyNames",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentSchemaName) {
+      self.documentSchemaName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .propertyNames) {
+      self.propertyNames = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.documentSchemaName, forKey: .documentSchemaName)
+    try container.encode(self.propertyNames, forKey: .propertyNames)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

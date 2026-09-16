@@ -27,6 +27,8 @@ public struct DirectoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The entry's contents.
   public var entry: OneOf_Entry? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DirectoryEntry`.
   public init() {}
 
@@ -43,10 +45,21 @@ public struct DirectoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case file = "file"
-    case directory = "directory"
-    case metadata = "metadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let file = CodingKeys(stringValue: "file")
+    static let directory = CodingKeys(stringValue: "directory")
+    static let metadata = CodingKeys(stringValue: "metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "file",
+      "directory",
+      "metadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,11 +83,15 @@ public struct DirectoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try entryCheckAndSet(.directory(directory))
     }
     self.entry = entry
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.metadata, forKey: .metadata)
+    try container.encodeIfPresent(self.metadata, forKey: .metadata)
 
     if let choice = self.entry {
       switch choice {
@@ -83,6 +100,9 @@ public struct DirectoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .directory(let value):
         try container.encode(value, forKey: .directory)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

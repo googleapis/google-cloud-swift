@@ -32,6 +32,8 @@ public struct PullGitCommitsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// of merging fetched Git commits into this workspace.
   public var author: CommitAuthor? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PullGitCommitsRequest`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct PullGitCommitsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let remoteBranch = CodingKeys(stringValue: "remoteBranch")
+    static let author = CodingKeys(stringValue: "author")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "remoteBranch",
+      "author",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteBranch) {
+      self.remoteBranch = value
+    }
+    self.author = try container.decodeIfPresent(CommitAuthor.self, forKey: .author)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.remoteBranch, forKey: .remoteBranch)
+    try container.encodeIfPresent(self.author, forKey: .author)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

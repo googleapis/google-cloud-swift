@@ -27,6 +27,8 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Data type of the attachment.
   public var data: OneOf_Data? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attachment`.
   public init() {}
 
@@ -43,14 +45,26 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case csv = "csv"
-    case displayName = "displayName"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let csv = CodingKeys(stringValue: "csv")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "csv",
+      "displayName",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
 
     var data: OneOf_Data? = nil
     let dataCheckAndSet = {
@@ -66,6 +80,10 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dataCheckAndSet(.csv(csv))
     }
     self.data = data
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -77,6 +95,9 @@ public struct Attachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .csv(let value):
         try container.encode(value, forKey: .csv)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

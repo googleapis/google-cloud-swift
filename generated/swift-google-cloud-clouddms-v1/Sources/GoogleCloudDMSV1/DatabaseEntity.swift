@@ -54,6 +54,8 @@ public struct DatabaseEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The specific body for each entity type.
   public var entityBody: OneOf_EntityBody? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DatabaseEntity`.
   public init() {}
 
@@ -70,36 +72,76 @@ public struct DatabaseEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case shortName = "shortName"
-    case parentEntity = "parentEntity"
-    case tree = "tree"
-    case entityType = "entityType"
-    case mappings = "mappings"
-    case entityDdl = "entityDdl"
-    case issues = "issues"
-    case database = "database"
-    case schema = "schema"
-    case table = "table"
-    case view = "view"
-    case sequence = "sequence"
-    case storedProcedure = "storedProcedure"
-    case databaseFunction = "databaseFunction"
-    case synonym = "synonym"
-    case databasePackage = "databasePackage"
-    case udt = "udt"
-    case materializedView = "materializedView"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let shortName = CodingKeys(stringValue: "shortName")
+    static let parentEntity = CodingKeys(stringValue: "parentEntity")
+    static let tree = CodingKeys(stringValue: "tree")
+    static let entityType = CodingKeys(stringValue: "entityType")
+    static let mappings = CodingKeys(stringValue: "mappings")
+    static let entityDdl = CodingKeys(stringValue: "entityDdl")
+    static let issues = CodingKeys(stringValue: "issues")
+    static let database = CodingKeys(stringValue: "database")
+    static let schema = CodingKeys(stringValue: "schema")
+    static let table = CodingKeys(stringValue: "table")
+    static let view = CodingKeys(stringValue: "view")
+    static let sequence = CodingKeys(stringValue: "sequence")
+    static let storedProcedure = CodingKeys(stringValue: "storedProcedure")
+    static let databaseFunction = CodingKeys(stringValue: "databaseFunction")
+    static let synonym = CodingKeys(stringValue: "synonym")
+    static let databasePackage = CodingKeys(stringValue: "databasePackage")
+    static let udt = CodingKeys(stringValue: "udt")
+    static let materializedView = CodingKeys(stringValue: "materializedView")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "shortName",
+      "parentEntity",
+      "tree",
+      "entityType",
+      "mappings",
+      "entityDdl",
+      "issues",
+      "database",
+      "schema",
+      "table",
+      "view",
+      "sequence",
+      "storedProcedure",
+      "databaseFunction",
+      "synonym",
+      "databasePackage",
+      "udt",
+      "materializedView",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.shortName = try container.decode(Swift.String.self, forKey: .shortName)
-    self.parentEntity = try container.decode(Swift.String.self, forKey: .parentEntity)
-    self.tree = try container.decode(DatabaseEntity.TreeType.self, forKey: .tree)
-    self.entityType = try container.decode(DatabaseEntityType.self, forKey: .entityType)
-    self.mappings = try container.decode([EntityMapping].self, forKey: .mappings)
-    self.entityDdl = try container.decode([EntityDdl].self, forKey: .entityDdl)
-    self.issues = try container.decode([EntityIssue].self, forKey: .issues)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .shortName) {
+      self.shortName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentEntity) {
+      self.parentEntity = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntity.TreeType.self, forKey: .tree) {
+      self.tree = value
+    }
+    if let value = try container.decodeIfPresent(DatabaseEntityType.self, forKey: .entityType) {
+      self.entityType = value
+    }
+    if let value = try container.decodeIfPresent([EntityMapping].self, forKey: .mappings) {
+      self.mappings = value
+    }
+    if let value = try container.decodeIfPresent([EntityDdl].self, forKey: .entityDdl) {
+      self.entityDdl = value
+    }
+    if let value = try container.decodeIfPresent([EntityIssue].self, forKey: .issues) {
+      self.issues = value
+    }
 
     var entityBody: OneOf_EntityBody? = nil
     let entityBodyCheckAndSet = {
@@ -154,6 +196,10 @@ public struct DatabaseEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try entityBodyCheckAndSet(.materializedView(materializedView))
     }
     self.entityBody = entityBody
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -191,6 +237,9 @@ public struct DatabaseEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .materializedView(let value):
         try container.encode(value, forKey: .materializedView)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

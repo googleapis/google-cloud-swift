@@ -63,6 +63,8 @@
     /// The URL of the reserved internal range. Only IPv4 is supported.
     public var reservedInternalRange: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubnetworkSecondaryRange`.
     public init() {}
 
@@ -77,6 +79,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let ipCidrRange = CodingKeys(stringValue: "ipCidrRange")
+      static let ipCollection = CodingKeys(stringValue: "ipCollection")
+      static let ipVersion = CodingKeys(stringValue: "ipVersion")
+      static let rangeName = CodingKeys(stringValue: "rangeName")
+      static let reservedInternalRange = CodingKeys(stringValue: "reservedInternalRange")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "ipCidrRange",
+        "ipCollection",
+        "ipVersion",
+        "rangeName",
+        "reservedInternalRange",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.ipCidrRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange)
+      self.ipCollection = try container.decodeIfPresent(Swift.String.self, forKey: .ipCollection)
+      self.ipVersion = try container.decodeIfPresent(
+        SubnetworkSecondaryRange.IpVersion.self, forKey: .ipVersion)
+      self.rangeName = try container.decodeIfPresent(Swift.String.self, forKey: .rangeName)
+      self.reservedInternalRange = try container.decodeIfPresent(
+        Swift.String.self, forKey: .reservedInternalRange)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
+      try container.encodeIfPresent(self.ipCollection, forKey: .ipCollection)
+      try container.encodeIfPresent(self.ipVersion, forKey: .ipVersion)
+      try container.encodeIfPresent(self.rangeName, forKey: .rangeName)
+      try container.encodeIfPresent(self.reservedInternalRange, forKey: .reservedInternalRange)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [ipVersion][google.cloud.compute.v1.SubnetworkSecondaryRange.ipVersion] field.

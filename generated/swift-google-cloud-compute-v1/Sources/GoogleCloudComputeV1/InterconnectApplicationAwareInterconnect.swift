@@ -40,6 +40,8 @@
     public var strictPriorityPolicy: InterconnectApplicationAwareInterconnectStrictPriorityPolicy? =
       nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InterconnectApplicationAwareInterconnect`.
     public init() {}
 
@@ -54,6 +56,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bandwidthPercentagePolicy = CodingKeys(stringValue: "bandwidthPercentagePolicy")
+      static let profileDescription = CodingKeys(stringValue: "profileDescription")
+      static let shapeAveragePercentages = CodingKeys(stringValue: "shapeAveragePercentages")
+      static let strictPriorityPolicy = CodingKeys(stringValue: "strictPriorityPolicy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bandwidthPercentagePolicy",
+        "profileDescription",
+        "shapeAveragePercentages",
+        "strictPriorityPolicy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.bandwidthPercentagePolicy = try container.decodeIfPresent(
+        InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy.self,
+        forKey: .bandwidthPercentagePolicy)
+      self.profileDescription = try container.decodeIfPresent(
+        Swift.String.self, forKey: .profileDescription)
+      if let value = try container.decodeIfPresent(
+        [InterconnectApplicationAwareInterconnectBandwidthPercentage].self,
+        forKey: .shapeAveragePercentages)
+      {
+        self.shapeAveragePercentages = value
+      }
+      self.strictPriorityPolicy = try container.decodeIfPresent(
+        InterconnectApplicationAwareInterconnectStrictPriorityPolicy.self,
+        forKey: .strictPriorityPolicy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.bandwidthPercentagePolicy, forKey: .bandwidthPercentagePolicy)
+      try container.encodeIfPresent(self.profileDescription, forKey: .profileDescription)
+      try container.encode(self.shapeAveragePercentages, forKey: .shapeAveragePercentages)
+      try container.encodeIfPresent(self.strictPriorityPolicy, forKey: .strictPriorityPolicy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

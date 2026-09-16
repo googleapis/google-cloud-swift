@@ -31,6 +31,8 @@ public struct CreateDnsAuthorizationRequest: Codable, Equatable, GoogleCloudWKT.
   /// Required. A definition of the dns authorization to create.
   public var dnsAuthorization: DnsAuthorization? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDnsAuthorizationRequest`.
   public init() {}
 
@@ -45,6 +47,49 @@ public struct CreateDnsAuthorizationRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let dnsAuthorizationId = CodingKeys(stringValue: "dnsAuthorizationId")
+    static let dnsAuthorization = CodingKeys(stringValue: "dnsAuthorization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "dnsAuthorizationId",
+      "dnsAuthorization",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dnsAuthorizationId) {
+      self.dnsAuthorizationId = value
+    }
+    self.dnsAuthorization = try container.decodeIfPresent(
+      DnsAuthorization.self, forKey: .dnsAuthorization)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.dnsAuthorizationId, forKey: .dnsAuthorizationId)
+    try container.encodeIfPresent(self.dnsAuthorization, forKey: .dnsAuthorization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -36,6 +36,8 @@ public struct CreateCdnKeyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// letter, the last a letter or a number, and a 63 character maximum.
   public var cdnKeyId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateCdnKeyRequest`.
   public init() {}
 
@@ -50,6 +52,48 @@ public struct CreateCdnKeyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let cdnKey = CodingKeys(stringValue: "cdnKey")
+    static let cdnKeyId = CodingKeys(stringValue: "cdnKeyId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "cdnKey",
+      "cdnKeyId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.cdnKey = try container.decodeIfPresent(CdnKey.self, forKey: .cdnKey)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cdnKeyId) {
+      self.cdnKeyId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.cdnKey, forKey: .cdnKey)
+    try container.encode(self.cdnKeyId, forKey: .cdnKeyId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

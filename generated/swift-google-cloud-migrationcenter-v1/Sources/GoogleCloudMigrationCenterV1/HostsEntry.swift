@@ -27,6 +27,8 @@ public struct HostsEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of host names / aliases.
   public var hostNames: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `HostsEntry`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct HostsEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ip = CodingKeys(stringValue: "ip")
+    static let hostNames = CodingKeys(stringValue: "hostNames")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ip",
+      "hostNames",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ip) {
+      self.ip = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .hostNames) {
+      self.hostNames = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ip, forKey: .ip)
+    try container.encode(self.hostNames, forKey: .hostNames)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The asset for which you want to retrieve links.
   public var criteria: OneOf_Criteria? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchLinksRequest`.
   public init() {}
 
@@ -61,21 +63,42 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case source = "source"
-    case target = "target"
-    case sources = "sources"
-    case targets = "targets"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let source = CodingKeys(stringValue: "source")
+    static let target = CodingKeys(stringValue: "target")
+    static let sources = CodingKeys(stringValue: "sources")
+    static let targets = CodingKeys(stringValue: "targets")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "source",
+      "target",
+      "sources",
+      "targets",
+      "pageSize",
+      "pageToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
 
     var criteria: OneOf_Criteria? = nil
     let criteriaCheckAndSet = {
@@ -102,6 +125,10 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try criteriaCheckAndSet(.targets(targets))
     }
     self.criteria = criteria
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -121,6 +148,9 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .targets(let value):
         try container.encode(value, forKey: .targets)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

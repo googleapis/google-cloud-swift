@@ -27,6 +27,8 @@
 
     public var message: OneOf_Message? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConversationMessage`.
     public init() {}
 
@@ -43,10 +45,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case userInput = "userInput"
-      case reply = "reply"
-      case createTime = "createTime"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let userInput = CodingKeys(stringValue: "userInput")
+      static let reply = CodingKeys(stringValue: "reply")
+      static let createTime = CodingKeys(stringValue: "createTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "userInput",
+        "reply",
+        "createTime",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -71,11 +84,15 @@
         try messageCheckAndSet(.reply(reply))
       }
       self.message = message
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
 
       if let choice = self.message {
         switch choice {
@@ -84,6 +101,9 @@
         case .reply(let value):
           try container.encode(value, forKey: .reply)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

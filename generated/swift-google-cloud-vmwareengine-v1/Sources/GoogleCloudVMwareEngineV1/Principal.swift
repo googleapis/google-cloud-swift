@@ -27,6 +27,8 @@ public struct Principal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// consumer project.
   public var principal: OneOf_Principal? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Principal`.
   public init() {}
 
@@ -43,9 +45,19 @@ public struct Principal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case user = "user"
-    case serviceAccount = "serviceAccount"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let user = CodingKeys(stringValue: "user")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "user",
+      "serviceAccount",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -70,6 +82,10 @@ public struct Principal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try principalCheckAndSet(.serviceAccount(serviceAccount))
     }
     self.principal = principal
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -82,6 +98,9 @@ public struct Principal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .serviceAccount(let value):
         try container.encode(value, forKey: .serviceAccount)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -37,6 +37,8 @@ public struct KmsWrappedCryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Required. The resource name of the KMS CryptoKey to use for unwrapping.
   public var cryptoKeyName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `KmsWrappedCryptoKey`.
   public init() {}
 
@@ -51,6 +53,44 @@ public struct KmsWrappedCryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let wrappedKey = CodingKeys(stringValue: "wrappedKey")
+    static let cryptoKeyName = CodingKeys(stringValue: "cryptoKeyName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "wrappedKey",
+      "cryptoKeyName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .wrappedKey) {
+      self.wrappedKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyName) {
+      self.cryptoKeyName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.wrappedKey, forKey: .wrappedKey)
+    try container.encode(self.cryptoKeyName, forKey: .cryptoKeyName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

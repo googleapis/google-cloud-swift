@@ -44,6 +44,8 @@
     /// The detailed error message.
     public var errorMessage: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ValidationError`.
     public init() {}
 
@@ -58,6 +60,51 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let severity = CodingKeys(stringValue: "severity")
+      static let entries = CodingKeys(stringValue: "entries")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "severity",
+        "entries",
+        "errorMessage",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(ValidationError.Severity.self, forKey: .severity)
+      {
+        self.severity = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entries) {
+        self.entries = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.severity, forKey: .severity)
+      try container.encode(self.entries, forKey: .entries)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents a level of severity.

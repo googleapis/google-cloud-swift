@@ -41,6 +41,8 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Configuration to select the CDC method.
   public var cdcMethod: OneOf_CdcMethod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OracleSourceConfig`.
   public init() {}
 
@@ -57,25 +59,45 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case includeObjects = "includeObjects"
-    case excludeObjects = "excludeObjects"
-    case maxConcurrentCdcTasks = "maxConcurrentCdcTasks"
-    case maxConcurrentBackfillTasks = "maxConcurrentBackfillTasks"
-    case dropLargeObjects = "dropLargeObjects"
-    case streamLargeObjects = "streamLargeObjects"
-    case logMiner = "logMiner"
-    case binaryLogParser = "binaryLogParser"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let includeObjects = CodingKeys(stringValue: "includeObjects")
+    static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
+    static let maxConcurrentCdcTasks = CodingKeys(stringValue: "maxConcurrentCdcTasks")
+    static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+    static let dropLargeObjects = CodingKeys(stringValue: "dropLargeObjects")
+    static let streamLargeObjects = CodingKeys(stringValue: "streamLargeObjects")
+    static let logMiner = CodingKeys(stringValue: "logMiner")
+    static let binaryLogParser = CodingKeys(stringValue: "binaryLogParser")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "includeObjects",
+      "excludeObjects",
+      "maxConcurrentCdcTasks",
+      "maxConcurrentBackfillTasks",
+      "dropLargeObjects",
+      "streamLargeObjects",
+      "logMiner",
+      "binaryLogParser",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.includeObjects = try container.decodeIfPresent(OracleRdbms.self, forKey: .includeObjects)
     self.excludeObjects = try container.decodeIfPresent(OracleRdbms.self, forKey: .excludeObjects)
-    self.maxConcurrentCdcTasks = try container.decode(
-      Swift.Int32.self, forKey: .maxConcurrentCdcTasks)
-    self.maxConcurrentBackfillTasks = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxConcurrentCdcTasks) {
+      self.maxConcurrentCdcTasks = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .maxConcurrentBackfillTasks)
+    {
+      self.maxConcurrentBackfillTasks = value
+    }
 
     var largeObjectsHandling: OneOf_LargeObjectsHandling? = nil
     let largeObjectsHandlingCheckAndSet = {
@@ -120,12 +142,16 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try cdcMethodCheckAndSet(.binaryLogParser(binaryLogParser))
     }
     self.cdcMethod = cdcMethod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.includeObjects, forKey: .includeObjects)
-    try container.encode(self.excludeObjects, forKey: .excludeObjects)
+    try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
+    try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
     try container.encode(self.maxConcurrentCdcTasks, forKey: .maxConcurrentCdcTasks)
     try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
 
@@ -146,12 +172,17 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try container.encode(value, forKey: .binaryLogParser)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Configuration to drop large object values.
   public struct DropLargeObjects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DropLargeObjects`.
     public init() {}
 
@@ -166,6 +197,30 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -183,6 +238,8 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public struct StreamLargeObjects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamLargeObjects`.
     public init() {}
 
@@ -197,6 +254,30 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -214,6 +295,8 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   public struct LogMiner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LogMiner`.
     public init() {}
 
@@ -228,6 +311,30 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -248,6 +355,8 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Configuration to specify how the log file should be accessed.
     public var logFileAccess: OneOf_LogFileAccess? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BinaryLogParser`.
     public init() {}
 
@@ -264,9 +373,19 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case oracleAsmLogFileAccess = "oracleAsmLogFileAccess"
-      case logFileDirectories = "logFileDirectories"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let oracleAsmLogFileAccess = CodingKeys(stringValue: "oracleAsmLogFileAccess")
+      static let logFileDirectories = CodingKeys(stringValue: "logFileDirectories")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "oracleAsmLogFileAccess",
+        "logFileDirectories",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -294,6 +413,10 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         try logFileAccessCheckAndSet(.logFileDirectories(logFileDirectories))
       }
       self.logFileAccess = logFileAccess
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -307,12 +430,17 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
           try container.encode(value, forKey: .logFileDirectories)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration to use Oracle ASM to access the log files.
     public struct OracleAsmLogFileAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OracleAsmLogFileAccess`.
       public init() {}
 
@@ -327,6 +455,30 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let _knownKeys: Set<Swift.String> = []
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -351,6 +503,8 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       /// Required. Oracle directory for archived logs.
       public var archivedLogDirectory: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LogFileDirectories`.
       public init() {}
 
@@ -365,6 +519,47 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let onlineLogDirectory = CodingKeys(stringValue: "onlineLogDirectory")
+        static let archivedLogDirectory = CodingKeys(stringValue: "archivedLogDirectory")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "onlineLogDirectory",
+          "archivedLogDirectory",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .onlineLogDirectory)
+        {
+          self.onlineLogDirectory = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .archivedLogDirectory)
+        {
+          self.archivedLogDirectory = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.onlineLogDirectory, forKey: .onlineLogDirectory)
+        try container.encode(self.archivedLogDirectory, forKey: .archivedLogDirectory)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

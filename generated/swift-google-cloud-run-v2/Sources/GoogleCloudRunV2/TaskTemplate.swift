@@ -62,6 +62,8 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var retries: OneOf_Retries? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TaskTemplate`.
   public init() {}
 
@@ -78,28 +80,57 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case containers = "containers"
-    case volumes = "volumes"
-    case maxRetries = "maxRetries"
-    case timeout = "timeout"
-    case serviceAccount = "serviceAccount"
-    case executionEnvironment = "executionEnvironment"
-    case encryptionKey = "encryptionKey"
-    case vpcAccess = "vpcAccess"
-    case nodeSelector = "nodeSelector"
-    case gpuZonalRedundancyDisabled = "gpuZonalRedundancyDisabled"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let containers = CodingKeys(stringValue: "containers")
+    static let volumes = CodingKeys(stringValue: "volumes")
+    static let maxRetries = CodingKeys(stringValue: "maxRetries")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let executionEnvironment = CodingKeys(stringValue: "executionEnvironment")
+    static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
+    static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
+    static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
+    static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "containers",
+      "volumes",
+      "maxRetries",
+      "timeout",
+      "serviceAccount",
+      "executionEnvironment",
+      "encryptionKey",
+      "vpcAccess",
+      "nodeSelector",
+      "gpuZonalRedundancyDisabled",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.containers = try container.decode([Container].self, forKey: .containers)
-    self.volumes = try container.decode([Volume].self, forKey: .volumes)
+    if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
+      self.containers = value
+    }
+    if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
+      self.volumes = value
+    }
     self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
-    self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
-    self.executionEnvironment = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
       ExecutionEnvironment.self, forKey: .executionEnvironment)
-    self.encryptionKey = try container.decode(Swift.String.self, forKey: .encryptionKey)
+    {
+      self.executionEnvironment = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encryptionKey) {
+      self.encryptionKey = value
+    }
     self.vpcAccess = try container.decodeIfPresent(VpcAccess.self, forKey: .vpcAccess)
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
@@ -119,25 +150,33 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try retriesCheckAndSet(.maxRetries(maxRetries))
     }
     self.retries = retries
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.containers, forKey: .containers)
     try container.encode(self.volumes, forKey: .volumes)
-    try container.encode(self.timeout, forKey: .timeout)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
-    try container.encode(self.vpcAccess, forKey: .vpcAccess)
-    try container.encode(self.nodeSelector, forKey: .nodeSelector)
-    try container.encode(self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
+    try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
+    try container.encodeIfPresent(
+      self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
 
     if let choice = self.retries {
       switch choice {
       case .maxRetries(let value):
         try container.encode(value, forKey: .maxRetries)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

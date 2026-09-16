@@ -99,6 +99,8 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Index`.
     public init() {}
 
@@ -113,6 +115,121 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let metadataSchemaUri = CodingKeys(stringValue: "metadataSchemaUri")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let deployedIndexes = CodingKeys(stringValue: "deployedIndexes")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let indexStats = CodingKeys(stringValue: "indexStats")
+      static let indexUpdateMethod = CodingKeys(stringValue: "indexUpdateMethod")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "description",
+        "metadataSchemaUri",
+        "metadata",
+        "deployedIndexes",
+        "etag",
+        "labels",
+        "createTime",
+        "updateTime",
+        "indexStats",
+        "indexUpdateMethod",
+        "encryptionSpec",
+        "satisfiesPzs",
+        "satisfiesPzi",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataSchemaUri) {
+        self.metadataSchemaUri = value
+      }
+      self.metadata = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .metadata)
+      if let value = try container.decodeIfPresent(
+        [DeployedIndexRef].self, forKey: .deployedIndexes)
+      {
+        self.deployedIndexes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      self.indexStats = try container.decodeIfPresent(IndexStats.self, forKey: .indexStats)
+      if let value = try container.decodeIfPresent(
+        Index.IndexUpdateMethod.self, forKey: .indexUpdateMethod)
+      {
+        self.indexUpdateMethod = value
+      }
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.metadataSchemaUri, forKey: .metadataSchemaUri)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encode(self.deployedIndexes, forKey: .deployedIndexes)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encodeIfPresent(self.indexStats, forKey: .indexStats)
+      try container.encode(self.indexUpdateMethod, forKey: .indexUpdateMethod)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The update method of an Index.

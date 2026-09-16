@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension UpdateObjectRequest {
@@ -37,6 +37,7 @@ extension UpdateObjectRequest {
     self.commonObjectRequestParams =
       proto.hasCommonObjectRequestParams ? try .init(proto: proto.commonObjectRequestParams) : nil
     self.overrideUnlockedRetention = proto.overrideUnlockedRetention
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -60,6 +61,9 @@ extension UpdateObjectRequest {
       proto.commonObjectRequestParams = try commonObjectRequestParams.toProto()
     }
     proto.overrideUnlockedRetention = self.overrideUnlockedRetention
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

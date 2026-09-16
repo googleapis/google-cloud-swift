@@ -33,6 +33,8 @@ public struct SbomReferenceIntotoPredicate: Codable, Equatable, GoogleCloudWKT._
   /// A map of algorithm to digest of the contents of the SBOM.
   public var digest: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SbomReferenceIntotoPredicate`.
   public init() {}
 
@@ -47,6 +49,57 @@ public struct SbomReferenceIntotoPredicate: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let referrerId = CodingKeys(stringValue: "referrerId")
+    static let location = CodingKeys(stringValue: "location")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let digest = CodingKeys(stringValue: "digest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "referrerId",
+      "location",
+      "mimeType",
+      "digest",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .referrerId) {
+      self.referrerId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .digest)
+    {
+      self.digest = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.referrerId, forKey: .referrerId)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    try container.encode(self.digest, forKey: .digest)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@ public struct CreateAttachmentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Required. The attachment to be created.
   public var attachment: Attachment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateAttachmentRequest`.
   public init() {}
 
@@ -45,6 +47,48 @@ public struct CreateAttachmentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let attachmentId = CodingKeys(stringValue: "attachmentId")
+    static let attachment = CodingKeys(stringValue: "attachment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "attachmentId",
+      "attachment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attachmentId) {
+      self.attachmentId = value
+    }
+    self.attachment = try container.decodeIfPresent(Attachment.self, forKey: .attachment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.attachmentId, forKey: .attachmentId)
+    try container.encodeIfPresent(self.attachment, forKey: .attachment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

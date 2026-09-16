@@ -75,6 +75,8 @@ public struct CloudStorageRegexFileSet: Codable, Equatable, GoogleCloudWKT._AnyP
   /// under the google/re2 repository on GitHub.
   public var excludeRegex: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudStorageRegexFileSet`.
   public init() {}
 
@@ -89,6 +91,50 @@ public struct CloudStorageRegexFileSet: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucketName = CodingKeys(stringValue: "bucketName")
+    static let includeRegex = CodingKeys(stringValue: "includeRegex")
+    static let excludeRegex = CodingKeys(stringValue: "excludeRegex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucketName",
+      "includeRegex",
+      "excludeRegex",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
+      self.bucketName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includeRegex) {
+      self.includeRegex = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeRegex) {
+      self.excludeRegex = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.bucketName, forKey: .bucketName)
+    try container.encode(self.includeRegex, forKey: .includeRegex)
+    try container.encode(self.excludeRegex, forKey: .excludeRegex)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

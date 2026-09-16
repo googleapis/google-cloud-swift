@@ -116,6 +116,8 @@ public struct ComputeEngineTargetDetails: Codable, Equatable, GoogleCloudWKT._An
   /// The storage pool's type must match the disk type.
   public var storagePool: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeEngineTargetDetails`.
   public init() {}
 
@@ -130,6 +132,190 @@ public struct ComputeEngineTargetDetails: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmName = CodingKeys(stringValue: "vmName")
+    static let project = CodingKeys(stringValue: "project")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let machineTypeSeries = CodingKeys(stringValue: "machineTypeSeries")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let networkTags = CodingKeys(stringValue: "networkTags")
+    static let networkInterfaces = CodingKeys(stringValue: "networkInterfaces")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let licenseType = CodingKeys(stringValue: "licenseType")
+    static let appliedLicense = CodingKeys(stringValue: "appliedLicense")
+    static let computeScheduling = CodingKeys(stringValue: "computeScheduling")
+    static let secureBoot = CodingKeys(stringValue: "secureBoot")
+    static let enableVtpm = CodingKeys(stringValue: "enableVtpm")
+    static let enableIntegrityMonitoring = CodingKeys(stringValue: "enableIntegrityMonitoring")
+    static let bootOption = CodingKeys(stringValue: "bootOption")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let additionalLicenses = CodingKeys(stringValue: "additionalLicenses")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let encryption = CodingKeys(stringValue: "encryption")
+    static let bootConversion = CodingKeys(stringValue: "bootConversion")
+    static let adaptationModifiers = CodingKeys(stringValue: "adaptationModifiers")
+    static let diskReplicaZones = CodingKeys(stringValue: "diskReplicaZones")
+    static let storagePool = CodingKeys(stringValue: "storagePool")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmName",
+      "project",
+      "zone",
+      "machineTypeSeries",
+      "machineType",
+      "networkTags",
+      "networkInterfaces",
+      "serviceAccount",
+      "diskType",
+      "labels",
+      "licenseType",
+      "appliedLicense",
+      "computeScheduling",
+      "secureBoot",
+      "enableVtpm",
+      "enableIntegrityMonitoring",
+      "bootOption",
+      "metadata",
+      "additionalLicenses",
+      "hostname",
+      "encryption",
+      "bootConversion",
+      "adaptationModifiers",
+      "diskReplicaZones",
+      "storagePool",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmName) {
+      self.vmName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineTypeSeries) {
+      self.machineTypeSeries = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .networkTags) {
+      self.networkTags = value
+    }
+    if let value = try container.decodeIfPresent(
+      [NetworkInterface].self, forKey: .networkInterfaces)
+    {
+      self.networkInterfaces = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(ComputeEngineDiskType.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      ComputeEngineLicenseType.self, forKey: .licenseType)
+    {
+      self.licenseType = value
+    }
+    self.appliedLicense = try container.decodeIfPresent(
+      AppliedLicense.self, forKey: .appliedLicense)
+    self.computeScheduling = try container.decodeIfPresent(
+      ComputeScheduling.self, forKey: .computeScheduling)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .secureBoot) {
+      self.secureBoot = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableVtpm) {
+      self.enableVtpm = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableIntegrityMonitoring)
+    {
+      self.enableIntegrityMonitoring = value
+    }
+    if let value = try container.decodeIfPresent(ComputeEngineBootOption.self, forKey: .bootOption)
+    {
+      self.bootOption = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .additionalLicenses) {
+      self.additionalLicenses = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
+    if let value = try container.decodeIfPresent(BootConversion.self, forKey: .bootConversion) {
+      self.bootConversion = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AdaptationModifier].self, forKey: .adaptationModifiers)
+    {
+      self.adaptationModifiers = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .diskReplicaZones) {
+      self.diskReplicaZones = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storagePool) {
+      self.storagePool = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmName, forKey: .vmName)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.machineTypeSeries, forKey: .machineTypeSeries)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.networkTags, forKey: .networkTags)
+    try container.encode(self.networkInterfaces, forKey: .networkInterfaces)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.licenseType, forKey: .licenseType)
+    try container.encodeIfPresent(self.appliedLicense, forKey: .appliedLicense)
+    try container.encodeIfPresent(self.computeScheduling, forKey: .computeScheduling)
+    try container.encode(self.secureBoot, forKey: .secureBoot)
+    try container.encode(self.enableVtpm, forKey: .enableVtpm)
+    try container.encode(self.enableIntegrityMonitoring, forKey: .enableIntegrityMonitoring)
+    try container.encode(self.bootOption, forKey: .bootOption)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encode(self.additionalLicenses, forKey: .additionalLicenses)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encodeIfPresent(self.encryption, forKey: .encryption)
+    try container.encode(self.bootConversion, forKey: .bootConversion)
+    try container.encode(self.adaptationModifiers, forKey: .adaptationModifiers)
+    try container.encode(self.diskReplicaZones, forKey: .diskReplicaZones)
+    try container.encode(self.storagePool, forKey: .storagePool)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

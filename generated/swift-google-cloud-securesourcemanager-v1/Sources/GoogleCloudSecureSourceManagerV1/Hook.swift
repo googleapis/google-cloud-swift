@@ -51,6 +51,8 @@ public struct Hook: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The sensitive query string to be appended to the target URI.
   public var sensitiveQueryString: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Hook`.
   public init() {}
 
@@ -67,6 +69,82 @@ public struct Hook: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let targetUri = CodingKeys(stringValue: "targetUri")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let events = CodingKeys(stringValue: "events")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let pushOption = CodingKeys(stringValue: "pushOption")
+    static let sensitiveQueryString = CodingKeys(stringValue: "sensitiveQueryString")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "targetUri",
+      "disabled",
+      "events",
+      "createTime",
+      "updateTime",
+      "uid",
+      "pushOption",
+      "sensitiveQueryString",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetUri) {
+      self.targetUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    if let value = try container.decodeIfPresent([Hook.HookEventType].self, forKey: .events) {
+      self.events = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.pushOption = try container.decodeIfPresent(Hook.PushOption.self, forKey: .pushOption)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sensitiveQueryString) {
+      self.sensitiveQueryString = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.targetUri, forKey: .targetUri)
+    try container.encode(self.disabled, forKey: .disabled)
+    try container.encode(self.events, forKey: .events)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.pushOption, forKey: .pushOption)
+    try container.encode(self.sensitiveQueryString, forKey: .sensitiveQueryString)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   public struct PushOption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
@@ -75,6 +153,8 @@ public struct Hook: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// reported. Examples: main, {main,release*}.
     /// See https://pkg.go.dev/github.com/gobwas/glob documentation.
     public var branchFilter: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PushOption`.
     public init() {}
@@ -90,6 +170,38 @@ public struct Hook: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let branchFilter = CodingKeys(stringValue: "branchFilter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "branchFilter"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .branchFilter) {
+        self.branchFilter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.branchFilter, forKey: .branchFilter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

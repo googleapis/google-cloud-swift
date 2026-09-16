@@ -49,6 +49,8 @@ public struct ReplayConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   public var logSource: ReplayConfig.LogSource = ReplayConfig.LogSource()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplayConfig`.
   public init() {}
 
@@ -63,6 +65,46 @@ public struct ReplayConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let policyOverlay = CodingKeys(stringValue: "policyOverlay")
+    static let logSource = CodingKeys(stringValue: "logSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "policyOverlay",
+      "logSource",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: GoogleIAMV1.Policy].self, forKey: .policyOverlay)
+    {
+      self.policyOverlay = value
+    }
+    if let value = try container.decodeIfPresent(ReplayConfig.LogSource.self, forKey: .logSource) {
+      self.logSource = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.policyOverlay, forKey: .policyOverlay)
+    try container.encode(self.logSource, forKey: .logSource)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The source of the logs to use for a

@@ -49,6 +49,8 @@
 
     public var upcomingMaintenance: UpcomingMaintenance? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourceStatus`.
     public init() {}
 
@@ -63,6 +65,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let effectiveInstanceMetadata = CodingKeys(stringValue: "effectiveInstanceMetadata")
+      static let physicalHost = CodingKeys(stringValue: "physicalHost")
+      static let physicalHostTopology = CodingKeys(stringValue: "physicalHostTopology")
+      static let reservationConsumptionInfo = CodingKeys(stringValue: "reservationConsumptionInfo")
+      static let scheduling = CodingKeys(stringValue: "scheduling")
+      static let shutdownDetails = CodingKeys(stringValue: "shutdownDetails")
+      static let upcomingMaintenance = CodingKeys(stringValue: "upcomingMaintenance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "effectiveInstanceMetadata",
+        "physicalHost",
+        "physicalHostTopology",
+        "reservationConsumptionInfo",
+        "scheduling",
+        "shutdownDetails",
+        "upcomingMaintenance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.effectiveInstanceMetadata = try container.decodeIfPresent(
+        ResourceStatusEffectiveInstanceMetadata.self, forKey: .effectiveInstanceMetadata)
+      self.physicalHost = try container.decodeIfPresent(Swift.String.self, forKey: .physicalHost)
+      self.physicalHostTopology = try container.decodeIfPresent(
+        ResourceStatusPhysicalHostTopology.self, forKey: .physicalHostTopology)
+      self.reservationConsumptionInfo = try container.decodeIfPresent(
+        ResourceStatusReservationConsumptionInfo.self, forKey: .reservationConsumptionInfo)
+      self.scheduling = try container.decodeIfPresent(
+        ResourceStatusScheduling.self, forKey: .scheduling)
+      self.shutdownDetails = try container.decodeIfPresent(
+        ResourceStatusShutdownDetails.self, forKey: .shutdownDetails)
+      self.upcomingMaintenance = try container.decodeIfPresent(
+        UpcomingMaintenance.self, forKey: .upcomingMaintenance)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.effectiveInstanceMetadata, forKey: .effectiveInstanceMetadata)
+      try container.encodeIfPresent(self.physicalHost, forKey: .physicalHost)
+      try container.encodeIfPresent(self.physicalHostTopology, forKey: .physicalHostTopology)
+      try container.encodeIfPresent(
+        self.reservationConsumptionInfo, forKey: .reservationConsumptionInfo)
+      try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+      try container.encodeIfPresent(self.shutdownDetails, forKey: .shutdownDetails)
+      try container.encodeIfPresent(self.upcomingMaintenance, forKey: .upcomingMaintenance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

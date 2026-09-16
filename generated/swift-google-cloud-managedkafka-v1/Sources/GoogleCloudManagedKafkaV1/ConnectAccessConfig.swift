@@ -27,6 +27,8 @@ public struct ConnectAccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// networks can be specified.
   public var networkConfigs: [ConnectNetworkConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ConnectAccessConfig`.
   public init() {}
 
@@ -41,6 +43,40 @@ public struct ConnectAccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let networkConfigs = CodingKeys(stringValue: "networkConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "networkConfigs"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ConnectNetworkConfig].self, forKey: .networkConfigs)
+    {
+      self.networkConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.networkConfigs, forKey: .networkConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

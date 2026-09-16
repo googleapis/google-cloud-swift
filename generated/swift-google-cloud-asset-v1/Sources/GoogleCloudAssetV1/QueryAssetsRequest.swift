@@ -80,6 +80,8 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// it will simply return a valid response with no rows.
   public var time: OneOf_Time? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryAssetsRequest`.
   public init() {}
 
@@ -96,23 +98,46 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case statement = "statement"
-    case jobReference = "jobReference"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case timeout = "timeout"
-    case readTimeWindow = "readTimeWindow"
-    case readTime = "readTime"
-    case outputConfig = "outputConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let statement = CodingKeys(stringValue: "statement")
+    static let jobReference = CodingKeys(stringValue: "jobReference")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let timeout = CodingKeys(stringValue: "timeout")
+    static let readTimeWindow = CodingKeys(stringValue: "readTimeWindow")
+    static let readTime = CodingKeys(stringValue: "readTime")
+    static let outputConfig = CodingKeys(stringValue: "outputConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "statement",
+      "jobReference",
+      "pageSize",
+      "pageToken",
+      "timeout",
+      "readTimeWindow",
+      "readTime",
+      "outputConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
     self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.outputConfig = try container.decodeIfPresent(
       QueryAssetsOutputConfig.self, forKey: .outputConfig)
@@ -155,6 +180,10 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try timeCheckAndSet(.readTime(readTime))
     }
     self.time = time
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -162,8 +191,8 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.timeout, forKey: .timeout)
-    try container.encode(self.outputConfig, forKey: .outputConfig)
+    try container.encodeIfPresent(self.timeout, forKey: .timeout)
+    try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
 
     if let choice = self.query {
       switch choice {
@@ -181,6 +210,9 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .readTime(let value):
         try container.encode(value, forKey: .readTime)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

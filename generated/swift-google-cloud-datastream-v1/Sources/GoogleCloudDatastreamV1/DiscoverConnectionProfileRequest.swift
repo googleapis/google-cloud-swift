@@ -34,6 +34,8 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleCloudW
   /// The data object to populate with child data objects and metadata.
   public var dataObject: OneOf_DataObject? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoverConnectionProfileRequest`.
   public init() {}
 
@@ -50,23 +52,44 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleCloudW
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case connectionProfile = "connectionProfile"
-    case connectionProfileName = "connectionProfileName"
-    case fullHierarchy = "fullHierarchy"
-    case hierarchyDepth = "hierarchyDepth"
-    case oracleRdbms = "oracleRdbms"
-    case mysqlRdbms = "mysqlRdbms"
-    case postgresqlRdbms = "postgresqlRdbms"
-    case sqlServerRdbms = "sqlServerRdbms"
-    case salesforceOrg = "salesforceOrg"
-    case mongodbCluster = "mongodbCluster"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let connectionProfile = CodingKeys(stringValue: "connectionProfile")
+    static let connectionProfileName = CodingKeys(stringValue: "connectionProfileName")
+    static let fullHierarchy = CodingKeys(stringValue: "fullHierarchy")
+    static let hierarchyDepth = CodingKeys(stringValue: "hierarchyDepth")
+    static let oracleRdbms = CodingKeys(stringValue: "oracleRdbms")
+    static let mysqlRdbms = CodingKeys(stringValue: "mysqlRdbms")
+    static let postgresqlRdbms = CodingKeys(stringValue: "postgresqlRdbms")
+    static let sqlServerRdbms = CodingKeys(stringValue: "sqlServerRdbms")
+    static let salesforceOrg = CodingKeys(stringValue: "salesforceOrg")
+    static let mongodbCluster = CodingKeys(stringValue: "mongodbCluster")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "connectionProfile",
+      "connectionProfileName",
+      "fullHierarchy",
+      "hierarchyDepth",
+      "oracleRdbms",
+      "mysqlRdbms",
+      "postgresqlRdbms",
+      "sqlServerRdbms",
+      "salesforceOrg",
+      "mongodbCluster",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
 
     var target: OneOf_Target? = nil
     let targetCheckAndSet = {
@@ -146,6 +169,10 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleCloudW
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
     self.dataObject = dataObject
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -185,6 +212,9 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleCloudW
       case .mongodbCluster(let value):
         try container.encode(value, forKey: .mongodbCluster)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

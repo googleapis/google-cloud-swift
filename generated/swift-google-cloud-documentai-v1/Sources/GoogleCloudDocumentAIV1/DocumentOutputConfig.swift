@@ -25,6 +25,8 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The destination of the results.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentOutputConfig`.
   public init() {}
 
@@ -41,8 +43,17 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsOutputConfig = "gcsOutputConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsOutputConfig = CodingKeys(stringValue: "gcsOutputConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsOutputConfig"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try destinationCheckAndSet(.gcsOutputConfig(gcsOutputConfig))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .gcsOutputConfig(let value):
         try container.encode(value, forKey: .gcsOutputConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -92,6 +110,8 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Specifies the sharding config for the output document.
     public var shardingConfig: DocumentOutputConfig.GcsOutputConfig.ShardingConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GcsOutputConfig`.
     public init() {}
 
@@ -108,6 +128,48 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+      static let fieldMask = CodingKeys(stringValue: "fieldMask")
+      static let shardingConfig = CodingKeys(stringValue: "shardingConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsUri",
+        "fieldMask",
+        "shardingConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsUri) {
+        self.gcsUri = value
+      }
+      self.fieldMask = try container.decodeIfPresent(
+        GoogleCloudWKT.FieldMask.self, forKey: .fieldMask)
+      self.shardingConfig = try container.decodeIfPresent(
+        DocumentOutputConfig.GcsOutputConfig.ShardingConfig.self, forKey: .shardingConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.gcsUri, forKey: .gcsUri)
+      try container.encodeIfPresent(self.fieldMask, forKey: .fieldMask)
+      try container.encodeIfPresent(self.shardingConfig, forKey: .shardingConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The sharding config for the output document.
     public struct ShardingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -117,6 +179,8 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
 
       /// The number of overlapping pages between consecutive shards.
       public var pagesOverlap: Swift.Int32 = Swift.Int32()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ShardingConfig`.
       public init() {}
@@ -132,6 +196,44 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let pagesPerShard = CodingKeys(stringValue: "pagesPerShard")
+        static let pagesOverlap = CodingKeys(stringValue: "pagesOverlap")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "pagesPerShard",
+          "pagesOverlap",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pagesPerShard) {
+          self.pagesPerShard = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pagesOverlap) {
+          self.pagesOverlap = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.pagesPerShard, forKey: .pagesPerShard)
+        try container.encode(self.pagesOverlap, forKey: .pagesOverlap)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

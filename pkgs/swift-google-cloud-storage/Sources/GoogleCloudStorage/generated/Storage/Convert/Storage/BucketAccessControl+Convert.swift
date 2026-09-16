@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension BucketAccessControl {
@@ -35,6 +35,7 @@ extension BucketAccessControl {
     self.email = proto.email
     self.domain = proto.domain
     self.projectTeam = proto.hasProjectTeam ? try .init(proto: proto.projectTeam) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -48,6 +49,9 @@ extension BucketAccessControl {
     proto.email = self.email
     proto.domain = self.domain
     if let projectTeam = self.projectTeam { proto.projectTeam = try projectTeam.toProto() }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

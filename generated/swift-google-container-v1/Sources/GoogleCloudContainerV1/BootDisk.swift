@@ -34,6 +34,8 @@ public struct BootDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// For Hyperdisk-Balanced only, the provisioned throughput config value.
   public var provisionedThroughput: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BootDisk`.
   public init() {}
 
@@ -48,6 +50,56 @@ public struct BootDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let sizeGb = CodingKeys(stringValue: "sizeGb")
+    static let provisionedIops = CodingKeys(stringValue: "provisionedIops")
+    static let provisionedThroughput = CodingKeys(stringValue: "provisionedThroughput")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "diskType",
+      "sizeGb",
+      "provisionedIops",
+      "provisionedThroughput",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sizeGb) {
+      self.sizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .provisionedIops) {
+      self.provisionedIops = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .provisionedThroughput) {
+      self.provisionedThroughput = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encode(self.sizeGb, forKey: .sizeGb)
+    try container.encode(self.provisionedIops, forKey: .provisionedIops)
+    try container.encode(self.provisionedThroughput, forKey: .provisionedThroughput)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

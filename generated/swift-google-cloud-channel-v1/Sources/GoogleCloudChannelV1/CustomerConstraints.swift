@@ -30,6 +30,8 @@ public struct CustomerConstraints: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Allowed Promotional Order Type. Present for Promotional offers.
   public var promotionalOrderTypes: [PromotionalOrderType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomerConstraints`.
   public init() {}
 
@@ -44,6 +46,54 @@ public struct CustomerConstraints: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allowedRegions = CodingKeys(stringValue: "allowedRegions")
+    static let allowedCustomerTypes = CodingKeys(stringValue: "allowedCustomerTypes")
+    static let promotionalOrderTypes = CodingKeys(stringValue: "promotionalOrderTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allowedRegions",
+      "allowedCustomerTypes",
+      "promotionalOrderTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedRegions) {
+      self.allowedRegions = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudIdentityInfo.CustomerType].self, forKey: .allowedCustomerTypes)
+    {
+      self.allowedCustomerTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PromotionalOrderType].self, forKey: .promotionalOrderTypes)
+    {
+      self.promotionalOrderTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.allowedRegions, forKey: .allowedRegions)
+    try container.encode(self.allowedCustomerTypes, forKey: .allowedCustomerTypes)
+    try container.encode(self.promotionalOrderTypes, forKey: .promotionalOrderTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

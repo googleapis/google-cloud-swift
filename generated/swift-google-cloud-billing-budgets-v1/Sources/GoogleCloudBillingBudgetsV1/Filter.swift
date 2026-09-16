@@ -85,6 +85,8 @@ public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If not set, the <code>usage_period</code> defaults to CalendarPeriod.MONTH.
   public var usagePeriod: OneOf_UsagePeriod? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Filter`.
   public init() {}
 
@@ -101,29 +103,62 @@ public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case projects = "projects"
-    case resourceAncestors = "resourceAncestors"
-    case creditTypes = "creditTypes"
-    case creditTypesTreatment = "creditTypesTreatment"
-    case services = "services"
-    case subaccounts = "subaccounts"
-    case labels = "labels"
-    case calendarPeriod = "calendarPeriod"
-    case customPeriod = "customPeriod"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projects = CodingKeys(stringValue: "projects")
+    static let resourceAncestors = CodingKeys(stringValue: "resourceAncestors")
+    static let creditTypes = CodingKeys(stringValue: "creditTypes")
+    static let creditTypesTreatment = CodingKeys(stringValue: "creditTypesTreatment")
+    static let services = CodingKeys(stringValue: "services")
+    static let subaccounts = CodingKeys(stringValue: "subaccounts")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let calendarPeriod = CodingKeys(stringValue: "calendarPeriod")
+    static let customPeriod = CodingKeys(stringValue: "customPeriod")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projects",
+      "resourceAncestors",
+      "creditTypes",
+      "creditTypesTreatment",
+      "services",
+      "subaccounts",
+      "labels",
+      "calendarPeriod",
+      "customPeriod",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.projects = try container.decode([Swift.String].self, forKey: .projects)
-    self.resourceAncestors = try container.decode([Swift.String].self, forKey: .resourceAncestors)
-    self.creditTypes = try container.decode([Swift.String].self, forKey: .creditTypes)
-    self.creditTypesTreatment = try container.decode(
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .projects) {
+      self.projects = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resourceAncestors) {
+      self.resourceAncestors = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .creditTypes) {
+      self.creditTypes = value
+    }
+    if let value = try container.decodeIfPresent(
       Filter.CreditTypesTreatment.self, forKey: .creditTypesTreatment)
-    self.services = try container.decode([Swift.String].self, forKey: .services)
-    self.subaccounts = try container.decode([Swift.String].self, forKey: .subaccounts)
-    self.labels = try container.decode(
+    {
+      self.creditTypesTreatment = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .services) {
+      self.services = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subaccounts) {
+      self.subaccounts = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: GoogleCloudWKT.ListValue].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var usagePeriod: OneOf_UsagePeriod? = nil
     let usagePeriodCheckAndSet = {
@@ -144,6 +179,10 @@ public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try usagePeriodCheckAndSet(.customPeriod(customPeriod))
     }
     self.usagePeriod = usagePeriod
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -163,6 +202,9 @@ public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .customPeriod(let value):
         try container.encode(value, forKey: .customPeriod)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

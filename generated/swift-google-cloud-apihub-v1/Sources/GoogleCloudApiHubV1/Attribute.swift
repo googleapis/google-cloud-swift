@@ -69,6 +69,8 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time at which the attribute was last updated.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attribute`.
   public init() {}
 
@@ -83,6 +85,100 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let definitionType = CodingKeys(stringValue: "definitionType")
+    static let scope = CodingKeys(stringValue: "scope")
+    static let dataType = CodingKeys(stringValue: "dataType")
+    static let allowedValues = CodingKeys(stringValue: "allowedValues")
+    static let cardinality = CodingKeys(stringValue: "cardinality")
+    static let mandatory = CodingKeys(stringValue: "mandatory")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "description",
+      "definitionType",
+      "scope",
+      "dataType",
+      "allowedValues",
+      "cardinality",
+      "mandatory",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      Attribute.DefinitionType.self, forKey: .definitionType)
+    {
+      self.definitionType = value
+    }
+    if let value = try container.decodeIfPresent(Attribute.Scope.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent(Attribute.DataType.self, forKey: .dataType) {
+      self.dataType = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Attribute.AllowedValue].self, forKey: .allowedValues)
+    {
+      self.allowedValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cardinality) {
+      self.cardinality = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .mandatory) {
+      self.mandatory = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.definitionType, forKey: .definitionType)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.dataType, forKey: .dataType)
+    try container.encode(self.allowedValues, forKey: .allowedValues)
+    try container.encode(self.cardinality, forKey: .cardinality)
+    try container.encode(self.mandatory, forKey: .mandatory)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The value that can be assigned to the attribute when the data type is
@@ -112,6 +208,8 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// deleted by the user. It can only be true for System defined attributes.
     public var immutable: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllowedValue`.
     public init() {}
 
@@ -126,6 +224,56 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let immutable = CodingKeys(stringValue: "immutable")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "displayName",
+        "description",
+        "immutable",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .immutable) {
+        self.immutable = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.immutable, forKey: .immutable)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -31,6 +31,8 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
   /// `RoutingConfig`, which contains subscriber's key.
   public var routingConfigs: [Swift.String: OmnichannelIntegrationConfig.RoutingConfig] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OmnichannelIntegrationConfig`.
   public init() {}
 
@@ -47,12 +49,64 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let channelConfigs = CodingKeys(stringValue: "channelConfigs")
+    static let subscriberConfigs = CodingKeys(stringValue: "subscriberConfigs")
+    static let routingConfigs = CodingKeys(stringValue: "routingConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "channelConfigs",
+      "subscriberConfigs",
+      "routingConfigs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: OmnichannelIntegrationConfig.ChannelConfig].self, forKey: .channelConfigs)
+    {
+      self.channelConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: OmnichannelIntegrationConfig.SubscriberConfig].self, forKey: .subscriberConfigs
+    ) {
+      self.subscriberConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: OmnichannelIntegrationConfig.RoutingConfig].self, forKey: .routingConfigs)
+    {
+      self.routingConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.channelConfigs, forKey: .channelConfigs)
+    try container.encode(self.subscriberConfigs, forKey: .subscriberConfigs)
+    try container.encode(self.routingConfigs, forKey: .routingConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// ChannelConfig contains config for various of app integration.
   public struct ChannelConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The config for the app.
     public var channelConfig: OneOf_ChannelConfig? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ChannelConfig`.
     public init() {}
@@ -70,8 +124,17 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case whatsappConfig = "whatsappConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let whatsappConfig = CodingKeys(stringValue: "whatsappConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "whatsappConfig"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -93,6 +156,10 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
         try channelConfigCheckAndSet(.whatsappConfig(whatsappConfig))
       }
       self.channelConfig = channelConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -103,6 +170,9 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
         case .whatsappConfig(let value):
           try container.encode(value, forKey: .whatsappConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -148,6 +218,8 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
     /// https://www.facebook.com/business/help/1710077379203657
     public var metaBusinessPortfolioId: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WhatsappConfig`.
     public init() {}
 
@@ -162,6 +234,74 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let phoneNumberId = CodingKeys(stringValue: "phoneNumberId")
+      static let phoneNumber = CodingKeys(stringValue: "phoneNumber")
+      static let whatsappBusinessAccountId = CodingKeys(stringValue: "whatsappBusinessAccountId")
+      static let webhookVerifyToken = CodingKeys(stringValue: "webhookVerifyToken")
+      static let whatsappBusinessToken = CodingKeys(stringValue: "whatsappBusinessToken")
+      static let metaBusinessPortfolioId = CodingKeys(stringValue: "metaBusinessPortfolioId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "phoneNumberId",
+        "phoneNumber",
+        "whatsappBusinessAccountId",
+        "webhookVerifyToken",
+        "whatsappBusinessToken",
+        "metaBusinessPortfolioId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumberId) {
+        self.phoneNumberId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumber) {
+        self.phoneNumber = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .whatsappBusinessAccountId)
+      {
+        self.whatsappBusinessAccountId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webhookVerifyToken) {
+        self.webhookVerifyToken = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .whatsappBusinessToken)
+      {
+        self.whatsappBusinessToken = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .metaBusinessPortfolioId)
+      {
+        self.metaBusinessPortfolioId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.phoneNumberId, forKey: .phoneNumberId)
+      try container.encode(self.phoneNumber, forKey: .phoneNumber)
+      try container.encode(self.whatsappBusinessAccountId, forKey: .whatsappBusinessAccountId)
+      try container.encode(self.webhookVerifyToken, forKey: .webhookVerifyToken)
+      try container.encode(self.whatsappBusinessToken, forKey: .whatsappBusinessToken)
+      try container.encode(self.metaBusinessPortfolioId, forKey: .metaBusinessPortfolioId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -182,6 +322,8 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
     /// The config for the subscriber.
     public var subscriberConfig: OneOf_SubscriberConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubscriberConfig`.
     public init() {}
 
@@ -198,8 +340,17 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case cesAppConfig = "cesAppConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cesAppConfig = CodingKeys(stringValue: "cesAppConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cesAppConfig"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -221,6 +372,10 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
         try subscriberConfigCheckAndSet(.cesAppConfig(cesAppConfig))
       }
       self.subscriberConfig = subscriberConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -231,6 +386,9 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
         case .cesAppConfig(let value):
           try container.encode(value, forKey: .cesAppConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -259,6 +417,8 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
     /// Format: `projects/{project}/locations/{location}/apps/{app}`
     public var app: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CesAppConfig`.
     public init() {}
 
@@ -273,6 +433,38 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let app = CodingKeys(stringValue: "app")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "app"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .app) {
+        self.app = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.app, forKey: .app)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -293,6 +485,8 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
     /// The key of the subscriber.
     public var subscriberKey: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RoutingConfig`.
     public init() {}
 
@@ -307,6 +501,38 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subscriberKey = CodingKeys(stringValue: "subscriberKey")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subscriberKey"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscriberKey) {
+        self.subscriberKey = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.subscriberKey, forKey: .subscriberKey)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

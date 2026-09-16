@@ -31,6 +31,8 @@ public struct UpdateAccessPolicyRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// actually post it.
   public var validateOnly: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateAccessPolicyRequest`.
   public init() {}
 
@@ -45,6 +47,42 @@ public struct UpdateAccessPolicyRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let accessPolicy = CodingKeys(stringValue: "accessPolicy")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "accessPolicy",
+      "validateOnly",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.accessPolicy = try container.decodeIfPresent(AccessPolicy.self, forKey: .accessPolicy)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.accessPolicy, forKey: .accessPolicy)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

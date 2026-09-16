@@ -80,6 +80,8 @@
     /// field is only required for cross-project cloning.
     public var destinationNetwork: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloneContext`.
     public init() {}
 
@@ -94,6 +96,99 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let pitrTimestampMs = CodingKeys(stringValue: "pitrTimestampMs")
+      static let destinationInstanceName = CodingKeys(stringValue: "destinationInstanceName")
+      static let binLogCoordinates = CodingKeys(stringValue: "binLogCoordinates")
+      static let pointInTime = CodingKeys(stringValue: "pointInTime")
+      static let allocatedIpRange = CodingKeys(stringValue: "allocatedIpRange")
+      static let databaseNames = CodingKeys(stringValue: "databaseNames")
+      static let preferredZone = CodingKeys(stringValue: "preferredZone")
+      static let preferredSecondaryZone = CodingKeys(stringValue: "preferredSecondaryZone")
+      static let sourceInstanceDeletionTime = CodingKeys(stringValue: "sourceInstanceDeletionTime")
+      static let destinationProject = CodingKeys(stringValue: "destinationProject")
+      static let destinationNetwork = CodingKeys(stringValue: "destinationNetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "pitrTimestampMs",
+        "destinationInstanceName",
+        "binLogCoordinates",
+        "pointInTime",
+        "allocatedIpRange",
+        "databaseNames",
+        "preferredZone",
+        "preferredSecondaryZone",
+        "sourceInstanceDeletionTime",
+        "destinationProject",
+        "destinationNetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .pitrTimestampMs) {
+        self.pitrTimestampMs = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .destinationInstanceName)
+      {
+        self.destinationInstanceName = value
+      }
+      self.binLogCoordinates = try container.decodeIfPresent(
+        BinLogCoordinates.self, forKey: .binLogCoordinates)
+      self.pointInTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .pointInTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .allocatedIpRange) {
+        self.allocatedIpRange = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .databaseNames) {
+        self.databaseNames = value
+      }
+      self.preferredZone = try container.decodeIfPresent(Swift.String.self, forKey: .preferredZone)
+      self.preferredSecondaryZone = try container.decodeIfPresent(
+        Swift.String.self, forKey: .preferredSecondaryZone)
+      self.sourceInstanceDeletionTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .sourceInstanceDeletionTime)
+      self.destinationProject = try container.decodeIfPresent(
+        Swift.String.self, forKey: .destinationProject)
+      self.destinationNetwork = try container.decodeIfPresent(
+        Swift.String.self, forKey: .destinationNetwork)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.pitrTimestampMs, forKey: .pitrTimestampMs)
+      try container.encode(self.destinationInstanceName, forKey: .destinationInstanceName)
+      try container.encodeIfPresent(self.binLogCoordinates, forKey: .binLogCoordinates)
+      try container.encodeIfPresent(self.pointInTime, forKey: .pointInTime)
+      try container.encode(self.allocatedIpRange, forKey: .allocatedIpRange)
+      try container.encode(self.databaseNames, forKey: .databaseNames)
+      try container.encodeIfPresent(self.preferredZone, forKey: .preferredZone)
+      try container.encodeIfPresent(self.preferredSecondaryZone, forKey: .preferredSecondaryZone)
+      try container.encodeIfPresent(
+        self.sourceInstanceDeletionTime, forKey: .sourceInstanceDeletionTime)
+      try container.encodeIfPresent(self.destinationProject, forKey: .destinationProject)
+      try container.encodeIfPresent(self.destinationNetwork, forKey: .destinationNetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

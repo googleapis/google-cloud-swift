@@ -24,6 +24,8 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The log entry.
   public var logEntry: OneOf_LogEntry? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogEntry`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudLoggingEntry = "cloudLoggingEntry"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudLoggingEntry = CodingKeys(stringValue: "cloudLoggingEntry")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudLoggingEntry"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try logEntryCheckAndSet(.cloudLoggingEntry(cloudLoggingEntry))
     }
     self.logEntry = logEntry
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct LogEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .cloudLoggingEntry(let value):
         try container.encode(value, forKey: .cloudLoggingEntry)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

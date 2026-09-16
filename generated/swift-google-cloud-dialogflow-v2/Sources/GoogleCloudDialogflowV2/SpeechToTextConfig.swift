@@ -104,6 +104,8 @@
     /// seconds of timeout value.
     public var useTimeoutBasedEndpointing: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SpeechToTextConfig`.
     public init() {}
 
@@ -118,6 +120,84 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let speechModelVariant = CodingKeys(stringValue: "speechModelVariant")
+      static let model = CodingKeys(stringValue: "model")
+      static let phraseSets = CodingKeys(stringValue: "phraseSets")
+      static let audioEncoding = CodingKeys(stringValue: "audioEncoding")
+      static let sampleRateHertz = CodingKeys(stringValue: "sampleRateHertz")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+      static let enableWordInfo = CodingKeys(stringValue: "enableWordInfo")
+      static let useTimeoutBasedEndpointing = CodingKeys(stringValue: "useTimeoutBasedEndpointing")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "speechModelVariant",
+        "model",
+        "phraseSets",
+        "audioEncoding",
+        "sampleRateHertz",
+        "languageCode",
+        "enableWordInfo",
+        "useTimeoutBasedEndpointing",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        SpeechModelVariant.self, forKey: .speechModelVariant)
+      {
+        self.speechModelVariant = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+        self.model = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .phraseSets) {
+        self.phraseSets = value
+      }
+      if let value = try container.decodeIfPresent(AudioEncoding.self, forKey: .audioEncoding) {
+        self.audioEncoding = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleRateHertz) {
+        self.sampleRateHertz = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableWordInfo) {
+        self.enableWordInfo = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .useTimeoutBasedEndpointing)
+      {
+        self.useTimeoutBasedEndpointing = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.speechModelVariant, forKey: .speechModelVariant)
+      try container.encode(self.model, forKey: .model)
+      try container.encode(self.phraseSets, forKey: .phraseSets)
+      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+      try container.encode(self.sampleRateHertz, forKey: .sampleRateHertz)
+      try container.encode(self.languageCode, forKey: .languageCode)
+      try container.encode(self.enableWordInfo, forKey: .enableWordInfo)
+      try container.encode(self.useTimeoutBasedEndpointing, forKey: .useTimeoutBasedEndpointing)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

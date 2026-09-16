@@ -69,6 +69,8 @@ public struct PricingExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// base_unit.
   public var baseUnitConversionFactor: Swift.Double = Swift.Double()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PricingExpression`.
   public init() {}
 
@@ -85,6 +87,78 @@ public struct PricingExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let usageUnit = CodingKeys(stringValue: "usageUnit")
+    static let displayQuantity = CodingKeys(stringValue: "displayQuantity")
+    static let tieredRates = CodingKeys(stringValue: "tieredRates")
+    static let usageUnitDescription = CodingKeys(stringValue: "usageUnitDescription")
+    static let baseUnit = CodingKeys(stringValue: "baseUnit")
+    static let baseUnitDescription = CodingKeys(stringValue: "baseUnitDescription")
+    static let baseUnitConversionFactor = CodingKeys(stringValue: "baseUnitConversionFactor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "usageUnit",
+      "displayQuantity",
+      "tieredRates",
+      "usageUnitDescription",
+      "baseUnit",
+      "baseUnitDescription",
+      "baseUnitConversionFactor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .usageUnit) {
+      self.usageUnit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .displayQuantity) {
+      self.displayQuantity = value
+    }
+    if let value = try container.decodeIfPresent(
+      [PricingExpression.TierRate].self, forKey: .tieredRates)
+    {
+      self.tieredRates = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .usageUnitDescription) {
+      self.usageUnitDescription = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseUnit) {
+      self.baseUnit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseUnitDescription) {
+      self.baseUnitDescription = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .baseUnitConversionFactor)
+    {
+      self.baseUnitConversionFactor = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.usageUnit, forKey: .usageUnit)
+    try container.encode(self.displayQuantity, forKey: .displayQuantity)
+    try container.encode(self.tieredRates, forKey: .tieredRates)
+    try container.encode(self.usageUnitDescription, forKey: .usageUnitDescription)
+    try container.encode(self.baseUnit, forKey: .baseUnit)
+    try container.encode(self.baseUnitDescription, forKey: .baseUnitDescription)
+    try container.encode(self.baseUnitConversionFactor, forKey: .baseUnitConversionFactor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The price rate indicating starting usage and its corresponding price.
   public struct TierRate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -97,6 +171,8 @@ public struct PricingExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// The price per unit of usage.
     /// Example: unit_price of amount $10 indicates that each unit will cost $10.
     public var unitPrice: GoogleType.Money? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `TierRate`.
     public init() {}
@@ -112,6 +188,42 @@ public struct PricingExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let startUsageAmount = CodingKeys(stringValue: "startUsageAmount")
+      static let unitPrice = CodingKeys(stringValue: "unitPrice")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "startUsageAmount",
+        "unitPrice",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .startUsageAmount) {
+        self.startUsageAmount = value
+      }
+      self.unitPrice = try container.decodeIfPresent(GoogleType.Money.self, forKey: .unitPrice)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.startUsageAmount, forKey: .startUsageAmount)
+      try container.encodeIfPresent(self.unitPrice, forKey: .unitPrice)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

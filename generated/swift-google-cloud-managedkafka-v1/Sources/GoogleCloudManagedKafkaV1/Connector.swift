@@ -39,6 +39,8 @@ public struct Connector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// restarted.
   public var restartPolicy: OneOf_RestartPolicy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Connector`.
   public init() {}
 
@@ -55,18 +57,38 @@ public struct Connector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case taskRestartPolicy = "taskRestartPolicy"
-    case name = "name"
-    case configs = "configs"
-    case state = "state"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let taskRestartPolicy = CodingKeys(stringValue: "taskRestartPolicy")
+    static let name = CodingKeys(stringValue: "name")
+    static let configs = CodingKeys(stringValue: "configs")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "taskRestartPolicy",
+      "name",
+      "configs",
+      "state",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.configs = try container.decode([Swift.String: Swift.String].self, forKey: .configs)
-    self.state = try container.decode(Connector.State.self, forKey: .state)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .configs)
+    {
+      self.configs = value
+    }
+    if let value = try container.decodeIfPresent(Connector.State.self, forKey: .state) {
+      self.state = value
+    }
 
     var restartPolicy: OneOf_RestartPolicy? = nil
     let restartPolicyCheckAndSet = {
@@ -84,6 +106,10 @@ public struct Connector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try restartPolicyCheckAndSet(.taskRestartPolicy(taskRestartPolicy))
     }
     self.restartPolicy = restartPolicy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -97,6 +123,9 @@ public struct Connector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .taskRestartPolicy(let value):
         try container.encode(value, forKey: .taskRestartPolicy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

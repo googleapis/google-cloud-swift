@@ -46,6 +46,8 @@ public struct GcsIngestPipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// skipped if it is not applicable.
   public var pipelineConfig: IngestPipelineConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsIngestPipeline`.
   public init() {}
 
@@ -60,6 +62,61 @@ public struct GcsIngestPipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputPath = CodingKeys(stringValue: "inputPath")
+    static let schemaName = CodingKeys(stringValue: "schemaName")
+    static let processorType = CodingKeys(stringValue: "processorType")
+    static let skipIngestedDocuments = CodingKeys(stringValue: "skipIngestedDocuments")
+    static let pipelineConfig = CodingKeys(stringValue: "pipelineConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputPath",
+      "schemaName",
+      "processorType",
+      "skipIngestedDocuments",
+      "pipelineConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputPath) {
+      self.inputPath = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schemaName) {
+      self.schemaName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processorType) {
+      self.processorType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipIngestedDocuments) {
+      self.skipIngestedDocuments = value
+    }
+    self.pipelineConfig = try container.decodeIfPresent(
+      IngestPipelineConfig.self, forKey: .pipelineConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputPath, forKey: .inputPath)
+    try container.encode(self.schemaName, forKey: .schemaName)
+    try container.encode(self.processorType, forKey: .processorType)
+    try container.encode(self.skipIngestedDocuments, forKey: .skipIngestedDocuments)
+    try container.encodeIfPresent(self.pipelineConfig, forKey: .pipelineConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -78,6 +78,8 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// fields.
   public var managedServiceConfigs: [ApiConfig.File] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ApiConfig`.
   public init() {}
 
@@ -94,6 +96,104 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let gatewayServiceAccount = CodingKeys(stringValue: "gatewayServiceAccount")
+    static let serviceConfigId = CodingKeys(stringValue: "serviceConfigId")
+    static let state = CodingKeys(stringValue: "state")
+    static let openapiDocuments = CodingKeys(stringValue: "openapiDocuments")
+    static let grpcServices = CodingKeys(stringValue: "grpcServices")
+    static let managedServiceConfigs = CodingKeys(stringValue: "managedServiceConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "displayName",
+      "gatewayServiceAccount",
+      "serviceConfigId",
+      "state",
+      "openapiDocuments",
+      "grpcServices",
+      "managedServiceConfigs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gatewayServiceAccount)
+    {
+      self.gatewayServiceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceConfigId) {
+      self.serviceConfigId = value
+    }
+    if let value = try container.decodeIfPresent(ApiConfig.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ApiConfig.OpenApiDocument].self, forKey: .openapiDocuments)
+    {
+      self.openapiDocuments = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ApiConfig.GrpcServiceDefinition].self, forKey: .grpcServices)
+    {
+      self.grpcServices = value
+    }
+    if let value = try container.decodeIfPresent(
+      [ApiConfig.File].self, forKey: .managedServiceConfigs)
+    {
+      self.managedServiceConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.gatewayServiceAccount, forKey: .gatewayServiceAccount)
+    try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.openapiDocuments, forKey: .openapiDocuments)
+    try container.encode(self.grpcServices, forKey: .grpcServices)
+    try container.encode(self.managedServiceConfigs, forKey: .managedServiceConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A lightweight description of a file.
   public struct File: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -104,6 +204,8 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The bytes that constitute the file.
     public var contents: Foundation.Data = Foundation.Data()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `File`.
     public init() {}
@@ -119,6 +221,44 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let path = CodingKeys(stringValue: "path")
+      static let contents = CodingKeys(stringValue: "contents")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "path",
+        "contents",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .contents) {
+        self.contents = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.contents, forKey: .contents)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -139,6 +279,8 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The OpenAPI Specification document file.
     public var document: ApiConfig.File? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `OpenApiDocument`.
     public init() {}
 
@@ -153,6 +295,36 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let document = CodingKeys(stringValue: "document")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "document"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.document = try container.decodeIfPresent(ApiConfig.File.self, forKey: .document)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.document, forKey: .document)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -185,6 +357,8 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// file_descriptor_set.
     public var source: [ApiConfig.File] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GrpcServiceDefinition`.
     public init() {}
 
@@ -199,6 +373,43 @@ public struct ApiConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fileDescriptorSet = CodingKeys(stringValue: "fileDescriptorSet")
+      static let source = CodingKeys(stringValue: "source")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fileDescriptorSet",
+        "source",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.fileDescriptorSet = try container.decodeIfPresent(
+        ApiConfig.File.self, forKey: .fileDescriptorSet)
+      if let value = try container.decodeIfPresent([ApiConfig.File].self, forKey: .source) {
+        self.source = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.fileDescriptorSet, forKey: .fileDescriptorSet)
+      try container.encode(self.source, forKey: .source)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

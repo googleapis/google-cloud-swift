@@ -58,6 +58,8 @@
     /// Output only. [Output Only] The zone in which the reservation slot resides.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReservationSlot`.
     public init() {}
 
@@ -72,6 +74,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let physicalTopology = CodingKeys(stringValue: "physicalTopology")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let shareSettings = CodingKeys(stringValue: "shareSettings")
+      static let state = CodingKeys(stringValue: "state")
+      static let status = CodingKeys(stringValue: "status")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "id",
+        "kind",
+        "name",
+        "physicalTopology",
+        "selfLink",
+        "selfLinkWithId",
+        "shareSettings",
+        "state",
+        "status",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.physicalTopology = try container.decodeIfPresent(
+        ReservationSlotPhysicalTopology.self, forKey: .physicalTopology)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
+      self.shareSettings = try container.decodeIfPresent(ShareSettings.self, forKey: .shareSettings)
+      self.state = try container.decodeIfPresent(ReservationSlot.State.self, forKey: .state)
+      self.status = try container.decodeIfPresent(ReservationSlotStatus.self, forKey: .status)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.physicalTopology, forKey: .physicalTopology)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.shareSettings, forKey: .shareSettings)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [state][google.cloud.compute.v1.ReservationSlot.state] field.

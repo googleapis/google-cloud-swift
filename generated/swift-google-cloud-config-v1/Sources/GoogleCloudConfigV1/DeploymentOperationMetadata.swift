@@ -38,6 +38,8 @@ public struct DeploymentOperationMetadata: Codable, Equatable, GoogleCloudWKT._A
   /// Output only. Indicating if early apply results are available.
   public var applyResultsAvailable: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeploymentOperationMetadata`.
   public init() {}
 
@@ -52,6 +54,62 @@ public struct DeploymentOperationMetadata: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let step = CodingKeys(stringValue: "step")
+    static let applyResults = CodingKeys(stringValue: "applyResults")
+    static let build = CodingKeys(stringValue: "build")
+    static let logs = CodingKeys(stringValue: "logs")
+    static let applyResultsAvailable = CodingKeys(stringValue: "applyResultsAvailable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "step",
+      "applyResults",
+      "build",
+      "logs",
+      "applyResultsAvailable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      DeploymentOperationMetadata.DeploymentStep.self, forKey: .step)
+    {
+      self.step = value
+    }
+    self.applyResults = try container.decodeIfPresent(ApplyResults.self, forKey: .applyResults)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .build) {
+      self.build = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logs) {
+      self.logs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .applyResultsAvailable) {
+      self.applyResultsAvailable = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.step, forKey: .step)
+    try container.encodeIfPresent(self.applyResults, forKey: .applyResults)
+    try container.encode(self.build, forKey: .build)
+    try container.encode(self.logs, forKey: .logs)
+    try container.encode(self.applyResultsAvailable, forKey: .applyResultsAvailable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The possible steps a deployment may be running.

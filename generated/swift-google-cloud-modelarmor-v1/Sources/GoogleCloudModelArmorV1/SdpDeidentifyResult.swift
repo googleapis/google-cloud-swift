@@ -44,6 +44,8 @@ public struct SdpDeidentifyResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// List of Sensitive Data Protection info-types that were de-identified.
   public var infoTypes: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpDeidentifyResult`.
   public init() {}
 
@@ -58,6 +60,67 @@ public struct SdpDeidentifyResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let messageItems = CodingKeys(stringValue: "messageItems")
+    static let matchState = CodingKeys(stringValue: "matchState")
+    static let data = CodingKeys(stringValue: "data")
+    static let transformedBytes = CodingKeys(stringValue: "transformedBytes")
+    static let infoTypes = CodingKeys(stringValue: "infoTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "executionState",
+      "messageItems",
+      "matchState",
+      "data",
+      "transformedBytes",
+      "infoTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FilterExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent([MessageItem].self, forKey: .messageItems) {
+      self.messageItems = value
+    }
+    if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .matchState) {
+      self.matchState = value
+    }
+    self.data = try container.decodeIfPresent(DataItem.self, forKey: .data)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .transformedBytes) {
+      self.transformedBytes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .infoTypes) {
+      self.infoTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.messageItems, forKey: .messageItems)
+    try container.encode(self.matchState, forKey: .matchState)
+    try container.encodeIfPresent(self.data, forKey: .data)
+    try container.encode(self.transformedBytes, forKey: .transformedBytes)
+    try container.encode(self.infoTypes, forKey: .infoTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

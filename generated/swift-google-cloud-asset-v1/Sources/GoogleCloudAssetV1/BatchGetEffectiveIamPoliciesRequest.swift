@@ -44,6 +44,8 @@ public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleClo
   /// A maximum of 20 resources' effective policies can be retrieved in a batch.
   public var names: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchGetEffectiveIamPoliciesRequest`.
   public init() {}
 
@@ -58,6 +60,44 @@ public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleClo
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let names = CodingKeys(stringValue: "names")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "names",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
+      self.scope = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .names) {
+      self.names = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.names, forKey: .names)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

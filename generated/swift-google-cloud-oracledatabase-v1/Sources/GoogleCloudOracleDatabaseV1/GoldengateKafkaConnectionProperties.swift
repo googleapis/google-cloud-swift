@@ -74,6 +74,8 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleClo
   /// In case it differs from the KeyStore password, it should be provided.
   public var sslKeyPasswordOptions: OneOf_SslKeyPasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateKafkaConnectionProperties`.
   public init() {}
 
@@ -90,45 +92,98 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleClo
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case trustStorePassword = "trustStorePassword"
-    case trustStorePasswordSecretVersion = "trustStorePasswordSecretVersion"
-    case keyStorePassword = "keyStorePassword"
-    case keyStorePasswordSecretVersion = "keyStorePasswordSecretVersion"
-    case sslKeyPassword = "sslKeyPassword"
-    case sslKeyPasswordSecretVersion = "sslKeyPasswordSecretVersion"
-    case technologyType = "technologyType"
-    case streamPoolId = "streamPoolId"
-    case clusterId = "clusterId"
-    case bootstrapServers = "bootstrapServers"
-    case securityProtocol = "securityProtocol"
-    case username = "username"
-    case trustStoreFile = "trustStoreFile"
-    case keyStoreFile = "keyStoreFile"
-    case consumerPropertiesFile = "consumerPropertiesFile"
-    case producerPropertiesFile = "producerPropertiesFile"
-    case useResourcePrincipal = "useResourcePrincipal"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let trustStorePassword = CodingKeys(stringValue: "trustStorePassword")
+    static let trustStorePasswordSecretVersion = CodingKeys(
+      stringValue: "trustStorePasswordSecretVersion")
+    static let keyStorePassword = CodingKeys(stringValue: "keyStorePassword")
+    static let keyStorePasswordSecretVersion = CodingKeys(
+      stringValue: "keyStorePasswordSecretVersion")
+    static let sslKeyPassword = CodingKeys(stringValue: "sslKeyPassword")
+    static let sslKeyPasswordSecretVersion = CodingKeys(stringValue: "sslKeyPasswordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let streamPoolId = CodingKeys(stringValue: "streamPoolId")
+    static let clusterId = CodingKeys(stringValue: "clusterId")
+    static let bootstrapServers = CodingKeys(stringValue: "bootstrapServers")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let username = CodingKeys(stringValue: "username")
+    static let trustStoreFile = CodingKeys(stringValue: "trustStoreFile")
+    static let keyStoreFile = CodingKeys(stringValue: "keyStoreFile")
+    static let consumerPropertiesFile = CodingKeys(stringValue: "consumerPropertiesFile")
+    static let producerPropertiesFile = CodingKeys(stringValue: "producerPropertiesFile")
+    static let useResourcePrincipal = CodingKeys(stringValue: "useResourcePrincipal")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "trustStorePassword",
+      "trustStorePasswordSecretVersion",
+      "keyStorePassword",
+      "keyStorePasswordSecretVersion",
+      "sslKeyPassword",
+      "sslKeyPasswordSecretVersion",
+      "technologyType",
+      "streamPoolId",
+      "clusterId",
+      "bootstrapServers",
+      "securityProtocol",
+      "username",
+      "trustStoreFile",
+      "keyStoreFile",
+      "consumerPropertiesFile",
+      "producerPropertiesFile",
+      "useResourcePrincipal",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.streamPoolId = try container.decode(Swift.String.self, forKey: .streamPoolId)
-    self.clusterId = try container.decode(Swift.String.self, forKey: .clusterId)
-    self.bootstrapServers = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .streamPoolId) {
+      self.streamPoolId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterId) {
+      self.clusterId = value
+    }
+    if let value = try container.decodeIfPresent(
       [KafkaBootstrapServer].self, forKey: .bootstrapServers)
-    self.securityProtocol = try container.decode(
+    {
+      self.bootstrapServers = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateKafkaConnectionProperties.KafkaSecurityProtocol.self, forKey: .securityProtocol)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.trustStoreFile = try container.decode(Swift.String.self, forKey: .trustStoreFile)
-    self.keyStoreFile = try container.decode(Swift.String.self, forKey: .keyStoreFile)
-    self.consumerPropertiesFile = try container.decode(
-      Swift.String.self, forKey: .consumerPropertiesFile)
-    self.producerPropertiesFile = try container.decode(
-      Swift.String.self, forKey: .producerPropertiesFile)
-    self.useResourcePrincipal = try container.decode(Swift.Bool.self, forKey: .useResourcePrincipal)
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trustStoreFile) {
+      self.trustStoreFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyStoreFile) {
+      self.keyStoreFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consumerPropertiesFile)
+    {
+      self.consumerPropertiesFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .producerPropertiesFile)
+    {
+      self.producerPropertiesFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useResourcePrincipal) {
+      self.useResourcePrincipal = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -218,6 +273,10 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleClo
         .sslKeyPasswordSecretVersion(sslKeyPasswordSecretVersion))
     }
     self.sslKeyPasswordOptions = sslKeyPasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -268,6 +327,9 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleClo
       case .sslKeyPasswordSecretVersion(let value):
         try container.encode(value, forKey: .sslKeyPasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

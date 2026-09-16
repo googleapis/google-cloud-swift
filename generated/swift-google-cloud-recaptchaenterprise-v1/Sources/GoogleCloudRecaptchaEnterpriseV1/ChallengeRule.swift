@@ -42,6 +42,8 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. The outcome to apply when this challenge rule matches.
   public var outcome: OneOf_Outcome? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ChallengeRule`.
   public init() {}
 
@@ -58,15 +60,28 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case condition = "condition"
-    case noChallenge = "noChallenge"
-    case challenge = "challenge"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let condition = CodingKeys(stringValue: "condition")
+    static let noChallenge = CodingKeys(stringValue: "noChallenge")
+    static let challenge = CodingKeys(stringValue: "challenge")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "condition",
+      "noChallenge",
+      "challenge",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.condition = try container.decode(Swift.String.self, forKey: .condition)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
+      self.condition = value
+    }
 
     var outcome: OneOf_Outcome? = nil
     let outcomeCheckAndSet = {
@@ -89,6 +104,10 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try outcomeCheckAndSet(.challenge(challenge))
     }
     self.outcome = outcome
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -103,6 +122,9 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .challenge)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// An outcome that indicates that no challenge should be presented to the
@@ -110,6 +132,8 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct NoChallengeOutcome: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NoChallengeOutcome`.
     public init() {}
 
@@ -124,6 +148,30 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -148,6 +196,8 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public var difficulty: WebKeySettings.ChallengeSecurityPreference =
       WebKeySettings.ChallengeSecurityPreference()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ChallengeOutcome`.
     public init() {}
 
@@ -162,6 +212,40 @@ public struct ChallengeRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let difficulty = CodingKeys(stringValue: "difficulty")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "difficulty"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        WebKeySettings.ChallengeSecurityPreference.self, forKey: .difficulty)
+      {
+        self.difficulty = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.difficulty, forKey: .difficulty)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

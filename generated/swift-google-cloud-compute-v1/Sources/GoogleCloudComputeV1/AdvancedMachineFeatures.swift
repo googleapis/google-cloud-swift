@@ -56,6 +56,8 @@
     /// platform's SMT width.
     public var visibleCoreCount: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AdvancedMachineFeatures`.
     public init() {}
 
@@ -70,6 +72,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enableNestedVirtualization = CodingKeys(stringValue: "enableNestedVirtualization")
+      static let enableUefiNetworking = CodingKeys(stringValue: "enableUefiNetworking")
+      static let performanceMonitoringUnit = CodingKeys(stringValue: "performanceMonitoringUnit")
+      static let threadsPerCore = CodingKeys(stringValue: "threadsPerCore")
+      static let turboMode = CodingKeys(stringValue: "turboMode")
+      static let visibleCoreCount = CodingKeys(stringValue: "visibleCoreCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enableNestedVirtualization",
+        "enableUefiNetworking",
+        "performanceMonitoringUnit",
+        "threadsPerCore",
+        "turboMode",
+        "visibleCoreCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.enableNestedVirtualization = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableNestedVirtualization)
+      self.enableUefiNetworking = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableUefiNetworking)
+      self.performanceMonitoringUnit = try container.decodeIfPresent(
+        AdvancedMachineFeatures.PerformanceMonitoringUnit.self, forKey: .performanceMonitoringUnit)
+      self.threadsPerCore = try container.decodeIfPresent(Swift.Int32.self, forKey: .threadsPerCore)
+      self.turboMode = try container.decodeIfPresent(Swift.String.self, forKey: .turboMode)
+      self.visibleCoreCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .visibleCoreCount)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+      try container.encodeIfPresent(self.enableUefiNetworking, forKey: .enableUefiNetworking)
+      try container.encodeIfPresent(
+        self.performanceMonitoringUnit, forKey: .performanceMonitoringUnit)
+      try container.encodeIfPresent(self.threadsPerCore, forKey: .threadsPerCore)
+      try container.encodeIfPresent(self.turboMode, forKey: .turboMode)
+      try container.encodeIfPresent(self.visibleCoreCount, forKey: .visibleCoreCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [performanceMonitoringUnit][google.cloud.compute.v1.AdvancedMachineFeatures.performanceMonitoringUnit] field.

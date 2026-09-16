@@ -34,6 +34,8 @@
     /// The source of the updated SuggestionDenyList.
     public var source: OneOf_Source? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ImportSuggestionDenyListEntriesRequest`.
     public init() {}
 
@@ -50,15 +52,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inlineSource = "inlineSource"
-      case gcsSource = "gcsSource"
-      case parent = "parent"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inlineSource = CodingKeys(stringValue: "inlineSource")
+      static let gcsSource = CodingKeys(stringValue: "gcsSource")
+      static let parent = CodingKeys(stringValue: "parent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inlineSource",
+        "gcsSource",
+        "parent",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.parent = try container.decode(Swift.String.self, forKey: .parent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+        self.parent = value
+      }
 
       var source: OneOf_Source? = nil
       let sourceCheckAndSet = {
@@ -79,6 +94,10 @@
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,6 +112,9 @@
           try container.encode(value, forKey: .gcsSource)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The inline source for SuggestionDenyListEntry.
@@ -101,6 +123,8 @@
     {
       /// Required. A list of all denylist entries to import. Max of 1000 items.
       public var entries: [SuggestionDenyListEntry] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `InlineSource`.
       public init() {}
@@ -116,6 +140,40 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let entries = CodingKeys(stringValue: "entries")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "entries"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [SuggestionDenyListEntry].self, forKey: .entries)
+        {
+          self.entries = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.entries, forKey: .entries)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

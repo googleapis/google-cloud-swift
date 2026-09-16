@@ -38,6 +38,8 @@ public struct GitRepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// to this source.
   public var enterpriseConfig: OneOf_EnterpriseConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitRepoSource`.
   public init() {}
 
@@ -54,19 +56,38 @@ public struct GitRepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case uri = "uri"
-    case repository = "repository"
-    case ref = "ref"
-    case repoType = "repoType"
-    case githubEnterpriseConfig = "githubEnterpriseConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let repository = CodingKeys(stringValue: "repository")
+    static let ref = CodingKeys(stringValue: "ref")
+    static let repoType = CodingKeys(stringValue: "repoType")
+    static let githubEnterpriseConfig = CodingKeys(stringValue: "githubEnterpriseConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "repository",
+      "ref",
+      "repoType",
+      "githubEnterpriseConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.uri = try container.decode(Swift.String.self, forKey: .uri)
-    self.ref = try container.decode(Swift.String.self, forKey: .ref)
-    self.repoType = try container.decode(GitFileSource.RepoType.self, forKey: .repoType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
+      self.ref = value
+    }
+    if let value = try container.decodeIfPresent(GitFileSource.RepoType.self, forKey: .repoType) {
+      self.repoType = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -99,6 +120,10 @@ public struct GitRepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try enterpriseConfigCheckAndSet(.githubEnterpriseConfig(githubEnterpriseConfig))
     }
     self.enterpriseConfig = enterpriseConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -119,6 +144,9 @@ public struct GitRepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .githubEnterpriseConfig(let value):
         try container.encode(value, forKey: .githubEnterpriseConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

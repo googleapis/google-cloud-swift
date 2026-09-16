@@ -97,6 +97,8 @@ public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// rollout.
   public var deploymentTarget: OneOf_DeploymentTarget? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Target`.
   public init() {}
 
@@ -113,46 +115,100 @@ public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case targetId = "targetId"
-    case uid = "uid"
-    case description = "description"
-    case annotations = "annotations"
-    case labels = "labels"
-    case requireApproval = "requireApproval"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case gke = "gke"
-    case anthosCluster = "anthosCluster"
-    case run = "run"
-    case multiTarget = "multiTarget"
-    case customTarget = "customTarget"
-    case associatedEntities = "associatedEntities"
-    case etag = "etag"
-    case executionConfigs = "executionConfigs"
-    case deployParameters = "deployParameters"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let targetId = CodingKeys(stringValue: "targetId")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let description = CodingKeys(stringValue: "description")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let requireApproval = CodingKeys(stringValue: "requireApproval")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let gke = CodingKeys(stringValue: "gke")
+    static let anthosCluster = CodingKeys(stringValue: "anthosCluster")
+    static let run = CodingKeys(stringValue: "run")
+    static let multiTarget = CodingKeys(stringValue: "multiTarget")
+    static let customTarget = CodingKeys(stringValue: "customTarget")
+    static let associatedEntities = CodingKeys(stringValue: "associatedEntities")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let executionConfigs = CodingKeys(stringValue: "executionConfigs")
+    static let deployParameters = CodingKeys(stringValue: "deployParameters")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "targetId",
+      "uid",
+      "description",
+      "annotations",
+      "labels",
+      "requireApproval",
+      "createTime",
+      "updateTime",
+      "gke",
+      "anthosCluster",
+      "run",
+      "multiTarget",
+      "customTarget",
+      "associatedEntities",
+      "etag",
+      "executionConfigs",
+      "deployParameters",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.targetId = try container.decode(Swift.String.self, forKey: .targetId)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.requireApproval = try container.decode(Swift.Bool.self, forKey: .requireApproval)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
+      self.targetId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireApproval) {
+      self.requireApproval = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.associatedEntities = try container.decode(
+    if let value = try container.decodeIfPresent(
       [Swift.String: AssociatedEntities].self, forKey: .associatedEntities)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
-    self.executionConfigs = try container.decode([ExecutionConfig].self, forKey: .executionConfigs)
-    self.deployParameters = try container.decode(
+    {
+      self.associatedEntities = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent([ExecutionConfig].self, forKey: .executionConfigs)
+    {
+      self.executionConfigs = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .deployParameters)
+    {
+      self.deployParameters = value
+    }
 
     var deploymentTarget: OneOf_DeploymentTarget? = nil
     let deploymentTargetCheckAndSet = {
@@ -182,6 +238,10 @@ public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try deploymentTargetCheckAndSet(.customTarget(customTarget))
     }
     self.deploymentTarget = deploymentTarget
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -193,8 +253,8 @@ public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.annotations, forKey: .annotations)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.requireApproval, forKey: .requireApproval)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.associatedEntities, forKey: .associatedEntities)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.executionConfigs, forKey: .executionConfigs)
@@ -213,6 +273,9 @@ public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .customTarget(let value):
         try container.encode(value, forKey: .customTarget)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

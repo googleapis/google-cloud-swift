@@ -51,6 +51,8 @@ public struct MembershipBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// What type of membershipbinding this is.
   public var target: OneOf_Target? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MembershipBinding`.
   public init() {}
 
@@ -67,21 +69,41 @@ public struct MembershipBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case scope = "scope"
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case state = "state"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let scope = CodingKeys(stringValue: "scope")
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "scope",
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "state",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -89,7 +111,10 @@ public struct MembershipBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable
     self.deleteTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.state = try container.decodeIfPresent(MembershipBindingLifecycleState.self, forKey: .state)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var target: OneOf_Target? = nil
     let targetCheckAndSet = {
@@ -105,16 +130,20 @@ public struct MembershipBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try targetCheckAndSet(.scope(scope))
     }
     self.target = target
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.state, forKey: .state)
     try container.encode(self.labels, forKey: .labels)
 
     if let choice = self.target {
@@ -122,6 +151,9 @@ public struct MembershipBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .scope(let value):
         try container.encode(value, forKey: .scope)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

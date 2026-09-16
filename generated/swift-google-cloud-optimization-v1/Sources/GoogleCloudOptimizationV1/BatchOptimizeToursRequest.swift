@@ -36,6 +36,8 @@ public struct BatchOptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._Any
   /// and data formats.
   public var modelConfigs: [BatchOptimizeToursRequest.AsyncModelConfig] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BatchOptimizeToursRequest`.
   public init() {}
 
@@ -50,6 +52,46 @@ public struct BatchOptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let modelConfigs = CodingKeys(stringValue: "modelConfigs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "modelConfigs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(
+      [BatchOptimizeToursRequest.AsyncModelConfig].self, forKey: .modelConfigs)
+    {
+      self.modelConfigs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.modelConfigs, forKey: .modelConfigs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Information for solving one optimization model asynchronously.
@@ -76,6 +118,8 @@ public struct BatchOptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._Any
     /// of interruption.
     public var enableCheckpoints: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AsyncModelConfig`.
     public init() {}
 
@@ -90,6 +134,52 @@ public struct BatchOptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let inputConfig = CodingKeys(stringValue: "inputConfig")
+      static let outputConfig = CodingKeys(stringValue: "outputConfig")
+      static let enableCheckpoints = CodingKeys(stringValue: "enableCheckpoints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "displayName",
+        "inputConfig",
+        "outputConfig",
+        "enableCheckpoints",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.inputConfig = try container.decodeIfPresent(InputConfig.self, forKey: .inputConfig)
+      self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCheckpoints) {
+        self.enableCheckpoints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
+      try container.encodeIfPresent(self.outputConfig, forKey: .outputConfig)
+      try container.encode(self.enableCheckpoints, forKey: .enableCheckpoints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

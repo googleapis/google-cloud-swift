@@ -123,6 +123,8 @@
     /// Set this to zero (0) to disable serve-while-stale.
     public var serveWhileStale: Duration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CachePolicy`.
     public init() {}
 
@@ -137,6 +139,85 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let cacheBypassRequestHeaderNames = CodingKeys(
+        stringValue: "cacheBypassRequestHeaderNames")
+      static let cacheKeyPolicy = CodingKeys(stringValue: "cacheKeyPolicy")
+      static let cacheMode = CodingKeys(stringValue: "cacheMode")
+      static let clientTtl = CodingKeys(stringValue: "clientTtl")
+      static let defaultTtl = CodingKeys(stringValue: "defaultTtl")
+      static let maxTtl = CodingKeys(stringValue: "maxTtl")
+      static let negativeCaching = CodingKeys(stringValue: "negativeCaching")
+      static let negativeCachingPolicy = CodingKeys(stringValue: "negativeCachingPolicy")
+      static let requestCoalescing = CodingKeys(stringValue: "requestCoalescing")
+      static let serveWhileStale = CodingKeys(stringValue: "serveWhileStale")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "cacheBypassRequestHeaderNames",
+        "cacheKeyPolicy",
+        "cacheMode",
+        "clientTtl",
+        "defaultTtl",
+        "maxTtl",
+        "negativeCaching",
+        "negativeCachingPolicy",
+        "requestCoalescing",
+        "serveWhileStale",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .cacheBypassRequestHeaderNames)
+      {
+        self.cacheBypassRequestHeaderNames = value
+      }
+      self.cacheKeyPolicy = try container.decodeIfPresent(
+        CachePolicyCacheKeyPolicy.self, forKey: .cacheKeyPolicy)
+      self.cacheMode = try container.decodeIfPresent(CachePolicy.CacheMode.self, forKey: .cacheMode)
+      self.clientTtl = try container.decodeIfPresent(Duration.self, forKey: .clientTtl)
+      self.defaultTtl = try container.decodeIfPresent(Duration.self, forKey: .defaultTtl)
+      self.maxTtl = try container.decodeIfPresent(Duration.self, forKey: .maxTtl)
+      self.negativeCaching = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .negativeCaching)
+      if let value = try container.decodeIfPresent(
+        [CachePolicyNegativeCachingPolicy].self, forKey: .negativeCachingPolicy)
+      {
+        self.negativeCachingPolicy = value
+      }
+      self.requestCoalescing = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .requestCoalescing)
+      self.serveWhileStale = try container.decodeIfPresent(Duration.self, forKey: .serveWhileStale)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.cacheBypassRequestHeaderNames, forKey: .cacheBypassRequestHeaderNames)
+      try container.encodeIfPresent(self.cacheKeyPolicy, forKey: .cacheKeyPolicy)
+      try container.encodeIfPresent(self.cacheMode, forKey: .cacheMode)
+      try container.encodeIfPresent(self.clientTtl, forKey: .clientTtl)
+      try container.encodeIfPresent(self.defaultTtl, forKey: .defaultTtl)
+      try container.encodeIfPresent(self.maxTtl, forKey: .maxTtl)
+      try container.encodeIfPresent(self.negativeCaching, forKey: .negativeCaching)
+      try container.encode(self.negativeCachingPolicy, forKey: .negativeCachingPolicy)
+      try container.encodeIfPresent(self.requestCoalescing, forKey: .requestCoalescing)
+      try container.encodeIfPresent(self.serveWhileStale, forKey: .serveWhileStale)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [cacheMode][google.cloud.compute.v1.CachePolicy.cacheMode] field.

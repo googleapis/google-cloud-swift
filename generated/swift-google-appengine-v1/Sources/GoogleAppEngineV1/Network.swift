@@ -61,6 +61,8 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Only applicable in the App Engine flexible environment.
   public var sessionAffinity: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Network`.
   public init() {}
 
@@ -75,6 +77,62 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let forwardedPorts = CodingKeys(stringValue: "forwardedPorts")
+    static let instanceTag = CodingKeys(stringValue: "instanceTag")
+    static let name = CodingKeys(stringValue: "name")
+    static let subnetworkName = CodingKeys(stringValue: "subnetworkName")
+    static let sessionAffinity = CodingKeys(stringValue: "sessionAffinity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "forwardedPorts",
+      "instanceTag",
+      "name",
+      "subnetworkName",
+      "sessionAffinity",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .forwardedPorts) {
+      self.forwardedPorts = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceTag) {
+      self.instanceTag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetworkName) {
+      self.subnetworkName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .sessionAffinity) {
+      self.sessionAffinity = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.forwardedPorts, forKey: .forwardedPorts)
+    try container.encode(self.instanceTag, forKey: .instanceTag)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.subnetworkName, forKey: .subnetworkName)
+    try container.encode(self.sessionAffinity, forKey: .sessionAffinity)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

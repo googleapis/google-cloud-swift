@@ -81,6 +81,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The time until which the backup is not deletable.
   public var enforcedRetentionEndTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Backup`.
   public init() {}
 
@@ -95,6 +97,119 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let description = CodingKeys(stringValue: "description")
+    static let volumeUsageBytes = CodingKeys(stringValue: "volumeUsageBytes")
+    static let backupType = CodingKeys(stringValue: "backupType")
+    static let sourceVolume = CodingKeys(stringValue: "sourceVolume")
+    static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let chainStorageBytes = CodingKeys(stringValue: "chainStorageBytes")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let volumeRegion = CodingKeys(stringValue: "volumeRegion")
+    static let backupRegion = CodingKeys(stringValue: "backupRegion")
+    static let enforcedRetentionEndTime = CodingKeys(stringValue: "enforcedRetentionEndTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "description",
+      "volumeUsageBytes",
+      "backupType",
+      "sourceVolume",
+      "sourceSnapshot",
+      "createTime",
+      "labels",
+      "chainStorageBytes",
+      "satisfiesPzs",
+      "satisfiesPzi",
+      "volumeRegion",
+      "backupRegion",
+      "enforcedRetentionEndTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .volumeUsageBytes) {
+      self.volumeUsageBytes = value
+    }
+    if let value = try container.decodeIfPresent(Backup.Type_.self, forKey: .backupType) {
+      self.backupType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceVolume) {
+      self.sourceVolume = value
+    }
+    self.sourceSnapshot = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSnapshot)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .chainStorageBytes) {
+      self.chainStorageBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+      self.satisfiesPzs = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+      self.satisfiesPzi = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeRegion) {
+      self.volumeRegion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupRegion) {
+      self.backupRegion = value
+    }
+    self.enforcedRetentionEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .enforcedRetentionEndTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.volumeUsageBytes, forKey: .volumeUsageBytes)
+    try container.encode(self.backupType, forKey: .backupType)
+    try container.encode(self.sourceVolume, forKey: .sourceVolume)
+    try container.encodeIfPresent(self.sourceSnapshot, forKey: .sourceSnapshot)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.chainStorageBytes, forKey: .chainStorageBytes)
+    try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encode(self.volumeRegion, forKey: .volumeRegion)
+    try container.encode(self.backupRegion, forKey: .backupRegion)
+    try container.encodeIfPresent(self.enforcedRetentionEndTime, forKey: .enforcedRetentionEndTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Backup States

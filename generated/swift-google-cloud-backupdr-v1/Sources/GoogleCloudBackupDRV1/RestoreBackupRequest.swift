@@ -60,6 +60,8 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The property overrides for the instance being restored.
   public var instanceProperties: OneOf_InstanceProperties? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RestoreBackupRequest`.
   public init() {}
 
@@ -76,21 +78,43 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case requestId = "requestId"
-    case computeInstanceTargetEnvironment = "computeInstanceTargetEnvironment"
-    case diskTargetEnvironment = "diskTargetEnvironment"
-    case regionDiskTargetEnvironment = "regionDiskTargetEnvironment"
-    case computeInstanceRestoreProperties = "computeInstanceRestoreProperties"
-    case diskRestoreProperties = "diskRestoreProperties"
-    case clearOverridesFieldMask = "clearOverridesFieldMask"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let requestId = CodingKeys(stringValue: "requestId")
+    static let computeInstanceTargetEnvironment = CodingKeys(
+      stringValue: "computeInstanceTargetEnvironment")
+    static let diskTargetEnvironment = CodingKeys(stringValue: "diskTargetEnvironment")
+    static let regionDiskTargetEnvironment = CodingKeys(stringValue: "regionDiskTargetEnvironment")
+    static let computeInstanceRestoreProperties = CodingKeys(
+      stringValue: "computeInstanceRestoreProperties")
+    static let diskRestoreProperties = CodingKeys(stringValue: "diskRestoreProperties")
+    static let clearOverridesFieldMask = CodingKeys(stringValue: "clearOverridesFieldMask")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "requestId",
+      "computeInstanceTargetEnvironment",
+      "diskTargetEnvironment",
+      "regionDiskTargetEnvironment",
+      "computeInstanceRestoreProperties",
+      "diskRestoreProperties",
+      "clearOverridesFieldMask",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
     self.clearOverridesFieldMask = try container.decodeIfPresent(
       GoogleCloudWKT.FieldMask.self, forKey: .clearOverridesFieldMask)
 
@@ -144,13 +168,17 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try instancePropertiesCheckAndSet(.diskRestoreProperties(diskRestoreProperties))
     }
     self.instanceProperties = instanceProperties
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestId, forKey: .requestId)
-    try container.encode(self.clearOverridesFieldMask, forKey: .clearOverridesFieldMask)
+    try container.encodeIfPresent(self.clearOverridesFieldMask, forKey: .clearOverridesFieldMask)
 
     if let choice = self.targetEnvironment {
       switch choice {
@@ -170,6 +198,9 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       case .diskRestoreProperties(let value):
         try container.encode(value, forKey: .diskRestoreProperties)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

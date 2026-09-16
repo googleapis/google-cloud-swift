@@ -35,6 +35,8 @@
     /// following_batch_sample_percentage is used by default.
     public var followingBatchSampleSize: OneOf_FollowingBatchSampleSize? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SampleConfig`.
     public init() {}
 
@@ -51,16 +53,32 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case initialBatchSamplePercentage = "initialBatchSamplePercentage"
-      case followingBatchSamplePercentage = "followingBatchSamplePercentage"
-      case sampleStrategy = "sampleStrategy"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let initialBatchSamplePercentage = CodingKeys(
+        stringValue: "initialBatchSamplePercentage")
+      static let followingBatchSamplePercentage = CodingKeys(
+        stringValue: "followingBatchSamplePercentage")
+      static let sampleStrategy = CodingKeys(stringValue: "sampleStrategy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "initialBatchSamplePercentage",
+        "followingBatchSamplePercentage",
+        "sampleStrategy",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.sampleStrategy = try container.decode(
+      if let value = try container.decodeIfPresent(
         SampleConfig.SampleStrategy.self, forKey: .sampleStrategy)
+      {
+        self.sampleStrategy = value
+      }
 
       var initialBatchSampleSize: OneOf_InitialBatchSampleSize? = nil
       let initialBatchSampleSizeCheckAndSet = {
@@ -97,6 +115,10 @@
           .followingBatchSamplePercentage(followingBatchSamplePercentage))
       }
       self.followingBatchSampleSize = followingBatchSampleSize
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -115,6 +137,9 @@
         case .followingBatchSamplePercentage(let value):
           try container.encode(value, forKey: .followingBatchSamplePercentage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

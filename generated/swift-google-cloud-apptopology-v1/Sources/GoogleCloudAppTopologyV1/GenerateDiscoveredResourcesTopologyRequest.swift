@@ -37,6 +37,8 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
   /// topology view.
   public var query: OneOf_Query? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateDiscoveredResourcesTopologyRequest`.
   public init() {}
 
@@ -53,16 +55,31 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case filter = "filter"
-    case name = "name"
-    case topologyDomains = "topologyDomains"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filter = CodingKeys(stringValue: "filter")
+    static let name = CodingKeys(stringValue: "name")
+    static let topologyDomains = CodingKeys(stringValue: "topologyDomains")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filter",
+      "name",
+      "topologyDomains",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.topologyDomains = try container.decode([Swift.String].self, forKey: .topologyDomains)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .topologyDomains) {
+      self.topologyDomains = value
+    }
 
     var query: OneOf_Query? = nil
     let queryCheckAndSet = {
@@ -78,6 +95,10 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
       try queryCheckAndSet(.filter(filter))
     }
     self.query = query
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +111,9 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
       case .filter(let value):
         try container.encode(value, forKey: .filter)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

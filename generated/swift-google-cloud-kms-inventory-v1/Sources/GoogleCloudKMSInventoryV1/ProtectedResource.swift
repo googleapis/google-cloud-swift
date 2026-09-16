@@ -67,6 +67,8 @@ public struct ProtectedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// is in seconds. Timestamp.nanos will always be 0.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProtectedResource`.
   public init() {}
 
@@ -81,6 +83,92 @@ public struct ProtectedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let project = CodingKeys(stringValue: "project")
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let cloudProduct = CodingKeys(stringValue: "cloudProduct")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let location = CodingKeys(stringValue: "location")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let cryptoKeyVersion = CodingKeys(stringValue: "cryptoKeyVersion")
+    static let cryptoKeyVersions = CodingKeys(stringValue: "cryptoKeyVersions")
+    static let createTime = CodingKeys(stringValue: "createTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "project",
+      "projectId",
+      "cloudProduct",
+      "resourceType",
+      "location",
+      "labels",
+      "cryptoKeyVersion",
+      "cryptoKeyVersions",
+      "createTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudProduct) {
+      self.cloudProduct = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+      self.resourceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cryptoKeyVersion) {
+      self.cryptoKeyVersion = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .cryptoKeyVersions) {
+      self.cryptoKeyVersions = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.cloudProduct, forKey: .cloudProduct)
+    try container.encode(self.resourceType, forKey: .resourceType)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.cryptoKeyVersion, forKey: .cryptoKeyVersion)
+    try container.encode(self.cryptoKeyVersions, forKey: .cryptoKeyVersions)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -40,6 +40,8 @@
     /// List of VPN tunnels that are in this VPN connection.
     public var tunnels: [VpnGatewayStatusTunnel] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VpnGatewayStatusVpnConnection`.
     public init() {}
 
@@ -54,6 +56,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let peerExternalGateway = CodingKeys(stringValue: "peerExternalGateway")
+      static let peerGcpGateway = CodingKeys(stringValue: "peerGcpGateway")
+      static let state = CodingKeys(stringValue: "state")
+      static let tunnels = CodingKeys(stringValue: "tunnels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "peerExternalGateway",
+        "peerGcpGateway",
+        "state",
+        "tunnels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.peerExternalGateway = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerExternalGateway)
+      self.peerGcpGateway = try container.decodeIfPresent(
+        Swift.String.self, forKey: .peerGcpGateway)
+      self.state = try container.decodeIfPresent(
+        VpnGatewayStatusHighAvailabilityRequirementState.self, forKey: .state)
+      if let value = try container.decodeIfPresent([VpnGatewayStatusTunnel].self, forKey: .tunnels)
+      {
+        self.tunnels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.peerExternalGateway, forKey: .peerExternalGateway)
+      try container.encodeIfPresent(self.peerGcpGateway, forKey: .peerGcpGateway)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encode(self.tunnels, forKey: .tunnels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

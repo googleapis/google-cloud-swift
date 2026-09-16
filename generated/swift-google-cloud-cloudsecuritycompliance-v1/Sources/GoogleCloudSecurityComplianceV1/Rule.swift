@@ -30,6 +30,8 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The rule implementation.
   public var implementation: OneOf_Implementation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Rule`.
   public init() {}
 
@@ -46,16 +48,31 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case celExpression = "celExpression"
-    case description = "description"
-    case ruleActionTypes = "ruleActionTypes"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let celExpression = CodingKeys(stringValue: "celExpression")
+    static let description = CodingKeys(stringValue: "description")
+    static let ruleActionTypes = CodingKeys(stringValue: "ruleActionTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "celExpression",
+      "description",
+      "ruleActionTypes",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.ruleActionTypes = try container.decode([RuleActionType].self, forKey: .ruleActionTypes)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent([RuleActionType].self, forKey: .ruleActionTypes) {
+      self.ruleActionTypes = value
+    }
 
     var implementation: OneOf_Implementation? = nil
     let implementationCheckAndSet = {
@@ -73,6 +90,10 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try implementationCheckAndSet(.celExpression(celExpression))
     }
     self.implementation = implementation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -85,6 +106,9 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .celExpression(let value):
         try container.encode(value, forKey: .celExpression)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

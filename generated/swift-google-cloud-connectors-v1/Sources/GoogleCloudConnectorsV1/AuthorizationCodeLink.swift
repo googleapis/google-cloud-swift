@@ -37,6 +37,8 @@ public struct AuthorizationCodeLink: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Whether to enable PKCE for the auth code flow.
   public var enablePkce: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuthorizationCodeLink`.
   public init() {}
 
@@ -51,6 +53,56 @@ public struct AuthorizationCodeLink: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let uri = CodingKeys(stringValue: "uri")
+    static let scopes = CodingKeys(stringValue: "scopes")
+    static let clientId = CodingKeys(stringValue: "clientId")
+    static let enablePkce = CodingKeys(stringValue: "enablePkce")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "uri",
+      "scopes",
+      "clientId",
+      "enablePkce",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .scopes) {
+      self.scopes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
+      self.clientId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePkce) {
+      self.enablePkce = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.scopes, forKey: .scopes)
+    try container.encode(self.clientId, forKey: .clientId)
+    try container.encode(self.enablePkce, forKey: .enablePkce)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

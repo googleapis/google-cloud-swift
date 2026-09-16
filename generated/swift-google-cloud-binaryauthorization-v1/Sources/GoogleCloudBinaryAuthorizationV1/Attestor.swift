@@ -43,6 +43,8 @@ public struct Attestor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var attestorType: OneOf_AttestorType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Attestor`.
   public init() {}
 
@@ -59,21 +61,40 @@ public struct Attestor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case description = "description"
-    case userOwnedGrafeasNote = "userOwnedGrafeasNote"
-    case updateTime = "updateTime"
-    case etag = "etag"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let userOwnedGrafeasNote = CodingKeys(stringValue: "userOwnedGrafeasNote")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "userOwnedGrafeasNote",
+      "updateTime",
+      "etag",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
     self.updateTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
-    self.etag = try container.decode(Swift.String.self, forKey: .etag)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
 
     var attestorType: OneOf_AttestorType? = nil
     let attestorTypeCheckAndSet = {
@@ -91,13 +112,17 @@ public struct Attestor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try attestorTypeCheckAndSet(.userOwnedGrafeasNote(userOwnedGrafeasNote))
     }
     self.attestorType = attestorType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.attestorType {
@@ -105,6 +130,9 @@ public struct Attestor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .userOwnedGrafeasNote(let value):
         try container.encode(value, forKey: .userOwnedGrafeasNote)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

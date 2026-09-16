@@ -38,6 +38,8 @@ public struct VertexModelSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// predictions.
   public var containerImageUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VertexModelSpec`.
   public init() {}
 
@@ -52,6 +54,61 @@ public struct VertexModelSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let versionId = CodingKeys(stringValue: "versionId")
+    static let versionAliases = CodingKeys(stringValue: "versionAliases")
+    static let versionDescription = CodingKeys(stringValue: "versionDescription")
+    static let vertexModelSourceInfo = CodingKeys(stringValue: "vertexModelSourceInfo")
+    static let containerImageUri = CodingKeys(stringValue: "containerImageUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "versionId",
+      "versionAliases",
+      "versionDescription",
+      "vertexModelSourceInfo",
+      "containerImageUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionId) {
+      self.versionId = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .versionAliases) {
+      self.versionAliases = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionDescription) {
+      self.versionDescription = value
+    }
+    self.vertexModelSourceInfo = try container.decodeIfPresent(
+      VertexModelSourceInfo.self, forKey: .vertexModelSourceInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .containerImageUri) {
+      self.containerImageUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.versionId, forKey: .versionId)
+    try container.encode(self.versionAliases, forKey: .versionAliases)
+    try container.encode(self.versionDescription, forKey: .versionDescription)
+    try container.encodeIfPresent(self.vertexModelSourceInfo, forKey: .vertexModelSourceInfo)
+    try container.encode(self.containerImageUri, forKey: .containerImageUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

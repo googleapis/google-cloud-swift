@@ -47,6 +47,8 @@ public struct TransferStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A message describing the cause of the last transfer failure.
   public var lastTransferError: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransferStats`.
   public init() {}
 
@@ -61,6 +63,71 @@ public struct TransferStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transferBytes = CodingKeys(stringValue: "transferBytes")
+    static let totalTransferDuration = CodingKeys(stringValue: "totalTransferDuration")
+    static let lastTransferBytes = CodingKeys(stringValue: "lastTransferBytes")
+    static let lastTransferDuration = CodingKeys(stringValue: "lastTransferDuration")
+    static let lagDuration = CodingKeys(stringValue: "lagDuration")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastTransferEndTime = CodingKeys(stringValue: "lastTransferEndTime")
+    static let lastTransferError = CodingKeys(stringValue: "lastTransferError")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transferBytes",
+      "totalTransferDuration",
+      "lastTransferBytes",
+      "lastTransferDuration",
+      "lagDuration",
+      "updateTime",
+      "lastTransferEndTime",
+      "lastTransferError",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.transferBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .transferBytes)
+    self.totalTransferDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .totalTransferDuration)
+    self.lastTransferBytes = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .lastTransferBytes)
+    self.lastTransferDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .lastTransferDuration)
+    self.lagDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .lagDuration)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.lastTransferEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastTransferEndTime)
+    self.lastTransferError = try container.decodeIfPresent(
+      Swift.String.self, forKey: .lastTransferError)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.transferBytes, forKey: .transferBytes)
+    try container.encodeIfPresent(self.totalTransferDuration, forKey: .totalTransferDuration)
+    try container.encodeIfPresent(self.lastTransferBytes, forKey: .lastTransferBytes)
+    try container.encodeIfPresent(self.lastTransferDuration, forKey: .lastTransferDuration)
+    try container.encodeIfPresent(self.lagDuration, forKey: .lagDuration)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.lastTransferEndTime, forKey: .lastTransferEndTime)
+    try container.encodeIfPresent(self.lastTransferError, forKey: .lastTransferError)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

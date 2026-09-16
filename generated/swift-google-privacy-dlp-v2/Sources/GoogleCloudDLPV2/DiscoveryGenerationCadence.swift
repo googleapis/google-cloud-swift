@@ -39,6 +39,8 @@ public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleCloudWKT._An
   /// underlying resource has changed. Defaults to never.
   public var refreshFrequency: DataProfileUpdateFrequency = DataProfileUpdateFrequency()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiscoveryGenerationCadence`.
   public init() {}
 
@@ -53,6 +55,57 @@ public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schemaModifiedCadence = CodingKeys(stringValue: "schemaModifiedCadence")
+    static let tableModifiedCadence = CodingKeys(stringValue: "tableModifiedCadence")
+    static let inspectTemplateModifiedCadence = CodingKeys(
+      stringValue: "inspectTemplateModifiedCadence")
+    static let refreshFrequency = CodingKeys(stringValue: "refreshFrequency")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schemaModifiedCadence",
+      "tableModifiedCadence",
+      "inspectTemplateModifiedCadence",
+      "refreshFrequency",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.schemaModifiedCadence = try container.decodeIfPresent(
+      DiscoverySchemaModifiedCadence.self, forKey: .schemaModifiedCadence)
+    self.tableModifiedCadence = try container.decodeIfPresent(
+      DiscoveryTableModifiedCadence.self, forKey: .tableModifiedCadence)
+    self.inspectTemplateModifiedCadence = try container.decodeIfPresent(
+      DiscoveryInspectTemplateModifiedCadence.self, forKey: .inspectTemplateModifiedCadence)
+    if let value = try container.decodeIfPresent(
+      DataProfileUpdateFrequency.self, forKey: .refreshFrequency)
+    {
+      self.refreshFrequency = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.schemaModifiedCadence, forKey: .schemaModifiedCadence)
+    try container.encodeIfPresent(self.tableModifiedCadence, forKey: .tableModifiedCadence)
+    try container.encodeIfPresent(
+      self.inspectTemplateModifiedCadence, forKey: .inspectTemplateModifiedCadence)
+    try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

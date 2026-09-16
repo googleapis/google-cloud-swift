@@ -31,6 +31,8 @@ public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// score. If not specified, the threshold is used for probability score.
   public var method: SafetySetting.HarmBlockMethod = SafetySetting.HarmBlockMethod()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SafetySetting`.
   public init() {}
 
@@ -45,6 +47,54 @@ public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let category = CodingKeys(stringValue: "category")
+    static let threshold = CodingKeys(stringValue: "threshold")
+    static let method = CodingKeys(stringValue: "method")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "category",
+      "threshold",
+      "method",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(HarmCategory.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(
+      SafetySetting.HarmBlockThreshold.self, forKey: .threshold)
+    {
+      self.threshold = value
+    }
+    if let value = try container.decodeIfPresent(
+      SafetySetting.HarmBlockMethod.self, forKey: .method)
+    {
+      self.method = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.threshold, forKey: .threshold)
+    try container.encode(self.method, forKey: .method)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Probability based thresholds levels for blocking.

@@ -58,6 +58,8 @@ public struct ReportDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Metrics of the report.
   public var reportMetrics: ReportDetail.Metrics? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReportDetail`.
   public init() {}
 
@@ -74,12 +76,84 @@ public struct ReportDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let snapshotTime = CodingKeys(stringValue: "snapshotTime")
+    static let reportPathPrefix = CodingKeys(stringValue: "reportPathPrefix")
+    static let shardsCount = CodingKeys(stringValue: "shardsCount")
+    static let status = CodingKeys(stringValue: "status")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let targetDatetime = CodingKeys(stringValue: "targetDatetime")
+    static let reportMetrics = CodingKeys(stringValue: "reportMetrics")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "snapshotTime",
+      "reportPathPrefix",
+      "shardsCount",
+      "status",
+      "labels",
+      "targetDatetime",
+      "reportMetrics",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.snapshotTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .snapshotTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reportPathPrefix) {
+      self.reportPathPrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .shardsCount) {
+      self.shardsCount = value
+    }
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    self.targetDatetime = try container.decodeIfPresent(
+      GoogleType.DateTime.self, forKey: .targetDatetime)
+    self.reportMetrics = try container.decodeIfPresent(
+      ReportDetail.Metrics.self, forKey: .reportMetrics)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.snapshotTime, forKey: .snapshotTime)
+    try container.encode(self.reportPathPrefix, forKey: .reportPathPrefix)
+    try container.encode(self.shardsCount, forKey: .shardsCount)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encodeIfPresent(self.targetDatetime, forKey: .targetDatetime)
+    try container.encodeIfPresent(self.reportMetrics, forKey: .reportMetrics)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Different metrics associated with the generated report.
   public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Count of Cloud Storage objects which are part of the report.
     public var processedRecordsCount: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Metrics`.
     public init() {}
@@ -95,6 +169,39 @@ public struct ReportDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let processedRecordsCount = CodingKeys(stringValue: "processedRecordsCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "processedRecordsCount"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .processedRecordsCount)
+      {
+        self.processedRecordsCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.processedRecordsCount, forKey: .processedRecordsCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct MaintenanceExclusionWindow: Codable, Equatable, GoogleCloudWKT._An
   /// Optional. A unique (per cluster) id for the window.
   public var id: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MaintenanceExclusionWindow`.
   public init() {}
 
@@ -41,6 +43,42 @@ public struct MaintenanceExclusionWindow: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let window = CodingKeys(stringValue: "window")
+    static let id = CodingKeys(stringValue: "id")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "window",
+      "id",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.window = try container.decodeIfPresent(TimeWindow.self, forKey: .window)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.window, forKey: .window)
+    try container.encode(self.id, forKey: .id)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

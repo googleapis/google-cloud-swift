@@ -37,6 +37,8 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
   /// Right now, only Cloud SQL Single User credentials are supported.
   public var credentials: OneOf_Credentials? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EnableManagedRotationRequest`.
   public init() {}
 
@@ -53,14 +55,27 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case cloudSqlSingleUserCredentials = "cloudSqlSingleUserCredentials"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let cloudSqlSingleUserCredentials = CodingKeys(
+      stringValue: "cloudSqlSingleUserCredentials")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "cloudSqlSingleUserCredentials",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
 
     var credentials: OneOf_Credentials? = nil
     let credentialsCheckAndSet = {
@@ -79,6 +94,10 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
       try credentialsCheckAndSet(.cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials))
     }
     self.credentials = credentials
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -90,6 +109,9 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
       case .cloudSqlSingleUserCredentials(let value):
         try container.encode(value, forKey: .cloudSqlSingleUserCredentials)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -108,6 +130,8 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
     /// a random password will be generated.
     public var password: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CloudSQLSingleUserCredentials`.
     public init() {}
 
@@ -122,6 +146,50 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instanceId = CodingKeys(stringValue: "instanceId")
+      static let username = CodingKeys(stringValue: "username")
+      static let password = CodingKeys(stringValue: "password")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instanceId",
+        "username",
+        "password",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
+        self.instanceId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.instanceId, forKey: .instanceId)
+      try container.encode(self.username, forKey: .username)
+      try container.encode(self.password, forKey: .password)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

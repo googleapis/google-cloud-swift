@@ -48,6 +48,8 @@
     /// It should only be set if engine is used.
     public var dataStoreSpecs: [VertexAISearch.DataStoreSpec] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VertexAISearch`.
     public init() {}
 
@@ -62,6 +64,64 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datastore = CodingKeys(stringValue: "datastore")
+      static let engine = CodingKeys(stringValue: "engine")
+      static let maxResults = CodingKeys(stringValue: "maxResults")
+      static let filter = CodingKeys(stringValue: "filter")
+      static let dataStoreSpecs = CodingKeys(stringValue: "dataStoreSpecs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datastore",
+        "engine",
+        "maxResults",
+        "filter",
+        "dataStoreSpecs",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datastore) {
+        self.datastore = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engine) {
+        self.engine = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults) {
+        self.maxResults = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+        self.filter = value
+      }
+      if let value = try container.decodeIfPresent(
+        [VertexAISearch.DataStoreSpec].self, forKey: .dataStoreSpecs)
+      {
+        self.dataStoreSpecs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.datastore, forKey: .datastore)
+      try container.encode(self.engine, forKey: .engine)
+      try container.encode(self.maxResults, forKey: .maxResults)
+      try container.encode(self.filter, forKey: .filter)
+      try container.encode(self.dataStoreSpecs, forKey: .dataStoreSpecs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Define data stores within engine to filter on in a search call and
@@ -80,6 +140,8 @@
       /// [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
       public var filter: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DataStoreSpec`.
       public init() {}
 
@@ -94,6 +156,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataStore = CodingKeys(stringValue: "dataStore")
+        static let filter = CodingKeys(stringValue: "filter")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataStore",
+          "filter",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
+          self.dataStore = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+          self.filter = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataStore, forKey: .dataStore)
+        try container.encode(self.filter, forKey: .filter)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

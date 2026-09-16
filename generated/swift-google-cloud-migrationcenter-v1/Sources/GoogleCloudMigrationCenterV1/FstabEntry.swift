@@ -40,6 +40,8 @@ public struct FstabEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// checks are done at reboot time.
   public var passno: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FstabEntry`.
   public init() {}
 
@@ -54,6 +56,68 @@ public struct FstabEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let spec = CodingKeys(stringValue: "spec")
+    static let file = CodingKeys(stringValue: "file")
+    static let vfstype = CodingKeys(stringValue: "vfstype")
+    static let mntops = CodingKeys(stringValue: "mntops")
+    static let freq = CodingKeys(stringValue: "freq")
+    static let passno = CodingKeys(stringValue: "passno")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "spec",
+      "file",
+      "vfstype",
+      "mntops",
+      "freq",
+      "passno",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .spec) {
+      self.spec = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .file) {
+      self.file = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vfstype) {
+      self.vfstype = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mntops) {
+      self.mntops = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .freq) {
+      self.freq = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .passno) {
+      self.passno = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.spec, forKey: .spec)
+    try container.encode(self.file, forKey: .file)
+    try container.encode(self.vfstype, forKey: .vfstype)
+    try container.encode(self.mntops, forKey: .mntops)
+    try container.encode(self.freq, forKey: .freq)
+    try container.encode(self.passno, forKey: .passno)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

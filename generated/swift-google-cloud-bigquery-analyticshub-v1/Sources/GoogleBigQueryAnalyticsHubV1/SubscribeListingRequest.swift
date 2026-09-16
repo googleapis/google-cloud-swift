@@ -28,6 +28,8 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Resulting destination of the listing that you subscribed to.
   public var destination: OneOf_Destination? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SubscribeListingRequest`.
   public init() {}
 
@@ -44,15 +46,29 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case destinationDataset = "destinationDataset"
-    case destinationPubsubSubscription = "destinationPubsubSubscription"
-    case name = "name"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationDataset = CodingKeys(stringValue: "destinationDataset")
+    static let destinationPubsubSubscription = CodingKeys(
+      stringValue: "destinationPubsubSubscription")
+    static let name = CodingKeys(stringValue: "name")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationDataset",
+      "destinationPubsubSubscription",
+      "name",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
 
     var destination: OneOf_Destination? = nil
     let destinationCheckAndSet = {
@@ -75,6 +91,10 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       try destinationCheckAndSet(.destinationPubsubSubscription(destinationPubsubSubscription))
     }
     self.destination = destination
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +108,9 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .destinationPubsubSubscription(let value):
         try container.encode(value, forKey: .destinationPubsubSubscription)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

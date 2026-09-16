@@ -90,6 +90,8 @@ public struct AwsNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This field is mutually exclusive with `instance_type`.
   public var spotConfig: SpotConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsNodeConfig`.
   public init() {}
 
@@ -104,6 +106,108 @@ public struct AwsNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let rootVolume = CodingKeys(stringValue: "rootVolume")
+    static let taints = CodingKeys(stringValue: "taints")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let iamInstanceProfile = CodingKeys(stringValue: "iamInstanceProfile")
+    static let imageType = CodingKeys(stringValue: "imageType")
+    static let sshConfig = CodingKeys(stringValue: "sshConfig")
+    static let securityGroupIds = CodingKeys(stringValue: "securityGroupIds")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+    static let configEncryption = CodingKeys(stringValue: "configEncryption")
+    static let instancePlacement = CodingKeys(stringValue: "instancePlacement")
+    static let autoscalingMetricsCollection = CodingKeys(
+      stringValue: "autoscalingMetricsCollection")
+    static let spotConfig = CodingKeys(stringValue: "spotConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "instanceType",
+      "rootVolume",
+      "taints",
+      "labels",
+      "tags",
+      "iamInstanceProfile",
+      "imageType",
+      "sshConfig",
+      "securityGroupIds",
+      "proxyConfig",
+      "configEncryption",
+      "instancePlacement",
+      "autoscalingMetricsCollection",
+      "spotConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    self.rootVolume = try container.decodeIfPresent(AwsVolumeTemplate.self, forKey: .rootVolume)
+    if let value = try container.decodeIfPresent([NodeTaint].self, forKey: .taints) {
+      self.taints = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamInstanceProfile) {
+      self.iamInstanceProfile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageType) {
+      self.imageType = value
+    }
+    self.sshConfig = try container.decodeIfPresent(AwsSshConfig.self, forKey: .sshConfig)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .securityGroupIds) {
+      self.securityGroupIds = value
+    }
+    self.proxyConfig = try container.decodeIfPresent(AwsProxyConfig.self, forKey: .proxyConfig)
+    self.configEncryption = try container.decodeIfPresent(
+      AwsConfigEncryption.self, forKey: .configEncryption)
+    self.instancePlacement = try container.decodeIfPresent(
+      AwsInstancePlacement.self, forKey: .instancePlacement)
+    self.autoscalingMetricsCollection = try container.decodeIfPresent(
+      AwsAutoscalingGroupMetricsCollection.self, forKey: .autoscalingMetricsCollection)
+    self.spotConfig = try container.decodeIfPresent(SpotConfig.self, forKey: .spotConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encodeIfPresent(self.rootVolume, forKey: .rootVolume)
+    try container.encode(self.taints, forKey: .taints)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.iamInstanceProfile, forKey: .iamInstanceProfile)
+    try container.encode(self.imageType, forKey: .imageType)
+    try container.encodeIfPresent(self.sshConfig, forKey: .sshConfig)
+    try container.encode(self.securityGroupIds, forKey: .securityGroupIds)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    try container.encodeIfPresent(self.configEncryption, forKey: .configEncryption)
+    try container.encodeIfPresent(self.instancePlacement, forKey: .instancePlacement)
+    try container.encodeIfPresent(
+      self.autoscalingMetricsCollection, forKey: .autoscalingMetricsCollection)
+    try container.encodeIfPresent(self.spotConfig, forKey: .spotConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

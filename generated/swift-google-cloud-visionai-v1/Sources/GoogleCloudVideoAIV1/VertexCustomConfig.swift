@@ -68,6 +68,8 @@ public struct VertexCustomConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// }
   public var dynamicConfigInputTopic: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VertexCustomConfig`.
   public init() {}
 
@@ -82,6 +84,64 @@ public struct VertexCustomConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let maxPredictionFps = CodingKeys(stringValue: "maxPredictionFps")
+    static let dedicatedResources = CodingKeys(stringValue: "dedicatedResources")
+    static let postProcessingCloudFunction = CodingKeys(stringValue: "postProcessingCloudFunction")
+    static let attachApplicationMetadata = CodingKeys(stringValue: "attachApplicationMetadata")
+    static let dynamicConfigInputTopic = CodingKeys(stringValue: "dynamicConfigInputTopic")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "maxPredictionFps",
+      "dedicatedResources",
+      "postProcessingCloudFunction",
+      "attachApplicationMetadata",
+      "dynamicConfigInputTopic",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxPredictionFps) {
+      self.maxPredictionFps = value
+    }
+    self.dedicatedResources = try container.decodeIfPresent(
+      DedicatedResources.self, forKey: .dedicatedResources)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .postProcessingCloudFunction)
+    {
+      self.postProcessingCloudFunction = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .attachApplicationMetadata)
+    {
+      self.attachApplicationMetadata = value
+    }
+    self.dynamicConfigInputTopic = try container.decodeIfPresent(
+      Swift.String.self, forKey: .dynamicConfigInputTopic)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.maxPredictionFps, forKey: .maxPredictionFps)
+    try container.encodeIfPresent(self.dedicatedResources, forKey: .dedicatedResources)
+    try container.encode(self.postProcessingCloudFunction, forKey: .postProcessingCloudFunction)
+    try container.encode(self.attachApplicationMetadata, forKey: .attachApplicationMetadata)
+    try container.encodeIfPresent(self.dynamicConfigInputTopic, forKey: .dynamicConfigInputTopic)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

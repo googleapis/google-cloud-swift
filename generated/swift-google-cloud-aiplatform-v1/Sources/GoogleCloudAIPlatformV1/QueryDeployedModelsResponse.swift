@@ -43,6 +43,8 @@
     /// DeploymentResourcePool.
     public var totalEndpointCount: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryDeployedModelsResponse`.
     public init() {}
 
@@ -57,6 +59,66 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deployedModels = CodingKeys(stringValue: "deployedModels")
+      static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+      static let deployedModelRefs = CodingKeys(stringValue: "deployedModelRefs")
+      static let totalDeployedModelCount = CodingKeys(stringValue: "totalDeployedModelCount")
+      static let totalEndpointCount = CodingKeys(stringValue: "totalEndpointCount")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deployedModels",
+        "nextPageToken",
+        "deployedModelRefs",
+        "totalDeployedModelCount",
+        "totalEndpointCount",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([DeployedModel].self, forKey: .deployedModels) {
+        self.deployedModels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+        self.nextPageToken = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DeployedModelRef].self, forKey: .deployedModelRefs)
+      {
+        self.deployedModelRefs = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .totalDeployedModelCount)
+      {
+        self.totalDeployedModelCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalEndpointCount) {
+        self.totalEndpointCount = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.deployedModels, forKey: .deployedModels)
+      try container.encode(self.nextPageToken, forKey: .nextPageToken)
+      try container.encode(self.deployedModelRefs, forKey: .deployedModelRefs)
+      try container.encode(self.totalDeployedModelCount, forKey: .totalDeployedModelCount)
+      try container.encode(self.totalEndpointCount, forKey: .totalEndpointCount)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

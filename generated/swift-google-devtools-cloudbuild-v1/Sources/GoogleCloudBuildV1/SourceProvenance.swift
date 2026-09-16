@@ -55,6 +55,8 @@ public struct SourceProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// (`.tar.gz`), the `FileHash` will be for the single path to that file.
   public var fileHashes: [Swift.String: FileHashes] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SourceProvenance`.
   public init() {}
 
@@ -69,6 +71,68 @@ public struct SourceProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resolvedStorageSource = CodingKeys(stringValue: "resolvedStorageSource")
+    static let resolvedRepoSource = CodingKeys(stringValue: "resolvedRepoSource")
+    static let resolvedStorageSourceManifest = CodingKeys(
+      stringValue: "resolvedStorageSourceManifest")
+    static let resolvedConnectedRepository = CodingKeys(stringValue: "resolvedConnectedRepository")
+    static let resolvedGitSource = CodingKeys(stringValue: "resolvedGitSource")
+    static let fileHashes = CodingKeys(stringValue: "fileHashes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resolvedStorageSource",
+      "resolvedRepoSource",
+      "resolvedStorageSourceManifest",
+      "resolvedConnectedRepository",
+      "resolvedGitSource",
+      "fileHashes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.resolvedStorageSource = try container.decodeIfPresent(
+      StorageSource.self, forKey: .resolvedStorageSource)
+    self.resolvedRepoSource = try container.decodeIfPresent(
+      RepoSource.self, forKey: .resolvedRepoSource)
+    self.resolvedStorageSourceManifest = try container.decodeIfPresent(
+      StorageSourceManifest.self, forKey: .resolvedStorageSourceManifest)
+    self.resolvedConnectedRepository = try container.decodeIfPresent(
+      ConnectedRepository.self, forKey: .resolvedConnectedRepository)
+    self.resolvedGitSource = try container.decodeIfPresent(
+      GitSource.self, forKey: .resolvedGitSource)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: FileHashes].self, forKey: .fileHashes)
+    {
+      self.fileHashes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.resolvedStorageSource, forKey: .resolvedStorageSource)
+    try container.encodeIfPresent(self.resolvedRepoSource, forKey: .resolvedRepoSource)
+    try container.encodeIfPresent(
+      self.resolvedStorageSourceManifest, forKey: .resolvedStorageSourceManifest)
+    try container.encodeIfPresent(
+      self.resolvedConnectedRepository, forKey: .resolvedConnectedRepository)
+    try container.encodeIfPresent(self.resolvedGitSource, forKey: .resolvedGitSource)
+    try container.encode(self.fileHashes, forKey: .fileHashes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

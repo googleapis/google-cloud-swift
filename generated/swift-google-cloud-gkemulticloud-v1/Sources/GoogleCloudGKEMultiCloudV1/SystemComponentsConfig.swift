@@ -28,6 +28,8 @@ public struct SystemComponentsConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Sets custom labels for pods created by auto-installed components.
   public var labels: [Label] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SystemComponentsConfig`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct SystemComponentsConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tolerations = CodingKeys(stringValue: "tolerations")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tolerations",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Toleration].self, forKey: .tolerations) {
+      self.tolerations = value
+    }
+    if let value = try container.decodeIfPresent([Label].self, forKey: .labels) {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.tolerations, forKey: .tolerations)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

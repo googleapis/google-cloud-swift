@@ -33,6 +33,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
   /// Values associated with this metric.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnalyzeDataSourceRiskDetails`.
   public init() {}
 
@@ -49,16 +51,34 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case requestedPrivacyMetric = "requestedPrivacyMetric"
-    case requestedSourceTable = "requestedSourceTable"
-    case numericalStatsResult = "numericalStatsResult"
-    case categoricalStatsResult = "categoricalStatsResult"
-    case kAnonymityResult = "kAnonymityResult"
-    case lDiversityResult = "lDiversityResult"
-    case kMapEstimationResult = "kMapEstimationResult"
-    case deltaPresenceEstimationResult = "deltaPresenceEstimationResult"
-    case requestedOptions = "requestedOptions"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requestedPrivacyMetric = CodingKeys(stringValue: "requestedPrivacyMetric")
+    static let requestedSourceTable = CodingKeys(stringValue: "requestedSourceTable")
+    static let numericalStatsResult = CodingKeys(stringValue: "numericalStatsResult")
+    static let categoricalStatsResult = CodingKeys(stringValue: "categoricalStatsResult")
+    static let kAnonymityResult = CodingKeys(stringValue: "kAnonymityResult")
+    static let lDiversityResult = CodingKeys(stringValue: "lDiversityResult")
+    static let kMapEstimationResult = CodingKeys(stringValue: "kMapEstimationResult")
+    static let deltaPresenceEstimationResult = CodingKeys(
+      stringValue: "deltaPresenceEstimationResult")
+    static let requestedOptions = CodingKeys(stringValue: "requestedOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requestedPrivacyMetric",
+      "requestedSourceTable",
+      "numericalStatsResult",
+      "categoricalStatsResult",
+      "kAnonymityResult",
+      "lDiversityResult",
+      "kMapEstimationResult",
+      "deltaPresenceEstimationResult",
+      "requestedOptions",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -112,13 +132,17 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       try resultCheckAndSet(.deltaPresenceEstimationResult(deltaPresenceEstimationResult))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.requestedPrivacyMetric, forKey: .requestedPrivacyMetric)
-    try container.encode(self.requestedSourceTable, forKey: .requestedSourceTable)
-    try container.encode(self.requestedOptions, forKey: .requestedOptions)
+    try container.encodeIfPresent(self.requestedPrivacyMetric, forKey: .requestedPrivacyMetric)
+    try container.encodeIfPresent(self.requestedSourceTable, forKey: .requestedSourceTable)
+    try container.encodeIfPresent(self.requestedOptions, forKey: .requestedOptions)
 
     if let choice = self.result {
       switch choice {
@@ -136,6 +160,9 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         try container.encode(value, forKey: .deltaPresenceEstimationResult)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Result of the numerical stats computation.
@@ -152,6 +179,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     /// sized buckets.
     public var quantileValues: [Value] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NumericalStatsResult`.
     public init() {}
 
@@ -166,6 +195,46 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let minValue = CodingKeys(stringValue: "minValue")
+      static let maxValue = CodingKeys(stringValue: "maxValue")
+      static let quantileValues = CodingKeys(stringValue: "quantileValues")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "minValue",
+        "maxValue",
+        "quantileValues",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.minValue = try container.decodeIfPresent(Value.self, forKey: .minValue)
+      self.maxValue = try container.decodeIfPresent(Value.self, forKey: .maxValue)
+      if let value = try container.decodeIfPresent([Value].self, forKey: .quantileValues) {
+        self.quantileValues = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.minValue, forKey: .minValue)
+      try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
+      try container.encode(self.quantileValues, forKey: .quantileValues)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -188,6 +257,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     public var valueFrequencyHistogramBuckets:
       [AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CategoricalStatsResult`.
     public init() {}
 
@@ -202,6 +273,43 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let valueFrequencyHistogramBuckets = CodingKeys(
+        stringValue: "valueFrequencyHistogramBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "valueFrequencyHistogramBuckets"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket].self,
+        forKey: .valueFrequencyHistogramBuckets)
+      {
+        self.valueFrequencyHistogramBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.valueFrequencyHistogramBuckets, forKey: .valueFrequencyHistogramBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Histogram of value frequencies in the column.
@@ -224,6 +332,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Total number of distinct values in this bucket.
       public var bucketValueCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `CategoricalStatsHistogramBucket`.
       public init() {}
 
@@ -238,6 +348,66 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let valueFrequencyLowerBound = CodingKeys(stringValue: "valueFrequencyLowerBound")
+        static let valueFrequencyUpperBound = CodingKeys(stringValue: "valueFrequencyUpperBound")
+        static let bucketSize = CodingKeys(stringValue: "bucketSize")
+        static let bucketValues = CodingKeys(stringValue: "bucketValues")
+        static let bucketValueCount = CodingKeys(stringValue: "bucketValueCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "valueFrequencyLowerBound",
+          "valueFrequencyUpperBound",
+          "bucketSize",
+          "bucketValues",
+          "bucketValueCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .valueFrequencyLowerBound)
+        {
+          self.valueFrequencyLowerBound = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .valueFrequencyUpperBound)
+        {
+          self.valueFrequencyUpperBound = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketSize) {
+          self.bucketSize = value
+        }
+        if let value = try container.decodeIfPresent([ValueFrequency].self, forKey: .bucketValues) {
+          self.bucketValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketValueCount) {
+          self.bucketValueCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.valueFrequencyLowerBound, forKey: .valueFrequencyLowerBound)
+        try container.encode(self.valueFrequencyUpperBound, forKey: .valueFrequencyUpperBound)
+        try container.encode(self.bucketSize, forKey: .bucketSize)
+        try container.encode(self.bucketValues, forKey: .bucketValues)
+        try container.encode(self.bucketValueCount, forKey: .bucketValueCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -272,6 +442,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     public var equivalenceClassHistogramBuckets:
       [AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KAnonymityResult`.
     public init() {}
 
@@ -288,6 +460,43 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let equivalenceClassHistogramBuckets = CodingKeys(
+        stringValue: "equivalenceClassHistogramBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "equivalenceClassHistogramBuckets"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket].self,
+        forKey: .equivalenceClassHistogramBuckets)
+      {
+        self.equivalenceClassHistogramBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.equivalenceClassHistogramBuckets, forKey: .equivalenceClassHistogramBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The set of columns' values that share the same ldiversity value
     public struct KAnonymityEquivalenceClass: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -300,6 +509,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Size of the equivalence class, for example number of rows with the
       /// above set of values.
       public var equivalenceClassSize: Swift.Int64 = Swift.Int64()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `KAnonymityEquivalenceClass`.
       public init() {}
@@ -315,6 +526,46 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let quasiIdsValues = CodingKeys(stringValue: "quasiIdsValues")
+        static let equivalenceClassSize = CodingKeys(stringValue: "equivalenceClassSize")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "quasiIdsValues",
+          "equivalenceClassSize",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
+          self.quasiIdsValues = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .equivalenceClassSize)
+        {
+          self.equivalenceClassSize = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
+        try container.encode(self.equivalenceClassSize, forKey: .equivalenceClassSize)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -350,6 +601,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Total number of distinct equivalence classes in this bucket.
       public var bucketValueCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `KAnonymityHistogramBucket`.
       public init() {}
 
@@ -364,6 +617,73 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let equivalenceClassSizeLowerBound = CodingKeys(
+          stringValue: "equivalenceClassSizeLowerBound")
+        static let equivalenceClassSizeUpperBound = CodingKeys(
+          stringValue: "equivalenceClassSizeUpperBound")
+        static let bucketSize = CodingKeys(stringValue: "bucketSize")
+        static let bucketValues = CodingKeys(stringValue: "bucketValues")
+        static let bucketValueCount = CodingKeys(stringValue: "bucketValueCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "equivalenceClassSizeLowerBound",
+          "equivalenceClassSizeUpperBound",
+          "bucketSize",
+          "bucketValues",
+          "bucketValueCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .equivalenceClassSizeLowerBound)
+        {
+          self.equivalenceClassSizeLowerBound = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .equivalenceClassSizeUpperBound)
+        {
+          self.equivalenceClassSizeUpperBound = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketSize) {
+          self.bucketSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          [AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass].self,
+          forKey: .bucketValues)
+        {
+          self.bucketValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketValueCount) {
+          self.bucketValueCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.equivalenceClassSizeLowerBound, forKey: .equivalenceClassSizeLowerBound)
+        try container.encode(
+          self.equivalenceClassSizeUpperBound, forKey: .equivalenceClassSizeUpperBound)
+        try container.encode(self.bucketSize, forKey: .bucketSize)
+        try container.encode(self.bucketValues, forKey: .bucketValues)
+        try container.encode(self.bucketValueCount, forKey: .bucketValueCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -398,6 +718,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     public var sensitiveValueFrequencyHistogramBuckets:
       [AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LDiversityResult`.
     public init() {}
 
@@ -412,6 +734,44 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sensitiveValueFrequencyHistogramBuckets = CodingKeys(
+        stringValue: "sensitiveValueFrequencyHistogramBuckets")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sensitiveValueFrequencyHistogramBuckets"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket].self,
+        forKey: .sensitiveValueFrequencyHistogramBuckets)
+      {
+        self.sensitiveValueFrequencyHistogramBuckets = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.sensitiveValueFrequencyHistogramBuckets,
+        forKey: .sensitiveValueFrequencyHistogramBuckets)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The set of columns' values that share the same ldiversity value.
@@ -431,6 +791,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Estimated frequencies of top sensitive values.
       public var topSensitiveValues: [ValueFrequency] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LDiversityEquivalenceClass`.
       public init() {}
 
@@ -445,6 +807,63 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let quasiIdsValues = CodingKeys(stringValue: "quasiIdsValues")
+        static let equivalenceClassSize = CodingKeys(stringValue: "equivalenceClassSize")
+        static let numDistinctSensitiveValues = CodingKeys(
+          stringValue: "numDistinctSensitiveValues")
+        static let topSensitiveValues = CodingKeys(stringValue: "topSensitiveValues")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "quasiIdsValues",
+          "equivalenceClassSize",
+          "numDistinctSensitiveValues",
+          "topSensitiveValues",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
+          self.quasiIdsValues = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .equivalenceClassSize)
+        {
+          self.equivalenceClassSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .numDistinctSensitiveValues)
+        {
+          self.numDistinctSensitiveValues = value
+        }
+        if let value = try container.decodeIfPresent(
+          [ValueFrequency].self, forKey: .topSensitiveValues)
+        {
+          self.topSensitiveValues = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
+        try container.encode(self.equivalenceClassSize, forKey: .equivalenceClassSize)
+        try container.encode(self.numDistinctSensitiveValues, forKey: .numDistinctSensitiveValues)
+        try container.encode(self.topSensitiveValues, forKey: .topSensitiveValues)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -482,6 +901,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Total number of distinct equivalence classes in this bucket.
       public var bucketValueCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LDiversityHistogramBucket`.
       public init() {}
 
@@ -496,6 +917,73 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sensitiveValueFrequencyLowerBound = CodingKeys(
+          stringValue: "sensitiveValueFrequencyLowerBound")
+        static let sensitiveValueFrequencyUpperBound = CodingKeys(
+          stringValue: "sensitiveValueFrequencyUpperBound")
+        static let bucketSize = CodingKeys(stringValue: "bucketSize")
+        static let bucketValues = CodingKeys(stringValue: "bucketValues")
+        static let bucketValueCount = CodingKeys(stringValue: "bucketValueCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sensitiveValueFrequencyLowerBound",
+          "sensitiveValueFrequencyUpperBound",
+          "bucketSize",
+          "bucketValues",
+          "bucketValueCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .sensitiveValueFrequencyLowerBound)
+        {
+          self.sensitiveValueFrequencyLowerBound = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .sensitiveValueFrequencyUpperBound)
+        {
+          self.sensitiveValueFrequencyUpperBound = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketSize) {
+          self.bucketSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          [AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass].self,
+          forKey: .bucketValues)
+        {
+          self.bucketValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketValueCount) {
+          self.bucketValueCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(
+          self.sensitiveValueFrequencyLowerBound, forKey: .sensitiveValueFrequencyLowerBound)
+        try container.encode(
+          self.sensitiveValueFrequencyUpperBound, forKey: .sensitiveValueFrequencyUpperBound)
+        try container.encode(self.bucketSize, forKey: .bucketSize)
+        try container.encode(self.bucketValues, forKey: .bucketValues)
+        try container.encode(self.bucketValueCount, forKey: .bucketValueCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -538,6 +1026,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     public var kMapEstimationHistogram:
       [AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `KMapEstimationResult`.
     public init() {}
 
@@ -554,6 +1044,41 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kMapEstimationHistogram = CodingKeys(stringValue: "kMapEstimationHistogram")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kMapEstimationHistogram"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket].self,
+        forKey: .kMapEstimationHistogram)
+      {
+        self.kMapEstimationHistogram = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kMapEstimationHistogram, forKey: .kMapEstimationHistogram)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A tuple of values for the quasi-identifier columns.
     public struct KMapEstimationQuasiIdValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -563,6 +1088,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
 
       /// The estimated anonymity for these quasi-identifier values.
       public var estimatedAnonymity: Swift.Int64 = Swift.Int64()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `KMapEstimationQuasiIdValues`.
       public init() {}
@@ -578,6 +1105,45 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let quasiIdsValues = CodingKeys(stringValue: "quasiIdsValues")
+        static let estimatedAnonymity = CodingKeys(stringValue: "estimatedAnonymity")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "quasiIdsValues",
+          "estimatedAnonymity",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
+          self.quasiIdsValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .estimatedAnonymity)
+        {
+          self.estimatedAnonymity = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
+        try container.encode(self.estimatedAnonymity, forKey: .estimatedAnonymity)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -620,6 +1186,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Total number of distinct quasi-identifier tuple values in this bucket.
       public var bucketValueCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `KMapEstimationHistogramBucket`.
       public init() {}
 
@@ -634,6 +1202,65 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let minAnonymity = CodingKeys(stringValue: "minAnonymity")
+        static let maxAnonymity = CodingKeys(stringValue: "maxAnonymity")
+        static let bucketSize = CodingKeys(stringValue: "bucketSize")
+        static let bucketValues = CodingKeys(stringValue: "bucketValues")
+        static let bucketValueCount = CodingKeys(stringValue: "bucketValueCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "minAnonymity",
+          "maxAnonymity",
+          "bucketSize",
+          "bucketValues",
+          "bucketValueCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minAnonymity) {
+          self.minAnonymity = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .maxAnonymity) {
+          self.maxAnonymity = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketSize) {
+          self.bucketSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          [AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationQuasiIdValues].self,
+          forKey: .bucketValues)
+        {
+          self.bucketValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketValueCount) {
+          self.bucketValueCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.minAnonymity, forKey: .minAnonymity)
+        try container.encode(self.maxAnonymity, forKey: .maxAnonymity)
+        try container.encode(self.bucketSize, forKey: .bucketSize)
+        try container.encode(self.bucketValues, forKey: .bucketValues)
+        try container.encode(self.bucketValueCount, forKey: .bucketValueCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -677,6 +1304,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       [AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult
         .DeltaPresenceEstimationHistogramBucket] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DeltaPresenceEstimationResult`.
     public init() {}
 
@@ -691,6 +1320,45 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let deltaPresenceEstimationHistogram = CodingKeys(
+        stringValue: "deltaPresenceEstimationHistogram")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "deltaPresenceEstimationHistogram"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [
+          AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult
+            .DeltaPresenceEstimationHistogramBucket
+        ].self, forKey: .deltaPresenceEstimationHistogram)
+      {
+        self.deltaPresenceEstimationHistogram = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.deltaPresenceEstimationHistogram, forKey: .deltaPresenceEstimationHistogram)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// A tuple of values for the quasi-identifier columns.
@@ -711,6 +1379,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// population with these values, then δ is 0.15.
       public var estimatedProbability: Swift.Double = Swift.Double()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DeltaPresenceEstimationQuasiIdValues`.
       public init() {}
 
@@ -725,6 +1395,46 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let quasiIdsValues = CodingKeys(stringValue: "quasiIdsValues")
+        static let estimatedProbability = CodingKeys(stringValue: "estimatedProbability")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "quasiIdsValues",
+          "estimatedProbability",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
+          self.quasiIdsValues = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Double.self, forKey: .estimatedProbability)
+        {
+          self.estimatedProbability = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
+        try container.encode(self.estimatedProbability, forKey: .estimatedProbability)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -770,6 +1480,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       /// Total number of distinct quasi-identifier tuple values in this bucket.
       public var bucketValueCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DeltaPresenceEstimationHistogramBucket`.
       public init() {}
 
@@ -784,6 +1496,67 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let minProbability = CodingKeys(stringValue: "minProbability")
+        static let maxProbability = CodingKeys(stringValue: "maxProbability")
+        static let bucketSize = CodingKeys(stringValue: "bucketSize")
+        static let bucketValues = CodingKeys(stringValue: "bucketValues")
+        static let bucketValueCount = CodingKeys(stringValue: "bucketValueCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "minProbability",
+          "maxProbability",
+          "bucketSize",
+          "bucketValues",
+          "bucketValueCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .minProbability) {
+          self.minProbability = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .maxProbability) {
+          self.maxProbability = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketSize) {
+          self.bucketSize = value
+        }
+        if let value = try container.decodeIfPresent(
+          [
+            AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult
+              .DeltaPresenceEstimationQuasiIdValues
+          ].self, forKey: .bucketValues)
+        {
+          self.bucketValues = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .bucketValueCount) {
+          self.bucketValueCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.minProbability, forKey: .minProbability)
+        try container.encode(self.maxProbability, forKey: .maxProbability)
+        try container.encode(self.bucketSize, forKey: .bucketSize)
+        try container.encode(self.bucketValues, forKey: .bucketValues)
+        try container.encode(self.bucketValueCount, forKey: .bucketValueCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -817,6 +1590,8 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
     /// The job config for the risk job.
     public var jobConfig: RiskAnalysisJobConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RequestedRiskAnalysisOptions`.
     public init() {}
 
@@ -831,6 +1606,36 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let jobConfig = CodingKeys(stringValue: "jobConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "jobConfig"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.jobConfig = try container.decodeIfPresent(RiskAnalysisJobConfig.self, forKey: .jobConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.jobConfig, forKey: .jobConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

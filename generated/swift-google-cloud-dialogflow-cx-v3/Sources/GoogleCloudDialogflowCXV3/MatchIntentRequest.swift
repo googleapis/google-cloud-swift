@@ -46,6 +46,8 @@
     /// Persist session parameter changes from `query_params`.
     public var persistParameterChanges: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MatchIntentRequest`.
     public init() {}
 
@@ -60,6 +62,54 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let session = CodingKeys(stringValue: "session")
+      static let queryParams = CodingKeys(stringValue: "queryParams")
+      static let queryInput = CodingKeys(stringValue: "queryInput")
+      static let persistParameterChanges = CodingKeys(stringValue: "persistParameterChanges")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "session",
+        "queryParams",
+        "queryInput",
+        "persistParameterChanges",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
+        self.session = value
+      }
+      self.queryParams = try container.decodeIfPresent(QueryParameters.self, forKey: .queryParams)
+      self.queryInput = try container.decodeIfPresent(QueryInput.self, forKey: .queryInput)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .persistParameterChanges)
+      {
+        self.persistParameterChanges = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.session, forKey: .session)
+      try container.encodeIfPresent(self.queryParams, forKey: .queryParams)
+      try container.encodeIfPresent(self.queryInput, forKey: .queryInput)
+      try container.encode(self.persistParameterChanges, forKey: .persistParameterChanges)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

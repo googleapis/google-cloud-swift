@@ -43,6 +43,8 @@ public struct TextExtractionPredictionResult: Codable, Equatable, GoogleCloudWKT
   /// value means higher confidence. Order matches the Ids.
   public var confidences: [Swift.Float] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TextExtractionPredictionResult`.
   public init() {}
 
@@ -57,6 +59,65 @@ public struct TextExtractionPredictionResult: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let ids = CodingKeys(stringValue: "ids")
+    static let displayNames = CodingKeys(stringValue: "displayNames")
+    static let textSegmentStartOffsets = CodingKeys(stringValue: "textSegmentStartOffsets")
+    static let textSegmentEndOffsets = CodingKeys(stringValue: "textSegmentEndOffsets")
+    static let confidences = CodingKeys(stringValue: "confidences")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ids",
+      "displayNames",
+      "textSegmentStartOffsets",
+      "textSegmentEndOffsets",
+      "confidences",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .ids) {
+      self.ids = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .displayNames) {
+      self.displayNames = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.Int64].self, forKey: .textSegmentStartOffsets)
+    {
+      self.textSegmentStartOffsets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .textSegmentEndOffsets)
+    {
+      self.textSegmentEndOffsets = value
+    }
+    if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .confidences) {
+      self.confidences = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.ids, forKey: .ids)
+    try container.encode(self.displayNames, forKey: .displayNames)
+    try container.encode(self.textSegmentStartOffsets, forKey: .textSegmentStartOffsets)
+    try container.encode(self.textSegmentEndOffsets, forKey: .textSegmentEndOffsets)
+    try container.encode(self.confidences, forKey: .confidences)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

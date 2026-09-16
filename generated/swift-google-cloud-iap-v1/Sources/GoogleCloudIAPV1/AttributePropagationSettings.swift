@@ -62,6 +62,8 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleCloudWKT._
   /// expression will be propagated in the set output credentials.
   public var enable: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttributePropagationSettings`.
   public init() {}
 
@@ -76,6 +78,48 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let expression = CodingKeys(stringValue: "expression")
+    static let outputCredentials = CodingKeys(stringValue: "outputCredentials")
+    static let enable = CodingKeys(stringValue: "enable")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "expression",
+      "outputCredentials",
+      "enable",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.expression = try container.decodeIfPresent(Swift.String.self, forKey: .expression)
+    if let value = try container.decodeIfPresent(
+      [AttributePropagationSettings.OutputCredentials].self, forKey: .outputCredentials)
+    {
+      self.outputCredentials = value
+    }
+    self.enable = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.expression, forKey: .expression)
+    try container.encode(self.outputCredentials, forKey: .outputCredentials)
+    try container.encodeIfPresent(self.enable, forKey: .enable)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Supported output credentials for attribute propagation. Each output

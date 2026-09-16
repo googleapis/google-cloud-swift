@@ -36,6 +36,8 @@ public struct TrafficTargetStatus: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Displays the target URI.
   public var uri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TrafficTargetStatus`.
   public init() {}
 
@@ -50,6 +52,62 @@ public struct TrafficTargetStatus: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let revision = CodingKeys(stringValue: "revision")
+    static let percent = CodingKeys(stringValue: "percent")
+    static let tag = CodingKeys(stringValue: "tag")
+    static let uri = CodingKeys(stringValue: "uri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "revision",
+      "percent",
+      "tag",
+      "uri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(TrafficTargetAllocationType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .percent) {
+      self.percent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+      self.tag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.percent, forKey: .percent)
+    try container.encode(self.tag, forKey: .tag)
+    try container.encode(self.uri, forKey: .uri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

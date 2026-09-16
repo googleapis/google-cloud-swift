@@ -23,6 +23,8 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   public var sourceForm: OneOf_SourceForm? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AssetSource`.
   public init() {}
 
@@ -39,9 +41,19 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case assetGcsSource = "assetGcsSource"
-    case assetContentData = "assetContentData"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let assetGcsSource = CodingKeys(stringValue: "assetGcsSource")
+    static let assetContentData = CodingKeys(stringValue: "assetContentData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "assetGcsSource",
+      "assetContentData",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceFormCheckAndSet(.assetContentData(assetContentData))
     }
     self.sourceForm = sourceForm
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .assetContentData)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The asset source is from Cloud Storage.
@@ -89,6 +108,8 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     /// Cloud storage uri.
     public var gcsUri: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AssetGcsSource`.
     public init() {}
@@ -104,6 +125,38 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let gcsUri = CodingKeys(stringValue: "gcsUri")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "gcsUri"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsUri) {
+        self.gcsUri = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.gcsUri, forKey: .gcsUri)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -123,6 +176,8 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   {
     public var assetContentData: Foundation.Data = Foundation.Data()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AssetContentData`.
     public init() {}
 
@@ -137,6 +192,39 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let assetContentData = CodingKeys(stringValue: "assetContentData")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "assetContentData"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .assetContentData)
+      {
+        self.assetContentData = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.assetContentData, forKey: .assetContentData)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

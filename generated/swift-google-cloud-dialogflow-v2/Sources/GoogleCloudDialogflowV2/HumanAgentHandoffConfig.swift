@@ -29,6 +29,8 @@
     /// Required. Specifies which agent service to connect for human agent handoff.
     public var agentService: OneOf_AgentService? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HumanAgentHandoffConfig`.
     public init() {}
 
@@ -45,9 +47,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case livePersonConfig = "livePersonConfig"
-      case salesforceLiveAgentConfig = "salesforceLiveAgentConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let livePersonConfig = CodingKeys(stringValue: "livePersonConfig")
+      static let salesforceLiveAgentConfig = CodingKeys(stringValue: "salesforceLiveAgentConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "livePersonConfig",
+        "salesforceLiveAgentConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -74,6 +86,10 @@
         try agentServiceCheckAndSet(.salesforceLiveAgentConfig(salesforceLiveAgentConfig))
       }
       self.agentService = agentService
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -87,6 +103,9 @@
           try container.encode(value, forKey: .salesforceLiveAgentConfig)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Configuration specific to [LivePerson](https://www.liveperson.com).
@@ -96,6 +115,8 @@
       /// Required. Account number of the LivePerson account to connect. This is
       /// the account number you input at the login page.
       public var accountNumber: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `LivePersonConfig`.
       public init() {}
@@ -111,6 +132,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let accountNumber = CodingKeys(stringValue: "accountNumber")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "accountNumber"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountNumber) {
+          self.accountNumber = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.accountNumber, forKey: .accountNumber)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -144,6 +197,8 @@
       /// you should fill in d.la4-c2-phx.salesforceliveagent.com.
       public var endpointDomain: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SalesforceLiveAgentConfig`.
       public init() {}
 
@@ -158,6 +213,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let organizationId = CodingKeys(stringValue: "organizationId")
+        static let deploymentId = CodingKeys(stringValue: "deploymentId")
+        static let buttonId = CodingKeys(stringValue: "buttonId")
+        static let endpointDomain = CodingKeys(stringValue: "endpointDomain")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "organizationId",
+          "deploymentId",
+          "buttonId",
+          "endpointDomain",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .organizationId) {
+          self.organizationId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentId) {
+          self.deploymentId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buttonId) {
+          self.buttonId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointDomain) {
+          self.endpointDomain = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.organizationId, forKey: .organizationId)
+        try container.encode(self.deploymentId, forKey: .deploymentId)
+        try container.encode(self.buttonId, forKey: .buttonId)
+        try container.encode(self.endpointDomain, forKey: .endpointDomain)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

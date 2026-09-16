@@ -45,6 +45,8 @@ public struct ImportRegisteredPartiesRequest: Codable, Equatable, GoogleCloudWKT
   /// Required. LineOfBusiness for the specified registered parties.
   public var lineOfBusiness: LineOfBusiness = LineOfBusiness()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportRegisteredPartiesRequest`.
   public init() {}
 
@@ -59,6 +61,64 @@ public struct ImportRegisteredPartiesRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let partyTables = CodingKeys(stringValue: "partyTables")
+    static let mode = CodingKeys(stringValue: "mode")
+    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let lineOfBusiness = CodingKeys(stringValue: "lineOfBusiness")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "partyTables",
+      "mode",
+      "validateOnly",
+      "lineOfBusiness",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .partyTables) {
+      self.partyTables = value
+    }
+    if let value = try container.decodeIfPresent(
+      ImportRegisteredPartiesRequest.UpdateMode.self, forKey: .mode)
+    {
+      self.mode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
+      self.validateOnly = value
+    }
+    if let value = try container.decodeIfPresent(LineOfBusiness.self, forKey: .lineOfBusiness) {
+      self.lineOfBusiness = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.partyTables, forKey: .partyTables)
+    try container.encode(self.mode, forKey: .mode)
+    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// UpdateMode controls the behavior for ImportRegisteredParties.

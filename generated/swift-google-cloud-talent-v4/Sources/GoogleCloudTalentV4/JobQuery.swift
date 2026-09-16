@@ -207,6 +207,8 @@ public struct JobQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// At most 400 excluded job names are allowed.
   public var excludedJobs: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JobQuery`.
   public init() {}
 
@@ -221,6 +223,114 @@ public struct JobQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let query = CodingKeys(stringValue: "query")
+    static let queryLanguageCode = CodingKeys(stringValue: "queryLanguageCode")
+    static let companies = CodingKeys(stringValue: "companies")
+    static let locationFilters = CodingKeys(stringValue: "locationFilters")
+    static let jobCategories = CodingKeys(stringValue: "jobCategories")
+    static let commuteFilter = CodingKeys(stringValue: "commuteFilter")
+    static let companyDisplayNames = CodingKeys(stringValue: "companyDisplayNames")
+    static let compensationFilter = CodingKeys(stringValue: "compensationFilter")
+    static let customAttributeFilter = CodingKeys(stringValue: "customAttributeFilter")
+    static let disableSpellCheck = CodingKeys(stringValue: "disableSpellCheck")
+    static let employmentTypes = CodingKeys(stringValue: "employmentTypes")
+    static let languageCodes = CodingKeys(stringValue: "languageCodes")
+    static let publishTimeRange = CodingKeys(stringValue: "publishTimeRange")
+    static let excludedJobs = CodingKeys(stringValue: "excludedJobs")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "query",
+      "queryLanguageCode",
+      "companies",
+      "locationFilters",
+      "jobCategories",
+      "commuteFilter",
+      "companyDisplayNames",
+      "compensationFilter",
+      "customAttributeFilter",
+      "disableSpellCheck",
+      "employmentTypes",
+      "languageCodes",
+      "publishTimeRange",
+      "excludedJobs",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
+      self.query = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryLanguageCode) {
+      self.queryLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .companies) {
+      self.companies = value
+    }
+    if let value = try container.decodeIfPresent([LocationFilter].self, forKey: .locationFilters) {
+      self.locationFilters = value
+    }
+    if let value = try container.decodeIfPresent([JobCategory].self, forKey: .jobCategories) {
+      self.jobCategories = value
+    }
+    self.commuteFilter = try container.decodeIfPresent(CommuteFilter.self, forKey: .commuteFilter)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .companyDisplayNames)
+    {
+      self.companyDisplayNames = value
+    }
+    self.compensationFilter = try container.decodeIfPresent(
+      CompensationFilter.self, forKey: .compensationFilter)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customAttributeFilter)
+    {
+      self.customAttributeFilter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableSpellCheck) {
+      self.disableSpellCheck = value
+    }
+    if let value = try container.decodeIfPresent([EmploymentType].self, forKey: .employmentTypes) {
+      self.employmentTypes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageCodes) {
+      self.languageCodes = value
+    }
+    self.publishTimeRange = try container.decodeIfPresent(
+      TimestampRange.self, forKey: .publishTimeRange)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedJobs) {
+      self.excludedJobs = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.query, forKey: .query)
+    try container.encode(self.queryLanguageCode, forKey: .queryLanguageCode)
+    try container.encode(self.companies, forKey: .companies)
+    try container.encode(self.locationFilters, forKey: .locationFilters)
+    try container.encode(self.jobCategories, forKey: .jobCategories)
+    try container.encodeIfPresent(self.commuteFilter, forKey: .commuteFilter)
+    try container.encode(self.companyDisplayNames, forKey: .companyDisplayNames)
+    try container.encodeIfPresent(self.compensationFilter, forKey: .compensationFilter)
+    try container.encode(self.customAttributeFilter, forKey: .customAttributeFilter)
+    try container.encode(self.disableSpellCheck, forKey: .disableSpellCheck)
+    try container.encode(self.employmentTypes, forKey: .employmentTypes)
+    try container.encode(self.languageCodes, forKey: .languageCodes)
+    try container.encodeIfPresent(self.publishTimeRange, forKey: .publishTimeRange)
+    try container.encode(self.excludedJobs, forKey: .excludedJobs)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

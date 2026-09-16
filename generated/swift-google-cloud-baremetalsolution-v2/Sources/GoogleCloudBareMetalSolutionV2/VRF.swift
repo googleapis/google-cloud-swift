@@ -36,6 +36,8 @@ public struct VRF: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The list of VLAN attachments for the VRF.
   public var vlanAttachments: [VRF.VlanAttachment] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VRF`.
   public init() {}
 
@@ -52,12 +54,64 @@ public struct VRF: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let qosPolicy = CodingKeys(stringValue: "qosPolicy")
+    static let vlanAttachments = CodingKeys(stringValue: "vlanAttachments")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "qosPolicy",
+      "vlanAttachments",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(VRF.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.qosPolicy = try container.decodeIfPresent(VRF.QosPolicy.self, forKey: .qosPolicy)
+    if let value = try container.decodeIfPresent(
+      [VRF.VlanAttachment].self, forKey: .vlanAttachments)
+    {
+      self.vlanAttachments = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.qosPolicy, forKey: .qosPolicy)
+    try container.encode(self.vlanAttachments, forKey: .vlanAttachments)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// QOS policy parameters.
   public struct QosPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The bandwidth permitted by the QOS policy, in gbps.
     public var bandwidthGbps: Swift.Double = Swift.Double()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `QosPolicy`.
     public init() {}
@@ -73,6 +127,38 @@ public struct VRF: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bandwidthGbps = CodingKeys(stringValue: "bandwidthGbps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bandwidthGbps"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .bandwidthGbps) {
+        self.bandwidthGbps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.bandwidthGbps, forKey: .bandwidthGbps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -113,6 +199,8 @@ public struct VRF: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}
     public var interconnectAttachment: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `VlanAttachment`.
     public init() {}
 
@@ -127,6 +215,74 @@ public struct VRF: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let peerVlanId = CodingKeys(stringValue: "peerVlanId")
+      static let peerIp = CodingKeys(stringValue: "peerIp")
+      static let routerIp = CodingKeys(stringValue: "routerIp")
+      static let pairingKey = CodingKeys(stringValue: "pairingKey")
+      static let qosPolicy = CodingKeys(stringValue: "qosPolicy")
+      static let id = CodingKeys(stringValue: "id")
+      static let interconnectAttachment = CodingKeys(stringValue: "interconnectAttachment")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "peerVlanId",
+        "peerIp",
+        "routerIp",
+        "pairingKey",
+        "qosPolicy",
+        "id",
+        "interconnectAttachment",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .peerVlanId) {
+        self.peerVlanId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerIp) {
+        self.peerIp = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .routerIp) {
+        self.routerIp = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pairingKey) {
+        self.pairingKey = value
+      }
+      self.qosPolicy = try container.decodeIfPresent(VRF.QosPolicy.self, forKey: .qosPolicy)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .interconnectAttachment)
+      {
+        self.interconnectAttachment = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.peerVlanId, forKey: .peerVlanId)
+      try container.encode(self.peerIp, forKey: .peerIp)
+      try container.encode(self.routerIp, forKey: .routerIp)
+      try container.encode(self.pairingKey, forKey: .pairingKey)
+      try container.encodeIfPresent(self.qosPolicy, forKey: .qosPolicy)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.interconnectAttachment, forKey: .interconnectAttachment)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleCloudWKT._A
   /// The source for the document.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportAdaptiveMtFileRequest`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case fileInputSource = "fileInputSource"
-    case gcsInputSource = "gcsInputSource"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let fileInputSource = CodingKeys(stringValue: "fileInputSource")
+    static let gcsInputSource = CodingKeys(stringValue: "gcsInputSource")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "fileInputSource",
+      "gcsInputSource",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -75,6 +90,10 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleCloudWKT._A
       try sourceCheckAndSet(.gcsInputSource(gcsInputSource))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleCloudWKT._A
       case .gcsInputSource(let value):
         try container.encode(value, forKey: .gcsInputSource)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -35,6 +35,8 @@ public struct DisableRapidCacheMetadata: Codable, Equatable, GoogleCloudWKT._Any
   /// Optional. The type of cache. Either rapid cache or rapid cache ultra.
   public var cacheType: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DisableRapidCacheMetadata`.
   public init() {}
 
@@ -49,6 +51,49 @@ public struct DisableRapidCacheMetadata: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let commonMetadata = CodingKeys(stringValue: "commonMetadata")
+    static let rapidCacheId = CodingKeys(stringValue: "rapidCacheId")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let cacheType = CodingKeys(stringValue: "cacheType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "commonMetadata",
+      "rapidCacheId",
+      "zone",
+      "cacheType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.commonMetadata = try container.decodeIfPresent(
+      CommonLongRunningOperationMetadata.self, forKey: .commonMetadata)
+    self.rapidCacheId = try container.decodeIfPresent(Swift.String.self, forKey: .rapidCacheId)
+    self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+    self.cacheType = try container.decodeIfPresent(Swift.String.self, forKey: .cacheType)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.commonMetadata, forKey: .commonMetadata)
+    try container.encodeIfPresent(self.rapidCacheId, forKey: .rapidCacheId)
+    try container.encodeIfPresent(self.zone, forKey: .zone)
+    try container.encodeIfPresent(self.cacheType, forKey: .cacheType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

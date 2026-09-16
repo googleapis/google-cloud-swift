@@ -49,6 +49,8 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The state of the appliance.
   public var state: Node.State = Node.State()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Node`.
   public init() {}
 
@@ -63,6 +65,74 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let fqdn = CodingKeys(stringValue: "fqdn")
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let nodeTypeId = CodingKeys(stringValue: "nodeTypeId")
+    static let version = CodingKeys(stringValue: "version")
+    static let customCoreCount = CodingKeys(stringValue: "customCoreCount")
+    static let state = CodingKeys(stringValue: "state")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "fqdn",
+      "internalIp",
+      "nodeTypeId",
+      "version",
+      "customCoreCount",
+      "state",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fqdn) {
+      self.fqdn = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeTypeId) {
+      self.nodeTypeId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .customCoreCount) {
+      self.customCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Node.State.self, forKey: .state) {
+      self.state = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.fqdn, forKey: .fqdn)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.nodeTypeId, forKey: .nodeTypeId)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.customCoreCount, forKey: .customCoreCount)
+    try container.encode(self.state, forKey: .state)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum State defines possible states of a node in a cluster.

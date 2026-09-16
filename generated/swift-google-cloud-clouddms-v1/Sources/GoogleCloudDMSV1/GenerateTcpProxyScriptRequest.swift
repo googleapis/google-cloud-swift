@@ -42,6 +42,8 @@ public struct GenerateTcpProxyScriptRequest: Codable, Equatable, GoogleCloudWKT.
   /// Note: the region for the subnet must match the Compute instance region.
   public var vmSubnet: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GenerateTcpProxyScriptRequest`.
   public init() {}
 
@@ -56,6 +58,62 @@ public struct GenerateTcpProxyScriptRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let migrationJob = CodingKeys(stringValue: "migrationJob")
+    static let vmName = CodingKeys(stringValue: "vmName")
+    static let vmMachineType = CodingKeys(stringValue: "vmMachineType")
+    static let vmZone = CodingKeys(stringValue: "vmZone")
+    static let vmSubnet = CodingKeys(stringValue: "vmSubnet")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "migrationJob",
+      "vmName",
+      "vmMachineType",
+      "vmZone",
+      "vmSubnet",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .migrationJob) {
+      self.migrationJob = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmName) {
+      self.vmName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmMachineType) {
+      self.vmMachineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmZone) {
+      self.vmZone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmSubnet) {
+      self.vmSubnet = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.migrationJob, forKey: .migrationJob)
+    try container.encode(self.vmName, forKey: .vmName)
+    try container.encode(self.vmMachineType, forKey: .vmMachineType)
+    try container.encode(self.vmZone, forKey: .vmZone)
+    try container.encode(self.vmSubnet, forKey: .vmSubnet)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -36,6 +36,8 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// enhance the naturalness of the conversation.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AmbientSoundConfig`.
   public init() {}
 
@@ -52,16 +54,30 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case prebuiltAmbientNoise = "prebuiltAmbientNoise"
-    case gcsUri = "gcsUri"
-    case prebuiltAmbientSound = "prebuiltAmbientSound"
-    case volumeGainDb = "volumeGainDb"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let prebuiltAmbientNoise = CodingKeys(stringValue: "prebuiltAmbientNoise")
+    static let gcsUri = CodingKeys(stringValue: "gcsUri")
+    static let prebuiltAmbientSound = CodingKeys(stringValue: "prebuiltAmbientSound")
+    static let volumeGainDb = CodingKeys(stringValue: "volumeGainDb")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "prebuiltAmbientNoise",
+      "gcsUri",
+      "prebuiltAmbientSound",
+      "volumeGainDb",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.volumeGainDb = try container.decode(Swift.Double.self, forKey: .volumeGainDb)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .volumeGainDb) {
+      self.volumeGainDb = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -87,6 +103,10 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try sourceCheckAndSet(.prebuiltAmbientSound(prebuiltAmbientSound))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -102,6 +122,9 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .prebuiltAmbientSound(let value):
         try container.encode(value, forKey: .prebuiltAmbientSound)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

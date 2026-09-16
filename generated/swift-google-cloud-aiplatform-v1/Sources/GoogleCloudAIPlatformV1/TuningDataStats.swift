@@ -27,6 +27,8 @@
   {
     public var tuningDataStats: OneOf_TuningDataStats? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TuningDataStats`.
     public init() {}
 
@@ -43,8 +45,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case supervisedTuningDataStats = "supervisedTuningDataStats"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let supervisedTuningDataStats = CodingKeys(stringValue: "supervisedTuningDataStats")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "supervisedTuningDataStats"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -66,6 +77,10 @@
         try tuningDataStatsCheckAndSet(.supervisedTuningDataStats(supervisedTuningDataStats))
       }
       self.tuningDataStats = tuningDataStats
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,6 +91,9 @@
         case .supervisedTuningDataStats(let value):
           try container.encode(value, forKey: .supervisedTuningDataStats)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

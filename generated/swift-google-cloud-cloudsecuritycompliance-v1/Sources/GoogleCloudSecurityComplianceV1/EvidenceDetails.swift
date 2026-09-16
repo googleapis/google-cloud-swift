@@ -30,6 +30,8 @@ public struct EvidenceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The path to the evidence.
   public var evidencePath: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EvidenceDetails`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct EvidenceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resource = CodingKeys(stringValue: "resource")
+    static let service = CodingKeys(stringValue: "service")
+    static let evidencePath = CodingKeys(stringValue: "evidencePath")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resource",
+      "service",
+      "evidencePath",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+      self.resource = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .evidencePath) {
+      self.evidencePath = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resource, forKey: .resource)
+    try container.encode(self.service, forKey: .service)
+    try container.encode(self.evidencePath, forKey: .evidencePath)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

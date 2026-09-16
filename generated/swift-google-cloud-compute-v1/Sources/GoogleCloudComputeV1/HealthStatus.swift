@@ -55,6 +55,8 @@
 
     public var weightError: HealthStatus.WeightError? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HealthStatus`.
     public init() {}
 
@@ -69,6 +71,85 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let annotations = CodingKeys(stringValue: "annotations")
+      static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+      static let forwardingRuleIp = CodingKeys(stringValue: "forwardingRuleIp")
+      static let healthState = CodingKeys(stringValue: "healthState")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let ipv6Address = CodingKeys(stringValue: "ipv6Address")
+      static let ipv6HealthState = CodingKeys(stringValue: "ipv6HealthState")
+      static let port = CodingKeys(stringValue: "port")
+      static let weight = CodingKeys(stringValue: "weight")
+      static let weightError = CodingKeys(stringValue: "weightError")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "annotations",
+        "forwardingRule",
+        "forwardingRuleIp",
+        "healthState",
+        "instance",
+        "ipAddress",
+        "ipv6Address",
+        "ipv6HealthState",
+        "port",
+        "weight",
+        "weightError",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .annotations)
+      {
+        self.annotations = value
+      }
+      self.forwardingRule = try container.decodeIfPresent(
+        Swift.String.self, forKey: .forwardingRule)
+      self.forwardingRuleIp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .forwardingRuleIp)
+      self.healthState = try container.decodeIfPresent(
+        HealthStatus.HealthState.self, forKey: .healthState)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
+      self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
+      self.ipv6HealthState = try container.decodeIfPresent(
+        HealthStatus.Ipv6HealthState.self, forKey: .ipv6HealthState)
+      self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
+      self.weight = try container.decodeIfPresent(Swift.String.self, forKey: .weight)
+      self.weightError = try container.decodeIfPresent(
+        HealthStatus.WeightError.self, forKey: .weightError)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.annotations, forKey: .annotations)
+      try container.encodeIfPresent(self.forwardingRule, forKey: .forwardingRule)
+      try container.encodeIfPresent(self.forwardingRuleIp, forKey: .forwardingRuleIp)
+      try container.encodeIfPresent(self.healthState, forKey: .healthState)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)
+      try container.encodeIfPresent(self.ipv6Address, forKey: .ipv6Address)
+      try container.encodeIfPresent(self.ipv6HealthState, forKey: .ipv6HealthState)
+      try container.encodeIfPresent(self.port, forKey: .port)
+      try container.encodeIfPresent(self.weight, forKey: .weight)
+      try container.encodeIfPresent(self.weightError, forKey: .weightError)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [healthState][google.cloud.compute.v1.HealthStatus.healthState] field.

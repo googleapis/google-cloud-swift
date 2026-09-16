@@ -101,6 +101,8 @@
     /// Output only. [Output Only] Intended version of this instance.
     public var version: ManagedInstanceVersion? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ManagedInstance`.
     public init() {}
 
@@ -115,6 +117,106 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let currentAction = CodingKeys(stringValue: "currentAction")
+      static let id = CodingKeys(stringValue: "id")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let instanceHealth = CodingKeys(stringValue: "instanceHealth")
+      static let instanceStatus = CodingKeys(stringValue: "instanceStatus")
+      static let lastAttempt = CodingKeys(stringValue: "lastAttempt")
+      static let name = CodingKeys(stringValue: "name")
+      static let preservedStateFromConfig = CodingKeys(stringValue: "preservedStateFromConfig")
+      static let preservedStateFromPolicy = CodingKeys(stringValue: "preservedStateFromPolicy")
+      static let propertiesFromFlexibilityPolicy = CodingKeys(
+        stringValue: "propertiesFromFlexibilityPolicy")
+      static let scheduling = CodingKeys(stringValue: "scheduling")
+      static let shutdownDetails = CodingKeys(stringValue: "shutdownDetails")
+      static let targetStatus = CodingKeys(stringValue: "targetStatus")
+      static let version = CodingKeys(stringValue: "version")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "currentAction",
+        "id",
+        "instance",
+        "instanceHealth",
+        "instanceStatus",
+        "lastAttempt",
+        "name",
+        "preservedStateFromConfig",
+        "preservedStateFromPolicy",
+        "propertiesFromFlexibilityPolicy",
+        "scheduling",
+        "shutdownDetails",
+        "targetStatus",
+        "version",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.currentAction = try container.decodeIfPresent(
+        ManagedInstance.CurrentAction.self, forKey: .currentAction)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      if let value = try container.decodeIfPresent(
+        [ManagedInstanceInstanceHealth].self, forKey: .instanceHealth)
+      {
+        self.instanceHealth = value
+      }
+      self.instanceStatus = try container.decodeIfPresent(
+        ManagedInstance.InstanceStatus.self, forKey: .instanceStatus)
+      self.lastAttempt = try container.decodeIfPresent(
+        ManagedInstanceLastAttempt.self, forKey: .lastAttempt)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.preservedStateFromConfig = try container.decodeIfPresent(
+        PreservedState.self, forKey: .preservedStateFromConfig)
+      self.preservedStateFromPolicy = try container.decodeIfPresent(
+        PreservedState.self, forKey: .preservedStateFromPolicy)
+      self.propertiesFromFlexibilityPolicy = try container.decodeIfPresent(
+        ManagedInstancePropertiesFromFlexibilityPolicy.self,
+        forKey: .propertiesFromFlexibilityPolicy)
+      self.scheduling = try container.decodeIfPresent(
+        ManagedInstanceScheduling.self, forKey: .scheduling)
+      self.shutdownDetails = try container.decodeIfPresent(
+        ManagedInstanceShutdownDetails.self, forKey: .shutdownDetails)
+      self.targetStatus = try container.decodeIfPresent(
+        ManagedInstance.TargetStatus.self, forKey: .targetStatus)
+      self.version = try container.decodeIfPresent(ManagedInstanceVersion.self, forKey: .version)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.currentAction, forKey: .currentAction)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encode(self.instanceHealth, forKey: .instanceHealth)
+      try container.encodeIfPresent(self.instanceStatus, forKey: .instanceStatus)
+      try container.encodeIfPresent(self.lastAttempt, forKey: .lastAttempt)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(
+        self.preservedStateFromConfig, forKey: .preservedStateFromConfig)
+      try container.encodeIfPresent(
+        self.preservedStateFromPolicy, forKey: .preservedStateFromPolicy)
+      try container.encodeIfPresent(
+        self.propertiesFromFlexibilityPolicy, forKey: .propertiesFromFlexibilityPolicy)
+      try container.encodeIfPresent(self.scheduling, forKey: .scheduling)
+      try container.encodeIfPresent(self.shutdownDetails, forKey: .shutdownDetails)
+      try container.encodeIfPresent(self.targetStatus, forKey: .targetStatus)
+      try container.encodeIfPresent(self.version, forKey: .version)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [currentAction][google.cloud.compute.v1.ManagedInstance.currentAction] field.

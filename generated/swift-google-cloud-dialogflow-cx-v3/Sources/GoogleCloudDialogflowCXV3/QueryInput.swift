@@ -43,6 +43,8 @@
     /// Required. The input specification.
     public var input: OneOf_Input? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryInput`.
     public init() {}
 
@@ -59,19 +61,36 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case intent = "intent"
-      case audio = "audio"
-      case event = "event"
-      case dtmf = "dtmf"
-      case toolCallResult = "toolCallResult"
-      case languageCode = "languageCode"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let audio = CodingKeys(stringValue: "audio")
+      static let event = CodingKeys(stringValue: "event")
+      static let dtmf = CodingKeys(stringValue: "dtmf")
+      static let toolCallResult = CodingKeys(stringValue: "toolCallResult")
+      static let languageCode = CodingKeys(stringValue: "languageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "intent",
+        "audio",
+        "event",
+        "dtmf",
+        "toolCallResult",
+        "languageCode",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+        self.languageCode = value
+      }
 
       var input: OneOf_Input? = nil
       let inputCheckAndSet = {
@@ -104,6 +123,10 @@
         try inputCheckAndSet(.toolCallResult(toolCallResult))
       }
       self.input = input
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,6 +148,9 @@
         case .toolCallResult(let value):
           try container.encode(value, forKey: .toolCallResult)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

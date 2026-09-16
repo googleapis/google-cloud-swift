@@ -56,6 +56,8 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleCloudWKT._A
   /// Connectivity options used to establish a connection to the database server.
   public var connectivity: OneOf_Connectivity? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PostgreSqlConnectionProfile`.
   public init() {}
 
@@ -72,30 +74,64 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case host = "host"
-    case port = "port"
-    case username = "username"
-    case password = "password"
-    case passwordSet = "passwordSet"
-    case ssl = "ssl"
-    case cloudSqlId = "cloudSqlId"
-    case networkArchitecture = "networkArchitecture"
-    case staticIpConnectivity = "staticIpConnectivity"
-    case privateServiceConnectConnectivity = "privateServiceConnectConnectivity"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let host = CodingKeys(stringValue: "host")
+    static let port = CodingKeys(stringValue: "port")
+    static let username = CodingKeys(stringValue: "username")
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSet = CodingKeys(stringValue: "passwordSet")
+    static let ssl = CodingKeys(stringValue: "ssl")
+    static let cloudSqlId = CodingKeys(stringValue: "cloudSqlId")
+    static let networkArchitecture = CodingKeys(stringValue: "networkArchitecture")
+    static let staticIpConnectivity = CodingKeys(stringValue: "staticIpConnectivity")
+    static let privateServiceConnectConnectivity = CodingKeys(
+      stringValue: "privateServiceConnectConnectivity")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "host",
+      "port",
+      "username",
+      "password",
+      "passwordSet",
+      "ssl",
+      "cloudSqlId",
+      "networkArchitecture",
+      "staticIpConnectivity",
+      "privateServiceConnectConnectivity",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.host = try container.decode(Swift.String.self, forKey: .host)
-    self.port = try container.decode(Swift.Int32.self, forKey: .port)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.password = try container.decode(Swift.String.self, forKey: .password)
-    self.passwordSet = try container.decode(Swift.Bool.self, forKey: .passwordSet)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+      self.host = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .port) {
+      self.port = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+      self.password = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passwordSet) {
+      self.passwordSet = value
+    }
     self.ssl = try container.decodeIfPresent(SslConfig.self, forKey: .ssl)
-    self.cloudSqlId = try container.decode(Swift.String.self, forKey: .cloudSqlId)
-    self.networkArchitecture = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloudSqlId) {
+      self.cloudSqlId = value
+    }
+    if let value = try container.decodeIfPresent(
       NetworkArchitecture.self, forKey: .networkArchitecture)
+    {
+      self.networkArchitecture = value
+    }
 
     var connectivity: OneOf_Connectivity? = nil
     let connectivityCheckAndSet = {
@@ -119,6 +155,10 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleCloudWKT._A
         .privateServiceConnectConnectivity(privateServiceConnectConnectivity))
     }
     self.connectivity = connectivity
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -128,7 +168,7 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleCloudWKT._A
     try container.encode(self.username, forKey: .username)
     try container.encode(self.password, forKey: .password)
     try container.encode(self.passwordSet, forKey: .passwordSet)
-    try container.encode(self.ssl, forKey: .ssl)
+    try container.encodeIfPresent(self.ssl, forKey: .ssl)
     try container.encode(self.cloudSqlId, forKey: .cloudSqlId)
     try container.encode(self.networkArchitecture, forKey: .networkArchitecture)
 
@@ -139,6 +179,9 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleCloudWKT._A
       case .privateServiceConnectConnectivity(let value):
         try container.encode(value, forKey: .privateServiceConnectConnectivity)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

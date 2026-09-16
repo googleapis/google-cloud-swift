@@ -121,6 +121,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. If the instance state is DISABLED, the reason for disabling the instance.
   public var disabledReason: [Instance.DisabledReason] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Instance`.
   public init() {}
 
@@ -135,6 +137,204 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let type = CodingKeys(stringValue: "type")
+    static let enableStackdriverLogging = CodingKeys(stringValue: "enableStackdriverLogging")
+    static let enableStackdriverMonitoring = CodingKeys(stringValue: "enableStackdriverMonitoring")
+    static let privateInstance = CodingKeys(stringValue: "privateInstance")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let options = CodingKeys(stringValue: "options")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let stateMessage = CodingKeys(stringValue: "stateMessage")
+    static let serviceEndpoint = CodingKeys(stringValue: "serviceEndpoint")
+    static let zone = CodingKeys(stringValue: "zone")
+    static let version = CodingKeys(stringValue: "version")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let availableVersion = CodingKeys(stringValue: "availableVersion")
+    static let apiEndpoint = CodingKeys(stringValue: "apiEndpoint")
+    static let gcsBucket = CodingKeys(stringValue: "gcsBucket")
+    static let accelerators = CodingKeys(stringValue: "accelerators")
+    static let p4ServiceAccount = CodingKeys(stringValue: "p4ServiceAccount")
+    static let tenantProjectId = CodingKeys(stringValue: "tenantProjectId")
+    static let dataprocServiceAccount = CodingKeys(stringValue: "dataprocServiceAccount")
+    static let enableRbac = CodingKeys(stringValue: "enableRbac")
+    static let cryptoKeyConfig = CodingKeys(stringValue: "cryptoKeyConfig")
+    static let disabledReason = CodingKeys(stringValue: "disabledReason")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "type",
+      "enableStackdriverLogging",
+      "enableStackdriverMonitoring",
+      "privateInstance",
+      "networkConfig",
+      "labels",
+      "options",
+      "createTime",
+      "updateTime",
+      "state",
+      "stateMessage",
+      "serviceEndpoint",
+      "zone",
+      "version",
+      "serviceAccount",
+      "displayName",
+      "availableVersion",
+      "apiEndpoint",
+      "gcsBucket",
+      "accelerators",
+      "p4ServiceAccount",
+      "tenantProjectId",
+      "dataprocServiceAccount",
+      "enableRbac",
+      "cryptoKeyConfig",
+      "disabledReason",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Instance.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableStackdriverLogging)
+    {
+      self.enableStackdriverLogging = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableStackdriverMonitoring)
+    {
+      self.enableStackdriverMonitoring = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .privateInstance) {
+      self.privateInstance = value
+    }
+    self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .options)
+    {
+      self.options = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Instance.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateMessage) {
+      self.stateMessage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceEndpoint) {
+      self.serviceEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
+      self.zone = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Version].self, forKey: .availableVersion) {
+      self.availableVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiEndpoint) {
+      self.apiEndpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsBucket) {
+      self.gcsBucket = value
+    }
+    if let value = try container.decodeIfPresent([Accelerator].self, forKey: .accelerators) {
+      self.accelerators = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .p4ServiceAccount) {
+      self.p4ServiceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tenantProjectId) {
+      self.tenantProjectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataprocServiceAccount)
+    {
+      self.dataprocServiceAccount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRbac) {
+      self.enableRbac = value
+    }
+    self.cryptoKeyConfig = try container.decodeIfPresent(
+      CryptoKeyConfig.self, forKey: .cryptoKeyConfig)
+    if let value = try container.decodeIfPresent(
+      [Instance.DisabledReason].self, forKey: .disabledReason)
+    {
+      self.disabledReason = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.enableStackdriverLogging, forKey: .enableStackdriverLogging)
+    try container.encode(self.enableStackdriverMonitoring, forKey: .enableStackdriverMonitoring)
+    try container.encode(self.privateInstance, forKey: .privateInstance)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.options, forKey: .options)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.stateMessage, forKey: .stateMessage)
+    try container.encode(self.serviceEndpoint, forKey: .serviceEndpoint)
+    try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.version, forKey: .version)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.availableVersion, forKey: .availableVersion)
+    try container.encode(self.apiEndpoint, forKey: .apiEndpoint)
+    try container.encode(self.gcsBucket, forKey: .gcsBucket)
+    try container.encode(self.accelerators, forKey: .accelerators)
+    try container.encode(self.p4ServiceAccount, forKey: .p4ServiceAccount)
+    try container.encode(self.tenantProjectId, forKey: .tenantProjectId)
+    try container.encode(self.dataprocServiceAccount, forKey: .dataprocServiceAccount)
+    try container.encode(self.enableRbac, forKey: .enableRbac)
+    try container.encodeIfPresent(self.cryptoKeyConfig, forKey: .cryptoKeyConfig)
+    try container.encode(self.disabledReason, forKey: .disabledReason)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents the type of Data Fusion instance. Each type is configured with

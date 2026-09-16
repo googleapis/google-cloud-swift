@@ -42,6 +42,8 @@ public struct RedisClusterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// "us-central1".
   public var location: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RedisClusterInfo`.
   public init() {}
 
@@ -56,6 +58,72 @@ public struct RedisClusterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let discoveryEndpointIpAddress = CodingKeys(stringValue: "discoveryEndpointIpAddress")
+    static let secondaryEndpointIpAddress = CodingKeys(stringValue: "secondaryEndpointIpAddress")
+    static let location = CodingKeys(stringValue: "location")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "networkUri",
+      "discoveryEndpointIpAddress",
+      "secondaryEndpointIpAddress",
+      "location",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .discoveryEndpointIpAddress)
+    {
+      self.discoveryEndpointIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .secondaryEndpointIpAddress)
+    {
+      self.secondaryEndpointIpAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.discoveryEndpointIpAddress, forKey: .discoveryEndpointIpAddress)
+    try container.encode(self.secondaryEndpointIpAddress, forKey: .secondaryEndpointIpAddress)
+    try container.encode(self.location, forKey: .location)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -47,6 +47,8 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Action name provided at token generation.
   public var action: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TokenProperties`.
   public init() {}
 
@@ -61,6 +63,75 @@ public struct TokenProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let valid = CodingKeys(stringValue: "valid")
+    static let invalidReason = CodingKeys(stringValue: "invalidReason")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let androidPackageName = CodingKeys(stringValue: "androidPackageName")
+    static let iosBundleId = CodingKeys(stringValue: "iosBundleId")
+    static let action = CodingKeys(stringValue: "action")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "valid",
+      "invalidReason",
+      "createTime",
+      "hostname",
+      "androidPackageName",
+      "iosBundleId",
+      "action",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .valid) {
+      self.valid = value
+    }
+    if let value = try container.decodeIfPresent(
+      TokenProperties.InvalidReason.self, forKey: .invalidReason)
+    {
+      self.invalidReason = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .androidPackageName) {
+      self.androidPackageName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iosBundleId) {
+      self.iosBundleId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .action) {
+      self.action = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.valid, forKey: .valid)
+    try container.encode(self.invalidReason, forKey: .invalidReason)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.androidPackageName, forKey: .androidPackageName)
+    try container.encode(self.iosBundleId, forKey: .iosBundleId)
+    try container.encode(self.action, forKey: .action)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum that represents the types of invalid token reasons.

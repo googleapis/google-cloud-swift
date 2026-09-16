@@ -36,6 +36,8 @@ public struct CreateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWKT
   /// Required. A `VpcFlowLogsConfig` resource
   public var vpcFlowLogsConfig: VpcFlowLogsConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateVpcFlowLogsConfigRequest`.
   public init() {}
 
@@ -50,6 +52,49 @@ public struct CreateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWKT
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let vpcFlowLogsConfigId = CodingKeys(stringValue: "vpcFlowLogsConfigId")
+    static let vpcFlowLogsConfig = CodingKeys(stringValue: "vpcFlowLogsConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "vpcFlowLogsConfigId",
+      "vpcFlowLogsConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vpcFlowLogsConfigId) {
+      self.vpcFlowLogsConfigId = value
+    }
+    self.vpcFlowLogsConfig = try container.decodeIfPresent(
+      VpcFlowLogsConfig.self, forKey: .vpcFlowLogsConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.vpcFlowLogsConfigId, forKey: .vpcFlowLogsConfigId)
+    try container.encodeIfPresent(self.vpcFlowLogsConfig, forKey: .vpcFlowLogsConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

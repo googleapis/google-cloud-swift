@@ -33,6 +33,8 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The offset in seconds if the event type is `PROGRESS`.
   public var offset: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Event`.
   public init() {}
 
@@ -47,6 +49,54 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let id = CodingKeys(stringValue: "id")
+    static let offset = CodingKeys(stringValue: "offset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "uri",
+      "id",
+      "offset",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Event.EventType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    self.offset = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .offset)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.id, forKey: .id)
+    try container.encodeIfPresent(self.offset, forKey: .offset)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Describes the event that occurred.

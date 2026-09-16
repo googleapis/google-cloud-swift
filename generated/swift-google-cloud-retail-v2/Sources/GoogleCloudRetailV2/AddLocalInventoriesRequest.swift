@@ -74,6 +74,8 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWKT._An
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   public var allowMissing: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddLocalInventoriesRequest`.
   public init() {}
 
@@ -88,6 +90,58 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let product = CodingKeys(stringValue: "product")
+    static let localInventories = CodingKeys(stringValue: "localInventories")
+    static let addMask = CodingKeys(stringValue: "addMask")
+    static let addTime = CodingKeys(stringValue: "addTime")
+    static let allowMissing = CodingKeys(stringValue: "allowMissing")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "product",
+      "localInventories",
+      "addMask",
+      "addTime",
+      "allowMissing",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .product) {
+      self.product = value
+    }
+    if let value = try container.decodeIfPresent([LocalInventory].self, forKey: .localInventories) {
+      self.localInventories = value
+    }
+    self.addMask = try container.decodeIfPresent(GoogleCloudWKT.FieldMask.self, forKey: .addMask)
+    self.addTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .addTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
+      self.allowMissing = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.product, forKey: .product)
+    try container.encode(self.localInventories, forKey: .localInventories)
+    try container.encodeIfPresent(self.addMask, forKey: .addMask)
+    try container.encodeIfPresent(self.addTime, forKey: .addTime)
+    try container.encode(self.allowMissing, forKey: .allowMissing)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

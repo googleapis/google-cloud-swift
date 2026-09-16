@@ -24,6 +24,8 @@ public struct FinishOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The error resulted from exchanging OAuth tokens from the service provider.
   public var exchangeError: ExchangeError? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `FinishOAuthResponse`.
   public init() {}
 
@@ -38,6 +40,36 @@ public struct FinishOAuthResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let exchangeError = CodingKeys(stringValue: "exchangeError")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "exchangeError"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.exchangeError = try container.decodeIfPresent(ExchangeError.self, forKey: .exchangeError)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.exchangeError, forKey: .exchangeError)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -44,6 +44,8 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
   /// Optional. Limits for the search.
   public var limits: SearchLineageStreamingRequest.SearchLimits? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchLineageStreamingRequest`.
   public init() {}
 
@@ -58,6 +60,67 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let locations = CodingKeys(stringValue: "locations")
+    static let rootCriteria = CodingKeys(stringValue: "rootCriteria")
+    static let direction = CodingKeys(stringValue: "direction")
+    static let filters = CodingKeys(stringValue: "filters")
+    static let limits = CodingKeys(stringValue: "limits")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "locations",
+      "rootCriteria",
+      "direction",
+      "filters",
+      "limits",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
+      self.locations = value
+    }
+    self.rootCriteria = try container.decodeIfPresent(
+      SearchLineageStreamingRequest.RootCriteria.self, forKey: .rootCriteria)
+    if let value = try container.decodeIfPresent(
+      SearchLineageStreamingRequest.SearchDirection.self, forKey: .direction)
+    {
+      self.direction = value
+    }
+    self.filters = try container.decodeIfPresent(
+      SearchLineageStreamingRequest.SearchFilters.self, forKey: .filters)
+    self.limits = try container.decodeIfPresent(
+      SearchLineageStreamingRequest.SearchLimits.self, forKey: .limits)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.locations, forKey: .locations)
+    try container.encodeIfPresent(self.rootCriteria, forKey: .rootCriteria)
+    try container.encode(self.direction, forKey: .direction)
+    try container.encodeIfPresent(self.filters, forKey: .filters)
+    try container.encodeIfPresent(self.limits, forKey: .limits)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Filters for the search.
@@ -78,6 +141,8 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     /// `end_time` can be set.
     public var timeRange: GoogleType.Interval? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchFilters`.
     public init() {}
 
@@ -92,6 +157,51 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dependencyTypes = CodingKeys(stringValue: "dependencyTypes")
+      static let entitySet = CodingKeys(stringValue: "entitySet")
+      static let timeRange = CodingKeys(stringValue: "timeRange")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dependencyTypes",
+        "entitySet",
+        "timeRange",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([DependencyType].self, forKey: .dependencyTypes)
+      {
+        self.dependencyTypes = value
+      }
+      if let value = try container.decodeIfPresent(
+        SearchLineageStreamingRequest.EntitySet.self, forKey: .entitySet)
+      {
+        self.entitySet = value
+      }
+      self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dependencyTypes, forKey: .dependencyTypes)
+      try container.encode(self.entitySet, forKey: .entitySet)
+      try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -125,6 +235,8 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     /// [FieldMask](https://developers.google.com/workspace/docs/api/how-tos/field-masks#read_with_a_field_mask).
     public var maxProcessPerLink: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SearchLimits`.
     public init() {}
 
@@ -139,6 +251,50 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDepth = CodingKeys(stringValue: "maxDepth")
+      static let maxResults = CodingKeys(stringValue: "maxResults")
+      static let maxProcessPerLink = CodingKeys(stringValue: "maxProcessPerLink")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDepth",
+        "maxResults",
+        "maxProcessPerLink",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDepth) {
+        self.maxDepth = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults) {
+        self.maxResults = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxProcessPerLink) {
+        self.maxProcessPerLink = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maxDepth, forKey: .maxDepth)
+      try container.encode(self.maxResults, forKey: .maxResults)
+      try container.encode(self.maxProcessPerLink, forKey: .maxProcessPerLink)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -160,6 +316,8 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     /// Criteria for the root of the search.
     public var criteria: OneOf_Criteria? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RootCriteria`.
     public init() {}
 
@@ -176,8 +334,17 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case entities = "entities"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entities = CodingKeys(stringValue: "entities")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entities"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -199,6 +366,10 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
         try criteriaCheckAndSet(.entities(entities))
       }
       self.criteria = criteria
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -209,6 +380,9 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
         case .entities(let value):
           try container.encode(value, forKey: .entities)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

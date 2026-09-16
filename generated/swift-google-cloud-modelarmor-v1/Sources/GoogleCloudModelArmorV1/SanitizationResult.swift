@@ -44,6 +44,8 @@ public struct SanitizationResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Output only. Metadata related to Sanitization.
   public var sanitizationMetadata: SanitizationResult.SanitizationMetadata? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SanitizationResult`.
   public init() {}
 
@@ -58,6 +60,57 @@ public struct SanitizationResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let filterMatchState = CodingKeys(stringValue: "filterMatchState")
+    static let filterResults = CodingKeys(stringValue: "filterResults")
+    static let invocationResult = CodingKeys(stringValue: "invocationResult")
+    static let sanitizationMetadata = CodingKeys(stringValue: "sanitizationMetadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "filterMatchState",
+      "filterResults",
+      "invocationResult",
+      "sanitizationMetadata",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(FilterMatchState.self, forKey: .filterMatchState) {
+      self.filterMatchState = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: FilterResult].self, forKey: .filterResults)
+    {
+      self.filterResults = value
+    }
+    if let value = try container.decodeIfPresent(InvocationResult.self, forKey: .invocationResult) {
+      self.invocationResult = value
+    }
+    self.sanitizationMetadata = try container.decodeIfPresent(
+      SanitizationResult.SanitizationMetadata.self, forKey: .sanitizationMetadata)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.filterMatchState, forKey: .filterMatchState)
+    try container.encode(self.filterResults, forKey: .filterResults)
+    try container.encode(self.invocationResult, forKey: .invocationResult)
+    try container.encodeIfPresent(self.sanitizationMetadata, forKey: .sanitizationMetadata)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Message describing Sanitization metadata.
@@ -77,6 +130,8 @@ public struct SanitizationResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Output only. The stream chunk processed by the Sanitization service.
     public var streamChunkProcessed: DataItem? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SanitizationMetadata`.
     public init() {}
 
@@ -91,6 +146,59 @@ public struct SanitizationResult: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let errorCode = CodingKeys(stringValue: "errorCode")
+      static let errorMessage = CodingKeys(stringValue: "errorMessage")
+      static let ignorePartialInvocationFailures = CodingKeys(
+        stringValue: "ignorePartialInvocationFailures")
+      static let streamChunkProcessed = CodingKeys(stringValue: "streamChunkProcessed")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "errorCode",
+        "errorMessage",
+        "ignorePartialInvocationFailures",
+        "streamChunkProcessed",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .errorCode) {
+        self.errorCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+        self.errorMessage = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .ignorePartialInvocationFailures)
+      {
+        self.ignorePartialInvocationFailures = value
+      }
+      self.streamChunkProcessed = try container.decodeIfPresent(
+        DataItem.self, forKey: .streamChunkProcessed)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.errorCode, forKey: .errorCode)
+      try container.encode(self.errorMessage, forKey: .errorMessage)
+      try container.encode(
+        self.ignorePartialInvocationFailures, forKey: .ignorePartialInvocationFailures)
+      try container.encodeIfPresent(self.streamChunkProcessed, forKey: .streamChunkProcessed)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -73,6 +73,8 @@
     /// Output only. The single/redundant wire(s) managed by the wire group.
     public var wires: [Wire] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `WireGroup`.
     public init() {}
 
@@ -87,6 +89,88 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let adminEnabled = CodingKeys(stringValue: "adminEnabled")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let endpoints = CodingKeys(stringValue: "endpoints")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let reconciling = CodingKeys(stringValue: "reconciling")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let topology = CodingKeys(stringValue: "topology")
+      static let wireProperties = CodingKeys(stringValue: "wireProperties")
+      static let wires = CodingKeys(stringValue: "wires")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "adminEnabled",
+        "creationTimestamp",
+        "description",
+        "endpoints",
+        "id",
+        "kind",
+        "name",
+        "reconciling",
+        "selfLink",
+        "topology",
+        "wireProperties",
+        "wires",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: WireGroupEndpoint].self, forKey: .endpoints)
+      {
+        self.endpoints = value
+      }
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.reconciling = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.topology = try container.decodeIfPresent(WireGroupTopology.self, forKey: .topology)
+      self.wireProperties = try container.decodeIfPresent(
+        WireProperties.self, forKey: .wireProperties)
+      if let value = try container.decodeIfPresent([Wire].self, forKey: .wires) {
+        self.wires = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encode(self.endpoints, forKey: .endpoints)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.reconciling, forKey: .reconciling)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.topology, forKey: .topology)
+      try container.encodeIfPresent(self.wireProperties, forKey: .wireProperties)
+      try container.encode(self.wires, forKey: .wires)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

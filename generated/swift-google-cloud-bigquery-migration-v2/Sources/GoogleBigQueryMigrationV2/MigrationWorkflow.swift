@@ -46,6 +46,8 @@ public struct MigrationWorkflow: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Output only. Time when the workflow was last updated.
   public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MigrationWorkflow`.
   public init() {}
 
@@ -60,6 +62,67 @@ public struct MigrationWorkflow: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let tasks = CodingKeys(stringValue: "tasks")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let lastUpdateTime = CodingKeys(stringValue: "lastUpdateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "tasks",
+      "state",
+      "createTime",
+      "lastUpdateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: MigrationTask].self, forKey: .tasks)
+    {
+      self.tasks = value
+    }
+    if let value = try container.decodeIfPresent(MigrationWorkflow.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.lastUpdateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.tasks, forKey: .tasks)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible migration workflow states.

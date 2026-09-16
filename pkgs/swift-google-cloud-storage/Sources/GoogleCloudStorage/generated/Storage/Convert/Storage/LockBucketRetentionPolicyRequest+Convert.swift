@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension LockBucketRetentionPolicyRequest {
@@ -28,12 +28,16 @@ extension LockBucketRetentionPolicyRequest {
     self.init()
     self.bucket = proto.bucket
     self.ifMetagenerationMatch = proto.ifMetagenerationMatch
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     proto.bucket = self.bucket
     proto.ifMetagenerationMatch = self.ifMetagenerationMatch
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

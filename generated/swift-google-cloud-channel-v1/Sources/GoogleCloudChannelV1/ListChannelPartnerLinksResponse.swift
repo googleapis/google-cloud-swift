@@ -37,6 +37,8 @@ public struct ListChannelPartnerLinksResponse: Codable, Equatable, GoogleCloudWK
   /// [google.cloud.channel.v1.ListChannelPartnerLinksRequest.page_token]: <doc:ListChannelPartnerLinksRequest/pageToken>
   public var nextPageToken: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ListChannelPartnerLinksResponse`.
   public init() {}
 
@@ -51,6 +53,46 @@ public struct ListChannelPartnerLinksResponse: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let channelPartnerLinks = CodingKeys(stringValue: "channelPartnerLinks")
+    static let nextPageToken = CodingKeys(stringValue: "nextPageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "channelPartnerLinks",
+      "nextPageToken",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ChannelPartnerLink].self, forKey: .channelPartnerLinks)
+    {
+      self.channelPartnerLinks = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
+      self.nextPageToken = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.channelPartnerLinks, forKey: .channelPartnerLinks)
+    try container.encode(self.nextPageToken, forKey: .nextPageToken)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

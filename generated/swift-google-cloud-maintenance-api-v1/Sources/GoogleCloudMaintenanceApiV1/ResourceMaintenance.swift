@@ -92,6 +92,8 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// and server agree on the ordering of a resource being written.
   public var etag: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceMaintenance`.
   public init() {}
 
@@ -106,6 +108,131 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let resource = CodingKeys(stringValue: "resource")
+    static let maintenance = CodingKeys(stringValue: "maintenance")
+    static let state = CodingKeys(stringValue: "state")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let maintenanceStartTime = CodingKeys(stringValue: "maintenanceStartTime")
+    static let maintenanceEndTime = CodingKeys(stringValue: "maintenanceEndTime")
+    static let maintenanceCancelTime = CodingKeys(stringValue: "maintenanceCancelTime")
+    static let maintenanceScheduledStartTime = CodingKeys(
+      stringValue: "maintenanceScheduledStartTime")
+    static let maintenanceScheduledEndTime = CodingKeys(stringValue: "maintenanceScheduledEndTime")
+    static let userControllable = CodingKeys(stringValue: "userControllable")
+    static let controls = CodingKeys(stringValue: "controls")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let etag = CodingKeys(stringValue: "etag")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "resource",
+      "maintenance",
+      "state",
+      "createTime",
+      "updateTime",
+      "maintenanceStartTime",
+      "maintenanceEndTime",
+      "maintenanceCancelTime",
+      "maintenanceScheduledStartTime",
+      "maintenanceScheduledEndTime",
+      "userControllable",
+      "controls",
+      "labels",
+      "annotations",
+      "uid",
+      "etag",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.resource = try container.decodeIfPresent(
+      ResourceMaintenance.Resource.self, forKey: .resource)
+    self.maintenance = try container.decodeIfPresent(
+      ResourceMaintenance.Maintenance.self, forKey: .maintenance)
+    if let value = try container.decodeIfPresent(ResourceMaintenance.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.maintenanceStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceStartTime)
+    self.maintenanceEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceEndTime)
+    self.maintenanceCancelTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceCancelTime)
+    self.maintenanceScheduledStartTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceScheduledStartTime)
+    self.maintenanceScheduledEndTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .maintenanceScheduledEndTime)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userControllable) {
+      self.userControllable = value
+    }
+    if let value = try container.decodeIfPresent([MaintenanceControl].self, forKey: .controls) {
+      self.controls = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encodeIfPresent(self.maintenance, forKey: .maintenance)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.maintenanceStartTime, forKey: .maintenanceStartTime)
+    try container.encodeIfPresent(self.maintenanceEndTime, forKey: .maintenanceEndTime)
+    try container.encodeIfPresent(self.maintenanceCancelTime, forKey: .maintenanceCancelTime)
+    try container.encodeIfPresent(
+      self.maintenanceScheduledStartTime, forKey: .maintenanceScheduledStartTime)
+    try container.encodeIfPresent(
+      self.maintenanceScheduledEndTime, forKey: .maintenanceScheduledEndTime)
+    try container.encode(self.userControllable, forKey: .userControllable)
+    try container.encode(self.controls, forKey: .controls)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.etag, forKey: .etag)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Resource contains information about the resource affected by maintenance.
@@ -129,6 +256,8 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// reported.
     public var type: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Resource`.
     public init() {}
 
@@ -143,6 +272,50 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resourceName = CodingKeys(stringValue: "resourceName")
+      static let location = CodingKeys(stringValue: "location")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resourceName",
+        "location",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceName) {
+        self.resourceName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+        self.type = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resourceName, forKey: .resourceName)
+      try container.encode(self.location, forKey: .location)
+      try container.encode(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -173,6 +346,8 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// Output only. The category of the maintenance.
     public var category: MaintenanceCategory = MaintenanceCategory()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Maintenance`.
     public init() {}
 
@@ -187,6 +362,56 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maintenanceName = CodingKeys(stringValue: "maintenanceName")
+      static let title = CodingKeys(stringValue: "title")
+      static let description = CodingKeys(stringValue: "description")
+      static let category = CodingKeys(stringValue: "category")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maintenanceName",
+        "title",
+        "description",
+        "category",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceName) {
+        self.maintenanceName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(MaintenanceCategory.self, forKey: .category) {
+        self.category = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.maintenanceName, forKey: .maintenanceName)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.category, forKey: .category)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

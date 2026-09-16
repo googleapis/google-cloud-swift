@@ -48,6 +48,8 @@ public struct UrlMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of handler for this URL pattern.
   public var handlerType: OneOf_HandlerType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UrlMap`.
   public init() {}
 
@@ -64,25 +66,52 @@ public struct UrlMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case urlRegex = "urlRegex"
-    case staticFiles = "staticFiles"
-    case script = "script"
-    case apiEndpoint = "apiEndpoint"
-    case securityLevel = "securityLevel"
-    case login = "login"
-    case authFailAction = "authFailAction"
-    case redirectHttpResponseCode = "redirectHttpResponseCode"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let urlRegex = CodingKeys(stringValue: "urlRegex")
+    static let staticFiles = CodingKeys(stringValue: "staticFiles")
+    static let script = CodingKeys(stringValue: "script")
+    static let apiEndpoint = CodingKeys(stringValue: "apiEndpoint")
+    static let securityLevel = CodingKeys(stringValue: "securityLevel")
+    static let login = CodingKeys(stringValue: "login")
+    static let authFailAction = CodingKeys(stringValue: "authFailAction")
+    static let redirectHttpResponseCode = CodingKeys(stringValue: "redirectHttpResponseCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "urlRegex",
+      "staticFiles",
+      "script",
+      "apiEndpoint",
+      "securityLevel",
+      "login",
+      "authFailAction",
+      "redirectHttpResponseCode",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.urlRegex = try container.decode(Swift.String.self, forKey: .urlRegex)
-    self.securityLevel = try container.decode(SecurityLevel.self, forKey: .securityLevel)
-    self.login = try container.decode(LoginRequirement.self, forKey: .login)
-    self.authFailAction = try container.decode(AuthFailAction.self, forKey: .authFailAction)
-    self.redirectHttpResponseCode = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .urlRegex) {
+      self.urlRegex = value
+    }
+    if let value = try container.decodeIfPresent(SecurityLevel.self, forKey: .securityLevel) {
+      self.securityLevel = value
+    }
+    if let value = try container.decodeIfPresent(LoginRequirement.self, forKey: .login) {
+      self.login = value
+    }
+    if let value = try container.decodeIfPresent(AuthFailAction.self, forKey: .authFailAction) {
+      self.authFailAction = value
+    }
+    if let value = try container.decodeIfPresent(
       UrlMap.RedirectHttpResponseCode.self, forKey: .redirectHttpResponseCode)
+    {
+      self.redirectHttpResponseCode = value
+    }
 
     var handlerType: OneOf_HandlerType? = nil
     let handlerTypeCheckAndSet = {
@@ -108,6 +137,10 @@ public struct UrlMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try handlerTypeCheckAndSet(.apiEndpoint(apiEndpoint))
     }
     self.handlerType = handlerType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -127,6 +160,9 @@ public struct UrlMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .apiEndpoint(let value):
         try container.encode(value, forKey: .apiEndpoint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

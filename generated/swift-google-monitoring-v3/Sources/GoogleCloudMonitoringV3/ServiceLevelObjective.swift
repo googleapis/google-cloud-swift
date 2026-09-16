@@ -55,6 +55,8 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The time period over which the objective will be evaluated.
   public var period: OneOf_Period? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceLevelObjective`.
   public init() {}
 
@@ -71,24 +73,49 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case displayName = "displayName"
-    case serviceLevelIndicator = "serviceLevelIndicator"
-    case goal = "goal"
-    case rollingPeriod = "rollingPeriod"
-    case calendarPeriod = "calendarPeriod"
-    case userLabels = "userLabels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let serviceLevelIndicator = CodingKeys(stringValue: "serviceLevelIndicator")
+    static let goal = CodingKeys(stringValue: "goal")
+    static let rollingPeriod = CodingKeys(stringValue: "rollingPeriod")
+    static let calendarPeriod = CodingKeys(stringValue: "calendarPeriod")
+    static let userLabels = CodingKeys(stringValue: "userLabels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "serviceLevelIndicator",
+      "goal",
+      "rollingPeriod",
+      "calendarPeriod",
+      "userLabels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.serviceLevelIndicator = try container.decodeIfPresent(
       ServiceLevelIndicator.self, forKey: .serviceLevelIndicator)
-    self.goal = try container.decode(Swift.Double.self, forKey: .goal)
-    self.userLabels = try container.decode([Swift.String: Swift.String].self, forKey: .userLabels)
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .goal) {
+      self.goal = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .userLabels)
+    {
+      self.userLabels = value
+    }
 
     var period: OneOf_Period? = nil
     let periodCheckAndSet = {
@@ -111,13 +138,17 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWKT._AnyPack
       try periodCheckAndSet(.calendarPeriod(calendarPeriod))
     }
     self.period = period
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.serviceLevelIndicator, forKey: .serviceLevelIndicator)
+    try container.encodeIfPresent(self.serviceLevelIndicator, forKey: .serviceLevelIndicator)
     try container.encode(self.goal, forKey: .goal)
     try container.encode(self.userLabels, forKey: .userLabels)
 
@@ -128,6 +159,9 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .calendarPeriod(let value):
         try container.encode(value, forKey: .calendarPeriod)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

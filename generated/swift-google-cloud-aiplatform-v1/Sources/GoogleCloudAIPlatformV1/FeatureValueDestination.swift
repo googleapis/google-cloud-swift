@@ -24,6 +24,8 @@
   {
     public var destination: OneOf_Destination? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FeatureValueDestination`.
     public init() {}
 
@@ -40,10 +42,21 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case bigqueryDestination = "bigqueryDestination"
-      case tfrecordDestination = "tfrecordDestination"
-      case csvDestination = "csvDestination"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bigqueryDestination = CodingKeys(stringValue: "bigqueryDestination")
+      static let tfrecordDestination = CodingKeys(stringValue: "tfrecordDestination")
+      static let csvDestination = CodingKeys(stringValue: "csvDestination")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bigqueryDestination",
+        "tfrecordDestination",
+        "csvDestination",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -75,6 +88,10 @@
         try destinationCheckAndSet(.csvDestination(csvDestination))
       }
       self.destination = destination
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -89,6 +106,9 @@
         case .csvDestination(let value):
           try container.encode(value, forKey: .csvDestination)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

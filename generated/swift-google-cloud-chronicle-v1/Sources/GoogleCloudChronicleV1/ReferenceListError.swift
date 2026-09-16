@@ -28,6 +28,8 @@ public struct ReferenceListError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Message explaining why the line is invalid.
   public var errorMessage: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReferenceListError`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct ReferenceListError: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let lineNumber = CodingKeys(stringValue: "lineNumber")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "lineNumber",
+      "errorMessage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
+      self.lineNumber = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.lineNumber, forKey: .lineNumber)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

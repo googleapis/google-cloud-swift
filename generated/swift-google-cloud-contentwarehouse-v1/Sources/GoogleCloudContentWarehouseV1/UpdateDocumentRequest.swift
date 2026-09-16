@@ -44,6 +44,8 @@ public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Options for the update operation.
   public var updateOptions: UpdateOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateDocumentRequest`.
   public init() {}
 
@@ -58,6 +60,56 @@ public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let document = CodingKeys(stringValue: "document")
+    static let requestMetadata = CodingKeys(stringValue: "requestMetadata")
+    static let cloudAiDocumentOption = CodingKeys(stringValue: "cloudAiDocumentOption")
+    static let updateOptions = CodingKeys(stringValue: "updateOptions")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "document",
+      "requestMetadata",
+      "cloudAiDocumentOption",
+      "updateOptions",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+    self.requestMetadata = try container.decodeIfPresent(
+      RequestMetadata.self, forKey: .requestMetadata)
+    self.cloudAiDocumentOption = try container.decodeIfPresent(
+      CloudAIDocumentOption.self, forKey: .cloudAiDocumentOption)
+    self.updateOptions = try container.decodeIfPresent(UpdateOptions.self, forKey: .updateOptions)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.document, forKey: .document)
+    try container.encodeIfPresent(self.requestMetadata, forKey: .requestMetadata)
+    try container.encodeIfPresent(self.cloudAiDocumentOption, forKey: .cloudAiDocumentOption)
+    try container.encodeIfPresent(self.updateOptions, forKey: .updateOptions)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

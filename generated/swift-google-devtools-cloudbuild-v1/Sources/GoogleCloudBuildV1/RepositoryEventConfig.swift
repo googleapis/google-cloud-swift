@@ -32,6 +32,8 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The types of filter to trigger a build.
   public var filter: OneOf_Filter? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RepositoryEventConfig`.
   public init() {}
 
@@ -48,18 +50,35 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case repository = "repository"
-    case repositoryType = "repositoryType"
-    case pullRequest = "pullRequest"
-    case push = "push"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let repository = CodingKeys(stringValue: "repository")
+    static let repositoryType = CodingKeys(stringValue: "repositoryType")
+    static let pullRequest = CodingKeys(stringValue: "pullRequest")
+    static let push = CodingKeys(stringValue: "push")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "repository",
+      "repositoryType",
+      "pullRequest",
+      "push",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.repository = try container.decode(Swift.String.self, forKey: .repository)
-    self.repositoryType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+      self.repository = value
+    }
+    if let value = try container.decodeIfPresent(
       RepositoryEventConfig.RepositoryType.self, forKey: .repositoryType)
+    {
+      self.repositoryType = value
+    }
 
     var filter: OneOf_Filter? = nil
     let filterCheckAndSet = {
@@ -80,6 +99,10 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       try filterCheckAndSet(.push(push))
     }
     self.filter = filter
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -94,6 +117,9 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .push(let value):
         try container.encode(value, forKey: .push)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -43,6 +43,8 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// one segment.
   public var segment: VideoSegment? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoAnnotationProgress`.
   public init() {}
 
@@ -57,6 +59,64 @@ public struct VideoAnnotationProgress: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inputUri = CodingKeys(stringValue: "inputUri")
+    static let progressPercent = CodingKeys(stringValue: "progressPercent")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let feature = CodingKeys(stringValue: "feature")
+    static let segment = CodingKeys(stringValue: "segment")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inputUri",
+      "progressPercent",
+      "startTime",
+      "updateTime",
+      "feature",
+      "segment",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputUri) {
+      self.inputUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
+      self.progressPercent = value
+    }
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Feature.self, forKey: .feature) {
+      self.feature = value
+    }
+    self.segment = try container.decodeIfPresent(VideoSegment.self, forKey: .segment)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.inputUri, forKey: .inputUri)
+    try container.encode(self.progressPercent, forKey: .progressPercent)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.feature, forKey: .feature)
+    try container.encodeIfPresent(self.segment, forKey: .segment)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

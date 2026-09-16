@@ -33,6 +33,8 @@
     /// not its URL.
     public var diskType: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `LocalDisk`.
     public init() {}
 
@@ -47,6 +49,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let diskCount = CodingKeys(stringValue: "diskCount")
+      static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+      static let diskType = CodingKeys(stringValue: "diskType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "diskCount",
+        "diskSizeGb",
+        "diskType",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.diskCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskCount)
+      self.diskSizeGb = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskSizeGb)
+      self.diskType = try container.decodeIfPresent(Swift.String.self, forKey: .diskType)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.diskCount, forKey: .diskCount)
+      try container.encodeIfPresent(self.diskSizeGb, forKey: .diskSizeGb)
+      try container.encodeIfPresent(self.diskType, forKey: .diskType)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

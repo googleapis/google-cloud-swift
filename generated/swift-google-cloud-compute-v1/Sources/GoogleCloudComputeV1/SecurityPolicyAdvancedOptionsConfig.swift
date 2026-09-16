@@ -39,6 +39,8 @@
     /// resolving the callers client IP address.
     public var userIpRequestHeaders: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SecurityPolicyAdvancedOptionsConfig`.
     public init() {}
 
@@ -53,6 +55,61 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let jsonCustomConfig = CodingKeys(stringValue: "jsonCustomConfig")
+      static let jsonParsing = CodingKeys(stringValue: "jsonParsing")
+      static let logLevel = CodingKeys(stringValue: "logLevel")
+      static let requestBodyInspectionSize = CodingKeys(stringValue: "requestBodyInspectionSize")
+      static let userIpRequestHeaders = CodingKeys(stringValue: "userIpRequestHeaders")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "jsonCustomConfig",
+        "jsonParsing",
+        "logLevel",
+        "requestBodyInspectionSize",
+        "userIpRequestHeaders",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.jsonCustomConfig = try container.decodeIfPresent(
+        SecurityPolicyAdvancedOptionsConfigJsonCustomConfig.self, forKey: .jsonCustomConfig)
+      self.jsonParsing = try container.decodeIfPresent(
+        SecurityPolicyAdvancedOptionsConfig.JsonParsing.self, forKey: .jsonParsing)
+      self.logLevel = try container.decodeIfPresent(
+        SecurityPolicyAdvancedOptionsConfig.LogLevel.self, forKey: .logLevel)
+      self.requestBodyInspectionSize = try container.decodeIfPresent(
+        Swift.String.self, forKey: .requestBodyInspectionSize)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .userIpRequestHeaders)
+      {
+        self.userIpRequestHeaders = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.jsonCustomConfig, forKey: .jsonCustomConfig)
+      try container.encodeIfPresent(self.jsonParsing, forKey: .jsonParsing)
+      try container.encodeIfPresent(self.logLevel, forKey: .logLevel)
+      try container.encodeIfPresent(
+        self.requestBodyInspectionSize, forKey: .requestBodyInspectionSize)
+      try container.encode(self.userIpRequestHeaders, forKey: .userIpRequestHeaders)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [jsonParsing][google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.jsonParsing] field.

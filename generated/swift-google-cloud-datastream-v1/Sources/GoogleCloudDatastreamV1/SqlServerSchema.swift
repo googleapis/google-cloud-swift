@@ -27,6 +27,8 @@ public struct SqlServerSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Tables in the schema.
   public var tables: [SqlServerTable] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SqlServerSchema`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct SqlServerSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schema = CodingKeys(stringValue: "schema")
+    static let tables = CodingKeys(stringValue: "tables")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schema",
+      "tables",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+      self.schema = value
+    }
+    if let value = try container.decodeIfPresent([SqlServerTable].self, forKey: .tables) {
+      self.tables = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.schema, forKey: .schema)
+    try container.encode(self.tables, forKey: .tables)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

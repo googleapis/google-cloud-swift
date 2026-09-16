@@ -35,6 +35,8 @@ public struct RegisterIcebergTableRequest: Codable, Equatable, GoogleCloudWKT._A
   /// false.
   public var overwrite: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RegisterIcebergTableRequest`.
   public init() {}
 
@@ -51,19 +53,43 @@ public struct RegisterIcebergTableRequest: Codable, Equatable, GoogleCloudWKT._A
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case name = "name"
-    case metadataLocation = "metadata-location"
-    case overwrite = "overwrite"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let name = CodingKeys(stringValue: "name")
+    static let metadataLocation = CodingKeys(stringValue: "metadata-location")
+    static let overwrite = CodingKeys(stringValue: "overwrite")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "name",
+      "metadata-location",
+      "overwrite",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.metadataLocation = try container.decode(Swift.String.self, forKey: .metadataLocation)
-    self.overwrite = try container.decode(Swift.Bool.self, forKey: .overwrite)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataLocation) {
+      self.metadataLocation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .overwrite) {
+      self.overwrite = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -72,6 +98,9 @@ public struct RegisterIcebergTableRequest: Codable, Equatable, GoogleCloudWKT._A
     try container.encode(self.name, forKey: .name)
     try container.encode(self.metadataLocation, forKey: .metadataLocation)
     try container.encode(self.overwrite, forKey: .overwrite)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

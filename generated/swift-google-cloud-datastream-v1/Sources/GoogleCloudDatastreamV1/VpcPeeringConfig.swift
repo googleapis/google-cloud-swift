@@ -29,6 +29,8 @@ public struct VpcPeeringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. A free subnet for peering. (CIDR of /29)
   public var subnet: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VpcPeeringConfig`.
   public init() {}
 
@@ -43,6 +45,44 @@ public struct VpcPeeringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vpc = CodingKeys(stringValue: "vpc")
+    static let subnet = CodingKeys(stringValue: "subnet")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vpc",
+      "subnet",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vpc) {
+      self.vpc = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnet) {
+      self.subnet = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vpc, forKey: .vpc)
+    try container.encode(self.subnet, forKey: .subnet)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
   /// A list of identified boxes.
   public var identifiedBoxes: [ObjectDetectionPredictionResult.IdentifiedBox] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectDetectionPredictionResult`.
   public init() {}
 
@@ -43,6 +45,45 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let currentTime = CodingKeys(stringValue: "currentTime")
+    static let identifiedBoxes = CodingKeys(stringValue: "identifiedBoxes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "currentTime",
+      "identifiedBoxes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.currentTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .currentTime)
+    if let value = try container.decodeIfPresent(
+      [ObjectDetectionPredictionResult.IdentifiedBox].self, forKey: .identifiedBoxes)
+    {
+      self.identifiedBoxes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.currentTime, forKey: .currentTime)
+    try container.encode(self.identifiedBoxes, forKey: .identifiedBoxes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// The entity info for annotations from object detection prediction result.
   public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -52,6 +93,8 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
 
     /// Human readable string of the label.
     public var labelString: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Entity`.
     public init() {}
@@ -67,6 +110,44 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let labelId = CodingKeys(stringValue: "labelId")
+      static let labelString = CodingKeys(stringValue: "labelString")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "labelId",
+        "labelString",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .labelId) {
+        self.labelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelString) {
+        self.labelString = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.labelId, forKey: .labelId)
+      try container.encode(self.labelString, forKey: .labelString)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -97,6 +178,8 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
     /// Entity of this box.
     public var entity: ObjectDetectionPredictionResult.Entity? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IdentifiedBox`.
     public init() {}
 
@@ -111,6 +194,55 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let boxId = CodingKeys(stringValue: "boxId")
+      static let normalizedBoundingBox = CodingKeys(stringValue: "normalizedBoundingBox")
+      static let confidenceScore = CodingKeys(stringValue: "confidenceScore")
+      static let entity = CodingKeys(stringValue: "entity")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "boxId",
+        "normalizedBoundingBox",
+        "confidenceScore",
+        "entity",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
+        self.boxId = value
+      }
+      self.normalizedBoundingBox = try container.decodeIfPresent(
+        ObjectDetectionPredictionResult.IdentifiedBox.NormalizedBoundingBox.self,
+        forKey: .normalizedBoundingBox)
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .confidenceScore) {
+        self.confidenceScore = value
+      }
+      self.entity = try container.decodeIfPresent(
+        ObjectDetectionPredictionResult.Entity.self, forKey: .entity)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.boxId, forKey: .boxId)
+      try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
+      try container.encode(self.confidenceScore, forKey: .confidenceScore)
+      try container.encodeIfPresent(self.entity, forKey: .entity)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Bounding Box in the normalized coordinates.
@@ -129,6 +261,8 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
       /// Height of the bounding box.
       public var height: Swift.Float = Swift.Float()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `NormalizedBoundingBox`.
       public init() {}
 
@@ -143,6 +277,56 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWK
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let xmin = CodingKeys(stringValue: "xmin")
+        static let ymin = CodingKeys(stringValue: "ymin")
+        static let width = CodingKeys(stringValue: "width")
+        static let height = CodingKeys(stringValue: "height")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "xmin",
+          "ymin",
+          "width",
+          "height",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xmin) {
+          self.xmin = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .ymin) {
+          self.ymin = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .width) {
+          self.width = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .height) {
+          self.height = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.xmin, forKey: .xmin)
+        try container.encode(self.ymin, forKey: .ymin)
+        try container.encode(self.width, forKey: .width)
+        try container.encode(self.height, forKey: .height)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

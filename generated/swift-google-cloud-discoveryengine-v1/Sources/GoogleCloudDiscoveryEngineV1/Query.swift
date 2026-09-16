@@ -28,6 +28,8 @@
     /// Query content.
     public var content: OneOf_Content? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Query`.
     public init() {}
 
@@ -44,14 +46,26 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case text = "text"
-      case queryId = "queryId"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let queryId = CodingKeys(stringValue: "queryId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "queryId",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.queryId = try container.decode(Swift.String.self, forKey: .queryId)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryId) {
+        self.queryId = value
+      }
 
       var content: OneOf_Content? = nil
       let contentCheckAndSet = {
@@ -67,6 +81,10 @@
         try contentCheckAndSet(.text(text))
       }
       self.content = content
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,6 +96,9 @@
         case .text(let value):
           try container.encode(value, forKey: .text)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

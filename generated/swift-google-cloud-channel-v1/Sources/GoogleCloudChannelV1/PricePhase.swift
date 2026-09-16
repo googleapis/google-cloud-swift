@@ -38,6 +38,8 @@ public struct PricePhase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Price by the resource tiers.
   public var priceTiers: [PriceTier] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PricePhase`.
   public init() {}
 
@@ -52,6 +54,60 @@ public struct PricePhase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let periodType = CodingKeys(stringValue: "periodType")
+    static let firstPeriod = CodingKeys(stringValue: "firstPeriod")
+    static let lastPeriod = CodingKeys(stringValue: "lastPeriod")
+    static let price = CodingKeys(stringValue: "price")
+    static let priceTiers = CodingKeys(stringValue: "priceTiers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "periodType",
+      "firstPeriod",
+      "lastPeriod",
+      "price",
+      "priceTiers",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(PeriodType.self, forKey: .periodType) {
+      self.periodType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .firstPeriod) {
+      self.firstPeriod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lastPeriod) {
+      self.lastPeriod = value
+    }
+    self.price = try container.decodeIfPresent(Price.self, forKey: .price)
+    if let value = try container.decodeIfPresent([PriceTier].self, forKey: .priceTiers) {
+      self.priceTiers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.periodType, forKey: .periodType)
+    try container.encode(self.firstPeriod, forKey: .firstPeriod)
+    try container.encode(self.lastPeriod, forKey: .lastPeriod)
+    try container.encodeIfPresent(self.price, forKey: .price)
+    try container.encode(self.priceTiers, forKey: .priceTiers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

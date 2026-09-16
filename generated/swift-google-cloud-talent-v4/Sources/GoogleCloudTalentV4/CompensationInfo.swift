@@ -61,6 +61,8 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year]: <doc:CompensationInfo/CompensationEntry/expectedUnitsPerYear>
   public var annualizedTotalCompensationRange: CompensationInfo.CompensationRange? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CompensationInfo`.
   public init() {}
 
@@ -75,6 +77,54 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let entries = CodingKeys(stringValue: "entries")
+    static let annualizedBaseCompensationRange = CodingKeys(
+      stringValue: "annualizedBaseCompensationRange")
+    static let annualizedTotalCompensationRange = CodingKeys(
+      stringValue: "annualizedTotalCompensationRange")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "entries",
+      "annualizedBaseCompensationRange",
+      "annualizedTotalCompensationRange",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [CompensationInfo.CompensationEntry].self, forKey: .entries)
+    {
+      self.entries = value
+    }
+    self.annualizedBaseCompensationRange = try container.decodeIfPresent(
+      CompensationInfo.CompensationRange.self, forKey: .annualizedBaseCompensationRange)
+    self.annualizedTotalCompensationRange = try container.decodeIfPresent(
+      CompensationInfo.CompensationRange.self, forKey: .annualizedTotalCompensationRange)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.entries, forKey: .entries)
+    try container.encodeIfPresent(
+      self.annualizedBaseCompensationRange, forKey: .annualizedBaseCompensationRange)
+    try container.encodeIfPresent(
+      self.annualizedTotalCompensationRange, forKey: .annualizedTotalCompensationRange)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A compensation entry that represents one component of compensation, such
@@ -139,6 +189,8 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Compensation amount. It could be a fixed amount or a floating range.
     public var compensationAmount: OneOf_CompensationAmount? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompensationEntry`.
     public init() {}
 
@@ -155,20 +207,44 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case type = "type"
-      case unit = "unit"
-      case amount = "amount"
-      case range = "range"
-      case description = "description"
-      case expectedUnitsPerYear = "expectedUnitsPerYear"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let type = CodingKeys(stringValue: "type")
+      static let unit = CodingKeys(stringValue: "unit")
+      static let amount = CodingKeys(stringValue: "amount")
+      static let range = CodingKeys(stringValue: "range")
+      static let description = CodingKeys(stringValue: "description")
+      static let expectedUnitsPerYear = CodingKeys(stringValue: "expectedUnitsPerYear")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "type",
+        "unit",
+        "amount",
+        "range",
+        "description",
+        "expectedUnitsPerYear",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.type = try container.decode(CompensationInfo.CompensationType.self, forKey: .type)
-      self.unit = try container.decode(CompensationInfo.CompensationUnit.self, forKey: .unit)
-      self.description = try container.decode(Swift.String.self, forKey: .description)
+      if let value = try container.decodeIfPresent(
+        CompensationInfo.CompensationType.self, forKey: .type)
+      {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(
+        CompensationInfo.CompensationUnit.self, forKey: .unit)
+      {
+        self.unit = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
       self.expectedUnitsPerYear = try container.decodeIfPresent(
         GoogleCloudWKT.DoubleValue.self, forKey: .expectedUnitsPerYear)
 
@@ -191,6 +267,10 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try compensationAmountCheckAndSet(.range(range))
       }
       self.compensationAmount = compensationAmount
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -198,7 +278,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try container.encode(self.type, forKey: .type)
       try container.encode(self.unit, forKey: .unit)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.expectedUnitsPerYear, forKey: .expectedUnitsPerYear)
+      try container.encodeIfPresent(self.expectedUnitsPerYear, forKey: .expectedUnitsPerYear)
 
       if let choice = self.compensationAmount {
         switch choice {
@@ -207,6 +287,9 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .range(let value):
           try container.encode(value, forKey: .range)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -248,6 +331,8 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// [google.type.Money.currency_code]: https://www.google.com/search?q=Swift+google.type+GoogleType.Money/currencyCode
     public var minCompensation: GoogleType.Money? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CompensationRange`.
     public init() {}
 
@@ -262,6 +347,42 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxCompensation = CodingKeys(stringValue: "maxCompensation")
+      static let minCompensation = CodingKeys(stringValue: "minCompensation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxCompensation",
+        "minCompensation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxCompensation = try container.decodeIfPresent(
+        GoogleType.Money.self, forKey: .maxCompensation)
+      self.minCompensation = try container.decodeIfPresent(
+        GoogleType.Money.self, forKey: .minCompensation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxCompensation, forKey: .maxCompensation)
+      try container.encodeIfPresent(self.minCompensation, forKey: .minCompensation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

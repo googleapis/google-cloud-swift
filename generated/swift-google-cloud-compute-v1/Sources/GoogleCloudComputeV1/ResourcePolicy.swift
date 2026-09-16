@@ -74,6 +74,8 @@
     /// Resource policy for defining instance placement for MIGs.
     public var workloadPolicy: ResourcePolicyWorkloadPolicy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ResourcePolicy`.
     public init() {}
 
@@ -88,6 +90,96 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let diskConsistencyGroupPolicy = CodingKeys(stringValue: "diskConsistencyGroupPolicy")
+      static let groupPlacementPolicy = CodingKeys(stringValue: "groupPlacementPolicy")
+      static let id = CodingKeys(stringValue: "id")
+      static let instanceSchedulePolicy = CodingKeys(stringValue: "instanceSchedulePolicy")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let region = CodingKeys(stringValue: "region")
+      static let resourceStatus = CodingKeys(stringValue: "resourceStatus")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let snapshotSchedulePolicy = CodingKeys(stringValue: "snapshotSchedulePolicy")
+      static let status = CodingKeys(stringValue: "status")
+      static let workloadPolicy = CodingKeys(stringValue: "workloadPolicy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "diskConsistencyGroupPolicy",
+        "groupPlacementPolicy",
+        "id",
+        "instanceSchedulePolicy",
+        "kind",
+        "name",
+        "region",
+        "resourceStatus",
+        "selfLink",
+        "snapshotSchedulePolicy",
+        "status",
+        "workloadPolicy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.diskConsistencyGroupPolicy = try container.decodeIfPresent(
+        ResourcePolicyDiskConsistencyGroupPolicy.self, forKey: .diskConsistencyGroupPolicy)
+      self.groupPlacementPolicy = try container.decodeIfPresent(
+        ResourcePolicyGroupPlacementPolicy.self, forKey: .groupPlacementPolicy)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.instanceSchedulePolicy = try container.decodeIfPresent(
+        ResourcePolicyInstanceSchedulePolicy.self, forKey: .instanceSchedulePolicy)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
+      self.resourceStatus = try container.decodeIfPresent(
+        ResourcePolicyResourceStatus.self, forKey: .resourceStatus)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.snapshotSchedulePolicy = try container.decodeIfPresent(
+        ResourcePolicySnapshotSchedulePolicy.self, forKey: .snapshotSchedulePolicy)
+      self.status = try container.decodeIfPresent(ResourcePolicy.Status.self, forKey: .status)
+      self.workloadPolicy = try container.decodeIfPresent(
+        ResourcePolicyWorkloadPolicy.self, forKey: .workloadPolicy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(
+        self.diskConsistencyGroupPolicy, forKey: .diskConsistencyGroupPolicy)
+      try container.encodeIfPresent(self.groupPlacementPolicy, forKey: .groupPlacementPolicy)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.instanceSchedulePolicy, forKey: .instanceSchedulePolicy)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.resourceStatus, forKey: .resourceStatus)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.snapshotSchedulePolicy, forKey: .snapshotSchedulePolicy)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      try container.encodeIfPresent(self.workloadPolicy, forKey: .workloadPolicy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [status][google.cloud.compute.v1.ResourcePolicy.status] field.

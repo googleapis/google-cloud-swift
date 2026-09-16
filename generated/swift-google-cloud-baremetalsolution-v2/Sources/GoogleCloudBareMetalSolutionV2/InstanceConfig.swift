@@ -72,6 +72,8 @@ public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// List of names of ssh keys used to provision the instance.
   public var sshKeyNames: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InstanceConfig`.
   public init() {}
 
@@ -88,6 +90,112 @@ public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let id = CodingKeys(stringValue: "id")
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let hyperthreading = CodingKeys(stringValue: "hyperthreading")
+    static let osImage = CodingKeys(stringValue: "osImage")
+    static let clientNetwork = CodingKeys(stringValue: "clientNetwork")
+    static let privateNetwork = CodingKeys(stringValue: "privateNetwork")
+    static let userNote = CodingKeys(stringValue: "userNote")
+    static let accountNetworksEnabled = CodingKeys(stringValue: "accountNetworksEnabled")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+    static let networkTemplate = CodingKeys(stringValue: "networkTemplate")
+    static let logicalInterfaces = CodingKeys(stringValue: "logicalInterfaces")
+    static let sshKeyNames = CodingKeys(stringValue: "sshKeyNames")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "id",
+      "instanceType",
+      "hyperthreading",
+      "osImage",
+      "clientNetwork",
+      "privateNetwork",
+      "userNote",
+      "accountNetworksEnabled",
+      "networkConfig",
+      "networkTemplate",
+      "logicalInterfaces",
+      "sshKeyNames",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hyperthreading) {
+      self.hyperthreading = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .osImage) {
+      self.osImage = value
+    }
+    self.clientNetwork = try container.decodeIfPresent(
+      InstanceConfig.NetworkAddress.self, forKey: .clientNetwork)
+    self.privateNetwork = try container.decodeIfPresent(
+      InstanceConfig.NetworkAddress.self, forKey: .privateNetwork)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userNote) {
+      self.userNote = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .accountNetworksEnabled) {
+      self.accountNetworksEnabled = value
+    }
+    if let value = try container.decodeIfPresent(
+      InstanceConfig.NetworkConfig.self, forKey: .networkConfig)
+    {
+      self.networkConfig = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkTemplate) {
+      self.networkTemplate = value
+    }
+    if let value = try container.decodeIfPresent(
+      [LogicalInterface].self, forKey: .logicalInterfaces)
+    {
+      self.logicalInterfaces = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sshKeyNames) {
+      self.sshKeyNames = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.id, forKey: .id)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encode(self.hyperthreading, forKey: .hyperthreading)
+    try container.encode(self.osImage, forKey: .osImage)
+    try container.encodeIfPresent(self.clientNetwork, forKey: .clientNetwork)
+    try container.encodeIfPresent(self.privateNetwork, forKey: .privateNetwork)
+    try container.encode(self.userNote, forKey: .userNote)
+    try container.encode(self.accountNetworksEnabled, forKey: .accountNetworksEnabled)
+    try container.encode(self.networkConfig, forKey: .networkConfig)
+    try container.encode(self.networkTemplate, forKey: .networkTemplate)
+    try container.encode(self.logicalInterfaces, forKey: .logicalInterfaces)
+    try container.encode(self.sshKeyNames, forKey: .sshKeyNames)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A network.
   public struct NetworkAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -100,6 +208,8 @@ public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Name of the existing network to use.
     public var existingNetworkId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `NetworkAddress`.
     public init() {}
@@ -115,6 +225,50 @@ public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let networkId = CodingKeys(stringValue: "networkId")
+      static let address = CodingKeys(stringValue: "address")
+      static let existingNetworkId = CodingKeys(stringValue: "existingNetworkId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "networkId",
+        "address",
+        "existingNetworkId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkId) {
+        self.networkId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+        self.address = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .existingNetworkId) {
+        self.existingNetworkId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.networkId, forKey: .networkId)
+      try container.encode(self.address, forKey: .address)
+      try container.encode(self.existingNetworkId, forKey: .existingNetworkId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

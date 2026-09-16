@@ -33,6 +33,8 @@
     /// export.
     public var outputInfo: ExportModelOperationMetadata.OutputInfo? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportModelOperationMetadata`.
     public init() {}
 
@@ -47,6 +49,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let genericMetadata = CodingKeys(stringValue: "genericMetadata")
+      static let outputInfo = CodingKeys(stringValue: "outputInfo")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "genericMetadata",
+        "outputInfo",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.genericMetadata = try container.decodeIfPresent(
+        GenericOperationMetadata.self, forKey: .genericMetadata)
+      self.outputInfo = try container.decodeIfPresent(
+        ExportModelOperationMetadata.OutputInfo.self, forKey: .outputInfo)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.genericMetadata, forKey: .genericMetadata)
+      try container.encodeIfPresent(self.outputInfo, forKey: .outputInfo)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Further describes the output of the ExportModel. Supplements
@@ -65,6 +103,8 @@
       /// Registry or Artifact Registry this is the full path of the image created.
       public var imageOutputUri: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OutputInfo`.
       public init() {}
 
@@ -79,6 +119,45 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let artifactOutputUri = CodingKeys(stringValue: "artifactOutputUri")
+        static let imageOutputUri = CodingKeys(stringValue: "imageOutputUri")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "artifactOutputUri",
+          "imageOutputUri",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactOutputUri)
+        {
+          self.artifactOutputUri = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageOutputUri) {
+          self.imageOutputUri = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.artifactOutputUri, forKey: .artifactOutputUri)
+        try container.encode(self.imageOutputUri, forKey: .imageOutputUri)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -39,6 +39,8 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Google Cloud Storage URI.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Document`.
   public init() {}
 
@@ -55,17 +57,33 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case content = "content"
-    case gcsContentUri = "gcsContentUri"
-    case languageCode = "languageCode"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let content = CodingKeys(stringValue: "content")
+    static let gcsContentUri = CodingKeys(stringValue: "gcsContentUri")
+    static let languageCode = CodingKeys(stringValue: "languageCode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "content",
+      "gcsContentUri",
+      "languageCode",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(Document.Type_.self, forKey: .type)
-    self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
+    if let value = try container.decodeIfPresent(Document.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
+      self.languageCode = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -85,6 +103,10 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.gcsContentUri(gcsContentUri))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -99,6 +121,9 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsContentUri(let value):
         try container.encode(value, forKey: .gcsContentUri)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

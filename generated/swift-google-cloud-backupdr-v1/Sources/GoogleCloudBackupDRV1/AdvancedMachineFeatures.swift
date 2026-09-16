@@ -41,6 +41,8 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Optional. Whether to enable UEFI networking for instance creation.
   public var enableUefiNetworking: Swift.Bool? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdvancedMachineFeatures`.
   public init() {}
 
@@ -55,6 +57,52 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enableNestedVirtualization = CodingKeys(stringValue: "enableNestedVirtualization")
+    static let threadsPerCore = CodingKeys(stringValue: "threadsPerCore")
+    static let visibleCoreCount = CodingKeys(stringValue: "visibleCoreCount")
+    static let enableUefiNetworking = CodingKeys(stringValue: "enableUefiNetworking")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enableNestedVirtualization",
+      "threadsPerCore",
+      "visibleCoreCount",
+      "enableUefiNetworking",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.enableNestedVirtualization = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableNestedVirtualization)
+    self.threadsPerCore = try container.decodeIfPresent(Swift.Int32.self, forKey: .threadsPerCore)
+    self.visibleCoreCount = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .visibleCoreCount)
+    self.enableUefiNetworking = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableUefiNetworking)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+    try container.encodeIfPresent(self.threadsPerCore, forKey: .threadsPerCore)
+    try container.encodeIfPresent(self.visibleCoreCount, forKey: .visibleCoreCount)
+    try container.encodeIfPresent(self.enableUefiNetworking, forKey: .enableUefiNetworking)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

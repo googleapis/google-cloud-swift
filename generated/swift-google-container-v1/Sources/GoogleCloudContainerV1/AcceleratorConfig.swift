@@ -39,6 +39,8 @@ public struct AcceleratorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The configuration for auto installation of GPU driver.
   public var gpuDriverInstallationConfig: GPUDriverInstallationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AcceleratorConfig`.
   public init() {}
 
@@ -53,6 +55,61 @@ public struct AcceleratorConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let acceleratorCount = CodingKeys(stringValue: "acceleratorCount")
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let gpuPartitionSize = CodingKeys(stringValue: "gpuPartitionSize")
+    static let gpuSharingConfig = CodingKeys(stringValue: "gpuSharingConfig")
+    static let gpuDriverInstallationConfig = CodingKeys(stringValue: "gpuDriverInstallationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "acceleratorCount",
+      "acceleratorType",
+      "gpuPartitionSize",
+      "gpuSharingConfig",
+      "gpuDriverInstallationConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .acceleratorCount) {
+      self.acceleratorCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+      self.acceleratorType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gpuPartitionSize) {
+      self.gpuPartitionSize = value
+    }
+    self.gpuSharingConfig = try container.decodeIfPresent(
+      GPUSharingConfig.self, forKey: .gpuSharingConfig)
+    self.gpuDriverInstallationConfig = try container.decodeIfPresent(
+      GPUDriverInstallationConfig.self, forKey: .gpuDriverInstallationConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.acceleratorCount, forKey: .acceleratorCount)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encode(self.gpuPartitionSize, forKey: .gpuPartitionSize)
+    try container.encodeIfPresent(self.gpuSharingConfig, forKey: .gpuSharingConfig)
+    try container.encodeIfPresent(
+      self.gpuDriverInstallationConfig, forKey: .gpuDriverInstallationConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

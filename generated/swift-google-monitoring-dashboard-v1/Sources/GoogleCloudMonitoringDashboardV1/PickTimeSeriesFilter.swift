@@ -42,6 +42,8 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Select the top N streams/time series within this time interval
   public var interval: GoogleType.Interval? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PickTimeSeriesFilter`.
   public init() {}
 
@@ -56,6 +58,58 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let rankingMethod = CodingKeys(stringValue: "rankingMethod")
+    static let numTimeSeries = CodingKeys(stringValue: "numTimeSeries")
+    static let direction = CodingKeys(stringValue: "direction")
+    static let interval = CodingKeys(stringValue: "interval")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "rankingMethod",
+      "numTimeSeries",
+      "direction",
+      "interval",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      PickTimeSeriesFilter.Method.self, forKey: .rankingMethod)
+    {
+      self.rankingMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numTimeSeries) {
+      self.numTimeSeries = value
+    }
+    if let value = try container.decodeIfPresent(
+      PickTimeSeriesFilter.Direction.self, forKey: .direction)
+    {
+      self.direction = value
+    }
+    self.interval = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .interval)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.rankingMethod, forKey: .rankingMethod)
+    try container.encode(self.numTimeSeries, forKey: .numTimeSeries)
+    try container.encode(self.direction, forKey: .direction)
+    try container.encodeIfPresent(self.interval, forKey: .interval)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The value reducers that can be applied to a `PickTimeSeriesFilter`.

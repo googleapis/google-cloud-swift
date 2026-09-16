@@ -68,6 +68,8 @@
     /// The record for this answer.
     public var record: OneOf_Record? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AnswerRecord`.
     public init() {}
 
@@ -84,15 +86,28 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case name = "name"
-      case answerFeedback = "answerFeedback"
-      case agentAssistantRecord = "agentAssistantRecord"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let answerFeedback = CodingKeys(stringValue: "answerFeedback")
+      static let agentAssistantRecord = CodingKeys(stringValue: "agentAssistantRecord")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "answerFeedback",
+        "agentAssistantRecord",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
       self.answerFeedback = try container.decodeIfPresent(
         AnswerFeedback.self, forKey: .answerFeedback)
 
@@ -112,18 +127,25 @@
         try recordCheckAndSet(.agentAssistantRecord(agentAssistantRecord))
       }
       self.record = record
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.answerFeedback, forKey: .answerFeedback)
+      try container.encodeIfPresent(self.answerFeedback, forKey: .answerFeedback)
 
       if let choice = self.record {
         switch choice {
         case .agentAssistantRecord(let value):
           try container.encode(value, forKey: .agentAssistantRecord)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

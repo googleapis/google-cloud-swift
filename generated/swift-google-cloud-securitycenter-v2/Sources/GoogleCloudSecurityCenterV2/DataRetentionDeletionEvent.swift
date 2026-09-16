@@ -50,6 +50,8 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWKT._An
   public var eventType: DataRetentionDeletionEvent.EventType =
     DataRetentionDeletionEvent.EventType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataRetentionDeletionEvent`.
   public init() {}
 
@@ -64,6 +66,56 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventDetectionTime = CodingKeys(stringValue: "eventDetectionTime")
+    static let dataObjectCount = CodingKeys(stringValue: "dataObjectCount")
+    static let maxRetentionAllowed = CodingKeys(stringValue: "maxRetentionAllowed")
+    static let eventType = CodingKeys(stringValue: "eventType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventDetectionTime",
+      "dataObjectCount",
+      "maxRetentionAllowed",
+      "eventType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.eventDetectionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .eventDetectionTime)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataObjectCount) {
+      self.dataObjectCount = value
+    }
+    self.maxRetentionAllowed = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxRetentionAllowed)
+    if let value = try container.decodeIfPresent(
+      DataRetentionDeletionEvent.EventType.self, forKey: .eventType)
+    {
+      self.eventType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.eventDetectionTime, forKey: .eventDetectionTime)
+    try container.encode(self.dataObjectCount, forKey: .dataObjectCount)
+    try container.encodeIfPresent(self.maxRetentionAllowed, forKey: .maxRetentionAllowed)
+    try container.encode(self.eventType, forKey: .eventType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of the DRD event.

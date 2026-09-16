@@ -34,6 +34,8 @@ public struct ResourceAccessSpec: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// Optional. The set of principals to be granted owner role on the resource.
   public var owners: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceAccessSpec`.
   public init() {}
 
@@ -48,6 +50,50 @@ public struct ResourceAccessSpec: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let readers = CodingKeys(stringValue: "readers")
+    static let writers = CodingKeys(stringValue: "writers")
+    static let owners = CodingKeys(stringValue: "owners")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "readers",
+      "writers",
+      "owners",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .readers) {
+      self.readers = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .writers) {
+      self.writers = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .owners) {
+      self.owners = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.readers, forKey: .readers)
+    try container.encode(self.writers, forKey: .writers)
+    try container.encode(self.owners, forKey: .owners)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

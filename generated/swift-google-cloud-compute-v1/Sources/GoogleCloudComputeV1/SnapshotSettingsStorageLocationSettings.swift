@@ -31,6 +31,8 @@
     /// The chosen location policy.
     public var policy: SnapshotSettingsStorageLocationSettings.Policy? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SnapshotSettingsStorageLocationSettings`.
     public init() {}
 
@@ -45,6 +47,46 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let locations = CodingKeys(stringValue: "locations")
+      static let policy = CodingKeys(stringValue: "policy")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "locations",
+        "policy",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: SnapshotSettingsStorageLocationSettingsStorageLocationPreference].self,
+        forKey: .locations)
+      {
+        self.locations = value
+      }
+      self.policy = try container.decodeIfPresent(
+        SnapshotSettingsStorageLocationSettings.Policy.self, forKey: .policy)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.locations, forKey: .locations)
+      try container.encodeIfPresent(self.policy, forKey: .policy)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [policy][google.cloud.compute.v1.SnapshotSettingsStorageLocationSettings.policy] field.

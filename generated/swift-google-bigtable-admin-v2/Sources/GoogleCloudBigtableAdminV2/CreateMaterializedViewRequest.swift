@@ -32,6 +32,8 @@ public struct CreateMaterializedViewRequest: Codable, Equatable, GoogleCloudWKT.
   /// Required. The materialized view to create.
   public var materializedView: MaterializedView? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateMaterializedViewRequest`.
   public init() {}
 
@@ -46,6 +48,49 @@ public struct CreateMaterializedViewRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let materializedViewId = CodingKeys(stringValue: "materializedViewId")
+    static let materializedView = CodingKeys(stringValue: "materializedView")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "materializedViewId",
+      "materializedView",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .materializedViewId) {
+      self.materializedViewId = value
+    }
+    self.materializedView = try container.decodeIfPresent(
+      MaterializedView.self, forKey: .materializedView)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.materializedViewId, forKey: .materializedViewId)
+    try container.encodeIfPresent(self.materializedView, forKey: .materializedView)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

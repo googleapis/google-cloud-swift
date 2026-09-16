@@ -34,6 +34,8 @@
     /// Feature used for evaluation.
     public var evaluationFeatureConfig: OneOf_EvaluationFeatureConfig? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GeneratorEvaluationConfig`.
     public init() {}
 
@@ -50,18 +52,31 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case inputDataConfig = "inputDataConfig"
-      case outputGcsBucketPath = "outputGcsBucketPath"
-      case summarizationConfig = "summarizationConfig"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let inputDataConfig = CodingKeys(stringValue: "inputDataConfig")
+      static let outputGcsBucketPath = CodingKeys(stringValue: "outputGcsBucketPath")
+      static let summarizationConfig = CodingKeys(stringValue: "summarizationConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "inputDataConfig",
+        "outputGcsBucketPath",
+        "summarizationConfig",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inputDataConfig = try container.decodeIfPresent(
         GeneratorEvaluationConfig.InputDataConfig.self, forKey: .inputDataConfig)
-      self.outputGcsBucketPath = try container.decode(
-        Swift.String.self, forKey: .outputGcsBucketPath)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .outputGcsBucketPath)
+      {
+        self.outputGcsBucketPath = value
+      }
 
       var evaluationFeatureConfig: OneOf_EvaluationFeatureConfig? = nil
       let evaluationFeatureConfigCheckAndSet = {
@@ -79,11 +94,15 @@
         try evaluationFeatureConfigCheckAndSet(.summarizationConfig(summarizationConfig))
       }
       self.evaluationFeatureConfig = evaluationFeatureConfig
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.inputDataConfig, forKey: .inputDataConfig)
+      try container.encodeIfPresent(self.inputDataConfig, forKey: .inputDataConfig)
       try container.encode(self.outputGcsBucketPath, forKey: .outputGcsBucketPath)
 
       if let choice = self.evaluationFeatureConfig {
@@ -91,6 +110,9 @@
         case .summarizationConfig(let value):
           try container.encode(value, forKey: .summarizationConfig)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -107,6 +129,8 @@
       /// Only conversations ended at or before this timestamp will be sampled.
       public var endTime: GoogleCloudWKT.Timestamp? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AgentAssistInputDataConfig`.
       public init() {}
 
@@ -121,6 +145,42 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let endTime = CodingKeys(stringValue: "endTime")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "startTime",
+          "endTime",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+        self.endTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -144,6 +204,8 @@
       /// `projects/<ProjectId>/locations/<LocationID>/datasets/<DatasetID>`.
       public var dataset: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DatasetInputDataConfig`.
       public init() {}
 
@@ -158,6 +220,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataset = CodingKeys(stringValue: "dataset")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataset"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+          self.dataset = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataset, forKey: .dataset)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -206,6 +300,8 @@
       /// The source specific config for the input data.
       public var sourceSpecificConfig: OneOf_SourceSpecificConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `InputDataConfig`.
       public init() {}
 
@@ -222,31 +318,60 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case inputDataSourceType = "inputDataSourceType"
-        case startTime = "startTime"
-        case endTime = "endTime"
-        case sampleSize = "sampleSize"
-        case isSummaryGenerationAllowed = "isSummaryGenerationAllowed"
-        case summaryGenerationOption = "summaryGenerationOption"
-        case agentAssistInputDataConfig = "agentAssistInputDataConfig"
-        case datasetInputDataConfig = "datasetInputDataConfig"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let inputDataSourceType = CodingKeys(stringValue: "inputDataSourceType")
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let endTime = CodingKeys(stringValue: "endTime")
+        static let sampleSize = CodingKeys(stringValue: "sampleSize")
+        static let isSummaryGenerationAllowed = CodingKeys(
+          stringValue: "isSummaryGenerationAllowed")
+        static let summaryGenerationOption = CodingKeys(stringValue: "summaryGenerationOption")
+        static let agentAssistInputDataConfig = CodingKeys(
+          stringValue: "agentAssistInputDataConfig")
+        static let datasetInputDataConfig = CodingKeys(stringValue: "datasetInputDataConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "inputDataSourceType",
+          "startTime",
+          "endTime",
+          "sampleSize",
+          "isSummaryGenerationAllowed",
+          "summaryGenerationOption",
+          "agentAssistInputDataConfig",
+          "datasetInputDataConfig",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.inputDataSourceType = try container.decode(
+        if let value = try container.decodeIfPresent(
           GeneratorEvaluationConfig.InputDataSourceType.self, forKey: .inputDataSourceType)
+        {
+          self.inputDataSourceType = value
+        }
         self.startTime = try container.decodeIfPresent(
           GoogleCloudWKT.Timestamp.self, forKey: .startTime)
         self.endTime = try container.decodeIfPresent(
           GoogleCloudWKT.Timestamp.self, forKey: .endTime)
-        self.sampleSize = try container.decode(Swift.Int32.self, forKey: .sampleSize)
-        self.isSummaryGenerationAllowed = try container.decode(
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleSize) {
+          self.sampleSize = value
+        }
+        if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .isSummaryGenerationAllowed)
-        self.summaryGenerationOption = try container.decode(
+        {
+          self.isSummaryGenerationAllowed = value
+        }
+        if let value = try container.decodeIfPresent(
           GeneratorEvaluationConfig.InputDataConfig.SummaryGenerationOption.self,
           forKey: .summaryGenerationOption)
+        {
+          self.summaryGenerationOption = value
+        }
 
         var sourceSpecificConfig: OneOf_SourceSpecificConfig? = nil
         let sourceSpecificConfigCheckAndSet = {
@@ -271,13 +396,17 @@
           try sourceSpecificConfigCheckAndSet(.datasetInputDataConfig(datasetInputDataConfig))
         }
         self.sourceSpecificConfig = sourceSpecificConfig
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.inputDataSourceType, forKey: .inputDataSourceType)
-        try container.encode(self.startTime, forKey: .startTime)
-        try container.encode(self.endTime, forKey: .endTime)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.endTime, forKey: .endTime)
         try container.encode(self.sampleSize, forKey: .sampleSize)
         try container.encode(self.isSummaryGenerationAllowed, forKey: .isSummaryGenerationAllowed)
         try container.encode(self.summaryGenerationOption, forKey: .summaryGenerationOption)
@@ -289,6 +418,9 @@
           case .datasetInputDataConfig(let value):
             try container.encode(value, forKey: .datasetInputDataConfig)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -451,6 +583,8 @@
       /// Optional. Version for summarization evaluation.
       public var evaluatorVersion: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SummarizationConfig`.
       public init() {}
 
@@ -465,6 +599,73 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableAccuracyEvaluation = CodingKeys(stringValue: "enableAccuracyEvaluation")
+        static let accuracyEvaluationVersion = CodingKeys(stringValue: "accuracyEvaluationVersion")
+        static let enableCompletenessEvaluation = CodingKeys(
+          stringValue: "enableCompletenessEvaluation")
+        static let completenessEvaluationVersion = CodingKeys(
+          stringValue: "completenessEvaluationVersion")
+        static let evaluatorVersion = CodingKeys(stringValue: "evaluatorVersion")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableAccuracyEvaluation",
+          "accuracyEvaluationVersion",
+          "enableCompletenessEvaluation",
+          "completenessEvaluationVersion",
+          "evaluatorVersion",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableAccuracyEvaluation)
+        {
+          self.enableAccuracyEvaluation = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .accuracyEvaluationVersion)
+        {
+          self.accuracyEvaluationVersion = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableCompletenessEvaluation)
+        {
+          self.enableCompletenessEvaluation = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .completenessEvaluationVersion)
+        {
+          self.completenessEvaluationVersion = value
+        }
+        self.evaluatorVersion = try container.decodeIfPresent(
+          Swift.String.self, forKey: .evaluatorVersion)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableAccuracyEvaluation, forKey: .enableAccuracyEvaluation)
+        try container.encode(self.accuracyEvaluationVersion, forKey: .accuracyEvaluationVersion)
+        try container.encode(
+          self.enableCompletenessEvaluation, forKey: .enableCompletenessEvaluation)
+        try container.encode(
+          self.completenessEvaluationVersion, forKey: .completenessEvaluationVersion)
+        try container.encodeIfPresent(self.evaluatorVersion, forKey: .evaluatorVersion)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

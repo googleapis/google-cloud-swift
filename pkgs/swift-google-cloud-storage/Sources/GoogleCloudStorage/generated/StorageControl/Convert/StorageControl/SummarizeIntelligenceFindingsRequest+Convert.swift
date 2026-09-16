@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension SummarizeIntelligenceFindingsRequest {
@@ -32,6 +32,7 @@ extension SummarizeIntelligenceFindingsRequest {
     self.filter = proto.filter
     self.pageSize = proto.pageSize
     self.pageToken = proto.pageToken
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -41,6 +42,9 @@ extension SummarizeIntelligenceFindingsRequest {
     proto.filter = self.filter
     proto.pageSize = self.pageSize
     proto.pageToken = self.pageToken
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

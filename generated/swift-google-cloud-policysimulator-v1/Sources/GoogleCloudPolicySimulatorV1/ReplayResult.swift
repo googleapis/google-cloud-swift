@@ -52,6 +52,8 @@ public struct ReplayResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The result of replaying the access tuple.
   public var result: OneOf_Result? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplayResult`.
   public init() {}
 
@@ -68,19 +70,37 @@ public struct ReplayResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case diff = "diff"
-    case error = "error"
-    case name = "name"
-    case parent = "parent"
-    case accessTuple = "accessTuple"
-    case lastSeenDate = "lastSeenDate"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let diff = CodingKeys(stringValue: "diff")
+    static let error = CodingKeys(stringValue: "error")
+    static let name = CodingKeys(stringValue: "name")
+    static let parent = CodingKeys(stringValue: "parent")
+    static let accessTuple = CodingKeys(stringValue: "accessTuple")
+    static let lastSeenDate = CodingKeys(stringValue: "lastSeenDate")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "diff",
+      "error",
+      "name",
+      "parent",
+      "accessTuple",
+      "lastSeenDate",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
     self.accessTuple = try container.decodeIfPresent(AccessTuple.self, forKey: .accessTuple)
     self.lastSeenDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .lastSeenDate)
 
@@ -101,14 +121,18 @@ public struct ReplayResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try resultCheckAndSet(.error(error))
     }
     self.result = result
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.accessTuple, forKey: .accessTuple)
-    try container.encode(self.lastSeenDate, forKey: .lastSeenDate)
+    try container.encodeIfPresent(self.accessTuple, forKey: .accessTuple)
+    try container.encodeIfPresent(self.lastSeenDate, forKey: .lastSeenDate)
 
     if let choice = self.result {
       switch choice {
@@ -117,6 +141,9 @@ public struct ReplayResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .error(let value):
         try container.encode(value, forKey: .error)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -45,6 +45,8 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The transaction sender must be the owner of this contract.
   public var delegateContractId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GrantContractPermissions`.
   public init() {}
 
@@ -59,6 +61,54 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let contract = CodingKeys(stringValue: "contract")
+    static let contractId = CodingKeys(stringValue: "contractId")
+    static let permissions = CodingKeys(stringValue: "permissions")
+    static let delegateContractId = CodingKeys(stringValue: "delegateContractId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "contract",
+      "contractId",
+      "permissions",
+      "delegateContractId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.contract = try container.decodeIfPresent(Entity.self, forKey: .contract)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractId) {
+      self.contractId = value
+    }
+    if let value = try container.decodeIfPresent([ContractPermission].self, forKey: .permissions) {
+      self.permissions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .delegateContractId) {
+      self.delegateContractId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.contract, forKey: .contract)
+    try container.encode(self.contractId, forKey: .contractId)
+    try container.encode(self.permissions, forKey: .permissions)
+    try container.encode(self.delegateContractId, forKey: .delegateContractId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// router.
   public var bgpPeerStatus: [RouterStatus.BgpPeerStatus] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RouterStatus`.
   public init() {}
 
@@ -42,6 +44,46 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let network = CodingKeys(stringValue: "network")
+    static let bgpPeerStatus = CodingKeys(stringValue: "bgpPeerStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "network",
+      "bgpPeerStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RouterStatus.BgpPeerStatus].self, forKey: .bgpPeerStatus)
+    {
+      self.bgpPeerStatus = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.network, forKey: .network)
+    try container.encode(self.bgpPeerStatus, forKey: .bgpPeerStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Status of a BGP peer.
@@ -74,6 +116,8 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A collection of counts for prefixes.
     public var prefixCounter: RouterStatus.PrefixCounter? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BgpPeerStatus`.
     public init() {}
 
@@ -88,6 +132,81 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let ipAddress = CodingKeys(stringValue: "ipAddress")
+      static let peerIpAddress = CodingKeys(stringValue: "peerIpAddress")
+      static let status = CodingKeys(stringValue: "status")
+      static let state = CodingKeys(stringValue: "state")
+      static let uptime = CodingKeys(stringValue: "uptime")
+      static let uptimeSeconds = CodingKeys(stringValue: "uptimeSeconds")
+      static let prefixCounter = CodingKeys(stringValue: "prefixCounter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "ipAddress",
+        "peerIpAddress",
+        "status",
+        "state",
+        "uptime",
+        "uptimeSeconds",
+        "prefixCounter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
+        self.ipAddress = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerIpAddress) {
+        self.peerIpAddress = value
+      }
+      if let value = try container.decodeIfPresent(
+        RouterStatus.BgpPeerStatus.BgpStatus.self, forKey: .status)
+      {
+        self.status = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uptime) {
+        self.uptime = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .uptimeSeconds) {
+        self.uptimeSeconds = value
+      }
+      self.prefixCounter = try container.decodeIfPresent(
+        RouterStatus.PrefixCounter.self, forKey: .prefixCounter)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.ipAddress, forKey: .ipAddress)
+      try container.encode(self.peerIpAddress, forKey: .peerIpAddress)
+      try container.encode(self.status, forKey: .status)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.uptime, forKey: .uptime)
+      try container.encode(self.uptimeSeconds, forKey: .uptimeSeconds)
+      try container.encodeIfPresent(self.prefixCounter, forKey: .prefixCounter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Status of the BGP peer: {UP, DOWN}
@@ -228,6 +347,8 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Number of prefixes withdrawn.
     public var withdrawn: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PrefixCounter`.
     public init() {}
 
@@ -242,6 +363,68 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let advertised = CodingKeys(stringValue: "advertised")
+      static let denied = CodingKeys(stringValue: "denied")
+      static let received = CodingKeys(stringValue: "received")
+      static let sent = CodingKeys(stringValue: "sent")
+      static let suppressed = CodingKeys(stringValue: "suppressed")
+      static let withdrawn = CodingKeys(stringValue: "withdrawn")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "advertised",
+        "denied",
+        "received",
+        "sent",
+        "suppressed",
+        "withdrawn",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .advertised) {
+        self.advertised = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .denied) {
+        self.denied = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .received) {
+        self.received = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sent) {
+        self.sent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .suppressed) {
+        self.suppressed = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .withdrawn) {
+        self.withdrawn = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.advertised, forKey: .advertised)
+      try container.encode(self.denied, forKey: .denied)
+      try container.encode(self.received, forKey: .received)
+      try container.encode(self.sent, forKey: .sent)
+      try container.encode(self.suppressed, forKey: .suppressed)
+      try container.encode(self.withdrawn, forKey: .withdrawn)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

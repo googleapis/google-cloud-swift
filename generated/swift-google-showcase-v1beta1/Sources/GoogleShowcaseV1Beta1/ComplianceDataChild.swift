@@ -44,6 +44,8 @@ public struct ComplianceDataChild: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public var pChild: ComplianceDataGrandchild? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComplianceDataChild`.
   public init() {}
 
@@ -58,6 +60,92 @@ public struct ComplianceDataChild: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let fString = CodingKeys(stringValue: "fString")
+    static let fFloat = CodingKeys(stringValue: "fFloat")
+    static let fDouble = CodingKeys(stringValue: "fDouble")
+    static let fBool = CodingKeys(stringValue: "fBool")
+    static let fContinent = CodingKeys(stringValue: "fContinent")
+    static let fChild = CodingKeys(stringValue: "fChild")
+    static let pString = CodingKeys(stringValue: "pString")
+    static let pFloat = CodingKeys(stringValue: "pFloat")
+    static let pDouble = CodingKeys(stringValue: "pDouble")
+    static let pBool = CodingKeys(stringValue: "pBool")
+    static let pContinent = CodingKeys(stringValue: "pContinent")
+    static let pChild = CodingKeys(stringValue: "pChild")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "fString",
+      "fFloat",
+      "fDouble",
+      "fBool",
+      "fContinent",
+      "fChild",
+      "pString",
+      "pFloat",
+      "pDouble",
+      "pBool",
+      "pContinent",
+      "pChild",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fString) {
+      self.fString = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .fFloat) {
+      self.fFloat = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .fDouble) {
+      self.fDouble = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fBool) {
+      self.fBool = value
+    }
+    if let value = try container.decodeIfPresent(Continent.self, forKey: .fContinent) {
+      self.fContinent = value
+    }
+    self.fChild = try container.decodeIfPresent(ComplianceDataGrandchild.self, forKey: .fChild)
+    self.pString = try container.decodeIfPresent(Swift.String.self, forKey: .pString)
+    self.pFloat = try container.decodeIfPresent(Swift.Float.self, forKey: .pFloat)
+    self.pDouble = try container.decodeIfPresent(Swift.Double.self, forKey: .pDouble)
+    self.pBool = try container.decodeIfPresent(Swift.Bool.self, forKey: .pBool)
+    if let value = try container.decodeIfPresent(Continent.self, forKey: .pContinent) {
+      self.pContinent = value
+    }
+    self.pChild = try container.decodeIfPresent(ComplianceDataGrandchild.self, forKey: .pChild)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.fString, forKey: .fString)
+    try container.encode(self.fFloat, forKey: .fFloat)
+    try container.encode(self.fDouble, forKey: .fDouble)
+    try container.encode(self.fBool, forKey: .fBool)
+    try container.encode(self.fContinent, forKey: .fContinent)
+    try container.encodeIfPresent(self.fChild, forKey: .fChild)
+    try container.encodeIfPresent(self.pString, forKey: .pString)
+    try container.encodeIfPresent(self.pFloat, forKey: .pFloat)
+    try container.encodeIfPresent(self.pDouble, forKey: .pDouble)
+    try container.encodeIfPresent(self.pBool, forKey: .pBool)
+    try container.encode(self.pContinent, forKey: .pContinent)
+    try container.encodeIfPresent(self.pChild, forKey: .pChild)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

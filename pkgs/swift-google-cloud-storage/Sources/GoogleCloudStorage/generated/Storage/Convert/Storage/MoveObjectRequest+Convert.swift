@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension MoveObjectRequest {
@@ -42,6 +42,7 @@ extension MoveObjectRequest {
     self.ifMetagenerationMatch = proto.hasIfMetagenerationMatch ? proto.ifMetagenerationMatch : nil
     self.ifMetagenerationNotMatch =
       proto.hasIfMetagenerationNotMatch ? proto.ifMetagenerationNotMatch : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -72,6 +73,9 @@ extension MoveObjectRequest {
     }
     if let ifMetagenerationNotMatch = self.ifMetagenerationNotMatch {
       proto.ifMetagenerationNotMatch = ifMetagenerationNotMatch
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

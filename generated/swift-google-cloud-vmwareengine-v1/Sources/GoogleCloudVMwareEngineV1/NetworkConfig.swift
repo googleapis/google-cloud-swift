@@ -51,6 +51,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ESXi hosts.
   public var dnsServerIp: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -65,6 +67,69 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let managementCidr = CodingKeys(stringValue: "managementCidr")
+    static let vmwareEngineNetwork = CodingKeys(stringValue: "vmwareEngineNetwork")
+    static let vmwareEngineNetworkCanonical = CodingKeys(
+      stringValue: "vmwareEngineNetworkCanonical")
+    static let managementIpAddressLayoutVersion = CodingKeys(
+      stringValue: "managementIpAddressLayoutVersion")
+    static let dnsServerIp = CodingKeys(stringValue: "dnsServerIp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "managementCidr",
+      "vmwareEngineNetwork",
+      "vmwareEngineNetworkCanonical",
+      "managementIpAddressLayoutVersion",
+      "dnsServerIp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managementCidr) {
+      self.managementCidr = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmwareEngineNetwork) {
+      self.vmwareEngineNetwork = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .vmwareEngineNetworkCanonical)
+    {
+      self.vmwareEngineNetworkCanonical = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .managementIpAddressLayoutVersion)
+    {
+      self.managementIpAddressLayoutVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dnsServerIp) {
+      self.dnsServerIp = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.managementCidr, forKey: .managementCidr)
+    try container.encode(self.vmwareEngineNetwork, forKey: .vmwareEngineNetwork)
+    try container.encode(self.vmwareEngineNetworkCanonical, forKey: .vmwareEngineNetworkCanonical)
+    try container.encode(
+      self.managementIpAddressLayoutVersion, forKey: .managementIpAddressLayoutVersion)
+    try container.encode(self.dnsServerIp, forKey: .dnsServerIp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

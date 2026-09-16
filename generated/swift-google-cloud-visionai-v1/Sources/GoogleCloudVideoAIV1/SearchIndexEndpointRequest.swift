@@ -47,6 +47,8 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleCloudWKT._An
   /// The oneof global search query.
   public var query: OneOf_Query? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchIndexEndpointRequest`.
   public init() {}
 
@@ -63,23 +65,48 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case imageQuery = "imageQuery"
-    case textQuery = "textQuery"
-    case indexEndpoint = "indexEndpoint"
-    case criteria = "criteria"
-    case exclusionCriteria = "exclusionCriteria"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let imageQuery = CodingKeys(stringValue: "imageQuery")
+    static let textQuery = CodingKeys(stringValue: "textQuery")
+    static let indexEndpoint = CodingKeys(stringValue: "indexEndpoint")
+    static let criteria = CodingKeys(stringValue: "criteria")
+    static let exclusionCriteria = CodingKeys(stringValue: "exclusionCriteria")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "imageQuery",
+      "textQuery",
+      "indexEndpoint",
+      "criteria",
+      "exclusionCriteria",
+      "pageSize",
+      "pageToken",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.indexEndpoint = try container.decode(Swift.String.self, forKey: .indexEndpoint)
-    self.criteria = try container.decode([Criteria].self, forKey: .criteria)
-    self.exclusionCriteria = try container.decode([Criteria].self, forKey: .exclusionCriteria)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
+      self.indexEndpoint = value
+    }
+    if let value = try container.decodeIfPresent([Criteria].self, forKey: .criteria) {
+      self.criteria = value
+    }
+    if let value = try container.decodeIfPresent([Criteria].self, forKey: .exclusionCriteria) {
+      self.exclusionCriteria = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
 
     var query: OneOf_Query? = nil
     let queryCheckAndSet = {
@@ -98,6 +125,10 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleCloudWKT._An
       try queryCheckAndSet(.textQuery(textQuery))
     }
     self.query = query
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +146,9 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleCloudWKT._An
       case .textQuery(let value):
         try container.encode(value, forKey: .textQuery)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

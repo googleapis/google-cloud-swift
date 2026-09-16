@@ -54,6 +54,8 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// is required). Updating one will unset the other automatically.
   public var principal: OneOf_Principal? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RBACRoleBinding`.
   public init() {}
 
@@ -70,23 +72,45 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case user = "user"
-    case group = "group"
-    case name = "name"
-    case uid = "uid"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case state = "state"
-    case role = "role"
-    case labels = "labels"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let user = CodingKeys(stringValue: "user")
+    static let group = CodingKeys(stringValue: "group")
+    static let name = CodingKeys(stringValue: "name")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let role = CodingKeys(stringValue: "role")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "user",
+      "group",
+      "name",
+      "uid",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "state",
+      "role",
+      "labels",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.uid = try container.decode(Swift.String.self, forKey: .uid)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -95,7 +119,10 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.state = try container.decodeIfPresent(RBACRoleBindingLifecycleState.self, forKey: .state)
     self.role = try container.decodeIfPresent(RBACRoleBinding.Role.self, forKey: .role)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
 
     var principal: OneOf_Principal? = nil
     let principalCheckAndSet = {
@@ -114,17 +141,21 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try principalCheckAndSet(.group(group))
     }
     self.principal = principal
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.role, forKey: .role)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.state, forKey: .state)
+    try container.encodeIfPresent(self.role, forKey: .role)
     try container.encode(self.labels, forKey: .labels)
 
     if let choice = self.principal {
@@ -134,6 +165,9 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .group(let value):
         try container.encode(value, forKey: .group)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -149,6 +183,8 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// use.
     public var customRole: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Role`.
     public init() {}
 
@@ -163,6 +199,46 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let predefinedRole = CodingKeys(stringValue: "predefinedRole")
+      static let customRole = CodingKeys(stringValue: "customRole")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "predefinedRole",
+        "customRole",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        RBACRoleBinding.Role.PredefinedRoles.self, forKey: .predefinedRole)
+      {
+        self.predefinedRole = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customRole) {
+        self.customRole = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.predefinedRole, forKey: .predefinedRole)
+      try container.encode(self.customRole, forKey: .customRole)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// PredefinedRoles is an ENUM representation of the default Kubernetes Roles

@@ -50,6 +50,8 @@ public struct Trace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// trace can be associated with none, one or more than one return trace.
   public var forwardTraceId: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Trace`.
   public init() {}
 
@@ -64,6 +66,48 @@ public struct Trace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let endpointInfo = CodingKeys(stringValue: "endpointInfo")
+    static let steps = CodingKeys(stringValue: "steps")
+    static let forwardTraceId = CodingKeys(stringValue: "forwardTraceId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "endpointInfo",
+      "steps",
+      "forwardTraceId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.endpointInfo = try container.decodeIfPresent(EndpointInfo.self, forKey: .endpointInfo)
+    if let value = try container.decodeIfPresent([Step].self, forKey: .steps) {
+      self.steps = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .forwardTraceId) {
+      self.forwardTraceId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.endpointInfo, forKey: .endpointInfo)
+    try container.encode(self.steps, forKey: .steps)
+    try container.encode(self.forwardTraceId, forKey: .forwardTraceId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

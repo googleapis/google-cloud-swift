@@ -31,6 +31,8 @@
     /// blocked from the search results.
     public var blockingConfidence: Tool.PhishBlockThreshold? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `EnterpriseWebSearch`.
     public init() {}
 
@@ -45,6 +47,43 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let excludeDomains = CodingKeys(stringValue: "excludeDomains")
+      static let blockingConfidence = CodingKeys(stringValue: "blockingConfidence")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "excludeDomains",
+        "blockingConfidence",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeDomains) {
+        self.excludeDomains = value
+      }
+      self.blockingConfidence = try container.decodeIfPresent(
+        Tool.PhishBlockThreshold.self, forKey: .blockingConfidence)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.excludeDomains, forKey: .excludeDomains)
+      try container.encodeIfPresent(self.blockingConfidence, forKey: .blockingConfidence)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

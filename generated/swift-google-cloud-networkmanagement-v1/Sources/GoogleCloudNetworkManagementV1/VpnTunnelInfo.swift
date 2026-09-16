@@ -48,6 +48,8 @@ public struct VpnTunnelInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Type of the routing policy.
   public var routingType: VpnTunnelInfo.RoutingType = VpnTunnelInfo.RoutingType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VpnTunnelInfo`.
   public init() {}
 
@@ -62,6 +64,88 @@ public struct VpnTunnelInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let uri = CodingKeys(stringValue: "uri")
+    static let sourceGateway = CodingKeys(stringValue: "sourceGateway")
+    static let remoteGateway = CodingKeys(stringValue: "remoteGateway")
+    static let remoteGatewayIp = CodingKeys(stringValue: "remoteGatewayIp")
+    static let sourceGatewayIp = CodingKeys(stringValue: "sourceGatewayIp")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+    static let region = CodingKeys(stringValue: "region")
+    static let routingType = CodingKeys(stringValue: "routingType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "displayName",
+      "uri",
+      "sourceGateway",
+      "remoteGateway",
+      "remoteGatewayIp",
+      "sourceGatewayIp",
+      "networkUri",
+      "region",
+      "routingType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
+      self.uri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGateway) {
+      self.sourceGateway = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteGateway) {
+      self.remoteGateway = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .remoteGatewayIp) {
+      self.remoteGatewayIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGatewayIp) {
+      self.sourceGatewayIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(
+      VpnTunnelInfo.RoutingType.self, forKey: .routingType)
+    {
+      self.routingType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.uri, forKey: .uri)
+    try container.encode(self.sourceGateway, forKey: .sourceGateway)
+    try container.encode(self.remoteGateway, forKey: .remoteGateway)
+    try container.encode(self.remoteGatewayIp, forKey: .remoteGatewayIp)
+    try container.encode(self.sourceGatewayIp, forKey: .sourceGatewayIp)
+    try container.encode(self.networkUri, forKey: .networkUri)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.routingType, forKey: .routingType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of VPN routing policy. For details, refer to [Networks and Tunnel

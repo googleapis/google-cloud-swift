@@ -31,6 +31,8 @@ public struct SearchHashesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// specified.
   public var threatTypes: [ThreatType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchHashesRequest`.
   public init() {}
 
@@ -45,6 +47,44 @@ public struct SearchHashesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hashPrefix = CodingKeys(stringValue: "hashPrefix")
+    static let threatTypes = CodingKeys(stringValue: "threatTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hashPrefix",
+      "threatTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .hashPrefix) {
+      self.hashPrefix = value
+    }
+    if let value = try container.decodeIfPresent([ThreatType].self, forKey: .threatTypes) {
+      self.threatTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.hashPrefix, forKey: .hashPrefix)
+    try container.encode(self.threatTypes, forKey: .threatTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

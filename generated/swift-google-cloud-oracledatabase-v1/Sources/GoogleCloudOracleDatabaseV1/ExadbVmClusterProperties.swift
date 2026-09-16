@@ -96,6 +96,8 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
   /// Output only. The Oracle Grid Infrastructure (GI) software version.
   public var giVersion: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExadbVmClusterProperties`.
   public init() {}
 
@@ -110,6 +112,152 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let gridImageId = CodingKeys(stringValue: "gridImageId")
+    static let nodeCount = CodingKeys(stringValue: "nodeCount")
+    static let enabledEcpuCountPerNode = CodingKeys(stringValue: "enabledEcpuCountPerNode")
+    static let additionalEcpuCountPerNode = CodingKeys(stringValue: "additionalEcpuCountPerNode")
+    static let vmFileSystemStorage = CodingKeys(stringValue: "vmFileSystemStorage")
+    static let licenseModel = CodingKeys(stringValue: "licenseModel")
+    static let exascaleDbStorageVault = CodingKeys(stringValue: "exascaleDbStorageVault")
+    static let hostnamePrefix = CodingKeys(stringValue: "hostnamePrefix")
+    static let hostname = CodingKeys(stringValue: "hostname")
+    static let sshPublicKeys = CodingKeys(stringValue: "sshPublicKeys")
+    static let dataCollectionOptions = CodingKeys(stringValue: "dataCollectionOptions")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
+    static let lifecycleState = CodingKeys(stringValue: "lifecycleState")
+    static let shapeAttribute = CodingKeys(stringValue: "shapeAttribute")
+    static let memorySizeGb = CodingKeys(stringValue: "memorySizeGb")
+    static let scanListenerPortTcp = CodingKeys(stringValue: "scanListenerPortTcp")
+    static let ociUri = CodingKeys(stringValue: "ociUri")
+    static let giVersion = CodingKeys(stringValue: "giVersion")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clusterName",
+      "gridImageId",
+      "nodeCount",
+      "enabledEcpuCountPerNode",
+      "additionalEcpuCountPerNode",
+      "vmFileSystemStorage",
+      "licenseModel",
+      "exascaleDbStorageVault",
+      "hostnamePrefix",
+      "hostname",
+      "sshPublicKeys",
+      "dataCollectionOptions",
+      "timeZone",
+      "lifecycleState",
+      "shapeAttribute",
+      "memorySizeGb",
+      "scanListenerPortTcp",
+      "ociUri",
+      "giVersion",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gridImageId) {
+      self.gridImageId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nodeCount) {
+      self.nodeCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .enabledEcpuCountPerNode)
+    {
+      self.enabledEcpuCountPerNode = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .additionalEcpuCountPerNode)
+    {
+      self.additionalEcpuCountPerNode = value
+    }
+    self.vmFileSystemStorage = try container.decodeIfPresent(
+      ExadbVmClusterStorageDetails.self, forKey: .vmFileSystemStorage)
+    if let value = try container.decodeIfPresent(
+      ExadbVmClusterProperties.LicenseModel.self, forKey: .licenseModel)
+    {
+      self.licenseModel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exascaleDbStorageVault)
+    {
+      self.exascaleDbStorageVault = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostnamePrefix) {
+      self.hostnamePrefix = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostname) {
+      self.hostname = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sshPublicKeys) {
+      self.sshPublicKeys = value
+    }
+    self.dataCollectionOptions = try container.decodeIfPresent(
+      DataCollectionOptionsCommon.self, forKey: .dataCollectionOptions)
+    self.timeZone = try container.decodeIfPresent(GoogleType.TimeZone.self, forKey: .timeZone)
+    if let value = try container.decodeIfPresent(
+      ExadbVmClusterProperties.ExadbVmClusterLifecycleState.self, forKey: .lifecycleState)
+    {
+      self.lifecycleState = value
+    }
+    if let value = try container.decodeIfPresent(
+      ExadbVmClusterProperties.ShapeAttribute.self, forKey: .shapeAttribute)
+    {
+      self.shapeAttribute = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memorySizeGb) {
+      self.memorySizeGb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scanListenerPortTcp) {
+      self.scanListenerPortTcp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ociUri) {
+      self.ociUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .giVersion) {
+      self.giVersion = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encode(self.gridImageId, forKey: .gridImageId)
+    try container.encode(self.nodeCount, forKey: .nodeCount)
+    try container.encode(self.enabledEcpuCountPerNode, forKey: .enabledEcpuCountPerNode)
+    try container.encode(self.additionalEcpuCountPerNode, forKey: .additionalEcpuCountPerNode)
+    try container.encodeIfPresent(self.vmFileSystemStorage, forKey: .vmFileSystemStorage)
+    try container.encode(self.licenseModel, forKey: .licenseModel)
+    try container.encode(self.exascaleDbStorageVault, forKey: .exascaleDbStorageVault)
+    try container.encode(self.hostnamePrefix, forKey: .hostnamePrefix)
+    try container.encode(self.hostname, forKey: .hostname)
+    try container.encode(self.sshPublicKeys, forKey: .sshPublicKeys)
+    try container.encodeIfPresent(self.dataCollectionOptions, forKey: .dataCollectionOptions)
+    try container.encodeIfPresent(self.timeZone, forKey: .timeZone)
+    try container.encode(self.lifecycleState, forKey: .lifecycleState)
+    try container.encode(self.shapeAttribute, forKey: .shapeAttribute)
+    try container.encode(self.memorySizeGb, forKey: .memorySizeGb)
+    try container.encode(self.scanListenerPortTcp, forKey: .scanListenerPortTcp)
+    try container.encode(self.ociUri, forKey: .ociUri)
+    try container.encode(self.giVersion, forKey: .giVersion)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The Oracle license model that applies to the ExaScale VM cluster

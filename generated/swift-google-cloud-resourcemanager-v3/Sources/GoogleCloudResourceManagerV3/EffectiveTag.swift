@@ -55,6 +55,8 @@ public struct EffectiveTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// value is directly attached to the resource, inherited will be false.
   public var inherited: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EffectiveTag`.
   public init() {}
 
@@ -69,6 +71,68 @@ public struct EffectiveTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tagValue = CodingKeys(stringValue: "tagValue")
+    static let namespacedTagValue = CodingKeys(stringValue: "namespacedTagValue")
+    static let tagKey = CodingKeys(stringValue: "tagKey")
+    static let namespacedTagKey = CodingKeys(stringValue: "namespacedTagKey")
+    static let tagKeyParentName = CodingKeys(stringValue: "tagKeyParentName")
+    static let inherited = CodingKeys(stringValue: "inherited")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tagValue",
+      "namespacedTagValue",
+      "tagKey",
+      "namespacedTagKey",
+      "tagKeyParentName",
+      "inherited",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tagValue) {
+      self.tagValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespacedTagValue) {
+      self.namespacedTagValue = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tagKey) {
+      self.tagKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .namespacedTagKey) {
+      self.namespacedTagKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tagKeyParentName) {
+      self.tagKeyParentName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inherited) {
+      self.inherited = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.tagValue, forKey: .tagValue)
+    try container.encode(self.namespacedTagValue, forKey: .namespacedTagValue)
+    try container.encode(self.tagKey, forKey: .tagKey)
+    try container.encode(self.namespacedTagKey, forKey: .namespacedTagKey)
+    try container.encode(self.tagKeyParentName, forKey: .tagKeyParentName)
+    try container.encode(self.inherited, forKey: .inherited)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

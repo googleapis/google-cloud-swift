@@ -32,6 +32,8 @@ public struct RedactImageResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The findings. Populated when include_findings in the request is true.
   public var inspectResult: InspectResult? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RedactImageResponse`.
   public init() {}
 
@@ -46,6 +48,48 @@ public struct RedactImageResponse: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let redactedImage = CodingKeys(stringValue: "redactedImage")
+    static let extractedText = CodingKeys(stringValue: "extractedText")
+    static let inspectResult = CodingKeys(stringValue: "inspectResult")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "redactedImage",
+      "extractedText",
+      "inspectResult",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .redactedImage) {
+      self.redactedImage = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .extractedText) {
+      self.extractedText = value
+    }
+    self.inspectResult = try container.decodeIfPresent(InspectResult.self, forKey: .inspectResult)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.redactedImage, forKey: .redactedImage)
+    try container.encode(self.extractedText, forKey: .extractedText)
+    try container.encodeIfPresent(self.inspectResult, forKey: .inspectResult)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

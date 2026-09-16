@@ -92,6 +92,8 @@
     /// endpoints in the producers that connect to this network attachment.
     public var subnetworks: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworkAttachment`.
     public init() {}
 
@@ -108,28 +110,54 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case connectionEndpoints = "connectionEndpoints"
-      case connectionPreference = "connectionPreference"
-      case creationTimestamp = "creationTimestamp"
-      case description = "description"
-      case fingerprint = "fingerprint"
-      case id = "id"
-      case kind = "kind"
-      case name = "name"
-      case network = "network"
-      case producerAcceptLists = "producerAcceptLists"
-      case producerRejectLists = "producerRejectLists"
-      case region = "region"
-      case selfLink = "selfLink"
-      case selfLinkWithId = "selfLinkWithId"
-      case subnetworks = "subnetworks"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let connectionEndpoints = CodingKeys(stringValue: "connectionEndpoints")
+      static let connectionPreference = CodingKeys(stringValue: "connectionPreference")
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let fingerprint = CodingKeys(stringValue: "fingerprint")
+      static let id = CodingKeys(stringValue: "id")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let network = CodingKeys(stringValue: "network")
+      static let producerAcceptLists = CodingKeys(stringValue: "producerAcceptLists")
+      static let producerRejectLists = CodingKeys(stringValue: "producerRejectLists")
+      static let region = CodingKeys(stringValue: "region")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let selfLinkWithId = CodingKeys(stringValue: "selfLinkWithId")
+      static let subnetworks = CodingKeys(stringValue: "subnetworks")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "connectionEndpoints",
+        "connectionPreference",
+        "creationTimestamp",
+        "description",
+        "fingerprint",
+        "id",
+        "kind",
+        "name",
+        "network",
+        "producerAcceptLists",
+        "producerRejectLists",
+        "region",
+        "selfLink",
+        "selfLinkWithId",
+        "subnetworks",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.connectionEndpoints = try container.decode(
+      if let value = try container.decodeIfPresent(
         [NetworkAttachmentConnectedEndpoint].self, forKey: .connectionEndpoints)
+      {
+        self.connectionEndpoints = value
+      }
       self.connectionPreference = try container.decodeIfPresent(
         NetworkAttachment.ConnectionPreference.self, forKey: .connectionPreference)
       self.creationTimestamp = try container.decodeIfPresent(
@@ -148,38 +176,53 @@
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
-      self.producerAcceptLists = try container.decode(
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .producerAcceptLists)
-      self.producerRejectLists = try container.decode(
+      {
+        self.producerAcceptLists = value
+      }
+      if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .producerRejectLists)
+      {
+        self.producerRejectLists = value
+      }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(
         Swift.String.self, forKey: .selfLinkWithId)
-      self.subnetworks = try container.decode([Swift.String].self, forKey: .subnetworks)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .subnetworks) {
+        self.subnetworks = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.connectionEndpoints, forKey: .connectionEndpoints)
-      try container.encode(self.connectionPreference, forKey: .connectionPreference)
-      try container.encode(self.creationTimestamp, forKey: .creationTimestamp)
-      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.connectionPreference, forKey: .connectionPreference)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
           GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
-      try container.encode(self.id, forKey: .id)
-      try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.name, forKey: .name)
-      try container.encode(self.network, forKey: .network)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.network, forKey: .network)
       try container.encode(self.producerAcceptLists, forKey: .producerAcceptLists)
       try container.encode(self.producerRejectLists, forKey: .producerRejectLists)
-      try container.encode(self.region, forKey: .region)
-      try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
+      try container.encodeIfPresent(self.region, forKey: .region)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.selfLinkWithId, forKey: .selfLinkWithId)
       try container.encode(self.subnetworks, forKey: .subnetworks)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [connectionPreference][google.cloud.compute.v1.NetworkAttachment.connectionPreference] field.

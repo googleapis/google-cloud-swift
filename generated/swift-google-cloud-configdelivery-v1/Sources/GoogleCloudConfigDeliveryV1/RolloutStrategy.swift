@@ -26,6 +26,8 @@ public struct RolloutStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// across clusters.
   public var strategy: OneOf_Strategy? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RolloutStrategy`.
   public init() {}
 
@@ -42,9 +44,19 @@ public struct RolloutStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case allAtOnce = "allAtOnce"
-    case rolling = "rolling"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let allAtOnce = CodingKeys(stringValue: "allAtOnce")
+    static let rolling = CodingKeys(stringValue: "rolling")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "allAtOnce",
+      "rolling",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct RolloutStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try strategyCheckAndSet(.rolling(rolling))
     }
     self.strategy = strategy
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct RolloutStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .rolling(let value):
         try container.encode(value, forKey: .rolling)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

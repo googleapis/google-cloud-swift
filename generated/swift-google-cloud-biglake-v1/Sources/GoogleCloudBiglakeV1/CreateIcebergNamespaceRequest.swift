@@ -28,6 +28,8 @@ public struct CreateIcebergNamespaceRequest: Codable, Equatable, GoogleCloudWKT.
   /// Required. The namespace to create.
   public var icebergNamespace: IcebergNamespace? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateIcebergNamespaceRequest`.
   public init() {}
 
@@ -44,22 +46,41 @@ public struct CreateIcebergNamespaceRequest: Codable, Equatable, GoogleCloudWKT.
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case parent = "parent"
-    case icebergNamespace = "namespace"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let icebergNamespace = CodingKeys(stringValue: "namespace")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "namespace",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.parent = try container.decode(Swift.String.self, forKey: .parent)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
     self.icebergNamespace = try container.decodeIfPresent(
       IcebergNamespace.self, forKey: .icebergNamespace)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.icebergNamespace, forKey: .icebergNamespace)
+    try container.encodeIfPresent(self.icebergNamespace, forKey: .icebergNamespace)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

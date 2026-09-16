@@ -194,6 +194,8 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]: <doc:ProtectionLevel/hsmSingleTenant>
   public var hsmTrusted: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CryptoKeyVersion`.
   public init() {}
 
@@ -208,6 +210,145 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+    static let algorithm = CodingKeys(stringValue: "algorithm")
+    static let attestation = CodingKeys(stringValue: "attestation")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let generateTime = CodingKeys(stringValue: "generateTime")
+    static let destroyTime = CodingKeys(stringValue: "destroyTime")
+    static let destroyEventTime = CodingKeys(stringValue: "destroyEventTime")
+    static let importJob = CodingKeys(stringValue: "importJob")
+    static let importTime = CodingKeys(stringValue: "importTime")
+    static let importFailureReason = CodingKeys(stringValue: "importFailureReason")
+    static let generationFailureReason = CodingKeys(stringValue: "generationFailureReason")
+    static let externalDestructionFailureReason = CodingKeys(
+      stringValue: "externalDestructionFailureReason")
+    static let externalProtectionLevelOptions = CodingKeys(
+      stringValue: "externalProtectionLevelOptions")
+    static let reimportEligible = CodingKeys(stringValue: "reimportEligible")
+    static let trustedWrappingEnabled = CodingKeys(stringValue: "trustedWrappingEnabled")
+    static let hsmTrusted = CodingKeys(stringValue: "hsmTrusted")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "protectionLevel",
+      "algorithm",
+      "attestation",
+      "createTime",
+      "generateTime",
+      "destroyTime",
+      "destroyEventTime",
+      "importJob",
+      "importTime",
+      "importFailureReason",
+      "generationFailureReason",
+      "externalDestructionFailureReason",
+      "externalProtectionLevelOptions",
+      "reimportEligible",
+      "trustedWrappingEnabled",
+      "hsmTrusted",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      CryptoKeyVersion.CryptoKeyVersionState.self, forKey: .state)
+    {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
+    {
+      self.algorithm = value
+    }
+    self.attestation = try container.decodeIfPresent(
+      KeyOperationAttestation.self, forKey: .attestation)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.generateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .generateTime)
+    self.destroyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .destroyTime)
+    self.destroyEventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .destroyEventTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importJob) {
+      self.importJob = value
+    }
+    self.importTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .importTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .importFailureReason) {
+      self.importFailureReason = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .generationFailureReason)
+    {
+      self.generationFailureReason = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .externalDestructionFailureReason)
+    {
+      self.externalDestructionFailureReason = value
+    }
+    self.externalProtectionLevelOptions = try container.decodeIfPresent(
+      ExternalProtectionLevelOptions.self, forKey: .externalProtectionLevelOptions)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reimportEligible) {
+      self.reimportEligible = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trustedWrappingEnabled) {
+      self.trustedWrappingEnabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hsmTrusted) {
+      self.hsmTrusted = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    try container.encode(self.algorithm, forKey: .algorithm)
+    try container.encodeIfPresent(self.attestation, forKey: .attestation)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.generateTime, forKey: .generateTime)
+    try container.encodeIfPresent(self.destroyTime, forKey: .destroyTime)
+    try container.encodeIfPresent(self.destroyEventTime, forKey: .destroyEventTime)
+    try container.encode(self.importJob, forKey: .importJob)
+    try container.encodeIfPresent(self.importTime, forKey: .importTime)
+    try container.encode(self.importFailureReason, forKey: .importFailureReason)
+    try container.encode(self.generationFailureReason, forKey: .generationFailureReason)
+    try container.encode(
+      self.externalDestructionFailureReason, forKey: .externalDestructionFailureReason)
+    try container.encodeIfPresent(
+      self.externalProtectionLevelOptions, forKey: .externalProtectionLevelOptions)
+    try container.encode(self.reimportEligible, forKey: .reimportEligible)
+    try container.encode(self.trustedWrappingEnabled, forKey: .trustedWrappingEnabled)
+    try container.encode(self.hsmTrusted, forKey: .hsmTrusted)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The algorithm of the

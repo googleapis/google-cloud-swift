@@ -33,6 +33,8 @@ public struct GetStorageLayoutRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// format, but other formats are still accepted.
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GetStorageLayoutRequest`.
   public init() {}
 
@@ -49,17 +51,38 @@ public struct GetStorageLayoutRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case `prefix` = "prefix"
-    case requestId = "requestId"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let `prefix` = CodingKeys(stringValue: "prefix")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "prefix",
+      "requestId",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.`prefix` = try container.decode(Swift.String.self, forKey: .`prefix`)
-    self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
+      self.`prefix` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -67,6 +90,9 @@ public struct GetStorageLayoutRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     try container.encode(self.name, forKey: .name)
     try container.encode(self.`prefix`, forKey: .`prefix`)
     try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

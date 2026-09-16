@@ -47,6 +47,8 @@
     /// as the current network.
     public var peerNetwork: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NetworksAddPeeringRequest`.
     public init() {}
 
@@ -61,6 +63,50 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoCreateRoutes = CodingKeys(stringValue: "autoCreateRoutes")
+      static let name = CodingKeys(stringValue: "name")
+      static let networkPeering = CodingKeys(stringValue: "networkPeering")
+      static let peerNetwork = CodingKeys(stringValue: "peerNetwork")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoCreateRoutes",
+        "name",
+        "networkPeering",
+        "peerNetwork",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.autoCreateRoutes = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .autoCreateRoutes)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.networkPeering = try container.decodeIfPresent(
+        NetworkPeering.self, forKey: .networkPeering)
+      self.peerNetwork = try container.decodeIfPresent(Swift.String.self, forKey: .peerNetwork)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.autoCreateRoutes, forKey: .autoCreateRoutes)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.networkPeering, forKey: .networkPeering)
+      try container.encodeIfPresent(self.peerNetwork, forKey: .peerNetwork)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

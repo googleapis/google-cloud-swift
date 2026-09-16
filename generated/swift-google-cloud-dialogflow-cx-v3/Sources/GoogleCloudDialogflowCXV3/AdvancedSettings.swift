@@ -62,6 +62,8 @@
     /// - Agent level.
     public var loggingSettings: AdvancedSettings.LoggingSettings? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AdvancedSettings`.
     public init() {}
 
@@ -76,6 +78,53 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let audioExportGcsDestination = CodingKeys(stringValue: "audioExportGcsDestination")
+      static let speechSettings = CodingKeys(stringValue: "speechSettings")
+      static let dtmfSettings = CodingKeys(stringValue: "dtmfSettings")
+      static let loggingSettings = CodingKeys(stringValue: "loggingSettings")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "audioExportGcsDestination",
+        "speechSettings",
+        "dtmfSettings",
+        "loggingSettings",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.audioExportGcsDestination = try container.decodeIfPresent(
+        GcsDestination.self, forKey: .audioExportGcsDestination)
+      self.speechSettings = try container.decodeIfPresent(
+        AdvancedSettings.SpeechSettings.self, forKey: .speechSettings)
+      self.dtmfSettings = try container.decodeIfPresent(
+        AdvancedSettings.DtmfSettings.self, forKey: .dtmfSettings)
+      self.loggingSettings = try container.decodeIfPresent(
+        AdvancedSettings.LoggingSettings.self, forKey: .loggingSettings)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(
+        self.audioExportGcsDestination, forKey: .audioExportGcsDestination)
+      try container.encodeIfPresent(self.speechSettings, forKey: .speechSettings)
+      try container.encodeIfPresent(self.dtmfSettings, forKey: .dtmfSettings)
+      try container.encodeIfPresent(self.loggingSettings, forKey: .loggingSettings)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Define behaviors of speech to text detection.
@@ -100,6 +149,8 @@
       /// models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models).
       public var models: [Swift.String: Swift.String] = [:]
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `SpeechSettings`.
       public init() {}
 
@@ -114,6 +165,62 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let endpointerSensitivity = CodingKeys(stringValue: "endpointerSensitivity")
+        static let noSpeechTimeout = CodingKeys(stringValue: "noSpeechTimeout")
+        static let useTimeoutBasedEndpointing = CodingKeys(
+          stringValue: "useTimeoutBasedEndpointing")
+        static let models = CodingKeys(stringValue: "models")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "endpointerSensitivity",
+          "noSpeechTimeout",
+          "useTimeoutBasedEndpointing",
+          "models",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .endpointerSensitivity)
+        {
+          self.endpointerSensitivity = value
+        }
+        self.noSpeechTimeout = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .noSpeechTimeout)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .useTimeoutBasedEndpointing)
+        {
+          self.useTimeoutBasedEndpointing = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .models)
+        {
+          self.models = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.endpointerSensitivity, forKey: .endpointerSensitivity)
+        try container.encodeIfPresent(self.noSpeechTimeout, forKey: .noSpeechTimeout)
+        try container.encode(self.useTimeoutBasedEndpointing, forKey: .useTimeoutBasedEndpointing)
+        try container.encode(self.models, forKey: .models)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -151,6 +258,8 @@
       /// Endpoint timeout setting for matching dtmf input to regex.
       public var endpointingTimeoutDuration: GoogleCloudWKT.Duration? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DtmfSettings`.
       public init() {}
 
@@ -165,6 +274,63 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enabled = CodingKeys(stringValue: "enabled")
+        static let maxDigits = CodingKeys(stringValue: "maxDigits")
+        static let finishDigit = CodingKeys(stringValue: "finishDigit")
+        static let interdigitTimeoutDuration = CodingKeys(stringValue: "interdigitTimeoutDuration")
+        static let endpointingTimeoutDuration = CodingKeys(
+          stringValue: "endpointingTimeoutDuration")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enabled",
+          "maxDigits",
+          "finishDigit",
+          "interdigitTimeoutDuration",
+          "endpointingTimeoutDuration",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+          self.enabled = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDigits) {
+          self.maxDigits = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .finishDigit) {
+          self.finishDigit = value
+        }
+        self.interdigitTimeoutDuration = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .interdigitTimeoutDuration)
+        self.endpointingTimeoutDuration = try container.decodeIfPresent(
+          GoogleCloudWKT.Duration.self, forKey: .endpointingTimeoutDuration)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enabled, forKey: .enabled)
+        try container.encode(self.maxDigits, forKey: .maxDigits)
+        try container.encode(self.finishDigit, forKey: .finishDigit)
+        try container.encodeIfPresent(
+          self.interdigitTimeoutDuration, forKey: .interdigitTimeoutDuration)
+        try container.encodeIfPresent(
+          self.endpointingTimeoutDuration, forKey: .endpointingTimeoutDuration)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -193,6 +359,8 @@
       /// used to determine if the utterance should be redacted.
       public var enableConsentBasedRedaction: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `LoggingSettings`.
       public init() {}
 
@@ -207,6 +375,57 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableStackdriverLogging = CodingKeys(stringValue: "enableStackdriverLogging")
+        static let enableInteractionLogging = CodingKeys(stringValue: "enableInteractionLogging")
+        static let enableConsentBasedRedaction = CodingKeys(
+          stringValue: "enableConsentBasedRedaction")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableStackdriverLogging",
+          "enableInteractionLogging",
+          "enableConsentBasedRedaction",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableStackdriverLogging)
+        {
+          self.enableStackdriverLogging = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableInteractionLogging)
+        {
+          self.enableInteractionLogging = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableConsentBasedRedaction)
+        {
+          self.enableConsentBasedRedaction = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableStackdriverLogging, forKey: .enableStackdriverLogging)
+        try container.encode(self.enableInteractionLogging, forKey: .enableInteractionLogging)
+        try container.encode(self.enableConsentBasedRedaction, forKey: .enableConsentBasedRedaction)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

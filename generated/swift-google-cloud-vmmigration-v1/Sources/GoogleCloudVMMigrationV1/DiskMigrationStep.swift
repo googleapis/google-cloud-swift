@@ -30,6 +30,8 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The step details.
   public var step: OneOf_Step? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DiskMigrationStep`.
   public init() {}
 
@@ -46,12 +48,25 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case creatingSourceDiskSnapshot = "creatingSourceDiskSnapshot"
-    case copyingSourceDiskSnapshot = "copyingSourceDiskSnapshot"
-    case provisioningTargetDisk = "provisioningTargetDisk"
-    case startTime = "startTime"
-    case endTime = "endTime"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let creatingSourceDiskSnapshot = CodingKeys(stringValue: "creatingSourceDiskSnapshot")
+    static let copyingSourceDiskSnapshot = CodingKeys(stringValue: "copyingSourceDiskSnapshot")
+    static let provisioningTargetDisk = CodingKeys(stringValue: "provisioningTargetDisk")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "creatingSourceDiskSnapshot",
+      "copyingSourceDiskSnapshot",
+      "provisioningTargetDisk",
+      "startTime",
+      "endTime",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -86,12 +101,16 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try stepCheckAndSet(.provisioningTargetDisk(provisioningTargetDisk))
     }
     self.step = step
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.startTime, forKey: .startTime)
-    try container.encode(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
     if let choice = self.step {
       switch choice {
@@ -102,6 +121,9 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .provisioningTargetDisk(let value):
         try container.encode(value, forKey: .provisioningTargetDisk)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -31,6 +31,8 @@ public struct GcsObject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// ensure that the ExecStep specified by this PatchJob does not change.
   public var generationNumber: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GcsObject`.
   public init() {}
 
@@ -45,6 +47,50 @@ public struct GcsObject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucket = CodingKeys(stringValue: "bucket")
+    static let object = CodingKeys(stringValue: "object")
+    static let generationNumber = CodingKeys(stringValue: "generationNumber")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucket",
+      "object",
+      "generationNumber",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+      self.bucket = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .object) {
+      self.object = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .generationNumber) {
+      self.generationNumber = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.bucket, forKey: .bucket)
+    try container.encode(self.object, forKey: .object)
+    try container.encode(self.generationNumber, forKey: .generationNumber)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

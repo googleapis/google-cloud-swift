@@ -82,6 +82,8 @@
     /// section 4.1 ofRFC5880
     public var yourDiscriminator: Swift.UInt32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BfdPacket`.
     public init() {}
 
@@ -98,23 +100,47 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case authenticationPresent = "authenticationPresent"
-      case controlPlaneIndependent = "controlPlaneIndependent"
-      case demand = "demand"
-      case diagnostic = "diagnostic"
-      case `final` = "final"
-      case length = "length"
-      case minEchoRxIntervalMs = "minEchoRxIntervalMs"
-      case minRxIntervalMs = "minRxIntervalMs"
-      case minTxIntervalMs = "minTxIntervalMs"
-      case multiplier = "multiplier"
-      case multipoint = "multipoint"
-      case myDiscriminator = "myDiscriminator"
-      case poll = "poll"
-      case state = "state"
-      case version = "version"
-      case yourDiscriminator = "yourDiscriminator"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let authenticationPresent = CodingKeys(stringValue: "authenticationPresent")
+      static let controlPlaneIndependent = CodingKeys(stringValue: "controlPlaneIndependent")
+      static let demand = CodingKeys(stringValue: "demand")
+      static let diagnostic = CodingKeys(stringValue: "diagnostic")
+      static let `final` = CodingKeys(stringValue: "final")
+      static let length = CodingKeys(stringValue: "length")
+      static let minEchoRxIntervalMs = CodingKeys(stringValue: "minEchoRxIntervalMs")
+      static let minRxIntervalMs = CodingKeys(stringValue: "minRxIntervalMs")
+      static let minTxIntervalMs = CodingKeys(stringValue: "minTxIntervalMs")
+      static let multiplier = CodingKeys(stringValue: "multiplier")
+      static let multipoint = CodingKeys(stringValue: "multipoint")
+      static let myDiscriminator = CodingKeys(stringValue: "myDiscriminator")
+      static let poll = CodingKeys(stringValue: "poll")
+      static let state = CodingKeys(stringValue: "state")
+      static let version = CodingKeys(stringValue: "version")
+      static let yourDiscriminator = CodingKeys(stringValue: "yourDiscriminator")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "authenticationPresent",
+        "controlPlaneIndependent",
+        "demand",
+        "diagnostic",
+        "final",
+        "length",
+        "minEchoRxIntervalMs",
+        "minRxIntervalMs",
+        "minTxIntervalMs",
+        "multiplier",
+        "multipoint",
+        "myDiscriminator",
+        "poll",
+        "state",
+        "version",
+        "yourDiscriminator",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -143,26 +169,33 @@
       self.version = try container.decodeIfPresent(Swift.UInt32.self, forKey: .version)
       self.yourDiscriminator = try container.decodeIfPresent(
         Swift.UInt32.self, forKey: .yourDiscriminator)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.authenticationPresent, forKey: .authenticationPresent)
-      try container.encode(self.controlPlaneIndependent, forKey: .controlPlaneIndependent)
-      try container.encode(self.demand, forKey: .demand)
-      try container.encode(self.diagnostic, forKey: .diagnostic)
-      try container.encode(self.`final`, forKey: .`final`)
-      try container.encode(self.length, forKey: .length)
-      try container.encode(self.minEchoRxIntervalMs, forKey: .minEchoRxIntervalMs)
-      try container.encode(self.minRxIntervalMs, forKey: .minRxIntervalMs)
-      try container.encode(self.minTxIntervalMs, forKey: .minTxIntervalMs)
-      try container.encode(self.multiplier, forKey: .multiplier)
-      try container.encode(self.multipoint, forKey: .multipoint)
-      try container.encode(self.myDiscriminator, forKey: .myDiscriminator)
-      try container.encode(self.poll, forKey: .poll)
-      try container.encode(self.state, forKey: .state)
-      try container.encode(self.version, forKey: .version)
-      try container.encode(self.yourDiscriminator, forKey: .yourDiscriminator)
+      try container.encodeIfPresent(self.authenticationPresent, forKey: .authenticationPresent)
+      try container.encodeIfPresent(self.controlPlaneIndependent, forKey: .controlPlaneIndependent)
+      try container.encodeIfPresent(self.demand, forKey: .demand)
+      try container.encodeIfPresent(self.diagnostic, forKey: .diagnostic)
+      try container.encodeIfPresent(self.`final`, forKey: .`final`)
+      try container.encodeIfPresent(self.length, forKey: .length)
+      try container.encodeIfPresent(self.minEchoRxIntervalMs, forKey: .minEchoRxIntervalMs)
+      try container.encodeIfPresent(self.minRxIntervalMs, forKey: .minRxIntervalMs)
+      try container.encodeIfPresent(self.minTxIntervalMs, forKey: .minTxIntervalMs)
+      try container.encodeIfPresent(self.multiplier, forKey: .multiplier)
+      try container.encodeIfPresent(self.multipoint, forKey: .multipoint)
+      try container.encodeIfPresent(self.myDiscriminator, forKey: .myDiscriminator)
+      try container.encodeIfPresent(self.poll, forKey: .poll)
+      try container.encodeIfPresent(self.state, forKey: .state)
+      try container.encodeIfPresent(self.version, forKey: .version)
+      try container.encodeIfPresent(self.yourDiscriminator, forKey: .yourDiscriminator)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [diagnostic][google.cloud.compute.v1.BfdPacket.diagnostic] field.

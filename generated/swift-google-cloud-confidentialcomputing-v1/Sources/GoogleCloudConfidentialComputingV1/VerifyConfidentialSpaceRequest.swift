@@ -51,6 +51,8 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
   /// claims.
   public var teeAttestation: OneOf_TeeAttestation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VerifyConfidentialSpaceRequest`.
   public init() {}
 
@@ -67,23 +69,43 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case tdCcel = "tdCcel"
-    case tpmAttestation = "tpmAttestation"
-    case challenge = "challenge"
-    case gcpCredentials = "gcpCredentials"
-    case signedEntities = "signedEntities"
-    case gceShieldedIdentity = "gceShieldedIdentity"
-    case options = "options"
-    case nvidiaAttestation = "nvidiaAttestation"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tdCcel = CodingKeys(stringValue: "tdCcel")
+    static let tpmAttestation = CodingKeys(stringValue: "tpmAttestation")
+    static let challenge = CodingKeys(stringValue: "challenge")
+    static let gcpCredentials = CodingKeys(stringValue: "gcpCredentials")
+    static let signedEntities = CodingKeys(stringValue: "signedEntities")
+    static let gceShieldedIdentity = CodingKeys(stringValue: "gceShieldedIdentity")
+    static let options = CodingKeys(stringValue: "options")
+    static let nvidiaAttestation = CodingKeys(stringValue: "nvidiaAttestation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tdCcel",
+      "tpmAttestation",
+      "challenge",
+      "gcpCredentials",
+      "signedEntities",
+      "gceShieldedIdentity",
+      "options",
+      "nvidiaAttestation",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.challenge = try container.decode(Swift.String.self, forKey: .challenge)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .challenge) {
+      self.challenge = value
+    }
     self.gcpCredentials = try container.decodeIfPresent(
       GcpCredentials.self, forKey: .gcpCredentials)
-    self.signedEntities = try container.decode([SignedEntity].self, forKey: .signedEntities)
+    if let value = try container.decodeIfPresent([SignedEntity].self, forKey: .signedEntities) {
+      self.signedEntities = value
+    }
     self.gceShieldedIdentity = try container.decodeIfPresent(
       GceShieldedIdentity.self, forKey: .gceShieldedIdentity)
     self.options = try container.decodeIfPresent(
@@ -110,16 +132,20 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
       try teeAttestationCheckAndSet(.tpmAttestation(tpmAttestation))
     }
     self.teeAttestation = teeAttestation
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
-    try container.encode(self.gcpCredentials, forKey: .gcpCredentials)
+    try container.encodeIfPresent(self.gcpCredentials, forKey: .gcpCredentials)
     try container.encode(self.signedEntities, forKey: .signedEntities)
-    try container.encode(self.gceShieldedIdentity, forKey: .gceShieldedIdentity)
-    try container.encode(self.options, forKey: .options)
-    try container.encode(self.nvidiaAttestation, forKey: .nvidiaAttestation)
+    try container.encodeIfPresent(self.gceShieldedIdentity, forKey: .gceShieldedIdentity)
+    try container.encodeIfPresent(self.options, forKey: .options)
+    try container.encodeIfPresent(self.nvidiaAttestation, forKey: .nvidiaAttestation)
 
     if let choice = self.teeAttestation {
       switch choice {
@@ -128,6 +154,9 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
       case .tpmAttestation(let value):
         try container.encode(value, forKey: .tpmAttestation)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -154,6 +183,8 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
     /// An optional additional configuration per token type.
     public var tokenProfileOptions: OneOf_TokenProfileOptions? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ConfidentialSpaceOptions`.
     public init() {}
 
@@ -170,20 +201,41 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case awsPrincipalTagsOptions = "awsPrincipalTagsOptions"
-      case audience = "audience"
-      case tokenProfile = "tokenProfile"
-      case nonce = "nonce"
-      case signatureType = "signatureType"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let awsPrincipalTagsOptions = CodingKeys(stringValue: "awsPrincipalTagsOptions")
+      static let audience = CodingKeys(stringValue: "audience")
+      static let tokenProfile = CodingKeys(stringValue: "tokenProfile")
+      static let nonce = CodingKeys(stringValue: "nonce")
+      static let signatureType = CodingKeys(stringValue: "signatureType")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "awsPrincipalTagsOptions",
+        "audience",
+        "tokenProfile",
+        "nonce",
+        "signatureType",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.audience = try container.decode(Swift.String.self, forKey: .audience)
-      self.tokenProfile = try container.decode(TokenProfile.self, forKey: .tokenProfile)
-      self.nonce = try container.decode([Swift.String].self, forKey: .nonce)
-      self.signatureType = try container.decode(SignatureType.self, forKey: .signatureType)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
+        self.audience = value
+      }
+      if let value = try container.decodeIfPresent(TokenProfile.self, forKey: .tokenProfile) {
+        self.tokenProfile = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .nonce) {
+        self.nonce = value
+      }
+      if let value = try container.decodeIfPresent(SignatureType.self, forKey: .signatureType) {
+        self.signatureType = value
+      }
 
       var tokenProfileOptions: OneOf_TokenProfileOptions? = nil
       let tokenProfileOptionsCheckAndSet = {
@@ -201,6 +253,10 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
         try tokenProfileOptionsCheckAndSet(.awsPrincipalTagsOptions(awsPrincipalTagsOptions))
       }
       self.tokenProfileOptions = tokenProfileOptions
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -215,6 +271,9 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleCloudWKT
         case .awsPrincipalTagsOptions(let value):
           try container.encode(value, forKey: .awsPrincipalTagsOptions)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

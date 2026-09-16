@@ -29,6 +29,8 @@ public struct CleanupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var conditionType: OneOf_ConditionType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CleanupPolicy`.
   public init() {}
 
@@ -45,17 +47,33 @@ public struct CleanupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case condition = "condition"
-    case mostRecentVersions = "mostRecentVersions"
-    case id = "id"
-    case action = "action"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let condition = CodingKeys(stringValue: "condition")
+    static let mostRecentVersions = CodingKeys(stringValue: "mostRecentVersions")
+    static let id = CodingKeys(stringValue: "id")
+    static let action = CodingKeys(stringValue: "action")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "condition",
+      "mostRecentVersions",
+      "id",
+      "action",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.id = try container.decode(Swift.String.self, forKey: .id)
-    self.action = try container.decode(CleanupPolicy.Action.self, forKey: .action)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+      self.id = value
+    }
+    if let value = try container.decodeIfPresent(CleanupPolicy.Action.self, forKey: .action) {
+      self.action = value
+    }
 
     var conditionType: OneOf_ConditionType? = nil
     let conditionTypeCheckAndSet = {
@@ -78,6 +96,10 @@ public struct CleanupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try conditionTypeCheckAndSet(.mostRecentVersions(mostRecentVersions))
     }
     self.conditionType = conditionType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -92,6 +114,9 @@ public struct CleanupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .mostRecentVersions(let value):
         try container.encode(value, forKey: .mostRecentVersions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -39,6 +39,8 @@ public struct ObjectFullContext: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The extended data of the object context.
   public var extendedData: GoogleCloudWKT.`Any`? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectFullContext`.
   public init() {}
 
@@ -53,6 +55,65 @@ public struct ObjectFullContext: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let key = CodingKeys(stringValue: "key")
+    static let value = CodingKeys(stringValue: "value")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let extendedData = CodingKeys(stringValue: "extendedData")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "key",
+      "value",
+      "createTime",
+      "updateTime",
+      "extendedData",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ObjectFullContext.Type_.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
+      self.value = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.extendedData = try container.decodeIfPresent(
+      GoogleCloudWKT.`Any`.self, forKey: .extendedData)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.value, forKey: .value)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.extendedData, forKey: .extendedData)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Types of object contexts.

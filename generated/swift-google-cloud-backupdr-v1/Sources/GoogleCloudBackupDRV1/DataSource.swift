@@ -67,6 +67,8 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Google Cloud resource, or one backed up by a Backup Appliance.
   public var sourceResource: OneOf_SourceResource? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataSource`.
   public init() {}
 
@@ -83,27 +85,57 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case state = "state"
-    case labels = "labels"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case backupCount = "backupCount"
-    case etag = "etag"
-    case totalStoredBytes = "totalStoredBytes"
-    case configState = "configState"
-    case backupConfigInfo = "backupConfigInfo"
-    case dataSourceGcpResource = "dataSourceGcpResource"
-    case dataSourceBackupApplianceApplication = "dataSourceBackupApplianceApplication"
-    case backupBlockedByVaultAccessRestriction = "backupBlockedByVaultAccessRestriction"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let state = CodingKeys(stringValue: "state")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let backupCount = CodingKeys(stringValue: "backupCount")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let totalStoredBytes = CodingKeys(stringValue: "totalStoredBytes")
+    static let configState = CodingKeys(stringValue: "configState")
+    static let backupConfigInfo = CodingKeys(stringValue: "backupConfigInfo")
+    static let dataSourceGcpResource = CodingKeys(stringValue: "dataSourceGcpResource")
+    static let dataSourceBackupApplianceApplication = CodingKeys(
+      stringValue: "dataSourceBackupApplianceApplication")
+    static let backupBlockedByVaultAccessRestriction = CodingKeys(
+      stringValue: "backupBlockedByVaultAccessRestriction")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "state",
+      "labels",
+      "createTime",
+      "updateTime",
+      "backupCount",
+      "etag",
+      "totalStoredBytes",
+      "configState",
+      "backupConfigInfo",
+      "dataSourceGcpResource",
+      "dataSourceBackupApplianceApplication",
+      "backupBlockedByVaultAccessRestriction",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.state = try container.decode(DataSource.State.self, forKey: .state)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(DataSource.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -112,11 +144,16 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
     self.totalStoredBytes = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .totalStoredBytes)
-    self.configState = try container.decode(BackupConfigState.self, forKey: .configState)
+    if let value = try container.decodeIfPresent(BackupConfigState.self, forKey: .configState) {
+      self.configState = value
+    }
     self.backupConfigInfo = try container.decodeIfPresent(
       BackupConfigInfo.self, forKey: .backupConfigInfo)
-    self.backupBlockedByVaultAccessRestriction = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .backupBlockedByVaultAccessRestriction)
+    {
+      self.backupBlockedByVaultAccessRestriction = value
+    }
 
     var sourceResource: OneOf_SourceResource? = nil
     let sourceResourceCheckAndSet = {
@@ -140,6 +177,10 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .dataSourceBackupApplianceApplication(dataSourceBackupApplianceApplication))
     }
     self.sourceResource = sourceResource
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -147,13 +188,13 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.backupCount, forKey: .backupCount)
-    try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.totalStoredBytes, forKey: .totalStoredBytes)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.backupCount, forKey: .backupCount)
+    try container.encodeIfPresent(self.etag, forKey: .etag)
+    try container.encodeIfPresent(self.totalStoredBytes, forKey: .totalStoredBytes)
     try container.encode(self.configState, forKey: .configState)
-    try container.encode(self.backupConfigInfo, forKey: .backupConfigInfo)
+    try container.encodeIfPresent(self.backupConfigInfo, forKey: .backupConfigInfo)
     try container.encode(
       self.backupBlockedByVaultAccessRestriction, forKey: .backupBlockedByVaultAccessRestriction)
 
@@ -164,6 +205,9 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .dataSourceBackupApplianceApplication(let value):
         try container.encode(value, forKey: .dataSourceBackupApplianceApplication)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

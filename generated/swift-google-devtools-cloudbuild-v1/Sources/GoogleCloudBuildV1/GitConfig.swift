@@ -24,6 +24,8 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configuration for HTTP related git operations.
   public var http: GitConfig.HttpConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitConfig`.
   public init() {}
 
@@ -40,6 +42,36 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let http = CodingKeys(stringValue: "http")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "http"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.http = try container.decodeIfPresent(GitConfig.HttpConfig.self, forKey: .http)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.http, forKey: .http)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// HttpConfig is a configuration for HTTP related git operations.
   public struct HttpConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -50,6 +82,8 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `secretmanager.versions.access` permissions on this secret. The proxy URL
     /// should be in format `[protocol://][user[:password]@]proxyhost[:port]`.
     public var proxySecretVersionName: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `HttpConfig`.
     public init() {}
@@ -65,6 +99,40 @@ public struct GitConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let proxySecretVersionName = CodingKeys(stringValue: "proxySecretVersionName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "proxySecretVersionName"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .proxySecretVersionName)
+      {
+        self.proxySecretVersionName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.proxySecretVersionName, forKey: .proxySecretVersionName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

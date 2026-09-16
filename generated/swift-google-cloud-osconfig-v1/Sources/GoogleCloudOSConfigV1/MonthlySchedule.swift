@@ -25,6 +25,8 @@ public struct MonthlySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// One day in a month.
   public var dayOfMonth: OneOf_DayOfMonth? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MonthlySchedule`.
   public init() {}
 
@@ -41,9 +43,19 @@ public struct MonthlySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case weekDayOfMonth = "weekDayOfMonth"
-    case monthDay = "monthDay"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let weekDayOfMonth = CodingKeys(stringValue: "weekDayOfMonth")
+    static let monthDay = CodingKeys(stringValue: "monthDay")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "weekDayOfMonth",
+      "monthDay",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -68,6 +80,10 @@ public struct MonthlySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try dayOfMonthCheckAndSet(.monthDay(monthDay))
     }
     self.dayOfMonth = dayOfMonth
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -80,6 +96,9 @@ public struct MonthlySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .monthDay(let value):
         try container.encode(value, forKey: .monthDay)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

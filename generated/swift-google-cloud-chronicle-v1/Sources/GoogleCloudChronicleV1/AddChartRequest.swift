@@ -35,6 +35,8 @@ public struct AddChartRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Required. ChartLayout for newly added chart.
   public var chartLayout: DashboardDefinition.ChartConfig.ChartLayout? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddChartRequest`.
   public init() {}
 
@@ -49,6 +51,53 @@ public struct AddChartRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let dashboardQuery = CodingKeys(stringValue: "dashboardQuery")
+    static let dashboardChart = CodingKeys(stringValue: "dashboardChart")
+    static let chartLayout = CodingKeys(stringValue: "chartLayout")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "dashboardQuery",
+      "dashboardChart",
+      "chartLayout",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.dashboardQuery = try container.decodeIfPresent(
+      DashboardQuery.self, forKey: .dashboardQuery)
+    self.dashboardChart = try container.decodeIfPresent(
+      DashboardChart.self, forKey: .dashboardChart)
+    self.chartLayout = try container.decodeIfPresent(
+      DashboardDefinition.ChartConfig.ChartLayout.self, forKey: .chartLayout)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.dashboardQuery, forKey: .dashboardQuery)
+    try container.encodeIfPresent(self.dashboardChart, forKey: .dashboardChart)
+    try container.encodeIfPresent(self.chartLayout, forKey: .chartLayout)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

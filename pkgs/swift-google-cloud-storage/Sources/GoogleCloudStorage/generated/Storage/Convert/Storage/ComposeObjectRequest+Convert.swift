@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension ComposeObjectRequest {
@@ -36,6 +36,7 @@ extension ComposeObjectRequest {
       proto.hasCommonObjectRequestParams ? try .init(proto: proto.commonObjectRequestParams) : nil
     self.objectChecksums = proto.hasObjectChecksums ? try .init(proto: proto.objectChecksums) : nil
     self.deleteSourceObjects = proto.hasDeleteSourceObjects ? proto.deleteSourceObjects : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -59,6 +60,9 @@ extension ComposeObjectRequest {
     if let deleteSourceObjects = self.deleteSourceObjects {
       proto.deleteSourceObjects = deleteSourceObjects
     }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }
@@ -72,6 +76,7 @@ extension ComposeObjectRequest.SourceObject {
     self.generation = proto.generation
     self.objectPreconditions =
       proto.hasObjectPreconditions ? try .init(proto: proto.objectPreconditions) : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -80,6 +85,9 @@ extension ComposeObjectRequest.SourceObject {
     proto.generation = self.generation
     if let objectPreconditions = self.objectPreconditions {
       proto.objectPreconditions = try objectPreconditions.toProto()
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }
@@ -92,12 +100,16 @@ extension ComposeObjectRequest.SourceObject.ObjectPreconditions {
   internal init(proto: ProtoType) throws {
     self.init()
     self.ifGenerationMatch = proto.hasIfGenerationMatch ? proto.ifGenerationMatch : nil
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
     var proto = ProtoType()
     if let ifGenerationMatch = self.ifGenerationMatch {
       proto.ifGenerationMatch = ifGenerationMatch
+    }
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
     }
     return proto
   }

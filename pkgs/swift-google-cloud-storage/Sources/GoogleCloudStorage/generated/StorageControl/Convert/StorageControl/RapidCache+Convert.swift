@@ -18,7 +18,7 @@ import Foundation
 import GoogleCloudGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 internal import GoogleCloudWKTConvert
 
 extension RapidCache {
@@ -35,6 +35,7 @@ extension RapidCache {
     self.createTime = proto.hasCreateTime ? try .init(proto: proto.createTime) : nil
     self.updateTime = proto.hasUpdateTime ? try .init(proto: proto.updateTime) : nil
     self.pendingUpdate = proto.pendingUpdate
+    self._unknownFields.proto = proto.unknownFields.data
   }
 
   internal func toProto() throws -> ProtoType {
@@ -48,6 +49,9 @@ extension RapidCache {
     if let createTime = self.createTime { proto.createTime = try createTime.toProto() }
     if let updateTime = self.updateTime { proto.updateTime = try updateTime.toProto() }
     proto.pendingUpdate = self.pendingUpdate
+    if !self._unknownFields.proto.isEmpty {
+      try proto.merge(serializedBytes: self._unknownFields.proto)
+    }
     return proto
   }
 }

@@ -30,6 +30,8 @@ public struct OperatorQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Registry of the operator.
   public var registry: Registry = Registry()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OperatorQuery`.
   public init() {}
 
@@ -46,17 +48,38 @@ public struct OperatorQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `operator` = "operator"
-    case tag = "tag"
-    case registry = "registry"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `operator` = CodingKeys(stringValue: "operator")
+    static let tag = CodingKeys(stringValue: "tag")
+    static let registry = CodingKeys(stringValue: "registry")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "operator",
+      "tag",
+      "registry",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`operator` = try container.decode(Swift.String.self, forKey: .`operator`)
-    self.tag = try container.decode(Swift.String.self, forKey: .tag)
-    self.registry = try container.decode(Registry.self, forKey: .registry)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`operator`) {
+      self.`operator` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
+      self.tag = value
+    }
+    if let value = try container.decodeIfPresent(Registry.self, forKey: .registry) {
+      self.registry = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -64,6 +87,9 @@ public struct OperatorQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.`operator`, forKey: .`operator`)
     try container.encode(self.tag, forKey: .tag)
     try container.encode(self.registry, forKey: .registry)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

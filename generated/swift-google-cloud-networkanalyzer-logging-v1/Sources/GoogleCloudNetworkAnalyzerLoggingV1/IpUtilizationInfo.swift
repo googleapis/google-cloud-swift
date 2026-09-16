@@ -22,6 +22,8 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
 {
   public var subnetIpUtilization: [IpUtilizationInfo.SubnetIpUtilization] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IpUtilizationInfo`.
   public init() {}
 
@@ -36,6 +38,40 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subnetIpUtilization = CodingKeys(stringValue: "subnetIpUtilization")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subnetIpUtilization"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [IpUtilizationInfo.SubnetIpUtilization].self, forKey: .subnetIpUtilization)
+    {
+      self.subnetIpUtilization = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subnetIpUtilization, forKey: .subnetIpUtilization)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public struct SubnetIpUtilization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -54,6 +90,8 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// The ratio of allocated IP addresses from the total usable addresses.
     public var allocationRatio: Swift.Double = Swift.Double()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubnetIpUtilization`.
     public init() {}
 
@@ -68,6 +106,57 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subnetUri = CodingKeys(stringValue: "subnetUri")
+      static let secondaryRangeName = CodingKeys(stringValue: "secondaryRangeName")
+      static let totalUsableAddresses = CodingKeys(stringValue: "totalUsableAddresses")
+      static let allocationRatio = CodingKeys(stringValue: "allocationRatio")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subnetUri",
+        "secondaryRangeName",
+        "totalUsableAddresses",
+        "allocationRatio",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetUri) {
+        self.subnetUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secondaryRangeName) {
+        self.secondaryRangeName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .totalUsableAddresses)
+      {
+        self.totalUsableAddresses = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .allocationRatio) {
+        self.allocationRatio = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.subnetUri, forKey: .subnetUri)
+      try container.encode(self.secondaryRangeName, forKey: .secondaryRangeName)
+      try container.encode(self.totalUsableAddresses, forKey: .totalUsableAddresses)
+      try container.encode(self.allocationRatio, forKey: .allocationRatio)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

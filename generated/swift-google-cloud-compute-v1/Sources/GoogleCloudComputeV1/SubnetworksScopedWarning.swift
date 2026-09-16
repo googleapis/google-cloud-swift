@@ -27,6 +27,8 @@
     /// An informational warning about unreachable scope
     public var warning: SubnetworksScopedWarning.Warning? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SubnetworksScopedWarning`.
     public init() {}
 
@@ -41,6 +43,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let scopeName = CodingKeys(stringValue: "scopeName")
+      static let warning = CodingKeys(stringValue: "warning")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "scopeName",
+        "warning",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.scopeName = try container.decodeIfPresent(Swift.String.self, forKey: .scopeName)
+      self.warning = try container.decodeIfPresent(
+        SubnetworksScopedWarning.Warning.self, forKey: .warning)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.scopeName, forKey: .scopeName)
+      try container.encodeIfPresent(self.warning, forKey: .warning)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The message type for the [warning][google.cloud.compute.v1.SubnetworksScopedWarning.warning] field.
@@ -67,6 +104,8 @@
       /// [Output Only] A human-readable description of the warning code.
       public var message: Swift.String? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Warning`.
       public init() {}
 
@@ -81,6 +120,49 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let code = CodingKeys(stringValue: "code")
+        static let data = CodingKeys(stringValue: "data")
+        static let message = CodingKeys(stringValue: "message")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "code",
+          "data",
+          "message",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.code = try container.decodeIfPresent(
+          SubnetworksScopedWarning.Warning.Code.self, forKey: .code)
+        if let value = try container.decodeIfPresent(
+          [SubnetworksScopedWarning.Warning.Data].self, forKey: .data)
+        {
+          self.data = value
+        }
+        self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.data, forKey: .data)
+        try container.encodeIfPresent(self.message, forKey: .message)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The message type for the [data][google.cloud.compute.v1.SubnetworksScopedWarning.warning.data] field.
@@ -101,6 +183,9 @@
         /// [Output Only] A warning data value corresponding to the key.
         public var value: Swift.String? = nil
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `Data`.
         public init() {}
 
@@ -115,6 +200,40 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let key = CodingKeys(stringValue: "key")
+          static let value = CodingKeys(stringValue: "value")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "key",
+            "value",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
+          self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.key, forKey: .key)
+          try container.encodeIfPresent(self.value, forKey: .value)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

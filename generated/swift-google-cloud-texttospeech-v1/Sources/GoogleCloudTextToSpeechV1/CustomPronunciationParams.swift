@@ -33,6 +33,8 @@ public struct CustomPronunciationParams: Codable, Equatable, GoogleCloudWKT._Any
   /// specified above.
   public var pronunciation: Swift.String? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CustomPronunciationParams`.
   public init() {}
 
@@ -47,6 +49,45 @@ public struct CustomPronunciationParams: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let phrase = CodingKeys(stringValue: "phrase")
+    static let phoneticEncoding = CodingKeys(stringValue: "phoneticEncoding")
+    static let pronunciation = CodingKeys(stringValue: "pronunciation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "phrase",
+      "phoneticEncoding",
+      "pronunciation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.phrase = try container.decodeIfPresent(Swift.String.self, forKey: .phrase)
+    self.phoneticEncoding = try container.decodeIfPresent(
+      CustomPronunciationParams.PhoneticEncoding.self, forKey: .phoneticEncoding)
+    self.pronunciation = try container.decodeIfPresent(Swift.String.self, forKey: .pronunciation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.phrase, forKey: .phrase)
+    try container.encodeIfPresent(self.phoneticEncoding, forKey: .phoneticEncoding)
+    try container.encodeIfPresent(self.pronunciation, forKey: .pronunciation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The phonetic encoding of the phrase.

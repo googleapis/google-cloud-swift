@@ -45,6 +45,8 @@
     /// checks configured.
     public var ipv6HealthState: HealthStatusForNetworkEndpoint.Ipv6HealthState? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `HealthStatusForNetworkEndpoint`.
     public init() {}
 
@@ -59,6 +61,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let backendService = CodingKeys(stringValue: "backendService")
+      static let forwardingRule = CodingKeys(stringValue: "forwardingRule")
+      static let healthCheck = CodingKeys(stringValue: "healthCheck")
+      static let healthCheckService = CodingKeys(stringValue: "healthCheckService")
+      static let healthState = CodingKeys(stringValue: "healthState")
+      static let ipv6HealthState = CodingKeys(stringValue: "ipv6HealthState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "backendService",
+        "forwardingRule",
+        "healthCheck",
+        "healthCheckService",
+        "healthState",
+        "ipv6HealthState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.backendService = try container.decodeIfPresent(
+        BackendServiceReference.self, forKey: .backendService)
+      self.forwardingRule = try container.decodeIfPresent(
+        ForwardingRuleReference.self, forKey: .forwardingRule)
+      self.healthCheck = try container.decodeIfPresent(
+        HealthCheckReference.self, forKey: .healthCheck)
+      self.healthCheckService = try container.decodeIfPresent(
+        HealthCheckServiceReference.self, forKey: .healthCheckService)
+      self.healthState = try container.decodeIfPresent(
+        HealthStatusForNetworkEndpoint.HealthState.self, forKey: .healthState)
+      self.ipv6HealthState = try container.decodeIfPresent(
+        HealthStatusForNetworkEndpoint.Ipv6HealthState.self, forKey: .ipv6HealthState)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.backendService, forKey: .backendService)
+      try container.encodeIfPresent(self.forwardingRule, forKey: .forwardingRule)
+      try container.encodeIfPresent(self.healthCheck, forKey: .healthCheck)
+      try container.encodeIfPresent(self.healthCheckService, forKey: .healthCheckService)
+      try container.encodeIfPresent(self.healthState, forKey: .healthState)
+      try container.encodeIfPresent(self.ipv6HealthState, forKey: .ipv6HealthState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [healthState][google.cloud.compute.v1.HealthStatusForNetworkEndpoint.healthState] field.

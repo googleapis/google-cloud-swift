@@ -36,6 +36,8 @@ public struct MetadataExchangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// `alloydb.instances.connect` permission check.
   public var oauth2Token: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataExchangeRequest`.
   public init() {}
 
@@ -50,6 +52,52 @@ public struct MetadataExchangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let userAgent = CodingKeys(stringValue: "userAgent")
+    static let authType = CodingKeys(stringValue: "authType")
+    static let oauth2Token = CodingKeys(stringValue: "oauth2Token")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "userAgent",
+      "authType",
+      "oauth2Token",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userAgent) {
+      self.userAgent = value
+    }
+    if let value = try container.decodeIfPresent(
+      MetadataExchangeRequest.AuthType.self, forKey: .authType)
+    {
+      self.authType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oauth2Token) {
+      self.oauth2Token = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.userAgent, forKey: .userAgent)
+    try container.encode(self.authType, forKey: .authType)
+    try container.encode(self.oauth2Token, forKey: .oauth2Token)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// AuthType contains all supported authentication types.

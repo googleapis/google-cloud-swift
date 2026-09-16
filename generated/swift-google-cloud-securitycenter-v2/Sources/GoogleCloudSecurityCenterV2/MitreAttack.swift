@@ -43,6 +43,8 @@ public struct MitreAttack: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The MITRE ATT&CK version referenced by the above fields. E.g. "8".
   public var version: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MitreAttack`.
   public init() {}
 
@@ -57,6 +59,68 @@ public struct MitreAttack: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let primaryTactic = CodingKeys(stringValue: "primaryTactic")
+    static let primaryTechniques = CodingKeys(stringValue: "primaryTechniques")
+    static let additionalTactics = CodingKeys(stringValue: "additionalTactics")
+    static let additionalTechniques = CodingKeys(stringValue: "additionalTechniques")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "primaryTactic",
+      "primaryTechniques",
+      "additionalTactics",
+      "additionalTechniques",
+      "version",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(MitreAttack.Tactic.self, forKey: .primaryTactic) {
+      self.primaryTactic = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MitreAttack.Technique].self, forKey: .primaryTechniques)
+    {
+      self.primaryTechniques = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MitreAttack.Tactic].self, forKey: .additionalTactics)
+    {
+      self.additionalTactics = value
+    }
+    if let value = try container.decodeIfPresent(
+      [MitreAttack.Technique].self, forKey: .additionalTechniques)
+    {
+      self.additionalTechniques = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+      self.version = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.primaryTactic, forKey: .primaryTactic)
+    try container.encode(self.primaryTechniques, forKey: .primaryTechniques)
+    try container.encode(self.additionalTactics, forKey: .additionalTactics)
+    try container.encode(self.additionalTechniques, forKey: .additionalTechniques)
+    try container.encode(self.version, forKey: .version)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// MITRE ATT&CK tactics that can be referenced by SCC findings.

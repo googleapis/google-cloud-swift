@@ -28,6 +28,8 @@ public struct SectionHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Whether to insert a divider below the section in the table of contents
   public var dividerBelow: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SectionHeader`.
   public init() {}
 
@@ -42,6 +44,44 @@ public struct SectionHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let subtitle = CodingKeys(stringValue: "subtitle")
+    static let dividerBelow = CodingKeys(stringValue: "dividerBelow")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "subtitle",
+      "dividerBelow",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subtitle) {
+      self.subtitle = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dividerBelow) {
+      self.dividerBelow = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.subtitle, forKey: .subtitle)
+    try container.encode(self.dividerBelow, forKey: .dividerBelow)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

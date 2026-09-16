@@ -30,6 +30,8 @@ public struct Impact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Contains projections (if any) for this category.
   public var projection: OneOf_Projection? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Impact`.
   public init() {}
 
@@ -46,19 +48,37 @@ public struct Impact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case category = "category"
-    case costProjection = "costProjection"
-    case securityProjection = "securityProjection"
-    case sustainabilityProjection = "sustainabilityProjection"
-    case reliabilityProjection = "reliabilityProjection"
-    case service = "service"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let category = CodingKeys(stringValue: "category")
+    static let costProjection = CodingKeys(stringValue: "costProjection")
+    static let securityProjection = CodingKeys(stringValue: "securityProjection")
+    static let sustainabilityProjection = CodingKeys(stringValue: "sustainabilityProjection")
+    static let reliabilityProjection = CodingKeys(stringValue: "reliabilityProjection")
+    static let service = CodingKeys(stringValue: "service")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "category",
+      "costProjection",
+      "securityProjection",
+      "sustainabilityProjection",
+      "reliabilityProjection",
+      "service",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.category = try container.decode(Impact.Category.self, forKey: .category)
-    self.service = try container.decode(Swift.String.self, forKey: .service)
+    if let value = try container.decodeIfPresent(Impact.Category.self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
+      self.service = value
+    }
 
     var projection: OneOf_Projection? = nil
     let projectionCheckAndSet = {
@@ -91,6 +111,10 @@ public struct Impact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try projectionCheckAndSet(.reliabilityProjection(reliabilityProjection))
     }
     self.projection = projection
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -109,6 +133,9 @@ public struct Impact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .reliabilityProjection(let value):
         try container.encode(value, forKey: .reliabilityProjection)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

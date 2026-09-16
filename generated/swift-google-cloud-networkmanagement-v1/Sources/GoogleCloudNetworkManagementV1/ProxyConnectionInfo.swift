@@ -57,6 +57,8 @@ public struct ProxyConnectionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// URI of the network where connection is proxied.
   public var networkUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProxyConnectionInfo`.
   public init() {}
 
@@ -73,33 +75,78 @@ public struct ProxyConnectionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case `protocol` = "protocol"
-    case oldSourceIp = "oldSourceIp"
-    case newSourceIp = "newSourceIp"
-    case oldDestinationIp = "oldDestinationIp"
-    case newDestinationIp = "newDestinationIp"
-    case oldSourcePort = "oldSourcePort"
-    case newSourcePort = "newSourcePort"
-    case oldDestinationPort = "oldDestinationPort"
-    case newDestinationPort = "newDestinationPort"
-    case subnetUri = "subnetUri"
-    case networkUri = "networkUri"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let oldSourceIp = CodingKeys(stringValue: "oldSourceIp")
+    static let newSourceIp = CodingKeys(stringValue: "newSourceIp")
+    static let oldDestinationIp = CodingKeys(stringValue: "oldDestinationIp")
+    static let newDestinationIp = CodingKeys(stringValue: "newDestinationIp")
+    static let oldSourcePort = CodingKeys(stringValue: "oldSourcePort")
+    static let newSourcePort = CodingKeys(stringValue: "newSourcePort")
+    static let oldDestinationPort = CodingKeys(stringValue: "oldDestinationPort")
+    static let newDestinationPort = CodingKeys(stringValue: "newDestinationPort")
+    static let subnetUri = CodingKeys(stringValue: "subnetUri")
+    static let networkUri = CodingKeys(stringValue: "networkUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "protocol",
+      "oldSourceIp",
+      "newSourceIp",
+      "oldDestinationIp",
+      "newDestinationIp",
+      "oldSourcePort",
+      "newSourcePort",
+      "oldDestinationPort",
+      "newDestinationPort",
+      "subnetUri",
+      "networkUri",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.oldSourceIp = try container.decode(Swift.String.self, forKey: .oldSourceIp)
-    self.newSourceIp = try container.decode(Swift.String.self, forKey: .newSourceIp)
-    self.oldDestinationIp = try container.decode(Swift.String.self, forKey: .oldDestinationIp)
-    self.newDestinationIp = try container.decode(Swift.String.self, forKey: .newDestinationIp)
-    self.oldSourcePort = try container.decode(Swift.Int32.self, forKey: .oldSourcePort)
-    self.newSourcePort = try container.decode(Swift.Int32.self, forKey: .newSourcePort)
-    self.oldDestinationPort = try container.decode(Swift.Int32.self, forKey: .oldDestinationPort)
-    self.newDestinationPort = try container.decode(Swift.Int32.self, forKey: .newDestinationPort)
-    self.subnetUri = try container.decode(Swift.String.self, forKey: .subnetUri)
-    self.networkUri = try container.decode(Swift.String.self, forKey: .networkUri)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oldSourceIp) {
+      self.oldSourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newSourceIp) {
+      self.newSourceIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oldDestinationIp) {
+      self.oldDestinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .newDestinationIp) {
+      self.newDestinationIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .oldSourcePort) {
+      self.oldSourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .newSourcePort) {
+      self.newSourcePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .oldDestinationPort) {
+      self.oldDestinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .newDestinationPort) {
+      self.newDestinationPort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetUri) {
+      self.subnetUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
+      self.networkUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -115,6 +162,9 @@ public struct ProxyConnectionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.newDestinationPort, forKey: .newDestinationPort)
     try container.encode(self.subnetUri, forKey: .subnetUri)
     try container.encode(self.networkUri, forKey: .networkUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

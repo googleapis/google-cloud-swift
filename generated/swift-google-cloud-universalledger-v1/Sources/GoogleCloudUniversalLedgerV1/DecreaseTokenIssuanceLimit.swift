@@ -49,6 +49,8 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleCloudWKT._An
   /// the currently issued tokens.
   public var amount: CurrencyValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DecreaseTokenIssuanceLimit`.
   public init() {}
 
@@ -63,6 +65,46 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let tokenManager = CodingKeys(stringValue: "tokenManager")
+    static let tokenManagerId = CodingKeys(stringValue: "tokenManagerId")
+    static let amount = CodingKeys(stringValue: "amount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "tokenManager",
+      "tokenManagerId",
+      "amount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenManagerId) {
+      self.tokenManagerId = value
+    }
+    self.amount = try container.decodeIfPresent(CurrencyValue.self, forKey: .amount)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)
+    try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
+    try container.encodeIfPresent(self.amount, forKey: .amount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

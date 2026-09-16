@@ -72,6 +72,8 @@ public struct Assessment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// assessment.
   public var policyEvaluation: PolicyEvaluation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Assessment`.
   public init() {}
 
@@ -86,6 +88,99 @@ public struct Assessment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let event = CodingKeys(stringValue: "event")
+    static let riskAnalysis = CodingKeys(stringValue: "riskAnalysis")
+    static let tokenProperties = CodingKeys(stringValue: "tokenProperties")
+    static let accountVerification = CodingKeys(stringValue: "accountVerification")
+    static let accountDefenderAssessment = CodingKeys(stringValue: "accountDefenderAssessment")
+    static let privatePasswordLeakVerification = CodingKeys(
+      stringValue: "privatePasswordLeakVerification")
+    static let firewallPolicyAssessment = CodingKeys(stringValue: "firewallPolicyAssessment")
+    static let fraudPreventionAssessment = CodingKeys(stringValue: "fraudPreventionAssessment")
+    static let fraudSignals = CodingKeys(stringValue: "fraudSignals")
+    static let phoneFraudAssessment = CodingKeys(stringValue: "phoneFraudAssessment")
+    static let assessmentEnvironment = CodingKeys(stringValue: "assessmentEnvironment")
+    static let policyEvaluation = CodingKeys(stringValue: "policyEvaluation")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "event",
+      "riskAnalysis",
+      "tokenProperties",
+      "accountVerification",
+      "accountDefenderAssessment",
+      "privatePasswordLeakVerification",
+      "firewallPolicyAssessment",
+      "fraudPreventionAssessment",
+      "fraudSignals",
+      "phoneFraudAssessment",
+      "assessmentEnvironment",
+      "policyEvaluation",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.event = try container.decodeIfPresent(Event.self, forKey: .event)
+    self.riskAnalysis = try container.decodeIfPresent(RiskAnalysis.self, forKey: .riskAnalysis)
+    self.tokenProperties = try container.decodeIfPresent(
+      TokenProperties.self, forKey: .tokenProperties)
+    self.accountVerification = try container.decodeIfPresent(
+      AccountVerificationInfo.self, forKey: .accountVerification)
+    self.accountDefenderAssessment = try container.decodeIfPresent(
+      AccountDefenderAssessment.self, forKey: .accountDefenderAssessment)
+    self.privatePasswordLeakVerification = try container.decodeIfPresent(
+      PrivatePasswordLeakVerification.self, forKey: .privatePasswordLeakVerification)
+    self.firewallPolicyAssessment = try container.decodeIfPresent(
+      FirewallPolicyAssessment.self, forKey: .firewallPolicyAssessment)
+    self.fraudPreventionAssessment = try container.decodeIfPresent(
+      FraudPreventionAssessment.self, forKey: .fraudPreventionAssessment)
+    self.fraudSignals = try container.decodeIfPresent(FraudSignals.self, forKey: .fraudSignals)
+    self.phoneFraudAssessment = try container.decodeIfPresent(
+      PhoneFraudAssessment.self, forKey: .phoneFraudAssessment)
+    self.assessmentEnvironment = try container.decodeIfPresent(
+      AssessmentEnvironment.self, forKey: .assessmentEnvironment)
+    self.policyEvaluation = try container.decodeIfPresent(
+      PolicyEvaluation.self, forKey: .policyEvaluation)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.event, forKey: .event)
+    try container.encodeIfPresent(self.riskAnalysis, forKey: .riskAnalysis)
+    try container.encodeIfPresent(self.tokenProperties, forKey: .tokenProperties)
+    try container.encodeIfPresent(self.accountVerification, forKey: .accountVerification)
+    try container.encodeIfPresent(
+      self.accountDefenderAssessment, forKey: .accountDefenderAssessment)
+    try container.encodeIfPresent(
+      self.privatePasswordLeakVerification, forKey: .privatePasswordLeakVerification)
+    try container.encodeIfPresent(self.firewallPolicyAssessment, forKey: .firewallPolicyAssessment)
+    try container.encodeIfPresent(
+      self.fraudPreventionAssessment, forKey: .fraudPreventionAssessment)
+    try container.encodeIfPresent(self.fraudSignals, forKey: .fraudSignals)
+    try container.encodeIfPresent(self.phoneFraudAssessment, forKey: .phoneFraudAssessment)
+    try container.encodeIfPresent(self.assessmentEnvironment, forKey: .assessmentEnvironment)
+    try container.encodeIfPresent(self.policyEvaluation, forKey: .policyEvaluation)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

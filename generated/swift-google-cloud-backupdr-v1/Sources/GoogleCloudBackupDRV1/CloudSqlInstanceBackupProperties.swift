@@ -44,6 +44,8 @@ public struct CloudSqlInstanceBackupProperties: Codable, Equatable, GoogleCloudW
   /// Output only. The instance delete timestamp.
   public var instanceDeleteTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CloudSqlInstanceBackupProperties`.
   public init() {}
 
@@ -58,6 +60,68 @@ public struct CloudSqlInstanceBackupProperties: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let databaseInstalledVersion = CodingKeys(stringValue: "databaseInstalledVersion")
+    static let finalBackup = CodingKeys(stringValue: "finalBackup")
+    static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
+    static let instanceCreateTime = CodingKeys(stringValue: "instanceCreateTime")
+    static let instanceTier = CodingKeys(stringValue: "instanceTier")
+    static let instanceDeleteTime = CodingKeys(stringValue: "instanceDeleteTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "databaseInstalledVersion",
+      "finalBackup",
+      "sourceInstance",
+      "instanceCreateTime",
+      "instanceTier",
+      "instanceDeleteTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .databaseInstalledVersion)
+    {
+      self.databaseInstalledVersion = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .finalBackup) {
+      self.finalBackup = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceInstance) {
+      self.sourceInstance = value
+    }
+    self.instanceCreateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .instanceCreateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceTier) {
+      self.instanceTier = value
+    }
+    self.instanceDeleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .instanceDeleteTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.databaseInstalledVersion, forKey: .databaseInstalledVersion)
+    try container.encode(self.finalBackup, forKey: .finalBackup)
+    try container.encode(self.sourceInstance, forKey: .sourceInstance)
+    try container.encodeIfPresent(self.instanceCreateTime, forKey: .instanceCreateTime)
+    try container.encode(self.instanceTier, forKey: .instanceTier)
+    try container.encodeIfPresent(self.instanceDeleteTime, forKey: .instanceDeleteTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

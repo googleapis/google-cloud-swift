@@ -28,6 +28,8 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// for a given infoType.
   public var transformations: [InfoTypeTransformations.InfoTypeTransformation] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InfoTypeTransformations`.
   public init() {}
 
@@ -44,6 +46,40 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transformations = CodingKeys(stringValue: "transformations")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transformations"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [InfoTypeTransformations.InfoTypeTransformation].self, forKey: .transformations)
+    {
+      self.transformations = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transformations, forKey: .transformations)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A transformation to apply to text that is identified as a specific
   /// info_type.
   public struct InfoTypeTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -56,6 +92,8 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleCloudWKT._AnyPa
 
     /// Required. Primitive transformation to apply to the infoType.
     public var primitiveTransformation: PrimitiveTransformation? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InfoTypeTransformation`.
     public init() {}
@@ -71,6 +109,43 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleCloudWKT._AnyPa
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let infoTypes = CodingKeys(stringValue: "infoTypes")
+      static let primitiveTransformation = CodingKeys(stringValue: "primitiveTransformation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "infoTypes",
+        "primitiveTransformation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
+        self.infoTypes = value
+      }
+      self.primitiveTransformation = try container.decodeIfPresent(
+        PrimitiveTransformation.self, forKey: .primitiveTransformation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.infoTypes, forKey: .infoTypes)
+      try container.encodeIfPresent(self.primitiveTransformation, forKey: .primitiveTransformation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -36,6 +36,8 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// code comment.
   public var commentDetail: OneOf_CommentDetail? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `PullRequestComment`.
   public init() {}
 
@@ -52,18 +54,34 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case review = "review"
-    case comment = "comment"
-    case code = "code"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let review = CodingKeys(stringValue: "review")
+    static let comment = CodingKeys(stringValue: "comment")
+    static let code = CodingKeys(stringValue: "code")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "review",
+      "comment",
+      "code",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -92,13 +110,17 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try commentDetailCheckAndSet(.code(code))
     }
     self.commentDetail = commentDetail
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
 
     if let choice = self.commentDetail {
       switch choice {
@@ -109,6 +131,9 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .code(let value):
         try container.encode(value, forKey: .code)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -126,6 +151,8 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Output only. The effective commit sha this review is pointing to.
     public var effectiveCommitSha: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Review`.
     public init() {}
 
@@ -140,6 +167,52 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let actionType = CodingKeys(stringValue: "actionType")
+      static let body = CodingKeys(stringValue: "body")
+      static let effectiveCommitSha = CodingKeys(stringValue: "effectiveCommitSha")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "actionType",
+        "body",
+        "effectiveCommitSha",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        PullRequestComment.Review.ActionType.self, forKey: .actionType)
+      {
+        self.actionType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
+        self.body = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .effectiveCommitSha) {
+        self.effectiveCommitSha = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.actionType, forKey: .actionType)
+      try container.encode(self.body, forKey: .body)
+      try container.encode(self.effectiveCommitSha, forKey: .effectiveCommitSha)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The review action type.
@@ -272,6 +345,8 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Required. The comment body.
     public var body: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Comment`.
     public init() {}
 
@@ -286,6 +361,38 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let body = CodingKeys(stringValue: "body")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "body"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
+        self.body = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.body, forKey: .body)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -323,6 +430,8 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// Output only. The effective commit sha this code comment is pointing to.
     public var effectiveCommitSha: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Code`.
     public init() {}
 
@@ -337,6 +446,68 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let body = CodingKeys(stringValue: "body")
+      static let reply = CodingKeys(stringValue: "reply")
+      static let position = CodingKeys(stringValue: "position")
+      static let effectiveRootComment = CodingKeys(stringValue: "effectiveRootComment")
+      static let resolved = CodingKeys(stringValue: "resolved")
+      static let effectiveCommitSha = CodingKeys(stringValue: "effectiveCommitSha")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "body",
+        "reply",
+        "position",
+        "effectiveRootComment",
+        "resolved",
+        "effectiveCommitSha",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
+        self.body = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reply) {
+        self.reply = value
+      }
+      self.position = try container.decodeIfPresent(
+        PullRequestComment.Position.self, forKey: .position)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .effectiveRootComment)
+      {
+        self.effectiveRootComment = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .resolved) {
+        self.resolved = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .effectiveCommitSha) {
+        self.effectiveCommitSha = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.body, forKey: .body)
+      try container.encode(self.reply, forKey: .reply)
+      try container.encodeIfPresent(self.position, forKey: .position)
+      try container.encode(self.effectiveRootComment, forKey: .effectiveRootComment)
+      try container.encode(self.resolved, forKey: .resolved)
+      try container.encode(self.effectiveCommitSha, forKey: .effectiveCommitSha)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -361,6 +532,8 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// the new side of the diff, negative value means it's on the old side.
     public var line: Swift.Int64 = Swift.Int64()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Position`.
     public init() {}
 
@@ -375,6 +548,44 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let path = CodingKeys(stringValue: "path")
+      static let line = CodingKeys(stringValue: "line")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "path",
+        "line",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .line) {
+        self.line = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.line, forKey: .line)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

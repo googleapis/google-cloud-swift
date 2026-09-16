@@ -38,6 +38,8 @@ public struct TerraformError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// available.
   public var error: GoogleRpc.Status? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TerraformError`.
   public init() {}
 
@@ -52,6 +54,54 @@ public struct TerraformError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let resourceAddress = CodingKeys(stringValue: "resourceAddress")
+    static let httpResponseCode = CodingKeys(stringValue: "httpResponseCode")
+    static let errorDescription = CodingKeys(stringValue: "errorDescription")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "resourceAddress",
+      "httpResponseCode",
+      "errorDescription",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceAddress) {
+      self.resourceAddress = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpResponseCode) {
+      self.httpResponseCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorDescription) {
+      self.errorDescription = value
+    }
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.resourceAddress, forKey: .resourceAddress)
+    try container.encode(self.httpResponseCode, forKey: .httpResponseCode)
+    try container.encode(self.errorDescription, forKey: .errorDescription)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

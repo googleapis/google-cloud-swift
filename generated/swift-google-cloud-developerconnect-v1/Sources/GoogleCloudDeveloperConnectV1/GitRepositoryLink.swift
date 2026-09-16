@@ -63,6 +63,8 @@ public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// connection.
   public var gitProxyUri: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GitRepositoryLink`.
   public init() {}
 
@@ -77,6 +79,104 @@ public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let cloneUri = CodingKeys(stringValue: "cloneUri")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
+    static let annotations = CodingKeys(stringValue: "annotations")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let webhookId = CodingKeys(stringValue: "webhookId")
+    static let gitProxyUri = CodingKeys(stringValue: "gitProxyUri")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "cloneUri",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "labels",
+      "etag",
+      "reconciling",
+      "annotations",
+      "uid",
+      "webhookId",
+      "gitProxyUri",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cloneUri) {
+      self.cloneUri = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+      self.etag = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .annotations)
+    {
+      self.annotations = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .webhookId) {
+      self.webhookId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gitProxyUri) {
+      self.gitProxyUri = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.cloneUri, forKey: .cloneUri)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.reconciling, forKey: .reconciling)
+    try container.encode(self.annotations, forKey: .annotations)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.webhookId, forKey: .webhookId)
+    try container.encode(self.gitProxyUri, forKey: .gitProxyUri)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

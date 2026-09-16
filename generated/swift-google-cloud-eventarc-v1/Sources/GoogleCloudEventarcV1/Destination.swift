@@ -28,6 +28,8 @@ public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var descriptor: OneOf_Descriptor? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Destination`.
   public init() {}
 
@@ -44,13 +46,27 @@ public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case cloudRun = "cloudRun"
-    case cloudFunction = "cloudFunction"
-    case gke = "gke"
-    case workflow = "workflow"
-    case httpEndpoint = "httpEndpoint"
-    case networkConfig = "networkConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let cloudRun = CodingKeys(stringValue: "cloudRun")
+    static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
+    static let gke = CodingKeys(stringValue: "gke")
+    static let workflow = CodingKeys(stringValue: "workflow")
+    static let httpEndpoint = CodingKeys(stringValue: "httpEndpoint")
+    static let networkConfig = CodingKeys(stringValue: "networkConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "cloudRun",
+      "cloudFunction",
+      "gke",
+      "workflow",
+      "httpEndpoint",
+      "networkConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -84,11 +100,15 @@ public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try descriptorCheckAndSet(.httpEndpoint(httpEndpoint))
     }
     self.descriptor = descriptor
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.networkConfig, forKey: .networkConfig)
+    try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
 
     if let choice = self.descriptor {
       switch choice {
@@ -103,6 +123,9 @@ public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .httpEndpoint(let value):
         try container.encode(value, forKey: .httpEndpoint)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

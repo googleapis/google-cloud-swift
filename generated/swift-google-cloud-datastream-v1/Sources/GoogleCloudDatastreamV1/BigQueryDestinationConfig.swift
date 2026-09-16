@@ -35,6 +35,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
 
   public var writeMode: OneOf_WriteMode? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BigQueryDestinationConfig`.
   public init() {}
 
@@ -51,13 +53,27 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case singleTargetDataset = "singleTargetDataset"
-    case sourceHierarchyDatasets = "sourceHierarchyDatasets"
-    case dataFreshness = "dataFreshness"
-    case blmtConfig = "blmtConfig"
-    case merge = "merge"
-    case appendOnly = "appendOnly"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singleTargetDataset = CodingKeys(stringValue: "singleTargetDataset")
+    static let sourceHierarchyDatasets = CodingKeys(stringValue: "sourceHierarchyDatasets")
+    static let dataFreshness = CodingKeys(stringValue: "dataFreshness")
+    static let blmtConfig = CodingKeys(stringValue: "blmtConfig")
+    static let merge = CodingKeys(stringValue: "merge")
+    static let appendOnly = CodingKeys(stringValue: "appendOnly")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singleTargetDataset",
+      "sourceHierarchyDatasets",
+      "dataFreshness",
+      "blmtConfig",
+      "merge",
+      "appendOnly",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -110,12 +126,16 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       try writeModeCheckAndSet(.appendOnly(appendOnly))
     }
     self.writeMode = writeMode
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.dataFreshness, forKey: .dataFreshness)
-    try container.encode(self.blmtConfig, forKey: .blmtConfig)
+    try container.encodeIfPresent(self.dataFreshness, forKey: .dataFreshness)
+    try container.encodeIfPresent(self.blmtConfig, forKey: .blmtConfig)
 
     if let choice = self.datasetConfig {
       switch choice {
@@ -134,6 +154,9 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
         try container.encode(value, forKey: .appendOnly)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A single target dataset to which all data will be streamed.
@@ -144,6 +167,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
     /// DatasetIds allowed characters:
     /// https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
     public var datasetId: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SingleTargetDataset`.
     public init() {}
@@ -159,6 +184,38 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datasetId = CodingKeys(stringValue: "datasetId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datasetId"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
+        self.datasetId = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.datasetId, forKey: .datasetId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -186,6 +243,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
     /// project will be inferred from the stream resource.
     public var projectId: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SourceHierarchyDatasets`.
     public init() {}
 
@@ -200,6 +259,42 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let datasetTemplate = CodingKeys(stringValue: "datasetTemplate")
+      static let projectId = CodingKeys(stringValue: "projectId")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "datasetTemplate",
+        "projectId",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.datasetTemplate = try container.decodeIfPresent(
+        BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate.self,
+        forKey: .datasetTemplate)
+      self.projectId = try container.decodeIfPresent(Swift.String.self, forKey: .projectId)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.datasetTemplate, forKey: .datasetTemplate)
+      try container.encodeIfPresent(self.projectId, forKey: .projectId)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Dataset template used for dynamic dataset creation.
@@ -225,6 +320,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       /// for more information.
       public var kmsKeyName: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DatasetTemplate`.
       public init() {}
 
@@ -239,6 +336,50 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let location = CodingKeys(stringValue: "location")
+        static let datasetIdPrefix = CodingKeys(stringValue: "datasetIdPrefix")
+        static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "location",
+          "datasetIdPrefix",
+          "kmsKeyName",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+          self.location = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetIdPrefix) {
+          self.datasetIdPrefix = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
+          self.kmsKeyName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.location, forKey: .location)
+        try container.encode(self.datasetIdPrefix, forKey: .datasetIdPrefix)
+        try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -287,6 +428,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
     public var tableFormat: BigQueryDestinationConfig.BlmtConfig.TableFormat =
       BigQueryDestinationConfig.BlmtConfig.TableFormat()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BlmtConfig`.
     public init() {}
 
@@ -301,6 +444,66 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bucket = CodingKeys(stringValue: "bucket")
+      static let rootPath = CodingKeys(stringValue: "rootPath")
+      static let connectionName = CodingKeys(stringValue: "connectionName")
+      static let fileFormat = CodingKeys(stringValue: "fileFormat")
+      static let tableFormat = CodingKeys(stringValue: "tableFormat")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bucket",
+        "rootPath",
+        "connectionName",
+        "fileFormat",
+        "tableFormat",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+        self.bucket = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootPath) {
+        self.rootPath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionName) {
+        self.connectionName = value
+      }
+      if let value = try container.decodeIfPresent(
+        BigQueryDestinationConfig.BlmtConfig.FileFormat.self, forKey: .fileFormat)
+      {
+        self.fileFormat = value
+      }
+      if let value = try container.decodeIfPresent(
+        BigQueryDestinationConfig.BlmtConfig.TableFormat.self, forKey: .tableFormat)
+      {
+        self.tableFormat = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.bucket, forKey: .bucket)
+      try container.encode(self.rootPath, forKey: .rootPath)
+      try container.encode(self.connectionName, forKey: .connectionName)
+      try container.encode(self.fileFormat, forKey: .fileFormat)
+      try container.encode(self.tableFormat, forKey: .tableFormat)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Supported file formats for BigLake managed tables.
@@ -515,6 +718,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
   public struct AppendOnly: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AppendOnly`.
     public init() {}
 
@@ -529,6 +734,30 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -547,6 +776,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
   public struct Merge: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Merge`.
     public init() {}
 
@@ -561,6 +792,30 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

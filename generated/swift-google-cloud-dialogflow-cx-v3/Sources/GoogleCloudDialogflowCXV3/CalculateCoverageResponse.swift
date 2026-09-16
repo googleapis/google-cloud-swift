@@ -32,6 +32,8 @@
     /// The type of coverage requested.
     public var coverageType: OneOf_CoverageType? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CalculateCoverageResponse`.
     public init() {}
 
@@ -48,16 +50,30 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case agent = "agent"
-      case intentCoverage = "intentCoverage"
-      case transitionCoverage = "transitionCoverage"
-      case routeGroupCoverage = "routeGroupCoverage"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let agent = CodingKeys(stringValue: "agent")
+      static let intentCoverage = CodingKeys(stringValue: "intentCoverage")
+      static let transitionCoverage = CodingKeys(stringValue: "transitionCoverage")
+      static let routeGroupCoverage = CodingKeys(stringValue: "routeGroupCoverage")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "agent",
+        "intentCoverage",
+        "transitionCoverage",
+        "routeGroupCoverage",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.agent = try container.decode(Swift.String.self, forKey: .agent)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
+        self.agent = value
+      }
 
       var coverageType: OneOf_CoverageType? = nil
       let coverageTypeCheckAndSet = {
@@ -85,6 +101,10 @@
         try coverageTypeCheckAndSet(.routeGroupCoverage(routeGroupCoverage))
       }
       self.coverageType = coverageType
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -100,6 +120,9 @@
         case .routeGroupCoverage(let value):
           try container.encode(value, forKey: .routeGroupCoverage)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

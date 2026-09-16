@@ -29,6 +29,8 @@ public struct ProfileStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Time when the profile generation status was updated
   public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProfileStatus`.
   public init() {}
 
@@ -43,6 +45,41 @@ public struct ProfileStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let status = CodingKeys(stringValue: "status")
+    static let timestamp = CodingKeys(stringValue: "timestamp")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "status",
+      "timestamp",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+    self.timestamp = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .timestamp)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.status, forKey: .status)
+    try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

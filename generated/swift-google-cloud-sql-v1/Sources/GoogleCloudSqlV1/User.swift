@@ -79,6 +79,8 @@
     /// User details for specific database type
     public var userDetails: OneOf_UserDetails? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `User`.
     public init() {}
 
@@ -95,42 +97,87 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case kind = "kind"
-      case password = "password"
-      case etag = "etag"
-      case name = "name"
-      case host = "host"
-      case instance = "instance"
-      case project = "project"
-      case type = "type"
-      case sqlserverUserDetails = "sqlserverUserDetails"
-      case iamEmail = "iamEmail"
-      case passwordPolicy = "passwordPolicy"
-      case dualPasswordType = "dualPasswordType"
-      case iamStatus = "iamStatus"
-      case databaseRoles = "databaseRoles"
-      case serverRoles = "serverRoles"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let password = CodingKeys(stringValue: "password")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let name = CodingKeys(stringValue: "name")
+      static let host = CodingKeys(stringValue: "host")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let type = CodingKeys(stringValue: "type")
+      static let sqlserverUserDetails = CodingKeys(stringValue: "sqlserverUserDetails")
+      static let iamEmail = CodingKeys(stringValue: "iamEmail")
+      static let passwordPolicy = CodingKeys(stringValue: "passwordPolicy")
+      static let dualPasswordType = CodingKeys(stringValue: "dualPasswordType")
+      static let iamStatus = CodingKeys(stringValue: "iamStatus")
+      static let databaseRoles = CodingKeys(stringValue: "databaseRoles")
+      static let serverRoles = CodingKeys(stringValue: "serverRoles")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "password",
+        "etag",
+        "name",
+        "host",
+        "instance",
+        "project",
+        "type",
+        "sqlserverUserDetails",
+        "iamEmail",
+        "passwordPolicy",
+        "dualPasswordType",
+        "iamStatus",
+        "databaseRoles",
+        "serverRoles",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.kind = try container.decode(Swift.String.self, forKey: .kind)
-      self.password = try container.decode(Swift.String.self, forKey: .password)
-      self.etag = try container.decode(Swift.String.self, forKey: .etag)
-      self.name = try container.decode(Swift.String.self, forKey: .name)
-      self.host = try container.decode(Swift.String.self, forKey: .host)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
-      self.type = try container.decode(User.SqlUserType.self, forKey: .type)
-      self.iamEmail = try container.decode(Swift.String.self, forKey: .iamEmail)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
+        self.host = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
+      if let value = try container.decodeIfPresent(User.SqlUserType.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .iamEmail) {
+        self.iamEmail = value
+      }
       self.passwordPolicy = try container.decodeIfPresent(
         UserPasswordValidationPolicy.self, forKey: .passwordPolicy)
       self.dualPasswordType = try container.decodeIfPresent(
         User.DualPasswordType.self, forKey: .dualPasswordType)
       self.iamStatus = try container.decodeIfPresent(User.IamStatus.self, forKey: .iamStatus)
-      self.databaseRoles = try container.decode([Swift.String].self, forKey: .databaseRoles)
-      self.serverRoles = try container.decode([Swift.String].self, forKey: .serverRoles)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .databaseRoles) {
+        self.databaseRoles = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serverRoles) {
+        self.serverRoles = value
+      }
 
       var userDetails: OneOf_UserDetails? = nil
       let userDetailsCheckAndSet = {
@@ -148,6 +195,10 @@
         try userDetailsCheckAndSet(.sqlserverUserDetails(sqlserverUserDetails))
       }
       self.userDetails = userDetails
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -161,9 +212,9 @@
       try container.encode(self.project, forKey: .project)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.iamEmail, forKey: .iamEmail)
-      try container.encode(self.passwordPolicy, forKey: .passwordPolicy)
-      try container.encode(self.dualPasswordType, forKey: .dualPasswordType)
-      try container.encode(self.iamStatus, forKey: .iamStatus)
+      try container.encodeIfPresent(self.passwordPolicy, forKey: .passwordPolicy)
+      try container.encodeIfPresent(self.dualPasswordType, forKey: .dualPasswordType)
+      try container.encodeIfPresent(self.iamStatus, forKey: .iamStatus)
       try container.encode(self.databaseRoles, forKey: .databaseRoles)
       try container.encode(self.serverRoles, forKey: .serverRoles)
 
@@ -172,6 +223,9 @@
         case .sqlserverUserDetails(let value):
           try container.encode(value, forKey: .sqlserverUserDetails)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -111,6 +111,8 @@
     /// selects the configured leader unconditionally.
     public var leader: BackendServiceHAPolicyLeader? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BackendServiceHAPolicy`.
     public init() {}
 
@@ -127,9 +129,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case fastIpmove = "fastIPMove"
-      case leader = "leader"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let fastIpmove = CodingKeys(stringValue: "fastIPMove")
+      static let leader = CodingKeys(stringValue: "leader")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "fastIPMove",
+        "leader",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -138,12 +150,19 @@
         BackendServiceHAPolicy.FastIpmove.self, forKey: .fastIpmove)
       self.leader = try container.decodeIfPresent(
         BackendServiceHAPolicyLeader.self, forKey: .leader)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.fastIpmove, forKey: .fastIpmove)
-      try container.encode(self.leader, forKey: .leader)
+      try container.encodeIfPresent(self.fastIpmove, forKey: .fastIpmove)
+      try container.encodeIfPresent(self.leader, forKey: .leader)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [fastIPMove][google.cloud.compute.v1.BackendServiceHAPolicy.fastIPMove] field.

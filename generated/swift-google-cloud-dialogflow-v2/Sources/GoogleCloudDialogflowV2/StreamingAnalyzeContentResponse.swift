@@ -105,6 +105,8 @@
     /// The name of the actual Cloud speech model used for speech recognition.
     public var speechModel: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `StreamingAnalyzeContentResponse`.
     public init() {}
 
@@ -119,6 +121,89 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let recognitionResult = CodingKeys(stringValue: "recognitionResult")
+      static let replyText = CodingKeys(stringValue: "replyText")
+      static let replyAudio = CodingKeys(stringValue: "replyAudio")
+      static let automatedAgentReply = CodingKeys(stringValue: "automatedAgentReply")
+      static let message = CodingKeys(stringValue: "message")
+      static let humanAgentSuggestionResults = CodingKeys(
+        stringValue: "humanAgentSuggestionResults")
+      static let endUserSuggestionResults = CodingKeys(stringValue: "endUserSuggestionResults")
+      static let dtmfParameters = CodingKeys(stringValue: "dtmfParameters")
+      static let debuggingInfo = CodingKeys(stringValue: "debuggingInfo")
+      static let speechModel = CodingKeys(stringValue: "speechModel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "recognitionResult",
+        "replyText",
+        "replyAudio",
+        "automatedAgentReply",
+        "message",
+        "humanAgentSuggestionResults",
+        "endUserSuggestionResults",
+        "dtmfParameters",
+        "debuggingInfo",
+        "speechModel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.recognitionResult = try container.decodeIfPresent(
+        StreamingRecognitionResult.self, forKey: .recognitionResult)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .replyText) {
+        self.replyText = value
+      }
+      self.replyAudio = try container.decodeIfPresent(OutputAudio.self, forKey: .replyAudio)
+      self.automatedAgentReply = try container.decodeIfPresent(
+        AutomatedAgentReply.self, forKey: .automatedAgentReply)
+      self.message = try container.decodeIfPresent(Message.self, forKey: .message)
+      if let value = try container.decodeIfPresent(
+        [SuggestionResult].self, forKey: .humanAgentSuggestionResults)
+      {
+        self.humanAgentSuggestionResults = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SuggestionResult].self, forKey: .endUserSuggestionResults)
+      {
+        self.endUserSuggestionResults = value
+      }
+      self.dtmfParameters = try container.decodeIfPresent(
+        DtmfParameters.self, forKey: .dtmfParameters)
+      self.debuggingInfo = try container.decodeIfPresent(
+        CloudConversationDebuggingInfo.self, forKey: .debuggingInfo)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .speechModel) {
+        self.speechModel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.recognitionResult, forKey: .recognitionResult)
+      try container.encode(self.replyText, forKey: .replyText)
+      try container.encodeIfPresent(self.replyAudio, forKey: .replyAudio)
+      try container.encodeIfPresent(self.automatedAgentReply, forKey: .automatedAgentReply)
+      try container.encodeIfPresent(self.message, forKey: .message)
+      try container.encode(self.humanAgentSuggestionResults, forKey: .humanAgentSuggestionResults)
+      try container.encode(self.endUserSuggestionResults, forKey: .endUserSuggestionResults)
+      try container.encodeIfPresent(self.dtmfParameters, forKey: .dtmfParameters)
+      try container.encodeIfPresent(self.debuggingInfo, forKey: .debuggingInfo)
+      try container.encode(self.speechModel, forKey: .speechModel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

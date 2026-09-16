@@ -51,6 +51,8 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Partner associated with this workload.
   public var partner: Workload.Partner = Workload.Partner()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Workload`.
   public init() {}
 
@@ -65,6 +67,85 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let folderId = CodingKeys(stringValue: "folderId")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let folder = CodingKeys(stringValue: "folder")
+    static let workloadOnboardingState = CodingKeys(stringValue: "workloadOnboardingState")
+    static let isOnboarded = CodingKeys(stringValue: "isOnboarded")
+    static let keyManagementProjectId = CodingKeys(stringValue: "keyManagementProjectId")
+    static let location = CodingKeys(stringValue: "location")
+    static let partner = CodingKeys(stringValue: "partner")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "folderId",
+      "createTime",
+      "folder",
+      "workloadOnboardingState",
+      "isOnboarded",
+      "keyManagementProjectId",
+      "location",
+      "partner",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .folderId) {
+      self.folderId = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .folder) {
+      self.folder = value
+    }
+    self.workloadOnboardingState = try container.decodeIfPresent(
+      WorkloadOnboardingState.self, forKey: .workloadOnboardingState)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isOnboarded) {
+      self.isOnboarded = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyManagementProjectId)
+    {
+      self.keyManagementProjectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+      self.location = value
+    }
+    if let value = try container.decodeIfPresent(Workload.Partner.self, forKey: .partner) {
+      self.partner = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.folderId, forKey: .folderId)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.folder, forKey: .folder)
+    try container.encodeIfPresent(self.workloadOnboardingState, forKey: .workloadOnboardingState)
+    try container.encode(self.isOnboarded, forKey: .isOnboarded)
+    try container.encode(self.keyManagementProjectId, forKey: .keyManagementProjectId)
+    try container.encode(self.location, forKey: .location)
+    try container.encode(self.partner, forKey: .partner)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Supported Assured Workloads Partners.

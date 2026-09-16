@@ -43,6 +43,8 @@
     /// PEM representation of the trusted CA's x509 certificate.
     public var caCertificate: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DemoteMasterMySqlReplicaConfiguration`.
     public init() {}
 
@@ -57,6 +59,68 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let kind = CodingKeys(stringValue: "kind")
+      static let username = CodingKeys(stringValue: "username")
+      static let password = CodingKeys(stringValue: "password")
+      static let clientKey = CodingKeys(stringValue: "clientKey")
+      static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+      static let caCertificate = CodingKeys(stringValue: "caCertificate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "kind",
+        "username",
+        "password",
+        "clientKey",
+        "clientCertificate",
+        "caCertificate",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
+        self.kind = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+        self.username = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+        self.password = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+        self.clientKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+        self.clientCertificate = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+        self.caCertificate = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.kind, forKey: .kind)
+      try container.encode(self.username, forKey: .username)
+      try container.encode(self.password, forKey: .password)
+      try container.encode(self.clientKey, forKey: .clientKey)
+      try container.encode(self.clientCertificate, forKey: .clientCertificate)
+      try container.encode(self.caCertificate, forKey: .caCertificate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -70,6 +70,8 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The document payload.
   public var source: OneOf_Source? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ProcessRequest`.
   public init() {}
 
@@ -86,28 +88,54 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case inlineDocument = "inlineDocument"
-    case rawDocument = "rawDocument"
-    case gcsDocument = "gcsDocument"
-    case name = "name"
-    case skipHumanReview = "skipHumanReview"
-    case fieldMask = "fieldMask"
-    case processOptions = "processOptions"
-    case labels = "labels"
-    case imagelessMode = "imagelessMode"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let inlineDocument = CodingKeys(stringValue: "inlineDocument")
+    static let rawDocument = CodingKeys(stringValue: "rawDocument")
+    static let gcsDocument = CodingKeys(stringValue: "gcsDocument")
+    static let name = CodingKeys(stringValue: "name")
+    static let skipHumanReview = CodingKeys(stringValue: "skipHumanReview")
+    static let fieldMask = CodingKeys(stringValue: "fieldMask")
+    static let processOptions = CodingKeys(stringValue: "processOptions")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let imagelessMode = CodingKeys(stringValue: "imagelessMode")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "inlineDocument",
+      "rawDocument",
+      "gcsDocument",
+      "name",
+      "skipHumanReview",
+      "fieldMask",
+      "processOptions",
+      "labels",
+      "imagelessMode",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.skipHumanReview = try container.decode(Swift.Bool.self, forKey: .skipHumanReview)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .skipHumanReview) {
+      self.skipHumanReview = value
+    }
     self.fieldMask = try container.decodeIfPresent(
       GoogleCloudWKT.FieldMask.self, forKey: .fieldMask)
     self.processOptions = try container.decodeIfPresent(
       ProcessOptions.self, forKey: .processOptions)
-    self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
-    self.imagelessMode = try container.decode(Swift.Bool.self, forKey: .imagelessMode)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .imagelessMode) {
+      self.imagelessMode = value
+    }
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -129,14 +157,18 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try sourceCheckAndSet(.gcsDocument(gcsDocument))
     }
     self.source = source
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.skipHumanReview, forKey: .skipHumanReview)
-    try container.encode(self.fieldMask, forKey: .fieldMask)
-    try container.encode(self.processOptions, forKey: .processOptions)
+    try container.encodeIfPresent(self.fieldMask, forKey: .fieldMask)
+    try container.encodeIfPresent(self.processOptions, forKey: .processOptions)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.imagelessMode, forKey: .imagelessMode)
 
@@ -149,6 +181,9 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .gcsDocument(let value):
         try container.encode(value, forKey: .gcsDocument)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

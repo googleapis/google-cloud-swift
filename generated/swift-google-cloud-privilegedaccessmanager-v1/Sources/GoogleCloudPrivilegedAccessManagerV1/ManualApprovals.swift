@@ -43,6 +43,8 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// in the specified order sequentially. Only 1 step is supported.
   public var steps: [ManualApprovals.Step] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ManualApprovals`.
   public init() {}
 
@@ -57,6 +59,47 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let requireApproverJustification = CodingKeys(
+      stringValue: "requireApproverJustification")
+    static let steps = CodingKeys(stringValue: "steps")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "requireApproverJustification",
+      "steps",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .requireApproverJustification)
+    {
+      self.requireApproverJustification = value
+    }
+    if let value = try container.decodeIfPresent([ManualApprovals.Step].self, forKey: .steps) {
+      self.steps = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.requireApproverJustification, forKey: .requireApproverJustification)
+    try container.encode(self.steps, forKey: .steps)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Step represents a logical step in a manual approval workflow.
@@ -76,6 +119,8 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// pending approval.
     public var approverEmailRecipients: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Step`.
     public init() {}
 
@@ -90,6 +135,52 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let approvers = CodingKeys(stringValue: "approvers")
+      static let approvalsNeeded = CodingKeys(stringValue: "approvalsNeeded")
+      static let approverEmailRecipients = CodingKeys(stringValue: "approverEmailRecipients")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "approvers",
+        "approvalsNeeded",
+        "approverEmailRecipients",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AccessControlEntry].self, forKey: .approvers) {
+        self.approvers = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .approvalsNeeded) {
+        self.approvalsNeeded = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .approverEmailRecipients)
+      {
+        self.approverEmailRecipients = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.approvers, forKey: .approvers)
+      try container.encode(self.approvalsNeeded, forKey: .approvalsNeeded)
+      try container.encode(self.approverEmailRecipients, forKey: .approverEmailRecipients)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

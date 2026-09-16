@@ -291,6 +291,8 @@ public struct ServingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// be associated with. Currently we support setting only one type of solution.
   public var solutionTypes: [SolutionType] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServingConfig`.
   public init() {}
 
@@ -305,6 +307,162 @@ public struct ServingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let modelId = CodingKeys(stringValue: "modelId")
+    static let priceRerankingLevel = CodingKeys(stringValue: "priceRerankingLevel")
+    static let facetControlIds = CodingKeys(stringValue: "facetControlIds")
+    static let dynamicFacetSpec = CodingKeys(stringValue: "dynamicFacetSpec")
+    static let boostControlIds = CodingKeys(stringValue: "boostControlIds")
+    static let filterControlIds = CodingKeys(stringValue: "filterControlIds")
+    static let redirectControlIds = CodingKeys(stringValue: "redirectControlIds")
+    static let twowaySynonymsControlIds = CodingKeys(stringValue: "twowaySynonymsControlIds")
+    static let onewaySynonymsControlIds = CodingKeys(stringValue: "onewaySynonymsControlIds")
+    static let doNotAssociateControlIds = CodingKeys(stringValue: "doNotAssociateControlIds")
+    static let replacementControlIds = CodingKeys(stringValue: "replacementControlIds")
+    static let ignoreControlIds = CodingKeys(stringValue: "ignoreControlIds")
+    static let diversityLevel = CodingKeys(stringValue: "diversityLevel")
+    static let diversityType = CodingKeys(stringValue: "diversityType")
+    static let enableCategoryFilterLevel = CodingKeys(stringValue: "enableCategoryFilterLevel")
+    static let ignoreRecsDenylist = CodingKeys(stringValue: "ignoreRecsDenylist")
+    static let personalizationSpec = CodingKeys(stringValue: "personalizationSpec")
+    static let solutionTypes = CodingKeys(stringValue: "solutionTypes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "modelId",
+      "priceRerankingLevel",
+      "facetControlIds",
+      "dynamicFacetSpec",
+      "boostControlIds",
+      "filterControlIds",
+      "redirectControlIds",
+      "twowaySynonymsControlIds",
+      "onewaySynonymsControlIds",
+      "doNotAssociateControlIds",
+      "replacementControlIds",
+      "ignoreControlIds",
+      "diversityLevel",
+      "diversityType",
+      "enableCategoryFilterLevel",
+      "ignoreRecsDenylist",
+      "personalizationSpec",
+      "solutionTypes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+      self.modelId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .priceRerankingLevel) {
+      self.priceRerankingLevel = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .facetControlIds) {
+      self.facetControlIds = value
+    }
+    self.dynamicFacetSpec = try container.decodeIfPresent(
+      SearchRequest.DynamicFacetSpec.self, forKey: .dynamicFacetSpec)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .boostControlIds) {
+      self.boostControlIds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .filterControlIds) {
+      self.filterControlIds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .redirectControlIds) {
+      self.redirectControlIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .twowaySynonymsControlIds)
+    {
+      self.twowaySynonymsControlIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .onewaySynonymsControlIds)
+    {
+      self.onewaySynonymsControlIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .doNotAssociateControlIds)
+    {
+      self.doNotAssociateControlIds = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String].self, forKey: .replacementControlIds)
+    {
+      self.replacementControlIds = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ignoreControlIds) {
+      self.ignoreControlIds = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diversityLevel) {
+      self.diversityLevel = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServingConfig.DiversityType.self, forKey: .diversityType)
+    {
+      self.diversityType = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .enableCategoryFilterLevel)
+    {
+      self.enableCategoryFilterLevel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreRecsDenylist) {
+      self.ignoreRecsDenylist = value
+    }
+    self.personalizationSpec = try container.decodeIfPresent(
+      SearchRequest.PersonalizationSpec.self, forKey: .personalizationSpec)
+    if let value = try container.decodeIfPresent([SolutionType].self, forKey: .solutionTypes) {
+      self.solutionTypes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.modelId, forKey: .modelId)
+    try container.encode(self.priceRerankingLevel, forKey: .priceRerankingLevel)
+    try container.encode(self.facetControlIds, forKey: .facetControlIds)
+    try container.encodeIfPresent(self.dynamicFacetSpec, forKey: .dynamicFacetSpec)
+    try container.encode(self.boostControlIds, forKey: .boostControlIds)
+    try container.encode(self.filterControlIds, forKey: .filterControlIds)
+    try container.encode(self.redirectControlIds, forKey: .redirectControlIds)
+    try container.encode(self.twowaySynonymsControlIds, forKey: .twowaySynonymsControlIds)
+    try container.encode(self.onewaySynonymsControlIds, forKey: .onewaySynonymsControlIds)
+    try container.encode(self.doNotAssociateControlIds, forKey: .doNotAssociateControlIds)
+    try container.encode(self.replacementControlIds, forKey: .replacementControlIds)
+    try container.encode(self.ignoreControlIds, forKey: .ignoreControlIds)
+    try container.encode(self.diversityLevel, forKey: .diversityLevel)
+    try container.encode(self.diversityType, forKey: .diversityType)
+    try container.encode(self.enableCategoryFilterLevel, forKey: .enableCategoryFilterLevel)
+    try container.encode(self.ignoreRecsDenylist, forKey: .ignoreRecsDenylist)
+    try container.encodeIfPresent(self.personalizationSpec, forKey: .personalizationSpec)
+    try container.encode(self.solutionTypes, forKey: .solutionTypes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// What type of diversity - data or rule based.

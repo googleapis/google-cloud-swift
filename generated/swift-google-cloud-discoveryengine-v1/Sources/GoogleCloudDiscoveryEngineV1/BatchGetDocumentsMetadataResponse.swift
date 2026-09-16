@@ -31,6 +31,8 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     public var documentsMetadata: [BatchGetDocumentsMetadataResponse.DocumentMetadata] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BatchGetDocumentsMetadataResponse`.
     public init() {}
 
@@ -45,6 +47,40 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let documentsMetadata = CodingKeys(stringValue: "documentsMetadata")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "documentsMetadata"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [BatchGetDocumentsMetadataResponse.DocumentMetadata].self, forKey: .documentsMetadata)
+      {
+        self.documentsMetadata = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.documentsMetadata, forKey: .documentsMetadata)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The metadata of a [Document][google.cloud.discoveryengine.v1.Document].
@@ -81,6 +117,8 @@
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
       public var dataIngestionSource: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DocumentMetadata`.
       public init() {}
 
@@ -97,6 +135,59 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let matcherValue = CodingKeys(stringValue: "matcherValue")
+        static let state = CodingKeys(stringValue: "state")
+        static let lastRefreshedTime = CodingKeys(stringValue: "lastRefreshedTime")
+        static let dataIngestionSource = CodingKeys(stringValue: "dataIngestionSource")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "matcherValue",
+          "state",
+          "lastRefreshedTime",
+          "dataIngestionSource",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.matcherValue = try container.decodeIfPresent(
+          BatchGetDocumentsMetadataResponse.DocumentMetadata.MatcherValue.self,
+          forKey: .matcherValue)
+        if let value = try container.decodeIfPresent(
+          BatchGetDocumentsMetadataResponse.State.self, forKey: .state)
+        {
+          self.state = value
+        }
+        self.lastRefreshedTime = try container.decodeIfPresent(
+          GoogleCloudWKT.Timestamp.self, forKey: .lastRefreshedTime)
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .dataIngestionSource)
+        {
+          self.dataIngestionSource = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.matcherValue, forKey: .matcherValue)
+        try container.encode(self.state, forKey: .state)
+        try container.encodeIfPresent(self.lastRefreshedTime, forKey: .lastRefreshedTime)
+        try container.encode(self.dataIngestionSource, forKey: .dataIngestionSource)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// The value of the matcher that was used to match the
       /// [Document][google.cloud.discoveryengine.v1.Document].
       ///
@@ -109,6 +200,9 @@
         ///
         /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
         public var matcherValue: OneOf_MatcherValue? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `MatcherValue`.
         public init() {}
@@ -126,9 +220,19 @@
           return copy
         }
 
-        private enum CodingKeys: Swift.String, CodingKey {
-          case uri = "uri"
-          case fhirResource = "fhirResource"
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let uri = CodingKeys(stringValue: "uri")
+          static let fhirResource = CodingKeys(stringValue: "fhirResource")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "uri",
+            "fhirResource",
+          ]
         }
 
         public init(from decoder: Decoder) throws {
@@ -153,6 +257,10 @@
             try matcherValueCheckAndSet(.fhirResource(fhirResource))
           }
           self.matcherValue = matcherValue
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -165,6 +273,9 @@
             case .fhirResource(let value):
               try container.encode(value, forKey: .fhirResource)
             }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
         }
 

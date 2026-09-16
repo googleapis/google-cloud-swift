@@ -36,6 +36,8 @@
 
     public var expiration: OneOf_Expiration? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlInstancesDeleteRequest`.
     public init() {}
 
@@ -52,23 +54,44 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case instance = "instance"
-      case project = "project"
-      case enableFinalBackup = "enableFinalBackup"
-      case finalBackupTtlDays = "finalBackupTtlDays"
-      case finalBackupExpiryTime = "finalBackupExpiryTime"
-      case finalBackupDescription = "finalBackupDescription"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let instance = CodingKeys(stringValue: "instance")
+      static let project = CodingKeys(stringValue: "project")
+      static let enableFinalBackup = CodingKeys(stringValue: "enableFinalBackup")
+      static let finalBackupTtlDays = CodingKeys(stringValue: "finalBackupTtlDays")
+      static let finalBackupExpiryTime = CodingKeys(stringValue: "finalBackupExpiryTime")
+      static let finalBackupDescription = CodingKeys(stringValue: "finalBackupDescription")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "instance",
+        "project",
+        "enableFinalBackup",
+        "finalBackupTtlDays",
+        "finalBackupExpiryTime",
+        "finalBackupDescription",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.instance = try container.decode(Swift.String.self, forKey: .instance)
-      self.project = try container.decode(Swift.String.self, forKey: .project)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+        self.instance = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+        self.project = value
+      }
       self.enableFinalBackup = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableFinalBackup)
-      self.finalBackupDescription = try container.decode(
+      if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .finalBackupDescription)
+      {
+        self.finalBackupDescription = value
+      }
 
       var expiration: OneOf_Expiration? = nil
       let expirationCheckAndSet = {
@@ -91,13 +114,17 @@
         try expirationCheckAndSet(.finalBackupExpiryTime(finalBackupExpiryTime))
       }
       self.expiration = expiration
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.project, forKey: .project)
-      try container.encode(self.enableFinalBackup, forKey: .enableFinalBackup)
+      try container.encodeIfPresent(self.enableFinalBackup, forKey: .enableFinalBackup)
       try container.encode(self.finalBackupDescription, forKey: .finalBackupDescription)
 
       if let choice = self.expiration {
@@ -107,6 +134,9 @@
         case .finalBackupExpiryTime(let value):
           try container.encode(value, forKey: .finalBackupExpiryTime)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -28,6 +28,8 @@ public struct QueryDataResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// The query-specific result.
   public var kind: OneOf_Kind? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryDataResponse`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct QueryDataResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case account = "account"
-    case transactionState = "transactionState"
-    case redactedFields = "redactedFields"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let account = CodingKeys(stringValue: "account")
+    static let transactionState = CodingKeys(stringValue: "transactionState")
+    static let redactedFields = CodingKeys(stringValue: "redactedFields")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "account",
+      "transactionState",
+      "redactedFields",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.redactedFields = try container.decode([RedactedField].self, forKey: .redactedFields)
+    if let value = try container.decodeIfPresent([RedactedField].self, forKey: .redactedFields) {
+      self.redactedFields = value
+    }
 
     var kind: OneOf_Kind? = nil
     let kindCheckAndSet = {
@@ -73,6 +88,10 @@ public struct QueryDataResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try kindCheckAndSet(.transactionState(transactionState))
     }
     self.kind = kind
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,6 +105,9 @@ public struct QueryDataResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .transactionState(let value):
         try container.encode(value, forKey: .transactionState)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

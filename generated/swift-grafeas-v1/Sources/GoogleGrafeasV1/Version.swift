@@ -47,6 +47,8 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// <epoch>:<name>-<revision> and is only set when kind is NORMAL.
   public var fullName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Version`.
   public init() {}
 
@@ -61,6 +63,68 @@ public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let epoch = CodingKeys(stringValue: "epoch")
+    static let name = CodingKeys(stringValue: "name")
+    static let revision = CodingKeys(stringValue: "revision")
+    static let inclusive = CodingKeys(stringValue: "inclusive")
+    static let kind = CodingKeys(stringValue: "kind")
+    static let fullName = CodingKeys(stringValue: "fullName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "epoch",
+      "name",
+      "revision",
+      "inclusive",
+      "kind",
+      "fullName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .epoch) {
+      self.epoch = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+      self.revision = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .inclusive) {
+      self.inclusive = value
+    }
+    if let value = try container.decodeIfPresent(Version.VersionKind.self, forKey: .kind) {
+      self.kind = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullName) {
+      self.fullName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.epoch, forKey: .epoch)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.revision, forKey: .revision)
+    try container.encode(self.inclusive, forKey: .inclusive)
+    try container.encode(self.kind, forKey: .kind)
+    try container.encode(self.fullName, forKey: .fullName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Whether this is an ordinary package version or a sentinel MIN/MAX version.

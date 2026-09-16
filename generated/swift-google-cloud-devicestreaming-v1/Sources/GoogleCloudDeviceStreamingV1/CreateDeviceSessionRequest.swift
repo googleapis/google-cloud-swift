@@ -35,6 +35,8 @@ public struct CreateDeviceSessionRequest: Codable, Equatable, GoogleCloudWKT._An
   /// are /[a-z][0-9]-/.
   public var deviceSessionId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateDeviceSessionRequest`.
   public init() {}
 
@@ -49,6 +51,48 @@ public struct CreateDeviceSessionRequest: Codable, Equatable, GoogleCloudWKT._An
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let deviceSession = CodingKeys(stringValue: "deviceSession")
+    static let deviceSessionId = CodingKeys(stringValue: "deviceSessionId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "deviceSession",
+      "deviceSessionId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.deviceSession = try container.decodeIfPresent(DeviceSession.self, forKey: .deviceSession)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deviceSessionId) {
+      self.deviceSessionId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.deviceSession, forKey: .deviceSession)
+    try container.encode(self.deviceSessionId, forKey: .deviceSessionId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

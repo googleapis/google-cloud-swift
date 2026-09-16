@@ -62,6 +62,8 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudW
   /// Output only. The editor the module was last updated by.
   public var lastEditor: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EventThreatDetectionCustomModule`.
   public init() {}
 
@@ -76,6 +78,85 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudW
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let config = CodingKeys(stringValue: "config")
+    static let ancestorModule = CodingKeys(stringValue: "ancestorModule")
+    static let enablementState = CodingKeys(stringValue: "enablementState")
+    static let type = CodingKeys(stringValue: "type")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let lastEditor = CodingKeys(stringValue: "lastEditor")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "config",
+      "ancestorModule",
+      "enablementState",
+      "type",
+      "displayName",
+      "description",
+      "updateTime",
+      "lastEditor",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.config = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .config)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ancestorModule) {
+      self.ancestorModule = value
+    }
+    if let value = try container.decodeIfPresent(
+      EventThreatDetectionCustomModule.EnablementState.self, forKey: .enablementState)
+    {
+      self.enablementState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lastEditor) {
+      self.lastEditor = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.config, forKey: .config)
+    try container.encode(self.ancestorModule, forKey: .ancestorModule)
+    try container.encode(self.enablementState, forKey: .enablementState)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.lastEditor, forKey: .lastEditor)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enablement state of the module.

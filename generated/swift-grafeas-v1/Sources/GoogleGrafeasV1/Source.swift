@@ -44,6 +44,8 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// the context field.
   public var additionalContexts: [SourceContext] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Source`.
   public init() {}
 
@@ -58,6 +60,59 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let artifactStorageSourceUri = CodingKeys(stringValue: "artifactStorageSourceUri")
+    static let fileHashes = CodingKeys(stringValue: "fileHashes")
+    static let context = CodingKeys(stringValue: "context")
+    static let additionalContexts = CodingKeys(stringValue: "additionalContexts")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "artifactStorageSourceUri",
+      "fileHashes",
+      "context",
+      "additionalContexts",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .artifactStorageSourceUri)
+    {
+      self.artifactStorageSourceUri = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: FileHashes].self, forKey: .fileHashes)
+    {
+      self.fileHashes = value
+    }
+    self.context = try container.decodeIfPresent(SourceContext.self, forKey: .context)
+    if let value = try container.decodeIfPresent([SourceContext].self, forKey: .additionalContexts)
+    {
+      self.additionalContexts = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.artifactStorageSourceUri, forKey: .artifactStorageSourceUri)
+    try container.encode(self.fileHashes, forKey: .fileHashes)
+    try container.encodeIfPresent(self.context, forKey: .context)
+    try container.encode(self.additionalContexts, forKey: .additionalContexts)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

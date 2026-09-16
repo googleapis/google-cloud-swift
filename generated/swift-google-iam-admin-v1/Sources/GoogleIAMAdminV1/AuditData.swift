@@ -26,6 +26,8 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The permission_delta when when creating or updating a Role.
   public var permissionDelta: AuditData.PermissionDelta? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AuditData`.
   public init() {}
 
@@ -42,6 +44,37 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let permissionDelta = CodingKeys(stringValue: "permissionDelta")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "permissionDelta"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.permissionDelta = try container.decodeIfPresent(
+      AuditData.PermissionDelta.self, forKey: .permissionDelta)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.permissionDelta, forKey: .permissionDelta)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A PermissionDelta message to record the added_permissions and
   /// removed_permissions inside a role.
   public struct PermissionDelta: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -52,6 +85,8 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Removed permissions.
     public var removedPermissions: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PermissionDelta`.
     public init() {}
@@ -67,6 +102,45 @@ public struct AuditData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let addedPermissions = CodingKeys(stringValue: "addedPermissions")
+      static let removedPermissions = CodingKeys(stringValue: "removedPermissions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "addedPermissions",
+        "removedPermissions",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addedPermissions) {
+        self.addedPermissions = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .removedPermissions)
+      {
+        self.removedPermissions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.addedPermissions, forKey: .addedPermissions)
+      try container.encode(self.removedPermissions, forKey: .removedPermissions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

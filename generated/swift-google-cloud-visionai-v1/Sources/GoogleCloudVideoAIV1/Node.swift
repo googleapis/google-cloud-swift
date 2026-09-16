@@ -40,6 +40,8 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var streamOutputConfig: OneOf_StreamOutputConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Node`.
   public init() {}
 
@@ -56,22 +58,45 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case outputAllOutputChannelsToStream = "outputAllOutputChannelsToStream"
-    case name = "name"
-    case displayName = "displayName"
-    case nodeConfig = "nodeConfig"
-    case processor = "processor"
-    case parents = "parents"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let outputAllOutputChannelsToStream = CodingKeys(
+      stringValue: "outputAllOutputChannelsToStream")
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let nodeConfig = CodingKeys(stringValue: "nodeConfig")
+    static let processor = CodingKeys(stringValue: "processor")
+    static let parents = CodingKeys(stringValue: "parents")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "outputAllOutputChannelsToStream",
+      "name",
+      "displayName",
+      "nodeConfig",
+      "processor",
+      "parents",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
     self.nodeConfig = try container.decodeIfPresent(ProcessorConfig.self, forKey: .nodeConfig)
-    self.processor = try container.decode(Swift.String.self, forKey: .processor)
-    self.parents = try container.decode([Node.InputEdge].self, forKey: .parents)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .processor) {
+      self.processor = value
+    }
+    if let value = try container.decodeIfPresent([Node.InputEdge].self, forKey: .parents) {
+      self.parents = value
+    }
 
     var streamOutputConfig: OneOf_StreamOutputConfig? = nil
     let streamOutputConfigCheckAndSet = {
@@ -90,13 +115,17 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         .outputAllOutputChannelsToStream(outputAllOutputChannelsToStream))
     }
     self.streamOutputConfig = streamOutputConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.nodeConfig, forKey: .nodeConfig)
+    try container.encodeIfPresent(self.nodeConfig, forKey: .nodeConfig)
     try container.encode(self.processor, forKey: .processor)
     try container.encode(self.parents, forKey: .parents)
 
@@ -105,6 +134,9 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .outputAllOutputChannelsToStream(let value):
         try container.encode(value, forKey: .outputAllOutputChannelsToStream)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -123,6 +155,8 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// It can be omitted if target processor only has 1 input channel.
     public var connectedInputChannel: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InputEdge`.
     public init() {}
 
@@ -137,6 +171,53 @@ public struct Node: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let parentNode = CodingKeys(stringValue: "parentNode")
+      static let parentOutputChannel = CodingKeys(stringValue: "parentOutputChannel")
+      static let connectedInputChannel = CodingKeys(stringValue: "connectedInputChannel")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "parentNode",
+        "parentOutputChannel",
+        "connectedInputChannel",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentNode) {
+        self.parentNode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parentOutputChannel)
+      {
+        self.parentOutputChannel = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .connectedInputChannel)
+      {
+        self.connectedInputChannel = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.parentNode, forKey: .parentNode)
+      try container.encode(self.parentOutputChannel, forKey: .parentOutputChannel)
+      try container.encode(self.connectedInputChannel, forKey: .connectedInputChannel)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

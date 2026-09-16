@@ -45,6 +45,8 @@ public struct LustreCsiDriverConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// interfaces on a node to maximize I/O performance for demanding workloads.
   public var disableMultiNic: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LustreCsiDriverConfig`.
   public init() {}
 
@@ -59,6 +61,50 @@ public struct LustreCsiDriverConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let enabled = CodingKeys(stringValue: "enabled")
+    static let enableLegacyLustrePort = CodingKeys(stringValue: "enableLegacyLustrePort")
+    static let disableMultiNic = CodingKeys(stringValue: "disableMultiNic")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "enabled",
+      "enableLegacyLustrePort",
+      "disableMultiNic",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+      self.enabled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableLegacyLustrePort) {
+      self.enableLegacyLustrePort = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableMultiNic) {
+      self.disableMultiNic = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.enabled, forKey: .enabled)
+    try container.encode(self.enableLegacyLustrePort, forKey: .enableLegacyLustrePort)
+    try container.encode(self.disableMultiNic, forKey: .disableMultiNic)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

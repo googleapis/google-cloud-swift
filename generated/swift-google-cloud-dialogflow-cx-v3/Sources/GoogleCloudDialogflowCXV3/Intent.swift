@@ -88,6 +88,8 @@
     /// Optional. Matching DTMF pattern for the intent.
     public var dtmfPattern: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Intent`.
     public init() {}
 
@@ -102,6 +104,90 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let trainingPhrases = CodingKeys(stringValue: "trainingPhrases")
+      static let parameters = CodingKeys(stringValue: "parameters")
+      static let priority = CodingKeys(stringValue: "priority")
+      static let isFallback = CodingKeys(stringValue: "isFallback")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let description = CodingKeys(stringValue: "description")
+      static let dtmfPattern = CodingKeys(stringValue: "dtmfPattern")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "displayName",
+        "trainingPhrases",
+        "parameters",
+        "priority",
+        "isFallback",
+        "labels",
+        "description",
+        "dtmfPattern",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Intent.TrainingPhrase].self, forKey: .trainingPhrases)
+      {
+        self.trainingPhrases = value
+      }
+      if let value = try container.decodeIfPresent([Intent.Parameter].self, forKey: .parameters) {
+        self.parameters = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
+        self.priority = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isFallback) {
+        self.isFallback = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dtmfPattern) {
+        self.dtmfPattern = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.trainingPhrases, forKey: .trainingPhrases)
+      try container.encode(self.parameters, forKey: .parameters)
+      try container.encode(self.priority, forKey: .priority)
+      try container.encode(self.isFallback, forKey: .isFallback)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.dtmfPattern, forKey: .dtmfPattern)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents an example that the agent is trained on to identify the intent.
@@ -138,6 +224,8 @@
       /// Indicates how many times this example was added to the intent.
       public var repeatCount: Swift.Int32 = Swift.Int32()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `TrainingPhrase`.
       public init() {}
 
@@ -154,6 +242,52 @@
         return copy
       }
 
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let parts = CodingKeys(stringValue: "parts")
+        static let repeatCount = CodingKeys(stringValue: "repeatCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "parts",
+          "repeatCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Intent.TrainingPhrase.Part].self, forKey: .parts)
+        {
+          self.parts = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .repeatCount) {
+          self.repeatCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.parts, forKey: .parts)
+        try container.encode(self.repeatCount, forKey: .repeatCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
       /// Represents a part of a training phrase.
       public struct Part: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
@@ -167,6 +301,9 @@
         ///
         /// [google.cloud.dialogflow.cx.v3.Intent.Parameter]: <doc:Intent/Parameter>
         public var parameterId: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
 
         /// Initialize a new instance of `Part`.
         public init() {}
@@ -182,6 +319,44 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let text = CodingKeys(stringValue: "text")
+          static let parameterId = CodingKeys(stringValue: "parameterId")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "text",
+            "parameterId",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
+            self.text = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameterId) {
+            self.parameterId = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.text, forKey: .text)
+          try container.encode(self.parameterId, forKey: .parameterId)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -241,6 +416,8 @@
       /// [google.cloud.dialogflow.cx.v3.EntityType.redact]: <doc:EntityType/redact>
       public var redact: Swift.Bool = Swift.Bool()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Parameter`.
       public init() {}
 
@@ -255,6 +432,56 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let entityType = CodingKeys(stringValue: "entityType")
+        static let isList = CodingKeys(stringValue: "isList")
+        static let redact = CodingKeys(stringValue: "redact")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "entityType",
+          "isList",
+          "redact",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
+          self.entityType = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isList) {
+          self.isList = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .redact) {
+          self.redact = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.entityType, forKey: .entityType)
+        try container.encode(self.isList, forKey: .isList)
+        try container.encode(self.redact, forKey: .redact)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

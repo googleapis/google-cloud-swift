@@ -61,6 +61,8 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Configurations for premium OCR features.
   public var premiumFeatures: OcrConfig.PremiumFeatures? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `OcrConfig`.
   public init() {}
 
@@ -77,6 +79,82 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hints = CodingKeys(stringValue: "hints")
+    static let enableNativePdfParsing = CodingKeys(stringValue: "enableNativePdfParsing")
+    static let enableImageQualityScores = CodingKeys(stringValue: "enableImageQualityScores")
+    static let advancedOcrOptions = CodingKeys(stringValue: "advancedOcrOptions")
+    static let enableSymbol = CodingKeys(stringValue: "enableSymbol")
+    static let computeStyleInfo = CodingKeys(stringValue: "computeStyleInfo")
+    static let disableCharacterBoxesDetection = CodingKeys(
+      stringValue: "disableCharacterBoxesDetection")
+    static let premiumFeatures = CodingKeys(stringValue: "premiumFeatures")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hints",
+      "enableNativePdfParsing",
+      "enableImageQualityScores",
+      "advancedOcrOptions",
+      "enableSymbol",
+      "computeStyleInfo",
+      "disableCharacterBoxesDetection",
+      "premiumFeatures",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.hints = try container.decodeIfPresent(OcrConfig.Hints.self, forKey: .hints)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableNativePdfParsing) {
+      self.enableNativePdfParsing = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableImageQualityScores)
+    {
+      self.enableImageQualityScores = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .advancedOcrOptions) {
+      self.advancedOcrOptions = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableSymbol) {
+      self.enableSymbol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .computeStyleInfo) {
+      self.computeStyleInfo = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .disableCharacterBoxesDetection)
+    {
+      self.disableCharacterBoxesDetection = value
+    }
+    self.premiumFeatures = try container.decodeIfPresent(
+      OcrConfig.PremiumFeatures.self, forKey: .premiumFeatures)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.hints, forKey: .hints)
+    try container.encode(self.enableNativePdfParsing, forKey: .enableNativePdfParsing)
+    try container.encode(self.enableImageQualityScores, forKey: .enableImageQualityScores)
+    try container.encode(self.advancedOcrOptions, forKey: .advancedOcrOptions)
+    try container.encode(self.enableSymbol, forKey: .enableSymbol)
+    try container.encode(self.computeStyleInfo, forKey: .computeStyleInfo)
+    try container.encode(
+      self.disableCharacterBoxesDetection, forKey: .disableCharacterBoxesDetection)
+    try container.encodeIfPresent(self.premiumFeatures, forKey: .premiumFeatures)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Hints for OCR Engine
   public struct Hints: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -88,6 +166,8 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// image is known, setting a hint will help get better results (although it
     /// will be a significant hindrance if the hint is wrong).
     public var languageHints: [Swift.String] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Hints`.
     public init() {}
@@ -103,6 +183,38 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let languageHints = CodingKeys(stringValue: "languageHints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "languageHints"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageHints) {
+        self.languageHints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.languageHints, forKey: .languageHints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -130,6 +242,8 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Turn on the model that can extract LaTeX math formulas.
     public var enableMathOcr: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PremiumFeatures`.
     public init() {}
 
@@ -144,6 +258,53 @@ public struct OcrConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enableSelectionMarkDetection = CodingKeys(
+        stringValue: "enableSelectionMarkDetection")
+      static let computeStyleInfo = CodingKeys(stringValue: "computeStyleInfo")
+      static let enableMathOcr = CodingKeys(stringValue: "enableMathOcr")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enableSelectionMarkDetection",
+        "computeStyleInfo",
+        "enableMathOcr",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .enableSelectionMarkDetection)
+      {
+        self.enableSelectionMarkDetection = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .computeStyleInfo) {
+        self.computeStyleInfo = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableMathOcr) {
+        self.enableMathOcr = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enableSelectionMarkDetection, forKey: .enableSelectionMarkDetection)
+      try container.encode(self.computeStyleInfo, forKey: .computeStyleInfo)
+      try container.encode(self.enableMathOcr, forKey: .enableMathOcr)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

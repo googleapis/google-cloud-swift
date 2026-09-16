@@ -28,6 +28,8 @@ public struct MetadataLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// latitude, author, caption.
   public var label: OneOf_Label? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MetadataLocation`.
   public init() {}
 
@@ -44,15 +46,28 @@ public struct MetadataLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case type = "type"
-    case storageLabel = "storageLabel"
-    case keyValueMetadataLabel = "keyValueMetadataLabel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let type = CodingKeys(stringValue: "type")
+    static let storageLabel = CodingKeys(stringValue: "storageLabel")
+    static let keyValueMetadataLabel = CodingKeys(stringValue: "keyValueMetadataLabel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "type",
+      "storageLabel",
+      "keyValueMetadataLabel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decode(MetadataType.self, forKey: .type)
+    if let value = try container.decodeIfPresent(MetadataType.self, forKey: .type) {
+      self.type = value
+    }
 
     var label: OneOf_Label? = nil
     let labelCheckAndSet = {
@@ -75,6 +90,10 @@ public struct MetadataLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try labelCheckAndSet(.keyValueMetadataLabel(keyValueMetadataLabel))
     }
     self.label = label
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -88,6 +107,9 @@ public struct MetadataLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .keyValueMetadataLabel(let value):
         try container.encode(value, forKey: .keyValueMetadataLabel)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

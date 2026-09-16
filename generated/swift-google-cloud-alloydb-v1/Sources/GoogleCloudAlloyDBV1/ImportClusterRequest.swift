@@ -44,6 +44,8 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// oneof field to support various import formats like SQL and CSV.
   public var importOptions: OneOf_ImportOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ImportClusterRequest`.
   public init() {}
 
@@ -60,21 +62,43 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case sqlImportOptions = "sqlImportOptions"
-    case csvImportOptions = "csvImportOptions"
-    case name = "name"
-    case gcsUri = "gcsUri"
-    case database = "database"
-    case user = "user"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let sqlImportOptions = CodingKeys(stringValue: "sqlImportOptions")
+    static let csvImportOptions = CodingKeys(stringValue: "csvImportOptions")
+    static let name = CodingKeys(stringValue: "name")
+    static let gcsUri = CodingKeys(stringValue: "gcsUri")
+    static let database = CodingKeys(stringValue: "database")
+    static let user = CodingKeys(stringValue: "user")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "sqlImportOptions",
+      "csvImportOptions",
+      "name",
+      "gcsUri",
+      "database",
+      "user",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.gcsUri = try container.decode(Swift.String.self, forKey: .gcsUri)
-    self.database = try container.decode(Swift.String.self, forKey: .database)
-    self.user = try container.decode(Swift.String.self, forKey: .user)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcsUri) {
+      self.gcsUri = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+      self.database = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+      self.user = value
+    }
 
     var importOptions: OneOf_ImportOptions? = nil
     let importOptionsCheckAndSet = {
@@ -97,6 +121,10 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       try importOptionsCheckAndSet(.csvImportOptions(csvImportOptions))
     }
     self.importOptions = importOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -114,12 +142,17 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
         try container.encode(value, forKey: .csvImportOptions)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Options for importing data in SQL format.
   public struct SqlImportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SqlImportOptions`.
     public init() {}
 
@@ -134,6 +167,30 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -174,6 +231,8 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     /// Code.
     public var escapeCharacter: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CsvImportOptions`.
     public init() {}
 
@@ -188,6 +247,62 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let table = CodingKeys(stringValue: "table")
+      static let columns = CodingKeys(stringValue: "columns")
+      static let fieldDelimiter = CodingKeys(stringValue: "fieldDelimiter")
+      static let quoteCharacter = CodingKeys(stringValue: "quoteCharacter")
+      static let escapeCharacter = CodingKeys(stringValue: "escapeCharacter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "table",
+        "columns",
+        "fieldDelimiter",
+        "quoteCharacter",
+        "escapeCharacter",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .columns) {
+        self.columns = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldDelimiter) {
+        self.fieldDelimiter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .quoteCharacter) {
+        self.quoteCharacter = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .escapeCharacter) {
+        self.escapeCharacter = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.table, forKey: .table)
+      try container.encode(self.columns, forKey: .columns)
+      try container.encode(self.fieldDelimiter, forKey: .fieldDelimiter)
+      try container.encode(self.quoteCharacter, forKey: .quoteCharacter)
+      try container.encode(self.escapeCharacter, forKey: .escapeCharacter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

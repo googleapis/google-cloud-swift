@@ -55,6 +55,8 @@ public struct CreateInspectTemplateRequest: Codable, Equatable, GoogleCloudWKT._
   /// Deprecated. This field has no effect.
   public var locationId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateInspectTemplateRequest`.
   public init() {}
 
@@ -69,6 +71,55 @@ public struct CreateInspectTemplateRequest: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let inspectTemplate = CodingKeys(stringValue: "inspectTemplate")
+    static let templateId = CodingKeys(stringValue: "templateId")
+    static let locationId = CodingKeys(stringValue: "locationId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "inspectTemplate",
+      "templateId",
+      "locationId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.inspectTemplate = try container.decodeIfPresent(
+      InspectTemplate.self, forKey: .inspectTemplate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .templateId) {
+      self.templateId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationId) {
+      self.locationId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.inspectTemplate, forKey: .inspectTemplate)
+    try container.encode(self.templateId, forKey: .templateId)
+    try container.encode(self.locationId, forKey: .locationId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

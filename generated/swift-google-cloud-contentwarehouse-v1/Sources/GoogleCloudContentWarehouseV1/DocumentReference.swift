@@ -52,6 +52,8 @@ public struct DocumentReference: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Document is a folder with legal hold.
   public var documentIsLegalHoldFolder: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DocumentReference`.
   public init() {}
 
@@ -66,6 +68,87 @@ public struct DocumentReference: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let documentName = CodingKeys(stringValue: "documentName")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let snippet = CodingKeys(stringValue: "snippet")
+    static let documentIsFolder = CodingKeys(stringValue: "documentIsFolder")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let documentIsRetentionFolder = CodingKeys(stringValue: "documentIsRetentionFolder")
+    static let documentIsLegalHoldFolder = CodingKeys(stringValue: "documentIsLegalHoldFolder")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "documentName",
+      "displayName",
+      "snippet",
+      "documentIsFolder",
+      "updateTime",
+      "createTime",
+      "deleteTime",
+      "documentIsRetentionFolder",
+      "documentIsLegalHoldFolder",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .documentName) {
+      self.documentName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snippet) {
+      self.snippet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .documentIsFolder) {
+      self.documentIsFolder = value
+    }
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .documentIsRetentionFolder)
+    {
+      self.documentIsRetentionFolder = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .documentIsLegalHoldFolder)
+    {
+      self.documentIsLegalHoldFolder = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.documentName, forKey: .documentName)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.snippet, forKey: .snippet)
+    try container.encode(self.documentIsFolder, forKey: .documentIsFolder)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.documentIsRetentionFolder, forKey: .documentIsRetentionFolder)
+    try container.encode(self.documentIsLegalHoldFolder, forKey: .documentIsLegalHoldFolder)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

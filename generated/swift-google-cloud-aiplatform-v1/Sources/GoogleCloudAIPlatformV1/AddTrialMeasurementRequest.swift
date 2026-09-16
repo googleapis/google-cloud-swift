@@ -33,6 +33,8 @@
     /// Required. The measurement to be added to a Trial.
     public var measurement: Measurement? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AddTrialMeasurementRequest`.
     public init() {}
 
@@ -47,6 +49,42 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let trialName = CodingKeys(stringValue: "trialName")
+      static let measurement = CodingKeys(stringValue: "measurement")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "trialName",
+        "measurement",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trialName) {
+        self.trialName = value
+      }
+      self.measurement = try container.decodeIfPresent(Measurement.self, forKey: .measurement)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.trialName, forKey: .trialName)
+      try container.encodeIfPresent(self.measurement, forKey: .measurement)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

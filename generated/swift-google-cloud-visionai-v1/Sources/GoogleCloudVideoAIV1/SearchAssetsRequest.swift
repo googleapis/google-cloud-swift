@@ -62,6 +62,8 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// - STREAM_VIDEO: search results are sorted by the start time.
   public var sortSpec: OneOf_SortSpec? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchAssetsRequest`.
   public init() {}
 
@@ -78,30 +80,61 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case schemaKeySortingStrategy = "schemaKeySortingStrategy"
-    case corpus = "corpus"
-    case pageSize = "pageSize"
-    case pageToken = "pageToken"
-    case contentTimeRanges = "contentTimeRanges"
-    case criteria = "criteria"
-    case facetSelections = "facetSelections"
-    case resultAnnotationKeys = "resultAnnotationKeys"
-    case searchQuery = "searchQuery"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let schemaKeySortingStrategy = CodingKeys(stringValue: "schemaKeySortingStrategy")
+    static let corpus = CodingKeys(stringValue: "corpus")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let contentTimeRanges = CodingKeys(stringValue: "contentTimeRanges")
+    static let criteria = CodingKeys(stringValue: "criteria")
+    static let facetSelections = CodingKeys(stringValue: "facetSelections")
+    static let resultAnnotationKeys = CodingKeys(stringValue: "resultAnnotationKeys")
+    static let searchQuery = CodingKeys(stringValue: "searchQuery")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "schemaKeySortingStrategy",
+      "corpus",
+      "pageSize",
+      "pageToken",
+      "contentTimeRanges",
+      "criteria",
+      "facetSelections",
+      "resultAnnotationKeys",
+      "searchQuery",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.corpus = try container.decode(Swift.String.self, forKey: .corpus)
-    self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
-    self.pageToken = try container.decode(Swift.String.self, forKey: .pageToken)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .corpus) {
+      self.corpus = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
     self.contentTimeRanges = try container.decodeIfPresent(
       DateTimeRangeArray.self, forKey: .contentTimeRanges)
-    self.criteria = try container.decode([Criteria].self, forKey: .criteria)
-    self.facetSelections = try container.decode([FacetGroup].self, forKey: .facetSelections)
-    self.resultAnnotationKeys = try container.decode(
-      [Swift.String].self, forKey: .resultAnnotationKeys)
-    self.searchQuery = try container.decode(Swift.String.self, forKey: .searchQuery)
+    if let value = try container.decodeIfPresent([Criteria].self, forKey: .criteria) {
+      self.criteria = value
+    }
+    if let value = try container.decodeIfPresent([FacetGroup].self, forKey: .facetSelections) {
+      self.facetSelections = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resultAnnotationKeys)
+    {
+      self.resultAnnotationKeys = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchQuery) {
+      self.searchQuery = value
+    }
 
     var sortSpec: OneOf_SortSpec? = nil
     let sortSpecCheckAndSet = {
@@ -119,6 +152,10 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try sortSpecCheckAndSet(.schemaKeySortingStrategy(schemaKeySortingStrategy))
     }
     self.sortSpec = sortSpec
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -126,7 +163,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.corpus, forKey: .corpus)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.contentTimeRanges, forKey: .contentTimeRanges)
+    try container.encodeIfPresent(self.contentTimeRanges, forKey: .contentTimeRanges)
     try container.encode(self.criteria, forKey: .criteria)
     try container.encode(self.facetSelections, forKey: .facetSelections)
     try container.encode(self.resultAnnotationKeys, forKey: .resultAnnotationKeys)
@@ -137,6 +174,9 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .schemaKeySortingStrategy(let value):
         try container.encode(value, forKey: .schemaKeySortingStrategy)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -30,6 +30,8 @@
     /// The percent of transitions in the agent that are covered.
     public var coverageScore: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TransitionCoverage`.
     public init() {}
 
@@ -46,12 +48,54 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let transitions = CodingKeys(stringValue: "transitions")
+      static let coverageScore = CodingKeys(stringValue: "coverageScore")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "transitions",
+        "coverageScore",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [TransitionCoverage.Transition].self, forKey: .transitions)
+      {
+        self.transitions = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .coverageScore) {
+        self.coverageScore = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.transitions, forKey: .transitions)
+      try container.encode(self.coverageScore, forKey: .coverageScore)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// The source or target of a transition.
     public struct TransitionNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A TransitionNode can be either a page or a flow.
       public var kind: OneOf_Kind? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `TransitionNode`.
       public init() {}
@@ -69,9 +113,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case page = "page"
-        case flow = "flow"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let page = CodingKeys(stringValue: "page")
+        static let flow = CodingKeys(stringValue: "flow")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "page",
+          "flow",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -94,6 +148,10 @@
           try kindCheckAndSet(.flow(flow))
         }
         self.kind = kind
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -106,6 +164,9 @@
           case .flow(let value):
             try container.encode(value, forKey: .flow)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -154,6 +215,8 @@
       /// The detailed transition.
       public var detail: OneOf_Detail? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `Transition`.
       public init() {}
 
@@ -170,23 +233,41 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case source = "source"
-        case index = "index"
-        case target = "target"
-        case covered = "covered"
-        case transitionRoute = "transitionRoute"
-        case eventHandler = "eventHandler"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let source = CodingKeys(stringValue: "source")
+        static let index = CodingKeys(stringValue: "index")
+        static let target = CodingKeys(stringValue: "target")
+        static let covered = CodingKeys(stringValue: "covered")
+        static let transitionRoute = CodingKeys(stringValue: "transitionRoute")
+        static let eventHandler = CodingKeys(stringValue: "eventHandler")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "source",
+          "index",
+          "target",
+          "covered",
+          "transitionRoute",
+          "eventHandler",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.source = try container.decodeIfPresent(
           TransitionCoverage.TransitionNode.self, forKey: .source)
-        self.index = try container.decode(Swift.Int32.self, forKey: .index)
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
+          self.index = value
+        }
         self.target = try container.decodeIfPresent(
           TransitionCoverage.TransitionNode.self, forKey: .target)
-        self.covered = try container.decode(Swift.Bool.self, forKey: .covered)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .covered) {
+          self.covered = value
+        }
 
         var detail: OneOf_Detail? = nil
         let detailCheckAndSet = {
@@ -209,13 +290,17 @@
           try detailCheckAndSet(.eventHandler(eventHandler))
         }
         self.detail = detail
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.source, forKey: .source)
+        try container.encodeIfPresent(self.source, forKey: .source)
         try container.encode(self.index, forKey: .index)
-        try container.encode(self.target, forKey: .target)
+        try container.encodeIfPresent(self.target, forKey: .target)
         try container.encode(self.covered, forKey: .covered)
 
         if let choice = self.detail {
@@ -225,6 +310,9 @@
           case .eventHandler(let value):
             try container.encode(value, forKey: .eventHandler)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 

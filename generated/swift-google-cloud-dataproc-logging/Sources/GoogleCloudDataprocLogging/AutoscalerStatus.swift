@@ -33,6 +33,8 @@ public struct AutoscalerStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Error message from an Autoscaler exception, if any.
   public var error: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AutoscalerStatus`.
   public init() {}
 
@@ -47,6 +49,58 @@ public struct AutoscalerStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let state = CodingKeys(stringValue: "state")
+    static let details = CodingKeys(stringValue: "details")
+    static let updateClusterOperationId = CodingKeys(stringValue: "updateClusterOperationId")
+    static let error = CodingKeys(stringValue: "error")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "state",
+      "details",
+      "updateClusterOperationId",
+      "error",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(AutoscalerState.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+      self.details = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .updateClusterOperationId)
+    {
+      self.updateClusterOperationId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .error) {
+      self.error = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.details, forKey: .details)
+    try container.encode(self.updateClusterOperationId, forKey: .updateClusterOperationId)
+    try container.encode(self.error, forKey: .error)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

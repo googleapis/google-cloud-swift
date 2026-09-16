@@ -154,6 +154,8 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// transferred.
   public var lastModifiedBefore: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ObjectConditions`.
   public init() {}
 
@@ -168,6 +170,68 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let minTimeElapsedSinceLastModification = CodingKeys(
+      stringValue: "minTimeElapsedSinceLastModification")
+    static let maxTimeElapsedSinceLastModification = CodingKeys(
+      stringValue: "maxTimeElapsedSinceLastModification")
+    static let includePrefixes = CodingKeys(stringValue: "includePrefixes")
+    static let excludePrefixes = CodingKeys(stringValue: "excludePrefixes")
+    static let lastModifiedSince = CodingKeys(stringValue: "lastModifiedSince")
+    static let lastModifiedBefore = CodingKeys(stringValue: "lastModifiedBefore")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "minTimeElapsedSinceLastModification",
+      "maxTimeElapsedSinceLastModification",
+      "includePrefixes",
+      "excludePrefixes",
+      "lastModifiedSince",
+      "lastModifiedBefore",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.minTimeElapsedSinceLastModification = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .minTimeElapsedSinceLastModification)
+    self.maxTimeElapsedSinceLastModification = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxTimeElapsedSinceLastModification)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includePrefixes) {
+      self.includePrefixes = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludePrefixes) {
+      self.excludePrefixes = value
+    }
+    self.lastModifiedSince = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModifiedSince)
+    self.lastModifiedBefore = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModifiedBefore)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(
+      self.minTimeElapsedSinceLastModification, forKey: .minTimeElapsedSinceLastModification)
+    try container.encodeIfPresent(
+      self.maxTimeElapsedSinceLastModification, forKey: .maxTimeElapsedSinceLastModification)
+    try container.encode(self.includePrefixes, forKey: .includePrefixes)
+    try container.encode(self.excludePrefixes, forKey: .excludePrefixes)
+    try container.encodeIfPresent(self.lastModifiedSince, forKey: .lastModifiedSince)
+    try container.encodeIfPresent(self.lastModifiedBefore, forKey: .lastModifiedBefore)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

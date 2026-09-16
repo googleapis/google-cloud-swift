@@ -30,6 +30,8 @@ public struct IndexOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// The index resource ID that this operation is acting on.
   public var indexId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `IndexOperationMetadata`.
   public init() {}
 
@@ -44,6 +46,46 @@ public struct IndexOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let common = CodingKeys(stringValue: "common")
+    static let progressEntities = CodingKeys(stringValue: "progressEntities")
+    static let indexId = CodingKeys(stringValue: "indexId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "common",
+      "progressEntities",
+      "indexId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.common = try container.decodeIfPresent(CommonMetadata.self, forKey: .common)
+    self.progressEntities = try container.decodeIfPresent(Progress.self, forKey: .progressEntities)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexId) {
+      self.indexId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.common, forKey: .common)
+    try container.encodeIfPresent(self.progressEntities, forKey: .progressEntities)
+    try container.encode(self.indexId, forKey: .indexId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

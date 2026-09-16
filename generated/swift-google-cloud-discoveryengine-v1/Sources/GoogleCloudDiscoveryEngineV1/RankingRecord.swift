@@ -53,6 +53,8 @@
     /// it will be rounded to 0.0001 to avoid returning unset.
     public var score: Swift.Float = Swift.Float()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RankingRecord`.
     public init() {}
 
@@ -67,6 +69,56 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let id = CodingKeys(stringValue: "id")
+      static let title = CodingKeys(stringValue: "title")
+      static let content = CodingKeys(stringValue: "content")
+      static let score = CodingKeys(stringValue: "score")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "id",
+        "title",
+        "content",
+        "score",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
+        self.title = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+        self.content = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
+        self.score = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.title, forKey: .title)
+      try container.encode(self.content, forKey: .content)
+      try container.encode(self.score, forKey: .score)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

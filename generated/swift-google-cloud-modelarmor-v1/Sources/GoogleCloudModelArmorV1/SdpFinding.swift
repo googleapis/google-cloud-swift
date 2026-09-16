@@ -30,6 +30,8 @@ public struct SdpFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Location for this finding.
   public var location: SdpFinding.SdpFindingLocation? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpFinding`.
   public init() {}
 
@@ -44,6 +46,49 @@ public struct SdpFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoType = CodingKeys(stringValue: "infoType")
+    static let likelihood = CodingKeys(stringValue: "likelihood")
+    static let location = CodingKeys(stringValue: "location")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoType",
+      "likelihood",
+      "location",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .infoType) {
+      self.infoType = value
+    }
+    if let value = try container.decodeIfPresent(SdpFindingLikelihood.self, forKey: .likelihood) {
+      self.likelihood = value
+    }
+    self.location = try container.decodeIfPresent(
+      SdpFinding.SdpFindingLocation.self, forKey: .location)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.infoType, forKey: .infoType)
+    try container.encode(self.likelihood, forKey: .likelihood)
+    try container.encodeIfPresent(self.location, forKey: .location)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Location of this Sensitive Data Protection Finding within input content.
@@ -73,6 +118,8 @@ public struct SdpFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// image_finding_location pointing to a different bounding box.
     public var contentLocations: [SdpContentLocation] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SdpFindingLocation`.
     public init() {}
 
@@ -87,6 +134,48 @@ public struct SdpFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let byteRange = CodingKeys(stringValue: "byteRange")
+      static let codepointRange = CodingKeys(stringValue: "codepointRange")
+      static let contentLocations = CodingKeys(stringValue: "contentLocations")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "byteRange",
+        "codepointRange",
+        "contentLocations",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.byteRange = try container.decodeIfPresent(RangeInfo.self, forKey: .byteRange)
+      self.codepointRange = try container.decodeIfPresent(RangeInfo.self, forKey: .codepointRange)
+      if let value = try container.decodeIfPresent(
+        [SdpContentLocation].self, forKey: .contentLocations)
+      {
+        self.contentLocations = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.byteRange, forKey: .byteRange)
+      try container.encodeIfPresent(self.codepointRange, forKey: .codepointRange)
+      try container.encode(self.contentLocations, forKey: .contentLocations)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct JupyterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. Display name, shown in the Jupyter kernelspec card.
   public var displayName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `JupyterConfig`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct JupyterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let kernel = CodingKeys(stringValue: "kernel")
+    static let displayName = CodingKeys(stringValue: "displayName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "kernel",
+      "displayName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(JupyterConfig.Kernel.self, forKey: .kernel) {
+      self.kernel = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.kernel, forKey: .kernel)
+    try container.encode(self.displayName, forKey: .displayName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Jupyter kernel types.

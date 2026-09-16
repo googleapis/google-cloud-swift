@@ -51,6 +51,8 @@ public struct MongodbSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// are mandatory. Mutually exclusive with the `client_key` field.
   public var secretManagerStoredClientKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MongodbSslConfig`.
   public init() {}
 
@@ -65,6 +67,77 @@ public struct MongodbSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let clientKey = CodingKeys(stringValue: "clientKey")
+    static let clientKeySet = CodingKeys(stringValue: "clientKeySet")
+    static let clientCertificate = CodingKeys(stringValue: "clientCertificate")
+    static let clientCertificateSet = CodingKeys(stringValue: "clientCertificateSet")
+    static let caCertificate = CodingKeys(stringValue: "caCertificate")
+    static let caCertificateSet = CodingKeys(stringValue: "caCertificateSet")
+    static let secretManagerStoredClientKey = CodingKeys(
+      stringValue: "secretManagerStoredClientKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "clientKey",
+      "clientKeySet",
+      "clientCertificate",
+      "clientCertificateSet",
+      "caCertificate",
+      "caCertificateSet",
+      "secretManagerStoredClientKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientKey) {
+      self.clientKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clientKeySet) {
+      self.clientKeySet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
+      self.clientCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .clientCertificateSet) {
+      self.clientCertificateSet = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
+      self.caCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .caCertificateSet) {
+      self.caCertificateSet = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .secretManagerStoredClientKey)
+    {
+      self.secretManagerStoredClientKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.clientKey, forKey: .clientKey)
+    try container.encode(self.clientKeySet, forKey: .clientKeySet)
+    try container.encode(self.clientCertificate, forKey: .clientCertificate)
+    try container.encode(self.clientCertificateSet, forKey: .clientCertificateSet)
+    try container.encode(self.caCertificate, forKey: .caCertificate)
+    try container.encode(self.caCertificateSet, forKey: .caCertificateSet)
+    try container.encode(self.secretManagerStoredClientKey, forKey: .secretManagerStoredClientKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

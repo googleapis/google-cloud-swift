@@ -44,6 +44,8 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
   /// an INVALID_ARGUMENT (400) error is returned.
   public var glossaryConfig: AdaptiveMtTranslateRequest.GlossaryConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AdaptiveMtTranslateRequest`.
   public init() {}
 
@@ -60,6 +62,66 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let dataset = CodingKeys(stringValue: "dataset")
+    static let content = CodingKeys(stringValue: "content")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+    static let referenceSentenceConfig = CodingKeys(stringValue: "referenceSentenceConfig")
+    static let glossaryConfig = CodingKeys(stringValue: "glossaryConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "dataset",
+      "content",
+      "mimeType",
+      "referenceSentenceConfig",
+      "glossaryConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+      self.dataset = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    self.referenceSentenceConfig = try container.decodeIfPresent(
+      AdaptiveMtTranslateRequest.ReferenceSentenceConfig.self, forKey: .referenceSentenceConfig)
+    self.glossaryConfig = try container.decodeIfPresent(
+      AdaptiveMtTranslateRequest.GlossaryConfig.self, forKey: .glossaryConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.dataset, forKey: .dataset)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    try container.encodeIfPresent(self.referenceSentenceConfig, forKey: .referenceSentenceConfig)
+    try container.encodeIfPresent(self.glossaryConfig, forKey: .glossaryConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A pair of sentences used as reference in source and target languages.
   public struct ReferenceSentencePair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -69,6 +131,8 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
 
     /// Target sentence in the sentence pair.
     public var targetSentence: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ReferenceSentencePair`.
     public init() {}
@@ -84,6 +148,44 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sourceSentence = CodingKeys(stringValue: "sourceSentence")
+      static let targetSentence = CodingKeys(stringValue: "targetSentence")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sourceSentence",
+        "targetSentence",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceSentence) {
+        self.sourceSentence = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetSentence) {
+        self.targetSentence = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sourceSentence, forKey: .sourceSentence)
+      try container.encode(self.targetSentence, forKey: .targetSentence)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -105,6 +207,8 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
     /// Reference sentence pairs.
     public var referenceSentencePairs: [AdaptiveMtTranslateRequest.ReferenceSentencePair] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReferenceSentencePairList`.
     public init() {}
 
@@ -119,6 +223,40 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let referenceSentencePairs = CodingKeys(stringValue: "referenceSentencePairs")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "referenceSentencePairs"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AdaptiveMtTranslateRequest.ReferenceSentencePair].self, forKey: .referenceSentencePairs)
+      {
+        self.referenceSentencePairs = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.referenceSentencePairs, forKey: .referenceSentencePairs)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -150,6 +288,8 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
     /// Target language code.
     public var targetLanguageCode: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ReferenceSentenceConfig`.
     public init() {}
 
@@ -164,6 +304,53 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let referenceSentencePairLists = CodingKeys(stringValue: "referenceSentencePairLists")
+      static let sourceLanguageCode = CodingKeys(stringValue: "sourceLanguageCode")
+      static let targetLanguageCode = CodingKeys(stringValue: "targetLanguageCode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "referenceSentencePairLists",
+        "sourceLanguageCode",
+        "targetLanguageCode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [AdaptiveMtTranslateRequest.ReferenceSentencePairList].self,
+        forKey: .referenceSentencePairLists)
+      {
+        self.referenceSentencePairLists = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguageCode) {
+        self.sourceLanguageCode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLanguageCode) {
+        self.targetLanguageCode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.referenceSentencePairLists, forKey: .referenceSentencePairLists)
+      try container.encode(self.sourceLanguageCode, forKey: .sourceLanguageCode)
+      try container.encode(self.targetLanguageCode, forKey: .targetLanguageCode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -200,6 +387,8 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
     /// translation.
     public var contextualTranslationEnabled: Swift.Bool = Swift.Bool()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GlossaryConfig`.
     public init() {}
 
@@ -214,6 +403,53 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._An
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let glossary = CodingKeys(stringValue: "glossary")
+      static let ignoreCase = CodingKeys(stringValue: "ignoreCase")
+      static let contextualTranslationEnabled = CodingKeys(
+        stringValue: "contextualTranslationEnabled")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "glossary",
+        "ignoreCase",
+        "contextualTranslationEnabled",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .glossary) {
+        self.glossary = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreCase) {
+        self.ignoreCase = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .contextualTranslationEnabled)
+      {
+        self.contextualTranslationEnabled = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.glossary, forKey: .glossary)
+      try container.encode(self.ignoreCase, forKey: .ignoreCase)
+      try container.encode(self.contextualTranslationEnabled, forKey: .contextualTranslationEnabled)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

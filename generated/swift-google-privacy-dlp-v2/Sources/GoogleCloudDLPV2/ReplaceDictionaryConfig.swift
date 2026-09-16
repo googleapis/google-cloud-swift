@@ -24,6 +24,8 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Type of dictionary.
   public var type: OneOf_Type? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReplaceDictionaryConfig`.
   public init() {}
 
@@ -40,8 +42,17 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case wordList = "wordList"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let wordList = CodingKeys(stringValue: "wordList")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "wordList"
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -63,6 +74,10 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       try typeCheckAndSet(.wordList(wordList))
     }
     self.type = type
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -73,6 +88,9 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .wordList(let value):
         try container.encode(value, forKey: .wordList)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

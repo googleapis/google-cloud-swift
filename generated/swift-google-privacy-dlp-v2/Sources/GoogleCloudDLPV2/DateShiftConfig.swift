@@ -44,6 +44,8 @@ public struct DateShiftConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// set, must also set context. Can only be applied to table items.
   public var method: OneOf_Method? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DateShiftConfig`.
   public init() {}
 
@@ -60,17 +62,33 @@ public struct DateShiftConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case upperBoundDays = "upperBoundDays"
-    case lowerBoundDays = "lowerBoundDays"
-    case context = "context"
-    case cryptoKey = "cryptoKey"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let upperBoundDays = CodingKeys(stringValue: "upperBoundDays")
+    static let lowerBoundDays = CodingKeys(stringValue: "lowerBoundDays")
+    static let context = CodingKeys(stringValue: "context")
+    static let cryptoKey = CodingKeys(stringValue: "cryptoKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "upperBoundDays",
+      "lowerBoundDays",
+      "context",
+      "cryptoKey",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.upperBoundDays = try container.decode(Swift.Int32.self, forKey: .upperBoundDays)
-    self.lowerBoundDays = try container.decode(Swift.Int32.self, forKey: .lowerBoundDays)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .upperBoundDays) {
+      self.upperBoundDays = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lowerBoundDays) {
+      self.lowerBoundDays = value
+    }
     self.context = try container.decodeIfPresent(FieldId.self, forKey: .context)
 
     var method: OneOf_Method? = nil
@@ -87,19 +105,26 @@ public struct DateShiftConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try methodCheckAndSet(.cryptoKey(cryptoKey))
     }
     self.method = method
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.upperBoundDays, forKey: .upperBoundDays)
     try container.encode(self.lowerBoundDays, forKey: .lowerBoundDays)
-    try container.encode(self.context, forKey: .context)
+    try container.encodeIfPresent(self.context, forKey: .context)
 
     if let choice = self.method {
       switch choice {
       case .cryptoKey(let value):
         try container.encode(value, forKey: .cryptoKey)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

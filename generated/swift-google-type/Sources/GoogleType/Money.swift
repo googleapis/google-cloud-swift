@@ -36,6 +36,8 @@ public struct Money: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
   public var nanos: Swift.Int32 = Swift.Int32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Money`.
   public init() {}
 
@@ -50,6 +52,50 @@ public struct Money: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let currencyCode = CodingKeys(stringValue: "currencyCode")
+    static let units = CodingKeys(stringValue: "units")
+    static let nanos = CodingKeys(stringValue: "nanos")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "currencyCode",
+      "units",
+      "nanos",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
+      self.currencyCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .units) {
+      self.units = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos) {
+      self.nanos = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.currencyCode, forKey: .currencyCode)
+    try container.encode(self.units, forKey: .units)
+    try container.encode(self.nanos, forKey: .nanos)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

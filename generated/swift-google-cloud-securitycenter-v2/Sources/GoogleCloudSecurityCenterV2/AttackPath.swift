@@ -31,6 +31,8 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A list of the edges between nodes in this attack path.
   public var edges: [AttackPath.AttackPathEdge] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AttackPath`.
   public init() {}
 
@@ -45,6 +47,52 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let pathNodes = CodingKeys(stringValue: "pathNodes")
+    static let edges = CodingKeys(stringValue: "edges")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "pathNodes",
+      "edges",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      [AttackPath.AttackPathNode].self, forKey: .pathNodes)
+    {
+      self.pathNodes = value
+    }
+    if let value = try container.decodeIfPresent([AttackPath.AttackPathEdge].self, forKey: .edges) {
+      self.edges = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.pathNodes, forKey: .pathNodes)
+    try container.encode(self.edges, forKey: .edges)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Represents one point that an attacker passes through in this attack path.
@@ -73,6 +121,8 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A list of attack step nodes that exist in this attack path node.
     public var attackSteps: [AttackPath.AttackPathNode.AttackStepNode] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AttackPathNode`.
     public init() {}
 
@@ -89,6 +139,72 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let resource = CodingKeys(stringValue: "resource")
+      static let resourceType = CodingKeys(stringValue: "resourceType")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let associatedFindings = CodingKeys(stringValue: "associatedFindings")
+      static let uuid = CodingKeys(stringValue: "uuid")
+      static let attackSteps = CodingKeys(stringValue: "attackSteps")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "resource",
+        "resourceType",
+        "displayName",
+        "associatedFindings",
+        "uuid",
+        "attackSteps",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+        self.resource = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType) {
+        self.resourceType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AttackPath.AttackPathNode.PathNodeAssociatedFinding].self, forKey: .associatedFindings)
+      {
+        self.associatedFindings = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+        self.uuid = value
+      }
+      if let value = try container.decodeIfPresent(
+        [AttackPath.AttackPathNode.AttackStepNode].self, forKey: .attackSteps)
+      {
+        self.attackSteps = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.resource, forKey: .resource)
+      try container.encode(self.resourceType, forKey: .resourceType)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.associatedFindings, forKey: .associatedFindings)
+      try container.encode(self.uuid, forKey: .uuid)
+      try container.encode(self.attackSteps, forKey: .attackSteps)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// A finding that is associated with this node in the attack path.
     public struct PathNodeAssociatedFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
@@ -102,6 +218,8 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
       /// Full resource name of the finding.
       public var name: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `PathNodeAssociatedFinding`.
       public init() {}
@@ -117,6 +235,50 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let canonicalFinding = CodingKeys(stringValue: "canonicalFinding")
+        static let findingCategory = CodingKeys(stringValue: "findingCategory")
+        static let name = CodingKeys(stringValue: "name")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "canonicalFinding",
+          "findingCategory",
+          "name",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .canonicalFinding) {
+          self.canonicalFinding = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingCategory) {
+          self.findingCategory = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.canonicalFinding, forKey: .canonicalFinding)
+        try container.encode(self.findingCategory, forKey: .findingCategory)
+        try container.encode(self.name, forKey: .name)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -150,6 +312,8 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// Attack step description
       public var description: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `AttackStepNode`.
       public init() {}
 
@@ -164,6 +328,66 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let uuid = CodingKeys(stringValue: "uuid")
+        static let type = CodingKeys(stringValue: "type")
+        static let displayName = CodingKeys(stringValue: "displayName")
+        static let labels = CodingKeys(stringValue: "labels")
+        static let description = CodingKeys(stringValue: "description")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "uuid",
+          "type",
+          "displayName",
+          "labels",
+          "description",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
+          self.uuid = value
+        }
+        if let value = try container.decodeIfPresent(
+          AttackPath.AttackPathNode.NodeType.self, forKey: .type)
+        {
+          self.type = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String: Swift.String].self, forKey: .labels)
+        {
+          self.labels = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+          self.description = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uuid, forKey: .uuid)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encode(self.labels, forKey: .labels)
+        try container.encode(self.description, forKey: .description)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -319,6 +543,8 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// The attack node uuid of the destination node.
     public var destination: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AttackPathEdge`.
     public init() {}
 
@@ -333,6 +559,44 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let source = CodingKeys(stringValue: "source")
+      static let destination = CodingKeys(stringValue: "destination")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "source",
+        "destination",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
+        self.source = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
+        self.destination = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.source, forKey: .source)
+      try container.encode(self.destination, forKey: .destination)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -28,6 +28,8 @@
     /// Exported entity types can be either in cloud storage or local download.
     public var exportedEntityTypes: OneOf_ExportedEntityTypes? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ExportEntityTypesResponse`.
     public init() {}
 
@@ -44,9 +46,19 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case entityTypesUri = "entityTypesUri"
-      case entityTypesContent = "entityTypesContent"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let entityTypesUri = CodingKeys(stringValue: "entityTypesUri")
+      static let entityTypesContent = CodingKeys(stringValue: "entityTypesContent")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "entityTypesUri",
+        "entityTypesContent",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -73,6 +85,10 @@
         try exportedEntityTypesCheckAndSet(.entityTypesContent(entityTypesContent))
       }
       self.exportedEntityTypes = exportedEntityTypes
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -85,6 +101,9 @@
         case .entityTypesContent(let value):
           try container.encode(value, forKey: .entityTypesContent)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

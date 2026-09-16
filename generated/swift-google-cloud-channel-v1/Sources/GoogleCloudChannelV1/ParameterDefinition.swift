@@ -47,6 +47,8 @@ public struct ParameterDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// If set to true, parameter is optional to purchase this Offer.
   public var `optional`: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ParameterDefinition`.
   public init() {}
 
@@ -63,34 +65,64 @@ public struct ParameterDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case parameterType = "parameterType"
-    case minValue = "minValue"
-    case maxValue = "maxValue"
-    case allowedValues = "allowedValues"
-    case `optional` = "optional"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let parameterType = CodingKeys(stringValue: "parameterType")
+    static let minValue = CodingKeys(stringValue: "minValue")
+    static let maxValue = CodingKeys(stringValue: "maxValue")
+    static let allowedValues = CodingKeys(stringValue: "allowedValues")
+    static let `optional` = CodingKeys(stringValue: "optional")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "parameterType",
+      "minValue",
+      "maxValue",
+      "allowedValues",
+      "optional",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.parameterType = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
       ParameterDefinition.ParameterType.self, forKey: .parameterType)
+    {
+      self.parameterType = value
+    }
     self.minValue = try container.decodeIfPresent(Value.self, forKey: .minValue)
     self.maxValue = try container.decodeIfPresent(Value.self, forKey: .maxValue)
-    self.allowedValues = try container.decode([Value].self, forKey: .allowedValues)
-    self.`optional` = try container.decode(Swift.Bool.self, forKey: .`optional`)
+    if let value = try container.decodeIfPresent([Value].self, forKey: .allowedValues) {
+      self.allowedValues = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .`optional`) {
+      self.`optional` = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.parameterType, forKey: .parameterType)
-    try container.encode(self.minValue, forKey: .minValue)
-    try container.encode(self.maxValue, forKey: .maxValue)
+    try container.encodeIfPresent(self.minValue, forKey: .minValue)
+    try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
     try container.encode(self.allowedValues, forKey: .allowedValues)
     try container.encode(self.`optional`, forKey: .`optional`)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Data type of the parameter.

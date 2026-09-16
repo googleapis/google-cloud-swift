@@ -80,6 +80,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// If any packages fail to be pushed, the build is marked FAILURE.
   public var npmPackages: [Artifacts.NpmPackage] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Artifacts`.
   public init() {}
 
@@ -94,6 +96,71 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let images = CodingKeys(stringValue: "images")
+    static let objects = CodingKeys(stringValue: "objects")
+    static let mavenArtifacts = CodingKeys(stringValue: "mavenArtifacts")
+    static let goModules = CodingKeys(stringValue: "goModules")
+    static let pythonPackages = CodingKeys(stringValue: "pythonPackages")
+    static let npmPackages = CodingKeys(stringValue: "npmPackages")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "images",
+      "objects",
+      "mavenArtifacts",
+      "goModules",
+      "pythonPackages",
+      "npmPackages",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .images) {
+      self.images = value
+    }
+    self.objects = try container.decodeIfPresent(Artifacts.ArtifactObjects.self, forKey: .objects)
+    if let value = try container.decodeIfPresent(
+      [Artifacts.MavenArtifact].self, forKey: .mavenArtifacts)
+    {
+      self.mavenArtifacts = value
+    }
+    if let value = try container.decodeIfPresent([Artifacts.GoModule].self, forKey: .goModules) {
+      self.goModules = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Artifacts.PythonPackage].self, forKey: .pythonPackages)
+    {
+      self.pythonPackages = value
+    }
+    if let value = try container.decodeIfPresent([Artifacts.NpmPackage].self, forKey: .npmPackages)
+    {
+      self.npmPackages = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.images, forKey: .images)
+    try container.encodeIfPresent(self.objects, forKey: .objects)
+    try container.encode(self.mavenArtifacts, forKey: .mavenArtifacts)
+    try container.encode(self.goModules, forKey: .goModules)
+    try container.encode(self.pythonPackages, forKey: .pythonPackages)
+    try container.encode(self.npmPackages, forKey: .npmPackages)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Files in the workspace to upload to Cloud Storage upon successful
@@ -115,6 +182,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Output only. Stores timing information for pushing all artifact objects.
     public var timing: TimeSpan? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ArtifactObjects`.
     public init() {}
 
@@ -129,6 +198,48 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let location = CodingKeys(stringValue: "location")
+      static let paths = CodingKeys(stringValue: "paths")
+      static let timing = CodingKeys(stringValue: "timing")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "location",
+        "paths",
+        "timing",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .paths) {
+        self.paths = value
+      }
+      self.timing = try container.decodeIfPresent(TimeSpan.self, forKey: .timing)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.location, forKey: .location)
+      try container.encode(self.paths, forKey: .paths)
+      try container.encodeIfPresent(self.timing, forKey: .timing)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -174,6 +285,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Registry.
     public var version: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `MavenArtifact`.
     public init() {}
 
@@ -188,6 +301,62 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repository = CodingKeys(stringValue: "repository")
+      static let path = CodingKeys(stringValue: "path")
+      static let artifactId = CodingKeys(stringValue: "artifactId")
+      static let groupId = CodingKeys(stringValue: "groupId")
+      static let version = CodingKeys(stringValue: "version")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repository",
+        "path",
+        "artifactId",
+        "groupId",
+        "version",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+        self.repository = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+        self.path = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactId) {
+        self.artifactId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupId) {
+        self.groupId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
+        self.version = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repository, forKey: .repository)
+      try container.encode(self.path, forKey: .path)
+      try container.encode(self.artifactId, forKey: .artifactId)
+      try container.encode(self.groupId, forKey: .groupId)
+      try container.encode(self.version, forKey: .version)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -236,6 +405,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// e.g. v0.2.3-alpha.x.12m.5
     public var moduleVersion: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `GoModule`.
     public init() {}
 
@@ -250,6 +421,69 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repositoryName = CodingKeys(stringValue: "repositoryName")
+      static let repositoryLocation = CodingKeys(stringValue: "repositoryLocation")
+      static let repositoryProjectId = CodingKeys(stringValue: "repositoryProjectId")
+      static let sourcePath = CodingKeys(stringValue: "sourcePath")
+      static let modulePath = CodingKeys(stringValue: "modulePath")
+      static let moduleVersion = CodingKeys(stringValue: "moduleVersion")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repositoryName",
+        "repositoryLocation",
+        "repositoryProjectId",
+        "sourcePath",
+        "modulePath",
+        "moduleVersion",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryName) {
+        self.repositoryName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryLocation) {
+        self.repositoryLocation = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repositoryProjectId)
+      {
+        self.repositoryProjectId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourcePath) {
+        self.sourcePath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modulePath) {
+        self.modulePath = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .moduleVersion) {
+        self.moduleVersion = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repositoryName, forKey: .repositoryName)
+      try container.encode(self.repositoryLocation, forKey: .repositoryLocation)
+      try container.encode(self.repositoryProjectId, forKey: .repositoryProjectId)
+      try container.encode(self.sourcePath, forKey: .sourcePath)
+      try container.encode(self.modulePath, forKey: .modulePath)
+      try container.encode(self.moduleVersion, forKey: .moduleVersion)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -281,6 +515,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// file.
     public var paths: [Swift.String] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PythonPackage`.
     public init() {}
 
@@ -295,6 +531,44 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repository = CodingKeys(stringValue: "repository")
+      static let paths = CodingKeys(stringValue: "paths")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repository",
+        "paths",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+        self.repository = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .paths) {
+        self.paths = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repository, forKey: .repository)
+      try container.encode(self.paths, forKey: .paths)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -326,6 +600,8 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Only one of `archive` or `package_path` can be specified.
     public var packagePath: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NpmPackage`.
     public init() {}
 
@@ -340,6 +616,44 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let repository = CodingKeys(stringValue: "repository")
+      static let packagePath = CodingKeys(stringValue: "packagePath")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "repository",
+        "packagePath",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repository) {
+        self.repository = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packagePath) {
+        self.packagePath = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.repository, forKey: .repository)
+      try container.encode(self.packagePath, forKey: .packagePath)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

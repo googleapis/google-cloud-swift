@@ -60,6 +60,8 @@ public struct InfoTypeDescription: Codable, Equatable, GoogleCloudWKT._AnyPackab
   public var launchStatus: InfoTypeDescription.InfoTypeLaunchStatus =
     InfoTypeDescription.InfoTypeLaunchStatus()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InfoTypeDescription`.
   public init() {}
 
@@ -74,6 +76,98 @@ public struct InfoTypeDescription: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let supportedBy = CodingKeys(stringValue: "supportedBy")
+    static let description = CodingKeys(stringValue: "description")
+    static let locationSupport = CodingKeys(stringValue: "locationSupport")
+    static let example = CodingKeys(stringValue: "example")
+    static let versions = CodingKeys(stringValue: "versions")
+    static let categories = CodingKeys(stringValue: "categories")
+    static let sensitivityScore = CodingKeys(stringValue: "sensitivityScore")
+    static let specificInfoTypes = CodingKeys(stringValue: "specificInfoTypes")
+    static let launchStatus = CodingKeys(stringValue: "launchStatus")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "supportedBy",
+      "description",
+      "locationSupport",
+      "example",
+      "versions",
+      "categories",
+      "sensitivityScore",
+      "specificInfoTypes",
+      "launchStatus",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent([InfoTypeSupportedBy].self, forKey: .supportedBy) {
+      self.supportedBy = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    self.locationSupport = try container.decodeIfPresent(
+      LocationSupport.self, forKey: .locationSupport)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .example) {
+      self.example = value
+    }
+    if let value = try container.decodeIfPresent([VersionDescription].self, forKey: .versions) {
+      self.versions = value
+    }
+    if let value = try container.decodeIfPresent([InfoTypeCategory].self, forKey: .categories) {
+      self.categories = value
+    }
+    self.sensitivityScore = try container.decodeIfPresent(
+      SensitivityScore.self, forKey: .sensitivityScore)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .specificInfoTypes) {
+      self.specificInfoTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      InfoTypeDescription.InfoTypeLaunchStatus.self, forKey: .launchStatus)
+    {
+      self.launchStatus = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.supportedBy, forKey: .supportedBy)
+    try container.encode(self.description, forKey: .description)
+    try container.encodeIfPresent(self.locationSupport, forKey: .locationSupport)
+    try container.encode(self.example, forKey: .example)
+    try container.encode(self.versions, forKey: .versions)
+    try container.encode(self.categories, forKey: .categories)
+    try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
+    try container.encode(self.specificInfoTypes, forKey: .specificInfoTypes)
+    try container.encode(self.launchStatus, forKey: .launchStatus)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The launch status of an infoType.

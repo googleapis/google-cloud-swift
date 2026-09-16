@@ -26,6 +26,8 @@ public struct ResourcePath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// level to highest level.
   public var nodes: [ResourcePath.ResourcePathNode] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourcePath`.
   public init() {}
 
@@ -42,6 +44,40 @@ public struct ResourcePath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let nodes = CodingKeys(stringValue: "nodes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "nodes"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      [ResourcePath.ResourcePathNode].self, forKey: .nodes)
+    {
+      self.nodes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.nodes, forKey: .nodes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// A node within the resource path. Each node represents a resource within the
   /// resource hierarchy.
   public struct ResourcePathNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -55,6 +91,8 @@ public struct ResourcePath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// The display name of the resource this node represents.
     public var displayName: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ResourcePathNode`.
     public init() {}
@@ -70,6 +108,52 @@ public struct ResourcePath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let nodeType = CodingKeys(stringValue: "nodeType")
+      static let id = CodingKeys(stringValue: "id")
+      static let displayName = CodingKeys(stringValue: "displayName")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "nodeType",
+        "id",
+        "displayName",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ResourcePath.ResourcePathNodeType.self, forKey: .nodeType)
+      {
+        self.nodeType = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+        self.id = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.nodeType, forKey: .nodeType)
+      try container.encode(self.id, forKey: .id)
+      try container.encode(self.displayName, forKey: .displayName)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

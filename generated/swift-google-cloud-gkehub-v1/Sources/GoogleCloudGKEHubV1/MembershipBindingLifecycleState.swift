@@ -24,6 +24,8 @@ public struct MembershipBindingLifecycleState: Codable, Equatable, GoogleCloudWK
   /// Output only. The current state of the MembershipBinding resource.
   public var code: MembershipBindingLifecycleState.Code = MembershipBindingLifecycleState.Code()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MembershipBindingLifecycleState`.
   public init() {}
 
@@ -38,6 +40,40 @@ public struct MembershipBindingLifecycleState: Codable, Equatable, GoogleCloudWK
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      MembershipBindingLifecycleState.Code.self, forKey: .code)
+    {
+      self.code = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Code describes the state of a MembershipBinding resource.

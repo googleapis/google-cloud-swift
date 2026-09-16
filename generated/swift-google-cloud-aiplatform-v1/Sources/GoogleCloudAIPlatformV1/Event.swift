@@ -48,6 +48,8 @@
     /// and are immutable.
     public var labels: [Swift.String: Swift.String] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Event`.
     public init() {}
 
@@ -62,6 +64,63 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let artifact = CodingKeys(stringValue: "artifact")
+      static let execution = CodingKeys(stringValue: "execution")
+      static let eventTime = CodingKeys(stringValue: "eventTime")
+      static let type = CodingKeys(stringValue: "type")
+      static let labels = CodingKeys(stringValue: "labels")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "artifact",
+        "execution",
+        "eventTime",
+        "type",
+        "labels",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifact) {
+        self.artifact = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .execution) {
+        self.execution = value
+      }
+      self.eventTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+      if let value = try container.decodeIfPresent(Event.Type_.self, forKey: .type) {
+        self.type = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.artifact, forKey: .artifact)
+      try container.encode(self.execution, forKey: .execution)
+      try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+      try container.encode(self.type, forKey: .type)
+      try container.encode(self.labels, forKey: .labels)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Describes whether an Event's Artifact is the Execution's input or output.

@@ -34,6 +34,8 @@ public struct CreateSnapshotRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// number, and a 63 character maximum.
   public var snapshotId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreateSnapshotRequest`.
   public init() {}
 
@@ -48,6 +50,48 @@ public struct CreateSnapshotRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let snapshot = CodingKeys(stringValue: "snapshot")
+    static let snapshotId = CodingKeys(stringValue: "snapshotId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "snapshot",
+      "snapshotId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    self.snapshot = try container.decodeIfPresent(Snapshot.self, forKey: .snapshot)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snapshotId) {
+      self.snapshotId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encodeIfPresent(self.snapshot, forKey: .snapshot)
+    try container.encode(self.snapshotId, forKey: .snapshotId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

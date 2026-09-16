@@ -28,6 +28,8 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// A detailed boundary, which describes a more specific point.
   public var detailedBoundary: OneOf_DetailedBoundary? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AnnotationBoundary`.
   public init() {}
 
@@ -44,14 +46,26 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case wordIndex = "wordIndex"
-    case transcriptIndex = "transcriptIndex"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let wordIndex = CodingKeys(stringValue: "wordIndex")
+    static let transcriptIndex = CodingKeys(stringValue: "transcriptIndex")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "wordIndex",
+      "transcriptIndex",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.transcriptIndex = try container.decode(Swift.Int32.self, forKey: .transcriptIndex)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .transcriptIndex) {
+      self.transcriptIndex = value
+    }
 
     var detailedBoundary: OneOf_DetailedBoundary? = nil
     let detailedBoundaryCheckAndSet = {
@@ -67,6 +81,10 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       try detailedBoundaryCheckAndSet(.wordIndex(wordIndex))
     }
     self.detailedBoundary = detailedBoundary
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -78,6 +96,9 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       case .wordIndex(let value):
         try container.encode(value, forKey: .wordIndex)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

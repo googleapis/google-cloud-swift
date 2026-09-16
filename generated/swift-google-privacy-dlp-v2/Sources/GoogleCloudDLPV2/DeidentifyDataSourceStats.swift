@@ -30,6 +30,8 @@ public struct DeidentifyDataSourceStats: Codable, Equatable, GoogleCloudWKT._Any
   /// Number of errors encountered while trying to apply transformations.
   public var transformationErrorCount: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DeidentifyDataSourceStats`.
   public init() {}
 
@@ -44,6 +46,52 @@ public struct DeidentifyDataSourceStats: Codable, Equatable, GoogleCloudWKT._Any
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let transformedBytes = CodingKeys(stringValue: "transformedBytes")
+    static let transformationCount = CodingKeys(stringValue: "transformationCount")
+    static let transformationErrorCount = CodingKeys(stringValue: "transformationErrorCount")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "transformedBytes",
+      "transformationCount",
+      "transformationErrorCount",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .transformedBytes) {
+      self.transformedBytes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .transformationCount) {
+      self.transformationCount = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .transformationErrorCount)
+    {
+      self.transformationErrorCount = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.transformedBytes, forKey: .transformedBytes)
+    try container.encode(self.transformationCount, forKey: .transformationCount)
+    try container.encode(self.transformationErrorCount, forKey: .transformationErrorCount)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -27,6 +27,8 @@ public struct RRSetRoutingPolicyHealthCheckTargets: Codable, Equatable, GoogleCl
   /// Configuration for internal load balancers to be health checked.
   public var internalLoadBalancers: [RRSetRoutingPolicyLoadBalancerTarget] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RRSetRoutingPolicyHealthCheckTargets`.
   public init() {}
 
@@ -41,6 +43,46 @@ public struct RRSetRoutingPolicyHealthCheckTargets: Codable, Equatable, GoogleCl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let externalEndpoints = CodingKeys(stringValue: "externalEndpoints")
+    static let internalLoadBalancers = CodingKeys(stringValue: "internalLoadBalancers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "externalEndpoints",
+      "internalLoadBalancers",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .externalEndpoints) {
+      self.externalEndpoints = value
+    }
+    if let value = try container.decodeIfPresent(
+      [RRSetRoutingPolicyLoadBalancerTarget].self, forKey: .internalLoadBalancers)
+    {
+      self.internalLoadBalancers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.externalEndpoints, forKey: .externalEndpoints)
+    try container.encode(self.internalLoadBalancers, forKey: .internalLoadBalancers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

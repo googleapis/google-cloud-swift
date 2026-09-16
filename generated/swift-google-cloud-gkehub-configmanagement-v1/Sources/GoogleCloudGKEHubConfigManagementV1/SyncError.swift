@@ -30,6 +30,8 @@ public struct SyncError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A list of config(s) associated with the error, if any
   public var errorResources: [ErrorResource] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SyncError`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct SyncError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let code = CodingKeys(stringValue: "code")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let errorResources = CodingKeys(stringValue: "errorResources")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "code",
+      "errorMessage",
+      "errorResources",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .code) {
+      self.code = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+      self.errorMessage = value
+    }
+    if let value = try container.decodeIfPresent([ErrorResource].self, forKey: .errorResources) {
+      self.errorResources = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.code, forKey: .code)
+    try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.errorResources, forKey: .errorResources)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

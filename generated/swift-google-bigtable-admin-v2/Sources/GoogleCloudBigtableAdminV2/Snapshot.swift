@@ -55,6 +55,8 @@ public struct Snapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Description of the snapshot.
   public var description: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Snapshot`.
   public init() {}
 
@@ -69,6 +71,70 @@ public struct Snapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let sourceTable = CodingKeys(stringValue: "sourceTable")
+    static let dataSizeBytes = CodingKeys(stringValue: "dataSizeBytes")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let state = CodingKeys(stringValue: "state")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "sourceTable",
+      "dataSizeBytes",
+      "createTime",
+      "deleteTime",
+      "state",
+      "description",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.sourceTable = try container.decodeIfPresent(Table.self, forKey: .sourceTable)
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataSizeBytes) {
+      self.dataSizeBytes = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.deleteTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
+    if let value = try container.decodeIfPresent(Snapshot.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.sourceTable, forKey: .sourceTable)
+    try container.encode(self.dataSizeBytes, forKey: .dataSizeBytes)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.description, forKey: .description)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Possible states of a snapshot.

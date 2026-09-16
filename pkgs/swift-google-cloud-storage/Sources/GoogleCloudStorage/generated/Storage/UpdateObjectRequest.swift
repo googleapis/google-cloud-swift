@@ -71,6 +71,8 @@ public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// Optional. Overrides the unlocked retention config on the object.
   public var overrideUnlockedRetention: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateObjectRequest`.
   public init() {}
 
@@ -85,6 +87,81 @@ public struct UpdateObjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let object = CodingKeys(stringValue: "object")
+    static let ifGenerationMatch = CodingKeys(stringValue: "ifGenerationMatch")
+    static let ifGenerationNotMatch = CodingKeys(stringValue: "ifGenerationNotMatch")
+    static let ifMetagenerationMatch = CodingKeys(stringValue: "ifMetagenerationMatch")
+    static let ifMetagenerationNotMatch = CodingKeys(stringValue: "ifMetagenerationNotMatch")
+    static let predefinedAcl = CodingKeys(stringValue: "predefinedAcl")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let commonObjectRequestParams = CodingKeys(stringValue: "commonObjectRequestParams")
+    static let overrideUnlockedRetention = CodingKeys(stringValue: "overrideUnlockedRetention")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "object",
+      "ifGenerationMatch",
+      "ifGenerationNotMatch",
+      "ifMetagenerationMatch",
+      "ifMetagenerationNotMatch",
+      "predefinedAcl",
+      "updateMask",
+      "commonObjectRequestParams",
+      "overrideUnlockedRetention",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.object = try container.decodeIfPresent(Object.self, forKey: .object)
+    self.ifGenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationMatch)
+    self.ifGenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifGenerationNotMatch)
+    self.ifMetagenerationMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationMatch)
+    self.ifMetagenerationNotMatch = try container.decodeIfPresent(
+      Swift.Int64.self, forKey: .ifMetagenerationNotMatch)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predefinedAcl) {
+      self.predefinedAcl = value
+    }
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    self.commonObjectRequestParams = try container.decodeIfPresent(
+      CommonObjectRequestParams.self, forKey: .commonObjectRequestParams)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .overrideUnlockedRetention)
+    {
+      self.overrideUnlockedRetention = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.object, forKey: .object)
+    try container.encodeIfPresent(self.ifGenerationMatch, forKey: .ifGenerationMatch)
+    try container.encodeIfPresent(self.ifGenerationNotMatch, forKey: .ifGenerationNotMatch)
+    try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)
+    try container.encodeIfPresent(self.ifMetagenerationNotMatch, forKey: .ifMetagenerationNotMatch)
+    try container.encode(self.predefinedAcl, forKey: .predefinedAcl)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encodeIfPresent(
+      self.commonObjectRequestParams, forKey: .commonObjectRequestParams)
+    try container.encode(self.overrideUnlockedRetention, forKey: .overrideUnlockedRetention)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

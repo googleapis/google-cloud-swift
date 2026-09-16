@@ -24,6 +24,8 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Possible request types from the client.
   public var request: OneOf_Request? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReceivePacketsRequest`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case setupRequest = "setupRequest"
-    case commitRequest = "commitRequest"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let setupRequest = CodingKeys(stringValue: "setupRequest")
+    static let commitRequest = CodingKeys(stringValue: "commitRequest")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "setupRequest",
+      "commitRequest",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -69,6 +81,10 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       try requestCheckAndSet(.commitRequest(commitRequest))
     }
     self.request = request
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,6 +97,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       case .commitRequest(let value):
         try container.encode(value, forKey: .commitRequest)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
@@ -115,6 +134,8 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// The mode in which the consumer reads messages.
     public var consumerMode: OneOf_ConsumerMode? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SetupRequest`.
     public init() {}
 
@@ -131,19 +152,35 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case eagerReceiveMode = "eagerReceiveMode"
-      case controlledReceiveMode = "controlledReceiveMode"
-      case metadata = "metadata"
-      case receiver = "receiver"
-      case heartbeatInterval = "heartbeatInterval"
-      case writesDoneGracePeriod = "writesDoneGracePeriod"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let eagerReceiveMode = CodingKeys(stringValue: "eagerReceiveMode")
+      static let controlledReceiveMode = CodingKeys(stringValue: "controlledReceiveMode")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let receiver = CodingKeys(stringValue: "receiver")
+      static let heartbeatInterval = CodingKeys(stringValue: "heartbeatInterval")
+      static let writesDoneGracePeriod = CodingKeys(stringValue: "writesDoneGracePeriod")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "eagerReceiveMode",
+        "controlledReceiveMode",
+        "metadata",
+        "receiver",
+        "heartbeatInterval",
+        "writesDoneGracePeriod",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metadata = try container.decodeIfPresent(RequestMetadata.self, forKey: .metadata)
-      self.receiver = try container.decode(Swift.String.self, forKey: .receiver)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .receiver) {
+        self.receiver = value
+      }
       self.heartbeatInterval = try container.decodeIfPresent(
         GoogleCloudWKT.Duration.self, forKey: .heartbeatInterval)
       self.writesDoneGracePeriod = try container.decodeIfPresent(
@@ -170,14 +207,18 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
         try consumerModeCheckAndSet(.controlledReceiveMode(controlledReceiveMode))
       }
       self.consumerMode = consumerMode
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.metadata, forKey: .metadata)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
       try container.encode(self.receiver, forKey: .receiver)
-      try container.encode(self.heartbeatInterval, forKey: .heartbeatInterval)
-      try container.encode(self.writesDoneGracePeriod, forKey: .writesDoneGracePeriod)
+      try container.encodeIfPresent(self.heartbeatInterval, forKey: .heartbeatInterval)
+      try container.encodeIfPresent(self.writesDoneGracePeriod, forKey: .writesDoneGracePeriod)
 
       if let choice = self.consumerMode {
         switch choice {
@@ -186,6 +227,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
         case .controlledReceiveMode(let value):
           try container.encode(value, forKey: .controlledReceiveMode)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

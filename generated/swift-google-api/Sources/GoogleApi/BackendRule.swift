@@ -124,6 +124,8 @@ public struct BackendRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// JWT ID token.
   public var authentication: OneOf_Authentication? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BackendRule`.
   public init() {}
 
@@ -140,33 +142,72 @@ public struct BackendRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case selector = "selector"
-    case address = "address"
-    case deadline = "deadline"
-    case minDeadline = "minDeadline"
-    case operationDeadline = "operationDeadline"
-    case pathTranslation = "pathTranslation"
-    case jwtAudience = "jwtAudience"
-    case disableAuth = "disableAuth"
-    case `protocol` = "protocol"
-    case overridesByRequestProtocol = "overridesByRequestProtocol"
-    case loadBalancingPolicy = "loadBalancingPolicy"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let selector = CodingKeys(stringValue: "selector")
+    static let address = CodingKeys(stringValue: "address")
+    static let deadline = CodingKeys(stringValue: "deadline")
+    static let minDeadline = CodingKeys(stringValue: "minDeadline")
+    static let operationDeadline = CodingKeys(stringValue: "operationDeadline")
+    static let pathTranslation = CodingKeys(stringValue: "pathTranslation")
+    static let jwtAudience = CodingKeys(stringValue: "jwtAudience")
+    static let disableAuth = CodingKeys(stringValue: "disableAuth")
+    static let `protocol` = CodingKeys(stringValue: "protocol")
+    static let overridesByRequestProtocol = CodingKeys(stringValue: "overridesByRequestProtocol")
+    static let loadBalancingPolicy = CodingKeys(stringValue: "loadBalancingPolicy")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "selector",
+      "address",
+      "deadline",
+      "minDeadline",
+      "operationDeadline",
+      "pathTranslation",
+      "jwtAudience",
+      "disableAuth",
+      "protocol",
+      "overridesByRequestProtocol",
+      "loadBalancingPolicy",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.selector = try container.decode(Swift.String.self, forKey: .selector)
-    self.address = try container.decode(Swift.String.self, forKey: .address)
-    self.deadline = try container.decode(Swift.Double.self, forKey: .deadline)
-    self.minDeadline = try container.decode(Swift.Double.self, forKey: .minDeadline)
-    self.operationDeadline = try container.decode(Swift.Double.self, forKey: .operationDeadline)
-    self.pathTranslation = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
+      self.selector = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+      self.address = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .deadline) {
+      self.deadline = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .minDeadline) {
+      self.minDeadline = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .operationDeadline) {
+      self.operationDeadline = value
+    }
+    if let value = try container.decodeIfPresent(
       BackendRule.PathTranslation.self, forKey: .pathTranslation)
-    self.`protocol` = try container.decode(Swift.String.self, forKey: .`protocol`)
-    self.overridesByRequestProtocol = try container.decode(
+    {
+      self.pathTranslation = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`protocol`) {
+      self.`protocol` = value
+    }
+    if let value = try container.decodeIfPresent(
       [Swift.String: BackendRule].self, forKey: .overridesByRequestProtocol)
-    self.loadBalancingPolicy = try container.decode(Swift.String.self, forKey: .loadBalancingPolicy)
+    {
+      self.overridesByRequestProtocol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancingPolicy) {
+      self.loadBalancingPolicy = value
+    }
 
     var authentication: OneOf_Authentication? = nil
     let authenticationCheckAndSet = {
@@ -185,6 +226,10 @@ public struct BackendRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try authenticationCheckAndSet(.disableAuth(disableAuth))
     }
     self.authentication = authentication
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -206,6 +251,9 @@ public struct BackendRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .disableAuth(let value):
         try container.encode(value, forKey: .disableAuth)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

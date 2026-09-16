@@ -56,6 +56,8 @@
     /// Optional. OSS Ray logging configurations.
     public var rayLogsSpec: RayLogsSpec? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `RaySpec`.
     public init() {}
 
@@ -70,6 +72,62 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let imageUri = CodingKeys(stringValue: "imageUri")
+      static let resourcePoolImages = CodingKeys(stringValue: "resourcePoolImages")
+      static let headNodeResourcePoolId = CodingKeys(stringValue: "headNodeResourcePoolId")
+      static let rayMetricSpec = CodingKeys(stringValue: "rayMetricSpec")
+      static let rayLogsSpec = CodingKeys(stringValue: "rayLogsSpec")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "imageUri",
+        "resourcePoolImages",
+        "headNodeResourcePoolId",
+        "rayMetricSpec",
+        "rayLogsSpec",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageUri) {
+        self.imageUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .resourcePoolImages)
+      {
+        self.resourcePoolImages = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .headNodeResourcePoolId)
+      {
+        self.headNodeResourcePoolId = value
+      }
+      self.rayMetricSpec = try container.decodeIfPresent(RayMetricSpec.self, forKey: .rayMetricSpec)
+      self.rayLogsSpec = try container.decodeIfPresent(RayLogsSpec.self, forKey: .rayLogsSpec)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.imageUri, forKey: .imageUri)
+      try container.encode(self.resourcePoolImages, forKey: .resourcePoolImages)
+      try container.encode(self.headNodeResourcePoolId, forKey: .headNodeResourcePoolId)
+      try container.encodeIfPresent(self.rayMetricSpec, forKey: .rayMetricSpec)
+      try container.encodeIfPresent(self.rayLogsSpec, forKey: .rayLogsSpec)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

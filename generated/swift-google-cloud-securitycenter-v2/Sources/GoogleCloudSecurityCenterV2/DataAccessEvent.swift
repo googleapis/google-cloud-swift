@@ -35,6 +35,8 @@ public struct DataAccessEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Timestamp of data access event.
   public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DataAccessEvent`.
   public init() {}
 
@@ -49,6 +51,56 @@ public struct DataAccessEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let eventId = CodingKeys(stringValue: "eventId")
+    static let principalEmail = CodingKeys(stringValue: "principalEmail")
+    static let operation = CodingKeys(stringValue: "operation")
+    static let eventTime = CodingKeys(stringValue: "eventTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "eventId",
+      "principalEmail",
+      "operation",
+      "eventTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventId) {
+      self.eventId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principalEmail) {
+      self.principalEmail = value
+    }
+    if let value = try container.decodeIfPresent(DataAccessEvent.Operation.self, forKey: .operation)
+    {
+      self.operation = value
+    }
+    self.eventTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.eventId, forKey: .eventId)
+    try container.encode(self.principalEmail, forKey: .principalEmail)
+    try container.encode(self.operation, forKey: .operation)
+    try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The operation of a data access event.

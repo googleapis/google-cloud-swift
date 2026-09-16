@@ -28,6 +28,8 @@ public struct DestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Stream configuration that is specific to the data destination type.
   public var destinationStreamConfig: OneOf_DestinationStreamConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DestinationConfig`.
   public init() {}
 
@@ -44,16 +46,31 @@ public struct DestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case destinationConnectionProfile = "destinationConnectionProfile"
-    case gcsDestinationConfig = "gcsDestinationConfig"
-    case bigqueryDestinationConfig = "bigqueryDestinationConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let destinationConnectionProfile = CodingKeys(
+      stringValue: "destinationConnectionProfile")
+    static let gcsDestinationConfig = CodingKeys(stringValue: "gcsDestinationConfig")
+    static let bigqueryDestinationConfig = CodingKeys(stringValue: "bigqueryDestinationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "destinationConnectionProfile",
+      "gcsDestinationConfig",
+      "bigqueryDestinationConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.destinationConnectionProfile = try container.decode(
+    if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .destinationConnectionProfile)
+    {
+      self.destinationConnectionProfile = value
+    }
 
     var destinationStreamConfig: OneOf_DestinationStreamConfig? = nil
     let destinationStreamConfigCheckAndSet = {
@@ -76,6 +93,10 @@ public struct DestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try destinationStreamConfigCheckAndSet(.bigqueryDestinationConfig(bigqueryDestinationConfig))
     }
     self.destinationStreamConfig = destinationStreamConfig
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +110,9 @@ public struct DestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .bigqueryDestinationConfig(let value):
         try container.encode(value, forKey: .bigqueryDestinationConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

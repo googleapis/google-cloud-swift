@@ -295,6 +295,8 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Optional. The taint configuration for the node pool.
   public var taintConfig: TaintConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeConfig`.
   public init() {}
 
@@ -309,6 +311,307 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
+    static let oauthScopes = CodingKeys(stringValue: "oauthScopes")
+    static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let metadata = CodingKeys(stringValue: "metadata")
+    static let imageType = CodingKeys(stringValue: "imageType")
+    static let nodeImageConfig = CodingKeys(stringValue: "nodeImageConfig")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let localSsdCount = CodingKeys(stringValue: "localSsdCount")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let preemptible = CodingKeys(stringValue: "preemptible")
+    static let accelerators = CodingKeys(stringValue: "accelerators")
+    static let diskType = CodingKeys(stringValue: "diskType")
+    static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
+    static let workloadMetadataConfig = CodingKeys(stringValue: "workloadMetadataConfig")
+    static let taints = CodingKeys(stringValue: "taints")
+    static let sandboxConfig = CodingKeys(stringValue: "sandboxConfig")
+    static let nodeGroup = CodingKeys(stringValue: "nodeGroup")
+    static let reservationAffinity = CodingKeys(stringValue: "reservationAffinity")
+    static let shieldedInstanceConfig = CodingKeys(stringValue: "shieldedInstanceConfig")
+    static let linuxNodeConfig = CodingKeys(stringValue: "linuxNodeConfig")
+    static let kubeletConfig = CodingKeys(stringValue: "kubeletConfig")
+    static let bootDiskKmsKey = CodingKeys(stringValue: "bootDiskKmsKey")
+    static let gcfsConfig = CodingKeys(stringValue: "gcfsConfig")
+    static let advancedMachineFeatures = CodingKeys(stringValue: "advancedMachineFeatures")
+    static let gvnic = CodingKeys(stringValue: "gvnic")
+    static let spot = CodingKeys(stringValue: "spot")
+    static let confidentialNodes = CodingKeys(stringValue: "confidentialNodes")
+    static let fastSocket = CodingKeys(stringValue: "fastSocket")
+    static let resourceLabels = CodingKeys(stringValue: "resourceLabels")
+    static let loggingConfig = CodingKeys(stringValue: "loggingConfig")
+    static let windowsNodeConfig = CodingKeys(stringValue: "windowsNodeConfig")
+    static let localNvmeSsdBlockConfig = CodingKeys(stringValue: "localNvmeSsdBlockConfig")
+    static let ephemeralStorageLocalSsdConfig = CodingKeys(
+      stringValue: "ephemeralStorageLocalSsdConfig")
+    static let soleTenantConfig = CodingKeys(stringValue: "soleTenantConfig")
+    static let containerdConfig = CodingKeys(stringValue: "containerdConfig")
+    static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
+    static let enableConfidentialStorage = CodingKeys(stringValue: "enableConfidentialStorage")
+    static let secondaryBootDisks = CodingKeys(stringValue: "secondaryBootDisks")
+    static let storagePools = CodingKeys(stringValue: "storagePools")
+    static let secondaryBootDiskUpdateStrategy = CodingKeys(
+      stringValue: "secondaryBootDiskUpdateStrategy")
+    static let gpuDirectConfig = CodingKeys(stringValue: "gpuDirectConfig")
+    static let maxRunDuration = CodingKeys(stringValue: "maxRunDuration")
+    static let localSsdEncryptionMode = CodingKeys(stringValue: "localSsdEncryptionMode")
+    static let effectiveCgroupMode = CodingKeys(stringValue: "effectiveCgroupMode")
+    static let flexStart = CodingKeys(stringValue: "flexStart")
+    static let bootDisk = CodingKeys(stringValue: "bootDisk")
+    static let consolidationDelay = CodingKeys(stringValue: "consolidationDelay")
+    static let taintConfig = CodingKeys(stringValue: "taintConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "machineType",
+      "diskSizeGb",
+      "oauthScopes",
+      "serviceAccount",
+      "metadata",
+      "imageType",
+      "nodeImageConfig",
+      "labels",
+      "localSsdCount",
+      "tags",
+      "preemptible",
+      "accelerators",
+      "diskType",
+      "minCpuPlatform",
+      "workloadMetadataConfig",
+      "taints",
+      "sandboxConfig",
+      "nodeGroup",
+      "reservationAffinity",
+      "shieldedInstanceConfig",
+      "linuxNodeConfig",
+      "kubeletConfig",
+      "bootDiskKmsKey",
+      "gcfsConfig",
+      "advancedMachineFeatures",
+      "gvnic",
+      "spot",
+      "confidentialNodes",
+      "fastSocket",
+      "resourceLabels",
+      "loggingConfig",
+      "windowsNodeConfig",
+      "localNvmeSsdBlockConfig",
+      "ephemeralStorageLocalSsdConfig",
+      "soleTenantConfig",
+      "containerdConfig",
+      "resourceManagerTags",
+      "enableConfidentialStorage",
+      "secondaryBootDisks",
+      "storagePools",
+      "secondaryBootDiskUpdateStrategy",
+      "gpuDirectConfig",
+      "maxRunDuration",
+      "localSsdEncryptionMode",
+      "effectiveCgroupMode",
+      "flexStart",
+      "bootDisk",
+      "consolidationDelay",
+      "taintConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskSizeGb) {
+      self.diskSizeGb = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .oauthScopes) {
+      self.oauthScopes = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
+      self.serviceAccount = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .metadata)
+    {
+      self.metadata = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageType) {
+      self.imageType = value
+    }
+    self.nodeImageConfig = try container.decodeIfPresent(
+      CustomImageConfig.self, forKey: .nodeImageConfig)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdCount) {
+      self.localSsdCount = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preemptible) {
+      self.preemptible = value
+    }
+    if let value = try container.decodeIfPresent([AcceleratorConfig].self, forKey: .accelerators) {
+      self.accelerators = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskType) {
+      self.diskType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .minCpuPlatform) {
+      self.minCpuPlatform = value
+    }
+    self.workloadMetadataConfig = try container.decodeIfPresent(
+      WorkloadMetadataConfig.self, forKey: .workloadMetadataConfig)
+    if let value = try container.decodeIfPresent([NodeTaint].self, forKey: .taints) {
+      self.taints = value
+    }
+    self.sandboxConfig = try container.decodeIfPresent(SandboxConfig.self, forKey: .sandboxConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeGroup) {
+      self.nodeGroup = value
+    }
+    self.reservationAffinity = try container.decodeIfPresent(
+      ReservationAffinity.self, forKey: .reservationAffinity)
+    self.shieldedInstanceConfig = try container.decodeIfPresent(
+      ShieldedInstanceConfig.self, forKey: .shieldedInstanceConfig)
+    self.linuxNodeConfig = try container.decodeIfPresent(
+      LinuxNodeConfig.self, forKey: .linuxNodeConfig)
+    self.kubeletConfig = try container.decodeIfPresent(
+      NodeKubeletConfig.self, forKey: .kubeletConfig)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bootDiskKmsKey) {
+      self.bootDiskKmsKey = value
+    }
+    self.gcfsConfig = try container.decodeIfPresent(GcfsConfig.self, forKey: .gcfsConfig)
+    self.advancedMachineFeatures = try container.decodeIfPresent(
+      AdvancedMachineFeatures.self, forKey: .advancedMachineFeatures)
+    self.gvnic = try container.decodeIfPresent(VirtualNIC.self, forKey: .gvnic)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .spot) {
+      self.spot = value
+    }
+    self.confidentialNodes = try container.decodeIfPresent(
+      ConfidentialNodes.self, forKey: .confidentialNodes)
+    self.fastSocket = try container.decodeIfPresent(FastSocket.self, forKey: .fastSocket)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .resourceLabels)
+    {
+      self.resourceLabels = value
+    }
+    self.loggingConfig = try container.decodeIfPresent(
+      NodePoolLoggingConfig.self, forKey: .loggingConfig)
+    self.windowsNodeConfig = try container.decodeIfPresent(
+      WindowsNodeConfig.self, forKey: .windowsNodeConfig)
+    self.localNvmeSsdBlockConfig = try container.decodeIfPresent(
+      LocalNvmeSsdBlockConfig.self, forKey: .localNvmeSsdBlockConfig)
+    self.ephemeralStorageLocalSsdConfig = try container.decodeIfPresent(
+      EphemeralStorageLocalSsdConfig.self, forKey: .ephemeralStorageLocalSsdConfig)
+    self.soleTenantConfig = try container.decodeIfPresent(
+      SoleTenantConfig.self, forKey: .soleTenantConfig)
+    self.containerdConfig = try container.decodeIfPresent(
+      ContainerdConfig.self, forKey: .containerdConfig)
+    self.resourceManagerTags = try container.decodeIfPresent(
+      ResourceManagerTags.self, forKey: .resourceManagerTags)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .enableConfidentialStorage)
+    {
+      self.enableConfidentialStorage = value
+    }
+    if let value = try container.decodeIfPresent(
+      [SecondaryBootDisk].self, forKey: .secondaryBootDisks)
+    {
+      self.secondaryBootDisks = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .storagePools) {
+      self.storagePools = value
+    }
+    self.secondaryBootDiskUpdateStrategy = try container.decodeIfPresent(
+      SecondaryBootDiskUpdateStrategy.self, forKey: .secondaryBootDiskUpdateStrategy)
+    self.gpuDirectConfig = try container.decodeIfPresent(
+      GPUDirectConfig.self, forKey: .gpuDirectConfig)
+    self.maxRunDuration = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .maxRunDuration)
+    self.localSsdEncryptionMode = try container.decodeIfPresent(
+      NodeConfig.LocalSsdEncryptionMode.self, forKey: .localSsdEncryptionMode)
+    if let value = try container.decodeIfPresent(
+      NodeConfig.EffectiveCgroupMode.self, forKey: .effectiveCgroupMode)
+    {
+      self.effectiveCgroupMode = value
+    }
+    self.flexStart = try container.decodeIfPresent(Swift.Bool.self, forKey: .flexStart)
+    self.bootDisk = try container.decodeIfPresent(BootDisk.self, forKey: .bootDisk)
+    self.consolidationDelay = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .consolidationDelay)
+    self.taintConfig = try container.decodeIfPresent(TaintConfig.self, forKey: .taintConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
+    try container.encode(self.oauthScopes, forKey: .oauthScopes)
+    try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encode(self.metadata, forKey: .metadata)
+    try container.encode(self.imageType, forKey: .imageType)
+    try container.encodeIfPresent(self.nodeImageConfig, forKey: .nodeImageConfig)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.localSsdCount, forKey: .localSsdCount)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.preemptible, forKey: .preemptible)
+    try container.encode(self.accelerators, forKey: .accelerators)
+    try container.encode(self.diskType, forKey: .diskType)
+    try container.encode(self.minCpuPlatform, forKey: .minCpuPlatform)
+    try container.encodeIfPresent(self.workloadMetadataConfig, forKey: .workloadMetadataConfig)
+    try container.encode(self.taints, forKey: .taints)
+    try container.encodeIfPresent(self.sandboxConfig, forKey: .sandboxConfig)
+    try container.encode(self.nodeGroup, forKey: .nodeGroup)
+    try container.encodeIfPresent(self.reservationAffinity, forKey: .reservationAffinity)
+    try container.encodeIfPresent(self.shieldedInstanceConfig, forKey: .shieldedInstanceConfig)
+    try container.encodeIfPresent(self.linuxNodeConfig, forKey: .linuxNodeConfig)
+    try container.encodeIfPresent(self.kubeletConfig, forKey: .kubeletConfig)
+    try container.encode(self.bootDiskKmsKey, forKey: .bootDiskKmsKey)
+    try container.encodeIfPresent(self.gcfsConfig, forKey: .gcfsConfig)
+    try container.encodeIfPresent(self.advancedMachineFeatures, forKey: .advancedMachineFeatures)
+    try container.encodeIfPresent(self.gvnic, forKey: .gvnic)
+    try container.encode(self.spot, forKey: .spot)
+    try container.encodeIfPresent(self.confidentialNodes, forKey: .confidentialNodes)
+    try container.encodeIfPresent(self.fastSocket, forKey: .fastSocket)
+    try container.encode(self.resourceLabels, forKey: .resourceLabels)
+    try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
+    try container.encodeIfPresent(self.windowsNodeConfig, forKey: .windowsNodeConfig)
+    try container.encodeIfPresent(self.localNvmeSsdBlockConfig, forKey: .localNvmeSsdBlockConfig)
+    try container.encodeIfPresent(
+      self.ephemeralStorageLocalSsdConfig, forKey: .ephemeralStorageLocalSsdConfig)
+    try container.encodeIfPresent(self.soleTenantConfig, forKey: .soleTenantConfig)
+    try container.encodeIfPresent(self.containerdConfig, forKey: .containerdConfig)
+    try container.encodeIfPresent(self.resourceManagerTags, forKey: .resourceManagerTags)
+    try container.encode(self.enableConfidentialStorage, forKey: .enableConfidentialStorage)
+    try container.encode(self.secondaryBootDisks, forKey: .secondaryBootDisks)
+    try container.encode(self.storagePools, forKey: .storagePools)
+    try container.encodeIfPresent(
+      self.secondaryBootDiskUpdateStrategy, forKey: .secondaryBootDiskUpdateStrategy)
+    try container.encodeIfPresent(self.gpuDirectConfig, forKey: .gpuDirectConfig)
+    try container.encodeIfPresent(self.maxRunDuration, forKey: .maxRunDuration)
+    try container.encodeIfPresent(self.localSsdEncryptionMode, forKey: .localSsdEncryptionMode)
+    try container.encode(self.effectiveCgroupMode, forKey: .effectiveCgroupMode)
+    try container.encodeIfPresent(self.flexStart, forKey: .flexStart)
+    try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
+    try container.encodeIfPresent(self.consolidationDelay, forKey: .consolidationDelay)
+    try container.encodeIfPresent(self.taintConfig, forKey: .taintConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// LocalSsdEncryptionMode specifies the method used for encrypting the Local

@@ -24,6 +24,8 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Either of Sensitive Data Protection basic or advanced configuration.
   public var sdpConfiguration: OneOf_SdpConfiguration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SdpFilterSettings`.
   public init() {}
 
@@ -40,9 +42,19 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case basicConfig = "basicConfig"
-    case advancedConfig = "advancedConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let basicConfig = CodingKeys(stringValue: "basicConfig")
+    static let advancedConfig = CodingKeys(stringValue: "advancedConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "basicConfig",
+      "advancedConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -67,6 +79,10 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       try sdpConfigurationCheckAndSet(.advancedConfig(advancedConfig))
     }
     self.sdpConfiguration = sdpConfiguration
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,6 +95,9 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable
       case .advancedConfig(let value):
         try container.encode(value, forKey: .advancedConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

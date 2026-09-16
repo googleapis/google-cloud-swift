@@ -45,6 +45,8 @@ public struct ScanRunLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   public var errorTrace: ScanRunErrorTrace? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ScanRunLog`.
   public init() {}
 
@@ -59,6 +61,80 @@ public struct ScanRunLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let summary = CodingKeys(stringValue: "summary")
+    static let name = CodingKeys(stringValue: "name")
+    static let executionState = CodingKeys(stringValue: "executionState")
+    static let resultState = CodingKeys(stringValue: "resultState")
+    static let urlsCrawledCount = CodingKeys(stringValue: "urlsCrawledCount")
+    static let urlsTestedCount = CodingKeys(stringValue: "urlsTestedCount")
+    static let hasFindings = CodingKeys(stringValue: "hasFindings")
+    static let errorTrace = CodingKeys(stringValue: "errorTrace")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "summary",
+      "name",
+      "executionState",
+      "resultState",
+      "urlsCrawledCount",
+      "urlsTestedCount",
+      "hasFindings",
+      "errorTrace",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .summary) {
+      self.summary = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(
+      ScanRun.ExecutionState.self, forKey: .executionState)
+    {
+      self.executionState = value
+    }
+    if let value = try container.decodeIfPresent(ScanRun.ResultState.self, forKey: .resultState) {
+      self.resultState = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .urlsCrawledCount) {
+      self.urlsCrawledCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .urlsTestedCount) {
+      self.urlsTestedCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasFindings) {
+      self.hasFindings = value
+    }
+    self.errorTrace = try container.decodeIfPresent(ScanRunErrorTrace.self, forKey: .errorTrace)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.summary, forKey: .summary)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.executionState, forKey: .executionState)
+    try container.encode(self.resultState, forKey: .resultState)
+    try container.encode(self.urlsCrawledCount, forKey: .urlsCrawledCount)
+    try container.encode(self.urlsTestedCount, forKey: .urlsTestedCount)
+    try container.encode(self.hasFindings, forKey: .hasFindings)
+    try container.encodeIfPresent(self.errorTrace, forKey: .errorTrace)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

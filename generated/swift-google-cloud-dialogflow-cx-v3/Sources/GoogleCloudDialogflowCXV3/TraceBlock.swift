@@ -44,6 +44,8 @@
     /// Metadata of the trace.
     public var traceMetadata: OneOf_TraceMetadata? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TraceBlock`.
     public init() {}
 
@@ -60,21 +62,40 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case playbookTraceMetadata = "playbookTraceMetadata"
-      case flowTraceMetadata = "flowTraceMetadata"
-      case speechProcessingMetadata = "speechProcessingMetadata"
-      case actions = "actions"
-      case startTime = "startTime"
-      case completeTime = "completeTime"
-      case inputParameters = "inputParameters"
-      case outputParameters = "outputParameters"
-      case endState = "endState"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let playbookTraceMetadata = CodingKeys(stringValue: "playbookTraceMetadata")
+      static let flowTraceMetadata = CodingKeys(stringValue: "flowTraceMetadata")
+      static let speechProcessingMetadata = CodingKeys(stringValue: "speechProcessingMetadata")
+      static let actions = CodingKeys(stringValue: "actions")
+      static let startTime = CodingKeys(stringValue: "startTime")
+      static let completeTime = CodingKeys(stringValue: "completeTime")
+      static let inputParameters = CodingKeys(stringValue: "inputParameters")
+      static let outputParameters = CodingKeys(stringValue: "outputParameters")
+      static let endState = CodingKeys(stringValue: "endState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "playbookTraceMetadata",
+        "flowTraceMetadata",
+        "speechProcessingMetadata",
+        "actions",
+        "startTime",
+        "completeTime",
+        "inputParameters",
+        "outputParameters",
+        "endState",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.actions = try container.decode([Action].self, forKey: .actions)
+      if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
+        self.actions = value
+      }
       self.startTime = try container.decodeIfPresent(
         GoogleCloudWKT.Timestamp.self, forKey: .startTime)
       self.completeTime = try container.decodeIfPresent(
@@ -83,7 +104,9 @@
         GoogleCloudWKT.Struct.self, forKey: .inputParameters)
       self.outputParameters = try container.decodeIfPresent(
         GoogleCloudWKT.Struct.self, forKey: .outputParameters)
-      self.endState = try container.decode(OutputState.self, forKey: .endState)
+      if let value = try container.decodeIfPresent(OutputState.self, forKey: .endState) {
+        self.endState = value
+      }
 
       var traceMetadata: OneOf_TraceMetadata? = nil
       let traceMetadataCheckAndSet = {
@@ -111,15 +134,19 @@
         try traceMetadataCheckAndSet(.speechProcessingMetadata(speechProcessingMetadata))
       }
       self.traceMetadata = traceMetadata
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.actions, forKey: .actions)
-      try container.encode(self.startTime, forKey: .startTime)
-      try container.encode(self.completeTime, forKey: .completeTime)
-      try container.encode(self.inputParameters, forKey: .inputParameters)
-      try container.encode(self.outputParameters, forKey: .outputParameters)
+      try container.encodeIfPresent(self.startTime, forKey: .startTime)
+      try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
+      try container.encodeIfPresent(self.inputParameters, forKey: .inputParameters)
+      try container.encodeIfPresent(self.outputParameters, forKey: .outputParameters)
       try container.encode(self.endState, forKey: .endState)
 
       if let choice = self.traceMetadata {
@@ -131,6 +158,9 @@
         case .speechProcessingMetadata(let value):
           try container.encode(value, forKey: .speechProcessingMetadata)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

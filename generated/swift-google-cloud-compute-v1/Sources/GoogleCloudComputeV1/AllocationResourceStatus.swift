@@ -34,6 +34,8 @@
     /// Allocation Properties of this reservation.
     public var specificSkuAllocation: AllocationResourceStatusSpecificSKUAllocation? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `AllocationResourceStatus`.
     public init() {}
 
@@ -48,6 +50,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let healthInfo = CodingKeys(stringValue: "healthInfo")
+      static let reservationBlockCount = CodingKeys(stringValue: "reservationBlockCount")
+      static let reservationMaintenance = CodingKeys(stringValue: "reservationMaintenance")
+      static let specificSkuAllocation = CodingKeys(stringValue: "specificSkuAllocation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "healthInfo",
+        "reservationBlockCount",
+        "reservationMaintenance",
+        "specificSkuAllocation",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.healthInfo = try container.decodeIfPresent(
+        AllocationResourceStatusHealthInfo.self, forKey: .healthInfo)
+      self.reservationBlockCount = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .reservationBlockCount)
+      self.reservationMaintenance = try container.decodeIfPresent(
+        GroupMaintenanceInfo.self, forKey: .reservationMaintenance)
+      self.specificSkuAllocation = try container.decodeIfPresent(
+        AllocationResourceStatusSpecificSKUAllocation.self, forKey: .specificSkuAllocation)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.healthInfo, forKey: .healthInfo)
+      try container.encodeIfPresent(self.reservationBlockCount, forKey: .reservationBlockCount)
+      try container.encodeIfPresent(self.reservationMaintenance, forKey: .reservationMaintenance)
+      try container.encodeIfPresent(self.specificSkuAllocation, forKey: .specificSkuAllocation)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -47,6 +47,8 @@ public struct QueryDirectoryContentsRequest: Codable, Equatable, GoogleCloudWKT.
   /// CMEK-protected workspaces.
   public var view: DirectoryContentsView = DirectoryContentsView()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryDirectoryContentsRequest`.
   public init() {}
 
@@ -61,6 +63,62 @@ public struct QueryDirectoryContentsRequest: Codable, Equatable, GoogleCloudWKT.
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let workspace = CodingKeys(stringValue: "workspace")
+    static let path = CodingKeys(stringValue: "path")
+    static let pageSize = CodingKeys(stringValue: "pageSize")
+    static let pageToken = CodingKeys(stringValue: "pageToken")
+    static let view = CodingKeys(stringValue: "view")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "workspace",
+      "path",
+      "pageSize",
+      "pageToken",
+      "view",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workspace) {
+      self.workspace = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .pageSize) {
+      self.pageSize = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken) {
+      self.pageToken = value
+    }
+    if let value = try container.decodeIfPresent(DirectoryContentsView.self, forKey: .view) {
+      self.view = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.workspace, forKey: .workspace)
+    try container.encode(self.path, forKey: .path)
+    try container.encode(self.pageSize, forKey: .pageSize)
+    try container.encode(self.pageToken, forKey: .pageToken)
+    try container.encode(self.view, forKey: .view)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

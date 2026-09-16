@@ -100,6 +100,8 @@ public struct EncryptResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
   public var protectionLevel: ProtectionLevel = ProtectionLevel()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EncryptResponse`.
   public init() {}
 
@@ -116,38 +118,71 @@ public struct EncryptResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case name = "name"
-    case ciphertext = "ciphertext"
-    case ciphertextCrc32C = "ciphertextCrc32c"
-    case verifiedPlaintextCrc32C = "verifiedPlaintextCrc32c"
-    case verifiedAdditionalAuthenticatedDataCrc32C = "verifiedAdditionalAuthenticatedDataCrc32c"
-    case protectionLevel = "protectionLevel"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let ciphertext = CodingKeys(stringValue: "ciphertext")
+    static let ciphertextCrc32C = CodingKeys(stringValue: "ciphertextCrc32c")
+    static let verifiedPlaintextCrc32C = CodingKeys(stringValue: "verifiedPlaintextCrc32c")
+    static let verifiedAdditionalAuthenticatedDataCrc32C = CodingKeys(
+      stringValue: "verifiedAdditionalAuthenticatedDataCrc32c")
+    static let protectionLevel = CodingKeys(stringValue: "protectionLevel")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "ciphertext",
+      "ciphertextCrc32c",
+      "verifiedPlaintextCrc32c",
+      "verifiedAdditionalAuthenticatedDataCrc32c",
+      "protectionLevel",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.ciphertext = try container.decode(Foundation.Data.self, forKey: .ciphertext)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .ciphertext) {
+      self.ciphertext = value
+    }
     self.ciphertextCrc32C = try container.decodeIfPresent(
       GoogleCloudWKT.Int64Value.self, forKey: .ciphertextCrc32C)
-    self.verifiedPlaintextCrc32C = try container.decode(
-      Swift.Bool.self, forKey: .verifiedPlaintextCrc32C)
-    self.verifiedAdditionalAuthenticatedDataCrc32C = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .verifiedPlaintextCrc32C)
+    {
+      self.verifiedPlaintextCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .verifiedAdditionalAuthenticatedDataCrc32C)
-    self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
+    {
+      self.verifiedAdditionalAuthenticatedDataCrc32C = value
+    }
+    if let value = try container.decodeIfPresent(ProtectionLevel.self, forKey: .protectionLevel) {
+      self.protectionLevel = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.ciphertext, forKey: .ciphertext)
-    try container.encode(self.ciphertextCrc32C, forKey: .ciphertextCrc32C)
+    try container.encodeIfPresent(self.ciphertextCrc32C, forKey: .ciphertextCrc32C)
     try container.encode(self.verifiedPlaintextCrc32C, forKey: .verifiedPlaintextCrc32C)
     try container.encode(
       self.verifiedAdditionalAuthenticatedDataCrc32C,
       forKey: .verifiedAdditionalAuthenticatedDataCrc32C)
     try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

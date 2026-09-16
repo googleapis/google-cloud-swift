@@ -33,6 +33,8 @@ public struct MessageWithEnum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// A map field, enums cannot be keys. We only need to test them as values.
   public var map: [Swift.String: MessageWithEnum.TestEnum] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `MessageWithEnum`.
   public init() {}
 
@@ -49,28 +51,56 @@ public struct MessageWithEnum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case singular = "singular"
-    case `optional` = "optional"
-    case repeated = "repeated"
-    case map = "map"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let singular = CodingKeys(stringValue: "singular")
+    static let `optional` = CodingKeys(stringValue: "optional")
+    static let repeated = CodingKeys(stringValue: "repeated")
+    static let map = CodingKeys(stringValue: "map")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "singular",
+      "optional",
+      "repeated",
+      "map",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decode(MessageWithEnum.TestEnum.self, forKey: .singular)
+    if let value = try container.decodeIfPresent(MessageWithEnum.TestEnum.self, forKey: .singular) {
+      self.singular = value
+    }
     self.`optional` = try container.decodeIfPresent(
       MessageWithEnum.TestEnum.self, forKey: .`optional`)
-    self.repeated = try container.decode([MessageWithEnum.TestEnum].self, forKey: .repeated)
-    self.map = try container.decode([Swift.String: MessageWithEnum.TestEnum].self, forKey: .map)
+    if let value = try container.decodeIfPresent([MessageWithEnum.TestEnum].self, forKey: .repeated)
+    {
+      self.repeated = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: MessageWithEnum.TestEnum].self, forKey: .map)
+    {
+      self.map = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.singular, forKey: .singular)
-    try container.encode(self.`optional`, forKey: .`optional`)
+    try container.encodeIfPresent(self.`optional`, forKey: .`optional`)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.map, forKey: .map)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The enum type

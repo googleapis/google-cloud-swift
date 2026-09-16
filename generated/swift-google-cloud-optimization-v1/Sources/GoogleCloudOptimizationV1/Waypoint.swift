@@ -33,6 +33,8 @@ public struct Waypoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Different ways to represent a location.
   public var locationType: OneOf_LocationType? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Waypoint`.
   public init() {}
 
@@ -49,15 +51,28 @@ public struct Waypoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case location = "location"
-    case placeId = "placeId"
-    case sideOfRoad = "sideOfRoad"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let location = CodingKeys(stringValue: "location")
+    static let placeId = CodingKeys(stringValue: "placeId")
+    static let sideOfRoad = CodingKeys(stringValue: "sideOfRoad")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "location",
+      "placeId",
+      "sideOfRoad",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.sideOfRoad = try container.decode(Swift.Bool.self, forKey: .sideOfRoad)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .sideOfRoad) {
+      self.sideOfRoad = value
+    }
 
     var locationType: OneOf_LocationType? = nil
     let locationTypeCheckAndSet = {
@@ -76,6 +91,10 @@ public struct Waypoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try locationTypeCheckAndSet(.placeId(placeId))
     }
     self.locationType = locationType
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -89,6 +108,9 @@ public struct Waypoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .placeId(let value):
         try container.encode(value, forKey: .placeId)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

@@ -40,6 +40,8 @@
     /// If results were truncated due to an error, details of that error.
     public var status: GoogleRpc.Status? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `QueryResult`.
     public init() {}
 
@@ -54,6 +56,60 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let columns = CodingKeys(stringValue: "columns")
+      static let rows = CodingKeys(stringValue: "rows")
+      static let message = CodingKeys(stringValue: "message")
+      static let partialResult = CodingKeys(stringValue: "partialResult")
+      static let status = CodingKeys(stringValue: "status")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "columns",
+        "rows",
+        "message",
+        "partialResult",
+        "status",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Column].self, forKey: .columns) {
+        self.columns = value
+      }
+      if let value = try container.decodeIfPresent([Row].self, forKey: .rows) {
+        self.rows = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
+        self.message = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .partialResult) {
+        self.partialResult = value
+      }
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.columns, forKey: .columns)
+      try container.encode(self.rows, forKey: .rows)
+      try container.encode(self.message, forKey: .message)
+      try container.encode(self.partialResult, forKey: .partialResult)
+      try container.encodeIfPresent(self.status, forKey: .status)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -43,6 +43,8 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// providers. When not specified, S3CompatibleMetadata is used by default.
   public var dataProvider: OneOf_DataProvider? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AwsS3CompatibleData`.
   public init() {}
 
@@ -59,20 +61,41 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case bucketName = "bucketName"
-    case path = "path"
-    case endpoint = "endpoint"
-    case region = "region"
-    case s3Metadata = "s3Metadata"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let bucketName = CodingKeys(stringValue: "bucketName")
+    static let path = CodingKeys(stringValue: "path")
+    static let endpoint = CodingKeys(stringValue: "endpoint")
+    static let region = CodingKeys(stringValue: "region")
+    static let s3Metadata = CodingKeys(stringValue: "s3Metadata")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "bucketName",
+      "path",
+      "endpoint",
+      "region",
+      "s3Metadata",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.bucketName = try container.decode(Swift.String.self, forKey: .bucketName)
-    self.path = try container.decode(Swift.String.self, forKey: .path)
-    self.endpoint = try container.decode(Swift.String.self, forKey: .endpoint)
-    self.region = try container.decode(Swift.String.self, forKey: .region)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
+      self.bucketName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .path) {
+      self.path = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
+      self.endpoint = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
 
     var dataProvider: OneOf_DataProvider? = nil
     let dataProviderCheckAndSet = {
@@ -90,6 +113,10 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try dataProviderCheckAndSet(.s3Metadata(s3Metadata))
     }
     self.dataProvider = dataProvider
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -104,6 +131,9 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .s3Metadata(let value):
         try container.encode(value, forKey: .s3Metadata)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

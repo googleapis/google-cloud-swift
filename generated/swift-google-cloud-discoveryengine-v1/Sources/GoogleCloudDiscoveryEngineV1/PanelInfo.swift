@@ -47,6 +47,8 @@
     /// Optional. The document IDs associated with this panel.
     public var documents: [DocumentInfo] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `PanelInfo`.
     public init() {}
 
@@ -61,6 +63,58 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let panelId = CodingKeys(stringValue: "panelId")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let panelPosition = CodingKeys(stringValue: "panelPosition")
+      static let totalPanels = CodingKeys(stringValue: "totalPanels")
+      static let documents = CodingKeys(stringValue: "documents")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "panelId",
+        "displayName",
+        "panelPosition",
+        "totalPanels",
+        "documents",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .panelId) {
+        self.panelId = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      self.panelPosition = try container.decodeIfPresent(Swift.Int32.self, forKey: .panelPosition)
+      self.totalPanels = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalPanels)
+      if let value = try container.decodeIfPresent([DocumentInfo].self, forKey: .documents) {
+        self.documents = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.panelId, forKey: .panelId)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encodeIfPresent(self.panelPosition, forKey: .panelPosition)
+      try container.encodeIfPresent(self.totalPanels, forKey: .totalPanels)
+      try container.encode(self.documents, forKey: .documents)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

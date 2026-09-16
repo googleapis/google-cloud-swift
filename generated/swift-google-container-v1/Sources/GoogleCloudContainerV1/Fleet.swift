@@ -38,6 +38,8 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The type of the cluster's fleet membership.
   public var membershipType: Fleet.MembershipType = Fleet.MembershipType()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Fleet`.
   public init() {}
 
@@ -52,6 +54,57 @@ public struct Fleet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let project = CodingKeys(stringValue: "project")
+    static let membership = CodingKeys(stringValue: "membership")
+    static let preRegistered = CodingKeys(stringValue: "preRegistered")
+    static let membershipType = CodingKeys(stringValue: "membershipType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "project",
+      "membership",
+      "preRegistered",
+      "membershipType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+      self.project = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .membership) {
+      self.membership = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preRegistered) {
+      self.preRegistered = value
+    }
+    if let value = try container.decodeIfPresent(Fleet.MembershipType.self, forKey: .membershipType)
+    {
+      self.membershipType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.project, forKey: .project)
+    try container.encode(self.membership, forKey: .membership)
+    try container.encode(self.preRegistered, forKey: .preRegistered)
+    try container.encode(self.membershipType, forKey: .membershipType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// MembershipType describes if the membership supports all features or only

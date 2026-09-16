@@ -27,6 +27,8 @@
     /// Output only. Server-defined URL for the instance.
     public var instance: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceConsumptionData`.
     public init() {}
 
@@ -41,6 +43,41 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let consumptionInfo = CodingKeys(stringValue: "consumptionInfo")
+      static let instance = CodingKeys(stringValue: "instance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "consumptionInfo",
+        "instance",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.consumptionInfo = try container.decodeIfPresent(
+        InstanceConsumptionInfo.self, forKey: .consumptionInfo)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.consumptionInfo, forKey: .consumptionInfo)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

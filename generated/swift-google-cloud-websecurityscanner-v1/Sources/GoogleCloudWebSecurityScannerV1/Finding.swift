@@ -88,6 +88,8 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. An addon containing information reported for an XXE, if any.
   public var xxe: Xxe? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Finding`.
   public init() {}
 
@@ -102,6 +104,130 @@ public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let findingType = CodingKeys(stringValue: "findingType")
+    static let severity = CodingKeys(stringValue: "severity")
+    static let httpMethod = CodingKeys(stringValue: "httpMethod")
+    static let fuzzedUrl = CodingKeys(stringValue: "fuzzedUrl")
+    static let body = CodingKeys(stringValue: "body")
+    static let description = CodingKeys(stringValue: "description")
+    static let reproductionUrl = CodingKeys(stringValue: "reproductionUrl")
+    static let frameUrl = CodingKeys(stringValue: "frameUrl")
+    static let finalUrl = CodingKeys(stringValue: "finalUrl")
+    static let trackingId = CodingKeys(stringValue: "trackingId")
+    static let form = CodingKeys(stringValue: "form")
+    static let outdatedLibrary = CodingKeys(stringValue: "outdatedLibrary")
+    static let violatingResource = CodingKeys(stringValue: "violatingResource")
+    static let vulnerableHeaders = CodingKeys(stringValue: "vulnerableHeaders")
+    static let vulnerableParameters = CodingKeys(stringValue: "vulnerableParameters")
+    static let xss = CodingKeys(stringValue: "xss")
+    static let xxe = CodingKeys(stringValue: "xxe")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "findingType",
+      "severity",
+      "httpMethod",
+      "fuzzedUrl",
+      "body",
+      "description",
+      "reproductionUrl",
+      "frameUrl",
+      "finalUrl",
+      "trackingId",
+      "form",
+      "outdatedLibrary",
+      "violatingResource",
+      "vulnerableHeaders",
+      "vulnerableParameters",
+      "xss",
+      "xxe",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .findingType) {
+      self.findingType = value
+    }
+    if let value = try container.decodeIfPresent(Finding.Severity.self, forKey: .severity) {
+      self.severity = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .httpMethod) {
+      self.httpMethod = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fuzzedUrl) {
+      self.fuzzedUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .body) {
+      self.body = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reproductionUrl) {
+      self.reproductionUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .frameUrl) {
+      self.frameUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .finalUrl) {
+      self.finalUrl = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackingId) {
+      self.trackingId = value
+    }
+    self.form = try container.decodeIfPresent(Form.self, forKey: .form)
+    self.outdatedLibrary = try container.decodeIfPresent(
+      OutdatedLibrary.self, forKey: .outdatedLibrary)
+    self.violatingResource = try container.decodeIfPresent(
+      ViolatingResource.self, forKey: .violatingResource)
+    self.vulnerableHeaders = try container.decodeIfPresent(
+      VulnerableHeaders.self, forKey: .vulnerableHeaders)
+    self.vulnerableParameters = try container.decodeIfPresent(
+      VulnerableParameters.self, forKey: .vulnerableParameters)
+    self.xss = try container.decodeIfPresent(Xss.self, forKey: .xss)
+    self.xxe = try container.decodeIfPresent(Xxe.self, forKey: .xxe)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.findingType, forKey: .findingType)
+    try container.encode(self.severity, forKey: .severity)
+    try container.encode(self.httpMethod, forKey: .httpMethod)
+    try container.encode(self.fuzzedUrl, forKey: .fuzzedUrl)
+    try container.encode(self.body, forKey: .body)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.reproductionUrl, forKey: .reproductionUrl)
+    try container.encode(self.frameUrl, forKey: .frameUrl)
+    try container.encode(self.finalUrl, forKey: .finalUrl)
+    try container.encode(self.trackingId, forKey: .trackingId)
+    try container.encodeIfPresent(self.form, forKey: .form)
+    try container.encodeIfPresent(self.outdatedLibrary, forKey: .outdatedLibrary)
+    try container.encodeIfPresent(self.violatingResource, forKey: .violatingResource)
+    try container.encodeIfPresent(self.vulnerableHeaders, forKey: .vulnerableHeaders)
+    try container.encodeIfPresent(self.vulnerableParameters, forKey: .vulnerableParameters)
+    try container.encodeIfPresent(self.xss, forKey: .xss)
+    try container.encodeIfPresent(self.xxe, forKey: .xxe)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The severity level of a vulnerability.

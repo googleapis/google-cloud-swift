@@ -35,6 +35,8 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The default value used in the filter comparison
   public var defaultValue: OneOf_DefaultValue? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `DashboardFilter`.
   public init() {}
 
@@ -51,18 +53,38 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case labelKey = "labelKey"
-    case templateVariable = "templateVariable"
-    case stringValue = "stringValue"
-    case filterType = "filterType"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let labelKey = CodingKeys(stringValue: "labelKey")
+    static let templateVariable = CodingKeys(stringValue: "templateVariable")
+    static let stringValue = CodingKeys(stringValue: "stringValue")
+    static let filterType = CodingKeys(stringValue: "filterType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "labelKey",
+      "templateVariable",
+      "stringValue",
+      "filterType",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.labelKey = try container.decode(Swift.String.self, forKey: .labelKey)
-    self.templateVariable = try container.decode(Swift.String.self, forKey: .templateVariable)
-    self.filterType = try container.decode(DashboardFilter.FilterType.self, forKey: .filterType)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelKey) {
+      self.labelKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .templateVariable) {
+      self.templateVariable = value
+    }
+    if let value = try container.decodeIfPresent(
+      DashboardFilter.FilterType.self, forKey: .filterType)
+    {
+      self.filterType = value
+    }
 
     var defaultValue: OneOf_DefaultValue? = nil
     let defaultValueCheckAndSet = {
@@ -78,6 +100,10 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try defaultValueCheckAndSet(.stringValue(stringValue))
     }
     self.defaultValue = defaultValue
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -91,6 +117,9 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .stringValue(let value):
         try container.encode(value, forKey: .stringValue)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

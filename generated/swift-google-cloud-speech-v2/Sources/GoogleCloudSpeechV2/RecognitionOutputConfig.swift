@@ -27,6 +27,8 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
 
   public var output: OneOf_Output? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `RecognitionOutputConfig`.
   public init() {}
 
@@ -43,10 +45,21 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case gcsOutputConfig = "gcsOutputConfig"
-    case inlineResponseConfig = "inlineResponseConfig"
-    case outputFormatConfig = "outputFormatConfig"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsOutputConfig = CodingKeys(stringValue: "gcsOutputConfig")
+    static let inlineResponseConfig = CodingKeys(stringValue: "inlineResponseConfig")
+    static let outputFormatConfig = CodingKeys(stringValue: "outputFormatConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsOutputConfig",
+      "inlineResponseConfig",
+      "outputFormatConfig",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -75,11 +88,15 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       try outputCheckAndSet(.inlineResponseConfig(inlineResponseConfig))
     }
     self.output = output
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.outputFormatConfig, forKey: .outputFormatConfig)
+    try container.encodeIfPresent(self.outputFormatConfig, forKey: .outputFormatConfig)
 
     if let choice = self.output {
       switch choice {
@@ -88,6 +105,9 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
       case .inlineResponseConfig(let value):
         try container.encode(value, forKey: .inlineResponseConfig)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

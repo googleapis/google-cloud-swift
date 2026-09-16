@@ -25,6 +25,8 @@
     /// The output of this Neural Architecture Search (NAS) job.
     public var output: OneOf_Output? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `NasJobOutput`.
     public init() {}
 
@@ -41,8 +43,17 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case multiTrialJobOutput = "multiTrialJobOutput"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let multiTrialJobOutput = CodingKeys(stringValue: "multiTrialJobOutput")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "multiTrialJobOutput"
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -64,6 +75,10 @@
         try outputCheckAndSet(.multiTrialJobOutput(multiTrialJobOutput))
       }
       self.output = output
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,6 +89,9 @@
         case .multiTrialJobOutput(let value):
           try container.encode(value, forKey: .multiTrialJobOutput)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
@@ -86,6 +104,8 @@
 
       /// Output only. List of NasTrials that were started as part of train stage.
       public var trainTrials: [NasTrial] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `MultiTrialJobOutput`.
       public init() {}
@@ -101,6 +121,44 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let searchTrials = CodingKeys(stringValue: "searchTrials")
+        static let trainTrials = CodingKeys(stringValue: "trainTrials")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "searchTrials",
+          "trainTrials",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([NasTrial].self, forKey: .searchTrials) {
+          self.searchTrials = value
+        }
+        if let value = try container.decodeIfPresent([NasTrial].self, forKey: .trainTrials) {
+          self.trainTrials = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.searchTrials, forKey: .searchTrials)
+        try container.encode(self.trainTrials, forKey: .trainTrials)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {

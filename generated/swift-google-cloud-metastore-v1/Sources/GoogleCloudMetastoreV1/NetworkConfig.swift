@@ -27,6 +27,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Metastore instance.
   public var consumers: [NetworkConfig.Consumer] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NetworkConfig`.
   public init() {}
 
@@ -41,6 +43,39 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let consumers = CodingKeys(stringValue: "consumers")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "consumers"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([NetworkConfig.Consumer].self, forKey: .consumers)
+    {
+      self.consumers = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.consumers, forKey: .consumers)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Contains information of the customer's network configurations.
@@ -59,6 +94,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public var vpcResource: OneOf_VpcResource? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Consumer`.
     public init() {}
 
@@ -75,16 +112,31 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case subnetwork = "subnetwork"
-      case endpointUri = "endpointUri"
-      case endpointLocation = "endpointLocation"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let subnetwork = CodingKeys(stringValue: "subnetwork")
+      static let endpointUri = CodingKeys(stringValue: "endpointUri")
+      static let endpointLocation = CodingKeys(stringValue: "endpointLocation")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "subnetwork",
+        "endpointUri",
+        "endpointLocation",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.endpointUri = try container.decode(Swift.String.self, forKey: .endpointUri)
-      self.endpointLocation = try container.decode(Swift.String.self, forKey: .endpointLocation)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointUri) {
+        self.endpointUri = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointLocation) {
+        self.endpointLocation = value
+      }
 
       var vpcResource: OneOf_VpcResource? = nil
       let vpcResourceCheckAndSet = {
@@ -100,6 +152,10 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try vpcResourceCheckAndSet(.subnetwork(subnetwork))
       }
       self.vpcResource = vpcResource
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -112,6 +168,9 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .subnetwork(let value):
           try container.encode(value, forKey: .subnetwork)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

@@ -63,6 +63,8 @@ public struct Framework: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The supported enforcement modes of the framework.
   public var supportedEnforcementModes: [EnforcementMode] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Framework`.
   public init() {}
 
@@ -77,6 +79,101 @@ public struct Framework: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let majorRevisionId = CodingKeys(stringValue: "majorRevisionId")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+    static let type = CodingKeys(stringValue: "type")
+    static let cloudControlDetails = CodingKeys(stringValue: "cloudControlDetails")
+    static let category = CodingKeys(stringValue: "category")
+    static let supportedCloudProviders = CodingKeys(stringValue: "supportedCloudProviders")
+    static let supportedTargetResourceTypes = CodingKeys(
+      stringValue: "supportedTargetResourceTypes")
+    static let supportedEnforcementModes = CodingKeys(stringValue: "supportedEnforcementModes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "majorRevisionId",
+      "displayName",
+      "description",
+      "type",
+      "cloudControlDetails",
+      "category",
+      "supportedCloudProviders",
+      "supportedTargetResourceTypes",
+      "supportedEnforcementModes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .majorRevisionId) {
+      self.majorRevisionId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Framework.FrameworkType.self, forKey: .type) {
+      self.type = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudControlDetails].self, forKey: .cloudControlDetails)
+    {
+      self.cloudControlDetails = value
+    }
+    if let value = try container.decodeIfPresent([FrameworkCategory].self, forKey: .category) {
+      self.category = value
+    }
+    if let value = try container.decodeIfPresent(
+      [CloudProvider].self, forKey: .supportedCloudProviders)
+    {
+      self.supportedCloudProviders = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TargetResourceType].self, forKey: .supportedTargetResourceTypes)
+    {
+      self.supportedTargetResourceTypes = value
+    }
+    if let value = try container.decodeIfPresent(
+      [EnforcementMode].self, forKey: .supportedEnforcementModes)
+    {
+      self.supportedEnforcementModes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.majorRevisionId, forKey: .majorRevisionId)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.type, forKey: .type)
+    try container.encode(self.cloudControlDetails, forKey: .cloudControlDetails)
+    try container.encode(self.category, forKey: .category)
+    try container.encode(self.supportedCloudProviders, forKey: .supportedCloudProviders)
+    try container.encode(self.supportedTargetResourceTypes, forKey: .supportedTargetResourceTypes)
+    try container.encode(self.supportedEnforcementModes, forKey: .supportedEnforcementModes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The type of framework.

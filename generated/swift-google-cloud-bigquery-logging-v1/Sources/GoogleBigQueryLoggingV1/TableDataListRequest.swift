@@ -27,6 +27,8 @@ public struct TableDataListRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// Maximum number of results to return.
   public var maxResults: Swift.UInt32 = Swift.UInt32()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TableDataListRequest`.
   public init() {}
 
@@ -41,6 +43,44 @@ public struct TableDataListRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let startRow = CodingKeys(stringValue: "startRow")
+    static let maxResults = CodingKeys(stringValue: "maxResults")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "startRow",
+      "maxResults",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.UInt64.self, forKey: .startRow) {
+      self.startRow = value
+    }
+    if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults) {
+      self.maxResults = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.startRow, forKey: .startRow)
+    try container.encode(self.maxResults, forKey: .maxResults)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

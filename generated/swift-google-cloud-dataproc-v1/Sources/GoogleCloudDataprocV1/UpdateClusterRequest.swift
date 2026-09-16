@@ -114,6 +114,8 @@ public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   public var requestId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `UpdateClusterRequest`.
   public init() {}
 
@@ -128,6 +130,71 @@ public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let projectId = CodingKeys(stringValue: "projectId")
+    static let region = CodingKeys(stringValue: "region")
+    static let clusterName = CodingKeys(stringValue: "clusterName")
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let gracefulDecommissionTimeout = CodingKeys(stringValue: "gracefulDecommissionTimeout")
+    static let updateMask = CodingKeys(stringValue: "updateMask")
+    static let requestId = CodingKeys(stringValue: "requestId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "projectId",
+      "region",
+      "clusterName",
+      "cluster",
+      "gracefulDecommissionTimeout",
+      "updateMask",
+      "requestId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
+      self.projectId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+      self.region = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
+      self.clusterName = value
+    }
+    self.cluster = try container.decodeIfPresent(Cluster.self, forKey: .cluster)
+    self.gracefulDecommissionTimeout = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .gracefulDecommissionTimeout)
+    self.updateMask = try container.decodeIfPresent(
+      GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
+      self.requestId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.projectId, forKey: .projectId)
+    try container.encode(self.region, forKey: .region)
+    try container.encode(self.clusterName, forKey: .clusterName)
+    try container.encodeIfPresent(self.cluster, forKey: .cluster)
+    try container.encodeIfPresent(
+      self.gracefulDecommissionTimeout, forKey: .gracefulDecommissionTimeout)
+    try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
+    try container.encode(self.requestId, forKey: .requestId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

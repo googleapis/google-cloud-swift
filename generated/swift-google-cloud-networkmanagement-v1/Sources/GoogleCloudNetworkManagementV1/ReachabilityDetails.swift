@@ -36,6 +36,8 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// with multiple backends.
   public var traces: [Trace] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ReachabilityDetails`.
   public init() {}
 
@@ -50,6 +52,53 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let result = CodingKeys(stringValue: "result")
+    static let verifyTime = CodingKeys(stringValue: "verifyTime")
+    static let error = CodingKeys(stringValue: "error")
+    static let traces = CodingKeys(stringValue: "traces")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "result",
+      "verifyTime",
+      "error",
+      "traces",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(ReachabilityDetails.Result.self, forKey: .result) {
+      self.result = value
+    }
+    self.verifyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .verifyTime)
+    self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
+    if let value = try container.decodeIfPresent([Trace].self, forKey: .traces) {
+      self.traces = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.result, forKey: .result)
+    try container.encodeIfPresent(self.verifyTime, forKey: .verifyTime)
+    try container.encodeIfPresent(self.error, forKey: .error)
+    try container.encode(self.traces, forKey: .traces)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// The overall result of the test's configuration analysis.

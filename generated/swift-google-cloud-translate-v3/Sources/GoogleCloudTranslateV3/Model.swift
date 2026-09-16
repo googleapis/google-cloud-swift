@@ -57,6 +57,8 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Timestamp when this model was last updated.
   public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Model`.
   public init() {}
 
@@ -71,6 +73,90 @@ public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let dataset = CodingKeys(stringValue: "dataset")
+    static let sourceLanguageCode = CodingKeys(stringValue: "sourceLanguageCode")
+    static let targetLanguageCode = CodingKeys(stringValue: "targetLanguageCode")
+    static let trainExampleCount = CodingKeys(stringValue: "trainExampleCount")
+    static let validateExampleCount = CodingKeys(stringValue: "validateExampleCount")
+    static let testExampleCount = CodingKeys(stringValue: "testExampleCount")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "displayName",
+      "dataset",
+      "sourceLanguageCode",
+      "targetLanguageCode",
+      "trainExampleCount",
+      "validateExampleCount",
+      "testExampleCount",
+      "createTime",
+      "updateTime",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
+      self.dataset = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceLanguageCode) {
+      self.sourceLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetLanguageCode) {
+      self.targetLanguageCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .trainExampleCount) {
+      self.trainExampleCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .validateExampleCount) {
+      self.validateExampleCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .testExampleCount) {
+      self.testExampleCount = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.dataset, forKey: .dataset)
+    try container.encode(self.sourceLanguageCode, forKey: .sourceLanguageCode)
+    try container.encode(self.targetLanguageCode, forKey: .targetLanguageCode)
+    try container.encode(self.trainExampleCount, forKey: .trainExampleCount)
+    try container.encode(self.validateExampleCount, forKey: .validateExampleCount)
+    try container.encode(self.testExampleCount, forKey: .testExampleCount)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -66,6 +66,8 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// must be greater than or equal to 1024 and less than 4194304.
   public var podPidsLimit: Swift.Int64? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `NodeKubeletConfig`.
   public init() {}
 
@@ -80,6 +82,60 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let insecureKubeletReadonlyPortEnabled = CodingKeys(
+      stringValue: "insecureKubeletReadonlyPortEnabled")
+    static let cpuManagerPolicy = CodingKeys(stringValue: "cpuManagerPolicy")
+    static let cpuCfsQuota = CodingKeys(stringValue: "cpuCfsQuota")
+    static let cpuCfsQuotaPeriod = CodingKeys(stringValue: "cpuCfsQuotaPeriod")
+    static let podPidsLimit = CodingKeys(stringValue: "podPidsLimit")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "insecureKubeletReadonlyPortEnabled",
+      "cpuManagerPolicy",
+      "cpuCfsQuota",
+      "cpuCfsQuotaPeriod",
+      "podPidsLimit",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .insecureKubeletReadonlyPortEnabled)
+    {
+      self.insecureKubeletReadonlyPortEnabled = value
+    }
+    self.cpuManagerPolicy = try container.decodeIfPresent(
+      Swift.String.self, forKey: .cpuManagerPolicy)
+    self.cpuCfsQuota = try container.decodeIfPresent(Swift.Bool.self, forKey: .cpuCfsQuota)
+    self.cpuCfsQuotaPeriod = try container.decodeIfPresent(
+      Swift.String.self, forKey: .cpuCfsQuotaPeriod)
+    self.podPidsLimit = try container.decodeIfPresent(Swift.Int64.self, forKey: .podPidsLimit)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(
+      self.insecureKubeletReadonlyPortEnabled, forKey: .insecureKubeletReadonlyPortEnabled)
+    try container.encodeIfPresent(self.cpuManagerPolicy, forKey: .cpuManagerPolicy)
+    try container.encodeIfPresent(self.cpuCfsQuota, forKey: .cpuCfsQuota)
+    try container.encodeIfPresent(self.cpuCfsQuotaPeriod, forKey: .cpuCfsQuotaPeriod)
+    try container.encodeIfPresent(self.podPidsLimit, forKey: .podPidsLimit)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

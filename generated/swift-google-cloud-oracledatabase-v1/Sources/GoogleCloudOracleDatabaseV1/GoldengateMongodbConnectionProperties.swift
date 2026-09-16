@@ -53,6 +53,8 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleC
   /// Client Certificate key file password.
   public var tlsCertificateKeyFilePasswordOptions: OneOf_TlsCertificateKeyFilePasswordOptions? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoldengateMongodbConnectionProperties`.
   public init() {}
 
@@ -69,31 +71,67 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleC
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case password = "password"
-    case passwordSecretVersion = "passwordSecretVersion"
-    case tlsCertificateKeyFilePassword = "tlsCertificateKeyFilePassword"
-    case tlsCertificateKeyFilePasswordSecretVersion = "tlsCertificateKeyFilePasswordSecretVersion"
-    case technologyType = "technologyType"
-    case connectionString = "connectionString"
-    case username = "username"
-    case databaseId = "databaseId"
-    case securityProtocol = "securityProtocol"
-    case tlsCaFile = "tlsCaFile"
-    case tlsCertificateKeyFile = "tlsCertificateKeyFile"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let password = CodingKeys(stringValue: "password")
+    static let passwordSecretVersion = CodingKeys(stringValue: "passwordSecretVersion")
+    static let tlsCertificateKeyFilePassword = CodingKeys(
+      stringValue: "tlsCertificateKeyFilePassword")
+    static let tlsCertificateKeyFilePasswordSecretVersion = CodingKeys(
+      stringValue: "tlsCertificateKeyFilePasswordSecretVersion")
+    static let technologyType = CodingKeys(stringValue: "technologyType")
+    static let connectionString = CodingKeys(stringValue: "connectionString")
+    static let username = CodingKeys(stringValue: "username")
+    static let databaseId = CodingKeys(stringValue: "databaseId")
+    static let securityProtocol = CodingKeys(stringValue: "securityProtocol")
+    static let tlsCaFile = CodingKeys(stringValue: "tlsCaFile")
+    static let tlsCertificateKeyFile = CodingKeys(stringValue: "tlsCertificateKeyFile")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "password",
+      "passwordSecretVersion",
+      "tlsCertificateKeyFilePassword",
+      "tlsCertificateKeyFilePasswordSecretVersion",
+      "technologyType",
+      "connectionString",
+      "username",
+      "databaseId",
+      "securityProtocol",
+      "tlsCaFile",
+      "tlsCertificateKeyFile",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.technologyType = try container.decode(Swift.String.self, forKey: .technologyType)
-    self.connectionString = try container.decode(Swift.String.self, forKey: .connectionString)
-    self.username = try container.decode(Swift.String.self, forKey: .username)
-    self.databaseId = try container.decode(Swift.String.self, forKey: .databaseId)
-    self.securityProtocol = try container.decode(
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .technologyType) {
+      self.technologyType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionString) {
+      self.connectionString = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
+      self.username = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseId) {
+      self.databaseId = value
+    }
+    if let value = try container.decodeIfPresent(
       GoldengateMongodbConnectionProperties.MongodbSecurityProtocol.self, forKey: .securityProtocol)
-    self.tlsCaFile = try container.decode(Swift.String.self, forKey: .tlsCaFile)
-    self.tlsCertificateKeyFile = try container.decode(
-      Swift.String.self, forKey: .tlsCertificateKeyFile)
+    {
+      self.securityProtocol = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tlsCaFile) {
+      self.tlsCaFile = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tlsCertificateKeyFile)
+    {
+      self.tlsCertificateKeyFile = value
+    }
 
     var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
     let connectionPasswordOptionsCheckAndSet = {
@@ -139,6 +177,10 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleC
         .tlsCertificateKeyFilePasswordSecretVersion(tlsCertificateKeyFilePasswordSecretVersion))
     }
     self.tlsCertificateKeyFilePasswordOptions = tlsCertificateKeyFilePasswordOptions
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -167,6 +209,9 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleC
       case .tlsCertificateKeyFilePasswordSecretVersion(let value):
         try container.encode(value, forKey: .tlsCertificateKeyFilePasswordSecretVersion)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

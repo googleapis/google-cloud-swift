@@ -36,6 +36,8 @@ public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// "image/gif" are supported. Wildcards are not supported.
   public var mimeType: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `InputConfig`.
   public init() {}
 
@@ -50,6 +52,48 @@ public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let gcsSource = CodingKeys(stringValue: "gcsSource")
+    static let content = CodingKeys(stringValue: "content")
+    static let mimeType = CodingKeys(stringValue: "mimeType")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "gcsSource",
+      "content",
+      "mimeType",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .content) {
+      self.content = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+      self.mimeType = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.gcsSource, forKey: .gcsSource)
+    try container.encode(self.content, forKey: .content)
+    try container.encode(self.mimeType, forKey: .mimeType)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

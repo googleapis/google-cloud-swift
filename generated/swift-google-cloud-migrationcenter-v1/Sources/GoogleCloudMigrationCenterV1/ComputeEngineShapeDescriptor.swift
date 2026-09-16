@@ -39,6 +39,8 @@ public struct ComputeEngineShapeDescriptor: Codable, Equatable, GoogleCloudWKT._
   /// Compute Engine storage. Never empty.
   public var storage: [ComputeStorageDescriptor] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ComputeEngineShapeDescriptor`.
   public init() {}
 
@@ -53,6 +55,69 @@ public struct ComputeEngineShapeDescriptor: Codable, Equatable, GoogleCloudWKT._
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let memoryMb = CodingKeys(stringValue: "memoryMb")
+    static let physicalCoreCount = CodingKeys(stringValue: "physicalCoreCount")
+    static let logicalCoreCount = CodingKeys(stringValue: "logicalCoreCount")
+    static let series = CodingKeys(stringValue: "series")
+    static let machineType = CodingKeys(stringValue: "machineType")
+    static let storage = CodingKeys(stringValue: "storage")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "memoryMb",
+      "physicalCoreCount",
+      "logicalCoreCount",
+      "series",
+      "machineType",
+      "storage",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .memoryMb) {
+      self.memoryMb = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .physicalCoreCount) {
+      self.physicalCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .logicalCoreCount) {
+      self.logicalCoreCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .series) {
+      self.series = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
+      self.machineType = value
+    }
+    if let value = try container.decodeIfPresent([ComputeStorageDescriptor].self, forKey: .storage)
+    {
+      self.storage = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.memoryMb, forKey: .memoryMb)
+    try container.encode(self.physicalCoreCount, forKey: .physicalCoreCount)
+    try container.encode(self.logicalCoreCount, forKey: .logicalCoreCount)
+    try container.encode(self.series, forKey: .series)
+    try container.encode(self.machineType, forKey: .machineType)
+    try container.encode(self.storage, forKey: .storage)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

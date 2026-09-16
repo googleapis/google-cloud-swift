@@ -50,6 +50,8 @@
     /// Output only. Whether the NotebookLM Corpus is ready to be used.
     public var notebooklmState: CmekConfig.NotebookLMState = CmekConfig.NotebookLMState()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CmekConfig`.
     public init() {}
 
@@ -64,6 +66,87 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let kmsKey = CodingKeys(stringValue: "kmsKey")
+      static let kmsKeyVersion = CodingKeys(stringValue: "kmsKeyVersion")
+      static let state = CodingKeys(stringValue: "state")
+      static let isDefault = CodingKeys(stringValue: "isDefault")
+      static let lastRotationTimestampMicros = CodingKeys(
+        stringValue: "lastRotationTimestampMicros")
+      static let singleRegionKeys = CodingKeys(stringValue: "singleRegionKeys")
+      static let notebooklmState = CodingKeys(stringValue: "notebooklmState")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "kmsKey",
+        "kmsKeyVersion",
+        "state",
+        "isDefault",
+        "lastRotationTimestampMicros",
+        "singleRegionKeys",
+        "notebooklmState",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+        self.kmsKey = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyVersion) {
+        self.kmsKeyVersion = value
+      }
+      if let value = try container.decodeIfPresent(CmekConfig.State.self, forKey: .state) {
+        self.state = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isDefault) {
+        self.isDefault = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Int64.self, forKey: .lastRotationTimestampMicros)
+      {
+        self.lastRotationTimestampMicros = value
+      }
+      if let value = try container.decodeIfPresent(
+        [SingleRegionKey].self, forKey: .singleRegionKeys)
+      {
+        self.singleRegionKeys = value
+      }
+      if let value = try container.decodeIfPresent(
+        CmekConfig.NotebookLMState.self, forKey: .notebooklmState)
+      {
+        self.notebooklmState = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.kmsKey, forKey: .kmsKey)
+      try container.encode(self.kmsKeyVersion, forKey: .kmsKeyVersion)
+      try container.encode(self.state, forKey: .state)
+      try container.encode(self.isDefault, forKey: .isDefault)
+      try container.encode(self.lastRotationTimestampMicros, forKey: .lastRotationTimestampMicros)
+      try container.encode(self.singleRegionKeys, forKey: .singleRegionKeys)
+      try container.encode(self.notebooklmState, forKey: .notebooklmState)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// States of the CmekConfig.

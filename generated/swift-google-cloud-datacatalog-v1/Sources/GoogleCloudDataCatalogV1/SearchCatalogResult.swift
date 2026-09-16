@@ -86,6 +86,8 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// `search_result_type` is `ENTRY`.
   public var system: OneOf_System? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SearchCatalogResult`.
   public init() {}
 
@@ -102,31 +104,62 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case searchResultType = "searchResultType"
-    case searchResultSubtype = "searchResultSubtype"
-    case relativeResourceName = "relativeResourceName"
-    case linkedResource = "linkedResource"
-    case modifyTime = "modifyTime"
-    case integratedSystem = "integratedSystem"
-    case userSpecifiedSystem = "userSpecifiedSystem"
-    case fullyQualifiedName = "fullyQualifiedName"
-    case displayName = "displayName"
-    case description = "description"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let searchResultType = CodingKeys(stringValue: "searchResultType")
+    static let searchResultSubtype = CodingKeys(stringValue: "searchResultSubtype")
+    static let relativeResourceName = CodingKeys(stringValue: "relativeResourceName")
+    static let linkedResource = CodingKeys(stringValue: "linkedResource")
+    static let modifyTime = CodingKeys(stringValue: "modifyTime")
+    static let integratedSystem = CodingKeys(stringValue: "integratedSystem")
+    static let userSpecifiedSystem = CodingKeys(stringValue: "userSpecifiedSystem")
+    static let fullyQualifiedName = CodingKeys(stringValue: "fullyQualifiedName")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "searchResultType",
+      "searchResultSubtype",
+      "relativeResourceName",
+      "linkedResource",
+      "modifyTime",
+      "integratedSystem",
+      "userSpecifiedSystem",
+      "fullyQualifiedName",
+      "displayName",
+      "description",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.searchResultType = try container.decode(SearchResultType.self, forKey: .searchResultType)
-    self.searchResultSubtype = try container.decode(Swift.String.self, forKey: .searchResultSubtype)
-    self.relativeResourceName = try container.decode(
-      Swift.String.self, forKey: .relativeResourceName)
-    self.linkedResource = try container.decode(Swift.String.self, forKey: .linkedResource)
+    if let value = try container.decodeIfPresent(SearchResultType.self, forKey: .searchResultType) {
+      self.searchResultType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchResultSubtype) {
+      self.searchResultSubtype = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .relativeResourceName) {
+      self.relativeResourceName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .linkedResource) {
+      self.linkedResource = value
+    }
     self.modifyTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .modifyTime)
-    self.fullyQualifiedName = try container.decode(Swift.String.self, forKey: .fullyQualifiedName)
-    self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.description = try container.decode(Swift.String.self, forKey: .description)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullyQualifiedName) {
+      self.fullyQualifiedName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
 
     var system: OneOf_System? = nil
     let systemCheckAndSet = {
@@ -149,6 +182,10 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       try systemCheckAndSet(.userSpecifiedSystem(userSpecifiedSystem))
     }
     self.system = system
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -157,7 +194,7 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
     try container.encode(self.searchResultSubtype, forKey: .searchResultSubtype)
     try container.encode(self.relativeResourceName, forKey: .relativeResourceName)
     try container.encode(self.linkedResource, forKey: .linkedResource)
-    try container.encode(self.modifyTime, forKey: .modifyTime)
+    try container.encodeIfPresent(self.modifyTime, forKey: .modifyTime)
     try container.encode(self.fullyQualifiedName, forKey: .fullyQualifiedName)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
@@ -169,6 +206,9 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .userSpecifiedSystem(let value):
         try container.encode(value, forKey: .userSpecifiedSystem)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

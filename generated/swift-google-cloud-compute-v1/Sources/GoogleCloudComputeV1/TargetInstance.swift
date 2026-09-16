@@ -84,6 +84,8 @@
     /// not settable as a field in the request body.
     public var zone: Swift.String? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `TargetInstance`.
     public init() {}
 
@@ -98,6 +100,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
+      static let description = CodingKeys(stringValue: "description")
+      static let id = CodingKeys(stringValue: "id")
+      static let instance = CodingKeys(stringValue: "instance")
+      static let kind = CodingKeys(stringValue: "kind")
+      static let name = CodingKeys(stringValue: "name")
+      static let natPolicy = CodingKeys(stringValue: "natPolicy")
+      static let network = CodingKeys(stringValue: "network")
+      static let securityPolicy = CodingKeys(stringValue: "securityPolicy")
+      static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let zone = CodingKeys(stringValue: "zone")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "creationTimestamp",
+        "description",
+        "id",
+        "instance",
+        "kind",
+        "name",
+        "natPolicy",
+        "network",
+        "securityPolicy",
+        "selfLink",
+        "zone",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.creationTimestamp = try container.decodeIfPresent(
+        Swift.String.self, forKey: .creationTimestamp)
+      self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
+      self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
+      self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
+      self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+      self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.natPolicy = try container.decodeIfPresent(
+        TargetInstance.NatPolicy.self, forKey: .natPolicy)
+      self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
+      self.securityPolicy = try container.decodeIfPresent(
+        Swift.String.self, forKey: .securityPolicy)
+      self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.zone = try container.decodeIfPresent(Swift.String.self, forKey: .zone)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
+      try container.encodeIfPresent(self.description, forKey: .description)
+      try container.encodeIfPresent(self.id, forKey: .id)
+      try container.encodeIfPresent(self.instance, forKey: .instance)
+      try container.encodeIfPresent(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.natPolicy, forKey: .natPolicy)
+      try container.encodeIfPresent(self.network, forKey: .network)
+      try container.encodeIfPresent(self.securityPolicy, forKey: .securityPolicy)
+      try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.zone, forKey: .zone)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [natPolicy][google.cloud.compute.v1.TargetInstance.natPolicy] field.

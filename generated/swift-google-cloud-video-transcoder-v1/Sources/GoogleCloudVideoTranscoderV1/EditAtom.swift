@@ -41,6 +41,8 @@ public struct EditAtom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The default is `0s`.
   public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `EditAtom`.
   public init() {}
 
@@ -55,6 +57,54 @@ public struct EditAtom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let key = CodingKeys(stringValue: "key")
+    static let inputs = CodingKeys(stringValue: "inputs")
+    static let endTimeOffset = CodingKeys(stringValue: "endTimeOffset")
+    static let startTimeOffset = CodingKeys(stringValue: "startTimeOffset")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "key",
+      "inputs",
+      "endTimeOffset",
+      "startTimeOffset",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
+      self.key = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .inputs) {
+      self.inputs = value
+    }
+    self.endTimeOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .endTimeOffset)
+    self.startTimeOffset = try container.decodeIfPresent(
+      GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.key, forKey: .key)
+    try container.encode(self.inputs, forKey: .inputs)
+    try container.encodeIfPresent(self.endTimeOffset, forKey: .endTimeOffset)
+    try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

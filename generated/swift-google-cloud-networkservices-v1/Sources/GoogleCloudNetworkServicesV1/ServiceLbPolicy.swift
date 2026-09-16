@@ -55,6 +55,8 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Backend Service.
   public var isolationConfig: ServiceLbPolicy.IsolationConfig? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ServiceLbPolicy`.
   public init() {}
 
@@ -71,6 +73,84 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let labels = CodingKeys(stringValue: "labels")
+    static let description = CodingKeys(stringValue: "description")
+    static let loadBalancingAlgorithm = CodingKeys(stringValue: "loadBalancingAlgorithm")
+    static let autoCapacityDrain = CodingKeys(stringValue: "autoCapacityDrain")
+    static let failoverConfig = CodingKeys(stringValue: "failoverConfig")
+    static let isolationConfig = CodingKeys(stringValue: "isolationConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "labels",
+      "description",
+      "loadBalancingAlgorithm",
+      "autoCapacityDrain",
+      "failoverConfig",
+      "isolationConfig",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(
+      ServiceLbPolicy.LoadBalancingAlgorithm.self, forKey: .loadBalancingAlgorithm)
+    {
+      self.loadBalancingAlgorithm = value
+    }
+    self.autoCapacityDrain = try container.decodeIfPresent(
+      ServiceLbPolicy.AutoCapacityDrain.self, forKey: .autoCapacityDrain)
+    self.failoverConfig = try container.decodeIfPresent(
+      ServiceLbPolicy.FailoverConfig.self, forKey: .failoverConfig)
+    self.isolationConfig = try container.decodeIfPresent(
+      ServiceLbPolicy.IsolationConfig.self, forKey: .isolationConfig)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.labels, forKey: .labels)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.loadBalancingAlgorithm, forKey: .loadBalancingAlgorithm)
+    try container.encodeIfPresent(self.autoCapacityDrain, forKey: .autoCapacityDrain)
+    try container.encodeIfPresent(self.failoverConfig, forKey: .failoverConfig)
+    try container.encodeIfPresent(self.isolationConfig, forKey: .isolationConfig)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Option to specify if an unhealthy IG/NEG should be considered for global
   /// load balancing and traffic routing.
   public struct AutoCapacityDrain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -82,6 +162,8 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// - This option will never result in draining more than 50% of the
     /// configured IGs/NEGs for the Backend Service.
     public var enable: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AutoCapacityDrain`.
     public init() {}
@@ -97,6 +179,38 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enable = CodingKeys(stringValue: "enable")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enable"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable) {
+        self.enable = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enable, forKey: .enable)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -123,6 +237,8 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// (classic) and Proxyless service mesh, and 70 for others.
     public var failoverHealthThreshold: Swift.Int32 = Swift.Int32()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FailoverConfig`.
     public init() {}
 
@@ -137,6 +253,40 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let failoverHealthThreshold = CodingKeys(stringValue: "failoverHealthThreshold")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "failoverHealthThreshold"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Int32.self, forKey: .failoverHealthThreshold)
+      {
+        self.failoverHealthThreshold = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.failoverHealthThreshold, forKey: .failoverHealthThreshold)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -162,6 +312,8 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Optional. The isolation mode of the load balancer.
     public var isolationMode: ServiceLbPolicy.IsolationMode = ServiceLbPolicy.IsolationMode()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `IsolationConfig`.
     public init() {}
 
@@ -176,6 +328,48 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let isolationGranularity = CodingKeys(stringValue: "isolationGranularity")
+      static let isolationMode = CodingKeys(stringValue: "isolationMode")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "isolationGranularity",
+        "isolationMode",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        ServiceLbPolicy.IsolationGranularity.self, forKey: .isolationGranularity)
+      {
+        self.isolationGranularity = value
+      }
+      if let value = try container.decodeIfPresent(
+        ServiceLbPolicy.IsolationMode.self, forKey: .isolationMode)
+      {
+        self.isolationMode = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.isolationGranularity, forKey: .isolationGranularity)
+      try container.encode(self.isolationMode, forKey: .isolationMode)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

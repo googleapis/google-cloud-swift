@@ -43,6 +43,8 @@ public struct Profile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The performance statistics for this profile.
   public var performanceStats: [PerformanceStats] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Profile`.
   public init() {}
 
@@ -57,6 +59,66 @@ public struct Profile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let modelServerInfo = CodingKeys(stringValue: "modelServerInfo")
+    static let acceleratorType = CodingKeys(stringValue: "acceleratorType")
+    static let tpuTopology = CodingKeys(stringValue: "tpuTopology")
+    static let instanceType = CodingKeys(stringValue: "instanceType")
+    static let resourcesUsed = CodingKeys(stringValue: "resourcesUsed")
+    static let performanceStats = CodingKeys(stringValue: "performanceStats")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "modelServerInfo",
+      "acceleratorType",
+      "tpuTopology",
+      "instanceType",
+      "resourcesUsed",
+      "performanceStats",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.modelServerInfo = try container.decodeIfPresent(
+      ModelServerInfo.self, forKey: .modelServerInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .acceleratorType) {
+      self.acceleratorType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tpuTopology) {
+      self.tpuTopology = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceType) {
+      self.instanceType = value
+    }
+    self.resourcesUsed = try container.decodeIfPresent(ResourcesUsed.self, forKey: .resourcesUsed)
+    if let value = try container.decodeIfPresent([PerformanceStats].self, forKey: .performanceStats)
+    {
+      self.performanceStats = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.modelServerInfo, forKey: .modelServerInfo)
+    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    try container.encode(self.tpuTopology, forKey: .tpuTopology)
+    try container.encode(self.instanceType, forKey: .instanceType)
+    try container.encodeIfPresent(self.resourcesUsed, forKey: .resourcesUsed)
+    try container.encode(self.performanceStats, forKey: .performanceStats)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

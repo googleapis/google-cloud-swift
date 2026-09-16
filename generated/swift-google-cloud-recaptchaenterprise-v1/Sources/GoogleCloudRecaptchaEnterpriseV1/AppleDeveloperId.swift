@@ -33,6 +33,8 @@ public struct AppleDeveloperId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// profile used to build your application.
   public var teamId: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AppleDeveloperId`.
   public init() {}
 
@@ -47,6 +49,50 @@ public struct AppleDeveloperId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let privateKey = CodingKeys(stringValue: "privateKey")
+    static let keyId = CodingKeys(stringValue: "keyId")
+    static let teamId = CodingKeys(stringValue: "teamId")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "privateKey",
+      "keyId",
+      "teamId",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKey) {
+      self.privateKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
+      self.keyId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .teamId) {
+      self.teamId = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.privateKey, forKey: .privateKey)
+    try container.encode(self.keyId, forKey: .keyId)
+    try container.encode(self.teamId, forKey: .teamId)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -45,6 +45,8 @@ public struct CreatePluginInstanceRequest: Codable, Equatable, GoogleCloudWKT._A
   /// Required. The plugin instance to create.
   public var pluginInstance: PluginInstance? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CreatePluginInstanceRequest`.
   public init() {}
 
@@ -59,6 +61,49 @@ public struct CreatePluginInstanceRequest: Codable, Equatable, GoogleCloudWKT._A
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let parent = CodingKeys(stringValue: "parent")
+    static let pluginInstanceId = CodingKeys(stringValue: "pluginInstanceId")
+    static let pluginInstance = CodingKeys(stringValue: "pluginInstance")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "parent",
+      "pluginInstanceId",
+      "pluginInstance",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
+      self.parent = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pluginInstanceId) {
+      self.pluginInstanceId = value
+    }
+    self.pluginInstance = try container.decodeIfPresent(
+      PluginInstance.self, forKey: .pluginInstance)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.parent, forKey: .parent)
+    try container.encode(self.pluginInstanceId, forKey: .pluginInstanceId)
+    try container.encodeIfPresent(self.pluginInstance, forKey: .pluginInstance)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

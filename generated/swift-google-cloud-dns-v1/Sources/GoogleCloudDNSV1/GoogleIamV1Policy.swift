@@ -33,6 +33,8 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable
   /// Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
   public var version: Swift.Int32? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GoogleIamV1Policy`.
   public init() {}
 
@@ -49,17 +51,35 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case auditConfigs = "auditConfigs"
-    case bindings = "bindings"
-    case etag = "etag"
-    case version = "version"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let auditConfigs = CodingKeys(stringValue: "auditConfigs")
+    static let bindings = CodingKeys(stringValue: "bindings")
+    static let etag = CodingKeys(stringValue: "etag")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "auditConfigs",
+      "bindings",
+      "etag",
+      "version",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.auditConfigs = try container.decode([GoogleIamV1AuditConfig].self, forKey: .auditConfigs)
-    self.bindings = try container.decode([GoogleIamV1Binding].self, forKey: .bindings)
+    if let value = try container.decodeIfPresent(
+      [GoogleIamV1AuditConfig].self, forKey: .auditConfigs)
+    {
+      self.auditConfigs = value
+    }
+    if let value = try container.decodeIfPresent([GoogleIamV1Binding].self, forKey: .bindings) {
+      self.bindings = value
+    }
     if let s = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
         throw DecodingError.dataCorrupted(
@@ -70,6 +90,10 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable
       self.etag = v
     }
     self.version = try container.decodeIfPresent(Swift.Int32.self, forKey: .version)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -81,7 +105,10 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable
         GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .etag
       )
     }
-    try container.encode(self.version, forKey: .version)
+    try container.encodeIfPresent(self.version, forKey: .version)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

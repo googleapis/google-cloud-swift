@@ -33,6 +33,8 @@
 
     public var startTimeNotLaterThan: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `FlexibleTimeRange`.
     public init() {}
 
@@ -47,6 +49,52 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let maxDuration = CodingKeys(stringValue: "maxDuration")
+      static let minDuration = CodingKeys(stringValue: "minDuration")
+      static let startTimeNotEarlierThan = CodingKeys(stringValue: "startTimeNotEarlierThan")
+      static let startTimeNotLaterThan = CodingKeys(stringValue: "startTimeNotLaterThan")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "maxDuration",
+        "minDuration",
+        "startTimeNotEarlierThan",
+        "startTimeNotLaterThan",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.maxDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .maxDuration)
+      self.minDuration = try container.decodeIfPresent(
+        GoogleCloudWKT.Duration.self, forKey: .minDuration)
+      self.startTimeNotEarlierThan = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTimeNotEarlierThan)
+      self.startTimeNotLaterThan = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .startTimeNotLaterThan)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
+      try container.encodeIfPresent(self.minDuration, forKey: .minDuration)
+      try container.encodeIfPresent(self.startTimeNotEarlierThan, forKey: .startTimeNotEarlierThan)
+      try container.encodeIfPresent(self.startTimeNotLaterThan, forKey: .startTimeNotLaterThan)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

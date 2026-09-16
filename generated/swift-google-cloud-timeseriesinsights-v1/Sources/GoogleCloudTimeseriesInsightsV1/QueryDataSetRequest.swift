@@ -81,6 +81,8 @@ public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// [google.cloud.timeseriesinsights.v1.EvaluatedSlice.history]: <doc:EvaluatedSlice/history>
   public var returnTimeseries: Swift.Bool = Swift.Bool()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `QueryDataSetRequest`.
   public init() {}
 
@@ -95,6 +97,68 @@ public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let detectionTime = CodingKeys(stringValue: "detectionTime")
+    static let numReturnedSlices = CodingKeys(stringValue: "numReturnedSlices")
+    static let slicingParams = CodingKeys(stringValue: "slicingParams")
+    static let timeseriesParams = CodingKeys(stringValue: "timeseriesParams")
+    static let forecastParams = CodingKeys(stringValue: "forecastParams")
+    static let returnTimeseries = CodingKeys(stringValue: "returnTimeseries")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "detectionTime",
+      "numReturnedSlices",
+      "slicingParams",
+      "timeseriesParams",
+      "forecastParams",
+      "returnTimeseries",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.detectionTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .detectionTime)
+    self.numReturnedSlices = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .numReturnedSlices)
+    self.slicingParams = try container.decodeIfPresent(SlicingParams.self, forKey: .slicingParams)
+    self.timeseriesParams = try container.decodeIfPresent(
+      TimeseriesParams.self, forKey: .timeseriesParams)
+    self.forecastParams = try container.decodeIfPresent(
+      ForecastParams.self, forKey: .forecastParams)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .returnTimeseries) {
+      self.returnTimeseries = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.detectionTime, forKey: .detectionTime)
+    try container.encodeIfPresent(self.numReturnedSlices, forKey: .numReturnedSlices)
+    try container.encodeIfPresent(self.slicingParams, forKey: .slicingParams)
+    try container.encodeIfPresent(self.timeseriesParams, forKey: .timeseriesParams)
+    try container.encodeIfPresent(self.forecastParams, forKey: .forecastParams)
+    try container.encode(self.returnTimeseries, forKey: .returnTimeseries)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

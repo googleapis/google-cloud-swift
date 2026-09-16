@@ -46,6 +46,8 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// Total size in bytes that were transformed in some way.
   public var transformedBytes: Swift.Int64 = Swift.Int64()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `TransformationSummary`.
   public init() {}
 
@@ -60,6 +62,72 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWKT._AnyPack
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let infoType = CodingKeys(stringValue: "infoType")
+    static let field = CodingKeys(stringValue: "field")
+    static let transformation = CodingKeys(stringValue: "transformation")
+    static let fieldTransformations = CodingKeys(stringValue: "fieldTransformations")
+    static let recordSuppress = CodingKeys(stringValue: "recordSuppress")
+    static let results = CodingKeys(stringValue: "results")
+    static let transformedBytes = CodingKeys(stringValue: "transformedBytes")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "infoType",
+      "field",
+      "transformation",
+      "fieldTransformations",
+      "recordSuppress",
+      "results",
+      "transformedBytes",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
+    self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
+    self.transformation = try container.decodeIfPresent(
+      PrimitiveTransformation.self, forKey: .transformation)
+    if let value = try container.decodeIfPresent(
+      [FieldTransformation].self, forKey: .fieldTransformations)
+    {
+      self.fieldTransformations = value
+    }
+    self.recordSuppress = try container.decodeIfPresent(
+      RecordSuppression.self, forKey: .recordSuppress)
+    if let value = try container.decodeIfPresent(
+      [TransformationSummary.SummaryResult].self, forKey: .results)
+    {
+      self.results = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .transformedBytes) {
+      self.transformedBytes = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.infoType, forKey: .infoType)
+    try container.encodeIfPresent(self.field, forKey: .field)
+    try container.encodeIfPresent(self.transformation, forKey: .transformation)
+    try container.encode(self.fieldTransformations, forKey: .fieldTransformations)
+    try container.encodeIfPresent(self.recordSuppress, forKey: .recordSuppress)
+    try container.encode(self.results, forKey: .results)
+    try container.encode(self.transformedBytes, forKey: .transformedBytes)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// A collection that informs the user the number of times a particular
@@ -78,6 +146,8 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWKT._AnyPack
     /// work as expected.
     public var details: Swift.String = Swift.String()
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `SummaryResult`.
     public init() {}
 
@@ -92,6 +162,52 @@ public struct TransformationSummary: Codable, Equatable, GoogleCloudWKT._AnyPack
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let count = CodingKeys(stringValue: "count")
+      static let code = CodingKeys(stringValue: "code")
+      static let details = CodingKeys(stringValue: "details")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "count",
+        "code",
+        "details",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
+        self.count = value
+      }
+      if let value = try container.decodeIfPresent(
+        TransformationSummary.TransformationResultCode.self, forKey: .code)
+      {
+        self.code = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
+        self.details = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.count, forKey: .count)
+      try container.encode(self.code, forKey: .code)
+      try container.encode(self.details, forKey: .details)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

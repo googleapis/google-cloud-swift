@@ -33,6 +33,8 @@
     /// Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
     public var type: BgpRouteAsPath.Type_? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `BgpRouteAsPath`.
     public init() {}
 
@@ -47,6 +49,48 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let asns = CodingKeys(stringValue: "asns")
+      static let asns32 = CodingKeys(stringValue: "asns32")
+      static let type = CodingKeys(stringValue: "type")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "asns",
+        "asns32",
+        "type",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .asns) {
+        self.asns = value
+      }
+      if let value = try container.decodeIfPresent([Swift.UInt32].self, forKey: .asns32) {
+        self.asns32 = value
+      }
+      self.type = try container.decodeIfPresent(BgpRouteAsPath.Type_.self, forKey: .type)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.asns, forKey: .asns)
+      try container.encode(self.asns32, forKey: .asns32)
+      try container.encodeIfPresent(self.type, forKey: .type)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// The enumerated type for the [type][google.cloud.compute.v1.BgpRouteAsPath.type] field.

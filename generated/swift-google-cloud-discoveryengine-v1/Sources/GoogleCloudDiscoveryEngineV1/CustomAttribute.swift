@@ -54,6 +54,8 @@
     /// [google.cloud.discoveryengine.v1.CustomAttribute.text]: <doc:CustomAttribute/text>
     public var numbers: [Swift.Double] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `CustomAttribute`.
     public init() {}
 
@@ -68,6 +70,44 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let text = CodingKeys(stringValue: "text")
+      static let numbers = CodingKeys(stringValue: "numbers")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "text",
+        "numbers",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .text) {
+        self.text = value
+      }
+      if let value = try container.decodeIfPresent([Swift.Double].self, forKey: .numbers) {
+        self.numbers = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.text, forKey: .text)
+      try container.encode(self.numbers, forKey: .numbers)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

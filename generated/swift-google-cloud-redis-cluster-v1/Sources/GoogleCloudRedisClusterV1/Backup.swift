@@ -69,6 +69,8 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. System assigned unique identifier of the backup.
   public var uid: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Backup`.
   public init() {}
 
@@ -83,6 +85,119 @@ public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let cluster = CodingKeys(stringValue: "cluster")
+    static let clusterUid = CodingKeys(stringValue: "clusterUid")
+    static let totalSizeBytes = CodingKeys(stringValue: "totalSizeBytes")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let engineVersion = CodingKeys(stringValue: "engineVersion")
+    static let backupFiles = CodingKeys(stringValue: "backupFiles")
+    static let nodeType = CodingKeys(stringValue: "nodeType")
+    static let replicaCount = CodingKeys(stringValue: "replicaCount")
+    static let shardCount = CodingKeys(stringValue: "shardCount")
+    static let backupType = CodingKeys(stringValue: "backupType")
+    static let state = CodingKeys(stringValue: "state")
+    static let encryptionInfo = CodingKeys(stringValue: "encryptionInfo")
+    static let uid = CodingKeys(stringValue: "uid")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "cluster",
+      "clusterUid",
+      "totalSizeBytes",
+      "expireTime",
+      "engineVersion",
+      "backupFiles",
+      "nodeType",
+      "replicaCount",
+      "shardCount",
+      "backupType",
+      "state",
+      "encryptionInfo",
+      "uid",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
+      self.cluster = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterUid) {
+      self.clusterUid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalSizeBytes) {
+      self.totalSizeBytes = value
+    }
+    self.expireTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .engineVersion) {
+      self.engineVersion = value
+    }
+    if let value = try container.decodeIfPresent([BackupFile].self, forKey: .backupFiles) {
+      self.backupFiles = value
+    }
+    if let value = try container.decodeIfPresent(NodeType.self, forKey: .nodeType) {
+      self.nodeType = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .replicaCount) {
+      self.replicaCount = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shardCount) {
+      self.shardCount = value
+    }
+    if let value = try container.decodeIfPresent(Backup.BackupType.self, forKey: .backupType) {
+      self.backupType = value
+    }
+    if let value = try container.decodeIfPresent(Backup.State.self, forKey: .state) {
+      self.state = value
+    }
+    self.encryptionInfo = try container.decodeIfPresent(
+      EncryptionInfo.self, forKey: .encryptionInfo)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encode(self.cluster, forKey: .cluster)
+    try container.encode(self.clusterUid, forKey: .clusterUid)
+    try container.encode(self.totalSizeBytes, forKey: .totalSizeBytes)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
+    try container.encode(self.engineVersion, forKey: .engineVersion)
+    try container.encode(self.backupFiles, forKey: .backupFiles)
+    try container.encode(self.nodeType, forKey: .nodeType)
+    try container.encode(self.replicaCount, forKey: .replicaCount)
+    try container.encode(self.shardCount, forKey: .shardCount)
+    try container.encode(self.backupType, forKey: .backupType)
+    try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.encryptionInfo, forKey: .encryptionInfo)
+    try container.encode(self.uid, forKey: .uid)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Type of the backup.

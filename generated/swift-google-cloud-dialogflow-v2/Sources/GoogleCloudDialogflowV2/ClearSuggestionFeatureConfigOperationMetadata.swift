@@ -42,6 +42,8 @@
     /// Timestamp whe the request was created. The time is measured on server side.
     public var createTime: GoogleCloudWKT.Timestamp? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `ClearSuggestionFeatureConfigOperationMetadata`.
     public init() {}
 
@@ -56,6 +58,59 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let conversationProfile = CodingKeys(stringValue: "conversationProfile")
+      static let participantRole = CodingKeys(stringValue: "participantRole")
+      static let suggestionFeatureType = CodingKeys(stringValue: "suggestionFeatureType")
+      static let createTime = CodingKeys(stringValue: "createTime")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "conversationProfile",
+        "participantRole",
+        "suggestionFeatureType",
+        "createTime",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .conversationProfile)
+      {
+        self.conversationProfile = value
+      }
+      if let value = try container.decodeIfPresent(Participant.Role.self, forKey: .participantRole)
+      {
+        self.participantRole = value
+      }
+      if let value = try container.decodeIfPresent(
+        SuggestionFeature.Type_.self, forKey: .suggestionFeatureType)
+      {
+        self.suggestionFeatureType = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.conversationProfile, forKey: .conversationProfile)
+      try container.encode(self.participantRole, forKey: .participantRole)
+      try container.encode(self.suggestionFeatureType, forKey: .suggestionFeatureType)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

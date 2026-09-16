@@ -68,6 +68,8 @@ public struct AzureNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// "mass": "1.3kg", "count": "3" }.
   public var labels: [Swift.String: Swift.String] = [:]
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AzureNodeConfig`.
   public init() {}
 
@@ -82,6 +84,80 @@ public struct AzureNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let vmSize = CodingKeys(stringValue: "vmSize")
+    static let rootVolume = CodingKeys(stringValue: "rootVolume")
+    static let tags = CodingKeys(stringValue: "tags")
+    static let imageType = CodingKeys(stringValue: "imageType")
+    static let sshConfig = CodingKeys(stringValue: "sshConfig")
+    static let proxyConfig = CodingKeys(stringValue: "proxyConfig")
+    static let configEncryption = CodingKeys(stringValue: "configEncryption")
+    static let taints = CodingKeys(stringValue: "taints")
+    static let labels = CodingKeys(stringValue: "labels")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "vmSize",
+      "rootVolume",
+      "tags",
+      "imageType",
+      "sshConfig",
+      "proxyConfig",
+      "configEncryption",
+      "taints",
+      "labels",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .vmSize) {
+      self.vmSize = value
+    }
+    self.rootVolume = try container.decodeIfPresent(AzureDiskTemplate.self, forKey: .rootVolume)
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageType) {
+      self.imageType = value
+    }
+    self.sshConfig = try container.decodeIfPresent(AzureSshConfig.self, forKey: .sshConfig)
+    self.proxyConfig = try container.decodeIfPresent(AzureProxyConfig.self, forKey: .proxyConfig)
+    self.configEncryption = try container.decodeIfPresent(
+      AzureConfigEncryption.self, forKey: .configEncryption)
+    if let value = try container.decodeIfPresent([NodeTaint].self, forKey: .taints) {
+      self.taints = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
+    {
+      self.labels = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.vmSize, forKey: .vmSize)
+    try container.encodeIfPresent(self.rootVolume, forKey: .rootVolume)
+    try container.encode(self.tags, forKey: .tags)
+    try container.encode(self.imageType, forKey: .imageType)
+    try container.encodeIfPresent(self.sshConfig, forKey: .sshConfig)
+    try container.encodeIfPresent(self.proxyConfig, forKey: .proxyConfig)
+    try container.encodeIfPresent(self.configEncryption, forKey: .configEncryption)
+    try container.encode(self.taints, forKey: .taints)
+    try container.encode(self.labels, forKey: .labels)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

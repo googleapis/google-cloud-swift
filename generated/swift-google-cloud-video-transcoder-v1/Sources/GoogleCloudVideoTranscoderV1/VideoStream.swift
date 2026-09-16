@@ -24,6 +24,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Codec settings can be h264, h265, or vp9.
   public var codecSettings: OneOf_CodecSettings? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `VideoStream`.
   public init() {}
 
@@ -40,10 +42,21 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case h264 = "h264"
-    case h265 = "h265"
-    case vp9 = "vp9"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let h264 = CodingKeys(stringValue: "h264")
+    static let h265 = CodingKeys(stringValue: "h265")
+    static let vp9 = CodingKeys(stringValue: "vp9")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "h264",
+      "h265",
+      "vp9",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
@@ -71,6 +84,10 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try codecSettingsCheckAndSet(.vp9(vp9))
     }
     self.codecSettings = codecSettings
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -86,12 +103,17 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .vp9)
       }
     }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Convert the input video to a Standard Dynamic Range (SDR) video.
   public struct H264ColorFormatSDR: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H264ColorFormatSDR`.
     public init() {}
 
@@ -106,6 +128,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -123,6 +169,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct H264ColorFormatHLG: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H264ColorFormatHLG`.
     public init() {}
 
@@ -137,6 +185,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -299,6 +371,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Color format can be sdr or hlg.
     public var colorFormat: OneOf_ColorFormat? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H264CodecSettings`.
     public init() {}
 
@@ -315,54 +389,125 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case widthPixels = "widthPixels"
-      case heightPixels = "heightPixels"
-      case frameRate = "frameRate"
-      case frameRateConversionStrategy = "frameRateConversionStrategy"
-      case bitrateBps = "bitrateBps"
-      case pixelFormat = "pixelFormat"
-      case rateControlMode = "rateControlMode"
-      case crfLevel = "crfLevel"
-      case allowOpenGop = "allowOpenGop"
-      case gopFrameCount = "gopFrameCount"
-      case gopDuration = "gopDuration"
-      case enableTwoPass = "enableTwoPass"
-      case vbvSizeBits = "vbvSizeBits"
-      case vbvFullnessBits = "vbvFullnessBits"
-      case entropyCoder = "entropyCoder"
-      case bPyramid = "bPyramid"
-      case bFrameCount = "bFrameCount"
-      case aqStrength = "aqStrength"
-      case profile = "profile"
-      case tune = "tune"
-      case preset = "preset"
-      case sdr = "sdr"
-      case hlg = "hlg"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let widthPixels = CodingKeys(stringValue: "widthPixels")
+      static let heightPixels = CodingKeys(stringValue: "heightPixels")
+      static let frameRate = CodingKeys(stringValue: "frameRate")
+      static let frameRateConversionStrategy = CodingKeys(
+        stringValue: "frameRateConversionStrategy")
+      static let bitrateBps = CodingKeys(stringValue: "bitrateBps")
+      static let pixelFormat = CodingKeys(stringValue: "pixelFormat")
+      static let rateControlMode = CodingKeys(stringValue: "rateControlMode")
+      static let crfLevel = CodingKeys(stringValue: "crfLevel")
+      static let allowOpenGop = CodingKeys(stringValue: "allowOpenGop")
+      static let gopFrameCount = CodingKeys(stringValue: "gopFrameCount")
+      static let gopDuration = CodingKeys(stringValue: "gopDuration")
+      static let enableTwoPass = CodingKeys(stringValue: "enableTwoPass")
+      static let vbvSizeBits = CodingKeys(stringValue: "vbvSizeBits")
+      static let vbvFullnessBits = CodingKeys(stringValue: "vbvFullnessBits")
+      static let entropyCoder = CodingKeys(stringValue: "entropyCoder")
+      static let bPyramid = CodingKeys(stringValue: "bPyramid")
+      static let bFrameCount = CodingKeys(stringValue: "bFrameCount")
+      static let aqStrength = CodingKeys(stringValue: "aqStrength")
+      static let profile = CodingKeys(stringValue: "profile")
+      static let tune = CodingKeys(stringValue: "tune")
+      static let preset = CodingKeys(stringValue: "preset")
+      static let sdr = CodingKeys(stringValue: "sdr")
+      static let hlg = CodingKeys(stringValue: "hlg")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "widthPixels",
+        "heightPixels",
+        "frameRate",
+        "frameRateConversionStrategy",
+        "bitrateBps",
+        "pixelFormat",
+        "rateControlMode",
+        "crfLevel",
+        "allowOpenGop",
+        "gopFrameCount",
+        "gopDuration",
+        "enableTwoPass",
+        "vbvSizeBits",
+        "vbvFullnessBits",
+        "entropyCoder",
+        "bPyramid",
+        "bFrameCount",
+        "aqStrength",
+        "profile",
+        "tune",
+        "preset",
+        "sdr",
+        "hlg",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.widthPixels = try container.decode(Swift.Int32.self, forKey: .widthPixels)
-      self.heightPixels = try container.decode(Swift.Int32.self, forKey: .heightPixels)
-      self.frameRate = try container.decode(Swift.Double.self, forKey: .frameRate)
-      self.frameRateConversionStrategy = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .widthPixels) {
+        self.widthPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .heightPixels) {
+        self.heightPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .frameRate) {
+        self.frameRate = value
+      }
+      if let value = try container.decodeIfPresent(
         VideoStream.FrameRateConversionStrategy.self, forKey: .frameRateConversionStrategy)
-      self.bitrateBps = try container.decode(Swift.Int32.self, forKey: .bitrateBps)
-      self.pixelFormat = try container.decode(Swift.String.self, forKey: .pixelFormat)
-      self.rateControlMode = try container.decode(Swift.String.self, forKey: .rateControlMode)
-      self.crfLevel = try container.decode(Swift.Int32.self, forKey: .crfLevel)
-      self.allowOpenGop = try container.decode(Swift.Bool.self, forKey: .allowOpenGop)
-      self.enableTwoPass = try container.decode(Swift.Bool.self, forKey: .enableTwoPass)
-      self.vbvSizeBits = try container.decode(Swift.Int32.self, forKey: .vbvSizeBits)
-      self.vbvFullnessBits = try container.decode(Swift.Int32.self, forKey: .vbvFullnessBits)
-      self.entropyCoder = try container.decode(Swift.String.self, forKey: .entropyCoder)
-      self.bPyramid = try container.decode(Swift.Bool.self, forKey: .bPyramid)
-      self.bFrameCount = try container.decode(Swift.Int32.self, forKey: .bFrameCount)
-      self.aqStrength = try container.decode(Swift.Double.self, forKey: .aqStrength)
-      self.profile = try container.decode(Swift.String.self, forKey: .profile)
-      self.tune = try container.decode(Swift.String.self, forKey: .tune)
-      self.preset = try container.decode(Swift.String.self, forKey: .preset)
+      {
+        self.frameRateConversionStrategy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bitrateBps) {
+        self.bitrateBps = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pixelFormat) {
+        self.pixelFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rateControlMode) {
+        self.rateControlMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .crfLevel) {
+        self.crfLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowOpenGop) {
+        self.allowOpenGop = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTwoPass) {
+        self.enableTwoPass = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vbvSizeBits) {
+        self.vbvSizeBits = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vbvFullnessBits) {
+        self.vbvFullnessBits = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entropyCoder) {
+        self.entropyCoder = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bPyramid) {
+        self.bPyramid = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bFrameCount) {
+        self.bFrameCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .aqStrength) {
+        self.aqStrength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profile) {
+        self.profile = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tune) {
+        self.tune = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .preset) {
+        self.preset = value
+      }
 
       var gopMode: OneOf_GopMode? = nil
       let gopModeCheckAndSet = {
@@ -404,6 +549,10 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try colorFormatCheckAndSet(.hlg(hlg))
       }
       self.colorFormat = colorFormat
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -445,6 +594,9 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .hlg)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// GOP mode can be either by frame count or duration.
@@ -483,6 +635,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct H265ColorFormatSDR: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H265ColorFormatSDR`.
     public init() {}
 
@@ -497,6 +651,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -514,6 +692,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct H265ColorFormatHLG: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H265ColorFormatHLG`.
     public init() {}
 
@@ -528,6 +708,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -545,6 +749,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct H265ColorFormatHDR10: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H265ColorFormatHDR10`.
     public init() {}
 
@@ -559,6 +765,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -725,6 +955,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Color format can be sdr, hlg, hdr10.
     public var colorFormat: OneOf_ColorFormat? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `H265CodecSettings`.
     public init() {}
 
@@ -741,53 +973,122 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case widthPixels = "widthPixels"
-      case heightPixels = "heightPixels"
-      case frameRate = "frameRate"
-      case frameRateConversionStrategy = "frameRateConversionStrategy"
-      case bitrateBps = "bitrateBps"
-      case pixelFormat = "pixelFormat"
-      case rateControlMode = "rateControlMode"
-      case crfLevel = "crfLevel"
-      case allowOpenGop = "allowOpenGop"
-      case gopFrameCount = "gopFrameCount"
-      case gopDuration = "gopDuration"
-      case enableTwoPass = "enableTwoPass"
-      case vbvSizeBits = "vbvSizeBits"
-      case vbvFullnessBits = "vbvFullnessBits"
-      case bPyramid = "bPyramid"
-      case bFrameCount = "bFrameCount"
-      case aqStrength = "aqStrength"
-      case profile = "profile"
-      case tune = "tune"
-      case preset = "preset"
-      case sdr = "sdr"
-      case hlg = "hlg"
-      case hdr10 = "hdr10"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let widthPixels = CodingKeys(stringValue: "widthPixels")
+      static let heightPixels = CodingKeys(stringValue: "heightPixels")
+      static let frameRate = CodingKeys(stringValue: "frameRate")
+      static let frameRateConversionStrategy = CodingKeys(
+        stringValue: "frameRateConversionStrategy")
+      static let bitrateBps = CodingKeys(stringValue: "bitrateBps")
+      static let pixelFormat = CodingKeys(stringValue: "pixelFormat")
+      static let rateControlMode = CodingKeys(stringValue: "rateControlMode")
+      static let crfLevel = CodingKeys(stringValue: "crfLevel")
+      static let allowOpenGop = CodingKeys(stringValue: "allowOpenGop")
+      static let gopFrameCount = CodingKeys(stringValue: "gopFrameCount")
+      static let gopDuration = CodingKeys(stringValue: "gopDuration")
+      static let enableTwoPass = CodingKeys(stringValue: "enableTwoPass")
+      static let vbvSizeBits = CodingKeys(stringValue: "vbvSizeBits")
+      static let vbvFullnessBits = CodingKeys(stringValue: "vbvFullnessBits")
+      static let bPyramid = CodingKeys(stringValue: "bPyramid")
+      static let bFrameCount = CodingKeys(stringValue: "bFrameCount")
+      static let aqStrength = CodingKeys(stringValue: "aqStrength")
+      static let profile = CodingKeys(stringValue: "profile")
+      static let tune = CodingKeys(stringValue: "tune")
+      static let preset = CodingKeys(stringValue: "preset")
+      static let sdr = CodingKeys(stringValue: "sdr")
+      static let hlg = CodingKeys(stringValue: "hlg")
+      static let hdr10 = CodingKeys(stringValue: "hdr10")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "widthPixels",
+        "heightPixels",
+        "frameRate",
+        "frameRateConversionStrategy",
+        "bitrateBps",
+        "pixelFormat",
+        "rateControlMode",
+        "crfLevel",
+        "allowOpenGop",
+        "gopFrameCount",
+        "gopDuration",
+        "enableTwoPass",
+        "vbvSizeBits",
+        "vbvFullnessBits",
+        "bPyramid",
+        "bFrameCount",
+        "aqStrength",
+        "profile",
+        "tune",
+        "preset",
+        "sdr",
+        "hlg",
+        "hdr10",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.widthPixels = try container.decode(Swift.Int32.self, forKey: .widthPixels)
-      self.heightPixels = try container.decode(Swift.Int32.self, forKey: .heightPixels)
-      self.frameRate = try container.decode(Swift.Double.self, forKey: .frameRate)
-      self.frameRateConversionStrategy = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .widthPixels) {
+        self.widthPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .heightPixels) {
+        self.heightPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .frameRate) {
+        self.frameRate = value
+      }
+      if let value = try container.decodeIfPresent(
         VideoStream.FrameRateConversionStrategy.self, forKey: .frameRateConversionStrategy)
-      self.bitrateBps = try container.decode(Swift.Int32.self, forKey: .bitrateBps)
-      self.pixelFormat = try container.decode(Swift.String.self, forKey: .pixelFormat)
-      self.rateControlMode = try container.decode(Swift.String.self, forKey: .rateControlMode)
-      self.crfLevel = try container.decode(Swift.Int32.self, forKey: .crfLevel)
-      self.allowOpenGop = try container.decode(Swift.Bool.self, forKey: .allowOpenGop)
-      self.enableTwoPass = try container.decode(Swift.Bool.self, forKey: .enableTwoPass)
-      self.vbvSizeBits = try container.decode(Swift.Int32.self, forKey: .vbvSizeBits)
-      self.vbvFullnessBits = try container.decode(Swift.Int32.self, forKey: .vbvFullnessBits)
-      self.bPyramid = try container.decode(Swift.Bool.self, forKey: .bPyramid)
-      self.bFrameCount = try container.decode(Swift.Int32.self, forKey: .bFrameCount)
-      self.aqStrength = try container.decode(Swift.Double.self, forKey: .aqStrength)
-      self.profile = try container.decode(Swift.String.self, forKey: .profile)
-      self.tune = try container.decode(Swift.String.self, forKey: .tune)
-      self.preset = try container.decode(Swift.String.self, forKey: .preset)
+      {
+        self.frameRateConversionStrategy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bitrateBps) {
+        self.bitrateBps = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pixelFormat) {
+        self.pixelFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rateControlMode) {
+        self.rateControlMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .crfLevel) {
+        self.crfLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowOpenGop) {
+        self.allowOpenGop = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTwoPass) {
+        self.enableTwoPass = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vbvSizeBits) {
+        self.vbvSizeBits = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vbvFullnessBits) {
+        self.vbvFullnessBits = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .bPyramid) {
+        self.bPyramid = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bFrameCount) {
+        self.bFrameCount = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .aqStrength) {
+        self.aqStrength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profile) {
+        self.profile = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tune) {
+        self.tune = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .preset) {
+        self.preset = value
+      }
 
       var gopMode: OneOf_GopMode? = nil
       let gopModeCheckAndSet = {
@@ -834,6 +1135,10 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try colorFormatCheckAndSet(.hdr10(hdr10))
       }
       self.colorFormat = colorFormat
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -876,6 +1181,9 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           try container.encode(value, forKey: .hdr10)
         }
       }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// GOP mode can be either by frame count or duration.
@@ -916,6 +1224,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct Vp9ColorFormatSDR: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Vp9ColorFormatSDR`.
     public init() {}
 
@@ -930,6 +1240,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -947,6 +1281,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public struct Vp9ColorFormatHLG: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Vp9ColorFormatHLG`.
     public init() {}
 
@@ -961,6 +1297,30 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let _knownKeys: Set<Swift.String> = []
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1060,6 +1420,8 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// Color format can be sdr or hlg.
     public var colorFormat: OneOf_ColorFormat? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Vp9CodecSettings`.
     public init() {}
 
@@ -1076,34 +1438,75 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case widthPixels = "widthPixels"
-      case heightPixels = "heightPixels"
-      case frameRate = "frameRate"
-      case frameRateConversionStrategy = "frameRateConversionStrategy"
-      case bitrateBps = "bitrateBps"
-      case pixelFormat = "pixelFormat"
-      case rateControlMode = "rateControlMode"
-      case crfLevel = "crfLevel"
-      case gopFrameCount = "gopFrameCount"
-      case gopDuration = "gopDuration"
-      case profile = "profile"
-      case sdr = "sdr"
-      case hlg = "hlg"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let widthPixels = CodingKeys(stringValue: "widthPixels")
+      static let heightPixels = CodingKeys(stringValue: "heightPixels")
+      static let frameRate = CodingKeys(stringValue: "frameRate")
+      static let frameRateConversionStrategy = CodingKeys(
+        stringValue: "frameRateConversionStrategy")
+      static let bitrateBps = CodingKeys(stringValue: "bitrateBps")
+      static let pixelFormat = CodingKeys(stringValue: "pixelFormat")
+      static let rateControlMode = CodingKeys(stringValue: "rateControlMode")
+      static let crfLevel = CodingKeys(stringValue: "crfLevel")
+      static let gopFrameCount = CodingKeys(stringValue: "gopFrameCount")
+      static let gopDuration = CodingKeys(stringValue: "gopDuration")
+      static let profile = CodingKeys(stringValue: "profile")
+      static let sdr = CodingKeys(stringValue: "sdr")
+      static let hlg = CodingKeys(stringValue: "hlg")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "widthPixels",
+        "heightPixels",
+        "frameRate",
+        "frameRateConversionStrategy",
+        "bitrateBps",
+        "pixelFormat",
+        "rateControlMode",
+        "crfLevel",
+        "gopFrameCount",
+        "gopDuration",
+        "profile",
+        "sdr",
+        "hlg",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.widthPixels = try container.decode(Swift.Int32.self, forKey: .widthPixels)
-      self.heightPixels = try container.decode(Swift.Int32.self, forKey: .heightPixels)
-      self.frameRate = try container.decode(Swift.Double.self, forKey: .frameRate)
-      self.frameRateConversionStrategy = try container.decode(
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .widthPixels) {
+        self.widthPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .heightPixels) {
+        self.heightPixels = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .frameRate) {
+        self.frameRate = value
+      }
+      if let value = try container.decodeIfPresent(
         VideoStream.FrameRateConversionStrategy.self, forKey: .frameRateConversionStrategy)
-      self.bitrateBps = try container.decode(Swift.Int32.self, forKey: .bitrateBps)
-      self.pixelFormat = try container.decode(Swift.String.self, forKey: .pixelFormat)
-      self.rateControlMode = try container.decode(Swift.String.self, forKey: .rateControlMode)
-      self.crfLevel = try container.decode(Swift.Int32.self, forKey: .crfLevel)
-      self.profile = try container.decode(Swift.String.self, forKey: .profile)
+      {
+        self.frameRateConversionStrategy = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .bitrateBps) {
+        self.bitrateBps = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pixelFormat) {
+        self.pixelFormat = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rateControlMode) {
+        self.rateControlMode = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .crfLevel) {
+        self.crfLevel = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profile) {
+        self.profile = value
+      }
 
       var gopMode: OneOf_GopMode? = nil
       let gopModeCheckAndSet = {
@@ -1145,6 +1548,10 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try colorFormatCheckAndSet(.hlg(hlg))
       }
       self.colorFormat = colorFormat
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -1175,6 +1582,9 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .hlg(let value):
           try container.encode(value, forKey: .hlg)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

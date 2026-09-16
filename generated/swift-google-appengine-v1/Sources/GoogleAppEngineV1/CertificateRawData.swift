@@ -41,6 +41,8 @@ public struct CertificateRawData: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// @InputOnly
   public var privateKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `CertificateRawData`.
   public init() {}
 
@@ -55,6 +57,44 @@ public struct CertificateRawData: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let publicCertificate = CodingKeys(stringValue: "publicCertificate")
+    static let privateKey = CodingKeys(stringValue: "privateKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "publicCertificate",
+      "privateKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .publicCertificate) {
+      self.publicCertificate = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .privateKey) {
+      self.privateKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.publicCertificate, forKey: .publicCertificate)
+    try container.encode(self.privateKey, forKey: .privateKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

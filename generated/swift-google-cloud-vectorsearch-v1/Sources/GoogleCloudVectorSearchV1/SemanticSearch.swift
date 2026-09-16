@@ -46,6 +46,8 @@ public struct SemanticSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// otherwise.
   public var searchHint: SearchHint? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `SemanticSearch`.
   public init() {}
 
@@ -60,6 +62,66 @@ public struct SemanticSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let searchText = CodingKeys(stringValue: "searchText")
+    static let searchField = CodingKeys(stringValue: "searchField")
+    static let taskType = CodingKeys(stringValue: "taskType")
+    static let outputFields = CodingKeys(stringValue: "outputFields")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let topK = CodingKeys(stringValue: "topK")
+    static let searchHint = CodingKeys(stringValue: "searchHint")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "searchText",
+      "searchField",
+      "taskType",
+      "outputFields",
+      "filter",
+      "topK",
+      "searchHint",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchText) {
+      self.searchText = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchField) {
+      self.searchField = value
+    }
+    if let value = try container.decodeIfPresent(EmbeddingTaskType.self, forKey: .taskType) {
+      self.taskType = value
+    }
+    self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
+    self.filter = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .filter)
+    self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
+    self.searchHint = try container.decodeIfPresent(SearchHint.self, forKey: .searchHint)
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.searchText, forKey: .searchText)
+    try container.encode(self.searchField, forKey: .searchField)
+    try container.encode(self.taskType, forKey: .taskType)
+    try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
+    try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.topK, forKey: .topK)
+    try container.encodeIfPresent(self.searchHint, forKey: .searchHint)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -38,6 +38,8 @@ public struct AddGranteesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// * Service account
   public var grantees: [Swift.String] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `AddGranteesRequest`.
   public init() {}
 
@@ -52,6 +54,44 @@ public struct AddGranteesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let dataPolicy = CodingKeys(stringValue: "dataPolicy")
+    static let grantees = CodingKeys(stringValue: "grantees")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "dataPolicy",
+      "grantees",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataPolicy) {
+      self.dataPolicy = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .grantees) {
+      self.grantees = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.dataPolicy, forKey: .dataPolicy)
+    try container.encode(self.grantees, forKey: .grantees)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

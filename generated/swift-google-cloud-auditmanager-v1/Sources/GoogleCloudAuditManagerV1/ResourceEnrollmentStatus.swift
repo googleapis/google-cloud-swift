@@ -45,6 +45,8 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleCloudWKT._AnyP
   public var enrollmentState: ResourceEnrollmentStatus.ResourceEnrollmentState =
     ResourceEnrollmentStatus.ResourceEnrollmentState()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ResourceEnrollmentStatus`.
   public init() {}
 
@@ -59,6 +61,62 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleCloudWKT._AnyP
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let enrollment = CodingKeys(stringValue: "enrollment")
+    static let enrolled = CodingKeys(stringValue: "enrolled")
+    static let displayName = CodingKeys(stringValue: "displayName")
+    static let enrollmentState = CodingKeys(stringValue: "enrollmentState")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "enrollment",
+      "enrolled",
+      "displayName",
+      "enrollmentState",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.enrollment = try container.decodeIfPresent(Enrollment.self, forKey: .enrollment)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enrolled) {
+      self.enrolled = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+      self.displayName = value
+    }
+    if let value = try container.decodeIfPresent(
+      ResourceEnrollmentStatus.ResourceEnrollmentState.self, forKey: .enrollmentState)
+    {
+      self.enrollmentState = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.enrollment, forKey: .enrollment)
+    try container.encode(self.enrolled, forKey: .enrolled)
+    try container.encode(self.displayName, forKey: .displayName)
+    try container.encode(self.enrollmentState, forKey: .enrollmentState)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Different enrollment states of the resource and its parent.

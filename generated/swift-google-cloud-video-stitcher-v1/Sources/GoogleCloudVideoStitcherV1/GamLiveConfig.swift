@@ -30,6 +30,8 @@ public struct GamLiveConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The custom asset key identifier generated for the live config.
   public var customAssetKey: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GamLiveConfig`.
   public init() {}
 
@@ -44,6 +46,50 @@ public struct GamLiveConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let networkCode = CodingKeys(stringValue: "networkCode")
+    static let assetKey = CodingKeys(stringValue: "assetKey")
+    static let customAssetKey = CodingKeys(stringValue: "customAssetKey")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "networkCode",
+      "assetKey",
+      "customAssetKey",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkCode) {
+      self.networkCode = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetKey) {
+      self.assetKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customAssetKey) {
+      self.customAssetKey = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.networkCode, forKey: .networkCode)
+    try container.encode(self.assetKey, forKey: .assetKey)
+    try container.encode(self.customAssetKey, forKey: .customAssetKey)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

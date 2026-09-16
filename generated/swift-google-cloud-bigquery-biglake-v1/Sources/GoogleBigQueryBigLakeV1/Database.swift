@@ -46,6 +46,8 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Options specified for the database type.
   public var options: OneOf_Options? = nil
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `Database`.
   public init() {}
 
@@ -62,19 +64,36 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
-  private enum CodingKeys: Swift.String, CodingKey {
-    case hiveOptions = "hiveOptions"
-    case name = "name"
-    case createTime = "createTime"
-    case updateTime = "updateTime"
-    case deleteTime = "deleteTime"
-    case expireTime = "expireTime"
-    case type = "type"
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let hiveOptions = CodingKeys(stringValue: "hiveOptions")
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deleteTime = CodingKeys(stringValue: "deleteTime")
+    static let expireTime = CodingKeys(stringValue: "expireTime")
+    static let type = CodingKeys(stringValue: "type")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "hiveOptions",
+      "name",
+      "createTime",
+      "updateTime",
+      "deleteTime",
+      "expireTime",
+      "type",
+    ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.name = try container.decode(Swift.String.self, forKey: .name)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
     self.createTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
@@ -83,7 +102,9 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.expireTime = try container.decodeIfPresent(
       GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
-    self.type = try container.decode(Database.Type_.self, forKey: .type)
+    if let value = try container.decodeIfPresent(Database.Type_.self, forKey: .type) {
+      self.type = value
+    }
 
     var options: OneOf_Options? = nil
     let optionsCheckAndSet = {
@@ -101,15 +122,19 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       try optionsCheckAndSet(.hiveOptions(hiveOptions))
     }
     self.options = options
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.createTime, forKey: .createTime)
-    try container.encode(self.updateTime, forKey: .updateTime)
-    try container.encode(self.deleteTime, forKey: .deleteTime)
-    try container.encode(self.expireTime, forKey: .expireTime)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
+    try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.type, forKey: .type)
 
     if let choice = self.options {
@@ -117,6 +142,9 @@ public struct Database: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .hiveOptions(let value):
         try container.encode(value, forKey: .hiveOptions)
       }
+    }
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 

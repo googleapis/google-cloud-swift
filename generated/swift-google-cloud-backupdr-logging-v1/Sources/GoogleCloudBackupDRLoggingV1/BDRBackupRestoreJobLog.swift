@@ -96,6 +96,8 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Canonical Data Source Name
   public var dataSourceName: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BDRBackupRestoreJobLog`.
   public init() {}
 
@@ -110,6 +112,137 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleCloudWKT._AnyPac
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let jobId = CodingKeys(stringValue: "jobId")
+    static let jobCategory = CodingKeys(stringValue: "jobCategory")
+    static let jobStatus = CodingKeys(stringValue: "jobStatus")
+    static let sourceResourceName = CodingKeys(stringValue: "sourceResourceName")
+    static let sourceResourceId = CodingKeys(stringValue: "sourceResourceId")
+    static let restoreResourceName = CodingKeys(stringValue: "restoreResourceName")
+    static let backupName = CodingKeys(stringValue: "backupName")
+    static let resourceType = CodingKeys(stringValue: "resourceType")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let backupPlanName = CodingKeys(stringValue: "backupPlanName")
+    static let backupRule = CodingKeys(stringValue: "backupRule")
+    static let backupRetentionDays = CodingKeys(stringValue: "backupRetentionDays")
+    static let backupVaultName = CodingKeys(stringValue: "backupVaultName")
+    static let incrementalBackupSizeGib = CodingKeys(stringValue: "incrementalBackupSizeGib")
+    static let errorCode = CodingKeys(stringValue: "errorCode")
+    static let errorType = CodingKeys(stringValue: "errorType")
+    static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let backupConsistencyTime = CodingKeys(stringValue: "backupConsistencyTime")
+    static let sourceResourceLocation = CodingKeys(stringValue: "sourceResourceLocation")
+    static let restoreResourceLocation = CodingKeys(stringValue: "restoreResourceLocation")
+    static let recoveryPointTime = CodingKeys(stringValue: "recoveryPointTime")
+    static let dataSourceName = CodingKeys(stringValue: "dataSourceName")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "jobId",
+      "jobCategory",
+      "jobStatus",
+      "sourceResourceName",
+      "sourceResourceId",
+      "restoreResourceName",
+      "backupName",
+      "resourceType",
+      "startTime",
+      "endTime",
+      "backupPlanName",
+      "backupRule",
+      "backupRetentionDays",
+      "backupVaultName",
+      "incrementalBackupSizeGib",
+      "errorCode",
+      "errorType",
+      "errorMessage",
+      "backupConsistencyTime",
+      "sourceResourceLocation",
+      "restoreResourceLocation",
+      "recoveryPointTime",
+      "dataSourceName",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.jobId = try container.decodeIfPresent(Swift.String.self, forKey: .jobId)
+    self.jobCategory = try container.decodeIfPresent(Swift.String.self, forKey: .jobCategory)
+    self.jobStatus = try container.decodeIfPresent(Swift.String.self, forKey: .jobStatus)
+    self.sourceResourceName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceName)
+    self.sourceResourceId = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceId)
+    self.restoreResourceName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .restoreResourceName)
+    self.backupName = try container.decodeIfPresent(Swift.String.self, forKey: .backupName)
+    self.resourceType = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType)
+    self.startTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
+    self.backupPlanName = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanName)
+    self.backupRule = try container.decodeIfPresent(Swift.String.self, forKey: .backupRule)
+    self.backupRetentionDays = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .backupRetentionDays)
+    self.backupVaultName = try container.decodeIfPresent(
+      Swift.String.self, forKey: .backupVaultName)
+    self.incrementalBackupSizeGib = try container.decodeIfPresent(
+      Swift.Double.self, forKey: .incrementalBackupSizeGib)
+    self.errorCode = try container.decodeIfPresent(Swift.Int32.self, forKey: .errorCode)
+    self.errorType = try container.decodeIfPresent(Swift.String.self, forKey: .errorType)
+    self.errorMessage = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage)
+    self.backupConsistencyTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .backupConsistencyTime)
+    self.sourceResourceLocation = try container.decodeIfPresent(
+      Swift.String.self, forKey: .sourceResourceLocation)
+    self.restoreResourceLocation = try container.decodeIfPresent(
+      Swift.String.self, forKey: .restoreResourceLocation)
+    self.recoveryPointTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .recoveryPointTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataSourceName) {
+      self.dataSourceName = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.jobId, forKey: .jobId)
+    try container.encodeIfPresent(self.jobCategory, forKey: .jobCategory)
+    try container.encodeIfPresent(self.jobStatus, forKey: .jobStatus)
+    try container.encodeIfPresent(self.sourceResourceName, forKey: .sourceResourceName)
+    try container.encodeIfPresent(self.sourceResourceId, forKey: .sourceResourceId)
+    try container.encodeIfPresent(self.restoreResourceName, forKey: .restoreResourceName)
+    try container.encodeIfPresent(self.backupName, forKey: .backupName)
+    try container.encodeIfPresent(self.resourceType, forKey: .resourceType)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encodeIfPresent(self.backupPlanName, forKey: .backupPlanName)
+    try container.encodeIfPresent(self.backupRule, forKey: .backupRule)
+    try container.encodeIfPresent(self.backupRetentionDays, forKey: .backupRetentionDays)
+    try container.encodeIfPresent(self.backupVaultName, forKey: .backupVaultName)
+    try container.encodeIfPresent(self.incrementalBackupSizeGib, forKey: .incrementalBackupSizeGib)
+    try container.encodeIfPresent(self.errorCode, forKey: .errorCode)
+    try container.encodeIfPresent(self.errorType, forKey: .errorType)
+    try container.encodeIfPresent(self.errorMessage, forKey: .errorMessage)
+    try container.encodeIfPresent(self.backupConsistencyTime, forKey: .backupConsistencyTime)
+    try container.encodeIfPresent(self.sourceResourceLocation, forKey: .sourceResourceLocation)
+    try container.encodeIfPresent(self.restoreResourceLocation, forKey: .restoreResourceLocation)
+    try container.encodeIfPresent(self.recoveryPointTime, forKey: .recoveryPointTime)
+    try container.encode(self.dataSourceName, forKey: .dataSourceName)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

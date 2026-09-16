@@ -87,6 +87,8 @@
     /// property in the listManagedInstances method documentation.
     public var verifying: Swift.Int32? = nil
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `InstanceGroupManagerActionsSummary`.
     public init() {}
 
@@ -103,20 +105,41 @@
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case abandoning = "abandoning"
-      case creating = "creating"
-      case creatingWithoutRetries = "creatingWithoutRetries"
-      case deleting = "deleting"
-      case `none` = "none"
-      case recreating = "recreating"
-      case refreshing = "refreshing"
-      case restarting = "restarting"
-      case resuming = "resuming"
-      case starting = "starting"
-      case stopping = "stopping"
-      case suspending = "suspending"
-      case verifying = "verifying"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let abandoning = CodingKeys(stringValue: "abandoning")
+      static let creating = CodingKeys(stringValue: "creating")
+      static let creatingWithoutRetries = CodingKeys(stringValue: "creatingWithoutRetries")
+      static let deleting = CodingKeys(stringValue: "deleting")
+      static let `none` = CodingKeys(stringValue: "none")
+      static let recreating = CodingKeys(stringValue: "recreating")
+      static let refreshing = CodingKeys(stringValue: "refreshing")
+      static let restarting = CodingKeys(stringValue: "restarting")
+      static let resuming = CodingKeys(stringValue: "resuming")
+      static let starting = CodingKeys(stringValue: "starting")
+      static let stopping = CodingKeys(stringValue: "stopping")
+      static let suspending = CodingKeys(stringValue: "suspending")
+      static let verifying = CodingKeys(stringValue: "verifying")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "abandoning",
+        "creating",
+        "creatingWithoutRetries",
+        "deleting",
+        "none",
+        "recreating",
+        "refreshing",
+        "restarting",
+        "resuming",
+        "starting",
+        "stopping",
+        "suspending",
+        "verifying",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
@@ -135,23 +158,30 @@
       self.stopping = try container.decodeIfPresent(Swift.Int32.self, forKey: .stopping)
       self.suspending = try container.decodeIfPresent(Swift.Int32.self, forKey: .suspending)
       self.verifying = try container.decodeIfPresent(Swift.Int32.self, forKey: .verifying)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.abandoning, forKey: .abandoning)
-      try container.encode(self.creating, forKey: .creating)
-      try container.encode(self.creatingWithoutRetries, forKey: .creatingWithoutRetries)
-      try container.encode(self.deleting, forKey: .deleting)
-      try container.encode(self.`none`, forKey: .`none`)
-      try container.encode(self.recreating, forKey: .recreating)
-      try container.encode(self.refreshing, forKey: .refreshing)
-      try container.encode(self.restarting, forKey: .restarting)
-      try container.encode(self.resuming, forKey: .resuming)
-      try container.encode(self.starting, forKey: .starting)
-      try container.encode(self.stopping, forKey: .stopping)
-      try container.encode(self.suspending, forKey: .suspending)
-      try container.encode(self.verifying, forKey: .verifying)
+      try container.encodeIfPresent(self.abandoning, forKey: .abandoning)
+      try container.encodeIfPresent(self.creating, forKey: .creating)
+      try container.encodeIfPresent(self.creatingWithoutRetries, forKey: .creatingWithoutRetries)
+      try container.encodeIfPresent(self.deleting, forKey: .deleting)
+      try container.encodeIfPresent(self.`none`, forKey: .`none`)
+      try container.encodeIfPresent(self.recreating, forKey: .recreating)
+      try container.encodeIfPresent(self.refreshing, forKey: .refreshing)
+      try container.encodeIfPresent(self.restarting, forKey: .restarting)
+      try container.encodeIfPresent(self.resuming, forKey: .resuming)
+      try container.encodeIfPresent(self.starting, forKey: .starting)
+      try container.encodeIfPresent(self.stopping, forKey: .stopping)
+      try container.encodeIfPresent(self.suspending, forKey: .suspending)
+      try container.encodeIfPresent(self.verifying, forKey: .verifying)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     public static var _anyTypeUrl: Swift.String {

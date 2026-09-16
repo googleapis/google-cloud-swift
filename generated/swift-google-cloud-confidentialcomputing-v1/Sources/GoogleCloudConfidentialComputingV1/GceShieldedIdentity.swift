@@ -30,6 +30,8 @@ public struct GceShieldedIdentity: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// ak_cert, chain back to a trusted Root Certificate.
   public var akCertChain: [Foundation.Data] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `GceShieldedIdentity`.
   public init() {}
 
@@ -44,6 +46,44 @@ public struct GceShieldedIdentity: Codable, Equatable, GoogleCloudWKT._AnyPackab
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let akCert = CodingKeys(stringValue: "akCert")
+    static let akCertChain = CodingKeys(stringValue: "akCertChain")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "akCert",
+      "akCertChain",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .akCert) {
+      self.akCert = value
+    }
+    if let value = try container.decodeIfPresent([Foundation.Data].self, forKey: .akCertChain) {
+      self.akCertChain = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.akCert, forKey: .akCert)
+    try container.encode(self.akCertChain, forKey: .akCertChain)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   public static var _anyTypeUrl: Swift.String {

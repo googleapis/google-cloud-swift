@@ -26,6 +26,8 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// specified, an error will be returned.
   public var buckets: [BucketList.Bucket] = []
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `BucketList`.
   public init() {}
 
@@ -42,6 +44,38 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     return copy
   }
 
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let buckets = CodingKeys(stringValue: "buckets")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "buckets"
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent([BucketList.Bucket].self, forKey: .buckets) {
+      self.buckets = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.buckets, forKey: .buckets)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
   /// Describes configuration of a single bucket and its objects to be
   /// transformed.
   public struct Bucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
@@ -52,6 +86,8 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     /// Specifies objects to be transformed.
     public var objectConfiguration: OneOf_ObjectConfiguration? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Bucket`.
     public init() {}
@@ -69,15 +105,28 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       return copy
     }
 
-    private enum CodingKeys: Swift.String, CodingKey {
-      case bucket = "bucket"
-      case prefixList = "prefixList"
-      case manifest = "manifest"
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let bucket = CodingKeys(stringValue: "bucket")
+      static let prefixList = CodingKeys(stringValue: "prefixList")
+      static let manifest = CodingKeys(stringValue: "manifest")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "bucket",
+        "prefixList",
+        "manifest",
+      ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.bucket = try container.decode(Swift.String.self, forKey: .bucket)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
+        self.bucket = value
+      }
 
       var objectConfiguration: OneOf_ObjectConfiguration? = nil
       let objectConfigurationCheckAndSet = {
@@ -96,6 +145,10 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try objectConfigurationCheckAndSet(.manifest(manifest))
       }
       self.objectConfiguration = objectConfiguration
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -109,6 +162,9 @@ public struct BucketList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         case .manifest(let value):
           try container.encode(value, forKey: .manifest)
         }
+      }
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 

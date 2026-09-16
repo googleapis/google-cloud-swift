@@ -61,6 +61,8 @@
     /// layout parsing are supported.
     public var parsingConfigOverrides: [Swift.String: DocumentProcessingConfig.ParsingConfig] = [:]
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `DocumentProcessingConfig`.
     public init() {}
 
@@ -77,12 +79,64 @@
       return copy
     }
 
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let chunkingConfig = CodingKeys(stringValue: "chunkingConfig")
+      static let defaultParsingConfig = CodingKeys(stringValue: "defaultParsingConfig")
+      static let parsingConfigOverrides = CodingKeys(stringValue: "parsingConfigOverrides")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "chunkingConfig",
+        "defaultParsingConfig",
+        "parsingConfigOverrides",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      self.chunkingConfig = try container.decodeIfPresent(
+        DocumentProcessingConfig.ChunkingConfig.self, forKey: .chunkingConfig)
+      self.defaultParsingConfig = try container.decodeIfPresent(
+        DocumentProcessingConfig.ParsingConfig.self, forKey: .defaultParsingConfig)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: DocumentProcessingConfig.ParsingConfig].self, forKey: .parsingConfigOverrides
+      ) {
+        self.parsingConfigOverrides = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encodeIfPresent(self.chunkingConfig, forKey: .chunkingConfig)
+      try container.encodeIfPresent(self.defaultParsingConfig, forKey: .defaultParsingConfig)
+      try container.encode(self.parsingConfigOverrides, forKey: .parsingConfigOverrides)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
     /// Configuration for chunking config.
     public struct ChunkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Additional configs that defines the behavior of the chunking.
       public var chunkMode: OneOf_ChunkMode? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ChunkingConfig`.
       public init() {}
@@ -100,8 +154,17 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case layoutBasedChunkingConfig = "layoutBasedChunkingConfig"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let layoutBasedChunkingConfig = CodingKeys(stringValue: "layoutBasedChunkingConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "layoutBasedChunkingConfig"
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -124,6 +187,10 @@
           try chunkModeCheckAndSet(.layoutBasedChunkingConfig(layoutBasedChunkingConfig))
         }
         self.chunkMode = chunkMode
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -134,6 +201,9 @@
           case .layoutBasedChunkingConfig(let value):
             try container.encode(value, forKey: .layoutBasedChunkingConfig)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
@@ -153,6 +223,9 @@
         /// Default value: False.
         public var includeAncestorHeadings: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `LayoutBasedChunkingConfig`.
         public init() {}
 
@@ -167,6 +240,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let chunkSize = CodingKeys(stringValue: "chunkSize")
+          static let includeAncestorHeadings = CodingKeys(stringValue: "includeAncestorHeadings")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "chunkSize",
+            "includeAncestorHeadings",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .chunkSize) {
+            self.chunkSize = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .includeAncestorHeadings)
+          {
+            self.includeAncestorHeadings = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.chunkSize, forKey: .chunkSize)
+          try container.encode(self.includeAncestorHeadings, forKey: .includeAncestorHeadings)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -207,6 +320,8 @@
       /// Configs for document processing types.
       public var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ParsingConfig`.
       public init() {}
 
@@ -223,10 +338,21 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case digitalParsingConfig = "digitalParsingConfig"
-        case ocrParsingConfig = "ocrParsingConfig"
-        case layoutParsingConfig = "layoutParsingConfig"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let digitalParsingConfig = CodingKeys(stringValue: "digitalParsingConfig")
+        static let ocrParsingConfig = CodingKeys(stringValue: "ocrParsingConfig")
+        static let layoutParsingConfig = CodingKeys(stringValue: "layoutParsingConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "digitalParsingConfig",
+          "ocrParsingConfig",
+          "layoutParsingConfig",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -260,6 +386,10 @@
           try typeDedicatedConfigCheckAndSet(.layoutParsingConfig(layoutParsingConfig))
         }
         self.typeDedicatedConfig = typeDedicatedConfig
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -275,12 +405,18 @@
             try container.encode(value, forKey: .layoutParsingConfig)
           }
         }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The digital parsing configurations for documents.
       public struct DigitalParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `DigitalParsingConfig`.
         public init() {}
 
@@ -295,6 +431,30 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let _knownKeys: Set<Swift.String> = []
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -322,6 +482,9 @@
         /// native text.
         public var useNativeText: Swift.Bool = Swift.Bool()
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `OcrParsingConfig`.
         public init() {}
 
@@ -336,6 +499,46 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enhancedDocumentElements = CodingKeys(stringValue: "enhancedDocumentElements")
+          static let useNativeText = CodingKeys(stringValue: "useNativeText")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enhancedDocumentElements",
+            "useNativeText",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Swift.String].self, forKey: .enhancedDocumentElements)
+          {
+            self.enhancedDocumentElements = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useNativeText) {
+            self.useNativeText = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enhancedDocumentElements, forKey: .enhancedDocumentElements)
+          try container.encode(self.useNativeText, forKey: .useNativeText)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -377,6 +580,9 @@
         /// Optional. List of HTML ids to exclude from the parsed content.
         public var excludeHtmlIds: [Swift.String] = []
 
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields =
+          .init()
+
         /// Initialize a new instance of `LayoutParsingConfig`.
         public init() {}
 
@@ -391,6 +597,79 @@
           var copy = self
           try config(&copy)
           return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let enableTableAnnotation = CodingKeys(stringValue: "enableTableAnnotation")
+          static let enableImageAnnotation = CodingKeys(stringValue: "enableImageAnnotation")
+          static let structuredContentTypes = CodingKeys(stringValue: "structuredContentTypes")
+          static let excludeHtmlElements = CodingKeys(stringValue: "excludeHtmlElements")
+          static let excludeHtmlClasses = CodingKeys(stringValue: "excludeHtmlClasses")
+          static let excludeHtmlIds = CodingKeys(stringValue: "excludeHtmlIds")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "enableTableAnnotation",
+            "enableImageAnnotation",
+            "structuredContentTypes",
+            "excludeHtmlElements",
+            "excludeHtmlClasses",
+            "excludeHtmlIds",
+          ]
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableTableAnnotation)
+          {
+            self.enableTableAnnotation = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableImageAnnotation)
+          {
+            self.enableImageAnnotation = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Swift.String].self, forKey: .structuredContentTypes)
+          {
+            self.structuredContentTypes = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Swift.String].self, forKey: .excludeHtmlElements)
+          {
+            self.excludeHtmlElements = value
+          }
+          if let value = try container.decodeIfPresent(
+            [Swift.String].self, forKey: .excludeHtmlClasses)
+          {
+            self.excludeHtmlClasses = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeHtmlIds)
+          {
+            self.excludeHtmlIds = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleCloudWKT.Value.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.enableTableAnnotation, forKey: .enableTableAnnotation)
+          try container.encode(self.enableImageAnnotation, forKey: .enableImageAnnotation)
+          try container.encode(self.structuredContentTypes, forKey: .structuredContentTypes)
+          try container.encode(self.excludeHtmlElements, forKey: .excludeHtmlElements)
+          try container.encode(self.excludeHtmlClasses, forKey: .excludeHtmlClasses)
+          try container.encode(self.excludeHtmlIds, forKey: .excludeHtmlIds)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
         }
 
         public static var _anyTypeUrl: Swift.String {

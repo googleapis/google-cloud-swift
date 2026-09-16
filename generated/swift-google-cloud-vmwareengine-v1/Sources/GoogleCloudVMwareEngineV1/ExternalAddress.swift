@@ -50,6 +50,8 @@ public struct ExternalAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// User-provided description for this resource.
   public var description: Swift.String = Swift.String()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `ExternalAddress`.
   public init() {}
 
@@ -64,6 +66,78 @@ public struct ExternalAddress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let internalIp = CodingKeys(stringValue: "internalIp")
+    static let externalIp = CodingKeys(stringValue: "externalIp")
+    static let state = CodingKeys(stringValue: "state")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let description = CodingKeys(stringValue: "description")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "createTime",
+      "updateTime",
+      "internalIp",
+      "externalIp",
+      "state",
+      "uid",
+      "description",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .internalIp) {
+      self.internalIp = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalIp) {
+      self.externalIp = value
+    }
+    if let value = try container.decodeIfPresent(ExternalAddress.State.self, forKey: .state) {
+      self.state = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.internalIp, forKey: .internalIp)
+    try container.encode(self.externalIp, forKey: .externalIp)
+    try container.encode(self.state, forKey: .state)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encode(self.description, forKey: .description)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Enum State defines possible states of external addresses.

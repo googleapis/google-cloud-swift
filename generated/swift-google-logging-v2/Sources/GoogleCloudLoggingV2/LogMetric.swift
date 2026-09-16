@@ -152,6 +152,8 @@ public struct LogMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   @available(*, deprecated)
   public var version: LogMetric.ApiVersion = LogMetric.ApiVersion()
 
+  @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
   /// Initialize a new instance of `LogMetric`.
   public init() {}
 
@@ -166,6 +168,102 @@ public struct LogMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  private struct CodingKeys: CodingKey {
+    var stringValue: Swift.String
+    var intValue: Swift.Int? { nil }
+    init(stringValue: Swift.String) { self.stringValue = stringValue }
+    init?(intValue: Swift.Int) { nil }
+
+    static let name = CodingKeys(stringValue: "name")
+    static let description = CodingKeys(stringValue: "description")
+    static let filter = CodingKeys(stringValue: "filter")
+    static let bucketName = CodingKeys(stringValue: "bucketName")
+    static let disabled = CodingKeys(stringValue: "disabled")
+    static let metricDescriptor = CodingKeys(stringValue: "metricDescriptor")
+    static let valueExtractor = CodingKeys(stringValue: "valueExtractor")
+    static let labelExtractors = CodingKeys(stringValue: "labelExtractors")
+    static let bucketOptions = CodingKeys(stringValue: "bucketOptions")
+    static let createTime = CodingKeys(stringValue: "createTime")
+    static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let version = CodingKeys(stringValue: "version")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "name",
+      "description",
+      "filter",
+      "bucketName",
+      "disabled",
+      "metricDescriptor",
+      "valueExtractor",
+      "labelExtractors",
+      "bucketOptions",
+      "createTime",
+      "updateTime",
+      "version",
+    ]
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+      self.name = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+      self.description = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
+      self.filter = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucketName) {
+      self.bucketName = value
+    }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+      self.disabled = value
+    }
+    self.metricDescriptor = try container.decodeIfPresent(
+      GoogleApi.MetricDescriptor.self, forKey: .metricDescriptor)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .valueExtractor) {
+      self.valueExtractor = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .labelExtractors)
+    {
+      self.labelExtractors = value
+    }
+    self.bucketOptions = try container.decodeIfPresent(
+      GoogleApi.Distribution.BucketOptions.self, forKey: .bucketOptions)
+    self.createTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.updateTime = try container.decodeIfPresent(
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(LogMetric.ApiVersion.self, forKey: .version) {
+      self.version = value
+    }
+    for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+      self._unknownFields.json[key.stringValue] = try container.decode(
+        GoogleCloudWKT.Value.self, forKey: key)
+    }
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.name, forKey: .name)
+    try container.encode(self.description, forKey: .description)
+    try container.encode(self.filter, forKey: .filter)
+    try container.encode(self.bucketName, forKey: .bucketName)
+    try container.encode(self.disabled, forKey: .disabled)
+    try container.encodeIfPresent(self.metricDescriptor, forKey: .metricDescriptor)
+    try container.encode(self.valueExtractor, forKey: .valueExtractor)
+    try container.encode(self.labelExtractors, forKey: .labelExtractors)
+    try container.encodeIfPresent(self.bucketOptions, forKey: .bucketOptions)
+    try container.encodeIfPresent(self.createTime, forKey: .createTime)
+    try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.version, forKey: .version)
+    for (key, value) in self._unknownFields.json {
+      try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
   }
 
   /// Logging API version.

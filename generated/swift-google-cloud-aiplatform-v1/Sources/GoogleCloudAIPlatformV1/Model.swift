@@ -356,6 +356,8 @@
     /// Optional. Output only. The checkpoints of the model.
     public var checkpoints: [Checkpoint] = []
 
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
     /// Initialize a new instance of `Model`.
     public init() {}
 
@@ -370,6 +372,244 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+      static let versionId = CodingKeys(stringValue: "versionId")
+      static let versionAliases = CodingKeys(stringValue: "versionAliases")
+      static let versionCreateTime = CodingKeys(stringValue: "versionCreateTime")
+      static let versionUpdateTime = CodingKeys(stringValue: "versionUpdateTime")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let versionDescription = CodingKeys(stringValue: "versionDescription")
+      static let defaultCheckpointId = CodingKeys(stringValue: "defaultCheckpointId")
+      static let predictSchemata = CodingKeys(stringValue: "predictSchemata")
+      static let metadataSchemaUri = CodingKeys(stringValue: "metadataSchemaUri")
+      static let metadata = CodingKeys(stringValue: "metadata")
+      static let supportedExportFormats = CodingKeys(stringValue: "supportedExportFormats")
+      static let trainingPipeline = CodingKeys(stringValue: "trainingPipeline")
+      static let pipelineJob = CodingKeys(stringValue: "pipelineJob")
+      static let containerSpec = CodingKeys(stringValue: "containerSpec")
+      static let artifactUri = CodingKeys(stringValue: "artifactUri")
+      static let supportedDeploymentResourcesTypes = CodingKeys(
+        stringValue: "supportedDeploymentResourcesTypes")
+      static let supportedInputStorageFormats = CodingKeys(
+        stringValue: "supportedInputStorageFormats")
+      static let supportedOutputStorageFormats = CodingKeys(
+        stringValue: "supportedOutputStorageFormats")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
+      static let deployedModels = CodingKeys(stringValue: "deployedModels")
+      static let explanationSpec = CodingKeys(stringValue: "explanationSpec")
+      static let etag = CodingKeys(stringValue: "etag")
+      static let labels = CodingKeys(stringValue: "labels")
+      static let dataStats = CodingKeys(stringValue: "dataStats")
+      static let encryptionSpec = CodingKeys(stringValue: "encryptionSpec")
+      static let modelSourceInfo = CodingKeys(stringValue: "modelSourceInfo")
+      static let originalModelInfo = CodingKeys(stringValue: "originalModelInfo")
+      static let metadataArtifact = CodingKeys(stringValue: "metadataArtifact")
+      static let baseModelSource = CodingKeys(stringValue: "baseModelSource")
+      static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+      static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+      static let checkpoints = CodingKeys(stringValue: "checkpoints")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name",
+        "versionId",
+        "versionAliases",
+        "versionCreateTime",
+        "versionUpdateTime",
+        "displayName",
+        "description",
+        "versionDescription",
+        "defaultCheckpointId",
+        "predictSchemata",
+        "metadataSchemaUri",
+        "metadata",
+        "supportedExportFormats",
+        "trainingPipeline",
+        "pipelineJob",
+        "containerSpec",
+        "artifactUri",
+        "supportedDeploymentResourcesTypes",
+        "supportedInputStorageFormats",
+        "supportedOutputStorageFormats",
+        "createTime",
+        "updateTime",
+        "deployedModels",
+        "explanationSpec",
+        "etag",
+        "labels",
+        "dataStats",
+        "encryptionSpec",
+        "modelSourceInfo",
+        "originalModelInfo",
+        "metadataArtifact",
+        "baseModelSource",
+        "satisfiesPzs",
+        "satisfiesPzi",
+        "checkpoints",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionId) {
+        self.versionId = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .versionAliases) {
+        self.versionAliases = value
+      }
+      self.versionCreateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .versionCreateTime)
+      self.versionUpdateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .versionUpdateTime)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionDescription) {
+        self.versionDescription = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultCheckpointId)
+      {
+        self.defaultCheckpointId = value
+      }
+      self.predictSchemata = try container.decodeIfPresent(
+        PredictSchemata.self, forKey: .predictSchemata)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataSchemaUri) {
+        self.metadataSchemaUri = value
+      }
+      self.metadata = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .metadata)
+      if let value = try container.decodeIfPresent(
+        [Model.ExportFormat].self, forKey: .supportedExportFormats)
+      {
+        self.supportedExportFormats = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trainingPipeline) {
+        self.trainingPipeline = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pipelineJob) {
+        self.pipelineJob = value
+      }
+      self.containerSpec = try container.decodeIfPresent(
+        ModelContainerSpec.self, forKey: .containerSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactUri) {
+        self.artifactUri = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Model.DeploymentResourcesType].self, forKey: .supportedDeploymentResourcesTypes)
+      {
+        self.supportedDeploymentResourcesTypes = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .supportedInputStorageFormats)
+      {
+        self.supportedInputStorageFormats = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .supportedOutputStorageFormats)
+      {
+        self.supportedOutputStorageFormats = value
+      }
+      self.createTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
+      if let value = try container.decodeIfPresent([DeployedModelRef].self, forKey: .deployedModels)
+      {
+        self.deployedModels = value
+      }
+      self.explanationSpec = try container.decodeIfPresent(
+        ExplanationSpec.self, forKey: .explanationSpec)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
+        self.etag = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .labels)
+      {
+        self.labels = value
+      }
+      self.dataStats = try container.decodeIfPresent(Model.DataStats.self, forKey: .dataStats)
+      self.encryptionSpec = try container.decodeIfPresent(
+        EncryptionSpec.self, forKey: .encryptionSpec)
+      self.modelSourceInfo = try container.decodeIfPresent(
+        ModelSourceInfo.self, forKey: .modelSourceInfo)
+      self.originalModelInfo = try container.decodeIfPresent(
+        Model.OriginalModelInfo.self, forKey: .originalModelInfo)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataArtifact) {
+        self.metadataArtifact = value
+      }
+      self.baseModelSource = try container.decodeIfPresent(
+        Model.BaseModelSource.self, forKey: .baseModelSource)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
+        self.satisfiesPzs = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi) {
+        self.satisfiesPzi = value
+      }
+      if let value = try container.decodeIfPresent([Checkpoint].self, forKey: .checkpoints) {
+        self.checkpoints = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleCloudWKT.Value.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      try container.encode(self.versionId, forKey: .versionId)
+      try container.encode(self.versionAliases, forKey: .versionAliases)
+      try container.encodeIfPresent(self.versionCreateTime, forKey: .versionCreateTime)
+      try container.encodeIfPresent(self.versionUpdateTime, forKey: .versionUpdateTime)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encode(self.versionDescription, forKey: .versionDescription)
+      try container.encode(self.defaultCheckpointId, forKey: .defaultCheckpointId)
+      try container.encodeIfPresent(self.predictSchemata, forKey: .predictSchemata)
+      try container.encode(self.metadataSchemaUri, forKey: .metadataSchemaUri)
+      try container.encodeIfPresent(self.metadata, forKey: .metadata)
+      try container.encode(self.supportedExportFormats, forKey: .supportedExportFormats)
+      try container.encode(self.trainingPipeline, forKey: .trainingPipeline)
+      try container.encode(self.pipelineJob, forKey: .pipelineJob)
+      try container.encodeIfPresent(self.containerSpec, forKey: .containerSpec)
+      try container.encode(self.artifactUri, forKey: .artifactUri)
+      try container.encode(
+        self.supportedDeploymentResourcesTypes, forKey: .supportedDeploymentResourcesTypes)
+      try container.encode(self.supportedInputStorageFormats, forKey: .supportedInputStorageFormats)
+      try container.encode(
+        self.supportedOutputStorageFormats, forKey: .supportedOutputStorageFormats)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+      try container.encode(self.deployedModels, forKey: .deployedModels)
+      try container.encodeIfPresent(self.explanationSpec, forKey: .explanationSpec)
+      try container.encode(self.etag, forKey: .etag)
+      try container.encode(self.labels, forKey: .labels)
+      try container.encodeIfPresent(self.dataStats, forKey: .dataStats)
+      try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
+      try container.encodeIfPresent(self.modelSourceInfo, forKey: .modelSourceInfo)
+      try container.encodeIfPresent(self.originalModelInfo, forKey: .originalModelInfo)
+      try container.encode(self.metadataArtifact, forKey: .metadataArtifact)
+      try container.encodeIfPresent(self.baseModelSource, forKey: .baseModelSource)
+      try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+      try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)
+      try container.encode(self.checkpoints, forKey: .checkpoints)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
     }
 
     /// Represents export format supported by the Model.
@@ -403,6 +643,8 @@
       /// Output only. The content of this Model that may be exported.
       public var exportableContents: [Model.ExportFormat.ExportableContent] = []
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `ExportFormat`.
       public init() {}
 
@@ -417,6 +659,46 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let id = CodingKeys(stringValue: "id")
+        static let exportableContents = CodingKeys(stringValue: "exportableContents")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "id",
+          "exportableContents",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
+          self.id = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Model.ExportFormat.ExportableContent].self, forKey: .exportableContents)
+        {
+          self.exportableContents = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.exportableContents, forKey: .exportableContents)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       /// The Model content that can be exported.
@@ -576,6 +858,8 @@
       /// the number is 0.
       public var testAnnotationsCount: Swift.Int64 = Swift.Int64()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `DataStats`.
       public init() {}
 
@@ -590,6 +874,80 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let trainingDataItemsCount = CodingKeys(stringValue: "trainingDataItemsCount")
+        static let validationDataItemsCount = CodingKeys(stringValue: "validationDataItemsCount")
+        static let testDataItemsCount = CodingKeys(stringValue: "testDataItemsCount")
+        static let trainingAnnotationsCount = CodingKeys(stringValue: "trainingAnnotationsCount")
+        static let validationAnnotationsCount = CodingKeys(
+          stringValue: "validationAnnotationsCount")
+        static let testAnnotationsCount = CodingKeys(stringValue: "testAnnotationsCount")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "trainingDataItemsCount",
+          "validationDataItemsCount",
+          "testDataItemsCount",
+          "trainingAnnotationsCount",
+          "validationAnnotationsCount",
+          "testAnnotationsCount",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .trainingDataItemsCount)
+        {
+          self.trainingDataItemsCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .validationDataItemsCount)
+        {
+          self.validationDataItemsCount = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .testDataItemsCount)
+        {
+          self.testDataItemsCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .trainingAnnotationsCount)
+        {
+          self.trainingAnnotationsCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .validationAnnotationsCount)
+        {
+          self.validationAnnotationsCount = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .testAnnotationsCount)
+        {
+          self.testAnnotationsCount = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.trainingDataItemsCount, forKey: .trainingDataItemsCount)
+        try container.encode(self.validationDataItemsCount, forKey: .validationDataItemsCount)
+        try container.encode(self.testDataItemsCount, forKey: .testDataItemsCount)
+        try container.encode(self.trainingAnnotationsCount, forKey: .trainingAnnotationsCount)
+        try container.encode(self.validationAnnotationsCount, forKey: .validationAnnotationsCount)
+        try container.encode(self.testAnnotationsCount, forKey: .testAnnotationsCount)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -612,6 +970,8 @@
       /// `projects/{project}/locations/{location}/models/{model_id}@{version_id}`
       public var model: Swift.String = Swift.String()
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `OriginalModelInfo`.
       public init() {}
 
@@ -626,6 +986,38 @@
         var copy = self
         try config(&copy)
         return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let model = CodingKeys(stringValue: "model")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "model"
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
+          self.model = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.model, forKey: .model)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -646,6 +1038,8 @@
     {
       public var source: OneOf_Source? = nil
 
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleCloudWKT._UnknownFields = .init()
+
       /// Initialize a new instance of `BaseModelSource`.
       public init() {}
 
@@ -662,9 +1056,19 @@
         return copy
       }
 
-      private enum CodingKeys: Swift.String, CodingKey {
-        case modelGardenSource = "modelGardenSource"
-        case genieSource = "genieSource"
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let modelGardenSource = CodingKeys(stringValue: "modelGardenSource")
+        static let genieSource = CodingKeys(stringValue: "genieSource")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "modelGardenSource",
+          "genieSource",
+        ]
       }
 
       public init(from decoder: Decoder) throws {
@@ -690,6 +1094,10 @@
           try sourceCheckAndSet(.genieSource(genieSource))
         }
         self.source = source
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleCloudWKT.Value.self, forKey: key)
+        }
       }
 
       public func encode(to encoder: Encoder) throws {
@@ -702,6 +1110,9 @@
           case .genieSource(let value):
             try container.encode(value, forKey: .genieSource)
           }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
